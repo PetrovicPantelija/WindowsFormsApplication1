@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="webs_baza16DataSet1" targetNamespace="http://tempuri.org/webs_baza16DataSet1.xsd" xmlns:mstns="http://tempuri.org/webs_baza16DataSet1.xsd" xmlns="http://tempuri.org/webs_baza16DataSet1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="webs_baza16ConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="webs_baza16ConnectionString (Settings)" PropertyReference="ApplicationSettings.WindowsFormsApplication1.Properties.Settings.GlobalReference.Default.webs_baza16ConnectionString" Provider="System.Data.OleDb" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="NaloziZaUtovarTableAdapter" GeneratorDataComponentClassName="NaloziZaUtovarTableAdapter" Name="NaloziZaUtovar" UserDataComponentName="NaloziZaUtovarTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="webs_baza16ConnectionString (Settings)" DbObjectName="NaloziZaUtovar" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT VrstaDokumentaIDz, DatumDokumenta, KomintentIDz, KomintentMestoIsporukeIDz, DatumPorudzbine, Poruceno, SifraProizvoda, NazivProizvoda, IsporukaID, DatumUtovara, DatumIsporuke, BrojUtovara, BrojIsporuke, VozacIDz, Stampa, Zavrseno, NazivKomintenta FROM NaloziZaUtovar</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="VrstaDokumentaIDz" DataSetColumn="VrstaDokumentaIDz" />
+              <Mapping SourceColumn="DatumDokumenta" DataSetColumn="DatumDokumenta" />
+              <Mapping SourceColumn="KomintentIDz" DataSetColumn="KomintentIDz" />
+              <Mapping SourceColumn="KomintentMestoIsporukeIDz" DataSetColumn="KomintentMestoIsporukeIDz" />
+              <Mapping SourceColumn="DatumPorudzbine" DataSetColumn="DatumPorudzbine" />
+              <Mapping SourceColumn="Poruceno" DataSetColumn="Poruceno" />
+              <Mapping SourceColumn="SifraProizvoda" DataSetColumn="SifraProizvoda" />
+              <Mapping SourceColumn="NazivProizvoda" DataSetColumn="NazivProizvoda" />
+              <Mapping SourceColumn="IsporukaID" DataSetColumn="IsporukaID" />
+              <Mapping SourceColumn="DatumUtovara" DataSetColumn="DatumUtovara" />
+              <Mapping SourceColumn="DatumIsporuke" DataSetColumn="DatumIsporuke" />
+              <Mapping SourceColumn="BrojUtovara" DataSetColumn="BrojUtovara" />
+              <Mapping SourceColumn="BrojIsporuke" DataSetColumn="BrojIsporuke" />
+              <Mapping SourceColumn="VozacIDz" DataSetColumn="VozacIDz" />
+              <Mapping SourceColumn="Stampa" DataSetColumn="Stampa" />
+              <Mapping SourceColumn="Zavrseno" DataSetColumn="Zavrseno" />
+              <Mapping SourceColumn="NazivKomintenta" DataSetColumn="NazivKomintenta" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="webs_baza16DataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="webs_baza16DataSet1" msprop:Generator_UserDSName="webs_baza16DataSet1">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="NaloziZaUtovar" msprop:Generator_TableClassName="NaloziZaUtovarDataTable" msprop:Generator_TableVarName="tableNaloziZaUtovar" msprop:Generator_TablePropName="NaloziZaUtovar" msprop:Generator_RowDeletingName="NaloziZaUtovarRowDeleting" msprop:Generator_RowChangingName="NaloziZaUtovarRowChanging" msprop:Generator_RowEvHandlerName="NaloziZaUtovarRowChangeEventHandler" msprop:Generator_RowDeletedName="NaloziZaUtovarRowDeleted" msprop:Generator_UserTableName="NaloziZaUtovar" msprop:Generator_RowChangedName="NaloziZaUtovarRowChanged" msprop:Generator_RowEvArgName="NaloziZaUtovarRowChangeEvent" msprop:Generator_RowClassName="NaloziZaUtovarRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="VrstaDokumentaIDz" msprop:Generator_ColumnVarNameInTable="columnVrstaDokumentaIDz" msprop:Generator_ColumnPropNameInRow="VrstaDokumentaIDz" msprop:Generator_ColumnPropNameInTable="VrstaDokumentaIDzColumn" msprop:Generator_UserColumnName="VrstaDokumentaIDz" type="xs:short" minOccurs="0" />
+              <xs:element name="DatumDokumenta" msprop:Generator_ColumnVarNameInTable="columnDatumDokumenta" msprop:Generator_ColumnPropNameInRow="DatumDokumenta" msprop:Generator_ColumnPropNameInTable="DatumDokumentaColumn" msprop:Generator_UserColumnName="DatumDokumenta" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="KomintentIDz" msprop:Generator_ColumnVarNameInTable="columnKomintentIDz" msprop:Generator_ColumnPropNameInRow="KomintentIDz" msprop:Generator_ColumnPropNameInTable="KomintentIDzColumn" msprop:Generator_UserColumnName="KomintentIDz" type="xs:double" minOccurs="0" />
+              <xs:element name="KomintentMestoIsporukeIDz" msprop:Generator_ColumnVarNameInTable="columnKomintentMestoIsporukeIDz" msprop:Generator_ColumnPropNameInRow="KomintentMestoIsporukeIDz" msprop:Generator_ColumnPropNameInTable="KomintentMestoIsporukeIDzColumn" msprop:Generator_UserColumnName="KomintentMestoIsporukeIDz" type="xs:double" minOccurs="0" />
+              <xs:element name="DatumPorudzbine" msprop:Generator_ColumnVarNameInTable="columnDatumPorudzbine" msprop:Generator_ColumnPropNameInRow="DatumPorudzbine" msprop:Generator_ColumnPropNameInTable="DatumPorudzbineColumn" msprop:Generator_UserColumnName="DatumPorudzbine" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Poruceno" msprop:Generator_ColumnVarNameInTable="columnPoruceno" msprop:Generator_ColumnPropNameInRow="Poruceno" msprop:Generator_ColumnPropNameInTable="PorucenoColumn" msprop:Generator_UserColumnName="Poruceno" type="xs:double" minOccurs="0" />
+              <xs:element name="SifraProizvoda" msprop:Generator_ColumnVarNameInTable="columnSifraProizvoda" msprop:Generator_ColumnPropNameInRow="SifraProizvoda" msprop:Generator_ColumnPropNameInTable="SifraProizvodaColumn" msprop:Generator_UserColumnName="SifraProizvoda" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="18" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NazivProizvoda" msprop:Generator_ColumnVarNameInTable="columnNazivProizvoda" msprop:Generator_ColumnPropNameInRow="NazivProizvoda" msprop:Generator_ColumnPropNameInTable="NazivProizvodaColumn" msprop:Generator_UserColumnName="NazivProizvoda" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IsporukaID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnIsporukaID" msprop:Generator_ColumnPropNameInRow="IsporukaID" msprop:Generator_ColumnPropNameInTable="IsporukaIDColumn" msprop:Generator_UserColumnName="IsporukaID" type="xs:int" minOccurs="0" />
+              <xs:element name="DatumUtovara" msprop:Generator_ColumnVarNameInTable="columnDatumUtovara" msprop:Generator_ColumnPropNameInRow="DatumUtovara" msprop:Generator_ColumnPropNameInTable="DatumUtovaraColumn" msprop:Generator_UserColumnName="DatumUtovara" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="DatumIsporuke" msprop:Generator_ColumnVarNameInTable="columnDatumIsporuke" msprop:Generator_ColumnPropNameInRow="DatumIsporuke" msprop:Generator_ColumnPropNameInTable="DatumIsporukeColumn" msprop:Generator_UserColumnName="DatumIsporuke" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="BrojUtovara" msprop:Generator_ColumnVarNameInTable="columnBrojUtovara" msprop:Generator_ColumnPropNameInRow="BrojUtovara" msprop:Generator_ColumnPropNameInTable="BrojUtovaraColumn" msprop:Generator_UserColumnName="BrojUtovara" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="6" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BrojIsporuke" msprop:Generator_ColumnVarNameInTable="columnBrojIsporuke" msprop:Generator_ColumnPropNameInRow="BrojIsporuke" msprop:Generator_ColumnPropNameInTable="BrojIsporukeColumn" msprop:Generator_UserColumnName="BrojIsporuke" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="6" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="VozacIDz" msprop:Generator_ColumnVarNameInTable="columnVozacIDz" msprop:Generator_ColumnPropNameInRow="VozacIDz" msprop:Generator_ColumnPropNameInTable="VozacIDzColumn" msprop:Generator_UserColumnName="VozacIDz" type="xs:int" minOccurs="0" />
+              <xs:element name="Stampa" msprop:Generator_ColumnVarNameInTable="columnStampa" msprop:Generator_ColumnPropNameInRow="Stampa" msprop:Generator_ColumnPropNameInTable="StampaColumn" msprop:Generator_UserColumnName="Stampa" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Zavrseno" msprop:Generator_ColumnVarNameInTable="columnZavrseno" msprop:Generator_ColumnPropNameInRow="Zavrseno" msprop:Generator_ColumnPropNameInTable="ZavrsenoColumn" msprop:Generator_UserColumnName="Zavrseno" type="xs:boolean" minOccurs="0" />
+              <xs:element name="NazivKomintenta" msprop:Generator_ColumnVarNameInTable="columnNazivKomintenta" msprop:Generator_ColumnPropNameInRow="NazivKomintenta" msprop:Generator_ColumnPropNameInTable="NazivKomintentaColumn" msprop:Generator_UserColumnName="NazivKomintenta" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="VStampaPakeristaDS" targetNamespace="http://tempuri.org/VStampaPakeristaDS.xsd" xmlns:mstns="http://tempuri.org/VStampaPakeristaDS.xsd" xmlns="http://tempuri.org/VStampaPakeristaDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="NedraConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="NedraConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.WindowsFormsApplication1.Properties.Settings.GlobalReference.Default.NedraConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="VStampaPakeristaTableAdapter" GeneratorDataComponentClassName="VStampaPakeristaTableAdapter" Name="VStampaPakerista" UserDataComponentName="VStampaPakeristaTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="NedraConnectionString (Settings)" DbObjectName="SDK.dbo.VStampaPakerista" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT ShippingNo, DatumUtovara, Paleta, PaketName, Kolicina FROM dbo.VStampaPakerista</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ShippingNo" DataSetColumn="ShippingNo" />
+              <Mapping SourceColumn="DatumUtovara" DataSetColumn="DatumUtovara" />
+              <Mapping SourceColumn="Paleta" DataSetColumn="Paleta" />
+              <Mapping SourceColumn="PaketName" DataSetColumn="PaketName" />
+              <Mapping SourceColumn="Kolicina" DataSetColumn="Kolicina" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="VStampaPakeristaDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="VStampaPakeristaDS" msprop:Generator_UserDSName="VStampaPakeristaDS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="VStampaPakerista" msprop:Generator_TableClassName="VStampaPakeristaDataTable" msprop:Generator_TableVarName="tableVStampaPakerista" msprop:Generator_TablePropName="VStampaPakerista" msprop:Generator_RowDeletingName="VStampaPakeristaRowDeleting" msprop:Generator_RowChangingName="VStampaPakeristaRowChanging" msprop:Generator_RowEvHandlerName="VStampaPakeristaRowChangeEventHandler" msprop:Generator_RowDeletedName="VStampaPakeristaRowDeleted" msprop:Generator_UserTableName="VStampaPakerista" msprop:Generator_RowChangedName="VStampaPakeristaRowChanged" msprop:Generator_RowEvArgName="VStampaPakeristaRowChangeEvent" msprop:Generator_RowClassName="VStampaPakeristaRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ShippingNo" msprop:Generator_ColumnVarNameInTable="columnShippingNo" msprop:Generator_ColumnPropNameInRow="ShippingNo" msprop:Generator_ColumnPropNameInTable="ShippingNoColumn" msprop:Generator_UserColumnName="ShippingNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="25" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DatumUtovara" msprop:Generator_ColumnVarNameInTable="columnDatumUtovara" msprop:Generator_ColumnPropNameInRow="DatumUtovara" msprop:Generator_ColumnPropNameInTable="DatumUtovaraColumn" msprop:Generator_UserColumnName="DatumUtovara">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Paleta" msprop:Generator_ColumnVarNameInTable="columnPaleta" msprop:Generator_ColumnPropNameInRow="Paleta" msprop:Generator_ColumnPropNameInTable="PaletaColumn" msprop:Generator_UserColumnName="Paleta" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PaketName" msprop:Generator_ColumnVarNameInTable="columnPaketName" msprop:Generator_ColumnPropNameInRow="PaketName" msprop:Generator_ColumnPropNameInTable="PaketNameColumn" msprop:Generator_UserColumnName="PaketName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Kolicina" msprop:Generator_ColumnVarNameInTable="columnKolicina" msprop:Generator_ColumnPropNameInRow="Kolicina" msprop:Generator_ColumnPropNameInTable="KolicinaColumn" msprop:Generator_UserColumnName="Kolicina" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

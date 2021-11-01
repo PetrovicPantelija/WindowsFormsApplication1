@@ -1,0 +1,631 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="NedraDataSet1" targetNamespace="http://tempuri.org/NedraDataSet1.xsd" xmlns:mstns="http://tempuri.org/NedraDataSet1.xsd" xmlns="http://tempuri.org/NedraDataSet1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="KrsteniceTestConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="KrsteniceTestConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.WindowsFormsApplication1.Properties.Settings.GlobalReference.Default.KrsteniceTestConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="PartnerjiTableAdapter" GeneratorDataComponentClassName="PartnerjiTableAdapter" Name="Partnerji" UserDataComponentName="PartnerjiTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="KrsteniceTestConnectionString (Settings)" DbObjectName="KrsteniceTest.dbo.Partnerji" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [dbo].[Partnerji] WHERE (((@IsNull_NameOper = 1 AND [NameOper] IS NULL) OR ([NameOper] = @Original_NameOper)) AND ((@IsNull_Datum = 1 AND [Datum] IS NULL) OR ([Datum] = @Original_Datum)) AND ([PaSifra] = @Original_PaSifra) AND ([PaNaziv] = @Original_PaNaziv) AND ((@IsNull_PaUlicaHisnaSt = 1 AND [PaUlicaHisnaSt] IS NULL) OR ([PaUlicaHisnaSt] = @Original_PaUlicaHisnaSt)) AND ((@IsNull_PaKraj = 1 AND [PaKraj] IS NULL) OR ([PaKraj] = @Original_PaKraj)) AND ((@IsNull_PaDelDrzave = 1 AND [PaDelDrzave] IS NULL) OR ([PaDelDrzave] = @Original_PaDelDrzave)) AND ((@IsNull_PaPostnaSt = 1 AND [PaPostnaSt] IS NULL) OR ([PaPostnaSt] = @Original_PaPostnaSt)) AND ((@IsNull_PaSifDrzave = 1 AND [PaSifDrzave] IS NULL) OR ([PaSifDrzave] = @Original_PaSifDrzave)) AND ((@IsNull_PaTelefon1 = 1 AND [PaTelefon1] IS NULL) OR ([PaTelefon1] = @Original_PaTelefon1)) AND ((@IsNull_PaTelefon2 = 1 AND [PaTelefon2] IS NULL) OR ([PaTelefon2] = @Original_PaTelefon2)) AND ((@IsNull_PaFaks = 1 AND [PaFaks] IS NULL) OR ([PaFaks] = @Original_PaFaks)) AND ((@IsNull_PaSifVrst = 1 AND [PaSifVrst] IS NULL) OR ([PaSifVrst] = @Original_PaSifVrst)) AND ((@IsNull_PaZiroRac = 1 AND [PaZiroRac] IS NULL) OR ([PaZiroRac] = @Original_PaZiroRac)) AND ((@IsNull_PaOpomba = 1 AND [PaOpomba] IS NULL) OR ([PaOpomba] = @Original_PaOpomba)) AND ((@IsNull_PaDMatSt = 1 AND [PaDMatSt] IS NULL) OR ([PaDMatSt] = @Original_PaDMatSt)) AND ((@IsNull_PaEMail = 1 AND [PaEMail] IS NULL) OR ([PaEMail] = @Original_PaEMail)) AND ((@IsNull_PaEMatSt1 = 1 AND [PaEMatSt1] IS NULL) OR ([PaEMatSt1] = @Original_PaEMatSt1)) AND ((@IsNull_PaEDavStDDV = 1 AND [PaEDavStDDV] IS NULL) OR ([PaEDavStDDV] = @Original_PaEDavStDDV)) AND ((@IsNull_PaPrejemnik = 1 AND [PaPrejemnik] IS NULL) OR ([PaPrejemnik] = @Original_PaPrejemnik)) AND ((@IsNull_PaDoNaziv = 1 AND [PaDoNaziv] IS NULL) OR ([PaDoNaziv] = @Original_PaDoNaziv)) AND ((@IsNull_PaPanoga = 1 AND [PaPanoga] IS NULL) OR ([PaPanoga] = @Original_PaPanoga)) AND ((@IsNull_PaNadPartner = 1 AND [PaNadPartner] IS NULL) OR ([PaNadPartner] = @Original_PaNadPartner)) AND ((@IsNull_PaOE1 = 1 AND [PaOE1] IS NULL) OR ([PaOE1] = @Original_PaOE1)) AND ((@IsNull_PaOE2 = 1 AND [PaOE2] IS NULL) OR ([PaOE2] = @Original_PaOE2)) AND ((@IsNull_PaOE3 = 1 AND [PaOE3] IS NULL) OR ([PaOE3] = @Original_PaOE3)) AND ((@IsNull_PaInternet = 1 AND [PaInternet] IS NULL) OR ([PaInternet] = @Original_PaInternet)) AND ((@IsNull_PaX_GK = 1 AND [PaX_GK] IS NULL) OR ([PaX_GK] = @Original_PaX_GK)) AND ((@IsNull_PaY_GK = 1 AND [PaY_GK] IS NULL) OR ([PaY_GK] = @Original_PaY_GK)) AND ((@IsNull_PaBanka = 1 AND [PaBanka] IS NULL) OR ([PaBanka] = @Original_PaBanka)) AND ((@IsNull_PaKrSifra = 1 AND [PaKrSifra] IS NULL) OR ([PaKrSifra] = @Original_PaKrSifra)) AND ((@IsNull_PaOpomin = 1 AND [PaOpomin] IS NULL) OR ([PaOpomin] = @Original_PaOpomin)) AND ((@IsNull_PaObresti = 1 AND [PaObresti] IS NULL) OR ([PaObresti] = @Original_PaObresti)) AND ((@IsNull_PaOsebniDokument = 1 AND [PaOsebniDokument] IS NULL) OR ([PaOsebniDokument] = @Original_PaOsebniDokument)) AND ((@IsNull_PaFizicnaPravnaOs = 1 AND [PaFizicnaPravnaOs] IS NULL) OR ([PaFizicnaPravnaOs] = @Original_PaFizicnaPravnaOs)) AND ((@IsNull_PaDatumN = 1 AND [PaDatumN] IS NULL) OR ([PaDatumN] = @Original_PaDatumN)) AND ((@IsNull_PaNameOperN = 1 AND [PaNameOperN] IS NULL) OR ([PaNameOperN] = @Original_PaNameOperN)) AND ((@IsNull_PaSektor = 1 AND [PaSektor] IS NULL) OR ([PaSektor] = @Original_PaSektor)) AND ((@IsNull_PaOpombaPriNaboru = 1 AND [PaOpombaPriNaboru] IS NULL) OR ([PaOpombaPriNaboru] = @Original_PaOpombaPriNaboru)) AND ((@IsNull_PaRegija = 1 AND [PaRegija] IS NULL) OR ([PaRegija] = @Original_PaRegija)) AND ((@IsNull_Pa_Custom1 = 1 AND [Pa_Custom1] IS NULL) OR ([Pa_Custom1] = @Original_Pa_Custom1)) AND ((@IsNull_Pa_Custom2 = 1 AND [Pa_Custom2] IS NULL) OR ([Pa_Custom2] = @Original_Pa_Custom2)) AND ((@IsNull_Pa_Custom3 = 1 AND [Pa_Custom3] IS NULL) OR ([Pa_Custom3] = @Original_Pa_Custom3)) AND ((@IsNull_Pa_Custom4 = 1 AND [Pa_Custom4] IS NULL) OR ([Pa_Custom4] = @Original_Pa_Custom4)) AND ((@IsNull_Pa_Custom5 = 1 AND [Pa_Custom5] IS NULL) OR ([Pa_Custom5] = @Original_Pa_Custom5)) AND ((@IsNull_PaStObrem = 1 AND [PaStObrem] IS NULL) OR ([PaStObrem] = @Original_PaStObrem)))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_NameOper" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="NameOper" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_NameOper" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="NameOper" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Datum" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Datum" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_Datum" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="Datum" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_PaSifra" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaSifra" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaNaziv" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaNaziv" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaUlicaHisnaSt" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaUlicaHisnaSt" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaUlicaHisnaSt" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaUlicaHisnaSt" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaKraj" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaKraj" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaKraj" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaKraj" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaDelDrzave" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaDelDrzave" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaDelDrzave" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaDelDrzave" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaPostnaSt" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaPostnaSt" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaPostnaSt" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaPostnaSt" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaSifDrzave" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaSifDrzave" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaSifDrzave" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaSifDrzave" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaTelefon1" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaTelefon1" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaTelefon1" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaTelefon1" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaTelefon2" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaTelefon2" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaTelefon2" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaTelefon2" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaFaks" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaFaks" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaFaks" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaFaks" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaSifVrst" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaSifVrst" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaSifVrst" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaSifVrst" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaZiroRac" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaZiroRac" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaZiroRac" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaZiroRac" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaOpomba" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaOpomba" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_PaOpomba" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="PaOpomba" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaDMatSt" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaDMatSt" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaDMatSt" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaDMatSt" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaEMail" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaEMail" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaEMail" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaEMail" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaEMatSt1" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaEMatSt1" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaEMatSt1" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaEMatSt1" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaEDavStDDV" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaEDavStDDV" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaEDavStDDV" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaEDavStDDV" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaPrejemnik" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaPrejemnik" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_PaPrejemnik" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaPrejemnik" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaDoNaziv" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaDoNaziv" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaDoNaziv" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaDoNaziv" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaPanoga" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaPanoga" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaPanoga" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaPanoga" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaNadPartner" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaNadPartner" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_PaNadPartner" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaNadPartner" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaOE1" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaOE1" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaOE1" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaOE1" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaOE2" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaOE2" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaOE2" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaOE2" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaOE3" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaOE3" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaOE3" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaOE3" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaInternet" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaInternet" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaInternet" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaInternet" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaX_GK" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaX_GK" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@Original_PaX_GK" Precision="15" ProviderType="Decimal" Scale="6" Size="0" SourceColumn="PaX_GK" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaY_GK" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaY_GK" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@Original_PaY_GK" Precision="15" ProviderType="Decimal" Scale="6" Size="0" SourceColumn="PaY_GK" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaBanka" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaBanka" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_PaBanka" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaBanka" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaKrSifra" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaKrSifra" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_PaKrSifra" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaKrSifra" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaOpomin" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaOpomin" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_PaOpomin" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaOpomin" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaObresti" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaObresti" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@Original_PaObresti" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="PaObresti" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaOsebniDokument" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaOsebniDokument" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_PaOsebniDokument" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaOsebniDokument" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaFizicnaPravnaOs" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaFizicnaPravnaOs" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_PaFizicnaPravnaOs" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaFizicnaPravnaOs" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaDatumN" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaDatumN" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_PaDatumN" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="PaDatumN" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaNameOperN" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaNameOperN" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaNameOperN" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaNameOperN" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaSektor" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaSektor" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaSektor" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaSektor" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaOpombaPriNaboru" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaOpombaPriNaboru" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_PaOpombaPriNaboru" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="PaOpombaPriNaboru" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaRegija" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaRegija" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_PaRegija" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="PaRegija" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Pa_Custom1" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Pa_Custom1" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Pa_Custom1" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Pa_Custom1" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Pa_Custom2" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Pa_Custom2" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Pa_Custom2" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Pa_Custom2" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Pa_Custom3" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Pa_Custom3" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Pa_Custom3" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Pa_Custom3" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Pa_Custom4" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Pa_Custom4" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Pa_Custom4" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Pa_Custom4" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Pa_Custom5" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Pa_Custom5" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Pa_Custom5" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Pa_Custom5" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaStObrem" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaStObrem" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaStObrem" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaStObrem" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [dbo].[Partnerji] ([NameOper], [Datum], [PaSifra], [PaNaziv], [PaUlicaHisnaSt], [PaKraj], [PaDelDrzave], [PaPostnaSt], [PaSifDrzave], [PaTelefon1], [PaTelefon2], [PaFaks], [PaSifVrst], [PaZiroRac], [PaOpomba], [PaDMatSt], [PaEMail], [PaEMatSt1], [PaEDavStDDV], [PaPrejemnik], [PaDoNaziv], [PaPanoga], [PaNadPartner], [PaOE1], [PaOE2], [PaOE3], [PaInternet], [PaX_GK], [PaY_GK], [PaBanka], [PaKrSifra], [PaOpomin], [PaObresti], [PaOsebniDokument], [PaFizicnaPravnaOs], [PaDatumN], [PaNameOperN], [PaSektor], [PaOpombaPriNaboru], [PaRegija], [Pa_Custom1], [Pa_Custom2], [Pa_Custom3], [Pa_Custom4], [Pa_Custom5], [PaStObrem]) VALUES (@NameOper, @Datum, @PaSifra, @PaNaziv, @PaUlicaHisnaSt, @PaKraj, @PaDelDrzave, @PaPostnaSt, @PaSifDrzave, @PaTelefon1, @PaTelefon2, @PaFaks, @PaSifVrst, @PaZiroRac, @PaOpomba, @PaDMatSt, @PaEMail, @PaEMatSt1, @PaEDavStDDV, @PaPrejemnik, @PaDoNaziv, @PaPanoga, @PaNadPartner, @PaOE1, @PaOE2, @PaOE3, @PaInternet, @PaX_GK, @PaY_GK, @PaBanka, @PaKrSifra, @PaOpomin, @PaObresti, @PaOsebniDokument, @PaFizicnaPravnaOs, @PaDatumN, @PaNameOperN, @PaSektor, @PaOpombaPriNaboru, @PaRegija, @Pa_Custom1, @Pa_Custom2, @Pa_Custom3, @Pa_Custom4, @Pa_Custom5, @PaStObrem);
+SELECT NameOper, Datum, PaSifra, PaNaziv, PaUlicaHisnaSt, PaKraj, PaDelDrzave, PaPostnaSt, PaSifDrzave, PaTelefon1, PaTelefon2, PaFaks, PaSifVrst, PaZiroRac, PaOpomba, PaDMatSt, PaEMail, PaEMatSt1, PaEDavStDDV, PaPrejemnik, PaDoNaziv, PaPanoga, PaNadPartner, PaOE1, PaOE2, PaOE3, PaInternet, PaX_GK, PaY_GK, PaBanka, PaKrSifra, PaOpomin, PaObresti, PaOsebniDokument, PaFizicnaPravnaOs, PaDatumN, PaNameOperN, PaSektor, PaOpombaPriNaboru, PaRegija, Pa_Custom1, Pa_Custom2, Pa_Custom3, Pa_Custom4, Pa_Custom5, PaStObrem FROM Partnerji WHERE (PaSifra = @PaSifra)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@NameOper" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="NameOper" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Datum" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="Datum" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@PaSifra" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaSifra" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaNaziv" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaNaziv" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaUlicaHisnaSt" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaUlicaHisnaSt" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaKraj" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaKraj" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaDelDrzave" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaDelDrzave" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaPostnaSt" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaPostnaSt" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaSifDrzave" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaSifDrzave" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaTelefon1" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaTelefon1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaTelefon2" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaTelefon2" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaFaks" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaFaks" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaSifVrst" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaSifVrst" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaZiroRac" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaZiroRac" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@PaOpomba" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="PaOpomba" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaDMatSt" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaDMatSt" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaEMail" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaEMail" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaEMatSt1" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaEMatSt1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaEDavStDDV" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaEDavStDDV" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@PaPrejemnik" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaPrejemnik" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaDoNaziv" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaDoNaziv" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaPanoga" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaPanoga" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@PaNadPartner" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaNadPartner" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaOE1" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaOE1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaOE2" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaOE2" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaOE3" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaOE3" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaInternet" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaInternet" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@PaX_GK" Precision="15" ProviderType="Decimal" Scale="6" Size="0" SourceColumn="PaX_GK" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@PaY_GK" Precision="15" ProviderType="Decimal" Scale="6" Size="0" SourceColumn="PaY_GK" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@PaBanka" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaBanka" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@PaKrSifra" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaKrSifra" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@PaOpomin" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaOpomin" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@PaObresti" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="PaObresti" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@PaOsebniDokument" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaOsebniDokument" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@PaFizicnaPravnaOs" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaFizicnaPravnaOs" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@PaDatumN" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="PaDatumN" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaNameOperN" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaNameOperN" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaSektor" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaSektor" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@PaOpombaPriNaboru" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="PaOpombaPriNaboru" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@PaRegija" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="PaRegija" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Pa_Custom1" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Pa_Custom1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Pa_Custom2" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Pa_Custom2" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Pa_Custom3" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Pa_Custom3" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Pa_Custom4" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Pa_Custom4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Pa_Custom5" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Pa_Custom5" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaStObrem" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaStObrem" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT NameOper, Datum, PaSifra, PaNaziv, PaUlicaHisnaSt, PaKraj, PaDelDrzave, PaPostnaSt, PaSifDrzave, PaTelefon1, PaTelefon2, PaFaks, PaSifVrst, PaZiroRac, PaOpomba, PaDMatSt, PaEMail, PaEMatSt1, PaEDavStDDV, PaPrejemnik, PaDoNaziv, PaPanoga, PaNadPartner, PaOE1, PaOE2, PaOE3, PaInternet, PaX_GK, PaY_GK, PaBanka, PaKrSifra, PaOpomin, PaObresti, PaOsebniDokument, PaFizicnaPravnaOs, PaDatumN, PaNameOperN, PaSektor, PaOpombaPriNaboru, PaRegija, Pa_Custom1, Pa_Custom2, Pa_Custom3, Pa_Custom4, Pa_Custom5, PaStObrem FROM dbo.Partnerji</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [dbo].[Partnerji] SET [NameOper] = @NameOper, [Datum] = @Datum, [PaSifra] = @PaSifra, [PaNaziv] = @PaNaziv, [PaUlicaHisnaSt] = @PaUlicaHisnaSt, [PaKraj] = @PaKraj, [PaDelDrzave] = @PaDelDrzave, [PaPostnaSt] = @PaPostnaSt, [PaSifDrzave] = @PaSifDrzave, [PaTelefon1] = @PaTelefon1, [PaTelefon2] = @PaTelefon2, [PaFaks] = @PaFaks, [PaSifVrst] = @PaSifVrst, [PaZiroRac] = @PaZiroRac, [PaOpomba] = @PaOpomba, [PaDMatSt] = @PaDMatSt, [PaEMail] = @PaEMail, [PaEMatSt1] = @PaEMatSt1, [PaEDavStDDV] = @PaEDavStDDV, [PaPrejemnik] = @PaPrejemnik, [PaDoNaziv] = @PaDoNaziv, [PaPanoga] = @PaPanoga, [PaNadPartner] = @PaNadPartner, [PaOE1] = @PaOE1, [PaOE2] = @PaOE2, [PaOE3] = @PaOE3, [PaInternet] = @PaInternet, [PaX_GK] = @PaX_GK, [PaY_GK] = @PaY_GK, [PaBanka] = @PaBanka, [PaKrSifra] = @PaKrSifra, [PaOpomin] = @PaOpomin, [PaObresti] = @PaObresti, [PaOsebniDokument] = @PaOsebniDokument, [PaFizicnaPravnaOs] = @PaFizicnaPravnaOs, [PaDatumN] = @PaDatumN, [PaNameOperN] = @PaNameOperN, [PaSektor] = @PaSektor, [PaOpombaPriNaboru] = @PaOpombaPriNaboru, [PaRegija] = @PaRegija, [Pa_Custom1] = @Pa_Custom1, [Pa_Custom2] = @Pa_Custom2, [Pa_Custom3] = @Pa_Custom3, [Pa_Custom4] = @Pa_Custom4, [Pa_Custom5] = @Pa_Custom5, [PaStObrem] = @PaStObrem WHERE (((@IsNull_NameOper = 1 AND [NameOper] IS NULL) OR ([NameOper] = @Original_NameOper)) AND ((@IsNull_Datum = 1 AND [Datum] IS NULL) OR ([Datum] = @Original_Datum)) AND ([PaSifra] = @Original_PaSifra) AND ([PaNaziv] = @Original_PaNaziv) AND ((@IsNull_PaUlicaHisnaSt = 1 AND [PaUlicaHisnaSt] IS NULL) OR ([PaUlicaHisnaSt] = @Original_PaUlicaHisnaSt)) AND ((@IsNull_PaKraj = 1 AND [PaKraj] IS NULL) OR ([PaKraj] = @Original_PaKraj)) AND ((@IsNull_PaDelDrzave = 1 AND [PaDelDrzave] IS NULL) OR ([PaDelDrzave] = @Original_PaDelDrzave)) AND ((@IsNull_PaPostnaSt = 1 AND [PaPostnaSt] IS NULL) OR ([PaPostnaSt] = @Original_PaPostnaSt)) AND ((@IsNull_PaSifDrzave = 1 AND [PaSifDrzave] IS NULL) OR ([PaSifDrzave] = @Original_PaSifDrzave)) AND ((@IsNull_PaTelefon1 = 1 AND [PaTelefon1] IS NULL) OR ([PaTelefon1] = @Original_PaTelefon1)) AND ((@IsNull_PaTelefon2 = 1 AND [PaTelefon2] IS NULL) OR ([PaTelefon2] = @Original_PaTelefon2)) AND ((@IsNull_PaFaks = 1 AND [PaFaks] IS NULL) OR ([PaFaks] = @Original_PaFaks)) AND ((@IsNull_PaSifVrst = 1 AND [PaSifVrst] IS NULL) OR ([PaSifVrst] = @Original_PaSifVrst)) AND ((@IsNull_PaZiroRac = 1 AND [PaZiroRac] IS NULL) OR ([PaZiroRac] = @Original_PaZiroRac)) AND ((@IsNull_PaOpomba = 1 AND [PaOpomba] IS NULL) OR ([PaOpomba] = @Original_PaOpomba)) AND ((@IsNull_PaDMatSt = 1 AND [PaDMatSt] IS NULL) OR ([PaDMatSt] = @Original_PaDMatSt)) AND ((@IsNull_PaEMail = 1 AND [PaEMail] IS NULL) OR ([PaEMail] = @Original_PaEMail)) AND ((@IsNull_PaEMatSt1 = 1 AND [PaEMatSt1] IS NULL) OR ([PaEMatSt1] = @Original_PaEMatSt1)) AND ((@IsNull_PaEDavStDDV = 1 AND [PaEDavStDDV] IS NULL) OR ([PaEDavStDDV] = @Original_PaEDavStDDV)) AND ((@IsNull_PaPrejemnik = 1 AND [PaPrejemnik] IS NULL) OR ([PaPrejemnik] = @Original_PaPrejemnik)) AND ((@IsNull_PaDoNaziv = 1 AND [PaDoNaziv] IS NULL) OR ([PaDoNaziv] = @Original_PaDoNaziv)) AND ((@IsNull_PaPanoga = 1 AND [PaPanoga] IS NULL) OR ([PaPanoga] = @Original_PaPanoga)) AND ((@IsNull_PaNadPartner = 1 AND [PaNadPartner] IS NULL) OR ([PaNadPartner] = @Original_PaNadPartner)) AND ((@IsNull_PaOE1 = 1 AND [PaOE1] IS NULL) OR ([PaOE1] = @Original_PaOE1)) AND ((@IsNull_PaOE2 = 1 AND [PaOE2] IS NULL) OR ([PaOE2] = @Original_PaOE2)) AND ((@IsNull_PaOE3 = 1 AND [PaOE3] IS NULL) OR ([PaOE3] = @Original_PaOE3)) AND ((@IsNull_PaInternet = 1 AND [PaInternet] IS NULL) OR ([PaInternet] = @Original_PaInternet)) AND ((@IsNull_PaX_GK = 1 AND [PaX_GK] IS NULL) OR ([PaX_GK] = @Original_PaX_GK)) AND ((@IsNull_PaY_GK = 1 AND [PaY_GK] IS NULL) OR ([PaY_GK] = @Original_PaY_GK)) AND ((@IsNull_PaBanka = 1 AND [PaBanka] IS NULL) OR ([PaBanka] = @Original_PaBanka)) AND ((@IsNull_PaKrSifra = 1 AND [PaKrSifra] IS NULL) OR ([PaKrSifra] = @Original_PaKrSifra)) AND ((@IsNull_PaOpomin = 1 AND [PaOpomin] IS NULL) OR ([PaOpomin] = @Original_PaOpomin)) AND ((@IsNull_PaObresti = 1 AND [PaObresti] IS NULL) OR ([PaObresti] = @Original_PaObresti)) AND ((@IsNull_PaOsebniDokument = 1 AND [PaOsebniDokument] IS NULL) OR ([PaOsebniDokument] = @Original_PaOsebniDokument)) AND ((@IsNull_PaFizicnaPravnaOs = 1 AND [PaFizicnaPravnaOs] IS NULL) OR ([PaFizicnaPravnaOs] = @Original_PaFizicnaPravnaOs)) AND ((@IsNull_PaDatumN = 1 AND [PaDatumN] IS NULL) OR ([PaDatumN] = @Original_PaDatumN)) AND ((@IsNull_PaNameOperN = 1 AND [PaNameOperN] IS NULL) OR ([PaNameOperN] = @Original_PaNameOperN)) AND ((@IsNull_PaSektor = 1 AND [PaSektor] IS NULL) OR ([PaSektor] = @Original_PaSektor)) AND ((@IsNull_PaOpombaPriNaboru = 1 AND [PaOpombaPriNaboru] IS NULL) OR ([PaOpombaPriNaboru] = @Original_PaOpombaPriNaboru)) AND ((@IsNull_PaRegija = 1 AND [PaRegija] IS NULL) OR ([PaRegija] = @Original_PaRegija)) AND ((@IsNull_Pa_Custom1 = 1 AND [Pa_Custom1] IS NULL) OR ([Pa_Custom1] = @Original_Pa_Custom1)) AND ((@IsNull_Pa_Custom2 = 1 AND [Pa_Custom2] IS NULL) OR ([Pa_Custom2] = @Original_Pa_Custom2)) AND ((@IsNull_Pa_Custom3 = 1 AND [Pa_Custom3] IS NULL) OR ([Pa_Custom3] = @Original_Pa_Custom3)) AND ((@IsNull_Pa_Custom4 = 1 AND [Pa_Custom4] IS NULL) OR ([Pa_Custom4] = @Original_Pa_Custom4)) AND ((@IsNull_Pa_Custom5 = 1 AND [Pa_Custom5] IS NULL) OR ([Pa_Custom5] = @Original_Pa_Custom5)) AND ((@IsNull_PaStObrem = 1 AND [PaStObrem] IS NULL) OR ([PaStObrem] = @Original_PaStObrem)));
+SELECT NameOper, Datum, PaSifra, PaNaziv, PaUlicaHisnaSt, PaKraj, PaDelDrzave, PaPostnaSt, PaSifDrzave, PaTelefon1, PaTelefon2, PaFaks, PaSifVrst, PaZiroRac, PaOpomba, PaDMatSt, PaEMail, PaEMatSt1, PaEDavStDDV, PaPrejemnik, PaDoNaziv, PaPanoga, PaNadPartner, PaOE1, PaOE2, PaOE3, PaInternet, PaX_GK, PaY_GK, PaBanka, PaKrSifra, PaOpomin, PaObresti, PaOsebniDokument, PaFizicnaPravnaOs, PaDatumN, PaNameOperN, PaSektor, PaOpombaPriNaboru, PaRegija, Pa_Custom1, Pa_Custom2, Pa_Custom3, Pa_Custom4, Pa_Custom5, PaStObrem FROM Partnerji WHERE (PaSifra = @PaSifra)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@NameOper" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="NameOper" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Datum" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="Datum" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@PaSifra" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaSifra" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaNaziv" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaNaziv" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaUlicaHisnaSt" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaUlicaHisnaSt" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaKraj" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaKraj" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaDelDrzave" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaDelDrzave" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaPostnaSt" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaPostnaSt" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaSifDrzave" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaSifDrzave" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaTelefon1" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaTelefon1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaTelefon2" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaTelefon2" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaFaks" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaFaks" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaSifVrst" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaSifVrst" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaZiroRac" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaZiroRac" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@PaOpomba" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="PaOpomba" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaDMatSt" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaDMatSt" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaEMail" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaEMail" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaEMatSt1" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaEMatSt1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaEDavStDDV" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaEDavStDDV" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@PaPrejemnik" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaPrejemnik" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaDoNaziv" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaDoNaziv" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaPanoga" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaPanoga" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@PaNadPartner" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaNadPartner" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaOE1" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaOE1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaOE2" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaOE2" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaOE3" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaOE3" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaInternet" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaInternet" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@PaX_GK" Precision="15" ProviderType="Decimal" Scale="6" Size="0" SourceColumn="PaX_GK" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@PaY_GK" Precision="15" ProviderType="Decimal" Scale="6" Size="0" SourceColumn="PaY_GK" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@PaBanka" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaBanka" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@PaKrSifra" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaKrSifra" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@PaOpomin" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaOpomin" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@PaObresti" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="PaObresti" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@PaOsebniDokument" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaOsebniDokument" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@PaFizicnaPravnaOs" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaFizicnaPravnaOs" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@PaDatumN" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="PaDatumN" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaNameOperN" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaNameOperN" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaSektor" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaSektor" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@PaOpombaPriNaboru" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="PaOpombaPriNaboru" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@PaRegija" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="PaRegija" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Pa_Custom1" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Pa_Custom1" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Pa_Custom2" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Pa_Custom2" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Pa_Custom3" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Pa_Custom3" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Pa_Custom4" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Pa_Custom4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Pa_Custom5" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Pa_Custom5" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@PaStObrem" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaStObrem" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_NameOper" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="NameOper" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_NameOper" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="NameOper" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Datum" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Datum" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_Datum" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="Datum" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_PaSifra" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaSifra" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaNaziv" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaNaziv" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaUlicaHisnaSt" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaUlicaHisnaSt" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaUlicaHisnaSt" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaUlicaHisnaSt" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaKraj" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaKraj" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaKraj" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaKraj" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaDelDrzave" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaDelDrzave" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaDelDrzave" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaDelDrzave" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaPostnaSt" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaPostnaSt" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaPostnaSt" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaPostnaSt" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaSifDrzave" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaSifDrzave" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaSifDrzave" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaSifDrzave" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaTelefon1" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaTelefon1" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaTelefon1" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaTelefon1" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaTelefon2" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaTelefon2" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaTelefon2" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaTelefon2" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaFaks" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaFaks" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaFaks" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaFaks" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaSifVrst" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaSifVrst" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaSifVrst" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaSifVrst" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaZiroRac" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaZiroRac" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaZiroRac" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaZiroRac" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaOpomba" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaOpomba" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_PaOpomba" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="PaOpomba" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaDMatSt" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaDMatSt" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaDMatSt" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaDMatSt" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaEMail" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaEMail" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaEMail" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaEMail" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaEMatSt1" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaEMatSt1" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaEMatSt1" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaEMatSt1" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaEDavStDDV" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaEDavStDDV" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaEDavStDDV" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaEDavStDDV" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaPrejemnik" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaPrejemnik" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_PaPrejemnik" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaPrejemnik" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaDoNaziv" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaDoNaziv" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaDoNaziv" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaDoNaziv" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaPanoga" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaPanoga" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaPanoga" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaPanoga" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaNadPartner" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaNadPartner" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_PaNadPartner" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaNadPartner" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaOE1" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaOE1" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaOE1" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaOE1" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaOE2" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaOE2" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaOE2" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaOE2" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaOE3" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaOE3" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaOE3" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaOE3" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaInternet" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaInternet" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaInternet" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaInternet" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaX_GK" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaX_GK" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@Original_PaX_GK" Precision="15" ProviderType="Decimal" Scale="6" Size="0" SourceColumn="PaX_GK" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaY_GK" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaY_GK" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Decimal" Direction="Input" ParameterName="@Original_PaY_GK" Precision="15" ProviderType="Decimal" Scale="6" Size="0" SourceColumn="PaY_GK" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaBanka" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaBanka" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_PaBanka" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaBanka" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaKrSifra" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaKrSifra" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_PaKrSifra" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaKrSifra" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaOpomin" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaOpomin" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_PaOpomin" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaOpomin" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaObresti" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaObresti" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int16" Direction="Input" ParameterName="@Original_PaObresti" Precision="0" ProviderType="SmallInt" Scale="0" Size="0" SourceColumn="PaObresti" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaOsebniDokument" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaOsebniDokument" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_PaOsebniDokument" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaOsebniDokument" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaFizicnaPravnaOs" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaFizicnaPravnaOs" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_PaFizicnaPravnaOs" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaFizicnaPravnaOs" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaDatumN" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaDatumN" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@Original_PaDatumN" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="PaDatumN" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaNameOperN" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaNameOperN" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaNameOperN" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaNameOperN" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaSektor" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaSektor" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaSektor" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaSektor" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaOpombaPriNaboru" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaOpombaPriNaboru" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_PaOpombaPriNaboru" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="PaOpombaPriNaboru" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaRegija" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaRegija" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_PaRegija" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="PaRegija" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Pa_Custom1" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Pa_Custom1" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Pa_Custom1" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Pa_Custom1" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Pa_Custom2" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Pa_Custom2" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Pa_Custom2" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Pa_Custom2" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Pa_Custom3" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Pa_Custom3" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Pa_Custom3" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Pa_Custom3" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Pa_Custom4" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Pa_Custom4" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Pa_Custom4" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Pa_Custom4" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Pa_Custom5" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Pa_Custom5" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Original_Pa_Custom5" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="Pa_Custom5" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PaStObrem" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PaStObrem" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_PaStObrem" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="PaStObrem" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="NameOper" DataSetColumn="NameOper" />
+              <Mapping SourceColumn="Datum" DataSetColumn="Datum" />
+              <Mapping SourceColumn="PaSifra" DataSetColumn="PaSifra" />
+              <Mapping SourceColumn="PaNaziv" DataSetColumn="PaNaziv" />
+              <Mapping SourceColumn="PaUlicaHisnaSt" DataSetColumn="PaUlicaHisnaSt" />
+              <Mapping SourceColumn="PaKraj" DataSetColumn="PaKraj" />
+              <Mapping SourceColumn="PaDelDrzave" DataSetColumn="PaDelDrzave" />
+              <Mapping SourceColumn="PaPostnaSt" DataSetColumn="PaPostnaSt" />
+              <Mapping SourceColumn="PaSifDrzave" DataSetColumn="PaSifDrzave" />
+              <Mapping SourceColumn="PaTelefon1" DataSetColumn="PaTelefon1" />
+              <Mapping SourceColumn="PaTelefon2" DataSetColumn="PaTelefon2" />
+              <Mapping SourceColumn="PaFaks" DataSetColumn="PaFaks" />
+              <Mapping SourceColumn="PaSifVrst" DataSetColumn="PaSifVrst" />
+              <Mapping SourceColumn="PaZiroRac" DataSetColumn="PaZiroRac" />
+              <Mapping SourceColumn="PaOpomba" DataSetColumn="PaOpomba" />
+              <Mapping SourceColumn="PaDMatSt" DataSetColumn="PaDMatSt" />
+              <Mapping SourceColumn="PaEMail" DataSetColumn="PaEMail" />
+              <Mapping SourceColumn="PaEMatSt1" DataSetColumn="PaEMatSt1" />
+              <Mapping SourceColumn="PaEDavStDDV" DataSetColumn="PaEDavStDDV" />
+              <Mapping SourceColumn="PaPrejemnik" DataSetColumn="PaPrejemnik" />
+              <Mapping SourceColumn="PaDoNaziv" DataSetColumn="PaDoNaziv" />
+              <Mapping SourceColumn="PaPanoga" DataSetColumn="PaPanoga" />
+              <Mapping SourceColumn="PaNadPartner" DataSetColumn="PaNadPartner" />
+              <Mapping SourceColumn="PaOE1" DataSetColumn="PaOE1" />
+              <Mapping SourceColumn="PaOE2" DataSetColumn="PaOE2" />
+              <Mapping SourceColumn="PaOE3" DataSetColumn="PaOE3" />
+              <Mapping SourceColumn="PaInternet" DataSetColumn="PaInternet" />
+              <Mapping SourceColumn="PaX_GK" DataSetColumn="PaX_GK" />
+              <Mapping SourceColumn="PaY_GK" DataSetColumn="PaY_GK" />
+              <Mapping SourceColumn="PaBanka" DataSetColumn="PaBanka" />
+              <Mapping SourceColumn="PaKrSifra" DataSetColumn="PaKrSifra" />
+              <Mapping SourceColumn="PaOpomin" DataSetColumn="PaOpomin" />
+              <Mapping SourceColumn="PaObresti" DataSetColumn="PaObresti" />
+              <Mapping SourceColumn="PaOsebniDokument" DataSetColumn="PaOsebniDokument" />
+              <Mapping SourceColumn="PaFizicnaPravnaOs" DataSetColumn="PaFizicnaPravnaOs" />
+              <Mapping SourceColumn="PaDatumN" DataSetColumn="PaDatumN" />
+              <Mapping SourceColumn="PaNameOperN" DataSetColumn="PaNameOperN" />
+              <Mapping SourceColumn="PaSektor" DataSetColumn="PaSektor" />
+              <Mapping SourceColumn="PaOpombaPriNaboru" DataSetColumn="PaOpombaPriNaboru" />
+              <Mapping SourceColumn="PaRegija" DataSetColumn="PaRegija" />
+              <Mapping SourceColumn="Pa_Custom1" DataSetColumn="Pa_Custom1" />
+              <Mapping SourceColumn="Pa_Custom2" DataSetColumn="Pa_Custom2" />
+              <Mapping SourceColumn="Pa_Custom3" DataSetColumn="Pa_Custom3" />
+              <Mapping SourceColumn="Pa_Custom4" DataSetColumn="Pa_Custom4" />
+              <Mapping SourceColumn="Pa_Custom5" DataSetColumn="Pa_Custom5" />
+              <Mapping SourceColumn="PaStObrem" DataSetColumn="PaStObrem" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="NedraDataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="NedraDataSet1" msprop:Generator_UserDSName="NedraDataSet1">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Partnerji" msprop:Generator_TableClassName="PartnerjiDataTable" msprop:Generator_TableVarName="tablePartnerji" msprop:Generator_TablePropName="Partnerji" msprop:Generator_RowDeletingName="PartnerjiRowDeleting" msprop:Generator_RowChangingName="PartnerjiRowChanging" msprop:Generator_RowEvHandlerName="PartnerjiRowChangeEventHandler" msprop:Generator_RowDeletedName="PartnerjiRowDeleted" msprop:Generator_UserTableName="Partnerji" msprop:Generator_RowChangedName="PartnerjiRowChanged" msprop:Generator_RowEvArgName="PartnerjiRowChangeEvent" msprop:Generator_RowClassName="PartnerjiRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="NameOper" msprop:Generator_ColumnVarNameInTable="columnNameOper" msprop:Generator_ColumnPropNameInRow="NameOper" msprop:Generator_ColumnPropNameInTable="NameOperColumn" msprop:Generator_UserColumnName="NameOper" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Datum" msprop:Generator_ColumnVarNameInTable="columnDatum" msprop:Generator_ColumnPropNameInRow="Datum" msprop:Generator_ColumnPropNameInTable="DatumColumn" msprop:Generator_UserColumnName="Datum" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="PaSifra" msprop:Generator_ColumnVarNameInTable="columnPaSifra" msprop:Generator_ColumnPropNameInRow="PaSifra" msprop:Generator_ColumnPropNameInTable="PaSifraColumn" msprop:Generator_UserColumnName="PaSifra" type="xs:int" />
+              <xs:element name="PaNaziv" msprop:Generator_ColumnVarNameInTable="columnPaNaziv" msprop:Generator_ColumnPropNameInRow="PaNaziv" msprop:Generator_ColumnPropNameInTable="PaNazivColumn" msprop:Generator_UserColumnName="PaNaziv">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="35" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PaUlicaHisnaSt" msprop:Generator_ColumnVarNameInTable="columnPaUlicaHisnaSt" msprop:Generator_ColumnPropNameInRow="PaUlicaHisnaSt" msprop:Generator_ColumnPropNameInTable="PaUlicaHisnaStColumn" msprop:Generator_UserColumnName="PaUlicaHisnaSt" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="35" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PaKraj" msprop:Generator_ColumnVarNameInTable="columnPaKraj" msprop:Generator_ColumnPropNameInRow="PaKraj" msprop:Generator_ColumnPropNameInTable="PaKrajColumn" msprop:Generator_UserColumnName="PaKraj" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="35" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PaDelDrzave" msprop:Generator_ColumnVarNameInTable="columnPaDelDrzave" msprop:Generator_ColumnPropNameInRow="PaDelDrzave" msprop:Generator_ColumnPropNameInTable="PaDelDrzaveColumn" msprop:Generator_UserColumnName="PaDelDrzave" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="9" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PaPostnaSt" msprop:Generator_ColumnVarNameInTable="columnPaPostnaSt" msprop:Generator_ColumnPropNameInRow="PaPostnaSt" msprop:Generator_ColumnPropNameInTable="PaPostnaStColumn" msprop:Generator_UserColumnName="PaPostnaSt" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="9" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PaSifDrzave" msprop:Generator_ColumnVarNameInTable="columnPaSifDrzave" msprop:Generator_ColumnPropNameInRow="PaSifDrzave" msprop:Generator_ColumnPropNameInTable="PaSifDrzaveColumn" msprop:Generator_UserColumnName="PaSifDrzave" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PaTelefon1" msprop:Generator_ColumnVarNameInTable="columnPaTelefon1" msprop:Generator_ColumnPropNameInRow="PaTelefon1" msprop:Generator_ColumnPropNameInTable="PaTelefon1Column" msprop:Generator_UserColumnName="PaTelefon1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="17" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PaTelefon2" msprop:Generator_ColumnVarNameInTable="columnPaTelefon2" msprop:Generator_ColumnPropNameInRow="PaTelefon2" msprop:Generator_ColumnPropNameInTable="PaTelefon2Column" msprop:Generator_UserColumnName="PaTelefon2" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="17" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PaFaks" msprop:Generator_ColumnVarNameInTable="columnPaFaks" msprop:Generator_ColumnPropNameInRow="PaFaks" msprop:Generator_ColumnPropNameInTable="PaFaksColumn" msprop:Generator_UserColumnName="PaFaks" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="17" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PaSifVrst" msprop:Generator_ColumnVarNameInTable="columnPaSifVrst" msprop:Generator_ColumnPropNameInRow="PaSifVrst" msprop:Generator_ColumnPropNameInTable="PaSifVrstColumn" msprop:Generator_UserColumnName="PaSifVrst" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PaZiroRac" msprop:Generator_ColumnVarNameInTable="columnPaZiroRac" msprop:Generator_ColumnPropNameInRow="PaZiroRac" msprop:Generator_ColumnPropNameInTable="PaZiroRacColumn" msprop:Generator_UserColumnName="PaZiroRac" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="44" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PaOpomba" msprop:Generator_ColumnVarNameInTable="columnPaOpomba" msprop:Generator_ColumnPropNameInRow="PaOpomba" msprop:Generator_ColumnPropNameInTable="PaOpombaColumn" msprop:Generator_UserColumnName="PaOpomba" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2048" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PaDMatSt" msprop:Generator_ColumnVarNameInTable="columnPaDMatSt" msprop:Generator_ColumnPropNameInRow="PaDMatSt" msprop:Generator_ColumnPropNameInTable="PaDMatStColumn" msprop:Generator_UserColumnName="PaDMatSt" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="35" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PaEMail" msprop:Generator_ColumnVarNameInTable="columnPaEMail" msprop:Generator_ColumnPropNameInRow="PaEMail" msprop:Generator_ColumnPropNameInTable="PaEMailColumn" msprop:Generator_UserColumnName="PaEMail" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="70" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PaEMatSt1" msprop:Generator_ColumnVarNameInTable="columnPaEMatSt1" msprop:Generator_ColumnPropNameInRow="PaEMatSt1" msprop:Generator_ColumnPropNameInTable="PaEMatSt1Column" msprop:Generator_UserColumnName="PaEMatSt1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="35" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PaEDavStDDV" msprop:Generator_ColumnVarNameInTable="columnPaEDavStDDV" msprop:Generator_ColumnPropNameInRow="PaEDavStDDV" msprop:Generator_ColumnPropNameInTable="PaEDavStDDVColumn" msprop:Generator_UserColumnName="PaEDavStDDV" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="35" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PaPrejemnik" msprop:Generator_ColumnVarNameInTable="columnPaPrejemnik" msprop:Generator_ColumnPropNameInRow="PaPrejemnik" msprop:Generator_ColumnPropNameInTable="PaPrejemnikColumn" msprop:Generator_UserColumnName="PaPrejemnik" type="xs:int" minOccurs="0" />
+              <xs:element name="PaDoNaziv" msprop:Generator_ColumnVarNameInTable="columnPaDoNaziv" msprop:Generator_ColumnPropNameInRow="PaDoNaziv" msprop:Generator_ColumnPropNameInTable="PaDoNazivColumn" msprop:Generator_UserColumnName="PaDoNaziv" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="70" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PaPanoga" msprop:Generator_ColumnVarNameInTable="columnPaPanoga" msprop:Generator_ColumnPropNameInRow="PaPanoga" msprop:Generator_ColumnPropNameInTable="PaPanogaColumn" msprop:Generator_UserColumnName="PaPanoga" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="35" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PaNadPartner" msprop:Generator_ColumnVarNameInTable="columnPaNadPartner" msprop:Generator_ColumnPropNameInRow="PaNadPartner" msprop:Generator_ColumnPropNameInTable="PaNadPartnerColumn" msprop:Generator_UserColumnName="PaNadPartner" type="xs:int" minOccurs="0" />
+              <xs:element name="PaOE1" msprop:Generator_ColumnVarNameInTable="columnPaOE1" msprop:Generator_ColumnPropNameInRow="PaOE1" msprop:Generator_ColumnPropNameInTable="PaOE1Column" msprop:Generator_UserColumnName="PaOE1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PaOE2" msprop:Generator_ColumnVarNameInTable="columnPaOE2" msprop:Generator_ColumnPropNameInRow="PaOE2" msprop:Generator_ColumnPropNameInTable="PaOE2Column" msprop:Generator_UserColumnName="PaOE2" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PaOE3" msprop:Generator_ColumnVarNameInTable="columnPaOE3" msprop:Generator_ColumnPropNameInRow="PaOE3" msprop:Generator_ColumnPropNameInTable="PaOE3Column" msprop:Generator_UserColumnName="PaOE3" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PaInternet" msprop:Generator_ColumnVarNameInTable="columnPaInternet" msprop:Generator_ColumnPropNameInRow="PaInternet" msprop:Generator_ColumnPropNameInTable="PaInternetColumn" msprop:Generator_UserColumnName="PaInternet" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PaX_GK" msprop:Generator_ColumnVarNameInTable="columnPaX_GK" msprop:Generator_ColumnPropNameInRow="PaX_GK" msprop:Generator_ColumnPropNameInTable="PaX_GKColumn" msprop:Generator_UserColumnName="PaX_GK" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PaY_GK" msprop:Generator_ColumnVarNameInTable="columnPaY_GK" msprop:Generator_ColumnPropNameInRow="PaY_GK" msprop:Generator_ColumnPropNameInTable="PaY_GKColumn" msprop:Generator_UserColumnName="PaY_GK" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PaBanka" msprop:Generator_ColumnVarNameInTable="columnPaBanka" msprop:Generator_ColumnPropNameInRow="PaBanka" msprop:Generator_ColumnPropNameInTable="PaBankaColumn" msprop:Generator_UserColumnName="PaBanka" type="xs:int" minOccurs="0" />
+              <xs:element name="PaKrSifra" msprop:Generator_ColumnVarNameInTable="columnPaKrSifra" msprop:Generator_ColumnPropNameInRow="PaKrSifra" msprop:Generator_ColumnPropNameInTable="PaKrSifraColumn" msprop:Generator_UserColumnName="PaKrSifra" type="xs:int" minOccurs="0" />
+              <xs:element name="PaOpomin" msprop:Generator_ColumnVarNameInTable="columnPaOpomin" msprop:Generator_ColumnPropNameInRow="PaOpomin" msprop:Generator_ColumnPropNameInTable="PaOpominColumn" msprop:Generator_UserColumnName="PaOpomin" type="xs:int" minOccurs="0" />
+              <xs:element name="PaObresti" msprop:Generator_ColumnVarNameInTable="columnPaObresti" msprop:Generator_ColumnPropNameInRow="PaObresti" msprop:Generator_ColumnPropNameInTable="PaObrestiColumn" msprop:Generator_UserColumnName="PaObresti" type="xs:short" minOccurs="0" />
+              <xs:element name="PaOsebniDokument" msprop:Generator_ColumnVarNameInTable="columnPaOsebniDokument" msprop:Generator_ColumnPropNameInRow="PaOsebniDokument" msprop:Generator_ColumnPropNameInTable="PaOsebniDokumentColumn" msprop:Generator_UserColumnName="PaOsebniDokument" type="xs:int" minOccurs="0" />
+              <xs:element name="PaFizicnaPravnaOs" msprop:Generator_ColumnVarNameInTable="columnPaFizicnaPravnaOs" msprop:Generator_ColumnPropNameInRow="PaFizicnaPravnaOs" msprop:Generator_ColumnPropNameInTable="PaFizicnaPravnaOsColumn" msprop:Generator_UserColumnName="PaFizicnaPravnaOs" type="xs:int" minOccurs="0" />
+              <xs:element name="PaDatumN" msprop:Generator_ColumnVarNameInTable="columnPaDatumN" msprop:Generator_ColumnPropNameInRow="PaDatumN" msprop:Generator_ColumnPropNameInTable="PaDatumNColumn" msprop:Generator_UserColumnName="PaDatumN" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="PaNameOperN" msprop:Generator_ColumnVarNameInTable="columnPaNameOperN" msprop:Generator_ColumnPropNameInRow="PaNameOperN" msprop:Generator_ColumnPropNameInTable="PaNameOperNColumn" msprop:Generator_UserColumnName="PaNameOperN" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PaSektor" msprop:Generator_ColumnVarNameInTable="columnPaSektor" msprop:Generator_ColumnPropNameInRow="PaSektor" msprop:Generator_ColumnPropNameInTable="PaSektorColumn" msprop:Generator_UserColumnName="PaSektor" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="12" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PaOpombaPriNaboru" msprop:Generator_ColumnVarNameInTable="columnPaOpombaPriNaboru" msprop:Generator_ColumnPropNameInRow="PaOpombaPriNaboru" msprop:Generator_ColumnPropNameInTable="PaOpombaPriNaboruColumn" msprop:Generator_UserColumnName="PaOpombaPriNaboru" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PaRegija" msprop:Generator_ColumnVarNameInTable="columnPaRegija" msprop:Generator_ColumnPropNameInRow="PaRegija" msprop:Generator_ColumnPropNameInTable="PaRegijaColumn" msprop:Generator_UserColumnName="PaRegija" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="64" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Pa_Custom1" msprop:Generator_ColumnVarNameInTable="columnPa_Custom1" msprop:Generator_ColumnPropNameInRow="Pa_Custom1" msprop:Generator_ColumnPropNameInTable="Pa_Custom1Column" msprop:Generator_UserColumnName="Pa_Custom1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Pa_Custom2" msprop:Generator_ColumnVarNameInTable="columnPa_Custom2" msprop:Generator_ColumnPropNameInRow="Pa_Custom2" msprop:Generator_ColumnPropNameInTable="Pa_Custom2Column" msprop:Generator_UserColumnName="Pa_Custom2" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Pa_Custom3" msprop:Generator_ColumnVarNameInTable="columnPa_Custom3" msprop:Generator_ColumnPropNameInRow="Pa_Custom3" msprop:Generator_ColumnPropNameInTable="Pa_Custom3Column" msprop:Generator_UserColumnName="Pa_Custom3" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Pa_Custom4" msprop:Generator_ColumnVarNameInTable="columnPa_Custom4" msprop:Generator_ColumnPropNameInRow="Pa_Custom4" msprop:Generator_ColumnPropNameInTable="Pa_Custom4Column" msprop:Generator_UserColumnName="Pa_Custom4" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Pa_Custom5" msprop:Generator_ColumnVarNameInTable="columnPa_Custom5" msprop:Generator_ColumnPropNameInRow="Pa_Custom5" msprop:Generator_ColumnPropNameInTable="Pa_Custom5Column" msprop:Generator_UserColumnName="Pa_Custom5" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PaStObrem" msprop:Generator_ColumnVarNameInTable="columnPaStObrem" msprop:Generator_ColumnPropNameInRow="PaStObrem" msprop:Generator_ColumnPropNameInTable="PaStObremColumn" msprop:Generator_UserColumnName="PaStObrem" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Partnerji" />
+      <xs:field xpath="mstns:PaSifra" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

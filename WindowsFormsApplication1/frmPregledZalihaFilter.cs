@@ -1,0 +1,231 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Data.OleDb;
+using System.Data.SqlClient;
+using System.Configuration;
+
+namespace WindowsFormsApplication1
+{
+    public partial class frmPregledZalihaFilter : Form
+    {
+        public frmPregledZalihaFilter()
+        {
+            InitializeComponent();
+        }
+
+        private void frmPregledZalihaFilter_Load(object sender, EventArgs e)
+        {
+            var select2 = " Select SkSifra, (Cast(SkSifra as nvarchar(4)) + '-' + SkNaziv) as SkNaziv from Sklad order by SkSifra";
+            var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection2 = new SqlConnection(s_connection2);
+            var c2 = new SqlConnection(s_connection2);
+            var dataAdapter2 = new SqlDataAdapter(select2, c2);
+
+            var commandBuilder2 = new SqlCommandBuilder(dataAdapter2);
+            var ds2 = new DataSet();
+            dataAdapter2.Fill(ds2);
+            cboSkladiste.DataSource = ds2.Tables[0];
+            cboSkladiste.DisplayMember = "SkNaziv";
+            cboSkladiste.ValueMember = "SkSifra";
+
+            var select3 = " Select MpSifra, MpStaraSif from MaticniPodatki order by MpStaraSif";
+            var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection3 = new SqlConnection(s_connection3);
+            var c3 = new SqlConnection(s_connection3);
+            var dataAdapter3 = new SqlDataAdapter(select3, c3);
+
+            var commandBuilder3 = new SqlCommandBuilder(dataAdapter3);
+            var ds3 = new DataSet();
+            dataAdapter3.Fill(ds3);
+            cboArtikal.DataSource = ds3.Tables[0];
+            cboArtikal.DisplayMember = "MpStaraSif";
+            cboArtikal.ValueMember = "MpSifra";
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            RefreshDataGrid1();
+        }
+
+        private void RefreshDataGrid1()
+        {
+            var select = " select (Lokac.LokSifra + '-' + Lokac.LokOpis) as Regal, ZlSifMp as Sifra, MpStaraSif as Kod, ZlDejanskaKol as Kolicina   from Lokac " +
+            " left join ZalogaLokacija on ZlLok = Lokac.LokSifra " + 
+            " left join MaticniPodatki on MaticniPOdatki.MpSifra = ZlSifMp " +
+            " where  LokSkSifra = " +  cboSkladiste.SelectedValue + 
+            " order by Lokac.LokSifra";
+            
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "Regal";
+            dataGridView1.Columns[0].Width = 150;
+
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "Artikal";
+            dataGridView1.Columns[1].Width = 70;
+
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Kod";
+            dataGridView1.Columns[2].Width = 130;
+
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "Količina";
+            dataGridView1.Columns[3].Width = 50;
+        }
+
+        private void RefreshDataGrid2()
+        {
+            var select = " select (Lokac.LokSifra + '-' + Lokac.LokOpis) as Regal, ZlSifMp as Sifra, MpStaraSif as Kod, ZlDejanskaKol as Kolicina   from Lokac " +
+            " left join ZalogaLokacija on ZlLok = Lokac.LokSifra " +
+            " left join MaticniPodatki on MaticniPOdatki.MpSifra = ZlSifMp " +
+            " where  LokSkSifra = " + cboSkladiste.SelectedValue + " and ZlLok is null " + 
+            " order by Lokac.LokSifra";
+
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "Regal";
+            dataGridView1.Columns[0].Width = 150;
+
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "Artikal";
+            dataGridView1.Columns[1].Width = 70;
+
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Kod";
+            dataGridView1.Columns[2].Width = 130;
+
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "Količina";
+            dataGridView1.Columns[3].Width = 50;
+        }
+
+        private void RefreshDataGrid3()
+        {
+            var select = " select (Lokac.LokSifra + '-' + Lokac.LokOpis) as Regal, ZlSifMp as Sifra, MpStaraSif as Kod, ZlDejanskaKol as Kolicina   from Lokac " +
+            " left join ZalogaLokacija on ZlLok = Lokac.LokSifra " +
+            " left join MaticniPodatki on MaticniPOdatki.MpSifra = ZlSifMp " +
+            " where  LokSkSifra = " + cboSkladiste.SelectedValue + " and ZlSifMp =  " + Convert.ToInt32(cboArtikal.SelectedValue) +
+            " order by Lokac.LokSifra";
+
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "Regal";
+            dataGridView1.Columns[0].Width = 150;
+
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "Artikal";
+            dataGridView1.Columns[1].Width = 70;
+
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Kod";
+            dataGridView1.Columns[2].Width = 130;
+
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "Količina";
+            dataGridView1.Columns[3].Width = 50;
+        }
+
+        private void RefreshDataGrid4()
+        {
+            var select = " select (Lokac.LokSifra + '-'  + Lokac.LokOpis) as Regal, ZlSifMp as Sifra, MpStaraSif as Kod, ZlDejanskaKol as Kolicina   from Lokac " +
+            " left join ZalogaLokacija on ZlLok = Lokac.LokSifra " +
+            " left join MaticniPodatki on MaticniPOdatki.MpSifra = ZlSifMp " +
+            " where  MpStaraSif Like ( '%" + txtFilter.Text + "%' ) " + 
+            " order by Lokac.LokSifra";
+
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "Regal";
+            dataGridView1.Columns[0].Width = 150;
+
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "Artikal";
+            dataGridView1.Columns[1].Width = 70;
+
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Kod";
+            dataGridView1.Columns[2].Width = 130;
+
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "Količina";
+            dataGridView1.Columns[3].Width = 50;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            RefreshDataGrid2();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            RefreshDataGrid3();
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            Tezina.Text = "0";
+
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+
+                if (row.Selected)
+                {
+                    //Panta1
+                    Tezina.Text = (Convert.ToDecimal(Tezina.Text) + Convert.ToDecimal(row.Cells[3].Value.ToString())).ToString();
+                }
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            RefreshDataGrid4();
+        }
+    }
+}

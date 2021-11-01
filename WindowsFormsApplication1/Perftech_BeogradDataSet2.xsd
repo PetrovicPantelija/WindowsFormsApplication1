@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Perftech_BeogradDataSet2" targetNamespace="http://tempuri.org/Perftech_BeogradDataSet2.xsd" xmlns:mstns="http://tempuri.org/Perftech_BeogradDataSet2.xsd" xmlns="http://tempuri.org/Perftech_BeogradDataSet2.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="PerftehConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="PerftehConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.WindowsFormsApplication1.Properties.Settings.GlobalReference.Default.PerftehConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="MSPNalepniceTableAdapter" GeneratorDataComponentClassName="MSPNalepniceTableAdapter" Name="MSPNalepnice" UserDataComponentName="MSPNalepniceTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="PerftehConnectionString (Settings)" DbObjectName="Perftech_Beograd.dbo.MSPNalepniceV" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT BrojMSP, BrojRN, MpKod, MagacinIzdajni, MagacinPrijemni, MpSifra, Izdao, Kolicina, Napomena, Barkod, BrojNalepnica ,RepeatNumber,RNDatumPL ,RNKolicina ,RNMP ,RNKod, BarkodMSP FROM dbo.MSPNalepniceV</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="BrojMSP" DataSetColumn="BrojMSP" />
+              <Mapping SourceColumn="BrojRN" DataSetColumn="BrojRN" />
+              <Mapping SourceColumn="MpKod" DataSetColumn="MpKod" />
+              <Mapping SourceColumn="MagacinIzdajni" DataSetColumn="MagacinIzdajni" />
+              <Mapping SourceColumn="MagacinPrijemni" DataSetColumn="MagacinPrijemni" />
+              <Mapping SourceColumn="MpSifra" DataSetColumn="MpSifra" />
+              <Mapping SourceColumn="Izdao" DataSetColumn="Izdao" />
+              <Mapping SourceColumn="Kolicina" DataSetColumn="Kolicina" />
+              <Mapping SourceColumn="Napomena" DataSetColumn="Napomena" />
+              <Mapping SourceColumn="Barkod" DataSetColumn="Barkod" />
+              <Mapping SourceColumn="BrojNalepnica" DataSetColumn="BrojNalepnica" />
+              <Mapping SourceColumn="RNDatumPL" DataSetColumn="RNDatumPL" />
+              <Mapping SourceColumn="RNKolicina" DataSetColumn="RNKolicina" />
+              <Mapping SourceColumn="RNMP" DataSetColumn="RNMP" />
+              <Mapping SourceColumn="RNKod" DataSetColumn="RNKod" />
+              <Mapping SourceColumn="RepeatNumber" DataSetColumn="RepeatNumber" />
+              <Mapping SourceColumn="BarkodMSP" DataSetColumn="BarkodMSP" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Perftech_BeogradDataSet2" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="Perftech_BeogradDataSet2" msprop:Generator_UserDSName="Perftech_BeogradDataSet2">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="MSPNalepnice" msprop:Generator_TableClassName="MSPNalepniceDataTable" msprop:Generator_TableVarName="tableMSPNalepnice" msprop:Generator_RowChangedName="MSPNalepniceRowChanged" msprop:Generator_TablePropName="MSPNalepnice" msprop:Generator_RowDeletingName="MSPNalepniceRowDeleting" msprop:Generator_RowChangingName="MSPNalepniceRowChanging" msprop:Generator_RowEvHandlerName="MSPNalepniceRowChangeEventHandler" msprop:Generator_RowDeletedName="MSPNalepniceRowDeleted" msprop:Generator_RowClassName="MSPNalepniceRow" msprop:Generator_UserTableName="MSPNalepnice" msprop:Generator_RowEvArgName="MSPNalepniceRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="BrojMSP" msprop:Generator_ColumnVarNameInTable="columnBrojMSP" msprop:Generator_ColumnPropNameInRow="BrojMSP" msprop:Generator_ColumnPropNameInTable="BrojMSPColumn" msprop:Generator_UserColumnName="BrojMSP" type="xs:int" minOccurs="0" />
+              <xs:element name="BrojRN" msprop:Generator_ColumnVarNameInTable="columnBrojRN" msprop:Generator_ColumnPropNameInRow="BrojRN" msprop:Generator_ColumnPropNameInTable="BrojRNColumn" msprop:Generator_UserColumnName="BrojRN" type="xs:int" minOccurs="0" />
+              <xs:element name="MpKod" msprop:Generator_ColumnVarNameInTable="columnMpKod" msprop:Generator_ColumnPropNameInRow="MpKod" msprop:Generator_ColumnPropNameInTable="MpKodColumn" msprop:Generator_UserColumnName="MpKod" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="70" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MagacinIzdajni" msprop:Generator_ColumnVarNameInTable="columnMagacinIzdajni" msprop:Generator_ColumnPropNameInRow="MagacinIzdajni" msprop:Generator_ColumnPropNameInTable="MagacinIzdajniColumn" msprop:Generator_UserColumnName="MagacinIzdajni" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="70" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MagacinPrijemni" msprop:Generator_ColumnVarNameInTable="columnMagacinPrijemni" msprop:Generator_ColumnPropNameInRow="MagacinPrijemni" msprop:Generator_ColumnPropNameInTable="MagacinPrijemniColumn" msprop:Generator_UserColumnName="MagacinPrijemni" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="70" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MpSifra" msprop:Generator_ColumnVarNameInTable="columnMpSifra" msprop:Generator_ColumnPropNameInRow="MpSifra" msprop:Generator_ColumnPropNameInTable="MpSifraColumn" msprop:Generator_UserColumnName="MpSifra" type="xs:int" minOccurs="0" />
+              <xs:element name="Izdao" msprop:Generator_ColumnVarNameInTable="columnIzdao" msprop:Generator_ColumnPropNameInRow="Izdao" msprop:Generator_ColumnPropNameInTable="IzdaoColumn" msprop:Generator_UserColumnName="Izdao" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="70" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Kolicina" msprop:Generator_ColumnVarNameInTable="columnKolicina" msprop:Generator_ColumnPropNameInRow="Kolicina" msprop:Generator_ColumnPropNameInTable="KolicinaColumn" msprop:Generator_UserColumnName="Kolicina" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Napomena" msprop:Generator_ColumnVarNameInTable="columnNapomena" msprop:Generator_ColumnPropNameInRow="Napomena" msprop:Generator_ColumnPropNameInTable="NapomenaColumn" msprop:Generator_UserColumnName="Napomena" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Barkod" msprop:Generator_ColumnVarNameInTable="columnBarkod" msprop:Generator_ColumnPropNameInRow="Barkod" msprop:Generator_ColumnPropNameInTable="BarkodColumn" msprop:Generator_UserColumnName="Barkod" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="16" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BrojNalepnica" msprop:Generator_ColumnVarNameInTable="columnBrojNalepnica" msprop:Generator_ColumnPropNameInRow="BrojNalepnica" msprop:Generator_ColumnPropNameInTable="BrojNalepnicaColumn" msprop:Generator_UserColumnName="BrojNalepnica" type="xs:int" minOccurs="0" />
+              <xs:element name="RNDatumPL" msprop:Generator_ColumnVarNameInTable="columnRNDatumPL" msprop:Generator_ColumnPropNameInRow="RNDatumPL" msprop:Generator_ColumnPropNameInTable="RNDatumPLColumn" msprop:Generator_UserColumnName="RNDatumPL" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="12" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RNKolicina" msprop:Generator_ColumnVarNameInTable="columnRNKolicina" msprop:Generator_ColumnPropNameInRow="RNKolicina" msprop:Generator_ColumnPropNameInTable="RNKolicinaColumn" msprop:Generator_UserColumnName="RNKolicina" type="xs:decimal" minOccurs="0" />
+              <xs:element name="RNMP" msprop:Generator_ColumnVarNameInTable="columnRNMP" msprop:Generator_ColumnPropNameInRow="RNMP" msprop:Generator_ColumnPropNameInTable="RNMPColumn" msprop:Generator_UserColumnName="RNMP" type="xs:int" minOccurs="0" />
+              <xs:element name="RNKod" msprop:Generator_ColumnVarNameInTable="columnRNKod" msprop:Generator_ColumnPropNameInRow="RNKod" msprop:Generator_ColumnPropNameInTable="RNKodColumn" msprop:Generator_UserColumnName="RNKod" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="70" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RepeatNumber" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnRepeatNumber" msprop:Generator_ColumnPropNameInRow="RepeatNumber" msprop:Generator_ColumnPropNameInTable="RepeatNumberColumn" msprop:Generator_UserColumnName="RepeatNumber" type="xs:int" minOccurs="0" />
+              <xs:element name="BarkodMSP" msprop:Generator_ColumnVarNameInTable="columnBarkodMSP" msprop:Generator_ColumnPropNameInRow="BarkodMSP" msprop:Generator_ColumnPropNameInTable="BarkodMSPColumn" msprop:Generator_UserColumnName="BarkodMSP" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="16" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

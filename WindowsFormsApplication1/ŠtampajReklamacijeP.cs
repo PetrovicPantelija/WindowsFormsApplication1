@@ -1,0 +1,130 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Data.SqlClient;
+using System.Configuration;
+
+using Microsoft.Reporting.WinForms;
+
+namespace WindowsFormsApplication1
+{
+    public partial class ŠtampajReklamacijeP : Form
+    {
+        public ŠtampajReklamacijeP()
+        {
+            InitializeComponent();
+        }
+
+        private void ŠtampajReklamacijeP_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'DataSet7.TestProcedurePalSveR' table. You can move, or remove it, as needed.
+            //this.TestProcedurePalSveRTableAdapter.Fill(this.DataSet7.TestProcedurePalSveR);
+            // TODO: This line of code loads data into the 'DataSet7.TestProcedurePalSveR' table. You can move, or remove it, as needed.
+           // this.TestProcedurePalSveRTableAdapter.Fill(this.DataSet7.TestProcedurePalSveR);
+           /*
+            var select = " Select Distinct RTrim(Vozilo) as Vozilo From RkShipping";
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            cboVozila.DataSource = ds.Tables[0];
+            cboVozila.DisplayMember = "Vozilo";
+            cboVozila.ValueMember = "Vozilo";
+            
+            */
+            var select = " Select Distinct DatumUtovara, Cast(SUBSTRING(DatumUtovara, 1, Charindex('.',DatumUtovara) -1) as int)  as  Dan, Cast(Replace(SUBSTRING(DatumUtovara, Charindex('.',DatumUtovara)+1, Len(DatumUtovara)-12 -1 -( (Charindex('.',DatumUtovara) ))),'.','') as int) as  Mesec  From RkShipping  order by  Mesec, Dan";
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            cboDatumUtovara.DataSource = ds.Tables[0];
+            cboDatumUtovara.DisplayMember = "DatumUtovara";
+            cboDatumUtovara.ValueMember = "DatumUtovara";
+
+            this.reportViewer1.RefreshReport();
+            this.reportViewer1.RefreshReport();
+            this.reportViewer1.RefreshReport();
+             
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            /*
+            var select = " Select Distinct DatumUtovara, Cast(SUBSTRING(DatumUtovara, 1, Charindex('.',DatumUtovara) -1) as int)  as  Dan, Cast(Replace(SUBSTRING(DatumUtovara, Charindex('.',DatumUtovara)+1, Len(DatumUtovara)-12 -1 -( (Charindex('.',DatumUtovara) ))),'.','') as int) as  Mesec from RkShipping  where  Vozilo = '" + cboVozila.Text + "' order by Mesec, Dan";
+
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            cboDatumUtovara.DataSource = ds.Tables[0];
+            cboDatumUtovara.DisplayMember = "DatumUtovara";
+            cboDatumUtovara.ValueMember = "DatumUtovara";
+             */
+            
+            var select = " Select Distinct RTrim(Vozilo) as Vozilo From RkShipping where  DatumUtovara = '" + cboDatumUtovara.Text + "'";
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            cboVozila.DataSource = ds.Tables[0];
+            cboVozila.DisplayMember = "Vozilo";
+            cboVozila.ValueMember = "Vozilo";
+             
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DataSet7TableAdapters.TestProcedurePalSveRTableAdapter ta = new DataSet7TableAdapters.TestProcedurePalSveRTableAdapter();
+            DataSet7.TestProcedurePalSveRDataTable dt = new DataSet7.TestProcedurePalSveRDataTable();
+            ta.Fill(dt, cboVozila.Text, cboDatumUtovara.Text);
+            ReportDataSource rds = new ReportDataSource();
+            rds.Name = "DataSet7";
+            rds.Value = dt;
+
+            ReportDataSource rds2 = new ReportDataSource();
+            rds2.Name = "DataSet7";
+            rds2.Value = dt;
+
+            ReportDataSource rds4 = new ReportDataSource();
+            rds4.Name = "DataSet7";
+            rds4.Value = dt;
+
+
+            ReportParameter[] par = new ReportParameter[2];
+            par[0] = new ReportParameter("Vozilo", cboVozila.Text.ToString());
+            par[1] = new ReportParameter("DatumUtovara", cboDatumUtovara.Text.ToString());
+
+           
+            reportViewer1.LocalReport.DataSources.Clear();
+            reportViewer1.LocalReport.ReportPath = "Report7.rdlc";
+            reportViewer1.LocalReport.SetParameters(par);
+      
+            reportViewer1.LocalReport.DataSources.Add(rds);
+            reportViewer1.LocalReport.DataSources.Add(rds2);
+            reportViewer1.LocalReport.DataSources.Add(rds4);
+            reportViewer1.RefreshReport();
+        }
+    }
+}
