@@ -705,6 +705,23 @@ namespace WindowsFormsApplication1
             WebIsporukaVoziloPocetna wiv = new WebIsporukaVoziloPocetna();
             wiv.Show();
         }
-        
+
+        private void toolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            PregledKontrolorZavrseno pkz = new PregledKontrolorZavrseno();
+            pkz.Show();
+        }
+
+        private void toolStripMenuItem5_Click(object sender, EventArgs e)
+        {
+            Magacin.frmOtpremnicaUvozPocetna pocot = new Magacin.frmOtpremnicaUvozPocetna();
+            pocot.Show();
+        }
+
+        private void toolStripMenuItem6_Click(object sender, EventArgs e)
+        {
+            frmReklamacijeUvozPocetna reklpoc = new frmReklamacijeUvozPocetna();
+            reklpoc.Show();
+        }
     }
 }

@@ -37,6 +37,7 @@
             this.mSPPrijemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.promenaKorisnikaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.formiranjMSPIzRNToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.trebovanjaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.magacinToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,7 +56,7 @@
             this.planToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uvozIObradaPlanaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uvozNetoPotrebaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.trebovanjaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.trebovanjaReversToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -83,7 +84,8 @@
             this.mSPPrijemToolStripMenuItem,
             this.promenaKorisnikaToolStripMenuItem,
             this.formiranjMSPIzRNToolStripMenuItem,
-            this.trebovanjaToolStripMenuItem});
+            this.trebovanjaToolStripMenuItem,
+            this.trebovanjaReversToolStripMenuItem});
             this.wEBSPodaciToolStripMenuItem.Name = "wEBSPodaciToolStripMenuItem";
             this.wEBSPodaciToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.wEBSPodaciToolStripMenuItem.Text = "Nabavka";
@@ -136,6 +138,13 @@
             this.formiranjMSPIzRNToolStripMenuItem.Size = new System.Drawing.Size(273, 22);
             this.formiranjMSPIzRNToolStripMenuItem.Text = "Formiranj MSP iz RN";
             this.formiranjMSPIzRNToolStripMenuItem.Click += new System.EventHandler(this.formiranjMSPIzRNToolStripMenuItem_Click);
+            // 
+            // trebovanjaToolStripMenuItem
+            // 
+            this.trebovanjaToolStripMenuItem.Name = "trebovanjaToolStripMenuItem";
+            this.trebovanjaToolStripMenuItem.Size = new System.Drawing.Size(273, 22);
+            this.trebovanjaToolStripMenuItem.Text = "Trebovanja";
+            this.trebovanjaToolStripMenuItem.Click += new System.EventHandler(this.trebovanjaToolStripMenuItem_Click);
             // 
             // magacinToolStripMenuItem
             // 
@@ -279,12 +288,12 @@
             this.uvozNetoPotrebaToolStripMenuItem.Text = "Terminiranje plana";
             this.uvozNetoPotrebaToolStripMenuItem.Click += new System.EventHandler(this.uvozNetoPotrebaToolStripMenuItem_Click);
             // 
-            // trebovanjaToolStripMenuItem
+            // trebovanjaReversToolStripMenuItem
             // 
-            this.trebovanjaToolStripMenuItem.Name = "trebovanjaToolStripMenuItem";
-            this.trebovanjaToolStripMenuItem.Size = new System.Drawing.Size(273, 22);
-            this.trebovanjaToolStripMenuItem.Text = "Trebovanja";
-            this.trebovanjaToolStripMenuItem.Click += new System.EventHandler(this.trebovanjaToolStripMenuItem_Click);
+            this.trebovanjaReversToolStripMenuItem.Name = "trebovanjaReversToolStripMenuItem";
+            this.trebovanjaReversToolStripMenuItem.Size = new System.Drawing.Size(273, 22);
+            this.trebovanjaReversToolStripMenuItem.Text = "Trebovanja Revers";
+            this.trebovanjaReversToolStripMenuItem.Click += new System.EventHandler(this.trebovanjaReversToolStripMenuItem_Click);
             // 
             // MainNabavka
             // 
@@ -332,5 +341,6 @@
         private System.Windows.Forms.ToolStripMenuItem međuskladišniPrenosFormiranjeToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem formiranjMSPIzRNToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem trebovanjaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem trebovanjaReversToolStripMenuItem;
     }
 }

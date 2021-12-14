@@ -727,19 +727,53 @@ namespace WindowsFormsApplication1
             MessageBox.Show("Obrada izvršena vozač postavljen");
             con.Close();
         }
+
+        private void PrebaciUPocetno()
+        {
+            //
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select Distinct ShippingID from RKShippingPocetna " +
+            "  where RTRIM(RkShippingPocetna.Vozilo)  = '" + cboVozila.Text + "' and RTRim(RkShippingPocetna.DatumUtovara) = '" + cboDatumUtovara.Text + "'", con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            InsertArhiva insArh = new InsertArhiva();
+
+            while (dr.Read())
+            {
+
+                insArh.PrebaciIzRKShipingPocetna(Convert.ToInt32(dr["ShippingID"].ToString()));
+                insArh.PrebaciIzRKShipingItemPakPocetna(Convert.ToInt32(dr["ShippingID"].ToString()));
+                insArh.PrebaciIzRkShippingItemProPocetna(Convert.ToInt32(dr["ShippingID"].ToString()));
+                insArh.PrebaciIzRKShipingItemRecPocetna(Convert.ToInt32(dr["ShippingID"].ToString()));
+
+            }
+
+            con.Close();
+
+
+            //
+        }
         private void PrebaciUBarkodCekiranje()
         {
+            PrebaciUPocetno();
+            /*
             InsertArhiva insArh = new InsertArhiva();
             insArh.PrebaciIzRKShipingPocetna(Convert.ToInt32(txtBrojIsporuke.Text));
             insArh.PrebaciIzRKShipingItemPakPocetna(Convert.ToInt32(txtBrojIsporuke.Text));
             insArh.PrebaciIzRkShippingItemProPocetna(Convert.ToInt32(txtBrojIsporuke.Text));
             insArh.PrebaciIzRKShipingItemRecPocetna(Convert.ToInt32(txtBrojIsporuke.Text));
             MessageBox.Show("Zavrsen unos paleta");
+            */
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
             PrebaciUBarkodCekiranje();
+            MessageBox.Show("Zavrseno!");
         }
     }
 }

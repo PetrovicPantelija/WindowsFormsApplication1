@@ -185,5 +185,10 @@ namespace WindowsFormsApplication1.Magacin
             zavrsi.ZavrsiPrivremeni(cboKorisnik.Text.Trim());
             RefreshDataGrid();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApplication1", "WindowsFormsApplication1\WindowsFormsApplication1.csproj", "{8DB4FD96-1528-4099-9D90-C3CC91DE82E6}"
 EndProject
 Global
@@ -17,10 +19,13 @@ Global
 		{8DB4FD96-1528-4099-9D90-C3CC91DE82E6}.Debug|x86.Build.0 = Release|Any CPU
 		{8DB4FD96-1528-4099-9D90-C3CC91DE82E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DB4FD96-1528-4099-9D90-C3CC91DE82E6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8DB4FD96-1528-4099-9D90-C3CC91DE82E6}.Release|x86.ActiveCfg = Release|Any CPU
-		{8DB4FD96-1528-4099-9D90-C3CC91DE82E6}.Release|x86.Build.0 = Release|Any CPU
+		{8DB4FD96-1528-4099-9D90-C3CC91DE82E6}.Release|x86.ActiveCfg = Release|x86
+		{8DB4FD96-1528-4099-9D90-C3CC91DE82E6}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B663F1C9-2EB6-4E39-B6C5-262BEE7F7A05}
 	EndGlobalSection
 EndGlobal

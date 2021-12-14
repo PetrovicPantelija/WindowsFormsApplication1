@@ -381,6 +381,9 @@
             // chkRezimZavrsetka
             // 
             this.chkRezimZavrsetka.AutoSize = true;
+            this.chkRezimZavrsetka.Checked = true;
+            this.chkRezimZavrsetka.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkRezimZavrsetka.Enabled = false;
             this.chkRezimZavrsetka.Location = new System.Drawing.Point(885, 35);
             this.chkRezimZavrsetka.Name = "chkRezimZavrsetka";
             this.chkRezimZavrsetka.Size = new System.Drawing.Size(104, 17);

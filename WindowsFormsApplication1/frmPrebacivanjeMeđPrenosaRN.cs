@@ -270,7 +270,7 @@ namespace WindowsFormsApplication1
                 if (row2.Selected)
                 {
 
-                    KolicinaSelektovanaDesni = Convert.ToDouble(row2.Cells[2].Value.ToString());
+                    KolicinaSelektovanaDesni = KolicinaSelektovanaDesni + Convert.ToDouble(row2.Cells[2].Value.ToString());
                 }
             }
 
@@ -279,12 +279,22 @@ namespace WindowsFormsApplication1
                 if (row.Selected)
                 {
 
-                    KolicinaSelektovanaLevi = Convert.ToDouble(row.Cells[2].Value.ToString());
+                    KolicinaSelektovanaLevi = Convert.ToDouble(row.Cells[4].Value.ToString());
                 }
             }
-
+            if (KolicinaSelektovanaDesni == 0)
+            {
+                MessageBox.Show("Niste selektovali stavku");
+                return 1;
+            }
+            if (KolicinaSelektovanaLevi == 0)
+            {
+                MessageBox.Show("Niste selektovali stavku");
+                return 1;
+            }
             if (KolicinaSelektovanaDesni > KolicinaSelektovanaLevi)
-            { return 1; }
+            { 
+                return 1; }
             else
             { return 0; }
         
@@ -677,6 +687,7 @@ namespace WindowsFormsApplication1
                 {
                     //Napuni grid 5
                     txtKoeficijent.Value = Convert.ToDecimal(row.Cells[8].Value.ToString());
+                    txtKolicinaRN.Value = Convert.ToDecimal(row.Cells[8].Value.ToString());
                     //VratiStavke(Convert.ToInt32(row.Cells[2].Value));
                 }
             }

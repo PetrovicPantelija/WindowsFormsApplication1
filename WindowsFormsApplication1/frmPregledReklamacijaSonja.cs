@@ -22,7 +22,7 @@ namespace WindowsFormsApplication1
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-          
+
         }
 
         private void btnOsvezi_Click(object sender, EventArgs e)
@@ -63,8 +63,8 @@ namespace WindowsFormsApplication1
         private void frmPregledReklamacijaSonja_Load(object sender, EventArgs e)
         {
             var select = " select Distinct SysKomitenti.KomintentID, Rtrim(SysKomitenti.NazivKomintenta) as NazivKomintenta from SysKomitenti " +
-          " inner join RkShipping on SysKomitenti.KomintentID = RkShipping.KupacIDz " +
-          " inner join RkShippingItemRec on RkShipping.ShippingID = RkShippingItemRec.ShipingIDz";
+          " inner join RkShippingZavrseno on SysKomitenti.KomintentID = RkShippingZavrseno.KupacIDz " +
+          " inner join RkShippingItemRecZavrseno on RkShippingZavrseno.ShippingID = RkShippingItemRecZavrseno.ShipingIDz";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -80,8 +80,8 @@ namespace WindowsFormsApplication1
 
             var select2 = " select Distinct SysKomitenti.KomintentID, Rtrim(SysKomitenti.NazivKomintenta) as NazivKomintenta from SysKomitenti " +
             " where KomintentID > 1000";
-      
-           // var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+
+            // var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection2 = new SqlConnection(s_connection);
             var c2 = new SqlConnection(s_connection);
             var dataAdapter2 = new SqlDataAdapter(select2, c2);
@@ -105,7 +105,7 @@ namespace WindowsFormsApplication1
                 {
                     if (prvi == 0)
                     {
-                        saloni =  row.Cells[1].Value.ToString();
+                        saloni = row.Cells[1].Value.ToString();
                         prvi = 1;
                     }
                     else
@@ -115,9 +115,9 @@ namespace WindowsFormsApplication1
                 }
             }
             var select = " Select Distinct DatumUtovara, Cast(SUBSTRING(DatumUtovara, 1, Charindex('.',DatumUtovara) -1) as int)  as  Dan, Cast(Replace(SUBSTRING(DatumUtovara, Charindex('.',DatumUtovara)+1, Len(DatumUtovara)-12 -1 -( (Charindex('.',DatumUtovara) ))),'.','') as int) as  Mesec " +
-            " From RkShipping " +
-            " inner join RkShippingItemRec on RkShipping.ShippingID = RkShippingItemRec.ShipingIDz " +
-            " where SalonIDz in (  "+  saloni +" ) order by  Mesec, Dan";
+            " From RkShippingZavrseno " +
+            " inner join RkShippingItemRecZavrseno on RkShippingZavrseno.ShippingID = RkShippingItemRecZavrseno.ShipingIDz " +
+            " where SalonIDz in (  " + saloni + " ) order by  Mesec, Dan";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -150,9 +150,9 @@ namespace WindowsFormsApplication1
                     }
                 }
             }
-            
-            var select = " Select Distinct RTrim(Vozilo) as Vozilo From RkShipping " +
-              " inner join RkShippingItemRec on RkShipping.ShippingID = RkShippingItemRec.ShipingIDz " +
+
+            var select = " Select Distinct RTrim(Vozilo) as Vozilo From RkShippingZavrseno " +
+              " inner join RkShippingItemRecZavrseno on RkShippingZavrseno.ShippingID = RkShippingItemRecZavrseno.ShipingIDz " +
               "  where SalonIDz in ( " + saloni + ") and DatumUtovara = '" + cboDatumUtovara.Text + "'";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -186,16 +186,16 @@ namespace WindowsFormsApplication1
                     }
                 }
             }
-         
-            var select = " SELECT Paleta, RkShipping.BrojIstovara as BrojUtovara, RkShipping.BrojUtovara as BrojIsporuke , " +
-           " MestoIsporuke, RkShippingItemRec.ShippingItemRecID , RkShippingItemRec.Zapisnik AS Zapisnik, " +
-           " RkShippingItemRec.SifraReklamacije as SifLargo , RkShippingItemREC.NazivReklamacije, " +
-           " RkShippingItemREC.Opis, RkShippingItemREC.Paket, KolicinaOrg,  Kolicina,  " +
+
+            var select = " SELECT Paleta, RkShippingZavrseno.BrojIstovara as BrojUtovara, RkShippingZavrseno.BrojUtovara as BrojIsporuke , " +
+           " MestoIsporuke, RkShippingItemRecZavrseno.ShippingItemRecID , RkShippingItemRecZavrseno.Zapisnik AS Zapisnik, " +
+           " RkShippingItemRecZavrseno.SifraReklamacije as SifLargo , RkShippingItemRECZavrseno.NazivReklamacije, " +
+           " RkShippingItemRECZavrseno.Opis, RkShippingItemRECZavrseno.Paket, KolicinaOrg,  Kolicina,  " +
            " Paletirano, Paletar as Paletar, VremePakovanja as VremePaletiranja, " +
-           " RkShippingItemRec.IsporucenoKupcu as Kontrolisano, Kontrolor as KOntrolor , " +
-           " RkShippingItemRec.VremeKontrole, Razlog as Napomena FROM [dbo].RkShippingItemRec " +
-           " inner join RkShipping on [dbo].RkShippingItemRec.ShipingIDz = RkShipping.[ShippingID] " +
-           " inner join Saloni on RkShipping.SalonIDz = Saloni.SifraKomintentaMestoIsporuke where SalonIDz in ( " + saloni + ") and  RkShipping.Vozilo  = '" + cboVozila.Text + "' and RkShipping.DatumUtovara = '" + cboDatumUtovara.Text + "'";
+           " RkShippingItemRecZavrseno.IsporucenoKupcu as Kontrolisano, Kontrolor as KOntrolor , " +
+           " RkShippingItemRecZavrseno.VremeKontrole, Razlog as Napomena FROM [dbo].RkShippingItemRecZavrseno " +
+           " inner join RkShippingZavrseno on [dbo].RkShippingItemRecZavrseno.ShipingIDz = RkShippingZavrseno.[ShippingID] " +
+           " inner join Saloni on RkShippingZavrseno.SalonIDz = Saloni.SifraKomintentaMestoIsporuke where SalonIDz in ( " + saloni + ") and  RkShippingZavrseno.Vozilo  = '" + cboVozila.Text + "' and RkShippingZavrseno.DatumUtovara = '" + cboDatumUtovara.Text + "'";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -292,8 +292,8 @@ namespace WindowsFormsApplication1
             dataGridView2.Columns[18].HeaderText = "Napomena";
             dataGridView2.Columns[18].Width = 400;
 
-                
-           
+
+
             dataGridView2.Refresh();
             // dataGridView5.Visible = false;
         }
@@ -319,19 +319,19 @@ namespace WindowsFormsApplication1
             }
             Perftech_BeogradDataSet3TableAdapters.RepReklamacijeSonjaTableAdapter ta = new Perftech_BeogradDataSet3TableAdapters.RepReklamacijeSonjaTableAdapter();
             Perftech_BeogradDataSet3.RepReklamacijeSonjaDataTable dt = new Perftech_BeogradDataSet3.RepReklamacijeSonjaDataTable();
-           
+
             ta.Fill(dt);
             ReportDataSource rds = new ReportDataSource();
             rds.Name = "DataSet1";
             rds.Value = dt;
 
 
-          //  ReportParameter[] par = new ReportParameter[0];
-          
+            //  ReportParameter[] par = new ReportParameter[0];
+
             reportViewer1.LocalReport.DataSources.Clear();
             reportViewer1.LocalReport.ReportPath = "rptReklamacijaSonja.rdlc";
-//            reportViewer1.LocalReport.SetParameters(par);
- 
+            //            reportViewer1.LocalReport.SetParameters(par);
+
             reportViewer1.LocalReport.DataSources.Add(rds);
             // reportViewer1.LocalReport.DataSources.Add(rds2);
             reportViewer1.RefreshReport();
@@ -362,7 +362,7 @@ namespace WindowsFormsApplication1
             DataGridViewColumn column1 = dataGridView3.Columns[1];
             dataGridView3.Columns[1].HeaderText = "Sifra Mesta Isporuke";
             dataGridView3.Columns[1].Width = 70;
-            
+
             DataGridViewColumn column2 = dataGridView3.Columns[2];
             dataGridView3.Columns[2].HeaderText = "Mesto Isporuke";
             dataGridView3.Columns[2].Width = 200;
@@ -388,13 +388,13 @@ namespace WindowsFormsApplication1
                     else
                     {
                         saloni = saloni + " , " + row.Cells[1].Value.ToString();
-                       // MessageBox.Show(saloni);
+                        // MessageBox.Show(saloni);
                     }
                 }
             }
             var select = " Select Distinct DatumUtovara, Cast(SUBSTRING(DatumUtovara, 1, Charindex('.',DatumUtovara) -1) as int)  as  Dan, Cast(Replace(SUBSTRING(DatumUtovara, Charindex('.',DatumUtovara)+1, Len(DatumUtovara)-12 -1 -( (Charindex('.',DatumUtovara) ))),'.','') as int) as  Mesec " +
-            " From RkShipping " +
-            " inner join RkShippingItemPak on RkShipping.ShippingID = RkShippingItemPak.ShipingIDz " +
+            " From RkShippingZavrseno " +
+            " inner join RkShippingItemPakZavrseno on RkShippingZavrseno.ShippingID = RkShippingItemPakZavrseno.ShipingIDz " +
             " where SalonIDz in (  " + saloni + " ) order by  Mesec, Dan";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -430,7 +430,7 @@ namespace WindowsFormsApplication1
             }
 
             var select = " Select Distinct RTrim(Vozilo) as Vozilo From RkShipping " +
-              " inner join RkShippingItemPak on RkShipping.ShippingID = RkShippingItemPak.ShipingIDz " +
+              " inner join RkShippingItemPakZavrseno on RkShippingZavrseno.ShippingID = RkShippingItemPakZavrseno.ShipingIDz " +
               "  where SalonIDz in ( " + saloni + ") and DatumUtovara = '" + cboDatumUtovaraP.Text + "'";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -464,14 +464,14 @@ namespace WindowsFormsApplication1
                 }
             }
 
-            var select = " SELECT Paleta, RkShipping.BrojIstovara as BrojUtovara, RkShipping.BrojUtovara as BrojIsporuke , " +
-            " MestoIsporuke, RkShippingItemPak.ShippingItemPakID , RkShippingItemPak.PaketName, " +
-            " RkShippingItemPak.LargoPakID as SifLargo , RkShippingItemPak.LargoNaziv, KolicinaOrg, Kolicina, " +
+            var select = " SELECT Paleta, RkShippingZavrseno.BrojIstovara as BrojUtovara, RkShippingZavrseno.BrojUtovara as BrojIsporuke , " +
+            " MestoIsporuke, RkShippingItemPakZavrseno.ShippingItemPakID , RkShippingItemPakZavrseno.PaketName, " +
+            " RkShippingItemPakZavrseno.LargoPakID as SifLargo , RkShippingItemPakZavrseno.LargoNaziv, KolicinaOrg, Kolicina, " +
             " Pakerista as Paletirano, Pakuje as Paletar, VremePakovanja as VremePaletiranja,Kontrolisao as Kontrolisano, " +
-            " KOntrolise as Kontrolor, VremeKontrole FROM [dbo].RkShippingItemPak inner join RkShipping  " +
-            " on [dbo].RkShippingItemPak.ShipingIDz = RkShipping.[ShippingID] " +
-            " inner join Saloni on RkShipping.SalonIDz = Saloni.SifraKomintentaMestoIsporuke " +
-            " where SalonIDz in ( " + saloni + ") and RkShipping.Vozilo  = '" + cboVozilaP.Text + "' and RkShipping.DatumUtovara = '" + cboDatumUtovaraP.Text + "'";
+            " KOntrolise as Kontrolor, VremeKontrole FROM [dbo].RkShippingItemPakZavrseno inner join RkShippingZavrseno  " +
+            " on [dbo].RkShippingItemPakZavrseno.ShipingIDz = RkShippingZavrseno.[ShippingID] " +
+            " inner join Saloni on RkShippingZavrseno.SalonIDz = Saloni.SifraKomintentaMestoIsporuke " +
+            " where SalonIDz in ( " + saloni + ") and RkShippingZavrseno.Vozilo  = '" + cboVozilaP.Text + "' and RkShippingZavrseno.DatumUtovara = '" + cboDatumUtovaraP.Text + "'";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -568,7 +568,7 @@ namespace WindowsFormsApplication1
 
         private void button9_Click(object sender, EventArgs e)
         {
-        
+
 
             Perftech_BeogradDataSet4TableAdapters.repPaketiSonjaTableAdapter ta = new Perftech_BeogradDataSet4TableAdapters.repPaketiSonjaTableAdapter();
             Perftech_BeogradDataSet4.repPaketiSonjaDataTable dt = new Perftech_BeogradDataSet4.repPaketiSonjaDataTable();
@@ -603,5 +603,180 @@ namespace WindowsFormsApplication1
                 }
             }
         }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            PovuciSveKupce();
+        }
+
+        private void PovuciSveKupce()
+        {
+            //select Distinct SysKomitenti.KomintentID, Rtrim(SysKomitenti.NazivKomintenta) as NazivKomintenta from SysKomitenti " +
+            //" where KomintentID > 1000
+            var select = " select Distinct SysKomitenti.KomintentID, Rtrim(SysKomitenti.NazivKomintenta) as NazivKomintenta from SysKomitenti  where KomintentID > 1000";
+
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView5.ReadOnly = true;
+            dataGridView5.DataSource = ds.Tables[0];
+
+            // string value = dataGridView2.Rows[0].Cells[0].Value.ToString();
+            DataGridViewColumn column = dataGridView5.Columns[0];
+            dataGridView5.Columns[0].HeaderText = "KomintentID";
+            dataGridView5.Columns[0].Width = 50;
+
+            DataGridViewColumn column1 = dataGridView5.Columns[1];
+            dataGridView5.Columns[1].HeaderText = "Naziv";
+            dataGridView5.Columns[1].Width = 70;
+
+
+        }
+
+
+        private void PovuciSveDatumeP()
+        {
+            string kupci = "";
+            int prvi = 0;
+            foreach (DataGridViewRow row in dataGridView5.Rows)
+            {
+                if (row.Selected)
+                {
+                    if (prvi == 0)
+                    {
+                        kupci = row.Cells[0].Value.ToString();
+                        prvi = 1;
+                    }
+                    else
+                    {
+                        kupci = kupci + " , " + row.Cells[0].Value.ToString();
+                        // MessageBox.Show(saloni);
+                    }
+                }
+            }
+            var select = " Select Distinct DatumUtovara, Cast(SUBSTRING(DatumUtovara, 1, Charindex('.',DatumUtovara) -1) as int)  as  Dan, Cast(Replace(SUBSTRING(DatumUtovara, Charindex('.',DatumUtovara)+1, Len(DatumUtovara)-12 -1 -( (Charindex('.',DatumUtovara) ))),'.','') as int) as  Mesec " +
+            " From RkShippingZavrseno " +
+            " inner join RkShippingItemPakZavrseno on RkShippingZavrseno.ShippingID = RkShippingItemPakZavrseno.ShipingIDz " +
+            " inner join SysKomitenti on SysKomitenti.KomintentID = RkShippingZavrseno.KupacIdz  " +
+            " where SysKomitenti.KomintentID in (  " + kupci + " ) order by  Mesec, Dan";
+
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView7.ReadOnly = true;
+            dataGridView7.DataSource = ds.Tables[0];
+
+            // string value = dataGridView2.Rows[0].Cells[0].Value.ToString();
+            DataGridViewColumn column = dataGridView7.Columns[0];
+            dataGridView7.Columns[0].HeaderText = "Datum";
+            dataGridView7.Columns[0].Width = 50;
+
+            DataGridViewColumn column1 = dataGridView7.Columns[1];
+            dataGridView7.Columns[1].HeaderText = "Dan";
+            dataGridView7.Columns[1].Width = 70;
+
+            DataGridViewColumn column2 = dataGridView7.Columns[1];
+            dataGridView7.Columns[1].HeaderText = "Mesec";
+            dataGridView7.Columns[1].Width = 70;
+
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            PovuciSveDatumeP();
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            PozoviStavkePoKomitentu();
+        }
+
+        private void PozoviStavkePoKomitentu()
+        {
+            string kupci = "";
+            int prvi = 0;
+            foreach (DataGridViewRow row in dataGridView5.Rows)
+            {
+                if (row.Selected)
+                {
+                    if (prvi == 0)
+                    {
+                        kupci = row.Cells[0].Value.ToString();
+                        prvi = 1;
+                    }
+                    else
+                    {
+                        kupci = kupci + " , " + row.Cells[0].Value.ToString();
+                        // MessageBox.Show(saloni);
+                    }
+                }
+            }
+
+
+            string datumi = "";
+            int prvid = 0;
+            foreach (DataGridViewRow row in dataGridView7.Rows)
+            {
+                if (row.Selected)
+                {
+                    if (prvid == 0)
+                    {
+                        datumi = "'" + row.Cells[0].Value.ToString() + "'";
+                        prvid = 1;
+                    }
+                    else
+                    {
+                        datumi = datumi + " , " + "'" +  row.Cells[0].Value.ToString() + "'";
+                        // MessageBox.Show(saloni);
+                    }
+                }
+            }
+            var select = " Select Sum(KolicinaOrg) as kolicina, LargoPakID, LargoNaziv, NazivKomintenta" +
+            " From RkShippingZavrseno " +
+            " inner join RkShippingItemPakZavrseno on RkShippingZavrseno.ShippingID = RkShippingItemPakZavrseno.ShipingIDz " +
+            " inner join SysKomitenti on SysKomitenti.KomintentID = RkShippingZavrseno.KupacIdz  " +
+            " where SysKomitenti.KomintentID in (  " + kupci + " ) and RkShippingZavrseno.DatumUtovara in (  " + datumi + " ) " +
+            " group by LargoPakID, LargoNaziv, NazivKomintenta";
+
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView6.ReadOnly = true;
+            dataGridView6.DataSource = ds.Tables[0];
+
+            // string value = dataGridView2.Rows[0].Cells[0].Value.ToString();
+            DataGridViewColumn column = dataGridView6.Columns[0];
+            dataGridView6.Columns[0].HeaderText = "Kolicina";
+            dataGridView6.Columns[0].Width = 50;
+
+            DataGridViewColumn column1 = dataGridView6.Columns[1];
+            dataGridView6.Columns[1].HeaderText = "LargoID";
+            dataGridView6.Columns[1].Width = 70;
+
+            DataGridViewColumn column2 = dataGridView6.Columns[2];
+            dataGridView6.Columns[2].HeaderText = "Largo naziv";
+            dataGridView6.Columns[2].Width = 170;
+
+            DataGridViewColumn column3 = dataGridView6.Columns[3];
+            dataGridView6.Columns[3].HeaderText = "Klijent";
+            dataGridView6.Columns[3].Width = 250;
+
+        }
     }
 }
+

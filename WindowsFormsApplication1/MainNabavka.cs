@@ -185,5 +185,11 @@ namespace WindowsFormsApplication1
             Magacin.frmPregledTrebovanja treb = new Magacin.frmPregledTrebovanja();
             treb.Show();
         }
+
+        private void trebovanjaReversToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Magacin.frmMagacinTrenutnaTrebovanje fMt = new Magacin.frmMagacinTrenutnaTrebovanje();
+            fMt.Show();
+        }
     }
 }

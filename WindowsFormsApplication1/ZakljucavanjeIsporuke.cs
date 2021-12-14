@@ -505,8 +505,8 @@ namespace WindowsFormsApplication1
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("select ShippingID from RKShipping " +
-            "  where RkShipping.Vozilo  = '" + cboVozila.Text + "' and RkShipping.DatumUtovara = '" + cboDatumUtovara.Text + "'", con);
+            SqlCommand cmd = new SqlCommand("select Distinct ShippingID from RKShipping " +
+            "  where RTRIM(RkShipping.Vozilo)  = '" + cboVozila.Text + "' and RTRim(RkShipping.DatumUtovara) = '" + cboDatumUtovara.Text + "'", con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             InsertArhiva insArh = new InsertArhiva();

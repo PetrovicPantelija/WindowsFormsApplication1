@@ -42,7 +42,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -273,6 +273,12 @@
     <Compile Include="frmReklamacijaUvoz.Designer.cs">
       <DependentUpon>frmReklamacijaUvoz.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmReklamacijeUvozPocetna.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReklamacijeUvozPocetna.Designer.cs">
+      <DependentUpon>frmReklamacijeUvozPocetna.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSifraReklamacije.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -350,6 +356,12 @@
     <Compile Include="Magacin\frmMagacinTrenutnaIzPrijema.Designer.cs">
       <DependentUpon>frmMagacinTrenutnaIzPrijema.cs</DependentUpon>
     </Compile>
+    <Compile Include="Magacin\frmMagacinTrenutnaTrebovanje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Magacin\frmMagacinTrenutnaTrebovanje.Designer.cs">
+      <DependentUpon>frmMagacinTrenutnaTrebovanje.cs</DependentUpon>
+    </Compile>
     <Compile Include="Magacin\frmMaticniPodaciPrikaz.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -367,6 +379,12 @@
     </Compile>
     <Compile Include="Magacin\frmOrganizacionaJedinica.Designer.cs">
       <DependentUpon>frmOrganizacionaJedinica.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Magacin\frmOtpremnicaUvozPocetna.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Magacin\frmOtpremnicaUvozPocetna.Designer.cs">
+      <DependentUpon>frmOtpremnicaUvozPocetna.cs</DependentUpon>
     </Compile>
     <Compile Include="Magacin\frmPaleta.cs">
       <SubType>Form</SubType>
@@ -604,6 +622,12 @@
     </Compile>
     <Compile Include="PregledKontrolorIstorijaArhiv.Designer.cs">
       <DependentUpon>PregledKontrolorIstorijaArhiv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PregledKontrolorZavrseno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PregledKontrolorZavrseno.Designer.cs">
+      <DependentUpon>PregledKontrolorZavrseno.cs</DependentUpon>
     </Compile>
     <Compile Include="PregledPaketi.cs">
       <SubType>Form</SubType>
@@ -888,6 +912,9 @@
     <EmbeddedResource Include="frmReklamacijaUvoz.resx">
       <DependentUpon>frmReklamacijaUvoz.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmReklamacijeUvozPocetna.resx">
+      <DependentUpon>frmReklamacijeUvozPocetna.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmSifraReklamacije.resx">
       <DependentUpon>frmSifraReklamacije.cs</DependentUpon>
     </EmbeddedResource>
@@ -915,6 +942,9 @@
     <EmbeddedResource Include="Magacin\frmMagacinTrenutnaIzPrijema.resx">
       <DependentUpon>frmMagacinTrenutnaIzPrijema.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Magacin\frmMagacinTrenutnaTrebovanje.resx">
+      <DependentUpon>frmMagacinTrenutnaTrebovanje.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Magacin\frmMaticniPodaciPrikaz.resx">
       <DependentUpon>frmMaticniPodaciPrikaz.cs</DependentUpon>
     </EmbeddedResource>
@@ -923,6 +953,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Magacin\frmOrganizacionaJedinica.resx">
       <DependentUpon>frmOrganizacionaJedinica.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Magacin\frmOtpremnicaUvozPocetna.resx">
+      <DependentUpon>frmOtpremnicaUvozPocetna.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Magacin\frmPaleta.resx">
       <DependentUpon>frmPaleta.cs</DependentUpon>
@@ -1011,6 +1044,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PregledKontrolorIstorijaArhiv.resx">
       <DependentUpon>PregledKontrolorIstorijaArhiv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PregledKontrolorZavrseno.resx">
+      <DependentUpon>PregledKontrolorZavrseno.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PregledPaketi.resx">
       <DependentUpon>PregledPaketi.cs</DependentUpon>

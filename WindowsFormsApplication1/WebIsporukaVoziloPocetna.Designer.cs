@@ -96,7 +96,7 @@
             this.button3.Location = new System.Drawing.Point(844, 5);
             this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(116, 32);
+            this.button3.Size = new System.Drawing.Size(149, 32);
             this.button3.TabIndex = 50;
             this.button3.Text = "Prenesi Otpremnica ";
             this.button3.UseVisualStyleBackColor = false;
