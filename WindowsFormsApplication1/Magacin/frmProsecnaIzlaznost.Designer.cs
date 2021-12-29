@@ -59,6 +59,7 @@
             this.btnOsvezi.TabIndex = 276;
             this.btnOsvezi.Text = "?";
             this.btnOsvezi.UseVisualStyleBackColor = true;
+            this.btnOsvezi.Click += new System.EventHandler(this.btnOsvezi_Click);
             // 
             // cboSkladisteIzbor
             // 

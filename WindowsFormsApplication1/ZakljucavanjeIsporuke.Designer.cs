@@ -55,6 +55,11 @@
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.chkRezimZavrsetka = new System.Windows.Forms.CheckBox();
+            this.button9 = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtNapomenaRelacija = new System.Windows.Forms.TextBox();
+            this.txtNapomenaNeisporuceno = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -67,10 +72,10 @@
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button1.Location = new System.Drawing.Point(467, 7);
+            this.button1.Location = new System.Drawing.Point(435, 6);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(159, 28);
+            this.button1.Size = new System.Drawing.Size(136, 28);
             this.button1.TabIndex = 53;
             this.button1.Text = "Po vozilu i datumu";
             this.button1.UseVisualStyleBackColor = false;
@@ -137,21 +142,21 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.BackgroundColor = System.Drawing.Color.Lime;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(9, 58);
+            this.dataGridView1.Location = new System.Drawing.Point(9, 61);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1288, 178);
+            this.dataGridView1.Size = new System.Drawing.Size(1357, 178);
             this.dataGridView1.TabIndex = 54;
             // 
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button3.Location = new System.Drawing.Point(991, 3);
+            this.button3.Location = new System.Drawing.Point(843, 2);
             this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(159, 28);
+            this.button3.Size = new System.Drawing.Size(122, 28);
             this.button3.TabIndex = 55;
             this.button3.Text = "Završi isporuku";
             this.button3.UseVisualStyleBackColor = false;
@@ -182,17 +187,17 @@
             // txtSpecijalnaDozvola
             // 
             this.txtSpecijalnaDozvola.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.txtSpecijalnaDozvola.Location = new System.Drawing.Point(860, 6);
+            this.txtSpecijalnaDozvola.Location = new System.Drawing.Point(754, 4);
             this.txtSpecijalnaDozvola.Margin = new System.Windows.Forms.Padding(2);
             this.txtSpecijalnaDozvola.Name = "txtSpecijalnaDozvola";
-            this.txtSpecijalnaDozvola.Size = new System.Drawing.Size(105, 24);
+            this.txtSpecijalnaDozvola.Size = new System.Drawing.Size(85, 24);
             this.txtSpecijalnaDozvola.TabIndex = 59;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label5.Location = new System.Drawing.Point(817, 7);
+            this.label5.Location = new System.Drawing.Point(709, 9);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(41, 17);
@@ -205,10 +210,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button4.Location = new System.Drawing.Point(897, 240);
+            this.button4.Location = new System.Drawing.Point(897, 239);
             this.button4.Margin = new System.Windows.Forms.Padding(2);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(392, 28);
+            this.button4.Size = new System.Drawing.Size(469, 28);
             this.button4.TabIndex = 61;
             this.button4.Text = "PAKET - Potvrdi unos razloga ";
             this.button4.UseVisualStyleBackColor = false;
@@ -256,11 +261,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(10, 300);
+            this.tabControl1.Location = new System.Drawing.Point(9, 313);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1287, 277);
+            this.tabControl1.Size = new System.Drawing.Size(1350, 255);
             this.tabControl1.TabIndex = 65;
             this.tabControl1.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabControl1_Selecting);
             this.tabControl1.TabIndexChanged += new System.EventHandler(this.tabControl1_TabIndexChanged);
@@ -273,7 +278,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage1.Size = new System.Drawing.Size(1279, 251);
+            this.tabPage1.Size = new System.Drawing.Size(1342, 229);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Paketi";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -292,7 +297,7 @@
             this.dataGridView2.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(1272, 240);
+            this.dataGridView2.Size = new System.Drawing.Size(1335, 218);
             this.dataGridView2.TabIndex = 57;
             // 
             // tabPage2
@@ -328,10 +333,10 @@
             // 
             this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button5.Location = new System.Drawing.Point(631, 2);
+            this.button5.Location = new System.Drawing.Point(575, 6);
             this.button5.Margin = new System.Windows.Forms.Padding(2);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(159, 28);
+            this.button5.Size = new System.Drawing.Size(130, 26);
             this.button5.TabIndex = 66;
             this.button5.Text = "Završi reklamaciju";
             this.button5.UseVisualStyleBackColor = false;
@@ -346,7 +351,7 @@
             this.button6.Location = new System.Drawing.Point(897, 271);
             this.button6.Margin = new System.Windows.Forms.Padding(2);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(395, 25);
+            this.button6.Size = new System.Drawing.Size(469, 25);
             this.button6.TabIndex = 67;
             this.button6.Text = "REKLAMACIJA - Potvrdi unos razloga ";
             this.button6.UseVisualStyleBackColor = false;
@@ -356,10 +361,10 @@
             // 
             this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button7.Location = new System.Drawing.Point(991, 30);
+            this.button7.Location = new System.Drawing.Point(843, 32);
             this.button7.Margin = new System.Windows.Forms.Padding(2);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(159, 28);
+            this.button7.Size = new System.Drawing.Size(122, 28);
             this.button7.TabIndex = 68;
             this.button7.Text = "Otvori isporuku";
             this.button7.UseVisualStyleBackColor = false;
@@ -369,10 +374,10 @@
             // 
             this.button8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button8.Location = new System.Drawing.Point(631, 29);
+            this.button8.Location = new System.Drawing.Point(575, 35);
             this.button8.Margin = new System.Windows.Forms.Padding(2);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(159, 28);
+            this.button8.Size = new System.Drawing.Size(130, 25);
             this.button8.TabIndex = 69;
             this.button8.Text = "Otvori reklamaciju";
             this.button8.UseVisualStyleBackColor = false;
@@ -384,19 +389,81 @@
             this.chkRezimZavrsetka.Checked = true;
             this.chkRezimZavrsetka.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkRezimZavrsetka.Enabled = false;
-            this.chkRezimZavrsetka.Location = new System.Drawing.Point(885, 35);
+            this.chkRezimZavrsetka.Location = new System.Drawing.Point(712, 38);
             this.chkRezimZavrsetka.Name = "chkRezimZavrsetka";
             this.chkRezimZavrsetka.Size = new System.Drawing.Size(104, 17);
             this.chkRezimZavrsetka.TabIndex = 70;
             this.chkRezimZavrsetka.Text = "Rezim zavrsetka";
             this.chkRezimZavrsetka.UseVisualStyleBackColor = true;
             // 
+            // button9
+            // 
+            this.button9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button9.Location = new System.Drawing.Point(1311, 22);
+            this.button9.Margin = new System.Windows.Forms.Padding(2);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(55, 38);
+            this.button9.TabIndex = 71;
+            this.button9.Text = "Pošalji e mail";
+            this.button9.UseVisualStyleBackColor = false;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label8.Location = new System.Drawing.Point(969, 4);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(130, 17);
+            this.label8.TabIndex = 73;
+            this.label8.Text = "Napomena relacija:";
+            // 
+            // txtNapomenaRelacija
+            // 
+            this.txtNapomenaRelacija.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.txtNapomenaRelacija.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txtNapomenaRelacija.Location = new System.Drawing.Point(972, 25);
+            this.txtNapomenaRelacija.Margin = new System.Windows.Forms.Padding(2);
+            this.txtNapomenaRelacija.Multiline = true;
+            this.txtNapomenaRelacija.Name = "txtNapomenaRelacija";
+            this.txtNapomenaRelacija.Size = new System.Drawing.Size(163, 35);
+            this.txtNapomenaRelacija.TabIndex = 72;
+            // 
+            // txtNapomenaNeisporuceno
+            // 
+            this.txtNapomenaNeisporuceno.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.txtNapomenaNeisporuceno.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txtNapomenaNeisporuceno.Location = new System.Drawing.Point(1139, 25);
+            this.txtNapomenaNeisporuceno.Margin = new System.Windows.Forms.Padding(2);
+            this.txtNapomenaNeisporuceno.Multiline = true;
+            this.txtNapomenaNeisporuceno.Name = "txtNapomenaNeisporuceno";
+            this.txtNapomenaNeisporuceno.Size = new System.Drawing.Size(163, 35);
+            this.txtNapomenaNeisporuceno.TabIndex = 74;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label9.Location = new System.Drawing.Point(1136, 4);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(171, 17);
+            this.label9.TabIndex = 75;
+            this.label9.Text = "Napomena neisporučeno:";
+            // 
             // ZakljucavanjeIsporuke
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(187)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(1175, 579);
+            this.ClientSize = new System.Drawing.Size(1370, 579);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.txtNapomenaNeisporuceno);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.txtNapomenaRelacija);
+            this.Controls.Add(this.button9);
             this.Controls.Add(this.chkRezimZavrsetka);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
@@ -464,5 +531,10 @@
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.CheckBox chkRezimZavrsetka;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtNapomenaRelacija;
+        private System.Windows.Forms.TextBox txtNapomenaNeisporuceno;
+        private System.Windows.Forms.Label label9;
     }
 }

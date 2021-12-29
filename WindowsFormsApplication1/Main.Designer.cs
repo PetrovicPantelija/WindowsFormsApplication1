@@ -60,7 +60,6 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.kontrolorObradaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.isporukaUvozPoVoziluToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.štampaZaPakeristuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.završetakIsporukeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.štampaZaPaletuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -87,8 +86,10 @@
             this.istorijaRadaPoKontroloruToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.istorijaRadaPoPaletaruToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.prenosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.otpremnicaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.porudžbinaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.reklamacijeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.porudzbinaDirektnoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pregledToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -140,8 +141,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.progressBar5 = new System.Windows.Forms.ProgressBar();
             this.dataGridView5 = new System.Windows.Forms.DataGridView();
-            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -257,7 +256,6 @@
             this.toolStripMenuItem2,
             this.kontrolorObradaToolStripMenuItem,
             this.toolStripMenuItem3,
-            this.isporukaUvozPoVoziluToolStripMenuItem,
             this.štampaZaPakeristuToolStripMenuItem,
             this.završetakIsporukeToolStripMenuItem,
             this.štampaZaPaletuToolStripMenuItem,
@@ -297,13 +295,6 @@
             this.toolStripMenuItem3.Size = new System.Drawing.Size(224, 22);
             this.toolStripMenuItem3.Text = "Isporuka po vozilu - Pocetna";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
-            // 
-            // isporukaUvozPoVoziluToolStripMenuItem
-            // 
-            this.isporukaUvozPoVoziluToolStripMenuItem.Name = "isporukaUvozPoVoziluToolStripMenuItem";
-            this.isporukaUvozPoVoziluToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
-            this.isporukaUvozPoVoziluToolStripMenuItem.Text = "Isporuka uvoz po Vozilu";
-            this.isporukaUvozPoVoziluToolStripMenuItem.Click += new System.EventHandler(this.isporukaUvozPoVoziluToolStripMenuItem_Click);
             // 
             // štampaZaPakeristuToolStripMenuItem
             // 
@@ -511,6 +502,13 @@
             this.prenosToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.prenosToolStripMenuItem.Text = "Prenos";
             // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(210, 22);
+            this.toolStripMenuItem5.Text = "Otpremnica - Pocetna";
+            this.toolStripMenuItem5.Click += new System.EventHandler(this.toolStripMenuItem5_Click);
+            // 
             // otpremnicaToolStripMenuItem
             // 
             this.otpremnicaToolStripMenuItem.Name = "otpremnicaToolStripMenuItem";
@@ -524,6 +522,13 @@
             this.porudžbinaToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
             this.porudžbinaToolStripMenuItem.Text = "Porudžbina Excel";
             this.porudžbinaToolStripMenuItem.Click += new System.EventHandler(this.porudžbinaToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem6
+            // 
+            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(210, 22);
+            this.toolStripMenuItem6.Text = "Reklamacije - Pocetna";
+            this.toolStripMenuItem6.Click += new System.EventHandler(this.toolStripMenuItem6_Click);
             // 
             // reklamacijeToolStripMenuItem
             // 
@@ -627,28 +632,28 @@
             // obradaReklamacijeToolStripMenuItem
             // 
             this.obradaReklamacijeToolStripMenuItem.Name = "obradaReklamacijeToolStripMenuItem";
-            this.obradaReklamacijeToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.obradaReklamacijeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.obradaReklamacijeToolStripMenuItem.Text = "Obrada reklamacije";
             this.obradaReklamacijeToolStripMenuItem.Click += new System.EventHandler(this.obradaReklamacijeToolStripMenuItem_Click);
             // 
             // kalkulatorToolStripMenuItem
             // 
             this.kalkulatorToolStripMenuItem.Name = "kalkulatorToolStripMenuItem";
-            this.kalkulatorToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.kalkulatorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.kalkulatorToolStripMenuItem.Text = "Kalkulator";
             this.kalkulatorToolStripMenuItem.Click += new System.EventHandler(this.kalkulatorToolStripMenuItem_Click);
             // 
             // šifreReklamacijeToolStripMenuItem
             // 
             this.šifreReklamacijeToolStripMenuItem.Name = "šifreReklamacijeToolStripMenuItem";
-            this.šifreReklamacijeToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.šifreReklamacijeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.šifreReklamacijeToolStripMenuItem.Text = "Šifre reklamacije ";
             this.šifreReklamacijeToolStripMenuItem.Click += new System.EventHandler(this.šifreReklamacijeToolStripMenuItem_Click);
             // 
             // pregledReklamacijaToolStripMenuItem
             // 
             this.pregledReklamacijaToolStripMenuItem.Name = "pregledReklamacijaToolStripMenuItem";
-            this.pregledReklamacijaToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.pregledReklamacijaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.pregledReklamacijaToolStripMenuItem.Text = "Pregled reklamacija";
             this.pregledReklamacijaToolStripMenuItem.Click += new System.EventHandler(this.pregledReklamacijaToolStripMenuItem_Click);
             // 
@@ -1073,20 +1078,6 @@
             this.dataGridView5.Size = new System.Drawing.Size(131, 157);
             this.dataGridView5.TabIndex = 15;
             // 
-            // toolStripMenuItem5
-            // 
-            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(210, 22);
-            this.toolStripMenuItem5.Text = "Otpremnica - Pocetna";
-            this.toolStripMenuItem5.Click += new System.EventHandler(this.toolStripMenuItem5_Click);
-            // 
-            // toolStripMenuItem6
-            // 
-            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(210, 22);
-            this.toolStripMenuItem6.Text = "Reklamacije - Pocetna";
-            this.toolStripMenuItem6.Click += new System.EventHandler(this.toolStripMenuItem6_Click);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1147,7 +1138,6 @@
         private System.Windows.Forms.ToolStripMenuItem saloniToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem isporukaUvozToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem kontrolorObradaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem isporukaUvozPoVoziluToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem štampaZaPakeristuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem poništiToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem poništiKontroloraToolStripMenuItem;

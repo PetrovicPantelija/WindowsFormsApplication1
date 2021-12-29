@@ -593,6 +593,26 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Perftech_BeogradDataSet4.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Portirnica\InsertLogNajave.cs" />
+    <Compile Include="Portirnica\InsertStatusNajave.cs" />
+    <Compile Include="Portirnica\StatusNajave.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Portirnica\StatusNajave.Designer.cs">
+      <DependentUpon>StatusNajave.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Portirnica\StatusNajaveLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Portirnica\StatusNajaveLog.Designer.cs">
+      <DependentUpon>StatusNajaveLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Portirnica\StatusNajavePregled.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Portirnica\StatusNajavePregled.Designer.cs">
+      <DependentUpon>StatusNajavePregled.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pregled2018.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1029,6 +1049,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Partneri.resx">
       <DependentUpon>Partneri.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Portirnica\StatusNajave.resx">
+      <DependentUpon>StatusNajave.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Portirnica\StatusNajaveLog.resx">
+      <DependentUpon>StatusNajaveLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Portirnica\StatusNajavePregled.resx">
+      <DependentUpon>StatusNajavePregled.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pregled2018.resx">
       <DependentUpon>Pregled2018.cs</DependentUpon>

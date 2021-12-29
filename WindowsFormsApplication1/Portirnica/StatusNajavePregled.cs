@@ -1,0 +1,630 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Data.OleDb;
+using System.Data.SqlClient;
+using System.Configuration;
+using System.Net;
+using System.Net.Mail;
+
+
+namespace WindowsFormsApplication1.Portirnica
+{
+    public partial class StatusNajavePregled : Form
+    {
+        public StatusNajavePregled()
+        {
+            InitializeComponent();
+        }
+
+        private void StatusNajavePregled_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void sviToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var select = "  SELECT [ID] ,[RegistarskiBroj] ,[PrevoznikKlijent] ,[Partner],[DatumVremeDolaska] ,[Napomena], [UtovarBroj] , " +
+             " [KorisnikOtvorio], [DatumVremeOtvaranja], [Gate], [DatumVremePrijema], [KorinsikPrimio], [NapomenaPrijema] , " +
+             " CASE WHEN [PaletaSpremne1] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne1] , [DatumSpremne1] , " +
+             " CASE WHEN [PaletaSpremne2] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne2] , [DatumSpremne2] , " +
+             " [KontrolorSpremne1], [KontrolorSpremne2] , " +
+             " CASE WHEN [DokumentacijaSpremne] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [DokumentacijaSpremne] , " +
+             " [ProdajaKorisnik], [DatumDokumentSpremne], [DatumKamionIzasao], [Korisnik] FROM [dbo].[StatusNajave] order by ID desc";
+
+
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "ID";
+            dataGridView1.Columns[0].Width = 40;
+
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "Registarski broj";
+            dataGridView1.Columns[1].Width = 100;
+
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Prevozni klijent";
+            dataGridView1.Columns[2].Width = 150;
+
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "Partner";
+            dataGridView1.Columns[3].Width = 100;
+
+            DataGridViewColumn column5 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "Datum i vreme dolaska";
+            dataGridView1.Columns[4].Width = 100;
+
+            DataGridViewColumn column6 = dataGridView1.Columns[5];
+            dataGridView1.Columns[5].HeaderText = "Napomena";
+            dataGridView1.Columns[5].Width = 120;
+
+            DataGridViewColumn column7 = dataGridView1.Columns[6];
+            dataGridView1.Columns[6].HeaderText = "Utovar broj";
+            dataGridView1.Columns[6].Width = 50;
+
+            DataGridViewColumn column8 = dataGridView1.Columns[7];
+            dataGridView1.Columns[7].HeaderText = "Korisnik otvorio";
+            dataGridView1.Columns[7].Width = 80;
+
+            DataGridViewColumn column9 = dataGridView1.Columns[8];
+            dataGridView1.Columns[8].HeaderText = "Datum i vreme otvaranja";
+            dataGridView1.Columns[8].Width = 100;
+
+            DataGridViewColumn column10 = dataGridView1.Columns[9];
+            dataGridView1.Columns[9].HeaderText = "GATE";
+            dataGridView1.Columns[9].Width = 40;
+
+            DataGridViewColumn column11 = dataGridView1.Columns[10];
+            dataGridView1.Columns[10].HeaderText = "Datum i vreme prijema";
+            dataGridView1.Columns[10].Width = 80;
+
+            DataGridViewColumn column12 = dataGridView1.Columns[11];
+            dataGridView1.Columns[11].HeaderText = "Korisnik primio";
+            dataGridView1.Columns[11].Width = 80;
+
+            DataGridViewColumn column13 = dataGridView1.Columns[12];
+            dataGridView1.Columns[12].HeaderText = "Napomena prijema";
+            dataGridView1.Columns[12].Width = 150;
+
+            DataGridViewColumn column14 = dataGridView1.Columns[13];
+            dataGridView1.Columns[13].HeaderText = "Paleta 1 spremna";
+            dataGridView1.Columns[13].Width = 40;
+
+            DataGridViewColumn column15 = dataGridView1.Columns[14];
+            dataGridView1.Columns[14].HeaderText = "Datum spremanja 1";
+            dataGridView1.Columns[14].Width = 100;
+
+            DataGridViewColumn column16 = dataGridView1.Columns[15];
+            dataGridView1.Columns[15].HeaderText = "Paleta 2 spremna";
+            dataGridView1.Columns[15].Width = 40;
+
+            DataGridViewColumn column17 = dataGridView1.Columns[16];
+            dataGridView1.Columns[16].HeaderText = "Datum spremne 2";
+            dataGridView1.Columns[16].Width = 100;
+
+            DataGridViewColumn column18 = dataGridView1.Columns[17];
+            dataGridView1.Columns[17].HeaderText = "Kontrolor 1";
+            dataGridView1.Columns[17].Width = 40;
+
+            DataGridViewColumn column19 = dataGridView1.Columns[18];
+            dataGridView1.Columns[18].HeaderText = "Kontrolor 2";
+            dataGridView1.Columns[18].Width = 80;
+
+            DataGridViewColumn column20 = dataGridView1.Columns[19];
+            dataGridView1.Columns[19].HeaderText = "Dokumentacija spremna";
+            dataGridView1.Columns[19].Width = 40;
+
+            DataGridViewColumn column21 = dataGridView1.Columns[20];
+            dataGridView1.Columns[20].HeaderText = "Dokumentaciju spremio";
+            dataGridView1.Columns[20].Width = 80;
+
+            DataGridViewColumn column22 = dataGridView1.Columns[21];
+            dataGridView1.Columns[21].HeaderText = "Datum dokumenta";
+            dataGridView1.Columns[21].Width = 100;
+
+            DataGridViewColumn column23 = dataGridView1.Columns[22];
+            dataGridView1.Columns[22].HeaderText = "Datum kamion izasao";
+            dataGridView1.Columns[22].Width = 100;
+
+            DataGridViewColumn column24 = dataGridView1.Columns[23];
+            dataGridView1.Columns[23].HeaderText = "Korisnik";
+            dataGridView1.Columns[23].Width = 80;
+        }
+
+        private void najavljeniToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var select = "  SELECT [ID] ,[RegistarskiBroj] ,[PrevoznikKlijent] ,[Partner],[DatumVremeDolaska] ,[Napomena], [UtovarBroj] , " +
+           " [KorisnikOtvorio], [DatumVremeOtvaranja], [Gate], [DatumVremePrijema], [KorinsikPrimio], [NapomenaPrijema] , " +
+           " CASE WHEN [PaletaSpremne1] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne1] , [DatumSpremne1] , " +
+           " CASE WHEN [PaletaSpremne2] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne2] , [DatumSpremne2] , " +
+           " [KontrolorSpremne1], [KontrolorSpremne2] , " +
+           " CASE WHEN [DokumentacijaSpremne] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [DokumentacijaSpremne] , " +
+           " [ProdajaKorisnik], [DatumDokumentSpremne], [DatumKamionIzasao], [Korisnik] FROM [dbo].[StatusNajave] " +
+           " where KorinsikPrimio = '' order by ID desc";
+
+
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "ID";
+            dataGridView1.Columns[0].Width = 40;
+
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "Registarski broj";
+            dataGridView1.Columns[1].Width = 100;
+
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Prevozni klijent";
+            dataGridView1.Columns[2].Width = 150;
+
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "Partner";
+            dataGridView1.Columns[3].Width = 100;
+
+            DataGridViewColumn column5 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "Datum i vreme dolaska";
+            dataGridView1.Columns[4].Width = 100;
+
+            DataGridViewColumn column6 = dataGridView1.Columns[5];
+            dataGridView1.Columns[5].HeaderText = "Napomena";
+            dataGridView1.Columns[5].Width = 120;
+
+            DataGridViewColumn column7 = dataGridView1.Columns[6];
+            dataGridView1.Columns[6].HeaderText = "Utovar broj";
+            dataGridView1.Columns[6].Width = 50;
+
+            DataGridViewColumn column8 = dataGridView1.Columns[7];
+            dataGridView1.Columns[7].HeaderText = "Korisnik otvorio";
+            dataGridView1.Columns[7].Width = 80;
+
+            DataGridViewColumn column9 = dataGridView1.Columns[8];
+            dataGridView1.Columns[8].HeaderText = "Datum i vreme otvaranja";
+            dataGridView1.Columns[8].Width = 100;
+
+            DataGridViewColumn column10 = dataGridView1.Columns[9];
+            dataGridView1.Columns[9].HeaderText = "GATE";
+            dataGridView1.Columns[9].Width = 40;
+
+            DataGridViewColumn column11 = dataGridView1.Columns[10];
+            dataGridView1.Columns[10].HeaderText = "Datum i vreme prijema";
+            dataGridView1.Columns[10].Width = 80;
+
+            DataGridViewColumn column12 = dataGridView1.Columns[11];
+            dataGridView1.Columns[11].HeaderText = "Korisnik primio";
+            dataGridView1.Columns[11].Width = 80;
+
+            DataGridViewColumn column13 = dataGridView1.Columns[12];
+            dataGridView1.Columns[12].HeaderText = "Napomena prijema";
+            dataGridView1.Columns[12].Width = 150;
+
+            DataGridViewColumn column14 = dataGridView1.Columns[13];
+            dataGridView1.Columns[13].HeaderText = "Paleta 1 spremna";
+            dataGridView1.Columns[13].Width = 40;
+
+            DataGridViewColumn column15 = dataGridView1.Columns[14];
+            dataGridView1.Columns[14].HeaderText = "Datum spremanja 1";
+            dataGridView1.Columns[14].Width = 100;
+
+            DataGridViewColumn column16 = dataGridView1.Columns[15];
+            dataGridView1.Columns[15].HeaderText = "Paleta 2 spremna";
+            dataGridView1.Columns[15].Width = 40;
+
+            DataGridViewColumn column17 = dataGridView1.Columns[16];
+            dataGridView1.Columns[16].HeaderText = "Datum spremne 2";
+            dataGridView1.Columns[16].Width = 100;
+
+            DataGridViewColumn column18 = dataGridView1.Columns[17];
+            dataGridView1.Columns[17].HeaderText = "Kontrolor 1";
+            dataGridView1.Columns[17].Width = 40;
+
+            DataGridViewColumn column19 = dataGridView1.Columns[18];
+            dataGridView1.Columns[18].HeaderText = "Kontrolor 2";
+            dataGridView1.Columns[18].Width = 80;
+
+            DataGridViewColumn column20 = dataGridView1.Columns[19];
+            dataGridView1.Columns[19].HeaderText = "Dokumentacija spremna";
+            dataGridView1.Columns[19].Width = 40;
+
+            DataGridViewColumn column21 = dataGridView1.Columns[20];
+            dataGridView1.Columns[20].HeaderText = "Dokumentaciju spremio";
+            dataGridView1.Columns[20].Width = 80;
+
+            DataGridViewColumn column22 = dataGridView1.Columns[21];
+            dataGridView1.Columns[21].HeaderText = "Datum dokumenta";
+            dataGridView1.Columns[21].Width = 100;
+
+            DataGridViewColumn column23 = dataGridView1.Columns[22];
+            dataGridView1.Columns[22].HeaderText = "Datum kamion izasao";
+            dataGridView1.Columns[22].Width = 100;
+
+            DataGridViewColumn column24 = dataGridView1.Columns[23];
+            dataGridView1.Columns[23].HeaderText = "Korisnik";
+            dataGridView1.Columns[23].Width = 80;
+        }
+
+        private void primljeniToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var select = "  SELECT [ID] ,[RegistarskiBroj] ,[PrevoznikKlijent] ,[Partner],[DatumVremeDolaska] ,[Napomena], [UtovarBroj] , " +
+          " [KorisnikOtvorio], [DatumVremeOtvaranja], [Gate], [DatumVremePrijema], [KorinsikPrimio], [NapomenaPrijema] , " +
+          " CASE WHEN [PaletaSpremne1] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne1] , [DatumSpremne1] , " +
+          " CASE WHEN [PaletaSpremne2] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne2] , [DatumSpremne2] , " +
+          " [KontrolorSpremne1], [KontrolorSpremne2] , " +
+          " CASE WHEN [DokumentacijaSpremne] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [DokumentacijaSpremne] , " +
+          " [ProdajaKorisnik], [DatumDokumentSpremne], [DatumKamionIzasao], [Korisnik] FROM [dbo].[StatusNajave] " +
+          " where KorinsikPrimio <> '' and ProdajaKorisnik = '' order by ID desc";
+
+
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "ID";
+            dataGridView1.Columns[0].Width = 40;
+
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "Registarski broj";
+            dataGridView1.Columns[1].Width = 100;
+
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Prevozni klijent";
+            dataGridView1.Columns[2].Width = 150;
+
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "Partner";
+            dataGridView1.Columns[3].Width = 100;
+
+            DataGridViewColumn column5 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "Datum i vreme dolaska";
+            dataGridView1.Columns[4].Width = 100;
+
+            DataGridViewColumn column6 = dataGridView1.Columns[5];
+            dataGridView1.Columns[5].HeaderText = "Napomena";
+            dataGridView1.Columns[5].Width = 120;
+
+            DataGridViewColumn column7 = dataGridView1.Columns[6];
+            dataGridView1.Columns[6].HeaderText = "Utovar broj";
+            dataGridView1.Columns[6].Width = 50;
+
+            DataGridViewColumn column8 = dataGridView1.Columns[7];
+            dataGridView1.Columns[7].HeaderText = "Korisnik otvorio";
+            dataGridView1.Columns[7].Width = 80;
+
+            DataGridViewColumn column9 = dataGridView1.Columns[8];
+            dataGridView1.Columns[8].HeaderText = "Datum i vreme otvaranja";
+            dataGridView1.Columns[8].Width = 100;
+
+            DataGridViewColumn column10 = dataGridView1.Columns[9];
+            dataGridView1.Columns[9].HeaderText = "GATE";
+            dataGridView1.Columns[9].Width = 40;
+
+            DataGridViewColumn column11 = dataGridView1.Columns[10];
+            dataGridView1.Columns[10].HeaderText = "Datum i vreme prijema";
+            dataGridView1.Columns[10].Width = 80;
+
+            DataGridViewColumn column12 = dataGridView1.Columns[11];
+            dataGridView1.Columns[11].HeaderText = "Korisnik primio";
+            dataGridView1.Columns[11].Width = 80;
+
+            DataGridViewColumn column13 = dataGridView1.Columns[12];
+            dataGridView1.Columns[12].HeaderText = "Napomena prijema";
+            dataGridView1.Columns[12].Width = 150;
+
+            DataGridViewColumn column14 = dataGridView1.Columns[13];
+            dataGridView1.Columns[13].HeaderText = "Paleta 1 spremna";
+            dataGridView1.Columns[13].Width = 40;
+
+            DataGridViewColumn column15 = dataGridView1.Columns[14];
+            dataGridView1.Columns[14].HeaderText = "Datum spremanja 1";
+            dataGridView1.Columns[14].Width = 100;
+
+            DataGridViewColumn column16 = dataGridView1.Columns[15];
+            dataGridView1.Columns[15].HeaderText = "Paleta 2 spremna";
+            dataGridView1.Columns[15].Width = 40;
+
+            DataGridViewColumn column17 = dataGridView1.Columns[16];
+            dataGridView1.Columns[16].HeaderText = "Datum spremne 2";
+            dataGridView1.Columns[16].Width = 100;
+
+            DataGridViewColumn column18 = dataGridView1.Columns[17];
+            dataGridView1.Columns[17].HeaderText = "Kontrolor 1";
+            dataGridView1.Columns[17].Width = 40;
+
+            DataGridViewColumn column19 = dataGridView1.Columns[18];
+            dataGridView1.Columns[18].HeaderText = "Kontrolor 2";
+            dataGridView1.Columns[18].Width = 80;
+
+            DataGridViewColumn column20 = dataGridView1.Columns[19];
+            dataGridView1.Columns[19].HeaderText = "Dokumentacija spremna";
+            dataGridView1.Columns[19].Width = 40;
+
+            DataGridViewColumn column21 = dataGridView1.Columns[20];
+            dataGridView1.Columns[20].HeaderText = "Dokumentaciju spremio";
+            dataGridView1.Columns[20].Width = 80;
+
+            DataGridViewColumn column22 = dataGridView1.Columns[21];
+            dataGridView1.Columns[21].HeaderText = "Datum dokumenta";
+            dataGridView1.Columns[21].Width = 100;
+
+            DataGridViewColumn column23 = dataGridView1.Columns[22];
+            dataGridView1.Columns[22].HeaderText = "Datum kamion izasao";
+            dataGridView1.Columns[22].Width = 100;
+
+            DataGridViewColumn column24 = dataGridView1.Columns[23];
+            dataGridView1.Columns[23].HeaderText = "Korisnik";
+            dataGridView1.Columns[23].Width = 80;
+        }
+
+        private void spremniZaIzlazakToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var select = "  SELECT [ID] ,[RegistarskiBroj] ,[PrevoznikKlijent] ,[Partner],[DatumVremeDolaska] ,[Napomena], [UtovarBroj] , " +
+         " [KorisnikOtvorio], [DatumVremeOtvaranja], [Gate], [DatumVremePrijema], [KorinsikPrimio], [NapomenaPrijema] , " +
+         " CASE WHEN [PaletaSpremne1] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne1] , [DatumSpremne1] , " +
+         " CASE WHEN [PaletaSpremne2] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne2] , [DatumSpremne2] , " +
+         " [KontrolorSpremne1], [KontrolorSpremne2] , " +
+         " CASE WHEN [DokumentacijaSpremne] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [DokumentacijaSpremne] , " +
+         " [ProdajaKorisnik], [DatumDokumentSpremne], [DatumKamionIzasao], [Korisnik] FROM [dbo].[StatusNajave] " +
+         " where Korisnik = '' and ProdajaKorisnik <> ''  order by ID desc";
+
+
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "ID";
+            dataGridView1.Columns[0].Width = 40;
+
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "Registarski broj";
+            dataGridView1.Columns[1].Width = 100;
+
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Prevozni klijent";
+            dataGridView1.Columns[2].Width = 150;
+
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "Partner";
+            dataGridView1.Columns[3].Width = 100;
+
+            DataGridViewColumn column5 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "Datum i vreme dolaska";
+            dataGridView1.Columns[4].Width = 100;
+
+            DataGridViewColumn column6 = dataGridView1.Columns[5];
+            dataGridView1.Columns[5].HeaderText = "Napomena";
+            dataGridView1.Columns[5].Width = 120;
+
+            DataGridViewColumn column7 = dataGridView1.Columns[6];
+            dataGridView1.Columns[6].HeaderText = "Utovar broj";
+            dataGridView1.Columns[6].Width = 50;
+
+            DataGridViewColumn column8 = dataGridView1.Columns[7];
+            dataGridView1.Columns[7].HeaderText = "Korisnik otvorio";
+            dataGridView1.Columns[7].Width = 80;
+
+            DataGridViewColumn column9 = dataGridView1.Columns[8];
+            dataGridView1.Columns[8].HeaderText = "Datum i vreme otvaranja";
+            dataGridView1.Columns[8].Width = 100;
+
+            DataGridViewColumn column10 = dataGridView1.Columns[9];
+            dataGridView1.Columns[9].HeaderText = "GATE";
+            dataGridView1.Columns[9].Width = 40;
+
+            DataGridViewColumn column11 = dataGridView1.Columns[10];
+            dataGridView1.Columns[10].HeaderText = "Datum i vreme prijema";
+            dataGridView1.Columns[10].Width = 80;
+
+            DataGridViewColumn column12 = dataGridView1.Columns[11];
+            dataGridView1.Columns[11].HeaderText = "Korisnik primio";
+            dataGridView1.Columns[11].Width = 80;
+
+            DataGridViewColumn column13 = dataGridView1.Columns[12];
+            dataGridView1.Columns[12].HeaderText = "Napomena prijema";
+            dataGridView1.Columns[12].Width = 150;
+
+            DataGridViewColumn column14 = dataGridView1.Columns[13];
+            dataGridView1.Columns[13].HeaderText = "Paleta 1 spremna";
+            dataGridView1.Columns[13].Width = 40;
+
+            DataGridViewColumn column15 = dataGridView1.Columns[14];
+            dataGridView1.Columns[14].HeaderText = "Datum spremanja 1";
+            dataGridView1.Columns[14].Width = 100;
+
+            DataGridViewColumn column16 = dataGridView1.Columns[15];
+            dataGridView1.Columns[15].HeaderText = "Paleta 2 spremna";
+            dataGridView1.Columns[15].Width = 40;
+
+            DataGridViewColumn column17 = dataGridView1.Columns[16];
+            dataGridView1.Columns[16].HeaderText = "Datum spremne 2";
+            dataGridView1.Columns[16].Width = 100;
+
+            DataGridViewColumn column18 = dataGridView1.Columns[17];
+            dataGridView1.Columns[17].HeaderText = "Kontrolor 1";
+            dataGridView1.Columns[17].Width = 40;
+
+            DataGridViewColumn column19 = dataGridView1.Columns[18];
+            dataGridView1.Columns[18].HeaderText = "Kontrolor 2";
+            dataGridView1.Columns[18].Width = 80;
+
+            DataGridViewColumn column20 = dataGridView1.Columns[19];
+            dataGridView1.Columns[19].HeaderText = "Dokumentacija spremna";
+            dataGridView1.Columns[19].Width = 40;
+
+            DataGridViewColumn column21 = dataGridView1.Columns[20];
+            dataGridView1.Columns[20].HeaderText = "Dokumentaciju spremio";
+            dataGridView1.Columns[20].Width = 80;
+
+            DataGridViewColumn column22 = dataGridView1.Columns[21];
+            dataGridView1.Columns[21].HeaderText = "Datum dokumenta";
+            dataGridView1.Columns[21].Width = 100;
+
+            DataGridViewColumn column23 = dataGridView1.Columns[22];
+            dataGridView1.Columns[22].HeaderText = "Datum kamion izasao";
+            dataGridView1.Columns[22].Width = 100;
+
+            DataGridViewColumn column24 = dataGridView1.Columns[23];
+            dataGridView1.Columns[23].HeaderText = "Korisnik";
+            dataGridView1.Columns[23].Width = 80;
+        }
+
+        private void izašliToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var select = "  SELECT [ID] ,[RegistarskiBroj] ,[PrevoznikKlijent] ,[Partner],[DatumVremeDolaska] ,[Napomena], [UtovarBroj] , " +
+       " [KorisnikOtvorio], [DatumVremeOtvaranja], [Gate], [DatumVremePrijema], [KorinsikPrimio], [NapomenaPrijema] , " +
+       " CASE WHEN [PaletaSpremne1] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne1] , [DatumSpremne1] , " +
+       " CASE WHEN [PaletaSpremne2] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne2] , [DatumSpremne2] , " +
+       " [KontrolorSpremne1], [KontrolorSpremne2] , " +
+       " CASE WHEN [DokumentacijaSpremne] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [DokumentacijaSpremne] , " +
+       " [ProdajaKorisnik], [DatumDokumentSpremne], [DatumKamionIzasao], [Korisnik] FROM [dbo].[StatusNajave] " +
+       " where Korisnik <> '' order by ID desc";
+
+
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "ID";
+            dataGridView1.Columns[0].Width = 40;
+
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "Registarski broj";
+            dataGridView1.Columns[1].Width = 100;
+
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Prevozni klijent";
+            dataGridView1.Columns[2].Width = 150;
+
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "Partner";
+            dataGridView1.Columns[3].Width = 100;
+
+            DataGridViewColumn column5 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "Datum i vreme dolaska";
+            dataGridView1.Columns[4].Width = 100;
+
+            DataGridViewColumn column6 = dataGridView1.Columns[5];
+            dataGridView1.Columns[5].HeaderText = "Napomena";
+            dataGridView1.Columns[5].Width = 120;
+
+            DataGridViewColumn column7 = dataGridView1.Columns[6];
+            dataGridView1.Columns[6].HeaderText = "Utovar broj";
+            dataGridView1.Columns[6].Width = 50;
+
+            DataGridViewColumn column8 = dataGridView1.Columns[7];
+            dataGridView1.Columns[7].HeaderText = "Korisnik otvorio";
+            dataGridView1.Columns[7].Width = 80;
+
+            DataGridViewColumn column9 = dataGridView1.Columns[8];
+            dataGridView1.Columns[8].HeaderText = "Datum i vreme otvaranja";
+            dataGridView1.Columns[8].Width = 100;
+
+            DataGridViewColumn column10 = dataGridView1.Columns[9];
+            dataGridView1.Columns[9].HeaderText = "GATE";
+            dataGridView1.Columns[9].Width = 40;
+
+            DataGridViewColumn column11 = dataGridView1.Columns[10];
+            dataGridView1.Columns[10].HeaderText = "Datum i vreme prijema";
+            dataGridView1.Columns[10].Width = 80;
+
+            DataGridViewColumn column12 = dataGridView1.Columns[11];
+            dataGridView1.Columns[11].HeaderText = "Korisnik primio";
+            dataGridView1.Columns[11].Width = 80;
+
+            DataGridViewColumn column13 = dataGridView1.Columns[12];
+            dataGridView1.Columns[12].HeaderText = "Napomena prijema";
+            dataGridView1.Columns[12].Width = 150;
+
+            DataGridViewColumn column14 = dataGridView1.Columns[13];
+            dataGridView1.Columns[13].HeaderText = "Paleta 1 spremna";
+            dataGridView1.Columns[13].Width = 40;
+
+            DataGridViewColumn column15 = dataGridView1.Columns[14];
+            dataGridView1.Columns[14].HeaderText = "Datum spremanja 1";
+            dataGridView1.Columns[14].Width = 100;
+
+            DataGridViewColumn column16 = dataGridView1.Columns[15];
+            dataGridView1.Columns[15].HeaderText = "Paleta 2 spremna";
+            dataGridView1.Columns[15].Width = 40;
+
+            DataGridViewColumn column17 = dataGridView1.Columns[16];
+            dataGridView1.Columns[16].HeaderText = "Datum spremne 2";
+            dataGridView1.Columns[16].Width = 100;
+
+            DataGridViewColumn column18 = dataGridView1.Columns[17];
+            dataGridView1.Columns[17].HeaderText = "Kontrolor 1";
+            dataGridView1.Columns[17].Width = 40;
+
+            DataGridViewColumn column19 = dataGridView1.Columns[18];
+            dataGridView1.Columns[18].HeaderText = "Kontrolor 2";
+            dataGridView1.Columns[18].Width = 80;
+
+            DataGridViewColumn column20 = dataGridView1.Columns[19];
+            dataGridView1.Columns[19].HeaderText = "Dokumentacija spremna";
+            dataGridView1.Columns[19].Width = 40;
+
+            DataGridViewColumn column21 = dataGridView1.Columns[20];
+            dataGridView1.Columns[20].HeaderText = "Dokumentaciju spremio";
+            dataGridView1.Columns[20].Width = 80;
+
+            DataGridViewColumn column22 = dataGridView1.Columns[21];
+            dataGridView1.Columns[21].HeaderText = "Datum dokumenta";
+            dataGridView1.Columns[21].Width = 100;
+
+            DataGridViewColumn column23 = dataGridView1.Columns[22];
+            dataGridView1.Columns[22].HeaderText = "Datum kamion izasao";
+            dataGridView1.Columns[22].Width = 100;
+
+            DataGridViewColumn column24 = dataGridView1.Columns[23];
+            dataGridView1.Columns[23].HeaderText = "Korisnik";
+            dataGridView1.Columns[23].Width = 80;
+        }
+    }
+}

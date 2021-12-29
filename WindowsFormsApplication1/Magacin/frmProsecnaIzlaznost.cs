@@ -15,5 +15,10 @@ namespace WindowsFormsApplication1.Magacin
         {
             InitializeComponent();
         }
+
+        private void btnOsvezi_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

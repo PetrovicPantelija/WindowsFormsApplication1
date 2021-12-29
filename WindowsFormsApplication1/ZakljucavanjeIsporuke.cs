@@ -11,11 +11,14 @@ using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Globalization;
+using System.Net;
+using System.Net.Mail;
 
 namespace WindowsFormsApplication1
 {
     public partial class ZakljucavanjeIsporuke : Form
     {
+        MailMessage mailMessage;
         public ZakljucavanjeIsporuke()
         {
             InitializeComponent();
@@ -496,6 +499,171 @@ namespace WindowsFormsApplication1
            // Zatvori();
            // }
             MessageBox.Show("Zatvoreno isporuka");
+            PosaljiEMailPesicu();
+        }
+
+        private void PosaljiEMailPesicu()
+        {
+            //Panta Obrada maila
+            string body = "Spakovano vozilo  <br /> <br /> <br />";
+            body = body + "Vozilo: " + cboVozila.Text + "<br /> ";
+            body = body + "Napomena relacija:  " +txtNapomenaRelacija.Text + "<br /> ";
+
+            body = body + "Datum isporuke: " + cboDatumUtovara.Text + "<br /> ";
+           
+
+
+            //
+            var select0 = "SELECT distinct DatumIstovara FROM [dbo].RkShippingItemPakZavrseno inner join RkShippingZavrseno on [dbo].RkShippingItemPakZavrseno.ShipingIDz = RkShippingZavrseno.[ShippingID] inner join Saloni on RkShippingZavrseno.SalonIDz = Saloni.SifraKomintentaMestoIsporuke where RkShippingZavrseno.Vozilo  = '" + cboVozila.Text + "' and RkShippingZavrseno.DatumUtovara = '" + cboDatumUtovara.Text + "'";
+
+            var s_connection0 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection0 = new SqlConnection(s_connection0);
+            var c0 = new SqlConnection(s_connection0);
+            var dataAdapter0 = new SqlDataAdapter(select0, c0);
+
+            var commandBuilder0 = new SqlCommandBuilder(dataAdapter0);
+            var ds0 = new DataSet();
+            dataAdapter0.Fill(ds0);
+
+
+
+            foreach (DataRow myRow in ds0.Tables[0].Rows)
+            {
+                body = body + "Datum utovara: " + myRow["DatumIstovara"].ToString() + "<br /> ";
+              //  body = body + "Broj paketa:   " + myRow["DatumIstovara"].ToString() + "<br /> ";
+
+            }
+
+            ///
+
+
+            var select = "SELECT count(*) as BrojPaketa FROM [dbo].RkShippingItemPakZavrseno inner join RkShippingZavrseno on [dbo].RkShippingItemPakZavrseno.ShipingIDz = RkShippingZavrseno.[ShippingID] inner join Saloni on RkShippingZavrseno.SalonIDz = Saloni.SifraKomintentaMestoIsporuke where RkShippingZavrseno.Vozilo  = '" + cboVozila.Text + "' and RkShippingZavrseno.DatumUtovara = '" + cboDatumUtovara.Text +"'";
+
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+           
+
+
+            foreach (DataRow myRow in ds.Tables[0].Rows)
+            {
+
+                body = body + "Broj isporučenih paketa:   " + myRow["BrojPaketa"].ToString() + "<br /> ";
+              
+            }
+
+            var select2 = "SELECT count(*) as BrojPaketa FROM [dbo].RkShippingItemRecZavrseno inner join RkShippingZavrseno on [dbo].RkShippingItemRecZavrseno.ShipingIDz = RkShippingZavrseno.[ShippingID] inner join Saloni on RkShippingZavrseno.SalonIDz = Saloni.SifraKomintentaMestoIsporuke   where RkShippingZavrseno.Vozilo  = '" + cboVozila.Text + "' and RkShippingZavrseno.DatumUtovara = '" + cboDatumUtovara.Text + "'";
+
+            var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection2 = new SqlConnection(s_connection2);
+            var c2 = new SqlConnection(s_connection2);
+            var dataAdapter2 = new SqlDataAdapter(select2, c2);
+
+            var commandBuilder2 = new SqlCommandBuilder(dataAdapter2);
+            var ds2 = new DataSet();
+            dataAdapter2.Fill(ds2);
+           
+
+
+            foreach (DataRow myRow in ds2.Tables[0].Rows)
+            {
+                body = body + "Broj paketa reklamacije: " + myRow["BrojPaketa"].ToString() + "<br /> ";
+
+            }
+
+          //  var select3 = "SELECT count(*) as BrojPaketa FROM [dbo].RkShippingItemPakZavrseno where razlog <> ''  and RkShippingItemRecZavrseno.Vozilo  = '" + cboVozila.Text + "' and RkShippingItemRecZavrseno.DatumUtovara = '" + cboDatumUtovara.Text + "'";
+            var select3 = "SELECT count(*) as BrojPaketa FROM [dbo].RkShippingItemPakZavrseno inner join RkShippingZavrseno on[dbo].RkShippingItemPakZavrseno.ShipingIDz = RkShippingZavrseno.[ShippingID] inner join Saloni on RkShippingZavrseno.SalonIDz = Saloni.SifraKomintentaMestoIsporuke where razlog <> '' and RkShippingZavrseno.Vozilo = '" + cboVozila.Text + "' and RkShippingZavrseno.DatumUtovara = '" + cboDatumUtovara.Text +"'";
+            var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection3 = new SqlConnection(s_connection3);
+            var c3 = new SqlConnection(s_connection3);
+            var dataAdapter3 = new SqlDataAdapter(select3, c3);
+
+            var commandBuilder3 = new SqlCommandBuilder(dataAdapter3);
+            var ds3 = new DataSet();
+            dataAdapter3.Fill(ds3);
+
+
+
+            foreach (DataRow myRow in ds3.Tables[0].Rows)
+            {
+                body = body + "Neisporučeno paketa sa razlogom: " + myRow["BrojPaketa"].ToString() + "<br /> <br />";
+
+            }
+            body = body + "Neisporučeno  napomena: " +txtNapomenaNeisporuceno.Text+ "<br /> <br />";
+
+            var select4 = "SELECT PaketName, LargoNaziv, KolicinaOrg,Razlog   FROM [dbo].RkShippingItemPakZavrseno inner join RkShippingZavrseno on[dbo].RkShippingItemPakZavrseno.ShipingIDz = RkShippingZavrseno.[ShippingID] inner join Saloni on RkShippingZavrseno.SalonIDz = Saloni.SifraKomintentaMestoIsporuke where Rtrim(razlog) <> '' and RkShippingZavrseno.Vozilo = '" + cboVozila.Text + "' and RkShippingZavrseno.DatumUtovara = '" + cboDatumUtovara.Text + "'";
+            var s_connection4 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection4 = new SqlConnection(s_connection4);
+            var c4 = new SqlConnection(s_connection4);
+            var dataAdapter4 = new SqlDataAdapter(select4, c4);
+
+            var commandBuilder4 = new SqlCommandBuilder(dataAdapter4);
+            var ds4 = new DataSet();
+            dataAdapter4.Fill(ds4);
+
+
+
+            foreach (DataRow myRow in ds4.Tables[0].Rows)
+            {
+                body = body + " <br /> <br />";
+                body = body + "Paket: " + myRow["PaketName"].ToString() + "<br /> ";
+                body = body + "Largo naziv: " + myRow["LargoNaziv"].ToString() + "<br /> ";
+                body = body + "Količina: " + myRow["KolicinaOrg"].ToString() + "<br /> ";
+                body = body + "Razlog: " + myRow["Razlog"].ToString() + "<br /> ";
+            }
+
+
+
+
+            /*
+           
+            SELECT count(*) as BrojPaketa FROM [dbo].RkShippingItemRecZavrseno inner join RkShippingZavrseno on [dbo].RkShippingItemRecZavrseno.ShipingIDz = RkShippingZavrseno.[ShippingID] inner join Saloni on RkShippingZavrseno.SalonIDz = Saloni.SifraKomintentaMestoIsporuke 
+
+            select * FROM [dbo].RkShippingItemPakZavrseno where razlog <> ''
+
+             */
+
+
+
+
+            ///END
+
+
+            string mail = "nebojsa.pesic@jela.rs";
+         
+            mailMessage = new MailMessage("reporter@jela.rs", mail);
+
+            mailMessage.Subject = "Spakovano vozilo - automatsko slanje kontrolori";
+
+
+
+            body = body + "<br /> <br /> <br />";
+            body = body + "S poštovanjem," + "<br />";
+            body = body + "Petrović Pantelija" + "<br />";
+
+            body = body + "" + "<br />" + "<br />" + "<br />";
+
+            mailMessage.Body = body;
+            mailMessage.IsBodyHtml = true;
+
+            SmtpClient smtpClient = new SmtpClient();
+            smtpClient.Host = "mailsrv.jela.rs";
+
+            smtpClient.Port = 587;
+            smtpClient.UseDefaultCredentials = true;
+            smtpClient.Credentials = new NetworkCredential("reporter@jela.rs", "repass2021");
+            // smtpClient.ClientCertificates.
+            smtpClient.EnableSsl = true;
+            smtpClient.Send(mailMessage);
+
+
+
+
         }
         private void PrebaciUZavrseno()
         { 
@@ -796,6 +964,12 @@ string cs = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Pro
             {
                 MessageBox.Show("Nije uspela promena stavki");
             }
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            PosaljiEMailPesicu();
+            MessageBox.Show("Poslat mail");
         }
     }
 }

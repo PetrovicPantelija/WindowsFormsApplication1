@@ -44,7 +44,7 @@ namespace WindowsFormsApplication1.Magacin
 
         private void RefreshDataGrid()
         {
-            var select2 = "SELECT [LargoPakID],LargoNaziv,sum([KolicinaOrg]) as Kolicina,1,  PaketName, RkShippingItemPak.ProizvodGTIN, [RkShippingPocetna].BrojIstovara as BrojUtovara,1  FROM [dbo].[RkShippingItemPakPocetna] inner join RkShippingPocetna on RkShippingPocetna.ShippingID=RkShippingItemPakPocetna.ShipingIdz " +
+            var select2 = "SELECT [LargoPakID],LargoNaziv,sum([KolicinaOrg]) as Kolicina,1,  PaketName, RkShippingItemPakPocetna.ProizvodGTIN, [RkShippingPocetna].BrojIstovara as BrojUtovara,1  FROM [dbo].[RkShippingItemPakPocetna] inner join RkShippingPocetna on RkShippingPocetna.ShippingID=RkShippingItemPakPocetna.ShipingIdz " +
 " where (PaketName NOT  LIKE 'RP%' and PaketName NOT  LIKE 'SOKLA%') and RkShippingPocetna.DatumIstovara = '" + cboDatumUtovara.Text + "'" +
 " group by [LargoPakID], LargoNaziv,RkShippingItemPakPocetna.ProizvodGTIN,PaketName, [RkShippingPocetna].BrojIstovara " +
 " union " +

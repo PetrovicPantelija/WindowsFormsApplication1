@@ -159,5 +159,29 @@ namespace WindowsFormsApplication1
                 ma.Show();
             }
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            SqlCommand command = new SqlCommand("SELECT Korisnik FROM Korisnici where Password = '" + txtPassword.Text + "'", myConnection);
+            myConnection.Open();
+
+            SqlDataReader reader = command.ExecuteReader();
+            if (reader.HasRows == false)
+            {
+                MessageBox.Show("Nije ispravno uneta lozinka");
+                return;
+            }
+            else
+            {
+                Portirnica.StatusNajave stat = new Portirnica.StatusNajave(cboKorisnik.Text);
+                stat.Show();
+            }
+          
+
+            myConnection.Close();
+        }
     }
 }
