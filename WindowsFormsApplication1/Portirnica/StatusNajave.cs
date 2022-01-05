@@ -226,15 +226,15 @@ namespace WindowsFormsApplication1.Portirnica
 
                     if (dataGridView1.Rows[row.Index].Cells[22].Value.ToString() != "")
                     {
-                        dataGridView1.Rows[row.Index].Cells[15].Style.BackColor = System.Drawing.Color.Indigo;
-                        dataGridView1.Rows[row.Index].Cells[16].Style.BackColor = System.Drawing.Color.Indigo;
-                        dataGridView1.Rows[row.Index].Cells[17].Style.BackColor = System.Drawing.Color.Indigo;
-                        dataGridView1.Rows[row.Index].Cells[18].Style.BackColor = System.Drawing.Color.Indigo;
-                        dataGridView1.Rows[row.Index].Cells[19].Style.BackColor = System.Drawing.Color.Indigo;
-                        dataGridView1.Rows[row.Index].Cells[20].Style.BackColor = System.Drawing.Color.Indigo;
-                        dataGridView1.Rows[row.Index].Cells[21].Style.BackColor = System.Drawing.Color.Indigo;
-                        dataGridView1.Rows[row.Index].Cells[22].Style.BackColor = System.Drawing.Color.Indigo;
-                        dataGridView1.Rows[row.Index].Cells[23].Style.BackColor = System.Drawing.Color.Indigo;
+                        dataGridView1.Rows[row.Index].Cells[15].Style.BackColor = System.Drawing.Color.SteelBlue;
+                        dataGridView1.Rows[row.Index].Cells[16].Style.BackColor = System.Drawing.Color.SteelBlue;
+                        dataGridView1.Rows[row.Index].Cells[17].Style.BackColor = System.Drawing.Color.SteelBlue;
+                        dataGridView1.Rows[row.Index].Cells[18].Style.BackColor = System.Drawing.Color.SteelBlue;
+                        dataGridView1.Rows[row.Index].Cells[19].Style.BackColor = System.Drawing.Color.SteelBlue;
+                        dataGridView1.Rows[row.Index].Cells[20].Style.BackColor = System.Drawing.Color.SteelBlue;
+                        dataGridView1.Rows[row.Index].Cells[21].Style.BackColor = System.Drawing.Color.SteelBlue;
+                        dataGridView1.Rows[row.Index].Cells[22].Style.BackColor = System.Drawing.Color.SteelBlue;
+                        dataGridView1.Rows[row.Index].Cells[23].Style.BackColor = System.Drawing.Color.SteelBlue;
 
                         dataGridView1.Rows[row.Index].Cells[15].Style.ForeColor = System.Drawing.Color.White;
                         dataGridView1.Rows[row.Index].Cells[16].Style.ForeColor = System.Drawing.Color.White;

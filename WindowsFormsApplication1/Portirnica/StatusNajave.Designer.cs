@@ -534,7 +534,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.groupBox1.BackColor = System.Drawing.Color.SteelBlue;
             this.groupBox1.Controls.Add(this.button8);
             this.groupBox1.Controls.Add(this.button7);
             this.groupBox1.Controls.Add(this.button6);

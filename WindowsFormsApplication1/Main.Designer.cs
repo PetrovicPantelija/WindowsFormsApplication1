@@ -576,7 +576,7 @@
             // pregledKontrolorToolStripMenuItem
             // 
             this.pregledKontrolorToolStripMenuItem.Name = "pregledKontrolorToolStripMenuItem";
-            this.pregledKontrolorToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.pregledKontrolorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.pregledKontrolorToolStripMenuItem.Text = "Pregled kontrolor";
             this.pregledKontrolorToolStripMenuItem.Click += new System.EventHandler(this.pregledKontrolorToolStripMenuItem_Click);
             // 
@@ -591,7 +591,7 @@
             // formiranjeTimovaToolStripMenuItem
             // 
             this.formiranjeTimovaToolStripMenuItem.Name = "formiranjeTimovaToolStripMenuItem";
-            this.formiranjeTimovaToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.formiranjeTimovaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.formiranjeTimovaToolStripMenuItem.Text = "Formiranje timova";
             this.formiranjeTimovaToolStripMenuItem.Click += new System.EventHandler(this.formiranjeTimovaToolStripMenuItem_Click);
             // 
