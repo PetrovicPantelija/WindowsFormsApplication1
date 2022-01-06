@@ -250,7 +250,7 @@ namespace WindowsFormsApplication1.Portirnica
                         //TEST panta
                         //Stefan Test
 
-                        //test stefan 2
+                        //test stefan 222
                     }
 
                     if (dataGridView1.Rows[row.Index].Cells[26].Value.ToString() != "")
