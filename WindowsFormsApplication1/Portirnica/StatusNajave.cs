@@ -246,6 +246,7 @@ namespace WindowsFormsApplication1.Portirnica
                         dataGridView1.Rows[row.Index].Cells[22].Style.ForeColor = System.Drawing.Color.White;
                         dataGridView1.Rows[row.Index].Cells[23].Style.ForeColor = System.Drawing.Color.White;
                         //Test
+                        //Test test test
                     }
 
                     if (dataGridView1.Rows[row.Index].Cells[26].Value.ToString() != "")
