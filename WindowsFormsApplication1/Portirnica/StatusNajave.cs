@@ -1,23 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
 using System.Net;
 using System.Net.Mail;
+using System.Windows.Forms;
 
 
 namespace WindowsFormsApplication1.Portirnica
 {
-    public partial class StatusNajave  : Form
+    public partial class StatusNajave : Form
     {
+        bool click = false;
         bool status = false;
         int PomPaleta1 = 0;
         int PomPaleta2 = 0;
@@ -27,6 +22,7 @@ namespace WindowsFormsApplication1.Portirnica
         public StatusNajave()
         {
             InitializeComponent();
+
         }
 
         public StatusNajave(string Korisnik)
@@ -34,7 +30,6 @@ namespace WindowsFormsApplication1.Portirnica
             InitializeComponent();
             UlogovaniKorisnik = Korisnik;
         }
-
         private void RefreshDataGrid()
         {
             var select = "  SELECT [ID] ,[UtovarBroj] , DatumNajave,  Vozilo,[RegistarskiBroj] ,[DatumVremeDolaska],[PrevoznikKlijent] ,[Partner] ,[Napomena],  " +
@@ -90,7 +85,7 @@ namespace WindowsFormsApplication1.Portirnica
             dataGridView1.Columns[6].HeaderText = "Prevozni klijent";
             dataGridView1.Columns[6].Width = 40;
 
-            
+
             DataGridViewColumn column8 = dataGridView1.Columns[7];
             dataGridView1.Columns[7].HeaderText = "Partner";
             dataGridView1.Columns[7].Width = 120;
@@ -149,43 +144,43 @@ namespace WindowsFormsApplication1.Portirnica
             DataGridViewColumn column19 = dataGridView1.Columns[18];
             dataGridView1.Columns[18].HeaderText = "Isporuka utovarena 2";
             dataGridView1.Columns[18].Width = 40;
-           
+
 
             DataGridViewColumn column20 = dataGridView1.Columns[19];
             dataGridView1.Columns[19].HeaderText = "Datum i vreme zavr utovara 2";
             dataGridView1.Columns[19].Width = 40;
-           
+
 
             DataGridViewColumn column21 = dataGridView1.Columns[20];
             dataGridView1.Columns[20].HeaderText = "Utovario kontrolor 2";
             dataGridView1.Columns[20].Width = 40;
-            
+
 
             DataGridViewColumn column22 = dataGridView1.Columns[21];
             dataGridView1.Columns[21].HeaderText = "Dokumentacija spremna";
             dataGridView1.Columns[21].Width = 40;
-           
+
 
 
             DataGridViewColumn column23 = dataGridView1.Columns[22];
             dataGridView1.Columns[22].HeaderText = "Dokumentaciju spremio i izdao";
             dataGridView1.Columns[22].Width = 120;
-           
+
 
             DataGridViewColumn column24 = dataGridView1.Columns[23];
             dataGridView1.Columns[23].HeaderText = "Datum i vreme izdavanja dokumentacije";
             dataGridView1.Columns[23].Width = 40;
-           
+
 
             DataGridViewColumn column25 = dataGridView1.Columns[24];
             dataGridView1.Columns[24].HeaderText = "Vozilo izašlo";
             dataGridView1.Columns[24].Width = 40;
-           
+
 
             DataGridViewColumn column26 = dataGridView1.Columns[25];
             dataGridView1.Columns[25].HeaderText = "Datum i vreme izlaska vozila";
             dataGridView1.Columns[25].Width = 120;
-           
+
 
             DataGridViewColumn column27 = dataGridView1.Columns[26];
             dataGridView1.Columns[26].HeaderText = "Korisnik propustio vozilo";
@@ -195,20 +190,17 @@ namespace WindowsFormsApplication1.Portirnica
         }
         private void ObojDatagrid()
         {
-         
- 
-
             foreach (DataGridViewRow row in dataGridView1.Rows)
-                 {
+            {
                 foreach (DataGridViewColumn col in dataGridView1.Columns)
-                  {
+                {
                     if (dataGridView1.Rows[row.Index].Cells[9].Value.ToString() != "")
                     {
                         dataGridView1.Rows[row.Index].Cells[0].Style.BackColor = System.Drawing.Color.Red;
                         dataGridView1.Rows[row.Index].Cells[1].Style.BackColor = System.Drawing.Color.Red;
                         dataGridView1.Rows[row.Index].Cells[2].Style.BackColor = System.Drawing.Color.Red;
                         dataGridView1.Rows[row.Index].Cells[3].Style.BackColor = System.Drawing.Color.Red;
-                        dataGridView1.Rows[row.Index].Cells[4].Style.BackColor =  System.Drawing.Color.Red;
+                        dataGridView1.Rows[row.Index].Cells[4].Style.BackColor = System.Drawing.Color.Red;
                         dataGridView1.Rows[row.Index].Cells[5].Style.BackColor = System.Drawing.Color.Red;
                         dataGridView1.Rows[row.Index].Cells[6].Style.BackColor = System.Drawing.Color.Red;
                         dataGridView1.Rows[row.Index].Cells[7].Style.BackColor = System.Drawing.Color.Red;
@@ -219,7 +211,7 @@ namespace WindowsFormsApplication1.Portirnica
                     }
                     if (dataGridView1.Rows[row.Index].Cells[12].Value.ToString() != "")
                     {
-                        dataGridView1.Rows[row.Index].Cells[12].Style.BackColor  = System.Drawing.Color.Yellow;
+                        dataGridView1.Rows[row.Index].Cells[12].Style.BackColor = System.Drawing.Color.Yellow;
                         dataGridView1.Rows[row.Index].Cells[13].Style.BackColor = System.Drawing.Color.Yellow;
                         dataGridView1.Rows[row.Index].Cells[14].Style.BackColor = System.Drawing.Color.Yellow;
                     }
@@ -245,12 +237,6 @@ namespace WindowsFormsApplication1.Portirnica
                         dataGridView1.Rows[row.Index].Cells[21].Style.ForeColor = System.Drawing.Color.White;
                         dataGridView1.Rows[row.Index].Cells[22].Style.ForeColor = System.Drawing.Color.White;
                         dataGridView1.Rows[row.Index].Cells[23].Style.ForeColor = System.Drawing.Color.White;
-                        //Test
-                        //Test test test
-                        //TEST panta
-                        //Stefan Test
-
-                        //test stefan 222
                     }
 
                     if (dataGridView1.Rows[row.Index].Cells[26].Value.ToString() != "")
@@ -259,7 +245,7 @@ namespace WindowsFormsApplication1.Portirnica
                         dataGridView1.Rows[row.Index].Cells[25].Style.BackColor = System.Drawing.Color.Green;
                         dataGridView1.Rows[row.Index].Cells[26].Style.BackColor = System.Drawing.Color.Green;
                     }
-                   
+
                 }
             }
         }
@@ -289,6 +275,7 @@ namespace WindowsFormsApplication1.Portirnica
 
         private void tsSave_Click(object sender, EventArgs e)
         {
+            noviUnosToolStripMenuItem.BackColor = default;
             if (chkPaleta1.Checked)
             {
                 PomPaleta1 = 1;
@@ -315,13 +302,13 @@ namespace WindowsFormsApplication1.Portirnica
             {
                 PomDokumentacijaSpremna = 0;
             }
-            
+
             if (status == true)
             {//Ovde ispravi !!!
                 //Unosi transport
                 InsertStatusNajave ins = new InsertStatusNajave();
                 ins.InsSatusNajave(txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, UlogovaniKorisnik, DateTime.Now, txtGate.Text, Convert.ToDateTime(dtpVreme.Value), "", "", 0, Convert.ToDateTime(dtpVreme.Value), 0, Convert.ToDateTime(dtpVreme.Value), "", "", 0, "", Convert.ToDateTime(dtpVreme.Value), Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text);
-               
+
                 /*
                 txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text,txtUtovarBroj.Text, UlogovaniKorisnik, DateTime.Now, txtGate.Text,
                       Convert.ToDateTime(dtpDatumVremePrijem.Value), txtkorisnikPrimio.Text, txtNapomenaPrijem.Text, 
@@ -341,6 +328,7 @@ namespace WindowsFormsApplication1.Portirnica
                 inslog.InsLogNajave(Convert.ToInt32(txtSifra.Text), "Transport promena", UlogovaniKorisnik, DateTime.Now);
             }
             RefreshDataGrid();
+
         }
 
         private void tsDelete_Click(object sender, EventArgs e)
@@ -472,9 +460,17 @@ namespace WindowsFormsApplication1.Portirnica
         {
             RefreshDataGrid();
         }
-
         private void noviUnosToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            noviUnosToolStripMenuItem.BackColor = Color.Orange;
+            logFajlToolStripMenuItem.BackColor = default;
+            najavljeniToolStripMenuItem.BackColor = default;
+            primljeniToolStripMenuItem.BackColor = default;
+            spremniZaIzlazakToolStripMenuItem.BackColor = default;
+            izašliToolStripMenuItem.BackColor = default;
+            posaljiMailPesicuToolStripMenuItem.BackColor = default;
+
+
             txtSifra.Text = "";
             txtSifra.Enabled = false;
             status = true;
@@ -495,6 +491,7 @@ namespace WindowsFormsApplication1.Portirnica
             chkPaleta2.Checked = false;
             chkDokumentacijaSpremna.Checked = false;
             PopuniDatumUtovara();
+
         }
         private void PopuniDatumUtovara()
         {
@@ -503,7 +500,7 @@ namespace WindowsFormsApplication1.Portirnica
 " Select Distinct DatumUtovara, Cast(SUBSTRING(DatumUtovara, 1, Charindex('.', DatumUtovara) - 1) as int)  as Dan, Cast(Replace(SUBSTRING(DatumUtovara, Charindex('.', DatumUtovara) + 1, Len(DatumUtovara) - 12 - 1 - ((Charindex('.', DatumUtovara)))), '.', '') as int) as Mesec  From RkShipping " +
 " union " +
 " Select Distinct DatumUtovara, Cast(SUBSTRING(DatumUtovara, 1, Charindex('.', DatumUtovara) - 1) as int)  as Dan, Cast(Replace(SUBSTRING(DatumUtovara, Charindex('.', DatumUtovara) + 1, Len(DatumUtovara) - 12 - 1 - ((Charindex('.', DatumUtovara)))), '.', '') as int) as Mesec  From RkShippingZavrseno) as t1 order by t1.Mesec, t1.Dan";
-                
+
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -515,8 +512,6 @@ namespace WindowsFormsApplication1.Portirnica
             cboDatumUtovara.DataSource = ds.Tables[0];
             cboDatumUtovara.DisplayMember = "DatumUtovara";
             cboDatumUtovara.ValueMember = "DatumUtovara";
-
-
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -525,8 +520,169 @@ namespace WindowsFormsApplication1.Portirnica
             upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, txtKorisnikOtvorio.Text, Convert.ToDateTime(dtpVremeOtvaranja.Value), txtGate.Text, Convert.ToDateTime(DateTime.Now), UlogovaniKorisnik, txtNapomenaPrijem.Text, 0, Convert.ToDateTime(dtpVreme.Value), 0, Convert.ToDateTime(dtpVreme.Value), "", "", 0, "", Convert.ToDateTime(dtpVreme.Value), Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text);
             InsertLogNajave inslog = new InsertLogNajave();
             inslog.InsLogNajave(Convert.ToInt32(txtSifra.Text), "Portir ulaz promena", UlogovaniKorisnik, DateTime.Now);
-        
-            RefreshDataGrid();
+
+            najavljeniToolStripMenuItem.BackColor = default;
+
+            var select = "  SELECT [ID] ,[UtovarBroj] , DatumNajave,  Vozilo,[RegistarskiBroj] ,[DatumVremeDolaska],[PrevoznikKlijent] ,[Partner] ,[Napomena],  " +
+                " [KorisnikOtvorio], [DatumVremeOtvaranja], [Gate], [KorinsikPrimio], [DatumVremePrijema],  [NapomenaPrijema] , " +
+                " CASE WHEN [PaletaSpremne1] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne1] , [DatumSpremne1] , [KontrolorSpremne1],  " +
+                " CASE WHEN [PaletaSpremne2] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne2] , [DatumSpremne2] , " +
+                " [KontrolorSpremne2] , " +
+                " CASE WHEN [DokumentacijaSpremne] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [DokumentacijaSpremne] , " +
+                "  [ProdajaKorisnik], [DatumDokumentSpremne]," +
+                " CASE WHEN korisnik <> '' THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Spremljeno, " +
+                " [DatumKamionIzasao],[Korisnik] FROM [dbo].[StatusNajave] " +
+         " where KorinsikPrimio = '' order by ID desc";
+
+
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "ID";
+            dataGridView1.Columns[0].Width = 40;
+
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "Otpremnica";
+            dataGridView1.Columns[1].Width = 50;
+
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Datum isporuke";
+            dataGridView1.Columns[2].Width = 120;
+
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "Vozilo";
+            dataGridView1.Columns[3].Width = 120;
+
+
+            DataGridViewColumn column5 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "Registarski broj vozila";
+            dataGridView1.Columns[4].Width = 120;
+
+
+            DataGridViewColumn column6 = dataGridView1.Columns[5];
+            dataGridView1.Columns[5].HeaderText = "Datum i vreme dolaska";
+            dataGridView1.Columns[5].Width = 120;
+
+
+            DataGridViewColumn column7 = dataGridView1.Columns[6];
+            dataGridView1.Columns[6].HeaderText = "Prevozni klijent";
+            dataGridView1.Columns[6].Width = 40;
+
+
+            DataGridViewColumn column8 = dataGridView1.Columns[7];
+            dataGridView1.Columns[7].HeaderText = "Partner";
+            dataGridView1.Columns[7].Width = 120;
+
+
+            DataGridViewColumn column9 = dataGridView1.Columns[8];
+            dataGridView1.Columns[8].HeaderText = "Napomena najave";
+            dataGridView1.Columns[8].Width = 40;
+
+
+            DataGridViewColumn column10 = dataGridView1.Columns[9];
+            dataGridView1.Columns[9].HeaderText = "Korisnik najavio vozilo";
+            dataGridView1.Columns[9].Width = 40;
+
+
+            DataGridViewColumn column11 = dataGridView1.Columns[10];
+            dataGridView1.Columns[10].HeaderText = "Datum i vreme najave";
+            dataGridView1.Columns[10].Width = 80;
+
+
+            DataGridViewColumn column12 = dataGridView1.Columns[11];
+            dataGridView1.Columns[11].HeaderText = "Gate";
+            dataGridView1.Columns[11].Width = 50;
+
+
+            DataGridViewColumn column13 = dataGridView1.Columns[12];
+            dataGridView1.Columns[12].HeaderText = "Korisnik primio vozilo";
+            dataGridView1.Columns[12].Width = 40;
+
+
+            DataGridViewColumn column14 = dataGridView1.Columns[13];
+            dataGridView1.Columns[13].HeaderText = "Datum i vreme prijema";
+            dataGridView1.Columns[13].Width = 120;
+
+
+            DataGridViewColumn column15 = dataGridView1.Columns[14];
+            dataGridView1.Columns[14].HeaderText = "Napomena prijema";
+            dataGridView1.Columns[14].Width = 40;
+
+
+            DataGridViewColumn column16 = dataGridView1.Columns[15];
+            dataGridView1.Columns[15].HeaderText = "Isporuka paletirana 1";
+            dataGridView1.Columns[15].Width = 40;
+
+
+            DataGridViewColumn column17 = dataGridView1.Columns[16];
+            dataGridView1.Columns[16].HeaderText = "Datum i vreme zavr paletiranja 1";
+            dataGridView1.Columns[16].Width = 40;
+
+
+            DataGridViewColumn column18 = dataGridView1.Columns[17];
+            dataGridView1.Columns[17].HeaderText = "Paletirao kontrolor 1";
+            dataGridView1.Columns[17].Width = 40;
+
+
+            DataGridViewColumn column19 = dataGridView1.Columns[18];
+            dataGridView1.Columns[18].HeaderText = "Isporuka utovarena 2";
+            dataGridView1.Columns[18].Width = 40;
+
+
+            DataGridViewColumn column20 = dataGridView1.Columns[19];
+            dataGridView1.Columns[19].HeaderText = "Datum i vreme zavr utovara 2";
+            dataGridView1.Columns[19].Width = 40;
+
+
+            DataGridViewColumn column21 = dataGridView1.Columns[20];
+            dataGridView1.Columns[20].HeaderText = "Utovario kontrolor 2";
+            dataGridView1.Columns[20].Width = 40;
+
+
+            DataGridViewColumn column22 = dataGridView1.Columns[21];
+            dataGridView1.Columns[21].HeaderText = "Dokumentacija spremna";
+            dataGridView1.Columns[21].Width = 40;
+
+
+
+            DataGridViewColumn column23 = dataGridView1.Columns[22];
+            dataGridView1.Columns[22].HeaderText = "Dokumentaciju spremio i izdao";
+            dataGridView1.Columns[22].Width = 120;
+
+
+            DataGridViewColumn column24 = dataGridView1.Columns[23];
+            dataGridView1.Columns[23].HeaderText = "Datum i vreme izdavanja dokumentacije";
+            dataGridView1.Columns[23].Width = 40;
+
+
+            DataGridViewColumn column25 = dataGridView1.Columns[24];
+            dataGridView1.Columns[24].HeaderText = "Vozilo izašlo";
+            dataGridView1.Columns[24].Width = 40;
+
+
+            DataGridViewColumn column26 = dataGridView1.Columns[25];
+            dataGridView1.Columns[25].HeaderText = "Datum i vreme izlaska vozila";
+            dataGridView1.Columns[25].Width = 120;
+
+
+            DataGridViewColumn column27 = dataGridView1.Columns[26];
+            dataGridView1.Columns[26].HeaderText = "Korisnik propustio vozilo";
+            dataGridView1.Columns[26].Width = 120;
+
+            ObojDatagrid();
+
+
+
+            //RefreshDataGrid();
 
             /*
             txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text,txtUtovarBroj.Text, UlogovaniKorisnik, DateTime.Now, txtGate.Text,
@@ -540,18 +696,178 @@ namespace WindowsFormsApplication1.Portirnica
 
         private void button6_Click(object sender, EventArgs e)
         {
+            spremniZaIzlazakToolStripMenuItem.BackColor = default;
             InsertStatusNajave upd = new InsertStatusNajave();
             upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, txtKorisnikOtvorio.Text, Convert.ToDateTime(dtpVremeOtvaranja.Value), txtGate.Text, Convert.ToDateTime(dtpDatumVremePrijem.Value), txtkorisnikPrimio.Text, txtNapomenaPrijem.Text, 1, Convert.ToDateTime(DateTime.Now), 0, Convert.ToDateTime(dtpVreme.Value), UlogovaniKorisnik, "", 0, "", Convert.ToDateTime(dtpVreme.Value), Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text);
             InsertLogNajave inslog = new InsertLogNajave();
             inslog.InsLogNajave(Convert.ToInt32(txtSifra.Text), "Kontrolor 1 promena", UlogovaniKorisnik, DateTime.Now);
-        
-            RefreshDataGrid();
+
+
+            var select = "  SELECT [ID] ,[UtovarBroj] , DatumNajave,  Vozilo,[RegistarskiBroj] ,[DatumVremeDolaska],[PrevoznikKlijent] ,[Partner] ,[Napomena],  " +
+              " [KorisnikOtvorio], [DatumVremeOtvaranja], [Gate], [KorinsikPrimio], [DatumVremePrijema],  [NapomenaPrijema] , " +
+              " CASE WHEN [PaletaSpremne1] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne1] , [DatumSpremne1] , [KontrolorSpremne1],  " +
+              " CASE WHEN [PaletaSpremne2] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne2] , [DatumSpremne2] , " +
+              " [KontrolorSpremne2] , " +
+              " CASE WHEN [DokumentacijaSpremne] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [DokumentacijaSpremne] , " +
+              "  [ProdajaKorisnik], [DatumDokumentSpremne]," +
+              " CASE WHEN korisnik <> '' THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Spremljeno, " +
+              " [DatumKamionIzasao],[Korisnik] FROM [dbo].[StatusNajave] " +
+         " where KorinsikPrimio <> '' and ProdajaKorisnik = '' order by ID desc";
+
+
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "ID";
+            dataGridView1.Columns[0].Width = 40;
+
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "Otpremnica";
+            dataGridView1.Columns[1].Width = 50;
+
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Datum isporuke";
+            dataGridView1.Columns[2].Width = 120;
+
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "Vozilo";
+            dataGridView1.Columns[3].Width = 120;
+
+
+            DataGridViewColumn column5 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "Registarski broj vozila";
+            dataGridView1.Columns[4].Width = 120;
+
+
+            DataGridViewColumn column6 = dataGridView1.Columns[5];
+            dataGridView1.Columns[5].HeaderText = "Datum i vreme dolaska";
+            dataGridView1.Columns[5].Width = 120;
+
+
+            DataGridViewColumn column7 = dataGridView1.Columns[6];
+            dataGridView1.Columns[6].HeaderText = "Prevozni klijent";
+            dataGridView1.Columns[6].Width = 40;
+
+
+            DataGridViewColumn column8 = dataGridView1.Columns[7];
+            dataGridView1.Columns[7].HeaderText = "Partner";
+            dataGridView1.Columns[7].Width = 120;
+
+
+            DataGridViewColumn column9 = dataGridView1.Columns[8];
+            dataGridView1.Columns[8].HeaderText = "Napomena najave";
+            dataGridView1.Columns[8].Width = 40;
+
+
+            DataGridViewColumn column10 = dataGridView1.Columns[9];
+            dataGridView1.Columns[9].HeaderText = "Korisnik najavio vozilo";
+            dataGridView1.Columns[9].Width = 40;
+
+
+            DataGridViewColumn column11 = dataGridView1.Columns[10];
+            dataGridView1.Columns[10].HeaderText = "Datum i vreme najave";
+            dataGridView1.Columns[10].Width = 80;
+
+
+            DataGridViewColumn column12 = dataGridView1.Columns[11];
+            dataGridView1.Columns[11].HeaderText = "Gate";
+            dataGridView1.Columns[11].Width = 50;
+
+
+            DataGridViewColumn column13 = dataGridView1.Columns[12];
+            dataGridView1.Columns[12].HeaderText = "Korisnik primio vozilo";
+            dataGridView1.Columns[12].Width = 40;
+
+
+            DataGridViewColumn column14 = dataGridView1.Columns[13];
+            dataGridView1.Columns[13].HeaderText = "Datum i vreme prijema";
+            dataGridView1.Columns[13].Width = 120;
+
+
+            DataGridViewColumn column15 = dataGridView1.Columns[14];
+            dataGridView1.Columns[14].HeaderText = "Napomena prijema";
+            dataGridView1.Columns[14].Width = 40;
+
+
+            DataGridViewColumn column16 = dataGridView1.Columns[15];
+            dataGridView1.Columns[15].HeaderText = "Isporuka paletirana 1";
+            dataGridView1.Columns[15].Width = 40;
+
+
+            DataGridViewColumn column17 = dataGridView1.Columns[16];
+            dataGridView1.Columns[16].HeaderText = "Datum i vreme zavr paletiranja 1";
+            dataGridView1.Columns[16].Width = 40;
+
+
+            DataGridViewColumn column18 = dataGridView1.Columns[17];
+            dataGridView1.Columns[17].HeaderText = "Paletirao kontrolor 1";
+            dataGridView1.Columns[17].Width = 40;
+
+
+            DataGridViewColumn column19 = dataGridView1.Columns[18];
+            dataGridView1.Columns[18].HeaderText = "Isporuka utovarena 2";
+            dataGridView1.Columns[18].Width = 40;
+
+
+            DataGridViewColumn column20 = dataGridView1.Columns[19];
+            dataGridView1.Columns[19].HeaderText = "Datum i vreme zavr utovara 2";
+            dataGridView1.Columns[19].Width = 40;
+
+
+            DataGridViewColumn column21 = dataGridView1.Columns[20];
+            dataGridView1.Columns[20].HeaderText = "Utovario kontrolor 2";
+            dataGridView1.Columns[20].Width = 40;
+
+
+            DataGridViewColumn column22 = dataGridView1.Columns[21];
+            dataGridView1.Columns[21].HeaderText = "Dokumentacija spremna";
+            dataGridView1.Columns[21].Width = 40;
+
+
+
+            DataGridViewColumn column23 = dataGridView1.Columns[22];
+            dataGridView1.Columns[22].HeaderText = "Dokumentaciju spremio i izdao";
+            dataGridView1.Columns[22].Width = 120;
+
+
+            DataGridViewColumn column24 = dataGridView1.Columns[23];
+            dataGridView1.Columns[23].HeaderText = "Datum i vreme izdavanja dokumentacije";
+            dataGridView1.Columns[23].Width = 40;
+
+
+            DataGridViewColumn column25 = dataGridView1.Columns[24];
+            dataGridView1.Columns[24].HeaderText = "Vozilo izašlo";
+            dataGridView1.Columns[24].Width = 40;
+
+
+            DataGridViewColumn column26 = dataGridView1.Columns[25];
+            dataGridView1.Columns[25].HeaderText = "Datum i vreme izlaska vozila";
+            dataGridView1.Columns[25].Width = 120;
+
+
+            DataGridViewColumn column27 = dataGridView1.Columns[26];
+            dataGridView1.Columns[26].HeaderText = "Korisnik propustio vozilo";
+            dataGridView1.Columns[26].Width = 120;
+
+            ObojDatagrid();
+
+            //RefreshDataGrid();
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
             int tmpKontrolor1 = 0;
-        
+            spremniZaIzlazakToolStripMenuItem.BackColor = default;
+
 
             if (chkPaleta1.Checked == true)
             {
@@ -561,49 +877,372 @@ namespace WindowsFormsApplication1.Portirnica
             {
                 tmpKontrolor1 = 0;
             }
-         
+
 
             InsertStatusNajave upd = new InsertStatusNajave();
-            upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, txtKorisnikOtvorio.Text, Convert.ToDateTime(dtpVremeOtvaranja.Value), txtGate.Text, Convert.ToDateTime(dtpDatumVremePrijem.Value), txtkorisnikPrimio.Text, txtNapomenaPrijem.Text, tmpKontrolor1, Convert.ToDateTime(dtpDatum1.Value), 1,DateTime.Now, txtKontrolor1.Text, UlogovaniKorisnik, 0, "", Convert.ToDateTime(dtpVreme.Value), Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text);
+            upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, txtKorisnikOtvorio.Text, Convert.ToDateTime(dtpVremeOtvaranja.Value), txtGate.Text, Convert.ToDateTime(dtpDatumVremePrijem.Value), txtkorisnikPrimio.Text, txtNapomenaPrijem.Text, tmpKontrolor1, Convert.ToDateTime(dtpDatum1.Value), 1, DateTime.Now, txtKontrolor1.Text, UlogovaniKorisnik, 0, "", Convert.ToDateTime(dtpVreme.Value), Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text);
             InsertLogNajave inslog = new InsertLogNajave();
             inslog.InsLogNajave(Convert.ToInt32(txtSifra.Text), "Kontrolor 2 promena", UlogovaniKorisnik, DateTime.Now);
 
 
 
             chkPaleta2.Checked = true;
-            RefreshDataGrid();
+
+            var select = "  SELECT [ID] ,[UtovarBroj] , DatumNajave,  Vozilo,[RegistarskiBroj] ,[DatumVremeDolaska],[PrevoznikKlijent] ,[Partner] ,[Napomena],  " +
+              " [KorisnikOtvorio], [DatumVremeOtvaranja], [Gate], [KorinsikPrimio], [DatumVremePrijema],  [NapomenaPrijema] , " +
+              " CASE WHEN [PaletaSpremne1] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne1] , [DatumSpremne1] , [KontrolorSpremne1],  " +
+              " CASE WHEN [PaletaSpremne2] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne2] , [DatumSpremne2] , " +
+              " [KontrolorSpremne2] , " +
+              " CASE WHEN [DokumentacijaSpremne] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [DokumentacijaSpremne] , " +
+              "  [ProdajaKorisnik], [DatumDokumentSpremne]," +
+              " CASE WHEN korisnik <> '' THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Spremljeno, " +
+              " [DatumKamionIzasao],[Korisnik] FROM [dbo].[StatusNajave] " +
+         " where KorinsikPrimio <> '' and ProdajaKorisnik = '' order by ID desc";
+
+
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "ID";
+            dataGridView1.Columns[0].Width = 40;
+
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "Otpremnica";
+            dataGridView1.Columns[1].Width = 50;
+
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Datum isporuke";
+            dataGridView1.Columns[2].Width = 120;
+
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "Vozilo";
+            dataGridView1.Columns[3].Width = 120;
+
+
+            DataGridViewColumn column5 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "Registarski broj vozila";
+            dataGridView1.Columns[4].Width = 120;
+
+
+            DataGridViewColumn column6 = dataGridView1.Columns[5];
+            dataGridView1.Columns[5].HeaderText = "Datum i vreme dolaska";
+            dataGridView1.Columns[5].Width = 120;
+
+
+            DataGridViewColumn column7 = dataGridView1.Columns[6];
+            dataGridView1.Columns[6].HeaderText = "Prevozni klijent";
+            dataGridView1.Columns[6].Width = 40;
+
+
+            DataGridViewColumn column8 = dataGridView1.Columns[7];
+            dataGridView1.Columns[7].HeaderText = "Partner";
+            dataGridView1.Columns[7].Width = 120;
+
+
+            DataGridViewColumn column9 = dataGridView1.Columns[8];
+            dataGridView1.Columns[8].HeaderText = "Napomena najave";
+            dataGridView1.Columns[8].Width = 40;
+
+
+            DataGridViewColumn column10 = dataGridView1.Columns[9];
+            dataGridView1.Columns[9].HeaderText = "Korisnik najavio vozilo";
+            dataGridView1.Columns[9].Width = 40;
+
+
+            DataGridViewColumn column11 = dataGridView1.Columns[10];
+            dataGridView1.Columns[10].HeaderText = "Datum i vreme najave";
+            dataGridView1.Columns[10].Width = 80;
+
+
+            DataGridViewColumn column12 = dataGridView1.Columns[11];
+            dataGridView1.Columns[11].HeaderText = "Gate";
+            dataGridView1.Columns[11].Width = 50;
+
+
+            DataGridViewColumn column13 = dataGridView1.Columns[12];
+            dataGridView1.Columns[12].HeaderText = "Korisnik primio vozilo";
+            dataGridView1.Columns[12].Width = 40;
+
+
+            DataGridViewColumn column14 = dataGridView1.Columns[13];
+            dataGridView1.Columns[13].HeaderText = "Datum i vreme prijema";
+            dataGridView1.Columns[13].Width = 120;
+
+
+            DataGridViewColumn column15 = dataGridView1.Columns[14];
+            dataGridView1.Columns[14].HeaderText = "Napomena prijema";
+            dataGridView1.Columns[14].Width = 40;
+
+
+            DataGridViewColumn column16 = dataGridView1.Columns[15];
+            dataGridView1.Columns[15].HeaderText = "Isporuka paletirana 1";
+            dataGridView1.Columns[15].Width = 40;
+
+
+            DataGridViewColumn column17 = dataGridView1.Columns[16];
+            dataGridView1.Columns[16].HeaderText = "Datum i vreme zavr paletiranja 1";
+            dataGridView1.Columns[16].Width = 40;
+
+
+            DataGridViewColumn column18 = dataGridView1.Columns[17];
+            dataGridView1.Columns[17].HeaderText = "Paletirao kontrolor 1";
+            dataGridView1.Columns[17].Width = 40;
+
+
+            DataGridViewColumn column19 = dataGridView1.Columns[18];
+            dataGridView1.Columns[18].HeaderText = "Isporuka utovarena 2";
+            dataGridView1.Columns[18].Width = 40;
+
+
+            DataGridViewColumn column20 = dataGridView1.Columns[19];
+            dataGridView1.Columns[19].HeaderText = "Datum i vreme zavr utovara 2";
+            dataGridView1.Columns[19].Width = 40;
+
+
+            DataGridViewColumn column21 = dataGridView1.Columns[20];
+            dataGridView1.Columns[20].HeaderText = "Utovario kontrolor 2";
+            dataGridView1.Columns[20].Width = 40;
+
+
+            DataGridViewColumn column22 = dataGridView1.Columns[21];
+            dataGridView1.Columns[21].HeaderText = "Dokumentacija spremna";
+            dataGridView1.Columns[21].Width = 40;
+
+
+
+            DataGridViewColumn column23 = dataGridView1.Columns[22];
+            dataGridView1.Columns[22].HeaderText = "Dokumentaciju spremio i izdao";
+            dataGridView1.Columns[22].Width = 120;
+
+
+            DataGridViewColumn column24 = dataGridView1.Columns[23];
+            dataGridView1.Columns[23].HeaderText = "Datum i vreme izdavanja dokumentacije";
+            dataGridView1.Columns[23].Width = 40;
+
+
+            DataGridViewColumn column25 = dataGridView1.Columns[24];
+            dataGridView1.Columns[24].HeaderText = "Vozilo izašlo";
+            dataGridView1.Columns[24].Width = 40;
+
+
+            DataGridViewColumn column26 = dataGridView1.Columns[25];
+            dataGridView1.Columns[25].HeaderText = "Datum i vreme izlaska vozila";
+            dataGridView1.Columns[25].Width = 120;
+
+
+            DataGridViewColumn column27 = dataGridView1.Columns[26];
+            dataGridView1.Columns[26].HeaderText = "Korisnik propustio vozilo";
+            dataGridView1.Columns[26].Width = 120;
+
+            ObojDatagrid();
+
+            //RefreshDataGrid();
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-           
-            int tmpKontrolor1 = 0;
-            int tmpKontrolor2 = 0;
-          
-            if (chkPaleta1.Checked == true)
+            if (chkPaleta1.Checked && chkPaleta2.Checked && chkDokumentacijaSpremna.Checked && txtKontrolor1 != null && txtKontrolor2 != null)
             {
-                tmpKontrolor1 = 1;
+                int tmpKontrolor1 = 0;
+                int tmpKontrolor2 = 0;
+                spremniZaIzlazakToolStripMenuItem.BackColor = default;
+
+                if (chkPaleta1.Checked == true)
+                {
+                    tmpKontrolor1 = 1;
+                }
+                else
+                {
+                    tmpKontrolor1 = 0;
+                }
+                if (chkPaleta2.Checked == true)
+                {
+                    tmpKontrolor2 = 1;
+                }
+                else
+                {
+                    tmpKontrolor2 = 0;
+                }
+                InsertStatusNajave upd = new InsertStatusNajave();
+                upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, txtKorisnikOtvorio.Text, Convert.ToDateTime(dtpVremeOtvaranja.Value), txtGate.Text, Convert.ToDateTime(dtpDatumVremePrijem.Value), txtkorisnikPrimio.Text, txtNapomenaPrijem.Text, tmpKontrolor1, Convert.ToDateTime(dtpDatum1.Value), tmpKontrolor2, Convert.ToDateTime(dtpDatum2.Value), txtKontrolor1.Text, txtKontrolor2.Text, 1, UlogovaniKorisnik, DateTime.Now, Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text);
+                InsertLogNajave inslog = new InsertLogNajave();
+                inslog.InsLogNajave(Convert.ToInt32(txtSifra.Text), "Dokumentacija spremna promena", UlogovaniKorisnik, DateTime.Now);
+
+
+                //RefreshDataGrid();
+                chkDokumentacijaSpremna.Checked = true;
+
+                var select = "  SELECT [ID] ,[UtovarBroj] , DatumNajave,  Vozilo,[RegistarskiBroj] ,[DatumVremeDolaska],[PrevoznikKlijent] ,[Partner] ,[Napomena],  " +
+                  " [KorisnikOtvorio], [DatumVremeOtvaranja], [Gate], [KorinsikPrimio], [DatumVremePrijema],  [NapomenaPrijema] , " +
+                  " CASE WHEN [PaletaSpremne1] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne1] , [DatumSpremne1] , [KontrolorSpremne1],  " +
+                  " CASE WHEN [PaletaSpremne2] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne2] , [DatumSpremne2] , " +
+                  " [KontrolorSpremne2] , " +
+                  " CASE WHEN [DokumentacijaSpremne] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [DokumentacijaSpremne] , " +
+                  "  [ProdajaKorisnik], [DatumDokumentSpremne]," +
+                  " CASE WHEN korisnik <> '' THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Spremljeno, " +
+                  " [DatumKamionIzasao],[Korisnik] FROM [dbo].[StatusNajave] " +
+             " where KorinsikPrimio <> '' and ProdajaKorisnik = '' order by ID desc";
+
+
+                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                SqlConnection myConnection = new SqlConnection(s_connection);
+                var c = new SqlConnection(s_connection);
+                var dataAdapter = new SqlDataAdapter(select, c);
+
+                var commandBuilder = new SqlCommandBuilder(dataAdapter);
+                var ds = new DataSet();
+                dataAdapter.Fill(ds);
+                dataGridView1.ReadOnly = true;
+                dataGridView1.DataSource = ds.Tables[0];
+
+                DataGridViewColumn column = dataGridView1.Columns[0];
+                dataGridView1.Columns[0].HeaderText = "ID";
+                dataGridView1.Columns[0].Width = 40;
+
+                DataGridViewColumn column2 = dataGridView1.Columns[1];
+                dataGridView1.Columns[1].HeaderText = "Otpremnica";
+                dataGridView1.Columns[1].Width = 50;
+
+                DataGridViewColumn column3 = dataGridView1.Columns[2];
+                dataGridView1.Columns[2].HeaderText = "Datum isporuke";
+                dataGridView1.Columns[2].Width = 120;
+
+                DataGridViewColumn column4 = dataGridView1.Columns[3];
+                dataGridView1.Columns[3].HeaderText = "Vozilo";
+                dataGridView1.Columns[3].Width = 120;
+
+
+                DataGridViewColumn column5 = dataGridView1.Columns[4];
+                dataGridView1.Columns[4].HeaderText = "Registarski broj vozila";
+                dataGridView1.Columns[4].Width = 120;
+
+
+                DataGridViewColumn column6 = dataGridView1.Columns[5];
+                dataGridView1.Columns[5].HeaderText = "Datum i vreme dolaska";
+                dataGridView1.Columns[5].Width = 120;
+
+
+                DataGridViewColumn column7 = dataGridView1.Columns[6];
+                dataGridView1.Columns[6].HeaderText = "Prevozni klijent";
+                dataGridView1.Columns[6].Width = 40;
+
+
+                DataGridViewColumn column8 = dataGridView1.Columns[7];
+                dataGridView1.Columns[7].HeaderText = "Partner";
+                dataGridView1.Columns[7].Width = 120;
+
+
+                DataGridViewColumn column9 = dataGridView1.Columns[8];
+                dataGridView1.Columns[8].HeaderText = "Napomena najave";
+                dataGridView1.Columns[8].Width = 40;
+
+
+                DataGridViewColumn column10 = dataGridView1.Columns[9];
+                dataGridView1.Columns[9].HeaderText = "Korisnik najavio vozilo";
+                dataGridView1.Columns[9].Width = 40;
+
+
+                DataGridViewColumn column11 = dataGridView1.Columns[10];
+                dataGridView1.Columns[10].HeaderText = "Datum i vreme najave";
+                dataGridView1.Columns[10].Width = 80;
+
+
+                DataGridViewColumn column12 = dataGridView1.Columns[11];
+                dataGridView1.Columns[11].HeaderText = "Gate";
+                dataGridView1.Columns[11].Width = 50;
+
+
+                DataGridViewColumn column13 = dataGridView1.Columns[12];
+                dataGridView1.Columns[12].HeaderText = "Korisnik primio vozilo";
+                dataGridView1.Columns[12].Width = 40;
+
+
+                DataGridViewColumn column14 = dataGridView1.Columns[13];
+                dataGridView1.Columns[13].HeaderText = "Datum i vreme prijema";
+                dataGridView1.Columns[13].Width = 120;
+
+
+                DataGridViewColumn column15 = dataGridView1.Columns[14];
+                dataGridView1.Columns[14].HeaderText = "Napomena prijema";
+                dataGridView1.Columns[14].Width = 40;
+
+
+                DataGridViewColumn column16 = dataGridView1.Columns[15];
+                dataGridView1.Columns[15].HeaderText = "Isporuka paletirana 1";
+                dataGridView1.Columns[15].Width = 40;
+
+
+                DataGridViewColumn column17 = dataGridView1.Columns[16];
+                dataGridView1.Columns[16].HeaderText = "Datum i vreme zavr paletiranja 1";
+                dataGridView1.Columns[16].Width = 40;
+
+
+                DataGridViewColumn column18 = dataGridView1.Columns[17];
+                dataGridView1.Columns[17].HeaderText = "Paletirao kontrolor 1";
+                dataGridView1.Columns[17].Width = 40;
+
+
+                DataGridViewColumn column19 = dataGridView1.Columns[18];
+                dataGridView1.Columns[18].HeaderText = "Isporuka utovarena 2";
+                dataGridView1.Columns[18].Width = 40;
+
+
+                DataGridViewColumn column20 = dataGridView1.Columns[19];
+                dataGridView1.Columns[19].HeaderText = "Datum i vreme zavr utovara 2";
+                dataGridView1.Columns[19].Width = 40;
+
+
+                DataGridViewColumn column21 = dataGridView1.Columns[20];
+                dataGridView1.Columns[20].HeaderText = "Utovario kontrolor 2";
+                dataGridView1.Columns[20].Width = 40;
+
+
+                DataGridViewColumn column22 = dataGridView1.Columns[21];
+                dataGridView1.Columns[21].HeaderText = "Dokumentacija spremna";
+                dataGridView1.Columns[21].Width = 40;
+
+
+
+                DataGridViewColumn column23 = dataGridView1.Columns[22];
+                dataGridView1.Columns[22].HeaderText = "Dokumentaciju spremio i izdao";
+                dataGridView1.Columns[22].Width = 120;
+
+
+                DataGridViewColumn column24 = dataGridView1.Columns[23];
+                dataGridView1.Columns[23].HeaderText = "Datum i vreme izdavanja dokumentacije";
+                dataGridView1.Columns[23].Width = 40;
+
+
+                DataGridViewColumn column25 = dataGridView1.Columns[24];
+                dataGridView1.Columns[24].HeaderText = "Vozilo izašlo";
+                dataGridView1.Columns[24].Width = 40;
+
+
+                DataGridViewColumn column26 = dataGridView1.Columns[25];
+                dataGridView1.Columns[25].HeaderText = "Datum i vreme izlaska vozila";
+                dataGridView1.Columns[25].Width = 120;
+
+
+                DataGridViewColumn column27 = dataGridView1.Columns[26];
+                dataGridView1.Columns[26].HeaderText = "Korisnik propustio vozilo";
+                dataGridView1.Columns[26].Width = 120;
+
+                ObojDatagrid();
             }
             else
             {
-                tmpKontrolor1 = 0;
+                MessageBox.Show("Da bi vozilo bilo spremno kontrolori moraju čekirati palete i spremiti dokumentaciju");
             }
-            if (chkPaleta2.Checked == true)
-            {
-                tmpKontrolor2 = 1;
-            }
-            else
-            {
-                tmpKontrolor2 = 0;
-            }
-            InsertStatusNajave upd = new InsertStatusNajave();
-            upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, txtKorisnikOtvorio.Text, Convert.ToDateTime(dtpVremeOtvaranja.Value), txtGate.Text, Convert.ToDateTime(dtpDatumVremePrijem.Value), txtkorisnikPrimio.Text, txtNapomenaPrijem.Text, tmpKontrolor1, Convert.ToDateTime(dtpDatum1.Value), tmpKontrolor2, Convert.ToDateTime(dtpDatum2.Value), txtKontrolor1.Text, txtKontrolor2.Text, 1, UlogovaniKorisnik, DateTime.Now, Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text);
-            InsertLogNajave inslog = new InsertLogNajave();
-            inslog.InsLogNajave(Convert.ToInt32(txtSifra.Text), "Dokumentacija spremna promena", UlogovaniKorisnik, DateTime.Now);
 
-
-            RefreshDataGrid();
-            chkDokumentacijaSpremna.Checked = true;
         }
 
         private void button9_Click(object sender, EventArgs e)
@@ -639,12 +1278,176 @@ namespace WindowsFormsApplication1.Portirnica
             upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, txtKorisnikOtvorio.Text, Convert.ToDateTime(dtpVremeOtvaranja.Value), txtGate.Text, Convert.ToDateTime(dtpDatumVremePrijem.Value), txtkorisnikPrimio.Text, txtNapomenaPrijem.Text, tmpKontrolor1, Convert.ToDateTime(dtpDatum1.Value), tmpKontrolor2, Convert.ToDateTime(dtpDatum2.Value), txtKontrolor1.Text, txtKontrolor2.Text, tmpCekiranaDokumentacija, txtProdajaKorisnik.Text, Convert.ToDateTime(dtpDokumentacijaSpremna.Value), DateTime.Now, UlogovaniKorisnik, cboDatumUtovara.Text, cboVozila.Text);
             InsertLogNajave inslog = new InsertLogNajave();
             inslog.InsLogNajave(Convert.ToInt32(txtSifra.Text), "Zavrseno promena", UlogovaniKorisnik, DateTime.Now);
+            izašliToolStripMenuItem.BackColor = default;
 
-            RefreshDataGrid();
+            var select = "  SELECT [ID] ,[UtovarBroj] , DatumNajave,  Vozilo,[RegistarskiBroj] ,[DatumVremeDolaska],[PrevoznikKlijent] ,[Partner] ,[Napomena],  " +
+              " [KorisnikOtvorio], [DatumVremeOtvaranja], [Gate], [KorinsikPrimio], [DatumVremePrijema],  [NapomenaPrijema] , " +
+              " CASE WHEN [PaletaSpremne1] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne1] , [DatumSpremne1] , [KontrolorSpremne1],  " +
+              " CASE WHEN [PaletaSpremne2] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne2] , [DatumSpremne2] , " +
+              " [KontrolorSpremne2] , " +
+              " CASE WHEN [DokumentacijaSpremne] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [DokumentacijaSpremne] , " +
+              "  [ProdajaKorisnik], [DatumDokumentSpremne]," +
+              " CASE WHEN korisnik <> '' THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Spremljeno, " +
+              " [DatumKamionIzasao],[Korisnik] FROM [dbo].[StatusNajave] " +
+    " where Korisnik = '' and ProdajaKorisnik <> ''  order by ID desc";
+
+
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "ID";
+            dataGridView1.Columns[0].Width = 40;
+
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "Otpremnica";
+            dataGridView1.Columns[1].Width = 50;
+
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Datum isporuke";
+            dataGridView1.Columns[2].Width = 120;
+
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "Vozilo";
+            dataGridView1.Columns[3].Width = 120;
+
+
+            DataGridViewColumn column5 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "Registarski broj vozila";
+            dataGridView1.Columns[4].Width = 120;
+
+
+            DataGridViewColumn column6 = dataGridView1.Columns[5];
+            dataGridView1.Columns[5].HeaderText = "Datum i vreme dolaska";
+            dataGridView1.Columns[5].Width = 120;
+
+
+            DataGridViewColumn column7 = dataGridView1.Columns[6];
+            dataGridView1.Columns[6].HeaderText = "Prevozni klijent";
+            dataGridView1.Columns[6].Width = 40;
+
+
+            DataGridViewColumn column8 = dataGridView1.Columns[7];
+            dataGridView1.Columns[7].HeaderText = "Partner";
+            dataGridView1.Columns[7].Width = 120;
+
+
+            DataGridViewColumn column9 = dataGridView1.Columns[8];
+            dataGridView1.Columns[8].HeaderText = "Napomena najave";
+            dataGridView1.Columns[8].Width = 40;
+
+
+            DataGridViewColumn column10 = dataGridView1.Columns[9];
+            dataGridView1.Columns[9].HeaderText = "Korisnik najavio vozilo";
+            dataGridView1.Columns[9].Width = 40;
+
+
+            DataGridViewColumn column11 = dataGridView1.Columns[10];
+            dataGridView1.Columns[10].HeaderText = "Datum i vreme najave";
+            dataGridView1.Columns[10].Width = 80;
+
+
+            DataGridViewColumn column12 = dataGridView1.Columns[11];
+            dataGridView1.Columns[11].HeaderText = "Gate";
+            dataGridView1.Columns[11].Width = 50;
+
+
+            DataGridViewColumn column13 = dataGridView1.Columns[12];
+            dataGridView1.Columns[12].HeaderText = "Korisnik primio vozilo";
+            dataGridView1.Columns[12].Width = 40;
+
+
+            DataGridViewColumn column14 = dataGridView1.Columns[13];
+            dataGridView1.Columns[13].HeaderText = "Datum i vreme prijema";
+            dataGridView1.Columns[13].Width = 120;
+
+
+            DataGridViewColumn column15 = dataGridView1.Columns[14];
+            dataGridView1.Columns[14].HeaderText = "Napomena prijema";
+            dataGridView1.Columns[14].Width = 40;
+
+
+            DataGridViewColumn column16 = dataGridView1.Columns[15];
+            dataGridView1.Columns[15].HeaderText = "Isporuka paletirana 1";
+            dataGridView1.Columns[15].Width = 40;
+
+
+            DataGridViewColumn column17 = dataGridView1.Columns[16];
+            dataGridView1.Columns[16].HeaderText = "Datum i vreme zavr paletiranja 1";
+            dataGridView1.Columns[16].Width = 40;
+
+
+            DataGridViewColumn column18 = dataGridView1.Columns[17];
+            dataGridView1.Columns[17].HeaderText = "Paletirao kontrolor 1";
+            dataGridView1.Columns[17].Width = 40;
+
+
+            DataGridViewColumn column19 = dataGridView1.Columns[18];
+            dataGridView1.Columns[18].HeaderText = "Isporuka utovarena 2";
+            dataGridView1.Columns[18].Width = 40;
+
+
+            DataGridViewColumn column20 = dataGridView1.Columns[19];
+            dataGridView1.Columns[19].HeaderText = "Datum i vreme zavr utovara 2";
+            dataGridView1.Columns[19].Width = 40;
+
+
+            DataGridViewColumn column21 = dataGridView1.Columns[20];
+            dataGridView1.Columns[20].HeaderText = "Utovario kontrolor 2";
+            dataGridView1.Columns[20].Width = 40;
+
+
+            DataGridViewColumn column22 = dataGridView1.Columns[21];
+            dataGridView1.Columns[21].HeaderText = "Dokumentacija spremna";
+            dataGridView1.Columns[21].Width = 40;
+
+
+
+            DataGridViewColumn column23 = dataGridView1.Columns[22];
+            dataGridView1.Columns[22].HeaderText = "Dokumentaciju spremio i izdao";
+            dataGridView1.Columns[22].Width = 120;
+
+
+            DataGridViewColumn column24 = dataGridView1.Columns[23];
+            dataGridView1.Columns[23].HeaderText = "Datum i vreme izdavanja dokumentacije";
+            dataGridView1.Columns[23].Width = 40;
+
+
+            DataGridViewColumn column25 = dataGridView1.Columns[24];
+            dataGridView1.Columns[24].HeaderText = "Vozilo izašlo";
+            dataGridView1.Columns[24].Width = 40;
+
+
+            DataGridViewColumn column26 = dataGridView1.Columns[25];
+            dataGridView1.Columns[25].HeaderText = "Datum i vreme izlaska vozila";
+            dataGridView1.Columns[25].Width = 120;
+
+
+            DataGridViewColumn column27 = dataGridView1.Columns[26];
+            dataGridView1.Columns[26].HeaderText = "Korisnik propustio vozilo";
+            dataGridView1.Columns[26].Width = 120;
+
+            ObojDatagrid();
+            //RefreshDataGrid();
         }
 
         private void logFajlToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            noviUnosToolStripMenuItem.BackColor = default;
+            logFajlToolStripMenuItem.BackColor = Color.Orange;
+            najavljeniToolStripMenuItem.BackColor = default;
+            primljeniToolStripMenuItem.BackColor = default;
+            spremniZaIzlazakToolStripMenuItem.BackColor = default;
+            izašliToolStripMenuItem.BackColor = default;
+            posaljiMailPesicuToolStripMenuItem.BackColor = default;
             StatusNajaveLog snl = new StatusNajaveLog(Convert.ToInt32(txtSifra.Text));
             snl.Show();
         }
@@ -689,6 +1492,14 @@ namespace WindowsFormsApplication1.Portirnica
 
         private void najavljeniToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            noviUnosToolStripMenuItem.BackColor = default;
+            logFajlToolStripMenuItem.BackColor = default;
+            najavljeniToolStripMenuItem.BackColor = Color.Orange;
+            primljeniToolStripMenuItem.BackColor = default;
+            spremniZaIzlazakToolStripMenuItem.BackColor = default;
+            izašliToolStripMenuItem.BackColor = default;
+            posaljiMailPesicuToolStripMenuItem.BackColor = default;
+
             var select = "  SELECT [ID] ,[UtovarBroj] , DatumNajave,  Vozilo,[RegistarskiBroj] ,[DatumVremeDolaska],[PrevoznikKlijent] ,[Partner] ,[Napomena],  " +
                 " [KorisnikOtvorio], [DatumVremeOtvaranja], [Gate], [KorinsikPrimio], [DatumVremePrijema],  [NapomenaPrijema] , " +
                 " CASE WHEN [PaletaSpremne1] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne1] , [DatumSpremne1] , [KontrolorSpremne1],  " +
@@ -849,6 +1660,14 @@ namespace WindowsFormsApplication1.Portirnica
 
         private void primljeniToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            noviUnosToolStripMenuItem.BackColor = default;
+            logFajlToolStripMenuItem.BackColor = default;
+            najavljeniToolStripMenuItem.BackColor = default;
+            primljeniToolStripMenuItem.BackColor = Color.Orange;
+            spremniZaIzlazakToolStripMenuItem.BackColor = default;
+            izašliToolStripMenuItem.BackColor = default;
+            posaljiMailPesicuToolStripMenuItem.BackColor = default;
+
             var select = "  SELECT [ID] ,[UtovarBroj] , DatumNajave,  Vozilo,[RegistarskiBroj] ,[DatumVremeDolaska],[PrevoznikKlijent] ,[Partner] ,[Napomena],  " +
               " [KorisnikOtvorio], [DatumVremeOtvaranja], [Gate], [KorinsikPrimio], [DatumVremePrijema],  [NapomenaPrijema] , " +
               " CASE WHEN [PaletaSpremne1] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne1] , [DatumSpremne1] , [KontrolorSpremne1],  " +
@@ -1010,6 +1829,13 @@ namespace WindowsFormsApplication1.Portirnica
 
         private void spremniZaIzlazakToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            noviUnosToolStripMenuItem.BackColor = default;
+            logFajlToolStripMenuItem.BackColor = default;
+            najavljeniToolStripMenuItem.BackColor = default;
+            primljeniToolStripMenuItem.BackColor = default;
+            spremniZaIzlazakToolStripMenuItem.BackColor = Color.Orange;
+            izašliToolStripMenuItem.BackColor = default;
+            posaljiMailPesicuToolStripMenuItem.BackColor = default;
             var select = "  SELECT [ID] ,[UtovarBroj] , DatumNajave,  Vozilo,[RegistarskiBroj] ,[DatumVremeDolaska],[PrevoznikKlijent] ,[Partner] ,[Napomena],  " +
                " [KorisnikOtvorio], [DatumVremeOtvaranja], [Gate], [KorinsikPrimio], [DatumVremePrijema],  [NapomenaPrijema] , " +
                " CASE WHEN [PaletaSpremne1] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne1] , [DatumSpremne1] , [KontrolorSpremne1],  " +
@@ -1171,6 +1997,13 @@ namespace WindowsFormsApplication1.Portirnica
 
         private void izašliToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            noviUnosToolStripMenuItem.BackColor = default;
+            logFajlToolStripMenuItem.BackColor = default;
+            najavljeniToolStripMenuItem.BackColor = default;
+            primljeniToolStripMenuItem.BackColor = default;
+            spremniZaIzlazakToolStripMenuItem.BackColor = default;
+            izašliToolStripMenuItem.BackColor = Color.Orange;
+            posaljiMailPesicuToolStripMenuItem.BackColor = default;
             var select = "  SELECT [ID] ,[UtovarBroj] , DatumNajave,  Vozilo,[RegistarskiBroj] ,[DatumVremeDolaska],[PrevoznikKlijent] ,[Partner] ,[Napomena],  " +
                 " [KorisnikOtvorio], [DatumVremeOtvaranja], [Gate], [KorinsikPrimio], [DatumVremePrijema],  [NapomenaPrijema] , " +
                 " CASE WHEN [PaletaSpremne1] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne1] , [DatumSpremne1] , [KontrolorSpremne1],  " +
@@ -1332,6 +2165,13 @@ namespace WindowsFormsApplication1.Portirnica
 
         private void posaljiMailPesicuToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            noviUnosToolStripMenuItem.BackColor = default;
+            logFajlToolStripMenuItem.BackColor = default;
+            najavljeniToolStripMenuItem.BackColor = default;
+            primljeniToolStripMenuItem.BackColor = default;
+            spremniZaIzlazakToolStripMenuItem.BackColor = default;
+            izašliToolStripMenuItem.BackColor = default;
+            posaljiMailPesicuToolStripMenuItem.BackColor = Color.Orange;
 
             string zadnjibroj = txtSifra.Text;
 
@@ -1341,7 +2181,7 @@ namespace WindowsFormsApplication1.Portirnica
 
             mailMessage.Subject = "Test automatskih mailova";
 
-            
+
 
             body = body + "<br /> <br /> ";
             body = body + "A bre Pešiću jel ovo moguće" + "<br />";
@@ -1356,7 +2196,7 @@ namespace WindowsFormsApplication1.Portirnica
 
             smtpClient.Port = 465;
             smtpClient.UseDefaultCredentials = true;
-           
+
             smtpClient.Credentials = new NetworkCredential("reporter@jela.rs", "repass2021");
 
             smtpClient.EnableSsl = true;
