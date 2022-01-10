@@ -723,5 +723,17 @@ namespace WindowsFormsApplication1
             frmReklamacijeUvozPocetna reklpoc = new frmReklamacijeUvozPocetna();
             reklpoc.Show();
         }
+
+        private void toolStripMenuItem7_Click(object sender, EventArgs e)
+        {
+            StampajPalZavrseno sp = new StampajPalZavrseno();
+            sp.Show();
+        }
+
+        private void toolStripMenuItem8_Click(object sender, EventArgs e)
+        {
+            StampajReklamacijePZavrseno srp = new StampajReklamacijePZavrseno();
+            srp.Show();
+        }
     }
 }

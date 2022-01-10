@@ -135,6 +135,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet2.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DataSet22.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet22.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSet23.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet23.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSet24.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet24.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DataSet3.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -149,6 +164,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Dataset5.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSet55.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet55.xsd</DependentUpon>
     </Compile>
     <Compile Include="Dataset6.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -762,11 +782,29 @@
     <Compile Include="StampajPalSveP.Designer.cs">
       <DependentUpon>StampajPalSveP.cs</DependentUpon>
     </Compile>
+    <Compile Include="StampajPalSveZavrseno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StampajPalSveZavrseno.Designer.cs">
+      <DependentUpon>StampajPalSveZavrseno.cs</DependentUpon>
+    </Compile>
     <Compile Include="StampajPalVremePak.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="StampajPalVremePak.Designer.cs">
       <DependentUpon>StampajPalVremePak.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StampajPalZavrseno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StampajPalZavrseno.Designer.cs">
+      <DependentUpon>StampajPalZavrseno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StampajReklamacijePZavrseno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StampajReklamacijePZavrseno.Designer.cs">
+      <DependentUpon>StampajReklamacijePZavrseno.cs</DependentUpon>
     </Compile>
     <Compile Include="StampaP.cs">
       <SubType>Form</SubType>
@@ -1127,11 +1165,14 @@
     <EmbeddedResource Include="Report1.rdlc" />
     <EmbeddedResource Include="Report10.rdlc" />
     <EmbeddedResource Include="Report2.rdlc" />
+    <EmbeddedResource Include="Report2Zavrseno.rdlc" />
     <EmbeddedResource Include="Report3.rdlc" />
     <EmbeddedResource Include="Report4.rdlc" />
+    <EmbeddedResource Include="Report4Zavrseno.rdlc" />
     <EmbeddedResource Include="Report5.rdlc" />
     <EmbeddedResource Include="Report6.rdlc" />
     <EmbeddedResource Include="Report7.rdlc" />
+    <EmbeddedResource Include="Report7Zavrseno.rdlc" />
     <EmbeddedResource Include="Report8.rdlc" />
     <EmbeddedResource Include="Report9.rdlc" />
     <EmbeddedResource Include="rptMSPNal.rdlc" />
@@ -1156,8 +1197,17 @@
     <EmbeddedResource Include="StampajPalSveP.resx">
       <DependentUpon>StampajPalSveP.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="StampajPalSveZavrseno.resx">
+      <DependentUpon>StampajPalSveZavrseno.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="StampajPalVremePak.resx">
       <DependentUpon>StampajPalVremePak.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StampajPalZavrseno.resx">
+      <DependentUpon>StampajPalZavrseno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StampajReklamacijePZavrseno.resx">
+      <DependentUpon>StampajReklamacijePZavrseno.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StampaP.resx">
       <DependentUpon>StampaP.cs</DependentUpon>
@@ -1223,6 +1273,39 @@
     <None Include="DataSet2.xss">
       <DependentUpon>DataSet2.xsd</DependentUpon>
     </None>
+    <None Include="DataSet22.xsc">
+      <DependentUpon>DataSet22.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet22.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet22.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSet22.xss">
+      <DependentUpon>DataSet22.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet23.xsc">
+      <DependentUpon>DataSet23.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet23.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet23.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSet23.xss">
+      <DependentUpon>DataSet23.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet24.xsc">
+      <DependentUpon>DataSet24.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet24.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet24.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSet24.xss">
+      <DependentUpon>DataSet24.xsd</DependentUpon>
+    </None>
     <None Include="DataSet3.xsc">
       <DependentUpon>DataSet3.xsd</DependentUpon>
     </None>
@@ -1255,6 +1338,17 @@
     </None>
     <None Include="Dataset5.xss">
       <DependentUpon>Dataset5.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet55.xsc">
+      <DependentUpon>DataSet55.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet55.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet55.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSet55.xss">
+      <DependentUpon>DataSet55.xsd</DependentUpon>
     </None>
     <None Include="Dataset6.xsc">
       <DependentUpon>Dataset6.xsd</DependentUpon>

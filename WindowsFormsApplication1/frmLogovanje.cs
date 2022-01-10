@@ -43,7 +43,7 @@ namespace WindowsFormsApplication1
         {
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
                     DialogResult result;
-                    result = MessageBox.Show("Da li želite update verzije", "Azuriranje", buttons);
+                    result = MessageBox.Show("Da li želite update webs podataka", "Azuriranje", buttons);
                     if (result == System.Windows.Forms.DialogResult.Yes)
                     {
                        // MessageBox.Show("PA0");
