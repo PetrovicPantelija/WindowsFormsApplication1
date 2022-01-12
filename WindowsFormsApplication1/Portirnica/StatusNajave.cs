@@ -23,6 +23,7 @@ namespace WindowsFormsApplication1.Portirnica
         {
             InitializeComponent();
 
+
         }
 
         public StatusNajave(string Korisnik)
@@ -32,24 +33,23 @@ namespace WindowsFormsApplication1.Portirnica
         }
         private void RefreshDataGrid()
         {
-            var select = "  SELECT [ID] ,[UtovarBroj] , DatumNajave,  Vozilo,[RegistarskiBroj] ,[DatumVremeDolaska],[PrevoznikKlijent] ,[Partner] ,[Napomena],  " +
-              " [KorisnikOtvorio], [DatumVremeOtvaranja], [Gate], [KorinsikPrimio], [DatumVremePrijema],  [NapomenaPrijema] , " +
-              " CASE WHEN [PaletaSpremne1] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne1] , [DatumSpremne1] , [KontrolorSpremne1],  " +
-              " CASE WHEN [PaletaSpremne2] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne2] , [DatumSpremne2] , " +
-              " [KontrolorSpremne2] , " +
-              " CASE WHEN [DokumentacijaSpremne] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [DokumentacijaSpremne] , " +
-              "  [ProdajaKorisnik], [DatumDokumentSpremne]," +
-              " CASE WHEN korisnik <> '' THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Spremljeno, " +
-              " [DatumKamionIzasao],[Korisnik] FROM [dbo].[StatusNajave] order by ID desc";
+            string select = "SELECT [ID] ,[UtovarBroj] , DatumNajave,  Vozilo,[RegistarskiBroj] ,[DatumVremeDolaska],[PrevoznikKlijent] ,[Partner] ,[Napomena]," +
+                " [KorisnikOtvorio], [DatumVremeOtvaranja], [Gate], [KorinsikPrimio], [DatumVremePrijema],  [NapomenaPrijema] ," +
+                " CASE WHEN [PaletaSpremne1] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne1] , [DatumSpremne1] , [KontrolorSpremne1], " +
+                "CASE WHEN [PaletaSpremne2] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne2] , [DatumSpremne2] ,[KontrolorSpremne2], " +
+                "CASE WHEN [DokumentacijaSpremne] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [DokumentacijaSpremne] , " +
+                "[ProdajaKorisnik], [DatumDokumentSpremne],[NapomenaKontrola]," +
+                "CASE WHEN korisnik <> '' THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Spremljeno,[DatumKamionIzasao],[Korisnik],[NapomenaIzlaz] " +
+                "FROM [dbo].[StatusNajave] order by ID desc";
 
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            string s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
-            var c = new SqlConnection(s_connection);
-            var dataAdapter = new SqlDataAdapter(select, c);
+            SqlConnection c = new SqlConnection(s_connection);
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(select, c);
 
-            var commandBuilder = new SqlCommandBuilder(dataAdapter);
-            var ds = new DataSet();
+            SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
+            DataSet ds = new DataSet();
             dataAdapter.Fill(ds);
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
@@ -171,20 +171,27 @@ namespace WindowsFormsApplication1.Portirnica
             dataGridView1.Columns[23].HeaderText = "Datum i vreme izdavanja dokumentacije";
             dataGridView1.Columns[23].Width = 40;
 
-
-            DataGridViewColumn column25 = dataGridView1.Columns[24];
-            dataGridView1.Columns[24].HeaderText = "Vozilo izašlo";
+            dataGridView1.Columns[24].HeaderText = "Napomena Kontrolor";
             dataGridView1.Columns[24].Width = 40;
 
 
+            DataGridViewColumn column25 = dataGridView1.Columns[24];
+            dataGridView1.Columns[25].HeaderText = "Vozilo izašlo";
+            dataGridView1.Columns[25].Width = 40;
+
+
             DataGridViewColumn column26 = dataGridView1.Columns[25];
-            dataGridView1.Columns[25].HeaderText = "Datum i vreme izlaska vozila";
-            dataGridView1.Columns[25].Width = 120;
+            dataGridView1.Columns[26].HeaderText = "Datum i vreme izlaska vozila";
+            dataGridView1.Columns[26].Width = 120;
 
 
             DataGridViewColumn column27 = dataGridView1.Columns[26];
-            dataGridView1.Columns[26].HeaderText = "Korisnik propustio vozilo";
-            dataGridView1.Columns[26].Width = 120;
+            dataGridView1.Columns[27].HeaderText = "Korisnik propustio vozilo";
+            dataGridView1.Columns[27].Width = 120;
+
+            dataGridView1.Columns[28].HeaderText = "Napomena Izlaz";
+            dataGridView1.Columns[28].Width = 40;
+
 
             ObojDatagrid();
         }
@@ -227,6 +234,7 @@ namespace WindowsFormsApplication1.Portirnica
                         dataGridView1.Rows[row.Index].Cells[21].Style.BackColor = System.Drawing.Color.SteelBlue;
                         dataGridView1.Rows[row.Index].Cells[22].Style.BackColor = System.Drawing.Color.SteelBlue;
                         dataGridView1.Rows[row.Index].Cells[23].Style.BackColor = System.Drawing.Color.SteelBlue;
+                        dataGridView1.Rows[row.Index].Cells[24].Style.BackColor = System.Drawing.Color.SteelBlue;
 
                         dataGridView1.Rows[row.Index].Cells[15].Style.ForeColor = System.Drawing.Color.White;
                         dataGridView1.Rows[row.Index].Cells[16].Style.ForeColor = System.Drawing.Color.White;
@@ -237,13 +245,15 @@ namespace WindowsFormsApplication1.Portirnica
                         dataGridView1.Rows[row.Index].Cells[21].Style.ForeColor = System.Drawing.Color.White;
                         dataGridView1.Rows[row.Index].Cells[22].Style.ForeColor = System.Drawing.Color.White;
                         dataGridView1.Rows[row.Index].Cells[23].Style.ForeColor = System.Drawing.Color.White;
+                        dataGridView1.Rows[row.Index].Cells[24].Style.ForeColor = System.Drawing.Color.White;
                     }
 
-                    if (dataGridView1.Rows[row.Index].Cells[26].Value.ToString() != "")
+                    if (dataGridView1.Rows[row.Index].Cells[27].Value.ToString() != "")
                     {
-                        dataGridView1.Rows[row.Index].Cells[24].Style.BackColor = System.Drawing.Color.Green;
                         dataGridView1.Rows[row.Index].Cells[25].Style.BackColor = System.Drawing.Color.Green;
                         dataGridView1.Rows[row.Index].Cells[26].Style.BackColor = System.Drawing.Color.Green;
+                        dataGridView1.Rows[row.Index].Cells[27].Style.BackColor = System.Drawing.Color.Green;
+                        dataGridView1.Rows[row.Index].Cells[28].Style.BackColor = System.Drawing.Color.Green;
                     }
 
                 }
@@ -307,8 +317,10 @@ namespace WindowsFormsApplication1.Portirnica
             {//Ovde ispravi !!!
                 //Unosi transport
                 InsertStatusNajave ins = new InsertStatusNajave();
-                ins.InsSatusNajave(txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, UlogovaniKorisnik, DateTime.Now, txtGate.Text, Convert.ToDateTime(dtpVreme.Value), "", "", 0, Convert.ToDateTime(dtpVreme.Value), 0, Convert.ToDateTime(dtpVreme.Value), "", "", 0, "", Convert.ToDateTime(dtpVreme.Value), Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text);
-
+                ins.InsSatusNajave(txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, UlogovaniKorisnik, DateTime.Now, txtGate.Text, Convert.ToDateTime(dtpVreme.Value), "", "", 0, Convert.ToDateTime(dtpVreme.Value), 0, Convert.ToDateTime(dtpVreme.Value), "", "", 0, "", Convert.ToDateTime(dtpVreme.Value), Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text, txtNapomenaKontrola.Text, txtNapomenaIzlaz.Text);
+                ins.UpdRkShippingZavrseno(cboDatumUtovara.Text, cboVozila.Text);
+                ins.UpdRkShipping(cboDatumUtovara.Text, cboVozila.Text);
+                ins.UpdRkShippingPocetna(cboDatumUtovara.Text, cboVozila.Text);
                 /*
                 txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text,txtUtovarBroj.Text, UlogovaniKorisnik, DateTime.Now, txtGate.Text,
                       Convert.ToDateTime(dtpDatumVremePrijem.Value), txtkorisnikPrimio.Text, txtNapomenaPrijem.Text, 
@@ -317,15 +329,29 @@ namespace WindowsFormsApplication1.Portirnica
                     Convert.ToDateTime(dtpKamionIzasao.Value), txtKorisnik.Text)
                 */
                 status = false;
+                PopuniDatumUtovara();
+                cboVozila.Text = "";
                 //RefreshDataGrid();
             }
             else
             {//Ovde ispravi !!!
                 //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
-                InsertStatusNajave upd = new InsertStatusNajave();
-                upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, UlogovaniKorisnik, DateTime.Now, txtGate.Text, Convert.ToDateTime(dtpVreme.Value), "", "", 0, Convert.ToDateTime(dtpVreme.Value), 0, Convert.ToDateTime(dtpVreme.Value), "", "", 0, "", Convert.ToDateTime(dtpVreme.Value), Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text);
-                InsertLogNajave inslog = new InsertLogNajave();
-                inslog.InsLogNajave(Convert.ToInt32(txtSifra.Text), "Transport promena", UlogovaniKorisnik, DateTime.Now);
+                if (txtKorisnikOtvorio != null || txtkorisnikPrimio != null || txtKontrolor1 != null || txtKontrolor2 != null || txtProdajaKorisnik != null || txtKorisnik != null)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Da li ste sigurni da želite da promenite zapis broj: " + txtSifra.Text + "? \nUkoliko izaberete DA može doći do brisanja svih unetih podataka", "Izbor", MessageBoxButtons.YesNo);
+
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        InsertStatusNajave upd = new InsertStatusNajave();
+                        upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, UlogovaniKorisnik, DateTime.Now, txtGate.Text, Convert.ToDateTime(dtpVreme.Value), "", "", 0, Convert.ToDateTime(dtpVreme.Value), 0, Convert.ToDateTime(dtpVreme.Value), "", "", 0, "", Convert.ToDateTime(dtpVreme.Value), Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text, txtNapomenaKontrola.Text, txtNapomenaIzlaz.Text);
+                        InsertLogNajave inslog = new InsertLogNajave();
+                        inslog.InsLogNajave(Convert.ToInt32(txtSifra.Text), "Transport promena", UlogovaniKorisnik, DateTime.Now);
+                    }
+                    else if (dialogResult == DialogResult.No)
+                    {
+                        //do something else
+                    }
+                }
             }
             RefreshDataGrid();
 
@@ -351,14 +377,14 @@ namespace WindowsFormsApplication1.Portirnica
 
         private void VratiPodatke(string ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            string s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
 
             SqlCommand cmd = new SqlCommand("SELECT [ID], [RegistarskiBroj], [PrevoznikKlijent], [Partner], [DatumVremeDolaska], [UtovarBroj], [Napomena] , " +
           " [KorisnikOtvorio], [DatumVremeOtvaranja], [Gate], [DatumVremePrijema], [KorinsikPrimio], [NapomenaPrijema], [DatumSpremne1], [DatumSpremne2], [KontrolorSpremne1], [KontrolorSpremne2] , PaletaSpremne1, PaletaSpremne2, DokumentacijaSpremne," +
-          " [ProdajaKorisnik], [DatumDokumentSpremne], [DatumKamionIzasao], [Korisnik], DatumNajave, Vozilo FROM [dbo].[StatusNajave] where ID=" + txtSifra.Text, con);
+          " [ProdajaKorisnik], [DatumDokumentSpremne],[NapomenaKontrola], [DatumKamionIzasao], [Korisnik],[NapomenaIzlaz], DatumNajave, Vozilo FROM [dbo].[StatusNajave] where ID=" + txtSifra.Text, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -381,8 +407,10 @@ namespace WindowsFormsApplication1.Portirnica
                 txtKontrolor2.Text = dr["KontrolorSpremne2"].ToString();
                 txtProdajaKorisnik.Text = dr["ProdajaKorisnik"].ToString();
                 dtpDokumentacijaSpremna.Value = Convert.ToDateTime(dr["DatumDokumentSpremne"].ToString());
+                txtNapomenaKontrola.Text = dr["NapomenaKontrola"].ToString();
                 dtpKamionIzasao.Value = Convert.ToDateTime(dr["DatumKamionIzasao"].ToString());
                 txtKorisnik.Text = dr["Korisnik"].ToString();
+                txtNapomenaIzlaz.Text = dr["NapomenaIzlaz"].ToString();
 
                 if (dr["PaletaSpremne1"].ToString() == "1")
                 {
@@ -440,7 +468,7 @@ namespace WindowsFormsApplication1.Portirnica
 
         private void VratiPodatkeMax()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            string s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -462,6 +490,15 @@ namespace WindowsFormsApplication1.Portirnica
         }
         private void noviUnosToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            button1.Enabled = true;
+            button2.Enabled = true;
+            button6.Enabled = false;
+            button7.Enabled = false;
+            button8.Enabled = false;
+            button5.Enabled = false;
+            button9.Enabled = false;
+
+
             noviUnosToolStripMenuItem.BackColor = Color.Orange;
             logFajlToolStripMenuItem.BackColor = default;
             najavljeniToolStripMenuItem.BackColor = default;
@@ -495,19 +532,26 @@ namespace WindowsFormsApplication1.Portirnica
         }
         private void PopuniDatumUtovara()
         {
-            var select = " select distinct t1.DatumUtovara as DatumUtovara, t1.Mesec, t1.Dan from (Select Distinct  DatumUtovara, Cast(SUBSTRING(DatumUtovara, 1, Charindex('.',DatumUtovara) -1) as int)  as  Dan, Cast(Replace(SUBSTRING(DatumUtovara, Charindex('.',DatumUtovara)+1, Len(DatumUtovara)-12 -1 -( (Charindex('.',DatumUtovara) ))),'.','') as int) as  Mesec  From RkShippingPocetna " +
-            " union " +
-" Select Distinct DatumUtovara, Cast(SUBSTRING(DatumUtovara, 1, Charindex('.', DatumUtovara) - 1) as int)  as Dan, Cast(Replace(SUBSTRING(DatumUtovara, Charindex('.', DatumUtovara) + 1, Len(DatumUtovara) - 12 - 1 - ((Charindex('.', DatumUtovara)))), '.', '') as int) as Mesec  From RkShipping " +
-" union " +
-" Select Distinct DatumUtovara, Cast(SUBSTRING(DatumUtovara, 1, Charindex('.', DatumUtovara) - 1) as int)  as Dan, Cast(Replace(SUBSTRING(DatumUtovara, Charindex('.', DatumUtovara) + 1, Len(DatumUtovara) - 12 - 1 - ((Charindex('.', DatumUtovara)))), '.', '') as int) as Mesec  From RkShippingZavrseno) as t1 order by t1.Mesec, t1.Dan";
+            string select = "Select distinct t1.DatumUtovara as DatumUtovara, t1.Mesec, t1.Dan" +
+                " from (Select Distinct  DatumUtovara, Cast(SUBSTRING(DatumUtovara, 1, Charindex('.',DatumUtovara) -1) as int)  as  Dan," +
+                " Cast(Replace(SUBSTRING(DatumUtovara, Charindex('.',DatumUtovara)+1, Len(DatumUtovara)-12 -1 -( (Charindex('.',DatumUtovara) ))),'.','') as int)" +
+                " as  Mesec  From RkShippingPocetna where Najavljen <> 1" +
+                " union " +
+                "Select Distinct DatumUtovara, Cast(SUBSTRING(DatumUtovara, 1, Charindex('.', DatumUtovara) - 1) as int)  as Dan, " +
+                "Cast(Replace(SUBSTRING(DatumUtovara, Charindex('.', DatumUtovara) + 1, Len(DatumUtovara) - 12 - 1 - ((Charindex('.', DatumUtovara)))), '.', '') as int)" +
+                " as Mesec  From RkShipping where Najavljen <> 1 " +
+                "union" +
+                " Select Distinct DatumUtovara, Cast(SUBSTRING(DatumUtovara, 1, Charindex('.', DatumUtovara) - 1) as int)  as Dan," +
+                " Cast(Replace(SUBSTRING(DatumUtovara, Charindex('.', DatumUtovara) + 1, Len(DatumUtovara) - 12 - 1 - ((Charindex('.', DatumUtovara)))), '.', '') as int) " +
+                "as Mesec  From RkShippingZavrseno where Najavljen <> 1) as t1 order by t1.Mesec, t1.Dan";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            string s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
-            var c = new SqlConnection(s_connection);
-            var dataAdapter = new SqlDataAdapter(select, c);
+            SqlConnection c = new SqlConnection(s_connection);
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(select, c);
 
-            var commandBuilder = new SqlCommandBuilder(dataAdapter);
-            var ds = new DataSet();
+            SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
+            DataSet ds = new DataSet();
             dataAdapter.Fill(ds);
             cboDatumUtovara.DataSource = ds.Tables[0];
             cboDatumUtovara.DisplayMember = "DatumUtovara";
@@ -517,34 +561,36 @@ namespace WindowsFormsApplication1.Portirnica
         private void button5_Click(object sender, EventArgs e)
         {
             InsertStatusNajave upd = new InsertStatusNajave();
-            upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, txtKorisnikOtvorio.Text, Convert.ToDateTime(dtpVremeOtvaranja.Value), txtGate.Text, Convert.ToDateTime(DateTime.Now), UlogovaniKorisnik, txtNapomenaPrijem.Text, 0, Convert.ToDateTime(dtpVreme.Value), 0, Convert.ToDateTime(dtpVreme.Value), "", "", 0, "", Convert.ToDateTime(dtpVreme.Value), Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text);
+
+            upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, txtKorisnikOtvorio.Text, Convert.ToDateTime(dtpVremeOtvaranja.Value), txtGate.Text, Convert.ToDateTime(DateTime.Now), UlogovaniKorisnik, txtNapomenaPrijem.Text, 0, Convert.ToDateTime(dtpVreme.Value), 0, Convert.ToDateTime(dtpVreme.Value), "", "", 0, "", Convert.ToDateTime(dtpVreme.Value), Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text, txtNapomenaKontrola.Text, txtNapomenaIzlaz.Text);
             InsertLogNajave inslog = new InsertLogNajave();
             inslog.InsLogNajave(Convert.ToInt32(txtSifra.Text), "Portir ulaz promena", UlogovaniKorisnik, DateTime.Now);
 
             najavljeniToolStripMenuItem.BackColor = default;
 
-            var select = "  SELECT [ID] ,[UtovarBroj] , DatumNajave,  Vozilo,[RegistarskiBroj] ,[DatumVremeDolaska],[PrevoznikKlijent] ,[Partner] ,[Napomena],  " +
+            string select = "  SELECT [ID] ,[UtovarBroj] , DatumNajave,  Vozilo,[RegistarskiBroj] ,[DatumVremeDolaska],[PrevoznikKlijent] ,[Partner] ,[Napomena],  " +
                 " [KorisnikOtvorio], [DatumVremeOtvaranja], [Gate], [KorinsikPrimio], [DatumVremePrijema],  [NapomenaPrijema] , " +
                 " CASE WHEN [PaletaSpremne1] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne1] , [DatumSpremne1] , [KontrolorSpremne1],  " +
                 " CASE WHEN [PaletaSpremne2] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne2] , [DatumSpremne2] , " +
                 " [KontrolorSpremne2] , " +
                 " CASE WHEN [DokumentacijaSpremne] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [DokumentacijaSpremne] , " +
-                "  [ProdajaKorisnik], [DatumDokumentSpremne]," +
+                "  [ProdajaKorisnik], [DatumDokumentSpremne],[NapomenaKontrola]," +
                 " CASE WHEN korisnik <> '' THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Spremljeno, " +
-                " [DatumKamionIzasao],[Korisnik] FROM [dbo].[StatusNajave] " +
+                " [DatumKamionIzasao],[Korisnik],[NapomenaIzlaz] FROM [dbo].[StatusNajave] " +
          " where KorinsikPrimio = '' order by ID desc";
 
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            string s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
-            var c = new SqlConnection(s_connection);
-            var dataAdapter = new SqlDataAdapter(select, c);
+            SqlConnection c = new SqlConnection(s_connection);
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(select, c);
 
-            var commandBuilder = new SqlCommandBuilder(dataAdapter);
-            var ds = new DataSet();
+            SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
+            DataSet ds = new DataSet();
             dataAdapter.Fill(ds);
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
+
 
             DataGridViewColumn column = dataGridView1.Columns[0];
             dataGridView1.Columns[0].HeaderText = "ID";
@@ -663,20 +709,26 @@ namespace WindowsFormsApplication1.Portirnica
             dataGridView1.Columns[23].HeaderText = "Datum i vreme izdavanja dokumentacije";
             dataGridView1.Columns[23].Width = 40;
 
-
-            DataGridViewColumn column25 = dataGridView1.Columns[24];
-            dataGridView1.Columns[24].HeaderText = "Vozilo izašlo";
+            dataGridView1.Columns[24].HeaderText = "Napomena Kontrolor";
             dataGridView1.Columns[24].Width = 40;
 
 
+            DataGridViewColumn column25 = dataGridView1.Columns[24];
+            dataGridView1.Columns[25].HeaderText = "Vozilo izašlo";
+            dataGridView1.Columns[25].Width = 40;
+
+
             DataGridViewColumn column26 = dataGridView1.Columns[25];
-            dataGridView1.Columns[25].HeaderText = "Datum i vreme izlaska vozila";
-            dataGridView1.Columns[25].Width = 120;
+            dataGridView1.Columns[26].HeaderText = "Datum i vreme izlaska vozila";
+            dataGridView1.Columns[26].Width = 120;
 
 
             DataGridViewColumn column27 = dataGridView1.Columns[26];
-            dataGridView1.Columns[26].HeaderText = "Korisnik propustio vozilo";
-            dataGridView1.Columns[26].Width = 120;
+            dataGridView1.Columns[27].HeaderText = "Korisnik propustio vozilo";
+            dataGridView1.Columns[27].Width = 120;
+
+            dataGridView1.Columns[28].HeaderText = "Napomena Izlaz";
+            dataGridView1.Columns[28].Width = 40;
 
             ObojDatagrid();
 
@@ -698,30 +750,30 @@ namespace WindowsFormsApplication1.Portirnica
         {
             spremniZaIzlazakToolStripMenuItem.BackColor = default;
             InsertStatusNajave upd = new InsertStatusNajave();
-            upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, txtKorisnikOtvorio.Text, Convert.ToDateTime(dtpVremeOtvaranja.Value), txtGate.Text, Convert.ToDateTime(dtpDatumVremePrijem.Value), txtkorisnikPrimio.Text, txtNapomenaPrijem.Text, 1, Convert.ToDateTime(DateTime.Now), 0, Convert.ToDateTime(dtpVreme.Value), UlogovaniKorisnik, "", 0, "", Convert.ToDateTime(dtpVreme.Value), Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text);
+            upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, txtKorisnikOtvorio.Text, Convert.ToDateTime(dtpVremeOtvaranja.Value), txtGate.Text, Convert.ToDateTime(dtpDatumVremePrijem.Value), txtkorisnikPrimio.Text, txtNapomenaPrijem.Text, 1, Convert.ToDateTime(DateTime.Now), 0, Convert.ToDateTime(dtpVreme.Value), UlogovaniKorisnik, "", 0, "", Convert.ToDateTime(dtpVreme.Value), Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text, txtNapomenaKontrola.Text, txtNapomenaIzlaz.Text);
             InsertLogNajave inslog = new InsertLogNajave();
             inslog.InsLogNajave(Convert.ToInt32(txtSifra.Text), "Kontrolor 1 promena", UlogovaniKorisnik, DateTime.Now);
 
 
-            var select = "  SELECT [ID] ,[UtovarBroj] , DatumNajave,  Vozilo,[RegistarskiBroj] ,[DatumVremeDolaska],[PrevoznikKlijent] ,[Partner] ,[Napomena],  " +
+            string select = "  SELECT [ID] ,[UtovarBroj] , DatumNajave,  Vozilo,[RegistarskiBroj] ,[DatumVremeDolaska],[PrevoznikKlijent] ,[Partner] ,[Napomena],  " +
               " [KorisnikOtvorio], [DatumVremeOtvaranja], [Gate], [KorinsikPrimio], [DatumVremePrijema],  [NapomenaPrijema] , " +
               " CASE WHEN [PaletaSpremne1] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne1] , [DatumSpremne1] , [KontrolorSpremne1],  " +
               " CASE WHEN [PaletaSpremne2] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne2] , [DatumSpremne2] , " +
               " [KontrolorSpremne2] , " +
               " CASE WHEN [DokumentacijaSpremne] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [DokumentacijaSpremne] , " +
-              "  [ProdajaKorisnik], [DatumDokumentSpremne]," +
+              "  [ProdajaKorisnik], [DatumDokumentSpremne],[NapomenaKontrola]," +
               " CASE WHEN korisnik <> '' THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Spremljeno, " +
-              " [DatumKamionIzasao],[Korisnik] FROM [dbo].[StatusNajave] " +
+              " [DatumKamionIzasao],[Korisnik],[NapomenaIzlaz] FROM [dbo].[StatusNajave] " +
          " where KorinsikPrimio <> '' and ProdajaKorisnik = '' order by ID desc";
 
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            string s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
-            var c = new SqlConnection(s_connection);
-            var dataAdapter = new SqlDataAdapter(select, c);
+            SqlConnection c = new SqlConnection(s_connection);
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(select, c);
 
-            var commandBuilder = new SqlCommandBuilder(dataAdapter);
-            var ds = new DataSet();
+            SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
+            DataSet ds = new DataSet();
             dataAdapter.Fill(ds);
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
@@ -843,20 +895,26 @@ namespace WindowsFormsApplication1.Portirnica
             dataGridView1.Columns[23].HeaderText = "Datum i vreme izdavanja dokumentacije";
             dataGridView1.Columns[23].Width = 40;
 
-
-            DataGridViewColumn column25 = dataGridView1.Columns[24];
-            dataGridView1.Columns[24].HeaderText = "Vozilo izašlo";
+            dataGridView1.Columns[24].HeaderText = "Napomena Kontrolor";
             dataGridView1.Columns[24].Width = 40;
 
 
+            DataGridViewColumn column25 = dataGridView1.Columns[24];
+            dataGridView1.Columns[25].HeaderText = "Vozilo izašlo";
+            dataGridView1.Columns[25].Width = 40;
+
+
             DataGridViewColumn column26 = dataGridView1.Columns[25];
-            dataGridView1.Columns[25].HeaderText = "Datum i vreme izlaska vozila";
-            dataGridView1.Columns[25].Width = 120;
+            dataGridView1.Columns[26].HeaderText = "Datum i vreme izlaska vozila";
+            dataGridView1.Columns[26].Width = 120;
 
 
             DataGridViewColumn column27 = dataGridView1.Columns[26];
-            dataGridView1.Columns[26].HeaderText = "Korisnik propustio vozilo";
-            dataGridView1.Columns[26].Width = 120;
+            dataGridView1.Columns[27].HeaderText = "Korisnik propustio vozilo";
+            dataGridView1.Columns[27].Width = 120;
+
+            dataGridView1.Columns[28].HeaderText = "Napomena Izlaz";
+            dataGridView1.Columns[28].Width = 40;
 
             ObojDatagrid();
 
@@ -880,7 +938,7 @@ namespace WindowsFormsApplication1.Portirnica
 
 
             InsertStatusNajave upd = new InsertStatusNajave();
-            upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, txtKorisnikOtvorio.Text, Convert.ToDateTime(dtpVremeOtvaranja.Value), txtGate.Text, Convert.ToDateTime(dtpDatumVremePrijem.Value), txtkorisnikPrimio.Text, txtNapomenaPrijem.Text, tmpKontrolor1, Convert.ToDateTime(dtpDatum1.Value), 1, DateTime.Now, txtKontrolor1.Text, UlogovaniKorisnik, 0, "", Convert.ToDateTime(dtpVreme.Value), Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text);
+            upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, txtKorisnikOtvorio.Text, Convert.ToDateTime(dtpVremeOtvaranja.Value), txtGate.Text, Convert.ToDateTime(dtpDatumVremePrijem.Value), txtkorisnikPrimio.Text, txtNapomenaPrijem.Text, tmpKontrolor1, Convert.ToDateTime(dtpDatum1.Value), 1, DateTime.Now, txtKontrolor1.Text, UlogovaniKorisnik, 0, "", Convert.ToDateTime(dtpVreme.Value), Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text, txtNapomenaKontrola.Text, txtNapomenaIzlaz.Text);
             InsertLogNajave inslog = new InsertLogNajave();
             inslog.InsLogNajave(Convert.ToInt32(txtSifra.Text), "Kontrolor 2 promena", UlogovaniKorisnik, DateTime.Now);
 
@@ -888,25 +946,25 @@ namespace WindowsFormsApplication1.Portirnica
 
             chkPaleta2.Checked = true;
 
-            var select = "  SELECT [ID] ,[UtovarBroj] , DatumNajave,  Vozilo,[RegistarskiBroj] ,[DatumVremeDolaska],[PrevoznikKlijent] ,[Partner] ,[Napomena],  " +
+            string select = "  SELECT [ID] ,[UtovarBroj] , DatumNajave,  Vozilo,[RegistarskiBroj] ,[DatumVremeDolaska],[PrevoznikKlijent] ,[Partner] ,[Napomena],  " +
               " [KorisnikOtvorio], [DatumVremeOtvaranja], [Gate], [KorinsikPrimio], [DatumVremePrijema],  [NapomenaPrijema] , " +
               " CASE WHEN [PaletaSpremne1] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne1] , [DatumSpremne1] , [KontrolorSpremne1],  " +
               " CASE WHEN [PaletaSpremne2] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne2] , [DatumSpremne2] , " +
               " [KontrolorSpremne2] , " +
               " CASE WHEN [DokumentacijaSpremne] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [DokumentacijaSpremne] , " +
-              "  [ProdajaKorisnik], [DatumDokumentSpremne]," +
+              "  [ProdajaKorisnik], [DatumDokumentSpremne],[NapomenaKontrola]," +
               " CASE WHEN korisnik <> '' THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Spremljeno, " +
-              " [DatumKamionIzasao],[Korisnik] FROM [dbo].[StatusNajave] " +
+              " [DatumKamionIzasao],[Korisnik],[NapomenaIzlaz] FROM [dbo].[StatusNajave] " +
          " where KorinsikPrimio <> '' and ProdajaKorisnik = '' order by ID desc";
 
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            string s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
-            var c = new SqlConnection(s_connection);
-            var dataAdapter = new SqlDataAdapter(select, c);
+            SqlConnection c = new SqlConnection(s_connection);
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(select, c);
 
-            var commandBuilder = new SqlCommandBuilder(dataAdapter);
-            var ds = new DataSet();
+            SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
+            DataSet ds = new DataSet();
             dataAdapter.Fill(ds);
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
@@ -1028,20 +1086,26 @@ namespace WindowsFormsApplication1.Portirnica
             dataGridView1.Columns[23].HeaderText = "Datum i vreme izdavanja dokumentacije";
             dataGridView1.Columns[23].Width = 40;
 
-
-            DataGridViewColumn column25 = dataGridView1.Columns[24];
-            dataGridView1.Columns[24].HeaderText = "Vozilo izašlo";
+            dataGridView1.Columns[24].HeaderText = "Napomena Kontrolor";
             dataGridView1.Columns[24].Width = 40;
 
 
+            DataGridViewColumn column25 = dataGridView1.Columns[24];
+            dataGridView1.Columns[25].HeaderText = "Vozilo izašlo";
+            dataGridView1.Columns[25].Width = 40;
+
+
             DataGridViewColumn column26 = dataGridView1.Columns[25];
-            dataGridView1.Columns[25].HeaderText = "Datum i vreme izlaska vozila";
-            dataGridView1.Columns[25].Width = 120;
+            dataGridView1.Columns[26].HeaderText = "Datum i vreme izlaska vozila";
+            dataGridView1.Columns[26].Width = 120;
 
 
             DataGridViewColumn column27 = dataGridView1.Columns[26];
-            dataGridView1.Columns[26].HeaderText = "Korisnik propustio vozilo";
-            dataGridView1.Columns[26].Width = 120;
+            dataGridView1.Columns[27].HeaderText = "Korisnik propustio vozilo";
+            dataGridView1.Columns[27].Width = 120;
+
+            dataGridView1.Columns[28].HeaderText = "Napomena Izlaz";
+            dataGridView1.Columns[28].Width = 40;
 
             ObojDatagrid();
 
@@ -1073,7 +1137,7 @@ namespace WindowsFormsApplication1.Portirnica
                     tmpKontrolor2 = 0;
                 }
                 InsertStatusNajave upd = new InsertStatusNajave();
-                upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, txtKorisnikOtvorio.Text, Convert.ToDateTime(dtpVremeOtvaranja.Value), txtGate.Text, Convert.ToDateTime(dtpDatumVremePrijem.Value), txtkorisnikPrimio.Text, txtNapomenaPrijem.Text, tmpKontrolor1, Convert.ToDateTime(dtpDatum1.Value), tmpKontrolor2, Convert.ToDateTime(dtpDatum2.Value), txtKontrolor1.Text, txtKontrolor2.Text, 1, UlogovaniKorisnik, DateTime.Now, Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text);
+                upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, txtKorisnikOtvorio.Text, Convert.ToDateTime(dtpVremeOtvaranja.Value), txtGate.Text, Convert.ToDateTime(dtpDatumVremePrijem.Value), txtkorisnikPrimio.Text, txtNapomenaPrijem.Text, tmpKontrolor1, Convert.ToDateTime(dtpDatum1.Value), tmpKontrolor2, Convert.ToDateTime(dtpDatum2.Value), txtKontrolor1.Text, txtKontrolor2.Text, 1, UlogovaniKorisnik, DateTime.Now, Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text, txtNapomenaKontrola.Text, txtNapomenaIzlaz.Text);
                 InsertLogNajave inslog = new InsertLogNajave();
                 inslog.InsLogNajave(Convert.ToInt32(txtSifra.Text), "Dokumentacija spremna promena", UlogovaniKorisnik, DateTime.Now);
 
@@ -1081,25 +1145,25 @@ namespace WindowsFormsApplication1.Portirnica
                 //RefreshDataGrid();
                 chkDokumentacijaSpremna.Checked = true;
 
-                var select = "  SELECT [ID] ,[UtovarBroj] , DatumNajave,  Vozilo,[RegistarskiBroj] ,[DatumVremeDolaska],[PrevoznikKlijent] ,[Partner] ,[Napomena],  " +
+                string select = "  SELECT [ID] ,[UtovarBroj] , DatumNajave,  Vozilo,[RegistarskiBroj] ,[DatumVremeDolaska],[PrevoznikKlijent] ,[Partner] ,[Napomena],  " +
                   " [KorisnikOtvorio], [DatumVremeOtvaranja], [Gate], [KorinsikPrimio], [DatumVremePrijema],  [NapomenaPrijema] , " +
                   " CASE WHEN [PaletaSpremne1] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne1] , [DatumSpremne1] , [KontrolorSpremne1],  " +
                   " CASE WHEN [PaletaSpremne2] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne2] , [DatumSpremne2] , " +
                   " [KontrolorSpremne2] , " +
                   " CASE WHEN [DokumentacijaSpremne] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [DokumentacijaSpremne] , " +
-                  "  [ProdajaKorisnik], [DatumDokumentSpremne]," +
+                  "  [ProdajaKorisnik], [DatumDokumentSpremne],[NapomenaKontrola]," +
                   " CASE WHEN korisnik <> '' THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Spremljeno, " +
-                  " [DatumKamionIzasao],[Korisnik] FROM [dbo].[StatusNajave] " +
+                  " [DatumKamionIzasao],[Korisnik],[NapomenaIzlaz] FROM [dbo].[StatusNajave] " +
              " where KorinsikPrimio <> '' and ProdajaKorisnik = '' order by ID desc";
 
 
-                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                string s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
                 SqlConnection myConnection = new SqlConnection(s_connection);
-                var c = new SqlConnection(s_connection);
-                var dataAdapter = new SqlDataAdapter(select, c);
+                SqlConnection c = new SqlConnection(s_connection);
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(select, c);
 
-                var commandBuilder = new SqlCommandBuilder(dataAdapter);
-                var ds = new DataSet();
+                SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
+                DataSet ds = new DataSet();
                 dataAdapter.Fill(ds);
                 dataGridView1.ReadOnly = true;
                 dataGridView1.DataSource = ds.Tables[0];
@@ -1221,20 +1285,26 @@ namespace WindowsFormsApplication1.Portirnica
                 dataGridView1.Columns[23].HeaderText = "Datum i vreme izdavanja dokumentacije";
                 dataGridView1.Columns[23].Width = 40;
 
-
-                DataGridViewColumn column25 = dataGridView1.Columns[24];
-                dataGridView1.Columns[24].HeaderText = "Vozilo izašlo";
+                dataGridView1.Columns[24].HeaderText = "Napomena Kontrolor";
                 dataGridView1.Columns[24].Width = 40;
 
 
+                DataGridViewColumn column25 = dataGridView1.Columns[24];
+                dataGridView1.Columns[25].HeaderText = "Vozilo izašlo";
+                dataGridView1.Columns[25].Width = 40;
+
+
                 DataGridViewColumn column26 = dataGridView1.Columns[25];
-                dataGridView1.Columns[25].HeaderText = "Datum i vreme izlaska vozila";
-                dataGridView1.Columns[25].Width = 120;
+                dataGridView1.Columns[26].HeaderText = "Datum i vreme izlaska vozila";
+                dataGridView1.Columns[26].Width = 120;
 
 
                 DataGridViewColumn column27 = dataGridView1.Columns[26];
-                dataGridView1.Columns[26].HeaderText = "Korisnik propustio vozilo";
-                dataGridView1.Columns[26].Width = 120;
+                dataGridView1.Columns[27].HeaderText = "Korisnik propustio vozilo";
+                dataGridView1.Columns[27].Width = 120;
+
+                dataGridView1.Columns[28].HeaderText = "Napomena Izlaz";
+                dataGridView1.Columns[28].Width = 40;
 
                 ObojDatagrid();
             }
@@ -1275,30 +1345,31 @@ namespace WindowsFormsApplication1.Portirnica
             {
                 tmpKontrolor2 = 0;
             }
-            upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, txtKorisnikOtvorio.Text, Convert.ToDateTime(dtpVremeOtvaranja.Value), txtGate.Text, Convert.ToDateTime(dtpDatumVremePrijem.Value), txtkorisnikPrimio.Text, txtNapomenaPrijem.Text, tmpKontrolor1, Convert.ToDateTime(dtpDatum1.Value), tmpKontrolor2, Convert.ToDateTime(dtpDatum2.Value), txtKontrolor1.Text, txtKontrolor2.Text, tmpCekiranaDokumentacija, txtProdajaKorisnik.Text, Convert.ToDateTime(dtpDokumentacijaSpremna.Value), DateTime.Now, UlogovaniKorisnik, cboDatumUtovara.Text, cboVozila.Text);
+            upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, txtKorisnikOtvorio.Text, Convert.ToDateTime(dtpVremeOtvaranja.Value), txtGate.Text, Convert.ToDateTime(dtpDatumVremePrijem.Value), txtkorisnikPrimio.Text, txtNapomenaPrijem.Text, tmpKontrolor1, Convert.ToDateTime(dtpDatum1.Value), tmpKontrolor2, Convert.ToDateTime(dtpDatum2.Value), txtKontrolor1.Text, txtKontrolor2.Text, tmpCekiranaDokumentacija, txtProdajaKorisnik.Text, Convert.ToDateTime(dtpDokumentacijaSpremna.Value), DateTime.Now, UlogovaniKorisnik, cboDatumUtovara.Text, cboVozila.Text, txtNapomenaKontrola.Text, txtNapomenaIzlaz.Text);
             InsertLogNajave inslog = new InsertLogNajave();
             inslog.InsLogNajave(Convert.ToInt32(txtSifra.Text), "Zavrseno promena", UlogovaniKorisnik, DateTime.Now);
+            upd.UpdRkShippingZavrseno(cboDatumUtovara.Text, cboVozila.Text);
             izašliToolStripMenuItem.BackColor = default;
 
-            var select = "  SELECT [ID] ,[UtovarBroj] , DatumNajave,  Vozilo,[RegistarskiBroj] ,[DatumVremeDolaska],[PrevoznikKlijent] ,[Partner] ,[Napomena],  " +
+            string select = "  SELECT [ID] ,[UtovarBroj] , DatumNajave,  Vozilo,[RegistarskiBroj] ,[DatumVremeDolaska],[PrevoznikKlijent] ,[Partner] ,[Napomena],  " +
               " [KorisnikOtvorio], [DatumVremeOtvaranja], [Gate], [KorinsikPrimio], [DatumVremePrijema],  [NapomenaPrijema] , " +
               " CASE WHEN [PaletaSpremne1] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne1] , [DatumSpremne1] , [KontrolorSpremne1],  " +
               " CASE WHEN [PaletaSpremne2] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne2] , [DatumSpremne2] , " +
               " [KontrolorSpremne2] , " +
               " CASE WHEN [DokumentacijaSpremne] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [DokumentacijaSpremne] , " +
-              "  [ProdajaKorisnik], [DatumDokumentSpremne]," +
+              "  [ProdajaKorisnik], [DatumDokumentSpremne],[NapomenaKontrola]," +
               " CASE WHEN korisnik <> '' THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Spremljeno, " +
-              " [DatumKamionIzasao],[Korisnik] FROM [dbo].[StatusNajave] " +
+              " [DatumKamionIzasao],[Korisnik],[NapomenaIzlaz] FROM [dbo].[StatusNajave] " +
     " where Korisnik = '' and ProdajaKorisnik <> ''  order by ID desc";
 
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            string s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
-            var c = new SqlConnection(s_connection);
-            var dataAdapter = new SqlDataAdapter(select, c);
+            SqlConnection c = new SqlConnection(s_connection);
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(select, c);
 
-            var commandBuilder = new SqlCommandBuilder(dataAdapter);
-            var ds = new DataSet();
+            SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
+            DataSet ds = new DataSet();
             dataAdapter.Fill(ds);
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
@@ -1420,21 +1491,26 @@ namespace WindowsFormsApplication1.Portirnica
             dataGridView1.Columns[23].HeaderText = "Datum i vreme izdavanja dokumentacije";
             dataGridView1.Columns[23].Width = 40;
 
-
-            DataGridViewColumn column25 = dataGridView1.Columns[24];
-            dataGridView1.Columns[24].HeaderText = "Vozilo izašlo";
+            dataGridView1.Columns[24].HeaderText = "Napomena Kontrolor";
             dataGridView1.Columns[24].Width = 40;
 
 
+            DataGridViewColumn column25 = dataGridView1.Columns[24];
+            dataGridView1.Columns[25].HeaderText = "Vozilo izašlo";
+            dataGridView1.Columns[25].Width = 40;
+
+
             DataGridViewColumn column26 = dataGridView1.Columns[25];
-            dataGridView1.Columns[25].HeaderText = "Datum i vreme izlaska vozila";
-            dataGridView1.Columns[25].Width = 120;
+            dataGridView1.Columns[26].HeaderText = "Datum i vreme izlaska vozila";
+            dataGridView1.Columns[26].Width = 120;
 
 
             DataGridViewColumn column27 = dataGridView1.Columns[26];
-            dataGridView1.Columns[26].HeaderText = "Korisnik propustio vozilo";
-            dataGridView1.Columns[26].Width = 120;
+            dataGridView1.Columns[27].HeaderText = "Korisnik propustio vozilo";
+            dataGridView1.Columns[27].Width = 120;
 
+            dataGridView1.Columns[28].HeaderText = "Napomena Izlaz";
+            dataGridView1.Columns[28].Width = 40;
             ObojDatagrid();
             //RefreshDataGrid();
         }
@@ -1467,23 +1543,24 @@ namespace WindowsFormsApplication1.Portirnica
         {
             //ZAMENA
             //Select Distinct Vozilo From RkShipping where Stanje = 1
-            var select = " Select Distinct RTrim(Vozilo) as Vozilo From RkShipping where  DatumUtovara = '" + cboDatumUtovara.Text + "'" +
+            string select = " Select Distinct RTrim(Vozilo) as Vozilo From RkShippingPocetna where Najavljen <> 1 and  DatumUtovara = '" + cboDatumUtovara.Text + "'" +
                 " union " +
-               " Select Distinct RTrim(Vozilo) as Vozilo From RkShipping where DatumUtovara = '" + cboDatumUtovara.Text + "'" +
+               " Select Distinct RTrim(Vozilo) as Vozilo From RkShipping where Najavljen<>1 and DatumUtovara = '" + cboDatumUtovara.Text + "'" +
                 " union " +
-                " Select Distinct RTrim(Vozilo) as Vozilo From RkShipping where  DatumUtovara = '" + cboDatumUtovara.Text + "'";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                " Select Distinct RTrim(Vozilo) as Vozilo From RkShippingZavrseno where Izaslo<> 1 and Najavljen<>1 and  DatumUtovara = '" + cboDatumUtovara.Text + "'";
+            string s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
-            var c = new SqlConnection(s_connection);
-            var dataAdapter = new SqlDataAdapter(select, c);
+            SqlConnection c = new SqlConnection(s_connection);
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(select, c);
 
-            var commandBuilder = new SqlCommandBuilder(dataAdapter);
-            var ds = new DataSet();
+            SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
+            DataSet ds = new DataSet();
             dataAdapter.Fill(ds);
             cboVozila.DataSource = ds.Tables[0];
             cboVozila.DisplayMember = "Vozilo";
             cboVozila.ValueMember = "Vozilo";
         }
+
 
         private void groupBox2_Enter(object sender, EventArgs e)
         {
@@ -1492,6 +1569,14 @@ namespace WindowsFormsApplication1.Portirnica
 
         private void najavljeniToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            button1.Enabled = false;
+            button2.Enabled = false;
+            button6.Enabled = false;
+            button7.Enabled = false;
+            button8.Enabled = false;
+            button9.Enabled = false;
+            button5.Enabled = true;
+
             noviUnosToolStripMenuItem.BackColor = default;
             logFajlToolStripMenuItem.BackColor = default;
             najavljeniToolStripMenuItem.BackColor = Color.Orange;
@@ -1500,25 +1585,25 @@ namespace WindowsFormsApplication1.Portirnica
             izašliToolStripMenuItem.BackColor = default;
             posaljiMailPesicuToolStripMenuItem.BackColor = default;
 
-            var select = "  SELECT [ID] ,[UtovarBroj] , DatumNajave,  Vozilo,[RegistarskiBroj] ,[DatumVremeDolaska],[PrevoznikKlijent] ,[Partner] ,[Napomena],  " +
+            string select = "  SELECT [ID] ,[UtovarBroj] , DatumNajave,  Vozilo,[RegistarskiBroj] ,[DatumVremeDolaska],[PrevoznikKlijent] ,[Partner] ,[Napomena],  " +
                 " [KorisnikOtvorio], [DatumVremeOtvaranja], [Gate], [KorinsikPrimio], [DatumVremePrijema],  [NapomenaPrijema] , " +
                 " CASE WHEN [PaletaSpremne1] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne1] , [DatumSpremne1] , [KontrolorSpremne1],  " +
                 " CASE WHEN [PaletaSpremne2] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne2] , [DatumSpremne2] , " +
                 " [KontrolorSpremne2] , " +
                 " CASE WHEN [DokumentacijaSpremne] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [DokumentacijaSpremne] , " +
-                "  [ProdajaKorisnik], [DatumDokumentSpremne]," +
+                "  [ProdajaKorisnik], [DatumDokumentSpremne],[NapomenaKontrola]," +
                 " CASE WHEN korisnik <> '' THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Spremljeno, " +
-                " [DatumKamionIzasao],[Korisnik] FROM [dbo].[StatusNajave] " +
+                " [DatumKamionIzasao],[Korisnik],[NapomenaIzlaz] FROM [dbo].[StatusNajave] " +
          " where KorinsikPrimio = '' order by ID desc";
 
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            string s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
-            var c = new SqlConnection(s_connection);
-            var dataAdapter = new SqlDataAdapter(select, c);
+            SqlConnection c = new SqlConnection(s_connection);
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(select, c);
 
-            var commandBuilder = new SqlCommandBuilder(dataAdapter);
-            var ds = new DataSet();
+            SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
+            DataSet ds = new DataSet();
             dataAdapter.Fill(ds);
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
@@ -1640,26 +1725,40 @@ namespace WindowsFormsApplication1.Portirnica
             dataGridView1.Columns[23].HeaderText = "Datum i vreme izdavanja dokumentacije";
             dataGridView1.Columns[23].Width = 40;
 
-
-            DataGridViewColumn column25 = dataGridView1.Columns[24];
-            dataGridView1.Columns[24].HeaderText = "Vozilo izašlo";
+            dataGridView1.Columns[24].HeaderText = "Napomena Kontrolor";
             dataGridView1.Columns[24].Width = 40;
 
 
+            DataGridViewColumn column25 = dataGridView1.Columns[24];
+            dataGridView1.Columns[25].HeaderText = "Vozilo izašlo";
+            dataGridView1.Columns[25].Width = 40;
+
+
             DataGridViewColumn column26 = dataGridView1.Columns[25];
-            dataGridView1.Columns[25].HeaderText = "Datum i vreme izlaska vozila";
-            dataGridView1.Columns[25].Width = 120;
+            dataGridView1.Columns[26].HeaderText = "Datum i vreme izlaska vozila";
+            dataGridView1.Columns[26].Width = 120;
 
 
             DataGridViewColumn column27 = dataGridView1.Columns[26];
-            dataGridView1.Columns[26].HeaderText = "Korisnik propustio vozilo";
-            dataGridView1.Columns[26].Width = 120;
+            dataGridView1.Columns[27].HeaderText = "Korisnik propustio vozilo";
+            dataGridView1.Columns[27].Width = 120;
+
+            dataGridView1.Columns[28].HeaderText = "Napomena Izlaz";
+            dataGridView1.Columns[28].Width = 40;
 
             ObojDatagrid();
         }
 
         private void primljeniToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            button1.Enabled = false;
+            button2.Enabled = false;
+            button5.Enabled = false;
+            button9.Enabled = false;
+            button6.Enabled = true;
+            button7.Enabled = true;
+            button8.Enabled = true;
+
             noviUnosToolStripMenuItem.BackColor = default;
             logFajlToolStripMenuItem.BackColor = default;
             najavljeniToolStripMenuItem.BackColor = default;
@@ -1668,25 +1767,25 @@ namespace WindowsFormsApplication1.Portirnica
             izašliToolStripMenuItem.BackColor = default;
             posaljiMailPesicuToolStripMenuItem.BackColor = default;
 
-            var select = "  SELECT [ID] ,[UtovarBroj] , DatumNajave,  Vozilo,[RegistarskiBroj] ,[DatumVremeDolaska],[PrevoznikKlijent] ,[Partner] ,[Napomena],  " +
+            string select = "  SELECT [ID] ,[UtovarBroj] , DatumNajave,  Vozilo,[RegistarskiBroj] ,[DatumVremeDolaska],[PrevoznikKlijent] ,[Partner] ,[Napomena],  " +
               " [KorisnikOtvorio], [DatumVremeOtvaranja], [Gate], [KorinsikPrimio], [DatumVremePrijema],  [NapomenaPrijema] , " +
               " CASE WHEN [PaletaSpremne1] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne1] , [DatumSpremne1] , [KontrolorSpremne1],  " +
               " CASE WHEN [PaletaSpremne2] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne2] , [DatumSpremne2] , " +
               " [KontrolorSpremne2] , " +
               " CASE WHEN [DokumentacijaSpremne] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [DokumentacijaSpremne] , " +
-              "  [ProdajaKorisnik], [DatumDokumentSpremne]," +
+              "  [ProdajaKorisnik], [DatumDokumentSpremne],[NapomenaKontrola]," +
               " CASE WHEN korisnik <> '' THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Spremljeno, " +
-              " [DatumKamionIzasao],[Korisnik] FROM [dbo].[StatusNajave] " +
+              " [DatumKamionIzasao],[Korisnik],[NapomenaIzlaz] FROM [dbo].[StatusNajave] " +
          " where KorinsikPrimio <> '' and ProdajaKorisnik = '' order by ID desc";
 
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            string s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
-            var c = new SqlConnection(s_connection);
-            var dataAdapter = new SqlDataAdapter(select, c);
+            SqlConnection c = new SqlConnection(s_connection);
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(select, c);
 
-            var commandBuilder = new SqlCommandBuilder(dataAdapter);
-            var ds = new DataSet();
+            SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
+            DataSet ds = new DataSet();
             dataAdapter.Fill(ds);
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
@@ -1808,20 +1907,26 @@ namespace WindowsFormsApplication1.Portirnica
             dataGridView1.Columns[23].HeaderText = "Datum i vreme izdavanja dokumentacije";
             dataGridView1.Columns[23].Width = 40;
 
-
-            DataGridViewColumn column25 = dataGridView1.Columns[24];
-            dataGridView1.Columns[24].HeaderText = "Vozilo izašlo";
+            dataGridView1.Columns[24].HeaderText = "Napomena Kontrolor";
             dataGridView1.Columns[24].Width = 40;
 
 
+            DataGridViewColumn column25 = dataGridView1.Columns[24];
+            dataGridView1.Columns[25].HeaderText = "Vozilo izašlo";
+            dataGridView1.Columns[25].Width = 40;
+
+
             DataGridViewColumn column26 = dataGridView1.Columns[25];
-            dataGridView1.Columns[25].HeaderText = "Datum i vreme izlaska vozila";
-            dataGridView1.Columns[25].Width = 120;
+            dataGridView1.Columns[26].HeaderText = "Datum i vreme izlaska vozila";
+            dataGridView1.Columns[26].Width = 120;
 
 
             DataGridViewColumn column27 = dataGridView1.Columns[26];
-            dataGridView1.Columns[26].HeaderText = "Korisnik propustio vozilo";
-            dataGridView1.Columns[26].Width = 120;
+            dataGridView1.Columns[27].HeaderText = "Korisnik propustio vozilo";
+            dataGridView1.Columns[27].Width = 120;
+
+            dataGridView1.Columns[28].HeaderText = "Napomena Izlaz";
+            dataGridView1.Columns[28].Width = 40;
 
             ObojDatagrid();
 
@@ -1829,6 +1934,14 @@ namespace WindowsFormsApplication1.Portirnica
 
         private void spremniZaIzlazakToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            button1.Enabled = false;
+            button2.Enabled = false;
+            button6.Enabled = false;
+            button7.Enabled = false;
+            button8.Enabled = false;
+            button5.Enabled = false;
+            button9.Enabled = true;
+
             noviUnosToolStripMenuItem.BackColor = default;
             logFajlToolStripMenuItem.BackColor = default;
             najavljeniToolStripMenuItem.BackColor = default;
@@ -1836,25 +1949,25 @@ namespace WindowsFormsApplication1.Portirnica
             spremniZaIzlazakToolStripMenuItem.BackColor = Color.Orange;
             izašliToolStripMenuItem.BackColor = default;
             posaljiMailPesicuToolStripMenuItem.BackColor = default;
-            var select = "  SELECT [ID] ,[UtovarBroj] , DatumNajave,  Vozilo,[RegistarskiBroj] ,[DatumVremeDolaska],[PrevoznikKlijent] ,[Partner] ,[Napomena],  " +
+            string select = "  SELECT [ID] ,[UtovarBroj] , DatumNajave,  Vozilo,[RegistarskiBroj] ,[DatumVremeDolaska],[PrevoznikKlijent] ,[Partner] ,[Napomena],  " +
                " [KorisnikOtvorio], [DatumVremeOtvaranja], [Gate], [KorinsikPrimio], [DatumVremePrijema],  [NapomenaPrijema] , " +
                " CASE WHEN [PaletaSpremne1] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne1] , [DatumSpremne1] , [KontrolorSpremne1],  " +
                " CASE WHEN [PaletaSpremne2] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne2] , [DatumSpremne2] , " +
                " [KontrolorSpremne2] , " +
                " CASE WHEN [DokumentacijaSpremne] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [DokumentacijaSpremne] , " +
-               "  [ProdajaKorisnik], [DatumDokumentSpremne]," +
+               "  [ProdajaKorisnik], [DatumDokumentSpremne],[NapomenaKontrola]," +
                " CASE WHEN korisnik <> '' THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Spremljeno, " +
-               " [DatumKamionIzasao],[Korisnik] FROM [dbo].[StatusNajave] " +
+               " [DatumKamionIzasao],[Korisnik],[NapomenaIzlaz] FROM [dbo].[StatusNajave] " +
      " where Korisnik = '' and ProdajaKorisnik <> ''  order by ID desc";
 
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            string s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
-            var c = new SqlConnection(s_connection);
-            var dataAdapter = new SqlDataAdapter(select, c);
+            SqlConnection c = new SqlConnection(s_connection);
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(select, c);
 
-            var commandBuilder = new SqlCommandBuilder(dataAdapter);
-            var ds = new DataSet();
+            SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
+            DataSet ds = new DataSet();
             dataAdapter.Fill(ds);
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
@@ -1976,20 +2089,26 @@ namespace WindowsFormsApplication1.Portirnica
             dataGridView1.Columns[23].HeaderText = "Datum i vreme izdavanja dokumentacije";
             dataGridView1.Columns[23].Width = 40;
 
-
-            DataGridViewColumn column25 = dataGridView1.Columns[24];
-            dataGridView1.Columns[24].HeaderText = "Vozilo izašlo";
+            dataGridView1.Columns[24].HeaderText = "Napomena Kontrolor";
             dataGridView1.Columns[24].Width = 40;
 
 
+            DataGridViewColumn column25 = dataGridView1.Columns[24];
+            dataGridView1.Columns[25].HeaderText = "Vozilo izašlo";
+            dataGridView1.Columns[25].Width = 40;
+
+
             DataGridViewColumn column26 = dataGridView1.Columns[25];
-            dataGridView1.Columns[25].HeaderText = "Datum i vreme izlaska vozila";
-            dataGridView1.Columns[25].Width = 120;
+            dataGridView1.Columns[26].HeaderText = "Datum i vreme izlaska vozila";
+            dataGridView1.Columns[26].Width = 120;
 
 
             DataGridViewColumn column27 = dataGridView1.Columns[26];
-            dataGridView1.Columns[26].HeaderText = "Korisnik propustio vozilo";
-            dataGridView1.Columns[26].Width = 120;
+            dataGridView1.Columns[27].HeaderText = "Korisnik propustio vozilo";
+            dataGridView1.Columns[27].Width = 120;
+
+            dataGridView1.Columns[28].HeaderText = "Napomena Izlaz";
+            dataGridView1.Columns[28].Width = 40;
 
             ObojDatagrid();
 
@@ -1997,6 +2116,14 @@ namespace WindowsFormsApplication1.Portirnica
 
         private void izašliToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            button1.Enabled = false;
+            button2.Enabled = false;
+            button6.Enabled = false;
+            button7.Enabled = false;
+            button8.Enabled = false;
+            button9.Enabled = false;
+            button5.Enabled = false;
+
             noviUnosToolStripMenuItem.BackColor = default;
             logFajlToolStripMenuItem.BackColor = default;
             najavljeniToolStripMenuItem.BackColor = default;
@@ -2004,25 +2131,25 @@ namespace WindowsFormsApplication1.Portirnica
             spremniZaIzlazakToolStripMenuItem.BackColor = default;
             izašliToolStripMenuItem.BackColor = Color.Orange;
             posaljiMailPesicuToolStripMenuItem.BackColor = default;
-            var select = "  SELECT [ID] ,[UtovarBroj] , DatumNajave,  Vozilo,[RegistarskiBroj] ,[DatumVremeDolaska],[PrevoznikKlijent] ,[Partner] ,[Napomena],  " +
+            string select = "  SELECT [ID] ,[UtovarBroj] , DatumNajave,  Vozilo,[RegistarskiBroj] ,[DatumVremeDolaska],[PrevoznikKlijent] ,[Partner] ,[Napomena],  " +
                 " [KorisnikOtvorio], [DatumVremeOtvaranja], [Gate], [KorinsikPrimio], [DatumVremePrijema],  [NapomenaPrijema] , " +
                 " CASE WHEN [PaletaSpremne1] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne1] , [DatumSpremne1] , [KontrolorSpremne1],  " +
                 " CASE WHEN [PaletaSpremne2] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [PaletaSpremne2] , [DatumSpremne2] , " +
                 " [KontrolorSpremne2] , " +
                 " CASE WHEN [DokumentacijaSpremne] > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as [DokumentacijaSpremne] , " +
-                "  [ProdajaKorisnik], [DatumDokumentSpremne]," +
+                "  [ProdajaKorisnik], [DatumDokumentSpremne],[NapomenaKontrola]," +
                 " CASE WHEN korisnik <> '' THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Spremljeno, " +
-                " [DatumKamionIzasao],[Korisnik] FROM [dbo].[StatusNajave] " +
+                " [DatumKamionIzasao],[Korisnik],[NapomenaIzlaz] FROM [dbo].[StatusNajave] " +
       " where Korisnik <> '' order by ID desc";
 
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            string s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
-            var c = new SqlConnection(s_connection);
-            var dataAdapter = new SqlDataAdapter(select, c);
+            SqlConnection c = new SqlConnection(s_connection);
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(select, c);
 
-            var commandBuilder = new SqlCommandBuilder(dataAdapter);
-            var ds = new DataSet();
+            SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
+            DataSet ds = new DataSet();
             dataAdapter.Fill(ds);
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
@@ -2144,20 +2271,26 @@ namespace WindowsFormsApplication1.Portirnica
             dataGridView1.Columns[23].HeaderText = "Datum i vreme izdavanja dokumentacije";
             dataGridView1.Columns[23].Width = 40;
 
-
-            DataGridViewColumn column25 = dataGridView1.Columns[24];
-            dataGridView1.Columns[24].HeaderText = "Vozilo izašlo";
+            dataGridView1.Columns[24].HeaderText = "Napomena Kontrolor";
             dataGridView1.Columns[24].Width = 40;
 
 
+            DataGridViewColumn column25 = dataGridView1.Columns[24];
+            dataGridView1.Columns[25].HeaderText = "Vozilo izašlo";
+            dataGridView1.Columns[25].Width = 40;
+
+
             DataGridViewColumn column26 = dataGridView1.Columns[25];
-            dataGridView1.Columns[25].HeaderText = "Datum i vreme izlaska vozila";
-            dataGridView1.Columns[25].Width = 120;
+            dataGridView1.Columns[26].HeaderText = "Datum i vreme izlaska vozila";
+            dataGridView1.Columns[26].Width = 120;
 
 
             DataGridViewColumn column27 = dataGridView1.Columns[26];
-            dataGridView1.Columns[26].HeaderText = "Korisnik propustio vozilo";
-            dataGridView1.Columns[26].Width = 120;
+            dataGridView1.Columns[27].HeaderText = "Korisnik propustio vozilo";
+            dataGridView1.Columns[27].Width = 120;
+
+            dataGridView1.Columns[28].HeaderText = "Napomena Izlaz";
+            dataGridView1.Columns[28].Width = 40;
 
             ObojDatagrid();
 
@@ -2177,9 +2310,10 @@ namespace WindowsFormsApplication1.Portirnica
 
             string mail = "panta0307@yahoo.com";
             string body = "";
-            mailMessage = new MailMessage("reporter@jela.rs", mail);
-
-            mailMessage.Subject = "Test automatskih mailova";
+            mailMessage = new MailMessage("reporter@jela.rs", mail)
+            {
+                Subject = "Test automatskih mailova"
+            };
 
 
 
@@ -2191,17 +2325,119 @@ namespace WindowsFormsApplication1.Portirnica
             mailMessage.Body = body;
             mailMessage.IsBodyHtml = true;
 
-            SmtpClient smtpClient = new SmtpClient();
-            smtpClient.Host = "mailsrv.jela.rs";
+            SmtpClient smtpClient = new SmtpClient
+            {
+                Host = "mailsrv.jela.rs",
 
-            smtpClient.Port = 465;
-            smtpClient.UseDefaultCredentials = true;
+                Port = 465,
+                UseDefaultCredentials = true,
 
-            smtpClient.Credentials = new NetworkCredential("reporter@jela.rs", "repass2021");
+                Credentials = new NetworkCredential("reporter@jela.rs", "repass2021"),
 
-            smtpClient.EnableSsl = true;
+                EnableSsl = true
+            };
             smtpClient.Send(mailMessage);
 
+        }
+
+        private void dtpVremeOtvaranja_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtpDatumVremeDolaska_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_EnabledChanged(object sender, EventArgs e)
+        {
+            if (button2.Enabled == false)
+            {
+                button2.BackColor = Color.DimGray;
+            }
+            else
+            {
+                button2.BackColor = Color.Black;
+
+            }
+        }
+
+        private void button1_EnabledChanged(object sender, EventArgs e)
+        {
+            if (button1.Enabled == false)
+            {
+                button1.BackColor = Color.DimGray;
+            }
+            else
+            {
+                button1.BackColor = Color.Black;
+
+            }
+        }
+
+        private void button5_EnabledChanged(object sender, EventArgs e)
+        {
+            if (button5.Enabled == false)
+            {
+                button5.BackColor = Color.DimGray;
+            }
+            else
+            {
+                button5.BackColor = Color.Black;
+
+            }
+        }
+
+        private void button6_EnabledChanged(object sender, EventArgs e)
+        {
+            if (button6.Enabled == false)
+            {
+                button6.BackColor = Color.DimGray;
+            }
+            else
+            {
+                button6.BackColor = Color.Black;
+
+            }
+        }
+
+        private void button7_EnabledChanged(object sender, EventArgs e)
+        {
+            if (button7.Enabled == false)
+            {
+                button7.BackColor = Color.DimGray;
+            }
+            else
+            {
+                button7.BackColor = Color.Black;
+
+            }
+        }
+
+        private void button8_EnabledChanged(object sender, EventArgs e)
+        {
+            if (button8.Enabled == false)
+            {
+                button8.BackColor = Color.DimGray;
+            }
+            else
+            {
+                button8.BackColor = Color.Black;
+
+            }
+        }
+
+        private void button9_EnabledChanged(object sender, EventArgs e)
+        {
+            if (button9.Enabled == false)
+            {
+                button9.BackColor = Color.DimGray;
+            }
+            else
+            {
+                button9.BackColor = Color.Black;
+            }
         }
     }
 
