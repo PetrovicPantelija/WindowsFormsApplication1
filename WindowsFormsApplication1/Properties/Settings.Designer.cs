@@ -47,22 +47,21 @@ namespace WindowsFormsApplication1.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.1.6\\SQLEXPRESS2008K;Initial Catalog=Perftech_Beograd;User ID=" +
-            "sa;Password=duki7990;")]
-        public string NedraConnectionString {
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=PANTA\\sqlexpress2008r2;Initial Catalog=Perftech_Beograd;Integrated Se" +
+            "curity=True")]
+        public string PerftehConnectionString {
             get {
-                return ((string)(this["NedraConnectionString"]));
+                return ((string)(this["PerftehConnectionString"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=PANTA\\sqlexpress2008r2;Initial Catalog=Perftech_Beograd;Integrated Se" +
-            "curity=True")]
-        public string PerftehConnectionString {
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-2UF763B;Initial Catalog=Jela;Integrated Security=True")]
+        public string NedraConnectionString {
             get {
-                return ((string)(this["PerftehConnectionString"]));
+                return ((string)(this["NedraConnectionString"]));
             }
         }
     }
