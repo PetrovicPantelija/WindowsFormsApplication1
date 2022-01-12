@@ -735,5 +735,11 @@ namespace WindowsFormsApplication1
             StampajReklamacijePZavrseno srp = new StampajReklamacijePZavrseno();
             srp.Show();
         }
+
+        private void toolStripMenuItem9_Click(object sender, EventArgs e)
+        {
+            StampajPalSveZavrseno sps = new StampajPalSveZavrseno();
+            sps.Show();
+        }
     }
 }

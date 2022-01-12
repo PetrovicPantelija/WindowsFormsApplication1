@@ -87,9 +87,9 @@ namespace WindowsFormsApplication1
             {
                 Soriranje = "3";
             }
-            DataSet10TableAdapters.TestProcedurePalSveTableAdapter ta = new DataSet10TableAdapters.TestProcedurePalSveTableAdapter();
+            DataSet661TableAdapters.TestProcedurePalSveZavrsenoTableAdapter ta = new DataSet661TableAdapters.TestProcedurePalSveZavrsenoTableAdapter();
             // DataSet4TableAdapters.TestProcedurePalSveTableAdapter ta = new DataSet2TableAdapters.TestProcedurePalTableAdapter();
-            DataSet10.TestProcedurePalSveDataTable dt = new DataSet10.TestProcedurePalSveDataTable();
+            DataSet661.TestProcedurePalSveZavrsenoDataTable dt = new DataSet661.TestProcedurePalSveZavrsenoDataTable();
             // DataSet4.TestProcedurePalDataTable dt = new DataSet2.TestProcedurePalDataTable();
             ta.Fill(dt, cboVozila.Text, cboDatumUtovara.Text, Soriranje);
             ReportDataSource rds = new ReportDataSource();
@@ -101,7 +101,7 @@ namespace WindowsFormsApplication1
             rds2.Value = dt;
 
             ReportDataSource rds4 = new ReportDataSource();
-            rds4.Name = "DataSet10";
+            rds4.Name = "DataSet661";
             rds4.Value = dt;
 
 
@@ -112,11 +112,11 @@ namespace WindowsFormsApplication1
 
             //this.ReportViewer1.ServerReport.SetParameters(params);
 
-            //   ReportParameter rp = new ReportParameter();
+            // ReportParameter rp = new ReportParameter();
             // ReportParameter rp2 = new ReportParameter();
             //ReportParameter rp3 = new ReportParameter();
             reportViewer1.LocalReport.DataSources.Clear();
-            reportViewer1.LocalReport.ReportPath = "Report4.rdlc";
+            reportViewer1.LocalReport.ReportPath = "Report4Zavrseno.rdlc";
             reportViewer1.LocalReport.SetParameters(par);
             // reportViewer1.LocalReport.SetParameters(new ReportParameter[] { rp2 });
             //reportViewer1.LocalReport.SetParameters(new ReportParameter[] { rp3 });

@@ -7,7 +7,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>539ab85e-52b2-4fce-8273-d6791271e293</rd:DataSourceID>
+      <rd:DataSourceID>34b75585-8f06-4e9e-9328-9d489899a611</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -104,7 +104,7 @@
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>DataSet22</rd:DataSetName>
-        <rd:SchemaPath>D:\JelaVS2019\WindowsFormsApplication1\WindowsFormsApplication1\DataSet22.xsd</rd:SchemaPath>
+        <rd:SchemaPath>D:\WindowsFormsApplication1\WindowsFormsApplication1\DataSet22.xsd</rd:SchemaPath>
         <rd:TableName>TestProcedurePalZavrseno</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>

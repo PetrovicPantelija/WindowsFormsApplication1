@@ -62,9 +62,11 @@
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.štampaZaPakeristuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.završetakIsporukeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
             this.štampaZaPaletuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.obradaPaletarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.promenaVozilaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
             this.štampajReklamacijeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.izbrisiCeluIsporukuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pregledIsporukeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -141,8 +143,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.progressBar5 = new System.Windows.Forms.ProgressBar();
             this.dataGridView5 = new System.Windows.Forms.DataGridView();
-            this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -314,6 +315,13 @@
             this.završetakIsporukeToolStripMenuItem.Text = "Završetak isporuke";
             this.završetakIsporukeToolStripMenuItem.Click += new System.EventHandler(this.završetakIsporukeToolStripMenuItem_Click);
             // 
+            // toolStripMenuItem7
+            // 
+            this.toolStripMenuItem7.Name = "toolStripMenuItem7";
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(239, 22);
+            this.toolStripMenuItem7.Text = "Štampaj za paletu - Završeno";
+            this.toolStripMenuItem7.Click += new System.EventHandler(this.toolStripMenuItem7_Click);
+            // 
             // štampaZaPaletuToolStripMenuItem
             // 
             this.štampaZaPaletuToolStripMenuItem.Name = "štampaZaPaletuToolStripMenuItem";
@@ -334,6 +342,13 @@
             this.promenaVozilaToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
             this.promenaVozilaToolStripMenuItem.Text = "Promena vozila";
             this.promenaVozilaToolStripMenuItem.Click += new System.EventHandler(this.promenaVozilaToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem8
+            // 
+            this.toolStripMenuItem8.Name = "toolStripMenuItem8";
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(239, 22);
+            this.toolStripMenuItem8.Text = "Štampaj reklamacije - Završeno";
+            this.toolStripMenuItem8.Click += new System.EventHandler(this.toolStripMenuItem8_Click);
             // 
             // štampajReklamacijeToolStripMenuItem1
             // 
@@ -359,6 +374,7 @@
             this.pregledPreostaliPaketiPoIsporuciToolStripMenuItem,
             this.sumarnoIsporukaToolStripMenuItem,
             this.štampajNeisporučenePaketeToolStripMenuItem,
+            this.toolStripMenuItem9,
             this.štampajSvePaletePoVoziluToolStripMenuItem,
             this.štampajNedostajućePaketePoVoziluToolStripMenuItem,
             this.štampajPregledPoVremenuPakovanjaToolStripMenuItem,
@@ -1082,19 +1098,12 @@
             this.dataGridView5.Size = new System.Drawing.Size(131, 157);
             this.dataGridView5.TabIndex = 15;
             // 
-            // toolStripMenuItem7
+            // toolStripMenuItem9
             // 
-            this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(239, 22);
-            this.toolStripMenuItem7.Text = "Štampaj za paletu - Završeno";
-            this.toolStripMenuItem7.Click += new System.EventHandler(this.toolStripMenuItem7_Click);
-            // 
-            // toolStripMenuItem8
-            // 
-            this.toolStripMenuItem8.Name = "toolStripMenuItem8";
-            this.toolStripMenuItem8.Size = new System.Drawing.Size(239, 22);
-            this.toolStripMenuItem8.Text = "Štampaj reklamacije - Završeno";
-            this.toolStripMenuItem8.Click += new System.EventHandler(this.toolStripMenuItem8_Click);
+            this.toolStripMenuItem9.Name = "toolStripMenuItem9";
+            this.toolStripMenuItem9.Size = new System.Drawing.Size(284, 22);
+            this.toolStripMenuItem9.Text = "Štampaj sve palete po vozilu - Završeno";
+            this.toolStripMenuItem9.Click += new System.EventHandler(this.toolStripMenuItem9_Click);
             // 
             // Main
             // 
@@ -1238,5 +1247,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem7;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem8;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem9;
     }
 }

@@ -85,6 +85,12 @@
   <PropertyGroup>
     <SignManifests>false</SignManifests>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -123,6 +129,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSet22.cs">
+      <DependentUpon>DataSet22.xsd</DependentUpon>
     </Compile>
     <Compile Include="DataSet22.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -163,6 +172,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Dataset6.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSet66.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet66.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSet661.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet661.xsd</DependentUpon>
     </Compile>
     <Compile Include="DataSet7.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -614,6 +633,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Perftech_BeogradDataSet4.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Perftech_BeogradDataSet5.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Perftech_BeogradDataSet5.xsd</DependentUpon>
     </Compile>
     <Compile Include="Portirnica\InsertLogNajave.cs" />
     <Compile Include="Portirnica\InsertStatusNajave.cs" />
@@ -1350,6 +1374,28 @@
     <None Include="Dataset6.xss">
       <DependentUpon>Dataset6.xsd</DependentUpon>
     </None>
+    <None Include="DataSet66.xsc">
+      <DependentUpon>DataSet66.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet66.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet66.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSet66.xss">
+      <DependentUpon>DataSet66.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet661.xsc">
+      <DependentUpon>DataSet661.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet661.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet661.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSet661.xss">
+      <DependentUpon>DataSet661.xsd</DependentUpon>
+    </None>
     <None Include="DataSet7.xsc">
       <DependentUpon>DataSet7.xsd</DependentUpon>
     </None>
@@ -1448,6 +1494,17 @@
     </None>
     <None Include="Perftech_BeogradDataSet4.xss">
       <DependentUpon>Perftech_BeogradDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="Perftech_BeogradDataSet5.xsc">
+      <DependentUpon>Perftech_BeogradDataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="Perftech_BeogradDataSet5.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Perftech_BeogradDataSet5.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Perftech_BeogradDataSet5.xss">
+      <DependentUpon>Perftech_BeogradDataSet5.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
