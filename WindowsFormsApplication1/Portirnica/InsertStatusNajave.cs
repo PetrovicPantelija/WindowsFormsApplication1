@@ -12,7 +12,7 @@ namespace WindowsFormsApplication1.Portirnica
 {
     class InsertStatusNajave
     {
-        public void InsSatusNajave(string RegistarskiBroj, string PrevoznikKlijent, string Partner, DateTime DatumVremeDolaska, string Napomena, string UtovarBroj, string KorisnikOtvorio, DateTime DatumVremeOtvaranja, string Gate, DateTime DatumVremePrijema, string KorinsikPrimio, string NapomenaPrijema, int PaletaSpremne1, DateTime DatumSpremne1, int PaletaSpremne2, DateTime DatumSpremne2, string KontrolorSpremne1, string KontrolorSpremne2, int DokumentacijaSpremne, string ProdajaKorisnik, DateTime DatumDokumentSpremne, DateTime DatumKamionIzasao, string Korisnik, string DatumNajave, string Vozilo)
+        public void InsSatusNajave(string RegistarskiBroj, string PrevoznikKlijent, string Partner, DateTime DatumVremeDolaska, string Napomena, string UtovarBroj, string KorisnikOtvorio, DateTime DatumVremeOtvaranja, string Gate, DateTime DatumVremePrijema, string KorinsikPrimio, string NapomenaPrijema, int PaletaSpremne1, DateTime DatumSpremne1, int PaletaSpremne2, DateTime DatumSpremne2, string KontrolorSpremne1, string KontrolorSpremne2, int DokumentacijaSpremne, string ProdajaKorisnik, DateTime DatumDokumentSpremne, DateTime DatumKamionIzasao, string Korisnik, string DatumNajave, string Vozilo, string NapomenaKontrola, string NapomenaIzlaz)
         {
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -211,6 +211,21 @@ namespace WindowsFormsApplication1.Portirnica
             parameter25.Value = Vozilo;
             myCommand.Parameters.Add(parameter25);
 
+            SqlParameter parameter26 = new SqlParameter();
+            parameter26.ParameterName = "@NapomenaKontrola";
+            parameter26.SqlDbType = SqlDbType.NVarChar;
+            parameter26.Size = 100;
+            parameter26.Direction = ParameterDirection.Input;
+            parameter26.Value = NapomenaKontrola;
+            myCommand.Parameters.Add(parameter26);
+
+            SqlParameter parameter27 = new SqlParameter();
+            parameter27.ParameterName = "@NapomenaIzlaz";
+            parameter27.SqlDbType = SqlDbType.NVarChar;
+            parameter27.Size = 100;
+            parameter27.Direction = ParameterDirection.Input;
+            parameter27.Value = NapomenaIzlaz;
+            myCommand.Parameters.Add(parameter27);
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -250,7 +265,7 @@ namespace WindowsFormsApplication1.Portirnica
             }
         }
 
-        public void UpdStatusNajave(int ID, string RegistarskiBroj, string PrevoznikKlijent, string Partner, DateTime DatumVremeDolaska, string Napomena, string UtovarBroj, string KorisnikOtvorio, DateTime DatumVremeOtvaranja, string Gate, DateTime DatumVremePrijema, string KorinsikPrimio, string NapomenaPrijema, int PaletaSpremne1, DateTime DatumSpremne1, int PaletaSpremne2, DateTime DatumSpremne2, string KontrolorSpremne1, string KontrolorSpremne2, int DokumentacijaSpremne, string ProdajaKorisnik, DateTime DatumDokumentSpremne, DateTime DatumKamionIzasao, string Korisnik, string DatumNajave, string Vozilo)
+        public void UpdStatusNajave(int ID, string RegistarskiBroj, string PrevoznikKlijent, string Partner, DateTime DatumVremeDolaska, string Napomena, string UtovarBroj, string KorisnikOtvorio, DateTime DatumVremeOtvaranja, string Gate, DateTime DatumVremePrijema, string KorinsikPrimio, string NapomenaPrijema, int PaletaSpremne1, DateTime DatumSpremne1, int PaletaSpremne2, DateTime DatumSpremne2, string KontrolorSpremne1, string KontrolorSpremne2, int DokumentacijaSpremne, string ProdajaKorisnik, DateTime DatumDokumentSpremne, DateTime DatumKamionIzasao, string Korisnik, string DatumNajave, string Vozilo, string NapomenaKontrola, string NapomenaIzlaz)
         {
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -456,6 +471,22 @@ namespace WindowsFormsApplication1.Portirnica
             parameter25.Value = Vozilo;
             myCommand.Parameters.Add(parameter25);
 
+            SqlParameter parameter26 = new SqlParameter();
+            parameter26.ParameterName = "@NapomenaKontrola";
+            parameter26.SqlDbType = SqlDbType.NVarChar;
+            parameter26.Size = 100;
+            parameter26.Direction = ParameterDirection.Input;
+            parameter26.Value = NapomenaKontrola;
+            myCommand.Parameters.Add(parameter26);
+
+            SqlParameter parameter27 = new SqlParameter();
+            parameter27.ParameterName = "@NapomenaIzlaz";
+            parameter27.SqlDbType = SqlDbType.NVarChar;
+            parameter27.Size = 100;
+            parameter27.Direction = ParameterDirection.Input;
+            parameter27.Value = NapomenaIzlaz;
+            myCommand.Parameters.Add(parameter27);
+
 
 
             myConnection.Open();
@@ -542,6 +573,183 @@ namespace WindowsFormsApplication1.Portirnica
                 {
                     // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
                 }
+            }
+        }
+        public void UpdRkShippingZavrseno(string DatumUtovara, string Vozilo)
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            SqlCommand myCommand = myConnection.CreateCommand();
+            myCommand.CommandText = "UpdateRkShippingZavrseno";
+            myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+            SqlParameter paramDatum = new SqlParameter();
+            paramDatum.ParameterName = "@DatumUtovara";
+            paramDatum.SqlDbType = SqlDbType.NVarChar;
+            paramDatum.Size = 20;
+            paramDatum.Direction = ParameterDirection.Input;
+            paramDatum.Value = DatumUtovara;
+            myCommand.Parameters.Add(paramDatum);
+
+            SqlParameter paramVozilo = new SqlParameter();
+            paramVozilo.ParameterName = "@Vozilo";
+            paramVozilo.SqlDbType = SqlDbType.NChar;
+            paramVozilo.Size = 50;
+            paramVozilo.Direction = ParameterDirection.Input;
+            paramVozilo.Value = Vozilo;
+            myCommand.Parameters.Add(paramVozilo);
+
+            myConnection.Open();
+            SqlTransaction myTransaction = myConnection.BeginTransaction();
+            myCommand.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                myCommand.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = myConnection.BeginTransaction();
+                myCommand.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis aktivnosti u Bazu");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Nije uspeo upis aktivnosti", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                myConnection.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+
+            }
+        }
+        public void UpdRkShippingPocetna(string DatumUtovara, string Vozilo)
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            SqlCommand myCommand = myConnection.CreateCommand();
+            myCommand.CommandText = "UpdateRkShippingPocetna";
+            myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+            SqlParameter paramDatum = new SqlParameter();
+            paramDatum.ParameterName = "@DatumUtovara";
+            paramDatum.SqlDbType = SqlDbType.NVarChar;
+            paramDatum.Size = 20;
+            paramDatum.Direction = ParameterDirection.Input;
+            paramDatum.Value = DatumUtovara;
+            myCommand.Parameters.Add(paramDatum);
+
+            SqlParameter paramVozilo = new SqlParameter();
+            paramVozilo.ParameterName = "@Vozilo";
+            paramVozilo.SqlDbType = SqlDbType.NChar;
+            paramVozilo.Size = 50;
+            paramVozilo.Direction = ParameterDirection.Input;
+            paramVozilo.Value = Vozilo;
+            myCommand.Parameters.Add(paramVozilo);
+
+            myConnection.Open();
+            SqlTransaction myTransaction = myConnection.BeginTransaction();
+            myCommand.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                myCommand.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = myConnection.BeginTransaction();
+                myCommand.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis aktivnosti u Bazu");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Nije uspeo upis aktivnosti", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                myConnection.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+
+            }
+        }
+        public void UpdRkShipping(string DatumUtovara, string Vozilo)
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            SqlCommand myCommand = myConnection.CreateCommand();
+            myCommand.CommandText = "UpdateRkShipping";
+            myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+            SqlParameter paramDatum = new SqlParameter();
+            paramDatum.ParameterName = "@DatumUtovara";
+            paramDatum.SqlDbType = SqlDbType.NVarChar;
+            paramDatum.Size = 20;
+            paramDatum.Direction = ParameterDirection.Input;
+            paramDatum.Value = DatumUtovara;
+            myCommand.Parameters.Add(paramDatum);
+
+            SqlParameter paramVozilo = new SqlParameter();
+            paramVozilo.ParameterName = "@Vozilo";
+            paramVozilo.SqlDbType = SqlDbType.NChar;
+            paramVozilo.Size = 50;
+            paramVozilo.Direction = ParameterDirection.Input;
+            paramVozilo.Value = Vozilo;
+            myCommand.Parameters.Add(paramVozilo);
+
+            myConnection.Open();
+            SqlTransaction myTransaction = myConnection.BeginTransaction();
+            myCommand.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                myCommand.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = myConnection.BeginTransaction();
+                myCommand.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis aktivnosti u Bazu");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Nije uspeo upis aktivnosti", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                myConnection.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+
             }
         }
     }
