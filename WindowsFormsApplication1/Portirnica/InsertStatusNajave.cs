@@ -613,7 +613,7 @@ namespace WindowsFormsApplication1.Portirnica
 
             catch (SqlException)
             {
-                throw new Exception("Neuspešan upis aktivnosti u Bazu");
+                throw new Exception("Neuspešan upis Zavrseno");
             }
 
             finally
@@ -621,7 +621,7 @@ namespace WindowsFormsApplication1.Portirnica
                 if (!error)
                 {
                     myTransaction.Commit();
-                    MessageBox.Show("Nije uspeo upis aktivnosti", "",
+                    MessageBox.Show("Nije uspeo Zavrsena", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
@@ -672,7 +672,7 @@ namespace WindowsFormsApplication1.Portirnica
 
             catch (SqlException)
             {
-                throw new Exception("Neuspešan upis aktivnosti u Bazu");
+                throw new Exception("Neuspešan Rk shipping pocetna");
             }
 
             finally
@@ -680,7 +680,7 @@ namespace WindowsFormsApplication1.Portirnica
                 if (!error)
                 {
                     myTransaction.Commit();
-                    MessageBox.Show("Nije uspeo upis aktivnosti", "",
+                    MessageBox.Show("Nije Pocetna", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
@@ -731,7 +731,7 @@ namespace WindowsFormsApplication1.Portirnica
 
             catch (SqlException)
             {
-                throw new Exception("Neuspešan upis aktivnosti u Bazu");
+                throw new Exception("Neuspešan RkShipping");
             }
 
             finally
@@ -739,7 +739,7 @@ namespace WindowsFormsApplication1.Portirnica
                 if (!error)
                 {
                     myTransaction.Commit();
-                    MessageBox.Show("Nije uspeo upis aktivnosti", "",
+                    MessageBox.Show("Nije RKShipping", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }

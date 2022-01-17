@@ -24,10 +24,15 @@ namespace WindowsFormsApplication1
         private void ObradaReklamacije_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'DataSet2.ReklamacijaNalepnica' table. You can move, or remove it, as needed.
-          //  this.ReklamacijaNalepnicaTableAdapter.Fill(this.DataSet2.ReklamacijaNalepnica);
+            //  this.ReklamacijaNalepnicaTableAdapter.Fill(this.DataSet2.ReklamacijaNalepnica);
             // TODO: This line of code loads data into the 'DataSet2.ReklamacijaNalepnica' table. You can move, or remove it, as needed.
-           // this.ReklamacijaNalepnicaTableAdapter.Fill(this.DataSet2.ReklamacijaNalepnica);
-            var select = " Select Distinct DatumUtovara, Cast(SUBSTRING(DatumUtovara, 1, Charindex('.',DatumUtovara) -1) as int)  as  Dan, Cast(Replace(SUBSTRING(DatumUtovara, Charindex('.',DatumUtovara)+1, Len(DatumUtovara)-12 -1 -( (Charindex('.',DatumUtovara) ))),'.','') as int) as  Mesec  From RkShipping where Stanje = 1  order by  Mesec, Dan";
+            // this.ReklamacijaNalepnicaTableAdapter.Fill(this.DataSet2.ReklamacijaNalepnica);
+            var select = " Select * from( Select Distinct DatumUtovara, Cast(SUBSTRING(DatumUtovara, 1, Charindex('.',DatumUtovara) -1) as int)  as  Dan, Cast(Replace(SUBSTRING(DatumUtovara, Charindex('.',DatumUtovara)+1, Len(DatumUtovara)-12 -1 -( (Charindex('.',DatumUtovara) ))),'.','') as int) as  Mesec  From RkShippingPocetna " +
+               " union " +
+               " Select Distinct DatumUtovara, Cast(SUBSTRING(DatumUtovara, 1, Charindex('.',DatumUtovara) -1) as int)  as  Dan, Cast(Replace(SUBSTRING(DatumUtovara, Charindex('.',DatumUtovara)+1, Len(DatumUtovara)-12 -1 -( (Charindex('.',DatumUtovara) ))),'.','') as int) as  Mesec  From RkShipping " +
+               " union " +
+               " Select Distinct DatumUtovara, Cast(SUBSTRING(DatumUtovara, 1, Charindex('.',DatumUtovara) -1) as int)  as  Dan, Cast(Replace(SUBSTRING(DatumUtovara, Charindex('.',DatumUtovara)+1, Len(DatumUtovara)-12 -1 -( (Charindex('.',DatumUtovara) ))),'.','') as int) as  Mesec   From RkShippingZavrseno where Izaslo<> 1) t1 order by t1.Mesec, t1.Dan";
+           
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -49,7 +54,13 @@ namespace WindowsFormsApplication1
         {
             //ZAMENA
             //Select Distinct Vozilo From RkShipping where Stanje = 1
-            var select = " Select Distinct RTrim(Vozilo) as Vozilo From RkShipping where Stanje = 1 and DatumUtovara = '" + cboDatumUtovara.Text + "'";
+            var select = " Select Distinct RTrim(Vozilo) as Vozilo From RkShippingPocetna where  DatumUtovara = '" + cboDatumUtovara.Text + "'" + 
+                " union " +
+               " Select Distinct RTrim(Vozilo) as Vozilo From RkShipping where  DatumUtovara = '" + cboDatumUtovara.Text + "'" +
+               " union " +
+               " Select Distinct RTrim(Vozilo) as Vozilo From RkShippingZavrseno where Izaslo<> 1 and  DatumUtovara = '" + cboDatumUtovara.Text + "'";
+
+
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -71,8 +82,12 @@ namespace WindowsFormsApplication1
         private void RefreshDataGrid()
         {
 
-            var select = " Select RkShippingItemRec.ShippingItemRecID, RkShippingItemRec.ShipingIdz,  RkShipping.ShippingNo as BarkodIstovara, RkShipping.BrojIstovara as BrojUtovara,RkShipping.BrojUtovara as BrojIstovara, RkShippingItemRec.SifraElementa as Element, Saloni.MestoIsporuke, RkShippingItemRec.SifraReklamacije, RkShippingItemRec.NazivReklamacije, RkShippingItemRec.KolicinaOrg, RkShippingItemRec.Zapisnik,  RkShippingItemRec.Paleta, RkShippingItemRec.Paket, RkShippingItemRec.BrojNalepnica, RkShippingItemRec.Tezina, RkShippingItemRec.LargoDimenzija, RkShippingItemRec.SifraReklamacijeLargo,  RkShippingItemRec.BrojKoleta  FROM RkShippingItemRec inner join RkShipping on  RkShipping.ShippingID = RkShippingItemRec.ShipingIdz  inner join SysKomitenti on RkShipping.KupacIDz = SysKomitenti.KomintentID inner join Saloni on RkShipping.SalonIDz = Saloni.SifraKomintentaMestoIsporuke where RkShipping.Vozilo  = '" + cboVozila.Text + "' and RkShipping.DatumUtovara = '" + cboDatumUtovara.Text + "'";
-           
+            var select = " Select RkShippingItemRecPocetna.ShippingItemRecID, RkShippingItemRecPocetna.ShipingIdz,  RkShippingPocetna.ShippingNo as BarkodIstovara, RkShippingPocetna.BrojIstovara as BrojUtovara,RkShippingPocetna.BrojUtovara as BrojIstovara, RkShippingItemRecPocetna.SifraElementa as Element, Saloni.MestoIsporuke, RkShippingItemRecPocetna.SifraReklamacije, RkShippingItemRecPocetna.NazivReklamacije, RkShippingItemRecPocetna.KolicinaOrg, RkShippingItemRecPocetna.Zapisnik,  RkShippingItemRecPocetna.Paleta, RkShippingItemRecPocetna.Paket, RkShippingItemRecPocetna.BrojNalepnica, RkShippingItemRecPocetna.Tezina, RkShippingItemRecPocetna.LargoDimenzija, RkShippingItemRecPocetna.SifraReklamacijeLargo,  RkShippingItemRecPocetna.BrojKoleta  FROM RkShippingItemRecPocetna inner join RkShippingPocetna on  RkShippingPocetna.ShippingID = RkShippingItemRecPocetna.ShipingIdz  inner join SysKomitenti on RkShippingPocetna.KupacIDz = SysKomitenti.KomintentID inner join Saloni on RkShippingPocetna.SalonIDz = Saloni.SifraKomintentaMestoIsporuke where RkShippingPocetna.Vozilo  = '" + cboVozila.Text + "' and RkShippingPocetna.DatumUtovara = '" + cboDatumUtovara.Text + "'" +
+            " union " +
+            " Select RkShippingItemRec.ShippingItemRecID, RkShippingItemRec.ShipingIdz,  RkShipping.ShippingNo as BarkodIstovara, RkShipping.BrojIstovara as BrojUtovara,RkShipping.BrojUtovara as BrojIstovara, RkShippingItemRec.SifraElementa as Element, Saloni.MestoIsporuke, RkShippingItemRec.SifraReklamacije, RkShippingItemRec.NazivReklamacije, RkShippingItemRec.KolicinaOrg, RkShippingItemRec.Zapisnik,  RkShippingItemRec.Paleta, RkShippingItemRec.Paket, RkShippingItemRec.BrojNalepnica, RkShippingItemRec.Tezina, RkShippingItemRec.LargoDimenzija, RkShippingItemRec.SifraReklamacijeLargo,  RkShippingItemRec.BrojKoleta  FROM RkShippingItemRec inner join RkShipping on  RkShipping.ShippingID = RkShippingItemRec.ShipingIdz  inner join SysKomitenti on RkShipping.KupacIDz = SysKomitenti.KomintentID inner join Saloni on RkShipping.SalonIDz = Saloni.SifraKomintentaMestoIsporuke where RkShipping.Vozilo  = '" + cboVozila.Text + "' and RkShipping.DatumUtovara = '" + cboDatumUtovara.Text + "'" +
+            " union " +
+            " Select RkShippingItemRecZavrseno.ShippingItemRecID, RkShippingItemRecZavrseno.ShipingIdz,  RkShippingZavrseno.ShippingNo as BarkodIstovara, RkShippingZavrseno.BrojIstovara as BrojUtovara,RkShippingZavrseno.BrojUtovara as BrojIstovara, RkShippingItemRecZavrseno.SifraElementa as Element, Saloni.MestoIsporuke, RkShippingItemRecZavrseno.SifraReklamacije, RkShippingItemRecZavrseno.NazivReklamacije, RkShippingItemRecZavrseno.KolicinaOrg, RkShippingItemRecZavrseno.Zapisnik,  RkShippingItemRecZavrseno.Paleta, RkShippingItemRecZavrseno.Paket, RkShippingItemRecZavrseno.BrojNalepnica, RkShippingItemRecZavrseno.Tezina, RkShippingItemRecZavrseno.LargoDimenzija, RkShippingItemRecZavrseno.SifraReklamacijeLargo,  RkShippingItemRecZavrseno.BrojKoleta  FROM RkShippingItemRecZavrseno inner join RkShippingZavrseno on  RkShippingZavrseno.ShippingID = RkShippingItemRecZavrseno.ShipingIdz  inner join SysKomitenti on RkShippingZavrseno.KupacIDz = SysKomitenti.KomintentID inner join Saloni on RkShippingZavrseno.SalonIDz = Saloni.SifraKomintentaMestoIsporuke where RkShippingZavrseno.Vozilo  = '" + cboVozila.Text + "' and RkShippingZavrseno.DatumUtovara = '" + cboDatumUtovara.Text + "'";
+
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -188,8 +203,13 @@ namespace WindowsFormsApplication1
                         SqlCommand query = new SqlCommand(querystr, connection);
                         query.ExecuteNonQuery();
 
-                      
+                        string querystr2 = "UPDATE RkShippingItemRecPocetna SET Paket='" + cboPaket.Text + "' WHERE ShippingItemRecId ='" + row.Cells[0].Value.ToString() + "'";
+                        SqlCommand query2 = new SqlCommand(querystr, connection);
+                        query2.ExecuteNonQuery();
 
+                        string querystr3 = "UPDATE RkShippingItemRecZavrsna SET Paket='" + cboPaket.Text + "' WHERE ShippingItemRecId ='" + row.Cells[0].Value.ToString() + "'";
+                        SqlCommand query3 = new SqlCommand(querystr, connection);
+                        query3.ExecuteNonQuery();
                         command.Connection.Close();
 
                     }
@@ -223,6 +243,13 @@ namespace WindowsFormsApplication1
                         SqlCommand query = new SqlCommand(querystr, connection);
                         query.ExecuteNonQuery();
 
+                        string querystr2 = "UPDATE RkShippingItemRecPocetna SET BrojNalepnica='" + txtBrojNalepnica.Text + "' WHERE ShippingItemRecId ='" + row.Cells[0].Value.ToString() + "'";
+                        SqlCommand query2 = new SqlCommand(querystr, connection);
+                        query2.ExecuteNonQuery();
+
+                        string querystr3 = "UPDATE RkShippingItemRecZavrseno SET BrojNalepnica='" + txtBrojNalepnica.Text + "' WHERE ShippingItemRecId ='" + row.Cells[0].Value.ToString() + "'";
+                        SqlCommand query3 = new SqlCommand(querystr, connection);
+                        query3.ExecuteNonQuery();
 
 
                         command.Connection.Close();
@@ -287,10 +314,6 @@ namespace WindowsFormsApplication1
 
         private void button5_Click(object sender, EventArgs e)
         {
-          
-
-
-
             DataSet2TableAdapters.ReklamacijaNalepnicaTableAdapter ta = new DataSet2TableAdapters.ReklamacijaNalepnicaTableAdapter();
             DataSet2.ReklamacijaNalepnicaDataTable dt = new DataSet2.ReklamacijaNalepnicaDataTable();
             ta.Fill(dt);
@@ -371,6 +394,14 @@ namespace WindowsFormsApplication1
                         string querystr = "UPDATE RkShippingItemRec SET BrojKoleta='" + txtBrojKoleta.Text + "' WHERE ShippingItemRecId ='" + row.Cells[0].Value.ToString() + "'";
                         SqlCommand query = new SqlCommand(querystr, connection);
                         query.ExecuteNonQuery();
+
+                        string querystr2 = "UPDATE RkShippingItemRecPocetna SET BrojKoleta='" + txtBrojKoleta.Text + "' WHERE ShippingItemRecId ='" + row.Cells[0].Value.ToString() + "'";
+                        SqlCommand query2 = new SqlCommand(querystr, connection);
+                        query2.ExecuteNonQuery();
+
+                        string querystr3 = "UPDATE RkShippingItemRecZavrseno SET BrojKoleta='" + txtBrojKoleta.Text + "' WHERE ShippingItemRecId ='" + row.Cells[0].Value.ToString() + "'";
+                        SqlCommand query3 = new SqlCommand(querystr, connection);
+                        query3.ExecuteNonQuery();
 
 
 
