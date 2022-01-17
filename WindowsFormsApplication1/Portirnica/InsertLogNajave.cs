@@ -14,7 +14,7 @@ namespace WindowsFormsApplication1.Portirnica
     {
         public void InsLogNajave(int IDNajave, string Promena, string Korisnik, DateTime DatumPromene)
         {
-
+            //
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
