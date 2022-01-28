@@ -43,7 +43,7 @@ namespace WindowsFormsApplication1
         {
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
                     DialogResult result;
-                    result = MessageBox.Show("Da li želite update webs podataka", "Azuriranje", buttons);
+                    result = MessageBox.Show("Da li želite update verzije", "Azuriranje", buttons);
                     if (result == System.Windows.Forms.DialogResult.Yes)
                     {
                        // MessageBox.Show("PA0");
@@ -182,6 +182,16 @@ namespace WindowsFormsApplication1
           
 
             myConnection.Close();
+        }
+
+        private void iconPictureBox3_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void iconPictureBox4_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }

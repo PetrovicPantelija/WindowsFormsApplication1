@@ -6,17 +6,100 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using FontAwesome.Sharp;
 
 namespace WindowsFormsApplication1
 {
     public partial class MainNabavka : Form
     {
+        private IconButton curentBtn;
+        private Panel leftBorderBtn;
+        private Form currentChildForm;
+
         string KorisnikM = "";
         int ReadNabavkaM = 0;
         public MainNabavka()
         {
             InitializeComponent();
+            leftBorderBtn = new Panel();
+            leftBorderBtn.Size = new Size(7, 50);
+            PanelMenu.Controls.Add(leftBorderBtn);
+            //form
+            this.Text = string.Empty;
+            this.ControlBox = false;
+            this.DoubleBuffered = true;
+            this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
         }
+
+        //Struktura za boje
+        private struct RGBColors
+        {
+            public static Color color1 = Color.FromArgb(250, 166, 27);
+            public static Color color2 = Color.FromArgb(250, 166, 27);
+            public static Color color3 = Color.FromArgb(250, 166, 27);
+            public static Color color4 = Color.FromArgb(250, 166, 27);
+            public static Color color5 = Color.FromArgb(250, 166, 27);
+            public static Color color6 = Color.FromArgb(250, 166, 27);
+            public static Color color7 = Color.FromArgb(250, 166, 27);
+            public static Color color8 = Color.FromArgb(250, 166, 27);
+        }
+
+        //metoda
+        private void ActivateButton(object senderBtn, Color color)
+        {
+            if (senderBtn != null)
+            {
+                DisableButton();
+                //button
+                curentBtn = (IconButton)senderBtn;
+                curentBtn.BackColor = Color.FromArgb(82, 108, 120);
+                curentBtn.ForeColor = color;
+                curentBtn.TextAlign = ContentAlignment.MiddleCenter;
+                curentBtn.IconColor = color;
+                curentBtn.TextImageRelation = TextImageRelation.TextBeforeImage;
+                curentBtn.ImageAlign = ContentAlignment.MiddleCenter;
+                //left border btn
+                //leftBorderBtn.BackColor = color;
+                // leftBorderBtn.Location = new Point(0, curentBtn.Location.Y);
+                // leftBorderBtn.Visible = true;
+                // leftBorderBtn.BringToFront();
+                //Icon curent child form
+                //iconCurentChildForm.IconChar = curentBtn.IconChar;
+                //iconCurentChildForm.IconColor = color;
+            }
+        }
+
+        private void DisableButton()
+        {
+            if (curentBtn != null)
+            {
+                curentBtn.BackColor = Color.FromArgb(69, 90, 100);
+                curentBtn.ForeColor = Color.White;
+                curentBtn.TextAlign = ContentAlignment.MiddleLeft;
+                curentBtn.IconColor = Color.White;
+                curentBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
+                curentBtn.ImageAlign = ContentAlignment.MiddleLeft;
+            }
+        }
+
+        private void OpenChildForm(Form childForm)
+        {
+            if (currentChildForm != null)
+            {
+                //otvaranje samo jedne forme
+                currentChildForm.Close();
+            }
+            currentChildForm = childForm;
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            panelDesktop.Controls.Add(childForm);
+            panelDesktop.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
+            //lblTitlechildForm.Text = childForm.Text;
+        }
+
 
         public MainNabavka(string KorisnikN, int ReadNabavka)
         {
@@ -190,6 +273,24 @@ namespace WindowsFormsApplication1
         {
             Magacin.frmMagacinTrenutnaTrebovanje fMt = new Magacin.frmMagacinTrenutnaTrebovanje();
             fMt.Show();
+        }
+
+        private void btnMagacin_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.color1);
+            OpenChildForm(new MenijiNabavka.frmMagacinNabavka());
+        }
+
+        private void btnNabavka_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.color1);
+            OpenChildForm(new MenijiNabavka.Nabavka());
+        }
+
+        private void btnPlan_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.color1);
+            OpenChildForm(new MenijiNabavka.frmPlan());
         }
     }
 }

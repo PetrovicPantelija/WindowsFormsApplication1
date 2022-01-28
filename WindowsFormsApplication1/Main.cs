@@ -10,15 +10,98 @@ using System.Windows.Forms;
 using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Configuration;
+using FontAwesome.Sharp;
 
 namespace WindowsFormsApplication1
 {
     public partial class Main : Form
     {
+        // polja
+        private IconButton curentBtn;
+        private Panel leftBorderBtn;
+        private Form currentChildForm;
+
         int trebaazurirati = 0;
         public Main()
         {
             InitializeComponent();
+            leftBorderBtn = new Panel();
+            leftBorderBtn.Size = new Size(7, 50);
+            PanelMenu.Controls.Add(leftBorderBtn);
+            //form
+            this.Text = string.Empty;
+            this.ControlBox = false;
+            this.DoubleBuffered = true;
+            this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
+        }
+
+        //Struktura za boje
+        private struct RGBColors
+        {
+            public static Color color1 = Color.FromArgb(250, 166, 27);
+            public static Color color2 = Color.FromArgb(250, 166, 27);
+            public static Color color3 = Color.FromArgb(250, 166, 27);
+            public static Color color4 = Color.FromArgb(250, 166, 27);
+            public static Color color5 = Color.FromArgb(250, 166, 27);
+            public static Color color6 = Color.FromArgb(250, 166, 27);
+            public static Color color7 = Color.FromArgb(250, 166, 27);
+            public static Color color8 = Color.FromArgb(250, 166, 27);
+        }
+
+        //metoda
+        private void ActivateButton(object senderBtn, Color color)
+        {
+            if (senderBtn != null)
+            {
+                DisableButton();
+                //button
+                curentBtn = (IconButton)senderBtn;
+                curentBtn.BackColor = Color.FromArgb(82, 108, 120);
+                curentBtn.ForeColor = color;
+                curentBtn.TextAlign = ContentAlignment.MiddleCenter;
+                curentBtn.IconColor = color;
+                curentBtn.TextImageRelation = TextImageRelation.TextBeforeImage;
+                curentBtn.ImageAlign = ContentAlignment.MiddleCenter;
+                //left border btn
+                //leftBorderBtn.BackColor = color;
+                // leftBorderBtn.Location = new Point(0, curentBtn.Location.Y);
+                // leftBorderBtn.Visible = true;
+                // leftBorderBtn.BringToFront();
+                //Icon curent child form
+                //iconCurentChildForm.IconChar = curentBtn.IconChar;
+                //iconCurentChildForm.IconColor = color;
+            }
+        }
+
+        private void DisableButton()
+        {
+            if (curentBtn != null)
+            {
+                curentBtn.BackColor = Color.FromArgb(69, 90, 100);
+                curentBtn.ForeColor = Color.White;
+                curentBtn.TextAlign = ContentAlignment.MiddleLeft;
+                curentBtn.IconColor = Color.White;
+                curentBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
+                curentBtn.ImageAlign = ContentAlignment.MiddleLeft;
+            }
+        }
+
+        private void OpenChildForm(Form childForm)
+        {
+            if (currentChildForm != null)
+            {
+                //otvaranje samo jedne forme
+                currentChildForm.Close();
+            }
+            currentChildForm = childForm;
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            panelDesktop.Controls.Add(childForm);
+            panelDesktop.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
+            //lblTitlechildForm.Text = childForm.Text;
         }
 
         public Main(int azuriraj)
@@ -724,22 +807,76 @@ namespace WindowsFormsApplication1
             reklpoc.Show();
         }
 
-        private void toolStripMenuItem7_Click(object sender, EventArgs e)
+        private void BtnWEBSPodaci_Click(object sender, EventArgs e)
         {
-            StampajPalZavrseno sp = new StampajPalZavrseno();
-            sp.Show();
+            ActivateButton(sender, RGBColors.color1);
+            OpenChildForm(new Meniji.frmWEBSPodaci());
         }
 
-        private void toolStripMenuItem8_Click(object sender, EventArgs e)
+        private void btnIsporuka_Click(object sender, EventArgs e)
         {
-            StampajReklamacijePZavrseno srp = new StampajReklamacijePZavrseno();
-            srp.Show();
+            ActivateButton(sender, RGBColors.color1);
+            OpenChildForm(new Meniji.frmIsporuke());
         }
 
-        private void toolStripMenuItem9_Click(object sender, EventArgs e)
+        private void btnPregledi_Click(object sender, EventArgs e)
         {
-            StampajPalSveZavrseno sps = new StampajPalSveZavrseno();
-            sps.Show();
+            ActivateButton(sender, RGBColors.color1);
+            OpenChildForm(new Meniji.frmPregledi());
+        }
+
+        private void btnPonisti_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.color1);
+            OpenChildForm(new Meniji.frmPonisti());
+        }
+
+        private void btnIstorija_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.color1);
+            OpenChildForm(new Meniji.frmIstorija());
+        }
+
+        private void btnPrenos_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.color1);
+            OpenChildForm(new Meniji.frmPrenos());
+        }
+
+        private void btn2018_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.color1);
+            OpenChildForm(new Meniji.frm2018());
+        }
+
+        private void btnTimovi_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.color1);
+            OpenChildForm(new Meniji.frmTimovi());
+        }
+
+        private void btnArhiviranje_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.color1);
+            OpenChildForm(new Meniji.frmArhiviranje());
+        }
+
+        private void btnReklamacija_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.color1);
+            OpenChildForm(new Meniji.frmReklamacije());
+        }
+
+        private void btnMagacin_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.color1);
+            OpenChildForm(new Meniji.frmMagacin());
+        }
+
+        private void btnAnalaizeMagacin_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.color1);
+            OpenChildForm(new Meniji.frmAnalizeMagacin());
         }
     }
 }
