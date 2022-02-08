@@ -143,5 +143,22 @@ namespace WindowsFormsApplication1
                 MessageBox.Show("Nemate pravo da uvozite neisporučene");
             }
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            progressBar1.Maximum = dataGridView1.Rows.Count;
+            progressBar1.Step = 1;
+            progressBar1.Value = 0;
+
+            InsertPorudzbina porudzbina = new InsertPorudzbina();
+
+           
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                // porudzbina.InsertPorudzbinaPostav(Convert.ToInt32(LargoPaketID), Convert.ToDecimal(Kolicina));
+                porudzbina.InsertBeleskaPostav(Convert.ToDateTime(DateTime.Now),txtBeleska.Text,  Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()), row.Cells[2].Value.ToString(), Convert.ToInt32(row.Cells[3].Value.ToString()), row.Cells[4].Value.ToString(), Convert.ToDecimal(row.Cells[5].Value.ToString()));
+                progressBar1.Value = progressBar1.Value + 1;
+            }
+        }
     }
 }

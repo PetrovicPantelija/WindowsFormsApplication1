@@ -37,12 +37,15 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtSifra = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.txtBeleska = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(11, 38);
+            this.progressBar1.Location = new System.Drawing.Point(11, 70);
             this.progressBar1.Margin = new System.Windows.Forms.Padding(2);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(998, 19);
@@ -52,10 +55,10 @@
             // 
             this.button2.Enabled = false;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button2.Location = new System.Drawing.Point(855, 3);
+            this.button2.Location = new System.Drawing.Point(805, 7);
             this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(154, 31);
+            this.button2.Size = new System.Drawing.Size(145, 27);
             this.button2.TabIndex = 41;
             this.button2.Text = "Formiraj porudzbinu";
             this.button2.UseVisualStyleBackColor = true;
@@ -65,10 +68,10 @@
             // 
             this.button1.Enabled = false;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button1.Location = new System.Drawing.Point(701, 3);
+            this.button1.Location = new System.Drawing.Point(577, 4);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(140, 31);
+            this.button1.Size = new System.Drawing.Size(134, 31);
             this.button1.TabIndex = 40;
             this.button1.Text = "Prikaži pakete";
             this.button1.UseVisualStyleBackColor = true;
@@ -84,11 +87,11 @@
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(158)))), ((int)(((byte)(192)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Enabled = false;
-            this.dataGridView1.Location = new System.Drawing.Point(11, 61);
+            this.dataGridView1.Location = new System.Drawing.Point(11, 93);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(998, 272);
+            this.dataGridView1.Size = new System.Drawing.Size(998, 240);
             this.dataGridView1.TabIndex = 39;
             // 
             // label2
@@ -96,7 +99,7 @@
             this.label2.AutoSize = true;
             this.label2.Enabled = false;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(489, 6);
+            this.label2.Location = new System.Drawing.Point(152, 42);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 17);
@@ -108,7 +111,7 @@
             this.dtpVremeOd.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpVremeOd.Enabled = false;
             this.dtpVremeOd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpVremeOd.Location = new System.Drawing.Point(558, 7);
+            this.dtpVremeOd.Location = new System.Drawing.Point(210, 42);
             this.dtpVremeOd.Name = "dtpVremeOd";
             this.dtpVremeOd.ShowUpDown = true;
             this.dtpVremeOd.Size = new System.Drawing.Size(108, 20);
@@ -148,11 +151,46 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // button4
+            // 
+            this.button4.Enabled = false;
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button4.Location = new System.Drawing.Point(805, 39);
+            this.button4.Margin = new System.Windows.Forms.Padding(2);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(144, 27);
+            this.button4.TabIndex = 167;
+            this.button4.Text = "Formiraj  belešku";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // txtBeleska
+            // 
+            this.txtBeleska.Location = new System.Drawing.Point(443, 42);
+            this.txtBeleska.Name = "txtBeleska";
+            this.txtBeleska.Size = new System.Drawing.Size(347, 20);
+            this.txtBeleska.TabIndex = 168;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Enabled = false;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.Location = new System.Drawing.Point(323, 42);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(115, 17);
+            this.label1.TabIndex = 169;
+            this.label1.Text = "Oznaka Beleške:";
+            // 
             // frmPorudzbinaImport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1020, 344);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtBeleska);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtSifra);
@@ -182,5 +220,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtSifra;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TextBox txtBeleska;
+        private System.Windows.Forms.Label label1;
     }
 }
