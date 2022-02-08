@@ -39,7 +39,11 @@ namespace WindowsFormsApplication1
             cboVozila.DisplayMember = "Vozilo";
             cboVozila.ValueMember = "Vozilo";
             */
-            var select = " Select Distinct DatumUtovara, Cast(SUBSTRING(DatumUtovara, 1, Charindex('.',DatumUtovara) -1) as int)  as  Dan, Cast(Replace(SUBSTRING(DatumUtovara, Charindex('.',DatumUtovara)+1, Len(DatumUtovara)-12 -1 -( (Charindex('.',DatumUtovara) ))),'.','') as int) as  Mesec  From RkShipping order by  Mesec, Dan";
+            var select = " Select Distinct DatumUtovara, Cast(SUBSTRING(DatumUtovara, 1, " +
+                "Charindex('.',DatumUtovara) -1) as int)  as  Dan, " +
+                "Cast(Replace(SUBSTRING(DatumUtovara, " +
+                "Charindex('.',DatumUtovara)+1, Len(DatumUtovara)-12 -1 -( (Charindex('.',DatumUtovara) ))),'.','') as int) as  Mesec " +
+                " From RkShipping order by  Mesec, Dan";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -52,7 +56,7 @@ namespace WindowsFormsApplication1
             cboDatumUtovara.DisplayMember = "DatumUtovara";
             cboDatumUtovara.ValueMember = "DatumUtovara";
 
-            this.reportViewer1.RefreshReport();
+            
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -72,7 +76,14 @@ namespace WindowsFormsApplication1
             cboDatumUtovara.DisplayMember = "DatumUtovara";
             cboDatumUtovara.ValueMember = "DatumUtovara";
              * */
-            var select = " Select Distinct RTrim(Vozilo) as Vozilo From RkShipping where  DatumUtovara = '" + cboDatumUtovara.Text + "'";
+            var select = " Select Distinct(t1.Vozilo) as Vozilo from (Select Distinct RTrim(Vozilo) as Vozilo From " +
+                "RkShipping where  DatumUtovara = '" + cboDatumUtovara.Text + "'" +
+               " union " +
+               " Select Distinct RTrim(Vozilo) as Vozilo From " +
+                "RkShippingPocetna where  DatumUtovara = '" + cboDatumUtovara.Text + "'" +
+                 " union " +
+               " Select Distinct RTrim(Vozilo) as Vozilo From " +
+                "RkShippingZavrseno where  DatumUtovara = '" + cboDatumUtovara.Text + "') t1 ";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -93,6 +104,7 @@ namespace WindowsFormsApplication1
             Dataset5.TestProcedurePalSvePDataTable dt = new Dataset5.TestProcedurePalSvePDataTable();
             // DataSet4.TestProcedurePalDataTable dt = new DataSet2.TestProcedurePalDataTable();
             ta.Fill(dt, cboVozila.Text, cboDatumUtovara.Text);
+          /*
             ReportDataSource rds = new ReportDataSource();
             rds.Name = "DataSet2";
             rds.Value = dt;
@@ -104,7 +116,7 @@ namespace WindowsFormsApplication1
             ReportDataSource rds4 = new ReportDataSource();
             rds4.Name = "DataSet4";
             rds4.Value = dt;
-
+          */
             ReportDataSource rds5 = new ReportDataSource();
             rds5.Name = "DataSet5";
             rds5.Value = dt;
@@ -120,13 +132,13 @@ namespace WindowsFormsApplication1
             // ReportParameter rp2 = new ReportParameter();
             //ReportParameter rp3 = new ReportParameter();
             reportViewer1.LocalReport.DataSources.Clear();
-            reportViewer1.LocalReport.ReportPath = "Report5.rdlc";
+            reportViewer1.LocalReport.ReportPath = "Report11.rdlc";
             reportViewer1.LocalReport.SetParameters(par);
             // reportViewer1.LocalReport.SetParameters(new ReportParameter[] { rp2 });
             //reportViewer1.LocalReport.SetParameters(new ReportParameter[] { rp3 });
             //reportViewer1.LocalReport.DataSources.Add(rds);
-            reportViewer1.LocalReport.DataSources.Add(rds2);
-            reportViewer1.LocalReport.DataSources.Add(rds4);
+          //  reportViewer1.LocalReport.DataSources.Add(rds2);
+           // reportViewer1.LocalReport.DataSources.Add(rds4);
             reportViewer1.LocalReport.DataSources.Add(rds5);
             reportViewer1.RefreshReport();
         }
