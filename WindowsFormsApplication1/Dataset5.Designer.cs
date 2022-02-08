@@ -301,11 +301,11 @@ namespace WindowsFormsApplication1 {
             
             private global::System.Data.DataColumn columnBrojUtovara;
             
-            private global::System.Data.DataColumn columnColumn1;
-            
             private global::System.Data.DataColumn columnVodeci;
             
             private global::System.Data.DataColumn columnDrugi;
+            
+            private global::System.Data.DataColumn columnColumn1;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
@@ -430,14 +430,6 @@ namespace WindowsFormsApplication1 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn Column1Column {
-                get {
-                    return this.columnColumn1;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public global::System.Data.DataColumn VodeciColumn {
                 get {
                     return this.columnVodeci;
@@ -449,6 +441,14 @@ namespace WindowsFormsApplication1 {
             public global::System.Data.DataColumn DrugiColumn {
                 get {
                     return this.columnDrugi;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn Column1Column {
+                get {
+                    return this.columnColumn1;
                 }
             }
             
@@ -489,7 +489,7 @@ namespace WindowsFormsApplication1 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public TestProcedurePalSvePRow AddTestProcedurePalSvePRow(string ShippingNo, string DatumIstovara, string Paleta, string PaketName, string LargoNaziv, decimal Kolicina, string DatumUtovara, string Vozilo, string PrikljucnoVoziloReg, string BrojIstovara, string BrojUtovara, string Column1, int Vodeci, int Drugi) {
+            public TestProcedurePalSvePRow AddTestProcedurePalSvePRow(string ShippingNo, string DatumIstovara, string Paleta, string PaketName, string LargoNaziv, decimal Kolicina, string DatumUtovara, string Vozilo, string PrikljucnoVoziloReg, string BrojIstovara, string BrojUtovara, int Vodeci, int Drugi, string Column1) {
                 TestProcedurePalSvePRow rowTestProcedurePalSvePRow = ((TestProcedurePalSvePRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ShippingNo,
@@ -503,9 +503,9 @@ namespace WindowsFormsApplication1 {
                         PrikljucnoVoziloReg,
                         BrojIstovara,
                         BrojUtovara,
-                        Column1,
                         Vodeci,
-                        Drugi};
+                        Drugi,
+                        Column1};
                 rowTestProcedurePalSvePRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTestProcedurePalSvePRow);
                 return rowTestProcedurePalSvePRow;
@@ -539,9 +539,9 @@ namespace WindowsFormsApplication1 {
                 this.columnPrikljucnoVoziloReg = base.Columns["PrikljucnoVoziloReg"];
                 this.columnBrojIstovara = base.Columns["BrojIstovara"];
                 this.columnBrojUtovara = base.Columns["BrojUtovara"];
-                this.columnColumn1 = base.Columns["Column1"];
                 this.columnVodeci = base.Columns["Vodeci"];
                 this.columnDrugi = base.Columns["Drugi"];
+                this.columnColumn1 = base.Columns["Column1"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -569,12 +569,12 @@ namespace WindowsFormsApplication1 {
                 base.Columns.Add(this.columnBrojIstovara);
                 this.columnBrojUtovara = new global::System.Data.DataColumn("BrojUtovara", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBrojUtovara);
-                this.columnColumn1 = new global::System.Data.DataColumn("Column1", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnColumn1);
                 this.columnVodeci = new global::System.Data.DataColumn("Vodeci", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnVodeci);
                 this.columnDrugi = new global::System.Data.DataColumn("Drugi", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDrugi);
+                this.columnColumn1 = new global::System.Data.DataColumn("Column1", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnColumn1);
                 this.columnShippingNo.ReadOnly = true;
                 this.columnShippingNo.MaxLength = 25;
                 this.columnDatumIstovara.ReadOnly = true;
@@ -595,10 +595,10 @@ namespace WindowsFormsApplication1 {
                 this.columnBrojIstovara.MaxLength = 6;
                 this.columnBrojUtovara.ReadOnly = true;
                 this.columnBrojUtovara.MaxLength = 6;
-                this.columnColumn1.ReadOnly = true;
-                this.columnColumn1.MaxLength = 16;
                 this.columnVodeci.ReadOnly = true;
                 this.columnDrugi.ReadOnly = true;
+                this.columnColumn1.ReadOnly = true;
+                this.columnColumn1.MaxLength = 16;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -918,22 +918,6 @@ namespace WindowsFormsApplication1 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string Column1 {
-                get {
-                    try {
-                        return ((string)(this[this.tableTestProcedurePalSveP.Column1Column]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Column1\' in table \'TestProcedurePalSveP\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableTestProcedurePalSveP.Column1Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public int Vodeci {
                 get {
                     try {
@@ -961,6 +945,22 @@ namespace WindowsFormsApplication1 {
                 }
                 set {
                     this[this.tableTestProcedurePalSveP.DrugiColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string Column1 {
+                get {
+                    try {
+                        return ((string)(this[this.tableTestProcedurePalSveP.Column1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Column1\' in table \'TestProcedurePalSveP\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTestProcedurePalSveP.Column1Column] = value;
                 }
             }
             
@@ -1098,18 +1098,6 @@ namespace WindowsFormsApplication1 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsColumn1Null() {
-                return this.IsNull(this.tableTestProcedurePalSveP.Column1Column);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetColumn1Null() {
-                this[this.tableTestProcedurePalSveP.Column1Column] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsVodeciNull() {
                 return this.IsNull(this.tableTestProcedurePalSveP.VodeciColumn);
             }
@@ -1130,6 +1118,18 @@ namespace WindowsFormsApplication1 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetDrugiNull() {
                 this[this.tableTestProcedurePalSveP.DrugiColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsColumn1Null() {
+                return this.IsNull(this.tableTestProcedurePalSveP.Column1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetColumn1Null() {
+                this[this.tableTestProcedurePalSveP.Column1Column] = global::System.Convert.DBNull;
             }
         }
         
@@ -1303,9 +1303,9 @@ namespace WindowsFormsApplication1.Dataset5TableAdapters {
             tableMapping.ColumnMappings.Add("PrikljucnoVoziloReg", "PrikljucnoVoziloReg");
             tableMapping.ColumnMappings.Add("BrojIstovara", "BrojIstovara");
             tableMapping.ColumnMappings.Add("BrojUtovara", "BrojUtovara");
-            tableMapping.ColumnMappings.Add("Column1", "Column1");
             tableMapping.ColumnMappings.Add("Vodeci", "Vodeci");
             tableMapping.ColumnMappings.Add("Drugi", "Drugi");
+            tableMapping.ColumnMappings.Add("Column1", "Column1");
             this._adapter.TableMappings.Add(tableMapping);
         }
         

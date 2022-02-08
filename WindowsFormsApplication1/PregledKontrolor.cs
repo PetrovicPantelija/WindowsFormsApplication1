@@ -48,7 +48,7 @@ namespace WindowsFormsApplication1
 
         private void refresh1()
         {
-            var select = " SELECT Paleta, RkShipping.BrojIstovara as BrojUtovara, RkShipping.BrojUtovara as BrojIsporuke , MestoIsporuke, RkShippingItemPak.ShippingItemPakID , RkShippingItemPak.PaketName, RkShippingItemPak.LargoPakID as SifLargo , RkShippingItemPak.LargoNaziv, KolicinaOrg, Kolicina,  Pakerista as Paletirano, Pakuje as Paletar, VremePakovanja as VremePaletiranja,Kontrolisao as Kontrolisano, KOntrolise as Kontrolor, VremeKontrole FROM [dbo].RkShippingItemPak inner join RkShipping on [dbo].RkShippingItemPak.ShipingIDz = RkShipping.[ShippingID] inner join Saloni on RkShipping.SalonIDz = Saloni.SifraKomintentaMestoIsporuke where RkShipping.Vozilo  = '" + cboVozila.Text + "' and RkShipping.DatumUtovara = '" + cboDatumUtovara.Text + "'";
+            var select = " SELECT Paleta, RkShipping.BrojIstovara as BrojUtovara, RkShipping.BrojUtovara as BrojIsporuke , MestoIsporuke, RkShippingItemPak.ShippingItemPakID , RkShippingItemPak.PaketName, RkShippingItemPak.LargoPakID as SifLargo , RkShippingItemPak.LargoNaziv, KolicinaOrg, Kolicina,  Pakerista as Paletirano, Pakuje as Paletar, VremePakovanja as VremePaletiranja,Kontrolisao as Kontrolisano, KOntrolise as Kontrolor, VremeKontrole FROM [dbo].RkShippingItemPak inner join RkShipping on [dbo].RkShippingItemPak.ShipingIDz = RkShipping.[ShippingID] inner join Saloni on RkShipping.SalonIDz = Saloni.SifraKomintentaMestoIsporuke where RkShipping.Vozilo  = '" + cboVozila.Text + "' and RkShipping.DatumUtovara = '" + cboDatumUtovara.Text + "' Order by Paleta asc";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -167,7 +167,7 @@ namespace WindowsFormsApplication1
         private void refresh2()
         {
             pregled = 2;//Pregled po paleti
-            var select = " SELECT Paleta, PaketName, Kolicina, LargoPakID, Kontrolisao, KOntrolise, VremeKontrole, Pakerista, Pakuje, VremePakovanja FROM [dbo].RkShippingItemPak inner join RkShipping on [dbo].RkShippingItemPak.ShipingIDz = RkShipping.[ShippingID] where RkShipping.Vozilo  = '" + cboVozila.Text + "' and RkShipping.DatumUtovara = '" + cboDatumUtovara.Text + "' and [dbo].RkShippingItemPak.Paleta = '" + cboPaleta.Text + "'";
+            var select = " SELECT Paleta, PaketName, Kolicina, LargoPakID, Kontrolisao, KOntrolise, VremeKontrole, Pakerista, Pakuje, VremePakovanja FROM [dbo].RkShippingItemPak inner join RkShipping on [dbo].RkShippingItemPak.ShipingIDz = RkShipping.[ShippingID] where RkShipping.Vozilo  = '" + cboVozila.Text + "' and RkShipping.DatumUtovara = '" + cboDatumUtovara.Text + "' and [dbo].RkShippingItemPak.Paleta = '" + cboPaleta.Text + "' Order by Paleta";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -255,7 +255,7 @@ namespace WindowsFormsApplication1
         private void button3_Click(object sender, EventArgs e)
         {
 
-            var select = " Select Distinct RkShippingItemPak.Paleta From RkShipping inner Join RkShippingItemPak on RkShipping.ShippingId = RkShippingItemPak.ShipingIdz where RkShipping.Stanje = 1 and RkShipping.Vozilo = '" + cboVozila.Text + "' and RkShipping.DatumUtovara = '" + cboDatumUtovara.Text + "'";
+            var select = " Select Distinct RkShippingItemPak.Paleta From RkShipping inner Join RkShippingItemPak on RkShipping.ShippingId = RkShippingItemPak.ShipingIdz where RkShipping.Stanje = 1 and RkShipping.Vozilo = '" + cboVozila.Text + "' and RkShipping.DatumUtovara = '" + cboDatumUtovara.Text + "' order by RkShippingItemPak.Paleta asc";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -493,7 +493,7 @@ namespace WindowsFormsApplication1
 
         private void refresh3()
         {
-            var select = " SELECT Paleta, RkShipping.BrojIstovara as BrojUtovara, RkShipping.BrojUtovara as BrojIsporuke , MestoIsporuke, RkShippingItemRec.ShippingItemRecID , RkShippingItemRec.Zapisnik AS Zapisnik, RkShippingItemRec.SifraReklamacije as SifLargo , RkShippingItemREC.NazivReklamacije,  RkShippingItemREC.Opis,KolicinaOrg,  Kolicina, Paletirano, Paletar as Paletar, VremePakovanja as VremePaletiranja, RkShippingItemRec.KontrolisaoVideo as Kontrolisano, Kontrolor as KOntrolor ,  RkShippingItemRec.VremeKontrole FROM [dbo].RkShippingItemRec inner join RkShipping on [dbo].RkShippingItemRec.ShipingIDz = RkShipping.[ShippingID] inner join Saloni on RkShipping.SalonIDz = Saloni.SifraKomintentaMestoIsporuke where RkShipping.Vozilo  = '" + cboVozila.Text + "' and RkShipping.DatumUtovara = '" + cboDatumUtovara.Text + "'";
+            var select = " SELECT Paleta, RkShipping.BrojIstovara as BrojUtovara, RkShipping.BrojUtovara as BrojIsporuke , MestoIsporuke, RkShippingItemRec.ShippingItemRecID , RkShippingItemRec.Zapisnik AS Zapisnik, RkShippingItemRec.SifraReklamacije as SifLargo , RkShippingItemREC.NazivReklamacije,  RkShippingItemREC.Opis,KolicinaOrg,  Kolicina, Paletirano, Paletar as Paletar, VremePakovanja as VremePaletiranja, RkShippingItemRec.KontrolisaoVideo as Kontrolisano, Kontrolor as KOntrolor ,  RkShippingItemRec.VremeKontrole FROM [dbo].RkShippingItemRec inner join RkShipping on [dbo].RkShippingItemRec.ShipingIDz = RkShipping.[ShippingID] inner join Saloni on RkShipping.SalonIDz = Saloni.SifraKomintentaMestoIsporuke where RkShipping.Vozilo  = '" + cboVozila.Text + "' and RkShipping.DatumUtovara = '" + cboDatumUtovara.Text + "' order by Paleta asc";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);

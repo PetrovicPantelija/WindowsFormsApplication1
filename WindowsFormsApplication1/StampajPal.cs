@@ -98,7 +98,7 @@ namespace WindowsFormsApplication1
 
         private void button3_Click(object sender, EventArgs e)
         {
-            var select = " Select Distinct RkShippingItemPak.Paleta From RkShipping inner Join RkShippingItemPak on RkShipping.ShippingId = RkShippingItemPak.ShipingIdz where  RkShipping.Vozilo = '" + cboVozila.Text + "' and RkShipping.DatumUtovara = '" + cboDatumUtovara.Text + "'";
+            var select = " Select Distinct RkShippingItemPak.Paleta From RkShipping inner Join RkShippingItemPak on RkShipping.ShippingId = RkShippingItemPak.ShipingIdz where  RkShipping.Vozilo = '" + cboVozila.Text + "' and RkShipping.DatumUtovara = '" + cboDatumUtovara.Text + "' order by RkShippingItemPak.Paleta asc";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
