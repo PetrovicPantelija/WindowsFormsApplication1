@@ -135,6 +135,7 @@ namespace WindowsFormsApplication1
             {
                 button1.Enabled = true;
                 button2.Enabled = true;
+                button4.Enabled = true;
                 dataGridView1.Enabled = true;
                 dtpVremeOd.Enabled = true;
             }
@@ -156,9 +157,15 @@ namespace WindowsFormsApplication1
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 // porudzbina.InsertPorudzbinaPostav(Convert.ToInt32(LargoPaketID), Convert.ToDecimal(Kolicina));
-                porudzbina.InsertBeleskaPostav(Convert.ToDateTime(DateTime.Now),txtBeleska.Text,  Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()), row.Cells[2].Value.ToString(), Convert.ToInt32(row.Cells[3].Value.ToString()), row.Cells[4].Value.ToString(), Convert.ToDecimal(row.Cells[5].Value.ToString()));
+                porudzbina.InsertBeleskaPostav(txtBeleska.Text,  Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()), row.Cells[2].Value.ToString(), Convert.ToInt32(row.Cells[3].Value.ToString()), row.Cells[4].Value.ToString(), Convert.ToDouble(row.Cells[5].Value.ToString()));
                 progressBar1.Value = progressBar1.Value + 1;
             }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            frmPorudzbinaImportPregled porimp = new frmPorudzbinaImportPregled();
+            porimp.Show();
         }
     }
 }
