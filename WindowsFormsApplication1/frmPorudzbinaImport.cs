@@ -121,7 +121,15 @@ namespace WindowsFormsApplication1
                 porudzbina.InsertPorudzbinaPostav(Convert.ToInt32(row.Cells[3].Value.ToString()), Convert.ToInt32(row.Cells[5].Value.ToString()));
                 progressBar1.Value = progressBar1.Value + 1;
             }
-          
+
+            txtBeleska.Text = DateTime.Now.ToString() + '-' + "Porudzbina";
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                // porudzbina.InsertPorudzbinaPostav(Convert.ToInt32(LargoPaketID), Convert.ToDecimal(Kolicina));
+                porudzbina.InsertBeleskaPostav(txtBeleska.Text, Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()), row.Cells[2].Value.ToString(), Convert.ToInt32(row.Cells[3].Value.ToString()), row.Cells[4].Value.ToString(), Convert.ToDouble(row.Cells[5].Value.ToString()));
+                progressBar1.Value = progressBar1.Value + 1;
+            }
+
         }
 
         private void frmPorudzbinaImport_Load(object sender, EventArgs e)

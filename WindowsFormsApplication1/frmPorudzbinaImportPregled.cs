@@ -20,7 +20,7 @@ namespace WindowsFormsApplication1
 
         private void frmPorudzbinaImportPregled_Load(object sender, EventArgs e)
         {
-            var select = " Select Distinct RTrim(NazivZapisa) as NazivZapisa From Beleske";
+            var select = " Select Distinct RTrim(NazivZapisa) as NazivZapisa From Beleske order by RTrim(NazivZapisa)";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -52,6 +52,14 @@ namespace WindowsFormsApplication1
            
             
             dataGridView1.Refresh();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            InsertPorudzbina porudzbina = new InsertPorudzbina();
+
+            porudzbina.InsertPor(cboVozila.SelectedValue);
+            MessageBox.Show("Uspešno ste obrisali podatke");
         }
     }
 }
