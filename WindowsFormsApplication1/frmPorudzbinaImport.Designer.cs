@@ -41,6 +41,7 @@
             this.button5 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.dtpVremeOd = new System.Windows.Forms.DateTimePicker();
+            this.progressBar2 = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -88,11 +89,11 @@
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(158)))), ((int)(((byte)(192)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Enabled = false;
-            this.dataGridView1.Location = new System.Drawing.Point(11, 93);
+            this.dataGridView1.Location = new System.Drawing.Point(11, 123);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(998, 240);
+            this.dataGridView1.Size = new System.Drawing.Size(998, 210);
             this.dataGridView1.TabIndex = 39;
             // 
             // label5
@@ -196,11 +197,20 @@
             this.dtpVremeOd.TabIndex = 163;
             this.dtpVremeOd.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
+            // progressBar2
+            // 
+            this.progressBar2.Location = new System.Drawing.Point(11, 93);
+            this.progressBar2.Margin = new System.Windows.Forms.Padding(2);
+            this.progressBar2.Name = "progressBar2";
+            this.progressBar2.Size = new System.Drawing.Size(998, 19);
+            this.progressBar2.TabIndex = 171;
+            // 
             // frmPorudzbinaImport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1020, 344);
+            this.Controls.Add(this.progressBar2);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtBeleska);
@@ -238,5 +248,6 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dtpVremeOd;
+        private System.Windows.Forms.ProgressBar progressBar2;
     }
 }

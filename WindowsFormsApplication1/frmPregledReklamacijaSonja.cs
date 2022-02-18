@@ -659,11 +659,17 @@ namespace WindowsFormsApplication1
                     }
                 }
             }
-            var select = " Select Distinct DatumUtovara, Cast(SUBSTRING(DatumUtovara, 1, Charindex('.',DatumUtovara) -1) as int)  as  Dan, Cast(Replace(SUBSTRING(DatumUtovara, Charindex('.',DatumUtovara)+1, Len(DatumUtovara)-12 -1 -( (Charindex('.',DatumUtovara) ))),'.','') as int) as  Mesec " +
-            " From RkShippingZavrseno " +
-            " inner join RkShippingItemPakZavrseno on RkShippingZavrseno.ShippingID = RkShippingItemPakZavrseno.ShipingIDz " +
-            " inner join SysKomitenti on SysKomitenti.KomintentID = RkShippingZavrseno.KupacIdz  " +
-            " where SysKomitenti.KomintentID in (  " + kupci + " ) order by  Mesec, Dan";
+            var select = " Select t1.* from (Select Distinct SysKomitenti.KomintentID, DatumUtovara, Cast(SUBSTRING(DatumUtovara, 1, Charindex('.',DatumUtovara) -1) as int)  as  Dan, Cast(Replace(SUBSTRING(DatumUtovara, Charindex('.',DatumUtovara)+1, Len(DatumUtovara)-12 -1 -( (Charindex('.',DatumUtovara) ))),'.','') as int) as  Mesec " +
+  "From RkShippingZavrseno " +
+  " inner join RkShippingItemPakZavrseno on RkShippingZavrseno.ShippingID = RkShippingItemPakZavrseno.ShipingIDz " +
+  " inner join SysKomitenti on SysKomitenti.KomintentID = RkShippingZavrseno.KupacIdz " +
+ " union " +
+ " Select Distinct SysKomitenti.KomintentID, DatumUtovara, Cast(SUBSTRING(DatumUtovara, 1, Charindex('.', DatumUtovara) - 1) as int) as Dan, Cast(Replace(SUBSTRING(DatumUtovara, Charindex('.', DatumUtovara) + 1, Len(DatumUtovara) - 12 - 1 - ((Charindex('.', DatumUtovara)))), '.', '') as int) as Mesec " +
+ " From RkShippingArhiv " +
+ " inner join RkShippingItemPakArhiv on RkShippingArhiv.ShippingID = RkShippingItemPakArhiv.ShipingIDz " +
+ " inner join SysKomitenti on SysKomitenti.KomintentID = RkShippingArhiv.KupacIdz " +
+ " where RkShippingArhiv.ShippingID > 2100000) t1 " +
+ " where t1.KomintentID in (" + kupci + ") order by  Mesec, Dan";
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);

@@ -58,7 +58,7 @@ namespace WindowsFormsApplication1
         {
             InsertPorudzbina porudzbina = new InsertPorudzbina();
 
-            porudzbina.InsertPor(cboVozila.SelectedValue);
+            porudzbina.DeleteBeleska(cboVozila.Text);
             MessageBox.Show("Uspešno ste obrisali podatke");
         }
     }
