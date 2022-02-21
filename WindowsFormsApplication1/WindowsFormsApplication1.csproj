@@ -281,6 +281,12 @@
     <Compile Include="frmPorudzbinaImport.Designer.cs">
       <DependentUpon>frmPorudzbinaImport.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPorudzbinaImportPregled.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPorudzbinaImportPregled.Designer.cs">
+      <DependentUpon>frmPorudzbinaImportPregled.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPorudzbinaPregled.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1083,6 +1089,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmPorudzbinaImport.resx">
       <DependentUpon>frmPorudzbinaImport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPorudzbinaImportPregled.resx">
+      <DependentUpon>frmPorudzbinaImportPregled.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPorudzbinaPregled.resx">
       <DependentUpon>frmPorudzbinaPregled.cs</DependentUpon>
