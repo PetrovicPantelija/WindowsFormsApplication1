@@ -103,12 +103,14 @@
             this.spremniZaIzlazakToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.izašliToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.posaljiMailPesicuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -172,10 +174,10 @@
             // 
             // txtNapomena
             // 
-            this.txtNapomena.Location = new System.Drawing.Point(193, 123);
+            this.txtNapomena.Location = new System.Drawing.Point(193, 92);
             this.txtNapomena.Multiline = true;
             this.txtNapomena.Name = "txtNapomena";
-            this.txtNapomena.Size = new System.Drawing.Size(162, 108);
+            this.txtNapomena.Size = new System.Drawing.Size(162, 139);
             this.txtNapomena.TabIndex = 9;
             // 
             // txtKorisnikOtvorio
@@ -215,15 +217,18 @@
             // 
             // txtUtovarBroj
             // 
-            this.txtUtovarBroj.Location = new System.Drawing.Point(193, 81);
+            this.txtUtovarBroj.Location = new System.Drawing.Point(318, 71);
             this.txtUtovarBroj.Name = "txtUtovarBroj";
-            this.txtUtovarBroj.Size = new System.Drawing.Size(120, 20);
+            this.txtUtovarBroj.Size = new System.Drawing.Size(37, 20);
             this.txtUtovarBroj.TabIndex = 13;
+            this.txtUtovarBroj.Text = "0";
+            this.txtUtovarBroj.Visible = false;
             // 
             // chkPaleta1
             // 
             this.chkPaleta1.AutoSize = true;
-            this.chkPaleta1.Location = new System.Drawing.Point(9, 23);
+            this.chkPaleta1.Enabled = false;
+            this.chkPaleta1.Location = new System.Drawing.Point(20, 18);
             this.chkPaleta1.Name = "chkPaleta1";
             this.chkPaleta1.Size = new System.Drawing.Size(109, 17);
             this.chkPaleta1.TabIndex = 15;
@@ -233,7 +238,8 @@
             // chkPaleta2
             // 
             this.chkPaleta2.AutoSize = true;
-            this.chkPaleta2.Location = new System.Drawing.Point(172, 24);
+            this.chkPaleta2.Enabled = false;
+            this.chkPaleta2.Location = new System.Drawing.Point(263, 18);
             this.chkPaleta2.Name = "chkPaleta2";
             this.chkPaleta2.Size = new System.Drawing.Size(109, 17);
             this.chkPaleta2.TabIndex = 16;
@@ -245,7 +251,7 @@
             this.dtpDatum1.CustomFormat = "dd.MM.yyyy HH.mm";
             this.dtpDatum1.Enabled = false;
             this.dtpDatum1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDatum1.Location = new System.Drawing.Point(6, 63);
+            this.dtpDatum1.Location = new System.Drawing.Point(16, 54);
             this.dtpDatum1.Name = "dtpDatum1";
             this.dtpDatum1.Size = new System.Drawing.Size(143, 20);
             this.dtpDatum1.TabIndex = 17;
@@ -256,7 +262,7 @@
             this.dtpDatum2.CustomFormat = "dd.MM.yyyy HH.mm";
             this.dtpDatum2.Enabled = false;
             this.dtpDatum2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDatum2.Location = new System.Drawing.Point(172, 64);
+            this.dtpDatum2.Location = new System.Drawing.Point(263, 53);
             this.dtpDatum2.Name = "dtpDatum2";
             this.dtpDatum2.Size = new System.Drawing.Size(137, 20);
             this.dtpDatum2.TabIndex = 18;
@@ -265,7 +271,7 @@
             // txtKontrolor2
             // 
             this.txtKontrolor2.Enabled = false;
-            this.txtKontrolor2.Location = new System.Drawing.Point(172, 106);
+            this.txtKontrolor2.Location = new System.Drawing.Point(263, 91);
             this.txtKontrolor2.Name = "txtKontrolor2";
             this.txtKontrolor2.Size = new System.Drawing.Size(137, 20);
             this.txtKontrolor2.TabIndex = 20;
@@ -273,7 +279,7 @@
             // txtKontrolor1
             // 
             this.txtKontrolor1.Enabled = false;
-            this.txtKontrolor1.Location = new System.Drawing.Point(5, 105);
+            this.txtKontrolor1.Location = new System.Drawing.Point(16, 93);
             this.txtKontrolor1.Name = "txtKontrolor1";
             this.txtKontrolor1.Size = new System.Drawing.Size(144, 20);
             this.txtKontrolor1.TabIndex = 19;
@@ -281,7 +287,8 @@
             // chkDokumentacijaSpremna
             // 
             this.chkDokumentacijaSpremna.AutoSize = true;
-            this.chkDokumentacijaSpremna.Location = new System.Drawing.Point(105, 168);
+            this.chkDokumentacijaSpremna.Enabled = false;
+            this.chkDokumentacijaSpremna.Location = new System.Drawing.Point(4, 3);
             this.chkDokumentacijaSpremna.Name = "chkDokumentacijaSpremna";
             this.chkDokumentacijaSpremna.Size = new System.Drawing.Size(140, 17);
             this.chkDokumentacijaSpremna.TabIndex = 21;
@@ -291,7 +298,7 @@
             // txtProdajaKorisnik
             // 
             this.txtProdajaKorisnik.Enabled = false;
-            this.txtProdajaKorisnik.Location = new System.Drawing.Point(126, 202);
+            this.txtProdajaKorisnik.Location = new System.Drawing.Point(4, 99);
             this.txtProdajaKorisnik.Name = "txtProdajaKorisnik";
             this.txtProdajaKorisnik.Size = new System.Drawing.Size(128, 20);
             this.txtProdajaKorisnik.TabIndex = 22;
@@ -301,7 +308,7 @@
             this.dtpDokumentacijaSpremna.CustomFormat = "dd.MM.yyyy HH.mm";
             this.dtpDokumentacijaSpremna.Enabled = false;
             this.dtpDokumentacijaSpremna.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDokumentacijaSpremna.Location = new System.Drawing.Point(278, 207);
+            this.dtpDokumentacijaSpremna.Location = new System.Drawing.Point(4, 64);
             this.dtpDokumentacijaSpremna.Name = "dtpDokumentacijaSpremna";
             this.dtpDokumentacijaSpremna.Size = new System.Drawing.Size(128, 20);
             this.dtpDokumentacijaSpremna.TabIndex = 24;
@@ -355,7 +362,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(194, 104);
+            this.label6.Location = new System.Drawing.Point(190, 71);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(94, 13);
             this.label6.TabIndex = 31;
@@ -373,11 +380,12 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(190, 65);
+            this.label8.Location = new System.Drawing.Point(289, 67);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(66, 13);
             this.label8.TabIndex = 35;
             this.label8.Text = "Broj utovaraj";
+            this.label8.Visible = false;
             // 
             // label9
             // 
@@ -409,7 +417,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(3, 87);
+            this.label12.Location = new System.Drawing.Point(14, 78);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(96, 13);
             this.label12.TabIndex = 37;
@@ -418,7 +426,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(6, 47);
+            this.label13.Location = new System.Drawing.Point(13, 36);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(93, 13);
             this.label13.TabIndex = 38;
@@ -427,7 +435,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(169, 48);
+            this.label14.Location = new System.Drawing.Point(260, 37);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(93, 13);
             this.label14.TabIndex = 39;
@@ -436,7 +444,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(169, 88);
+            this.label15.Location = new System.Drawing.Point(260, 76);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(96, 13);
             this.label15.TabIndex = 40;
@@ -445,11 +453,11 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(275, 190);
+            this.label17.Location = new System.Drawing.Point(2, 49);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(121, 13);
+            this.label17.Size = new System.Drawing.Size(83, 13);
             this.label17.TabIndex = 45;
-            this.label17.Text = "Dokumentacija spremna";
+            this.label17.Text = "Vreme čekiranja";
             // 
             // label18
             // 
@@ -463,7 +471,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(4, 206);
+            this.label19.Location = new System.Drawing.Point(1, 85);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(116, 13);
             this.label19.TabIndex = 43;
@@ -544,17 +552,9 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.SteelBlue;
-            this.groupBox1.Controls.Add(this.button8);
             this.groupBox1.Controls.Add(this.button7);
             this.groupBox1.Controls.Add(this.button6);
-            this.groupBox1.Controls.Add(this.label24);
-            this.groupBox1.Controls.Add(this.label19);
-            this.groupBox1.Controls.Add(this.txtProdajaKorisnik);
-            this.groupBox1.Controls.Add(this.txtNapomenaKontrola);
-            this.groupBox1.Controls.Add(this.label17);
-            this.groupBox1.Controls.Add(this.dtpDokumentacijaSpremna);
             this.groupBox1.Controls.Add(this.chkPaleta2);
-            this.groupBox1.Controls.Add(this.chkDokumentacijaSpremna);
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.chkPaleta1);
             this.groupBox1.Controls.Add(this.label15);
@@ -567,7 +567,7 @@
             this.groupBox1.ForeColor = System.Drawing.Color.Yellow;
             this.groupBox1.Location = new System.Drawing.Point(766, 34);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(421, 270);
+            this.groupBox1.Size = new System.Drawing.Size(421, 145);
             this.groupBox1.TabIndex = 60;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Kontrolorori spakovali";
@@ -576,9 +576,9 @@
             // 
             this.button8.BackColor = System.Drawing.Color.Black;
             this.button8.ForeColor = System.Drawing.Color.Yellow;
-            this.button8.Location = new System.Drawing.Point(93, 237);
+            this.button8.Location = new System.Drawing.Point(4, 21);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(303, 27);
+            this.button8.Size = new System.Drawing.Size(171, 27);
             this.button8.TabIndex = 51;
             this.button8.Text = "Dokumentacija spremna";
             this.button8.UseVisualStyleBackColor = false;
@@ -589,9 +589,9 @@
             // 
             this.button7.BackColor = System.Drawing.Color.Black;
             this.button7.ForeColor = System.Drawing.Color.Yellow;
-            this.button7.Location = new System.Drawing.Point(172, 136);
+            this.button7.Location = new System.Drawing.Point(255, 116);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(137, 23);
+            this.button7.Size = new System.Drawing.Size(158, 23);
             this.button7.TabIndex = 50;
             this.button7.Text = "Kontrolor 2";
             this.button7.UseVisualStyleBackColor = false;
@@ -602,9 +602,9 @@
             // 
             this.button6.BackColor = System.Drawing.Color.Black;
             this.button6.ForeColor = System.Drawing.Color.Yellow;
-            this.button6.Location = new System.Drawing.Point(6, 136);
+            this.button6.Location = new System.Drawing.Point(6, 117);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(143, 23);
+            this.button6.Size = new System.Drawing.Size(169, 23);
             this.button6.TabIndex = 49;
             this.button6.Text = "Kontrolor 1";
             this.button6.UseVisualStyleBackColor = false;
@@ -614,18 +614,18 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(311, 47);
+            this.label24.Location = new System.Drawing.Point(178, 1);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(106, 13);
+            this.label24.Size = new System.Drawing.Size(62, 13);
             this.label24.TabIndex = 43;
-            this.label24.Text = "Napomena Kontrolori";
+            this.label24.Text = "Napomena ";
             // 
             // txtNapomenaKontrola
             // 
-            this.txtNapomenaKontrola.Location = new System.Drawing.Point(314, 64);
+            this.txtNapomenaKontrola.Location = new System.Drawing.Point(181, 16);
             this.txtNapomenaKontrola.Multiline = true;
             this.txtNapomenaKontrola.Name = "txtNapomenaKontrola";
-            this.txtNapomenaKontrola.Size = new System.Drawing.Size(103, 119);
+            this.txtNapomenaKontrola.Size = new System.Drawing.Size(232, 101);
             this.txtNapomenaKontrola.TabIndex = 14;
             // 
             // dataGridView1
@@ -899,11 +899,28 @@
             this.posaljiMailPesicuToolStripMenuItem.Text = "Posalji mail Pesicu";
             this.posaljiMailPesicuToolStripMenuItem.Click += new System.EventHandler(this.posaljiMailPesicuToolStripMenuItem_Click);
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.panel1.Controls.Add(this.button8);
+            this.panel1.Controls.Add(this.label17);
+            this.panel1.Controls.Add(this.label24);
+            this.panel1.Controls.Add(this.dtpDokumentacijaSpremna);
+            this.panel1.Controls.Add(this.txtNapomenaKontrola);
+            this.panel1.Controls.Add(this.chkDokumentacijaSpremna);
+            this.panel1.Controls.Add(this.txtProdajaKorisnik);
+            this.panel1.Controls.Add(this.label19);
+            this.panel1.Location = new System.Drawing.Point(766, 182);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(421, 123);
+            this.panel1.TabIndex = 66;
+            // 
             // StatusNajave
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1370, 609);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -926,6 +943,8 @@
             this.groupBox4.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1007,5 +1026,6 @@
         private System.Windows.Forms.TextBox txtNapomenaKontrola;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.TextBox txtNapomenaIzlaz;
+        private System.Windows.Forms.Panel panel1;
     }
 }
