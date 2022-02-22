@@ -76,9 +76,9 @@
             this.txtKorisnik = new System.Windows.Forms.TextBox();
             this.dtpKamionIzasao = new System.Windows.Forms.DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
             this.label24 = new System.Windows.Forms.Label();
             this.txtNapomenaKontrola = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -104,6 +104,8 @@
             this.izašliToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.posaljiMailPesicuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.vanredniUlasciIzlasciToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button4 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -151,12 +153,12 @@
             // 
             this.txtRegistarskiBroj.Location = new System.Drawing.Point(5, 80);
             this.txtRegistarskiBroj.Name = "txtRegistarskiBroj";
-            this.txtRegistarskiBroj.Size = new System.Drawing.Size(174, 20);
+            this.txtRegistarskiBroj.Size = new System.Drawing.Size(156, 20);
             this.txtRegistarskiBroj.TabIndex = 5;
             // 
             // txtPrevozniKlijent
             // 
-            this.txtPrevozniKlijent.Location = new System.Drawing.Point(5, 123);
+            this.txtPrevozniKlijent.Location = new System.Drawing.Point(5, 168);
             this.txtPrevozniKlijent.Name = "txtPrevozniKlijent";
             this.txtPrevozniKlijent.Size = new System.Drawing.Size(174, 20);
             this.txtPrevozniKlijent.TabIndex = 6;
@@ -328,9 +330,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(2, 64);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(124, 13);
+            this.label2.Size = new System.Drawing.Size(116, 13);
             this.label2.TabIndex = 27;
-            this.label2.Text = "Registarski broj/Prikolica";
+            this.label2.Text = "Vozilo/Priključno vozilo";
             // 
             // label3
             // 
@@ -344,7 +346,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(2, 151);
+            this.label4.Location = new System.Drawing.Point(3, 103);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(41, 13);
             this.label4.TabIndex = 29;
@@ -353,7 +355,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(2, 106);
+            this.label5.Location = new System.Drawing.Point(2, 152);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(57, 13);
             this.label5.TabIndex = 30;
@@ -479,7 +481,7 @@
             // 
             // txtPartner
             // 
-            this.txtPartner.Location = new System.Drawing.Point(5, 167);
+            this.txtPartner.Location = new System.Drawing.Point(5, 118);
             this.txtPartner.Name = "txtPartner";
             this.txtPartner.Size = new System.Drawing.Size(174, 20);
             this.txtPartner.TabIndex = 46;
@@ -572,19 +574,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Kontrolorori spakovali";
             // 
-            // button8
-            // 
-            this.button8.BackColor = System.Drawing.Color.Black;
-            this.button8.ForeColor = System.Drawing.Color.Yellow;
-            this.button8.Location = new System.Drawing.Point(4, 21);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(171, 27);
-            this.button8.TabIndex = 51;
-            this.button8.Text = "Dokumentacija spremna";
-            this.button8.UseVisualStyleBackColor = false;
-            this.button8.EnabledChanged += new System.EventHandler(this.button8_EnabledChanged);
-            this.button8.Click += new System.EventHandler(this.button8_Click);
-            // 
             // button7
             // 
             this.button7.BackColor = System.Drawing.Color.Black;
@@ -610,6 +599,19 @@
             this.button6.UseVisualStyleBackColor = false;
             this.button6.EnabledChanged += new System.EventHandler(this.button6_EnabledChanged);
             this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button8
+            // 
+            this.button8.BackColor = System.Drawing.Color.Black;
+            this.button8.ForeColor = System.Drawing.Color.Yellow;
+            this.button8.Location = new System.Drawing.Point(4, 21);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(171, 27);
+            this.button8.TabIndex = 51;
+            this.button8.Text = "Dokumentacija spremna";
+            this.button8.UseVisualStyleBackColor = false;
+            this.button8.EnabledChanged += new System.EventHandler(this.button8_EnabledChanged);
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // label24
             // 
@@ -645,6 +647,7 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.Red;
+            this.groupBox2.Controls.Add(this.button4);
             this.groupBox2.Controls.Add(this.button3);
             this.groupBox2.Controls.Add(this.cboDatumUtovara);
             this.groupBox2.Controls.Add(this.cboVozila);
@@ -702,6 +705,7 @@
             this.cboDatumUtovara.Name = "cboDatumUtovara";
             this.cboDatumUtovara.Size = new System.Drawing.Size(122, 25);
             this.cboDatumUtovara.TabIndex = 50;
+            this.cboDatumUtovara.Leave += new System.EventHandler(this.cboDatumUtovara_Leave);
             // 
             // cboVozila
             // 
@@ -710,7 +714,7 @@
             this.cboVozila.Location = new System.Drawing.Point(360, 83);
             this.cboVozila.Margin = new System.Windows.Forms.Padding(2);
             this.cboVozila.Name = "cboVozila";
-            this.cboVozila.Size = new System.Drawing.Size(122, 25);
+            this.cboVozila.Size = new System.Drawing.Size(136, 25);
             this.cboVozila.TabIndex = 49;
             // 
             // label22
@@ -840,7 +844,8 @@
             this.primljeniToolStripMenuItem,
             this.spremniZaIzlazakToolStripMenuItem,
             this.izašliToolStripMenuItem,
-            this.posaljiMailPesicuToolStripMenuItem});
+            this.posaljiMailPesicuToolStripMenuItem,
+            this.vanredniUlasciIzlasciToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
@@ -901,7 +906,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.panel1.Controls.Add(this.button8);
             this.panel1.Controls.Add(this.label17);
             this.panel1.Controls.Add(this.label24);
@@ -914,6 +919,24 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(421, 123);
             this.panel1.TabIndex = 66;
+            // 
+            // vanredniUlasciIzlasciToolStripMenuItem
+            // 
+            this.vanredniUlasciIzlasciToolStripMenuItem.Name = "vanredniUlasciIzlasciToolStripMenuItem";
+            this.vanredniUlasciIzlasciToolStripMenuItem.Size = new System.Drawing.Size(140, 20);
+            this.vanredniUlasciIzlasciToolStripMenuItem.Text = "Vanredni ulasci / Izlasci";
+            // 
+            // button4
+            // 
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button4.Location = new System.Drawing.Point(166, 80);
+            this.button4.Margin = new System.Windows.Forms.Padding(2);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(22, 21);
+            this.button4.TabIndex = 52;
+            this.button4.Text = "DI";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // StatusNajave
             // 
@@ -1027,5 +1050,7 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.TextBox txtNapomenaIzlaz;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ToolStripMenuItem vanredniUlasciIzlasciToolStripMenuItem;
+        private System.Windows.Forms.Button button4;
     }
 }

@@ -225,17 +225,25 @@ namespace WindowsFormsApplication1.Portirnica
 
                     if (dataGridView1.Rows[row.Index].Cells[22].Value.ToString() != "")
                     {
-                        dataGridView1.Rows[row.Index].Cells[15].Style.BackColor = System.Drawing.Color.SteelBlue;
-                        dataGridView1.Rows[row.Index].Cells[16].Style.BackColor = System.Drawing.Color.SteelBlue;
-                        dataGridView1.Rows[row.Index].Cells[17].Style.BackColor = System.Drawing.Color.SteelBlue;
-                        dataGridView1.Rows[row.Index].Cells[18].Style.BackColor = System.Drawing.Color.SteelBlue;
-                        dataGridView1.Rows[row.Index].Cells[19].Style.BackColor = System.Drawing.Color.SteelBlue;
-                        dataGridView1.Rows[row.Index].Cells[20].Style.BackColor = System.Drawing.Color.SteelBlue;
-                        dataGridView1.Rows[row.Index].Cells[21].Style.BackColor = System.Drawing.Color.SteelBlue;
-                        dataGridView1.Rows[row.Index].Cells[22].Style.BackColor = System.Drawing.Color.SteelBlue;
-                        dataGridView1.Rows[row.Index].Cells[23].Style.BackColor = System.Drawing.Color.SteelBlue;
-                        dataGridView1.Rows[row.Index].Cells[24].Style.BackColor = System.Drawing.Color.SteelBlue;
-
+                        dataGridView1.Rows[row.Index].Cells[21].Style.BackColor = System.Drawing.Color.GreenYellow;
+                        dataGridView1.Rows[row.Index].Cells[22].Style.BackColor = System.Drawing.Color.GreenYellow;
+                        dataGridView1.Rows[row.Index].Cells[23].Style.BackColor = System.Drawing.Color.GreenYellow;
+                        dataGridView1.Rows[row.Index].Cells[24].Style.BackColor = System.Drawing.Color.GreenYellow;
+                    }
+                        if (dataGridView1.Rows[row.Index].Cells[20].Value.ToString() != "")
+                        {
+                          
+                            dataGridView1.Rows[row.Index].Cells[18].Style.BackColor = System.Drawing.Color.SteelBlue;
+                            dataGridView1.Rows[row.Index].Cells[19].Style.BackColor = System.Drawing.Color.SteelBlue;
+                            dataGridView1.Rows[row.Index].Cells[20].Style.BackColor = System.Drawing.Color.SteelBlue;
+                        }
+                        if (dataGridView1.Rows[row.Index].Cells[17].Value.ToString() != "")
+                        {
+                            dataGridView1.Rows[row.Index].Cells[15].Style.BackColor = System.Drawing.Color.SteelBlue;
+                            dataGridView1.Rows[row.Index].Cells[16].Style.BackColor = System.Drawing.Color.SteelBlue;
+                            dataGridView1.Rows[row.Index].Cells[17].Style.BackColor = System.Drawing.Color.SteelBlue;
+                        }
+                        /*
                         dataGridView1.Rows[row.Index].Cells[15].Style.ForeColor = System.Drawing.Color.White;
                         dataGridView1.Rows[row.Index].Cells[16].Style.ForeColor = System.Drawing.Color.White;
                         dataGridView1.Rows[row.Index].Cells[17].Style.ForeColor = System.Drawing.Color.White;
@@ -246,7 +254,7 @@ namespace WindowsFormsApplication1.Portirnica
                         dataGridView1.Rows[row.Index].Cells[22].Style.ForeColor = System.Drawing.Color.White;
                         dataGridView1.Rows[row.Index].Cells[23].Style.ForeColor = System.Drawing.Color.White;
                         dataGridView1.Rows[row.Index].Cells[24].Style.ForeColor = System.Drawing.Color.White;
-                    }
+                    */
 
                     if (dataGridView1.Rows[row.Index].Cells[27].Value.ToString() != "")
                     {
@@ -285,6 +293,7 @@ namespace WindowsFormsApplication1.Portirnica
 
         private void tsSave_Click(object sender, EventArgs e)
         {
+          
             noviUnosToolStripMenuItem.BackColor = default;
             if (chkPaleta1.Checked)
             {
@@ -331,11 +340,19 @@ namespace WindowsFormsApplication1.Portirnica
                 status = false;
                 PopuniDatumUtovara();
                 cboVozila.Text = "";
+
                 //RefreshDataGrid();
             }
             else
             {//Ovde ispravi !!!
-                //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
+             //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
+                if (txtkorisnikPrimio.Text != "")
+                {
+                    MessageBox.Show("Vozilo je već primljeno i nije moguće menjati podatke");
+                    return;
+                }
+
+
                 if (txtKorisnikOtvorio != null || txtkorisnikPrimio != null || txtKontrolor1 != null || txtKontrolor2 != null || txtProdajaKorisnik != null || txtKorisnik != null)
                 {
                     DialogResult dialogResult = MessageBox.Show("Da li ste sigurni da želite da promenite zapis broj: " + txtSifra.Text + "? \nUkoliko izaberete DA može doći do brisanja svih unetih podataka", "Izbor", MessageBoxButtons.YesNo);
@@ -354,7 +371,7 @@ namespace WindowsFormsApplication1.Portirnica
                 }
             }
             RefreshDataGrid();
-
+            VratiPodatke(txtSifra.Text);
         }
 
         private void tsDelete_Click(object sender, EventArgs e)
@@ -494,6 +511,13 @@ namespace WindowsFormsApplication1.Portirnica
 
         private void dtpDatumVremePrijema_Load(object sender, EventArgs e)
         {
+            button1.Enabled = false;
+            button2.Enabled = false;
+            button6.Enabled = false;
+            button7.Enabled = false;
+            button8.Enabled = false;
+            button5.Enabled = false;
+            button9.Enabled = false;
             RefreshDataGrid();
         }
         private void noviUnosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -568,9 +592,13 @@ namespace WindowsFormsApplication1.Portirnica
 
         private void button5_Click(object sender, EventArgs e)
         {
+            int tmpDokumentacijaSpremna = 0;
+            if (chkDokumentacijaSpremna.Checked == true)
+                tmpDokumentacijaSpremna = 0;
+           
             InsertStatusNajave upd = new InsertStatusNajave();
 
-            upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, txtKorisnikOtvorio.Text, Convert.ToDateTime(dtpVremeOtvaranja.Value), txtGate.Text, Convert.ToDateTime(DateTime.Now), UlogovaniKorisnik, txtNapomenaPrijem.Text, 0, Convert.ToDateTime(dtpVreme.Value), 0, Convert.ToDateTime(dtpVreme.Value), "", "", 0, "", Convert.ToDateTime(dtpVreme.Value), Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text, txtNapomenaKontrola.Text, txtNapomenaIzlaz.Text);
+            upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, txtKorisnikOtvorio.Text, Convert.ToDateTime(dtpVremeOtvaranja.Value), txtGate.Text, Convert.ToDateTime(DateTime.Now), UlogovaniKorisnik, txtNapomenaPrijem.Text, 0, Convert.ToDateTime(dtpVreme.Value), 0, Convert.ToDateTime(dtpVreme.Value), "", "", tmpDokumentacijaSpremna, txtProdajaKorisnik.Text, Convert.ToDateTime(dtpDokumentacijaSpremna.Value), Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text, txtNapomenaKontrola.Text, txtNapomenaIzlaz.Text);
             InsertLogNajave inslog = new InsertLogNajave();
             inslog.InsLogNajave(Convert.ToInt32(txtSifra.Text), "Portir ulaz promena", UlogovaniKorisnik, DateTime.Now);
 
@@ -740,7 +768,7 @@ namespace WindowsFormsApplication1.Portirnica
 
             ObojDatagrid();
 
-
+            VratiPodatke(txtSifra.Text);
 
             //RefreshDataGrid();
 
@@ -758,12 +786,19 @@ namespace WindowsFormsApplication1.Portirnica
         {
             chkPaleta1.Checked = true;
 
+            int tmpDokumentacijaSpremna = 0;
+            if (chkDokumentacijaSpremna.Checked == true)
+            {
 
+                tmpDokumentacijaSpremna = 1;
+            }
             spremniZaIzlazakToolStripMenuItem.BackColor = default;
             InsertStatusNajave upd = new InsertStatusNajave();
-            upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, txtKorisnikOtvorio.Text, Convert.ToDateTime(dtpVremeOtvaranja.Value), txtGate.Text, Convert.ToDateTime(dtpDatumVremePrijem.Value), txtkorisnikPrimio.Text, txtNapomenaPrijem.Text, 1, Convert.ToDateTime(DateTime.Now), 0, Convert.ToDateTime(dtpVreme.Value), UlogovaniKorisnik, "", 0, "", Convert.ToDateTime(dtpVreme.Value), Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text, txtNapomenaKontrola.Text, txtNapomenaIzlaz.Text);
+            upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, txtKorisnikOtvorio.Text, Convert.ToDateTime(dtpVremeOtvaranja.Value), txtGate.Text, Convert.ToDateTime(dtpDatumVremePrijem.Value), txtkorisnikPrimio.Text, txtNapomenaPrijem.Text, 1, Convert.ToDateTime(DateTime.Now), 0, Convert.ToDateTime(dtpVreme.Value), UlogovaniKorisnik, "", tmpDokumentacijaSpremna, txtProdajaKorisnik.Text, Convert.ToDateTime(dtpDokumentacijaSpremna.Value), Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text, txtNapomenaKontrola.Text, txtNapomenaIzlaz.Text);
             InsertLogNajave inslog = new InsertLogNajave();
             inslog.InsLogNajave(Convert.ToInt32(txtSifra.Text), "Kontrolor 1 promena", UlogovaniKorisnik, DateTime.Now);
+
+          
 
 
             string select = "  SELECT [ID] ,[UtovarBroj] , DatumNajave,  Vozilo,[RegistarskiBroj] ,[DatumVremeDolaska],[PrevoznikKlijent] ,[Partner] ,[Napomena],  " +
@@ -775,7 +810,7 @@ namespace WindowsFormsApplication1.Portirnica
               "  [ProdajaKorisnik], [DatumDokumentSpremne],[NapomenaKontrola]," +
               " CASE WHEN korisnik <> '' THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Spremljeno, " +
               " [DatumKamionIzasao],[Korisnik],[NapomenaIzlaz] FROM [dbo].[StatusNajave] " +
-         " where KorinsikPrimio <> '' and ProdajaKorisnik = '' order by ID desc";
+          " where  KorinsikPrimio <> '' and Korisnik = '' and (KontrolorSpremne2 = '' or KontrolorSpremne1 = '' or ProdajaKorisnik = '') order by ID desc";
 
 
             string s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -935,15 +970,30 @@ namespace WindowsFormsApplication1.Portirnica
         private void button7_Click(object sender, EventArgs e)
         {
             int tmpKontrolor1 = 0;
+            int tmpDokumentacijaSpremna = 0;
             spremniZaIzlazakToolStripMenuItem.BackColor = default;
 
 
             if (chkPaleta1.Checked == true)
             {
                 tmpKontrolor1 = 1;
+            }
+            else
+            {
+                tmpKontrolor1 = 0;
+            }
 
-                InsertStatusNajave upd = new InsertStatusNajave();
-                upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, txtKorisnikOtvorio.Text, Convert.ToDateTime(dtpVremeOtvaranja.Value), txtGate.Text, Convert.ToDateTime(dtpDatumVremePrijem.Value), txtkorisnikPrimio.Text, txtNapomenaPrijem.Text, tmpKontrolor1, Convert.ToDateTime(dtpDatum1.Value), 1, DateTime.Now, txtKontrolor1.Text, UlogovaniKorisnik, 0, "", Convert.ToDateTime(dtpVreme.Value), Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text, txtNapomenaKontrola.Text, txtNapomenaIzlaz.Text);
+            if (chkDokumentacijaSpremna.Checked == true)
+            {
+                tmpDokumentacijaSpremna = 1;
+            }
+            else
+            {
+                tmpDokumentacijaSpremna = 0;
+            }
+
+            InsertStatusNajave upd = new InsertStatusNajave();
+                upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, txtKorisnikOtvorio.Text, Convert.ToDateTime(dtpVremeOtvaranja.Value), txtGate.Text, Convert.ToDateTime(dtpDatumVremePrijem.Value), txtkorisnikPrimio.Text, txtNapomenaPrijem.Text, tmpKontrolor1, Convert.ToDateTime(dtpDatum1.Value), 1, DateTime.Now, txtKontrolor1.Text, UlogovaniKorisnik, tmpDokumentacijaSpremna, txtProdajaKorisnik.Text, Convert.ToDateTime(dtpDokumentacijaSpremna.Value), Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text, txtNapomenaKontrola.Text, txtNapomenaIzlaz.Text);
                 InsertLogNajave inslog = new InsertLogNajave();
                 inslog.InsLogNajave(Convert.ToInt32(txtSifra.Text), "Kontrolor 2 promena", UlogovaniKorisnik, DateTime.Now);
 
@@ -960,7 +1010,7 @@ namespace WindowsFormsApplication1.Portirnica
                   "  [ProdajaKorisnik], [DatumDokumentSpremne],[NapomenaKontrola]," +
                   " CASE WHEN korisnik <> '' THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Spremljeno, " +
                   " [DatumKamionIzasao],[Korisnik],[NapomenaIzlaz] FROM [dbo].[StatusNajave] " +
-             " where KorinsikPrimio <> '' and ProdajaKorisnik = '' order by ID desc";
+              " where  KorinsikPrimio <> '' and Korisnik = '' and (KontrolorSpremne2 = '' or KontrolorSpremne1 = '' or ProdajaKorisnik = '')  order by ID desc";
 
 
                 string s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -1125,13 +1175,7 @@ namespace WindowsFormsApplication1.Portirnica
 
 
 
-            }
-            else
-            {
-                MessageBox.Show("Nisu čekirane palete Kontrolor 1 ");
-                tmpKontrolor1 = 0;
-            }
-
+            
 
 
             //RefreshDataGrid();
@@ -1149,7 +1193,7 @@ namespace WindowsFormsApplication1.Portirnica
             else
             {
                 tmpKontrolor1 = 0;
-                MessageBox.Show("Kontrolor 1 nije čekirao");
+               
             }
             if (chkPaleta2.Checked == true)
             {
@@ -1158,7 +1202,7 @@ namespace WindowsFormsApplication1.Portirnica
             else
             {
                 tmpKontrolor2 = 0;
-                MessageBox.Show("Kontrolor 2 nije čekirao");
+               
             }
             InsertStatusNajave upd = new InsertStatusNajave();
             upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, txtKorisnikOtvorio.Text, Convert.ToDateTime(dtpVremeOtvaranja.Value), txtGate.Text, Convert.ToDateTime(dtpDatumVremePrijem.Value), txtkorisnikPrimio.Text, txtNapomenaPrijem.Text, tmpKontrolor1, Convert.ToDateTime(dtpDatum1.Value), tmpKontrolor2, Convert.ToDateTime(dtpDatum2.Value), txtKontrolor1.Text, txtKontrolor2.Text, 1, UlogovaniKorisnik, DateTime.Now, Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text, txtNapomenaKontrola.Text, txtNapomenaIzlaz.Text);
@@ -1178,7 +1222,7 @@ namespace WindowsFormsApplication1.Portirnica
               "  [ProdajaKorisnik], [DatumDokumentSpremne],[NapomenaKontrola]," +
               " CASE WHEN korisnik <> '' THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Spremljeno, " +
               " [DatumKamionIzasao],[Korisnik],[NapomenaIzlaz] FROM [dbo].[StatusNajave] " +
-         " where KorinsikPrimio <> '' and ProdajaKorisnik = '' order by ID desc";
+              " where  KorinsikPrimio <> '' and Korisnik = '' and (KontrolorSpremne2 = '' or KontrolorSpremne1 = '' or ProdajaKorisnik = '')  order by ID desc";
 
 
             string s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -1337,18 +1381,8 @@ namespace WindowsFormsApplication1.Portirnica
 
         private void button8_Click(object sender, EventArgs e)
         {
-
-
-            if (chkPaleta1.Checked && chkPaleta2.Checked  && txtKontrolor1.Text != "" && txtKontrolor2.Text != "")
-            {
                 SrediDokumentacijaSpremna();
-            }
-            else
-            {
-                MessageBox.Show("Da bi vozilo bilo spremno kontrolori moraju čekirati palete i spremiti dokumentaciju");
-            }
-           
-          
+                VratiPodatke(txtSifra.Text);
         }
 
         private void button9_Click(object sender, EventArgs e)
@@ -1595,6 +1629,8 @@ namespace WindowsFormsApplication1.Portirnica
             cboVozila.DataSource = ds.Tables[0];
             cboVozila.DisplayMember = "Vozilo";
             cboVozila.ValueMember = "Vozilo";
+
+            
         }
 
 
@@ -1609,7 +1645,7 @@ namespace WindowsFormsApplication1.Portirnica
             button2.Enabled = false;
             button6.Enabled = false;
             button7.Enabled = false;
-            button8.Enabled = false;
+            button8.Enabled = true;
             button9.Enabled = false;
             button5.Enabled = true;
 
@@ -1812,7 +1848,7 @@ namespace WindowsFormsApplication1.Portirnica
               "  [ProdajaKorisnik], [DatumDokumentSpremne],[NapomenaKontrola]," +
               " CASE WHEN korisnik <> '' THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Spremljeno, " +
               " [DatumKamionIzasao],[Korisnik],[NapomenaIzlaz] FROM [dbo].[StatusNajave] " +
-         " where KorinsikPrimio <> '' and ProdajaKorisnik = '' order by ID desc";
+         " where KorinsikPrimio <> '' and Korisnik = '' and (KontrolorSpremne2 = '' or KontrolorSpremne1 = '' or ProdajaKorisnik = '') order by ID desc";
 
 
             string s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -1994,7 +2030,7 @@ namespace WindowsFormsApplication1.Portirnica
                "  [ProdajaKorisnik], [DatumDokumentSpremne],[NapomenaKontrola]," +
                " CASE WHEN korisnik <> '' THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Spremljeno, " +
                " [DatumKamionIzasao],[Korisnik],[NapomenaIzlaz] FROM [dbo].[StatusNajave] " +
-     " where Korisnik = '' and ProdajaKorisnik <> ''  order by ID desc";
+     " where KorinsikPrimio <> '' and Korisnik = '' and KontrolorSpremne2 <> '' and  KontrolorSpremne1 <> '' and ProdajaKorisnik <> '' order by ID desc";
 
 
             string s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -2176,7 +2212,7 @@ namespace WindowsFormsApplication1.Portirnica
                 "  [ProdajaKorisnik], [DatumDokumentSpremne],[NapomenaKontrola]," +
                 " CASE WHEN korisnik <> '' THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Spremljeno, " +
                 " [DatumKamionIzasao],[Korisnik],[NapomenaIzlaz] FROM [dbo].[StatusNajave] " +
-      " where Korisnik <> '' order by ID desc";
+      " where Korisnik <> ''   order by ID desc";
 
 
             string s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -2474,6 +2510,16 @@ namespace WindowsFormsApplication1.Portirnica
             {
                 button9.BackColor = Color.Black;
             }
+        }
+
+        private void cboDatumUtovara_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            txtRegistarskiBroj.Text = cboVozila.Text;
         }
     }
 
