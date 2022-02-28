@@ -1,4 +1,6 @@
-﻿namespace WindowsFormsApplication1.Meniji
+﻿using System;
+
+namespace WindowsFormsApplication1.Meniji
 {
     partial class frmWEBSPodaci
     {
@@ -290,5 +292,6 @@
         private FontAwesome.Sharp.IconButton iconButton6;
         private FontAwesome.Sharp.IconButton iconButton5;
         private FontAwesome.Sharp.IconButton iconButton4;
+        private EventHandler btnsZaposleni_Click;
     }
 }

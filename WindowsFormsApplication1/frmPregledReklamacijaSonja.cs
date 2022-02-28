@@ -664,6 +664,11 @@ namespace WindowsFormsApplication1
   " inner join RkShippingItemPakZavrseno on RkShippingZavrseno.ShippingID = RkShippingItemPakZavrseno.ShipingIDz " +
   " inner join SysKomitenti on SysKomitenti.KomintentID = RkShippingZavrseno.KupacIdz " +
  " union " +
+ " Select Distinct DatumUtovara, Cast(SUBSTRING(DatumUtovara, 1, Charindex('.', DatumUtovara) - 1) as int)  as Dan, Cast(Replace(SUBSTRING(DatumUtovara, Charindex('.', DatumUtovara) + 1, Len(DatumUtovara) - 12 - 1 - ((Charindex('.', DatumUtovara)))), '.', '') as int) as Mesec " +
+  " ,SysKomitenti.KomintentID From RkShipping " +
+  " inner join RkShippingItemPak on RkShipping.ShippingID = RkShippingItemPak.ShipingIDz " +
+  " inner join SysKomitenti on SysKomitenti.KomintentID = RkShipping.KupacIdz " +
+ " union " +
  " Select Distinct  DatumUtovara, Cast(SUBSTRING(DatumUtovara, 1, Charindex('.', DatumUtovara) - 1) as int) as Dan, Cast(Replace(SUBSTRING(DatumUtovara, Charindex('.', DatumUtovara) + 1, Len(DatumUtovara) - 12 - 1 - ((Charindex('.', DatumUtovara)))), '.', '') as int) as Mesec " +
  " ,SysKomitenti.KomintentID From RkShippingArhiv " +
  " inner join RkShippingItemPakArhiv on RkShippingArhiv.ShippingID = RkShippingItemPakArhiv.ShipingIDz " +
@@ -753,7 +758,13 @@ namespace WindowsFormsApplication1
 "  From RkShippingZavrseno " +
  " inner join RkShippingItemPakZavrseno on RkShippingZavrseno.ShippingID = RkShippingItemPakZavrseno.ShipingIDz " +
 "  inner join SysKomitenti on SysKomitenti.KomintentID = RkShippingZavrseno.KupacIdz " +
-"  union " +
+"  union all " +
+"Select SysKomitenti.KomintentID, RkShipping.DatumUtovara, " +
+"  KolicinaOrg as kolicina, LargoPakID, LargoNaziv, NazivKomintenta " +
+"  From RkShipping " +
+ " inner join RkShippingItemPak on RkShipping.ShippingID = RkShippingItemPak.ShipingIDz " +
+"  inner join SysKomitenti on SysKomitenti.KomintentID = RkShipping.KupacIdz " +
+"  union all " +
 "  Select SysKomitenti.KomintentID, RkShippingArhiv.DatumUtovara, KolicinaOrg as kolicina, LargoPakID, LargoNaziv, NazivKomintenta " +
 "  From RkShippingArhiv " +
 "  inner join RkShippingItemPakArhiv on RkShippingArhiv.ShippingID = RkShippingItemPakArhiv.ShipingIDz " +
