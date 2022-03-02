@@ -32,8 +32,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnPozovi = new System.Windows.Forms.Button();
-            this.btnPostaviPaletu = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.cboVozila = new System.Windows.Forms.ComboBox();
             this.cboDatumUtovara = new System.Windows.Forms.ComboBox();
@@ -45,49 +43,53 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.cboUtovar = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.txtPakovanja = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
-            this.button4 = new System.Windows.Forms.Button();
             this.cboPaleta = new System.Windows.Forms.ComboBox();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
             this.cboVozaci = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.button3 = new FontAwesome.Sharp.IconButton();
+            this.btnPozovi = new FontAwesome.Sharp.IconButton();
+            this.button2 = new FontAwesome.Sharp.IconButton();
+            this.button1 = new FontAwesome.Sharp.IconButton();
+            this.button4 = new FontAwesome.Sharp.IconButton();
+            this.btnPostaviPaletu = new FontAwesome.Sharp.IconButton();
+            this.button5 = new FontAwesome.Sharp.IconButton();
+            this.button6 = new FontAwesome.Sharp.IconButton();
+            this.button7 = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(10, 44);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(23, 70);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 17);
+            this.label1.Size = new System.Drawing.Size(46, 17);
             this.label1.TabIndex = 16;
             this.label1.Text = "Vozilo:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(10, 8);
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(23, 21);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(107, 17);
+            this.label2.Size = new System.Drawing.Size(99, 17);
             this.label2.TabIndex = 17;
             this.label2.Text = "Datum istovara:";
             // 
@@ -97,48 +99,25 @@
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(158)))), ((int)(((byte)(192)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(4, 4);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1064, 249);
+            this.dataGridView1.Size = new System.Drawing.Size(1064, 401);
             this.dataGridView1.TabIndex = 19;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
-            // btnPozovi
-            // 
-            this.btnPozovi.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnPozovi.Location = new System.Drawing.Point(230, 38);
-            this.btnPozovi.Margin = new System.Windows.Forms.Padding(2);
-            this.btnPozovi.Name = "btnPozovi";
-            this.btnPozovi.Size = new System.Drawing.Size(146, 24);
-            this.btnPozovi.TabIndex = 20;
-            this.btnPozovi.Text = "Pozovi stavke";
-            this.btnPozovi.UseVisualStyleBackColor = true;
-            this.btnPozovi.Click += new System.EventHandler(this.btnPozovi_Click);
-            // 
-            // btnPostaviPaletu
-            // 
-            this.btnPostaviPaletu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnPostaviPaletu.Location = new System.Drawing.Point(230, 98);
-            this.btnPostaviPaletu.Margin = new System.Windows.Forms.Padding(2);
-            this.btnPostaviPaletu.Name = "btnPostaviPaletu";
-            this.btnPostaviPaletu.Size = new System.Drawing.Size(95, 24);
-            this.btnPostaviPaletu.TabIndex = 21;
-            this.btnPostaviPaletu.Text = "Postavi paletu";
-            this.btnPostaviPaletu.UseVisualStyleBackColor = true;
-            this.btnPostaviPaletu.Click += new System.EventHandler(this.button1_Click);
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.Location = new System.Drawing.Point(10, 101);
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(23, 171);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(69, 17);
+            this.label3.Size = new System.Drawing.Size(63, 17);
             this.label3.TabIndex = 23;
             this.label3.Text = "Br palete:";
             // 
@@ -146,10 +125,10 @@
             // 
             this.cboVozila.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cboVozila.FormattingEnabled = true;
-            this.cboVozila.Location = new System.Drawing.Point(105, 38);
+            this.cboVozila.Location = new System.Drawing.Point(23, 89);
             this.cboVozila.Margin = new System.Windows.Forms.Padding(2);
             this.cboVozila.Name = "cboVozila";
-            this.cboVozila.Size = new System.Drawing.Size(122, 25);
+            this.cboVozila.Size = new System.Drawing.Size(162, 25);
             this.cboVozila.TabIndex = 24;
             this.cboVozila.SelectedIndexChanged += new System.EventHandler(this.cboVozila_SelectedIndexChanged);
             // 
@@ -157,21 +136,21 @@
             // 
             this.cboDatumUtovara.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cboDatumUtovara.FormattingEnabled = true;
-            this.cboDatumUtovara.Location = new System.Drawing.Point(105, 5);
+            this.cboDatumUtovara.Location = new System.Drawing.Point(23, 39);
             this.cboDatumUtovara.Margin = new System.Windows.Forms.Padding(2);
             this.cboDatumUtovara.Name = "cboDatumUtovara";
-            this.cboDatumUtovara.Size = new System.Drawing.Size(122, 25);
+            this.cboDatumUtovara.Size = new System.Drawing.Size(162, 25);
             this.cboDatumUtovara.TabIndex = 25;
             this.cboDatumUtovara.SelectedIndexChanged += new System.EventHandler(this.cboDatumUtovara_SelectedIndexChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label4.Location = new System.Drawing.Point(436, 10);
+            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label4.Location = new System.Drawing.Point(541, 19);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(126, 20);
+            this.label4.Size = new System.Drawing.Size(110, 19);
             this.label4.TabIndex = 26;
             this.label4.Text = "Težina sumarno:";
             // 
@@ -179,7 +158,7 @@
             // 
             this.Tezina.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(200)))), ((int)(((byte)(0)))));
             this.Tezina.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.Tezina.Location = new System.Drawing.Point(578, 10);
+            this.Tezina.Location = new System.Drawing.Point(541, 37);
             this.Tezina.Margin = new System.Windows.Forms.Padding(2);
             this.Tezina.Name = "Tezina";
             this.Tezina.Size = new System.Drawing.Size(162, 28);
@@ -189,11 +168,11 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label5.Location = new System.Drawing.Point(436, 41);
+            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label5.Location = new System.Drawing.Point(541, 69);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(133, 20);
+            this.label5.Size = new System.Drawing.Size(117, 19);
             this.label5.TabIndex = 28;
             this.label5.Text = "Težina ceo nalog:";
             // 
@@ -201,7 +180,7 @@
             // 
             this.txtCeoNalog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(200)))), ((int)(((byte)(0)))));
             this.txtCeoNalog.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.txtCeoNalog.Location = new System.Drawing.Point(578, 42);
+            this.txtCeoNalog.Location = new System.Drawing.Point(541, 87);
             this.txtCeoNalog.Margin = new System.Windows.Forms.Padding(2);
             this.txtCeoNalog.Name = "txtCeoNalog";
             this.txtCeoNalog.Size = new System.Drawing.Size(162, 28);
@@ -214,33 +193,34 @@
             this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(158)))), ((int)(((byte)(192)))));
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(898, 2);
+            this.dataGridView2.Location = new System.Drawing.Point(899, 39);
             this.dataGridView2.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(202, 120);
+            this.dataGridView2.Size = new System.Drawing.Size(204, 224);
             this.dataGridView2.TabIndex = 30;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label6.Location = new System.Drawing.Point(742, 10);
+            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label6.Location = new System.Drawing.Point(899, 19);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(152, 20);
+            this.label6.Size = new System.Drawing.Size(133, 19);
             this.label6.TabIndex = 31;
             this.label6.Text = "Težina po paletama:";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label7.Location = new System.Drawing.Point(10, 73);
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(23, 121);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(89, 17);
+            this.label7.Size = new System.Drawing.Size(82, 17);
             this.label7.TabIndex = 32;
             this.label7.Text = "Broj utovara:";
             // 
@@ -248,44 +228,20 @@
             // 
             this.cboUtovar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cboUtovar.FormattingEnabled = true;
-            this.cboUtovar.Location = new System.Drawing.Point(105, 67);
+            this.cboUtovar.Location = new System.Drawing.Point(23, 139);
             this.cboUtovar.Margin = new System.Windows.Forms.Padding(2);
             this.cboUtovar.Name = "cboUtovar";
-            this.cboUtovar.Size = new System.Drawing.Size(122, 25);
+            this.cboUtovar.Size = new System.Drawing.Size(162, 25);
             this.cboUtovar.TabIndex = 33;
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button1.Location = new System.Drawing.Point(282, 67);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 24);
-            this.button1.TabIndex = 34;
-            this.button1.Text = "Pozovi utovar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // button2
-            // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button2.Location = new System.Drawing.Point(230, 67);
-            this.button2.Margin = new System.Windows.Forms.Padding(2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(47, 24);
-            this.button2.TabIndex = 35;
-            this.button2.Text = "Pozovi utovar";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label8.Location = new System.Drawing.Point(436, 76);
+            this.label8.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label8.Location = new System.Drawing.Point(541, 119);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(137, 20);
+            this.label8.Size = new System.Drawing.Size(119, 19);
             this.label8.TabIndex = 36;
             this.label8.Text = "Težina Pakovanja:";
             // 
@@ -293,24 +249,12 @@
             // 
             this.txtPakovanja.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(200)))), ((int)(((byte)(0)))));
             this.txtPakovanja.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.txtPakovanja.Location = new System.Drawing.Point(578, 76);
+            this.txtPakovanja.Location = new System.Drawing.Point(541, 137);
             this.txtPakovanja.Margin = new System.Windows.Forms.Padding(2);
             this.txtPakovanja.Name = "txtPakovanja";
             this.txtPakovanja.Size = new System.Drawing.Size(162, 28);
             this.txtPakovanja.TabIndex = 37;
             this.txtPakovanja.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // button3
-            // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button3.Location = new System.Drawing.Point(230, 4);
-            this.button3.Margin = new System.Windows.Forms.Padding(2);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(31, 24);
-            this.button3.TabIndex = 38;
-            this.button3.Text = "DI";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // tabControl1
             // 
@@ -319,21 +263,22 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(13, 172);
+            this.tabControl1.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.tabControl1.Location = new System.Drawing.Point(23, 288);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1080, 282);
+            this.tabControl1.Size = new System.Drawing.Size(1080, 438);
             this.tabControl1.TabIndex = 39;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.dataGridView1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 26);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage1.Size = new System.Drawing.Size(1072, 256);
+            this.tabPage1.Size = new System.Drawing.Size(1072, 408);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Paketi";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -341,11 +286,11 @@
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.dataGridView3);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 26);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage2.Size = new System.Drawing.Size(1072, 256);
+            this.tabPage2.Size = new System.Drawing.Size(1072, 408);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Reklamacije";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -356,77 +301,30 @@
             this.dataGridView3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView3.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(158)))), ((int)(((byte)(192)))));
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Location = new System.Drawing.Point(4, 5);
             this.dataGridView3.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowTemplate.Height = 24;
-            this.dataGridView3.Size = new System.Drawing.Size(1066, 249);
+            this.dataGridView3.Size = new System.Drawing.Size(1066, 401);
             this.dataGridView3.TabIndex = 20;
-            // 
-            // button4
-            // 
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button4.Location = new System.Drawing.Point(330, 98);
-            this.button4.Margin = new System.Windows.Forms.Padding(2);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(132, 24);
-            this.button4.TabIndex = 40;
-            this.button4.Text = "Postavi paletu rekl";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // cboPaleta
             // 
             this.cboPaleta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cboPaleta.FormattingEnabled = true;
-            this.cboPaleta.Location = new System.Drawing.Point(105, 101);
+            this.cboPaleta.Location = new System.Drawing.Point(23, 189);
             this.cboPaleta.Margin = new System.Windows.Forms.Padding(2);
             this.cboPaleta.Name = "cboPaleta";
-            this.cboPaleta.Size = new System.Drawing.Size(122, 25);
+            this.cboPaleta.Size = new System.Drawing.Size(162, 25);
             this.cboPaleta.TabIndex = 41;
-            // 
-            // button5
-            // 
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button5.Location = new System.Drawing.Point(746, 44);
-            this.button5.Margin = new System.Windows.Forms.Padding(2);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(146, 24);
-            this.button5.TabIndex = 42;
-            this.button5.Text = "Vrati paletu u Webs";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // button6
-            // 
-            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button6.Location = new System.Drawing.Point(746, 72);
-            this.button6.Margin = new System.Windows.Forms.Padding(2);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(146, 24);
-            this.button6.TabIndex = 43;
-            this.button6.Text = "Izbriši reklamaciju";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // button7
-            // 
-            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button7.Location = new System.Drawing.Point(746, 117);
-            this.button7.Margin = new System.Windows.Forms.Padding(2);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(146, 24);
-            this.button7.TabIndex = 46;
-            this.button7.Text = "Postavi Vozača";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // cboVozaci
             // 
             this.cboVozaci.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cboVozaci.FormattingEnabled = true;
-            this.cboVozaci.Location = new System.Drawing.Point(578, 117);
+            this.cboVozaci.Location = new System.Drawing.Point(541, 188);
             this.cboVozaci.Margin = new System.Windows.Forms.Padding(2);
             this.cboVozaci.Name = "cboVozaci";
             this.cboVozaci.Size = new System.Drawing.Size(162, 25);
@@ -435,33 +333,245 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label9.Location = new System.Drawing.Point(519, 117);
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(541, 169);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(54, 17);
+            this.label9.Size = new System.Drawing.Size(48, 17);
             this.label9.TabIndex = 44;
             this.label9.Text = "Vozači:";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(966, 731);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(137, 34);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 151;
+            this.pictureBox2.TabStop = false;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.button3.IconChar = FontAwesome.Sharp.IconChar.IdBadge;
+            this.button3.IconColor = System.Drawing.Color.Black;
+            this.button3.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.button3.IconSize = 23;
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button3.Location = new System.Drawing.Point(195, 39);
+            this.button3.Name = "button3";
+            this.button3.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.button3.Size = new System.Drawing.Size(75, 25);
+            this.button3.TabIndex = 152;
+            this.button3.Text = "DI";
+            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // btnPozovi
+            // 
+            this.btnPozovi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
+            this.btnPozovi.FlatAppearance.BorderSize = 0;
+            this.btnPozovi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPozovi.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.btnPozovi.IconChar = FontAwesome.Sharp.IconChar.List;
+            this.btnPozovi.IconColor = System.Drawing.Color.Black;
+            this.btnPozovi.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.btnPozovi.IconSize = 23;
+            this.btnPozovi.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPozovi.Location = new System.Drawing.Point(195, 89);
+            this.btnPozovi.Name = "btnPozovi";
+            this.btnPozovi.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnPozovi.Size = new System.Drawing.Size(156, 25);
+            this.btnPozovi.TabIndex = 153;
+            this.btnPozovi.Text = "Pozovi stavke";
+            this.btnPozovi.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPozovi.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnPozovi.UseVisualStyleBackColor = false;
+            this.btnPozovi.Click += new System.EventHandler(this.btnPozovi_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.button2.IconChar = FontAwesome.Sharp.IconChar.ArrowAltCircleDown;
+            this.button2.IconColor = System.Drawing.Color.Black;
+            this.button2.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.button2.IconSize = 23;
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.Location = new System.Drawing.Point(195, 139);
+            this.button2.Name = "button2";
+            this.button2.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.button2.Size = new System.Drawing.Size(75, 25);
+            this.button2.TabIndex = 155;
+            this.button2.Text = "Poz";
+            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.button1.IconChar = FontAwesome.Sharp.IconChar.ArrowAltCircleDown;
+            this.button1.IconColor = System.Drawing.Color.Black;
+            this.button1.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.button1.IconSize = 23;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(276, 139);
+            this.button1.Name = "button1";
+            this.button1.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.button1.Size = new System.Drawing.Size(97, 25);
+            this.button1.TabIndex = 154;
+            this.button1.Text = "Pozovi";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.button4.IconChar = FontAwesome.Sharp.IconChar.ListAlt;
+            this.button4.IconColor = System.Drawing.Color.Black;
+            this.button4.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.button4.IconSize = 23;
+            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button4.Location = new System.Drawing.Point(298, 189);
+            this.button4.Name = "button4";
+            this.button4.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.button4.Size = new System.Drawing.Size(167, 25);
+            this.button4.TabIndex = 157;
+            this.button4.Text = "Postavi paletu rekl";
+            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // btnPostaviPaletu
+            // 
+            this.btnPostaviPaletu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
+            this.btnPostaviPaletu.FlatAppearance.BorderSize = 0;
+            this.btnPostaviPaletu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPostaviPaletu.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.btnPostaviPaletu.IconChar = FontAwesome.Sharp.IconChar.ListAlt;
+            this.btnPostaviPaletu.IconColor = System.Drawing.Color.Black;
+            this.btnPostaviPaletu.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.btnPostaviPaletu.IconSize = 23;
+            this.btnPostaviPaletu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPostaviPaletu.Location = new System.Drawing.Point(195, 189);
+            this.btnPostaviPaletu.Name = "btnPostaviPaletu";
+            this.btnPostaviPaletu.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnPostaviPaletu.Size = new System.Drawing.Size(97, 25);
+            this.btnPostaviPaletu.TabIndex = 156;
+            this.btnPostaviPaletu.Text = "Postavi";
+            this.btnPostaviPaletu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPostaviPaletu.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnPostaviPaletu.UseVisualStyleBackColor = false;
+            this.btnPostaviPaletu.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
+            this.button5.FlatAppearance.BorderSize = 0;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.button5.IconChar = FontAwesome.Sharp.IconChar.FileExport;
+            this.button5.IconColor = System.Drawing.Color.Black;
+            this.button5.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.button5.IconSize = 23;
+            this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button5.Location = new System.Drawing.Point(713, 89);
+            this.button5.Name = "button5";
+            this.button5.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.button5.Size = new System.Drawing.Size(176, 25);
+            this.button5.TabIndex = 160;
+            this.button5.Text = "Vrati paletu u Webs";
+            this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button6
+            // 
+            this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
+            this.button6.FlatAppearance.BorderSize = 0;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.button6.IconChar = FontAwesome.Sharp.IconChar.TrashAlt;
+            this.button6.IconColor = System.Drawing.Color.Black;
+            this.button6.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.button6.IconSize = 23;
+            this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button6.Location = new System.Drawing.Point(713, 139);
+            this.button6.Name = "button6";
+            this.button6.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.button6.Size = new System.Drawing.Size(176, 25);
+            this.button6.TabIndex = 159;
+            this.button6.Text = "Izbriši reklamaciju";
+            this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button7
+            // 
+            this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
+            this.button7.FlatAppearance.BorderSize = 0;
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button7.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.button7.IconChar = FontAwesome.Sharp.IconChar.Truck;
+            this.button7.IconColor = System.Drawing.Color.Black;
+            this.button7.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.button7.IconSize = 23;
+            this.button7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button7.Location = new System.Drawing.Point(713, 188);
+            this.button7.Name = "button7";
+            this.button7.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.button7.Size = new System.Drawing.Size(176, 25);
+            this.button7.TabIndex = 158;
+            this.button7.Text = "Postavi Vozača";
+            this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button7.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // ObradaIsporuke
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(187)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(1104, 465);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.cboVozaci);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.button6);
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ClientSize = new System.Drawing.Size(1126, 773);
             this.Controls.Add(this.button5);
-            this.Controls.Add(this.cboPaleta);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.button7);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.txtPakovanja);
-            this.Controls.Add(this.label8);
+            this.Controls.Add(this.btnPostaviPaletu);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnPozovi);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.cboVozaci);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.cboPaleta);
+            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.txtPakovanja);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.cboUtovar);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -471,12 +581,10 @@
             this.Controls.Add(this.Tezina);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cboDatumUtovara);
-            this.Controls.Add(this.cboVozila);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.btnPostaviPaletu);
-            this.Controls.Add(this.btnPozovi);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.cboVozila);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ObradaIsporuke";
@@ -489,6 +597,7 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -499,8 +608,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button btnPozovi;
-        private System.Windows.Forms.Button btnPostaviPaletu;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cboVozila;
         private System.Windows.Forms.ComboBox cboDatumUtovara;
@@ -512,21 +619,24 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cboUtovar;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtPakovanja;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.DataGridView dataGridView3;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.ComboBox cboPaleta;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
         private System.Windows.Forms.ComboBox cboVozaci;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private FontAwesome.Sharp.IconButton button3;
+        private FontAwesome.Sharp.IconButton btnPozovi;
+        private FontAwesome.Sharp.IconButton button2;
+        private FontAwesome.Sharp.IconButton button1;
+        private FontAwesome.Sharp.IconButton button4;
+        private FontAwesome.Sharp.IconButton btnPostaviPaletu;
+        private FontAwesome.Sharp.IconButton button5;
+        private FontAwesome.Sharp.IconButton button6;
+        private FontAwesome.Sharp.IconButton button7;
     }
 }

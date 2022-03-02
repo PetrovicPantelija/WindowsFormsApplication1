@@ -872,31 +872,7 @@ string cs = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Pro
 
         private void button7_Click(object sender, EventArgs e)
         {
-            string connString2 = ConfigurationManager.AppSettings["webs"];
-            using (OleDbConnection conn = new OleDbConnection(connString2))
-            {
-                conn.Open();
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    if (row != null && row.Cells[0].Value != null)
-                    {
-                        if (row.Cells[12].Value.ToString() == "")
-                        {
-                            MessageBox.Show("Paket nema vreme paletiranja");
-                        }
-                        else
-                        { 
-                        OleDbCommand cmd2 = new OleDbCommand("update RkShippingItemPak set Pakovano = CDate('" + row.Cells[12].Value.ToString() + "') where ShippingItemPakID  = " + row.Cells[4].Value + "", conn);
-                        cmd2.ExecuteNonQuery();
-                        }
-                            // 
-                      
-                        //
-                    }
-                }
-                conn.Close();
 
-            }
         }
 
         private void button7_Click_1(object sender, EventArgs e)
