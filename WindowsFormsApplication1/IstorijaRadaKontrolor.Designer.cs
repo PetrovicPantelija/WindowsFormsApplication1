@@ -29,40 +29,33 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IstorijaRadaKontrolor));
-            this.btnPoKOntroloru = new System.Windows.Forms.Button();
             this.cboKontrolisao = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.btnPoKOntroloru = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnPoKOntroloru
-            // 
-            this.btnPoKOntroloru.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnPoKOntroloru.Location = new System.Drawing.Point(371, 3);
-            this.btnPoKOntroloru.Name = "btnPoKOntroloru";
-            this.btnPoKOntroloru.Size = new System.Drawing.Size(176, 35);
-            this.btnPoKOntroloru.TabIndex = 44;
-            this.btnPoKOntroloru.Text = "Pronađi ist. rada";
-            this.btnPoKOntroloru.UseVisualStyleBackColor = true;
-            this.btnPoKOntroloru.Click += new System.EventHandler(this.btnPoKOntroloru_Click);
             // 
             // cboKontrolisao
             // 
             this.cboKontrolisao.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cboKontrolisao.FormattingEnabled = true;
-            this.cboKontrolisao.Location = new System.Drawing.Point(169, 7);
+            this.cboKontrolisao.Location = new System.Drawing.Point(23, 39);
+            this.cboKontrolisao.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cboKontrolisao.Name = "cboKontrolisao";
-            this.cboKontrolisao.Size = new System.Drawing.Size(196, 28);
+            this.cboKontrolisao.Size = new System.Drawing.Size(162, 25);
             this.cboKontrolisao.TabIndex = 42;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(26, 10);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.Location = new System.Drawing.Point(23, 20);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(98, 20);
+            this.label1.Size = new System.Drawing.Size(81, 19);
             this.label1.TabIndex = 40;
             this.label1.Text = "Kontrolisao:";
             // 
@@ -72,39 +65,77 @@
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(158)))), ((int)(((byte)(192)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(17, 51);
+            this.dataGridView1.Location = new System.Drawing.Point(23, 90);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1579, 773);
+            this.dataGridView1.Size = new System.Drawing.Size(1184, 628);
             this.dataGridView1.TabIndex = 45;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(1070, 39);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(137, 34);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 153;
+            this.pictureBox2.TabStop = false;
+            // 
+            // btnPoKOntroloru
+            // 
+            this.btnPoKOntroloru.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
+            this.btnPoKOntroloru.FlatAppearance.BorderSize = 0;
+            this.btnPoKOntroloru.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPoKOntroloru.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.btnPoKOntroloru.IconChar = FontAwesome.Sharp.IconChar.FileAlt;
+            this.btnPoKOntroloru.IconColor = System.Drawing.Color.Black;
+            this.btnPoKOntroloru.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.btnPoKOntroloru.IconSize = 22;
+            this.btnPoKOntroloru.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPoKOntroloru.Location = new System.Drawing.Point(195, 39);
+            this.btnPoKOntroloru.Name = "btnPoKOntroloru";
+            this.btnPoKOntroloru.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnPoKOntroloru.Size = new System.Drawing.Size(183, 25);
+            this.btnPoKOntroloru.TabIndex = 160;
+            this.btnPoKOntroloru.Text = "Pronađi istoriju rada";
+            this.btnPoKOntroloru.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPoKOntroloru.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnPoKOntroloru.UseVisualStyleBackColor = false;
+            this.btnPoKOntroloru.Click += new System.EventHandler(this.btnPoKOntroloru_Click);
             // 
             // IstorijaRadaKontrolor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(187)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(1608, 836);
-            this.Controls.Add(this.dataGridView1);
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ClientSize = new System.Drawing.Size(1230, 743);
             this.Controls.Add(this.btnPoKOntroloru);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.cboKontrolisao);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.dataGridView1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "IstorijaRadaKontrolor";
             this.Text = "Istorija Rada Kontrolora";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.IstorijaRadaKontrolor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnPoKOntroloru;
         private System.Windows.Forms.ComboBox cboKontrolisao;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private FontAwesome.Sharp.IconButton btnPoKOntroloru;
     }
 }
