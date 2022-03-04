@@ -269,6 +269,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1020, 426);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
@@ -285,6 +286,7 @@
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmPorudzbinaImport";
             this.Text = "Uvoz u porudzbinu";
             this.Load += new System.EventHandler(this.frmPorudzbinaImport_Load);
