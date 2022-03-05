@@ -209,6 +209,7 @@ namespace WindowsFormsApplication1.Meniji
             this.iconButton1.Text = "RkShippingItemPro - Proizvodni isporuka";
             this.iconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.iconButton1.UseVisualStyleBackColor = true;
+            this.iconButton1.Click += new System.EventHandler(this.iconButton2_Click);
             // 
             // btnsVrstaRobe
             // 
@@ -229,6 +230,7 @@ namespace WindowsFormsApplication1.Meniji
             this.btnsVrstaRobe.Text = "RKShippingItemPak - Isporuka paketi";
             this.btnsVrstaRobe.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnsVrstaRobe.UseVisualStyleBackColor = true;
+            this.btnsVrstaRobe.Click += new System.EventHandler(this.iconButton2_Click);
             // 
             // btnsZaposleni
             // 
@@ -249,13 +251,13 @@ namespace WindowsFormsApplication1.Meniji
             this.btnsZaposleni.Text = "RkShipping - Isporuke";
             this.btnsZaposleni.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnsZaposleni.UseVisualStyleBackColor = true;
-            this.btnsZaposleni.Click += new System.EventHandler(this.btnsZaposleni_Click);
+            this.btnsZaposleni.Click += new System.EventHandler(this.iconButton3_Click);
             // 
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(796, 556);
+            this.pictureBox2.Location = new System.Drawing.Point(691, 556);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(218, 65);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -273,6 +275,7 @@ namespace WindowsFormsApplication1.Meniji
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmWEBSPodaci";
             this.Text = "frmWEBSPodaci";
+            this.Load += new System.EventHandler(this.frmWEBSPodaci_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);

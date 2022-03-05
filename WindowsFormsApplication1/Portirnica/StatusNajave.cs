@@ -87,7 +87,7 @@ namespace WindowsFormsApplication1.Portirnica
 
 
             DataGridViewColumn column8 = dataGridView1.Columns[7];
-            dataGridView1.Columns[7].HeaderText = "Partner";
+            dataGridView1.Columns[7].HeaderText = "Vozač";
             dataGridView1.Columns[7].Width = 120;
 
 
@@ -291,9 +291,74 @@ namespace WindowsFormsApplication1.Portirnica
             chkDokumentacijaSpremna.Checked = false;
         }
 
+        int VratiNajveci()
+        {
+            int Najveci = 0;
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select Max([ID])  as ID from StatusNajave", con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+               Najveci = Convert.ToInt32(dr["ID"].ToString());
+                return Najveci;
+            }
+            return 0;
+        }
+
+        int VratiBrojLPIzStatusaNajave()
+        {
+            int Najveci = 0;
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("Select COUNT(*) as Broj from StatusNajave where DatumNajave = " + cboDatumUtovara.Text + " and Vozilo =" + cboVozila.Text, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                Najveci = Convert.ToInt32(dr["Broj"].ToString());
+                return Najveci;
+            }
+            return 0;
+        }
+
+        int VratiBrojLPIzRkShipping()
+        {
+            int Najveci = 0;
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("Select COUNT(*) as Broj from StatusNajave where DatumNajave = " + cboDatumUtovara.Text + " and Vozilo =" + cboVozila.Text, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                Najveci = Convert.ToInt32(dr["Broj"].ToString());
+                return Najveci;
+            }
+            return 0;
+        }
+
         private void tsSave_Click(object sender, EventArgs e)
         {
-          
+            int AzuriraLP = 0;
+            int MestoIsporuke = 0;
+            if (cboVozila.Text.TrimEnd() == "LP" || cboVozila.Text.TrimEnd() == "Usl.pr." || cboVozila.Text.TrimEnd() == "Bexepress")
+            {
+                int BrojLPObracenih = VratiBrojLPIzStatusaNajave();
+                int BrojLPMogucih = VratiBrojLPIzRkShipping();
+                AzuriraLP = 1;
+                MestoIsporuke = Convert.ToInt32(cboMestoIsporuke.SelectedValue);
+            }
             noviUnosToolStripMenuItem.BackColor = default;
             if (chkPaleta1.Checked)
             {
@@ -325,11 +390,16 @@ namespace WindowsFormsApplication1.Portirnica
             if (status == true)
             {//Ovde ispravi !!!
                 //Unosi transport
+               // Panta
                 InsertStatusNajave ins = new InsertStatusNajave();
-                ins.InsSatusNajave(txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, UlogovaniKorisnik, DateTime.Now, txtGate.Text, Convert.ToDateTime(dtpVreme.Value), "", "", 0, Convert.ToDateTime(dtpVreme.Value), 0, Convert.ToDateTime(dtpVreme.Value), "", "", 0, "", Convert.ToDateTime(dtpVreme.Value), Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text, txtNapomenaKontrola.Text, txtNapomenaIzlaz.Text);
+                ins.InsSatusNajave(txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, UlogovaniKorisnik, DateTime.Now, txtGate.Text, Convert.ToDateTime(dtpVreme.Value), "", "", 0, Convert.ToDateTime(dtpVreme.Value), 0, Convert.ToDateTime(dtpVreme.Value), "", "", 0, "", Convert.ToDateTime(dtpVreme.Value), Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text, txtNapomenaKontrola.Text, txtNapomenaIzlaz.Text, MestoIsporuke);
+                if (AzuriraLP == 0)
+                { 
                 ins.UpdRkShippingZavrseno(cboDatumUtovara.Text, cboVozila.Text);
                 ins.UpdRkShipping(cboDatumUtovara.Text, cboVozila.Text);
                 ins.UpdRkShippingPocetna(cboDatumUtovara.Text, cboVozila.Text);
+                }
+                txtSifra.Text = VratiNajveci().ToString();
                 /*
                 txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text,txtUtovarBroj.Text, UlogovaniKorisnik, DateTime.Now, txtGate.Text,
                       Convert.ToDateTime(dtpDatumVremePrijem.Value), txtkorisnikPrimio.Text, txtNapomenaPrijem.Text, 
@@ -360,7 +430,7 @@ namespace WindowsFormsApplication1.Portirnica
                     if (dialogResult == DialogResult.Yes)
                     {
                         InsertStatusNajave upd = new InsertStatusNajave();
-                        upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, UlogovaniKorisnik, DateTime.Now, txtGate.Text, Convert.ToDateTime(dtpVreme.Value), "", "", 0, Convert.ToDateTime(dtpVreme.Value), 0, Convert.ToDateTime(dtpVreme.Value), "", "", 0, "", Convert.ToDateTime(dtpVreme.Value), Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text, txtNapomenaKontrola.Text, txtNapomenaIzlaz.Text);
+                        upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, UlogovaniKorisnik, DateTime.Now, txtGate.Text, Convert.ToDateTime(dtpVreme.Value), "", "", 0, Convert.ToDateTime(dtpVreme.Value), 0, Convert.ToDateTime(dtpVreme.Value), "", "", 0, "", Convert.ToDateTime(dtpVreme.Value), Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text, txtNapomenaKontrola.Text, txtNapomenaIzlaz.Text, MestoIsporuke);
                         InsertLogNajave inslog = new InsertLogNajave();
                         inslog.InsLogNajave(Convert.ToInt32(txtSifra.Text), "Transport promena", UlogovaniKorisnik, DateTime.Now);
                     }
@@ -371,6 +441,7 @@ namespace WindowsFormsApplication1.Portirnica
                 }
             }
             RefreshDataGrid();
+            
             VratiPodatke(txtSifra.Text);
         }
 
@@ -572,7 +643,7 @@ namespace WindowsFormsApplication1.Portirnica
                 "Select Distinct DatumUtovara, Cast(SUBSTRING(DatumUtovara, 1, Charindex('.', DatumUtovara) - 1) as int)  as Dan, " +
                 "Cast(Replace(SUBSTRING(DatumUtovara, Charindex('.', DatumUtovara) + 1, Len(DatumUtovara) - 12 - 1 - ((Charindex('.', DatumUtovara)))), '.', '') as int)" +
                 " as Mesec  From RkShipping where Najavljen <> 1 " +
-                "union" +
+                " union" +
                 " Select Distinct DatumUtovara, Cast(SUBSTRING(DatumUtovara, 1, Charindex('.', DatumUtovara) - 1) as int)  as Dan," +
                 " Cast(Replace(SUBSTRING(DatumUtovara, Charindex('.', DatumUtovara) + 1, Len(DatumUtovara) - 12 - 1 - ((Charindex('.', DatumUtovara)))), '.', '') as int) " +
                 "as Mesec  From RkShippingZavrseno where Najavljen <> 1) as t1 order by t1.Mesec, t1.Dan";
@@ -598,7 +669,7 @@ namespace WindowsFormsApplication1.Portirnica
            
             InsertStatusNajave upd = new InsertStatusNajave();
 
-            upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, txtKorisnikOtvorio.Text, Convert.ToDateTime(dtpVremeOtvaranja.Value), txtGate.Text, Convert.ToDateTime(DateTime.Now), UlogovaniKorisnik, txtNapomenaPrijem.Text, 0, Convert.ToDateTime(dtpVreme.Value), 0, Convert.ToDateTime(dtpVreme.Value), "", "", tmpDokumentacijaSpremna, txtProdajaKorisnik.Text, Convert.ToDateTime(dtpDokumentacijaSpremna.Value), Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text, txtNapomenaKontrola.Text, txtNapomenaIzlaz.Text);
+            upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, txtKorisnikOtvorio.Text, Convert.ToDateTime(dtpVremeOtvaranja.Value), txtGate.Text, Convert.ToDateTime(DateTime.Now), UlogovaniKorisnik, txtNapomenaPrijem.Text, 0, Convert.ToDateTime(dtpVreme.Value), 0, Convert.ToDateTime(dtpVreme.Value), "", "", tmpDokumentacijaSpremna, txtProdajaKorisnik.Text, Convert.ToDateTime(dtpDokumentacijaSpremna.Value), Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text, txtNapomenaKontrola.Text, txtNapomenaIzlaz.Text, Convert.ToInt32(cboMestoIsporuke.SelectedValue));
             InsertLogNajave inslog = new InsertLogNajave();
             inslog.InsLogNajave(Convert.ToInt32(txtSifra.Text), "Portir ulaz promena", UlogovaniKorisnik, DateTime.Now);
 
@@ -794,7 +865,7 @@ namespace WindowsFormsApplication1.Portirnica
             }
             spremniZaIzlazakToolStripMenuItem.BackColor = default;
             InsertStatusNajave upd = new InsertStatusNajave();
-            upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, txtKorisnikOtvorio.Text, Convert.ToDateTime(dtpVremeOtvaranja.Value), txtGate.Text, Convert.ToDateTime(dtpDatumVremePrijem.Value), txtkorisnikPrimio.Text, txtNapomenaPrijem.Text, 1, Convert.ToDateTime(DateTime.Now), 0, Convert.ToDateTime(dtpVreme.Value), UlogovaniKorisnik, "", tmpDokumentacijaSpremna, txtProdajaKorisnik.Text, Convert.ToDateTime(dtpDokumentacijaSpremna.Value), Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text, txtNapomenaKontrola.Text, txtNapomenaIzlaz.Text);
+            upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, txtKorisnikOtvorio.Text, Convert.ToDateTime(dtpVremeOtvaranja.Value), txtGate.Text, Convert.ToDateTime(dtpDatumVremePrijem.Value), txtkorisnikPrimio.Text, txtNapomenaPrijem.Text, 1, Convert.ToDateTime(DateTime.Now), 0, Convert.ToDateTime(dtpVreme.Value), UlogovaniKorisnik, "", tmpDokumentacijaSpremna, txtProdajaKorisnik.Text, Convert.ToDateTime(dtpDokumentacijaSpremna.Value), Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text, txtNapomenaKontrola.Text, txtNapomenaIzlaz.Text, Convert.ToInt32(cboMestoIsporuke.SelectedValue));
             InsertLogNajave inslog = new InsertLogNajave();
             inslog.InsLogNajave(Convert.ToInt32(txtSifra.Text), "Kontrolor 1 promena", UlogovaniKorisnik, DateTime.Now);
 
@@ -981,6 +1052,8 @@ namespace WindowsFormsApplication1.Portirnica
             else
             {
                 tmpKontrolor1 = 0;
+                MessageBox.Show("Ne možete čekirati Kontrolor 2 pre Kontrolor 1");
+                return;
             }
 
             if (chkDokumentacijaSpremna.Checked == true)
@@ -993,7 +1066,7 @@ namespace WindowsFormsApplication1.Portirnica
             }
 
             InsertStatusNajave upd = new InsertStatusNajave();
-                upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, txtKorisnikOtvorio.Text, Convert.ToDateTime(dtpVremeOtvaranja.Value), txtGate.Text, Convert.ToDateTime(dtpDatumVremePrijem.Value), txtkorisnikPrimio.Text, txtNapomenaPrijem.Text, tmpKontrolor1, Convert.ToDateTime(dtpDatum1.Value), 1, DateTime.Now, txtKontrolor1.Text, UlogovaniKorisnik, tmpDokumentacijaSpremna, txtProdajaKorisnik.Text, Convert.ToDateTime(dtpDokumentacijaSpremna.Value), Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text, txtNapomenaKontrola.Text, txtNapomenaIzlaz.Text);
+                upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, txtKorisnikOtvorio.Text, Convert.ToDateTime(dtpVremeOtvaranja.Value), txtGate.Text, Convert.ToDateTime(dtpDatumVremePrijem.Value), txtkorisnikPrimio.Text, txtNapomenaPrijem.Text, tmpKontrolor1, Convert.ToDateTime(dtpDatum1.Value), 1, DateTime.Now, txtKontrolor1.Text, UlogovaniKorisnik, tmpDokumentacijaSpremna, txtProdajaKorisnik.Text, Convert.ToDateTime(dtpDokumentacijaSpremna.Value), Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text, txtNapomenaKontrola.Text, txtNapomenaIzlaz.Text, Convert.ToInt32(cboMestoIsporuke.SelectedValue));
                 InsertLogNajave inslog = new InsertLogNajave();
                 inslog.InsLogNajave(Convert.ToInt32(txtSifra.Text), "Kontrolor 2 promena", UlogovaniKorisnik, DateTime.Now);
 
@@ -1057,7 +1130,7 @@ namespace WindowsFormsApplication1.Portirnica
 
 
                 DataGridViewColumn column8 = dataGridView1.Columns[7];
-                dataGridView1.Columns[7].HeaderText = "Partner";
+                dataGridView1.Columns[7].HeaderText = "Vozač";
                 dataGridView1.Columns[7].Width = 120;
 
 
@@ -1205,7 +1278,7 @@ namespace WindowsFormsApplication1.Portirnica
                
             }
             InsertStatusNajave upd = new InsertStatusNajave();
-            upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, txtKorisnikOtvorio.Text, Convert.ToDateTime(dtpVremeOtvaranja.Value), txtGate.Text, Convert.ToDateTime(dtpDatumVremePrijem.Value), txtkorisnikPrimio.Text, txtNapomenaPrijem.Text, tmpKontrolor1, Convert.ToDateTime(dtpDatum1.Value), tmpKontrolor2, Convert.ToDateTime(dtpDatum2.Value), txtKontrolor1.Text, txtKontrolor2.Text, 1, UlogovaniKorisnik, DateTime.Now, Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text, txtNapomenaKontrola.Text, txtNapomenaIzlaz.Text);
+            upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, txtKorisnikOtvorio.Text, Convert.ToDateTime(dtpVremeOtvaranja.Value), txtGate.Text, Convert.ToDateTime(dtpDatumVremePrijem.Value), txtkorisnikPrimio.Text, txtNapomenaPrijem.Text, tmpKontrolor1, Convert.ToDateTime(dtpDatum1.Value), tmpKontrolor2, Convert.ToDateTime(dtpDatum2.Value), txtKontrolor1.Text, txtKontrolor2.Text, 1, UlogovaniKorisnik, DateTime.Now, Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text, txtNapomenaKontrola.Text, txtNapomenaIzlaz.Text, Convert.ToInt32(cboMestoIsporuke.SelectedValue));
             InsertLogNajave inslog = new InsertLogNajave();
             inslog.InsLogNajave(Convert.ToInt32(txtSifra.Text), "Dokumentacija spremna promena", UlogovaniKorisnik, DateTime.Now);
 
@@ -1269,7 +1342,7 @@ namespace WindowsFormsApplication1.Portirnica
 
 
             DataGridViewColumn column8 = dataGridView1.Columns[7];
-            dataGridView1.Columns[7].HeaderText = "Partner";
+            dataGridView1.Columns[7].HeaderText = "Vozač";
             dataGridView1.Columns[7].Width = 120;
 
 
@@ -1415,7 +1488,7 @@ namespace WindowsFormsApplication1.Portirnica
             {
                 tmpKontrolor2 = 0;
             }
-            upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, txtKorisnikOtvorio.Text, Convert.ToDateTime(dtpVremeOtvaranja.Value), txtGate.Text, Convert.ToDateTime(dtpDatumVremePrijem.Value), txtkorisnikPrimio.Text, txtNapomenaPrijem.Text, tmpKontrolor1, Convert.ToDateTime(dtpDatum1.Value), tmpKontrolor2, Convert.ToDateTime(dtpDatum2.Value), txtKontrolor1.Text, txtKontrolor2.Text, tmpCekiranaDokumentacija, txtProdajaKorisnik.Text, Convert.ToDateTime(dtpDokumentacijaSpremna.Value), DateTime.Now, UlogovaniKorisnik, cboDatumUtovara.Text, cboVozila.Text, txtNapomenaKontrola.Text, txtNapomenaIzlaz.Text);
+            upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, txtKorisnikOtvorio.Text, Convert.ToDateTime(dtpVremeOtvaranja.Value), txtGate.Text, Convert.ToDateTime(dtpDatumVremePrijem.Value), txtkorisnikPrimio.Text, txtNapomenaPrijem.Text, tmpKontrolor1, Convert.ToDateTime(dtpDatum1.Value), tmpKontrolor2, Convert.ToDateTime(dtpDatum2.Value), txtKontrolor1.Text, txtKontrolor2.Text, tmpCekiranaDokumentacija, txtProdajaKorisnik.Text, Convert.ToDateTime(dtpDokumentacijaSpremna.Value), DateTime.Now, UlogovaniKorisnik, cboDatumUtovara.Text, cboVozila.Text, txtNapomenaKontrola.Text, txtNapomenaIzlaz.Text, Convert.ToInt32(cboMestoIsporuke.SelectedValue));
             InsertLogNajave inslog = new InsertLogNajave();
             inslog.InsLogNajave(Convert.ToInt32(txtSifra.Text), "Zavrseno promena", UlogovaniKorisnik, DateTime.Now);
             upd.UpdRkShippingZavrseno(cboDatumUtovara.Text, cboVozila.Text);
@@ -1477,7 +1550,7 @@ namespace WindowsFormsApplication1.Portirnica
 
 
             DataGridViewColumn column8 = dataGridView1.Columns[7];
-            dataGridView1.Columns[7].HeaderText = "Partner";
+            dataGridView1.Columns[7].HeaderText = "Vozač";
             dataGridView1.Columns[7].Width = 120;
 
 
@@ -1611,6 +1684,9 @@ namespace WindowsFormsApplication1.Portirnica
 
         private void button3_Click(object sender, EventArgs e)
         {
+            if (cboMestoIsporuke.SelectedIndex != -1)
+                cboMestoIsporuke.Items.Clear();
+            
             //ZAMENA
             //Select Distinct Vozilo From RkShipping where Stanje = 1
             string select = " Select Distinct RTrim(Vozilo) as Vozilo From RkShippingPocetna where Najavljen <> 1 and  DatumUtovara = '" + cboDatumUtovara.Text + "'" +
@@ -1642,7 +1718,14 @@ namespace WindowsFormsApplication1.Portirnica
         private void najavljeniToolStripMenuItem_Click(object sender, EventArgs e)
         {
             button1.Enabled = false;
+            if (txtkorisnikPrimio.Text != "")
+            {
             button2.Enabled = false;
+            }
+            else
+            {
+                button2.Enabled = true;
+            }
             button6.Enabled = false;
             button7.Enabled = false;
             button8.Enabled = true;
@@ -1713,7 +1796,7 @@ namespace WindowsFormsApplication1.Portirnica
 
 
             DataGridViewColumn column8 = dataGridView1.Columns[7];
-            dataGridView1.Columns[7].HeaderText = "Partner";
+            dataGridView1.Columns[7].HeaderText = "Vozač";
             dataGridView1.Columns[7].Width = 120;
 
 
@@ -1895,7 +1978,7 @@ namespace WindowsFormsApplication1.Portirnica
 
 
             DataGridViewColumn column8 = dataGridView1.Columns[7];
-            dataGridView1.Columns[7].HeaderText = "Partner";
+            dataGridView1.Columns[7].HeaderText = "Vozač";
             dataGridView1.Columns[7].Width = 120;
 
 
@@ -2077,7 +2160,7 @@ namespace WindowsFormsApplication1.Portirnica
 
 
             DataGridViewColumn column8 = dataGridView1.Columns[7];
-            dataGridView1.Columns[7].HeaderText = "Partner";
+            dataGridView1.Columns[7].HeaderText = "Vozač";
             dataGridView1.Columns[7].Width = 120;
 
 
@@ -2259,7 +2342,7 @@ namespace WindowsFormsApplication1.Portirnica
 
 
             DataGridViewColumn column8 = dataGridView1.Columns[7];
-            dataGridView1.Columns[7].HeaderText = "Partner";
+            dataGridView1.Columns[7].HeaderText = "Vozač";
             dataGridView1.Columns[7].Width = 120;
 
 
@@ -2521,6 +2604,36 @@ namespace WindowsFormsApplication1.Portirnica
         {
             txtRegistarskiBroj.Text = cboVozila.Text;
         }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+           
+            
+            if (cboVozila.Text.TrimEnd() == "LP" || cboVozila.Text.TrimEnd() == "Usl.pr." || cboVozila.Text.TrimEnd() == "Bexepress")
+            {
+                
+            string select = "  select Distinct SalonIDz, Rtrim(Saloni.MestoIsporuke) as MestoIsporuke from RkShippingPocetna " +
+               " inner join Saloni on Saloni.SifraKomintentaMestoIsporuke = SalonIDZ where Najavljen <> 1 and  DatumUtovara = '" + cboDatumUtovara.Text + "' and Vozilo = '" + cboVozila.Text + "'" +
+              " union " +
+             " Select Distinct SalonIDz, Rtrim(Saloni.MestoIsporuke) as MestoIsporuke from RkShipping " +
+               " inner join Saloni on Saloni.SifraKomintentaMestoIsporuke = SalonIDZ where Najavljen<>1 and DatumUtovara = '" + cboDatumUtovara.Text + "' and Vozilo = '" + cboVozila.Text + "'" +
+              " union " +
+              "  select Distinct SalonIDz, Rtrim(Saloni.MestoIsporuke) as MestoIsporuke from RkShippingZavrseno " +
+               " inner join Saloni on Saloni.SifraKomintentaMestoIsporuke = SalonIDZ where Izaslo<> 1 and Najavljen<>1 and  DatumUtovara = '" + cboDatumUtovara.Text + "' and Vozilo = '" + cboVozila.Text + "'";
+           
+            string s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            SqlConnection c = new SqlConnection(s_connection);
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(select, c);
+
+            SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
+            DataSet ds = new DataSet();
+            dataAdapter.Fill(ds);
+            cboMestoIsporuke.DataSource = ds.Tables[0];
+            cboMestoIsporuke.DisplayMember = "MestoIsporuke";
+            cboMestoIsporuke.ValueMember = "MestoIsporuke";
+              }
+            }
     }
 
 
