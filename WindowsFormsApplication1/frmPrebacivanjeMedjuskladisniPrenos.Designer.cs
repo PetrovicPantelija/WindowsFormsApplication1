@@ -85,7 +85,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(18, 67);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(479, 645);
+            this.dataGridView1.Size = new System.Drawing.Size(479, 616);
             this.dataGridView1.TabIndex = 235;
             // 
             // dataGridView2
@@ -106,7 +106,7 @@
             this.MPSifEnoteMere1});
             this.dataGridView2.Location = new System.Drawing.Point(663, 67);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(390, 645);
+            this.dataGridView2.Size = new System.Drawing.Size(390, 616);
             this.dataGridView2.TabIndex = 243;
             // 
             // PrSifSklad
@@ -294,7 +294,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(1066, 778);
+            this.ClientSize = new System.Drawing.Size(1066, 749);
             this.Controls.Add(this.btnUbaci);
             this.Controls.Add(this.btnOsvezi);
             this.Controls.Add(this.button1);
