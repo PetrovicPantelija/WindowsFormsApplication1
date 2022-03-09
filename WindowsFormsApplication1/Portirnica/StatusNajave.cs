@@ -318,12 +318,15 @@ namespace WindowsFormsApplication1.Portirnica
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("Select COUNT(*) as Broj from StatusNajave where DatumNajave = " + cboDatumUtovara.Text + " and Vozilo =" + cboVozila.Text, con);
+            SqlCommand cmd = new SqlCommand("Select COUNT(*) as Broj from ( " +
+ " Select Distinct SalonIdz from StatusNajave where DatumNajave = '" + cboDatumUtovara.Text + "' and Vozilo ='" + cboVozila.Text + "') t1", con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
             {
+               
                 Najveci = Convert.ToInt32(dr["Broj"].ToString());
+                MessageBox.Show("Ukupan broj VratiBrojLPIzStatusaNajave " + Najveci);
                 return Najveci;
             }
             return 0;
@@ -337,12 +340,21 @@ namespace WindowsFormsApplication1.Portirnica
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("Select COUNT(*) as Broj from StatusNajave where DatumNajave = " + cboDatumUtovara.Text + " and Vozilo =" + cboVozila.Text, con);
+            SqlCommand cmd = new SqlCommand("Select COUNT(*) as Broj from ( " +
+" Select Distinct RkShipping.SalonIDz from RkShipping " +
+" where RkShipping.DatumUtovara = '" + cboDatumUtovara.Text + "' and Vozilo ='" + cboVozila.Text + "'" +
+" union " +
+" Select Distinct RkShippingPocetna.SalonIDz from RkShippingPocetna " +
+" where RkShippingPocetna.DatumUtovara = '" + cboDatumUtovara.Text + "' and Vozilo ='" + cboVozila.Text + "'"  +
+" union " +
+" Select Distinct RkShippingZavrseno.SalonIDz from RkShippingZavrseno " +
+" where RkShippingZavrseno.DatumUtovara = '" + cboDatumUtovara.Text + "' and Vozilo ='" + cboVozila.Text + "' ) t1 "  , con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
             {
                 Najveci = Convert.ToInt32(dr["Broj"].ToString());
+                MessageBox.Show("Ukupan broj VratiBrojLPIzRkShipping " + Najveci);
                 return Najveci;
             }
             return 0;
@@ -351,12 +363,21 @@ namespace WindowsFormsApplication1.Portirnica
         private void tsSave_Click(object sender, EventArgs e)
         {
             int AzuriraLP = 0;
+            //za vrednost 1 ne treba azurirati
             int MestoIsporuke = 0;
-            if (cboVozila.Text.TrimEnd() == "LP" || cboVozila.Text.TrimEnd() == "Usl.pr." || cboVozila.Text.TrimEnd() == "Bexepress")
+            if (cboVozila.Text.TrimEnd() == "Lp" || cboVozila.Text.TrimEnd() == "Usl.pr." || cboVozila.Text.TrimEnd() == "Bexepress")
             {
                 int BrojLPObracenih = VratiBrojLPIzStatusaNajave();
                 int BrojLPMogucih = VratiBrojLPIzRkShipping();
-                AzuriraLP = 1;
+               //Ako je LP ne treba azurirati dok je broj mogucih
+                if (BrojLPMogucih -1 > BrojLPObracenih)
+                { AzuriraLP = 1;
+                    MessageBox.Show("Ako je vozilo LP - Vredi 1 Azuriraj LP");
+                }
+                else
+                {
+                    AzuriraLP = 0;
+                }//TrebaAzurirati
                 MestoIsporuke = Convert.ToInt32(cboMestoIsporuke.SelectedValue);
             }
             noviUnosToolStripMenuItem.BackColor = default;
@@ -388,25 +409,20 @@ namespace WindowsFormsApplication1.Portirnica
             }
 
             if (status == true)
-            {//Ovde ispravi !!!
-                //Unosi transport
-               // Panta
-                InsertStatusNajave ins = new InsertStatusNajave();
+            {
+               //Insert Lp ova
+                InsertStatusNajave ins = new InsertStatusNajave();  
+                //U svakom Slucaju treba uraditi Insert
                 ins.InsSatusNajave(txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, UlogovaniKorisnik, DateTime.Now, txtGate.Text, Convert.ToDateTime(dtpVreme.Value), "", "", 0, Convert.ToDateTime(dtpVreme.Value), 0, Convert.ToDateTime(dtpVreme.Value), "", "", 0, "", Convert.ToDateTime(dtpVreme.Value), Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text, txtNapomenaKontrola.Text, txtNapomenaIzlaz.Text, MestoIsporuke);
+              
+                
                 if (AzuriraLP == 0)
-                { 
+                {
                 ins.UpdRkShippingZavrseno(cboDatumUtovara.Text, cboVozila.Text);
                 ins.UpdRkShipping(cboDatumUtovara.Text, cboVozila.Text);
                 ins.UpdRkShippingPocetna(cboDatumUtovara.Text, cboVozila.Text);
                 }
                 txtSifra.Text = VratiNajveci().ToString();
-                /*
-                txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text,txtUtovarBroj.Text, UlogovaniKorisnik, DateTime.Now, txtGate.Text,
-                      Convert.ToDateTime(dtpDatumVremePrijem.Value), txtkorisnikPrimio.Text, txtNapomenaPrijem.Text, 
-                    
-                    PomPaleta1, Convert.ToDateTime(dtpDatum1.Value), PomPaleta2, Convert.ToDateTime(dtpDatum2.Value), txtKontrolor1.Text, txtKontrolor2.Text, PomDokumentacijaSpremna, txtProdajaKorisnik.Text,  Convert.ToDateTime(dtpDokumentacijaSpremna.Value),
-                    Convert.ToDateTime(dtpKamionIzasao.Value), txtKorisnik.Text)
-                */
                 status = false;
                 PopuniDatumUtovara();
                 cboVozila.Text = "";
@@ -480,7 +496,7 @@ namespace WindowsFormsApplication1.Portirnica
 
             SqlCommand cmd = new SqlCommand("SELECT [ID], [RegistarskiBroj], [PrevoznikKlijent], [Partner], [DatumVremeDolaska], [UtovarBroj], [Napomena] , " +
           " [KorisnikOtvorio], [DatumVremeOtvaranja], [Gate], [DatumVremePrijema], [KorinsikPrimio], [NapomenaPrijema], [DatumSpremne1], [DatumSpremne2], [KontrolorSpremne1], [KontrolorSpremne2] , PaletaSpremne1, PaletaSpremne2, DokumentacijaSpremne," +
-          " [ProdajaKorisnik], [DatumDokumentSpremne],[NapomenaKontrola], [DatumKamionIzasao], [Korisnik],[NapomenaIzlaz], DatumNajave, Vozilo FROM [dbo].[StatusNajave] where ID=" + txtSifra.Text, con);
+          " [ProdajaKorisnik], [DatumDokumentSpremne],[NapomenaKontrola], [DatumKamionIzasao], [Korisnik],[NapomenaIzlaz], DatumNajave, Vozilo, SalonIdz FROM [dbo].[StatusNajave] where ID=" + txtSifra.Text, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -537,7 +553,7 @@ namespace WindowsFormsApplication1.Portirnica
                 }
                 cboDatumUtovara.Text = dr["DatumNajave"].ToString();
                 cboVozila.Text = dr["Vozilo"].ToString();
-
+                cboMestoIsporuke.SelectedValue = Convert.ToInt32(dr["SalonIdz"].ToString());
             }
             con.Close();
         }
@@ -630,6 +646,8 @@ namespace WindowsFormsApplication1.Portirnica
             chkPaleta1.Checked = false;
             chkPaleta2.Checked = false;
             chkDokumentacijaSpremna.Checked = false;
+          //  cboMestoIsporuke.Items.Clear();
+          //  cboDatumUtovara.Items.Clear();
             PopuniDatumUtovara();
 
         }
@@ -1684,8 +1702,8 @@ namespace WindowsFormsApplication1.Portirnica
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (cboMestoIsporuke.SelectedIndex != -1)
-                cboMestoIsporuke.Items.Clear();
+            //if (cboMestoIsporuke.SelectedIndex != -1)
+               // cboMestoIsporuke.Items.Clear();
             
             //ZAMENA
             //Select Distinct Vozilo From RkShipping where Stanje = 1
@@ -2609,7 +2627,7 @@ namespace WindowsFormsApplication1.Portirnica
         {
            
             
-            if (cboVozila.Text.TrimEnd() == "LP" || cboVozila.Text.TrimEnd() == "Usl.pr." || cboVozila.Text.TrimEnd() == "Bexepress")
+            if (cboVozila.Text.TrimEnd() == "Lp" || cboVozila.Text.TrimEnd() == "Usl.pr." || cboVozila.Text.TrimEnd() == "Bexepress")
             {
                 
             string select = "  select Distinct SalonIDz, Rtrim(Saloni.MestoIsporuke) as MestoIsporuke from RkShippingPocetna " +
@@ -2631,7 +2649,7 @@ namespace WindowsFormsApplication1.Portirnica
             dataAdapter.Fill(ds);
             cboMestoIsporuke.DataSource = ds.Tables[0];
             cboMestoIsporuke.DisplayMember = "MestoIsporuke";
-            cboMestoIsporuke.ValueMember = "MestoIsporuke";
+            cboMestoIsporuke.ValueMember = "SalonIDz";
               }
             }
     }
