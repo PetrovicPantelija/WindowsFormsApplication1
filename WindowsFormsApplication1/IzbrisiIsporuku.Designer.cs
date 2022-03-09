@@ -54,7 +54,7 @@
             this.cboDatumUtovara.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cboDatumUtovara.FormattingEnabled = true;
             this.cboDatumUtovara.Location = new System.Drawing.Point(11, 26);
-            this.cboDatumUtovara.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboDatumUtovara.Margin = new System.Windows.Forms.Padding(2);
             this.cboDatumUtovara.Name = "cboDatumUtovara";
             this.cboDatumUtovara.Size = new System.Drawing.Size(162, 25);
             this.cboDatumUtovara.TabIndex = 57;
@@ -64,7 +64,7 @@
             this.cboVozila.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cboVozila.FormattingEnabled = true;
             this.cboVozila.Location = new System.Drawing.Point(226, 26);
-            this.cboVozila.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboVozila.Margin = new System.Windows.Forms.Padding(2);
             this.cboVozila.Name = "cboVozila";
             this.cboVozila.Size = new System.Drawing.Size(162, 25);
             this.cboVozila.TabIndex = 56;
@@ -96,7 +96,7 @@
             this.txtBarkod.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(200)))), ((int)(((byte)(0)))));
             this.txtBarkod.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.txtBarkod.Location = new System.Drawing.Point(11, 125);
-            this.txtBarkod.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtBarkod.Margin = new System.Windows.Forms.Padding(2);
             this.txtBarkod.Name = "txtBarkod";
             this.txtBarkod.Size = new System.Drawing.Size(377, 26);
             this.txtBarkod.TabIndex = 59;
@@ -128,7 +128,7 @@
             this.txtID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(200)))), ((int)(((byte)(0)))));
             this.txtID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.txtID.Location = new System.Drawing.Point(11, 175);
-            this.txtID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtID.Margin = new System.Windows.Forms.Padding(2);
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(377, 26);
             this.txtID.TabIndex = 62;
@@ -138,7 +138,7 @@
             this.txtSifra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(200)))), ((int)(((byte)(0)))));
             this.txtSifra.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.txtSifra.Location = new System.Drawing.Point(11, 75);
-            this.txtSifra.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtSifra.Margin = new System.Windows.Forms.Padding(2);
             this.txtSifra.Name = "txtSifra";
             this.txtSifra.Size = new System.Drawing.Size(162, 26);
             this.txtSifra.TabIndex = 65;
@@ -283,7 +283,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(187)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(636, 326);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.button1);
@@ -303,7 +303,7 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.iconButton2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "IzbrisiIsporuku";
             this.Text = "Brisanje cele isporuke";
             this.Load += new System.EventHandler(this.IzbrisiIsporuku_Load);

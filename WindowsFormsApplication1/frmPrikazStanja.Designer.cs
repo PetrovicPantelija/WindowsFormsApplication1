@@ -70,7 +70,7 @@
             this.dataGridView3.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowTemplate.Height = 24;
-            this.dataGridView3.Size = new System.Drawing.Size(935, 479);
+            this.dataGridView3.Size = new System.Drawing.Size(935, 417);
             this.dataGridView3.TabIndex = 35;
             // 
             // button1
@@ -158,7 +158,7 @@
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(935, 168);
+            this.dataGridView1.Size = new System.Drawing.Size(935, 106);
             this.dataGridView1.TabIndex = 78;
             // 
             // button3
@@ -212,7 +212,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(1199, 811);
+            this.ClientSize = new System.Drawing.Size(1199, 749);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button3);

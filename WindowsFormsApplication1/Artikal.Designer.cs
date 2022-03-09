@@ -63,7 +63,7 @@
             this.txtBarkod.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
             this.txtBarkod.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.txtBarkod.Location = new System.Drawing.Point(11, 42);
-            this.txtBarkod.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtBarkod.Margin = new System.Windows.Forms.Padding(2);
             this.txtBarkod.Name = "txtBarkod";
             this.txtBarkod.Size = new System.Drawing.Size(472, 26);
             this.txtBarkod.TabIndex = 20;
@@ -73,7 +73,7 @@
             this.txt010.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.txt010.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.txt010.Location = new System.Drawing.Point(11, 113);
-            this.txt010.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt010.Margin = new System.Windows.Forms.Padding(2);
             this.txt010.Name = "txt010";
             this.txt010.Size = new System.Drawing.Size(256, 26);
             this.txt010.TabIndex = 22;
@@ -84,7 +84,7 @@
             this.txt20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.txt20.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.txt20.Location = new System.Drawing.Point(14, 184);
-            this.txt20.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt20.Margin = new System.Windows.Forms.Padding(2);
             this.txt20.Name = "txt20";
             this.txt20.Size = new System.Drawing.Size(256, 26);
             this.txt20.TabIndex = 23;
@@ -94,7 +94,7 @@
             this.txt243.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.txt243.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.txt243.Location = new System.Drawing.Point(11, 255);
-            this.txt243.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt243.Margin = new System.Windows.Forms.Padding(2);
             this.txt243.Name = "txt243";
             this.txt243.Size = new System.Drawing.Size(256, 26);
             this.txt243.TabIndex = 24;
@@ -104,7 +104,7 @@
             this.txt3113.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.txt3113.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.txt3113.Location = new System.Drawing.Point(11, 326);
-            this.txt3113.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt3113.Margin = new System.Windows.Forms.Padding(2);
             this.txt3113.Name = "txt3113";
             this.txt3113.Size = new System.Drawing.Size(256, 26);
             this.txt3113.TabIndex = 25;
@@ -162,7 +162,7 @@
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(158)))), ((int)(((byte)(192)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(11, 397);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(732, 220);
@@ -215,7 +215,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(187)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(750, 629);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.label6);
@@ -232,7 +232,7 @@
             this.Controls.Add(this.txtBarkod);
             this.Controls.Add(this.btnParsiraj);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Artikal";
             this.Text = "Artikal";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

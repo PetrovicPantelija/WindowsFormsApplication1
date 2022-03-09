@@ -63,7 +63,7 @@
             this.cboPaleta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cboPaleta.FormattingEnabled = true;
             this.cboPaleta.Location = new System.Drawing.Point(23, 140);
-            this.cboPaleta.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboPaleta.Margin = new System.Windows.Forms.Padding(2);
             this.cboPaleta.Name = "cboPaleta";
             this.cboPaleta.Size = new System.Drawing.Size(162, 25);
             this.cboPaleta.TabIndex = 49;
@@ -73,7 +73,7 @@
             this.cboDatumUtovara.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cboDatumUtovara.FormattingEnabled = true;
             this.cboDatumUtovara.Location = new System.Drawing.Point(23, 90);
-            this.cboDatumUtovara.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboDatumUtovara.Margin = new System.Windows.Forms.Padding(2);
             this.cboDatumUtovara.Name = "cboDatumUtovara";
             this.cboDatumUtovara.Size = new System.Drawing.Size(162, 25);
             this.cboDatumUtovara.TabIndex = 46;
@@ -83,7 +83,7 @@
             this.cboVozila.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cboVozila.FormattingEnabled = true;
             this.cboVozila.Location = new System.Drawing.Point(23, 39);
-            this.cboVozila.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboVozila.Margin = new System.Windows.Forms.Padding(2);
             this.cboVozila.Name = "cboVozila";
             this.cboVozila.Size = new System.Drawing.Size(162, 25);
             this.cboVozila.TabIndex = 45;
@@ -119,7 +119,7 @@
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(158)))), ((int)(((byte)(192)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(23, 190);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(1148, 587);
@@ -264,8 +264,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(1198, 827);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(187)))), ((int)(((byte)(0)))));
+            this.ClientSize = new System.Drawing.Size(1198, 749);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button5);
@@ -281,7 +281,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "UpdateKontrolor";
             this.Text = "Poništi Kontrolor";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
