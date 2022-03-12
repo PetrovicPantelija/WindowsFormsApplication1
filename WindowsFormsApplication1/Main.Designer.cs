@@ -107,8 +107,9 @@
             this.PanelMenu.Controls.Add(this.panelLogo);
             this.PanelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.PanelMenu.Location = new System.Drawing.Point(0, 0);
+            this.PanelMenu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.PanelMenu.Name = "PanelMenu";
-            this.PanelMenu.Size = new System.Drawing.Size(180, 683);
+            this.PanelMenu.Size = new System.Drawing.Size(240, 841);
             this.PanelMenu.TabIndex = 0;
             // 
             // btnAnalaizeMagacin
@@ -123,10 +124,11 @@
             this.btnAnalaizeMagacin.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnAnalaizeMagacin.IconSize = 24;
             this.btnAnalaizeMagacin.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAnalaizeMagacin.Location = new System.Drawing.Point(0, 625);
+            this.btnAnalaizeMagacin.Location = new System.Drawing.Point(0, 775);
+            this.btnAnalaizeMagacin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAnalaizeMagacin.Name = "btnAnalaizeMagacin";
-            this.btnAnalaizeMagacin.Padding = new System.Windows.Forms.Padding(15, 0, 16, 0);
-            this.btnAnalaizeMagacin.Size = new System.Drawing.Size(180, 50);
+            this.btnAnalaizeMagacin.Padding = new System.Windows.Forms.Padding(20, 0, 21, 0);
+            this.btnAnalaizeMagacin.Size = new System.Drawing.Size(240, 62);
             this.btnAnalaizeMagacin.TabIndex = 18;
             this.btnAnalaizeMagacin.Text = "Analize Magacin";
             this.btnAnalaizeMagacin.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -146,10 +148,11 @@
             this.btnMagacin.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnMagacin.IconSize = 24;
             this.btnMagacin.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMagacin.Location = new System.Drawing.Point(0, 575);
+            this.btnMagacin.Location = new System.Drawing.Point(0, 713);
+            this.btnMagacin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnMagacin.Name = "btnMagacin";
-            this.btnMagacin.Padding = new System.Windows.Forms.Padding(15, 0, 16, 0);
-            this.btnMagacin.Size = new System.Drawing.Size(180, 50);
+            this.btnMagacin.Padding = new System.Windows.Forms.Padding(20, 0, 21, 0);
+            this.btnMagacin.Size = new System.Drawing.Size(240, 62);
             this.btnMagacin.TabIndex = 17;
             this.btnMagacin.Text = "Magacin";
             this.btnMagacin.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -169,10 +172,11 @@
             this.btnReklamacija.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnReklamacija.IconSize = 24;
             this.btnReklamacija.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReklamacija.Location = new System.Drawing.Point(0, 525);
+            this.btnReklamacija.Location = new System.Drawing.Point(0, 651);
+            this.btnReklamacija.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnReklamacija.Name = "btnReklamacija";
-            this.btnReklamacija.Padding = new System.Windows.Forms.Padding(15, 0, 16, 0);
-            this.btnReklamacija.Size = new System.Drawing.Size(180, 50);
+            this.btnReklamacija.Padding = new System.Windows.Forms.Padding(20, 0, 21, 0);
+            this.btnReklamacija.Size = new System.Drawing.Size(240, 62);
             this.btnReklamacija.TabIndex = 16;
             this.btnReklamacija.Text = "Reklamacije";
             this.btnReklamacija.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -192,10 +196,11 @@
             this.btnArhiviranje.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnArhiviranje.IconSize = 24;
             this.btnArhiviranje.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnArhiviranje.Location = new System.Drawing.Point(0, 475);
+            this.btnArhiviranje.Location = new System.Drawing.Point(0, 589);
+            this.btnArhiviranje.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnArhiviranje.Name = "btnArhiviranje";
-            this.btnArhiviranje.Padding = new System.Windows.Forms.Padding(15, 0, 16, 0);
-            this.btnArhiviranje.Size = new System.Drawing.Size(180, 50);
+            this.btnArhiviranje.Padding = new System.Windows.Forms.Padding(20, 0, 21, 0);
+            this.btnArhiviranje.Size = new System.Drawing.Size(240, 62);
             this.btnArhiviranje.TabIndex = 15;
             this.btnArhiviranje.Text = "Arhiviranje";
             this.btnArhiviranje.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -215,10 +220,11 @@
             this.btnTimovi.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnTimovi.IconSize = 24;
             this.btnTimovi.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTimovi.Location = new System.Drawing.Point(0, 425);
+            this.btnTimovi.Location = new System.Drawing.Point(0, 527);
+            this.btnTimovi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnTimovi.Name = "btnTimovi";
-            this.btnTimovi.Padding = new System.Windows.Forms.Padding(15, 0, 16, 0);
-            this.btnTimovi.Size = new System.Drawing.Size(180, 50);
+            this.btnTimovi.Padding = new System.Windows.Forms.Padding(20, 0, 21, 0);
+            this.btnTimovi.Size = new System.Drawing.Size(240, 62);
             this.btnTimovi.TabIndex = 14;
             this.btnTimovi.Text = "Timovi";
             this.btnTimovi.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -238,10 +244,11 @@
             this.btn2018.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn2018.IconSize = 24;
             this.btn2018.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn2018.Location = new System.Drawing.Point(0, 375);
+            this.btn2018.Location = new System.Drawing.Point(0, 465);
+            this.btn2018.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn2018.Name = "btn2018";
-            this.btn2018.Padding = new System.Windows.Forms.Padding(15, 0, 16, 0);
-            this.btn2018.Size = new System.Drawing.Size(180, 50);
+            this.btn2018.Padding = new System.Windows.Forms.Padding(20, 0, 21, 0);
+            this.btn2018.Size = new System.Drawing.Size(240, 62);
             this.btn2018.TabIndex = 13;
             this.btn2018.Text = "2018";
             this.btn2018.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -261,10 +268,11 @@
             this.btnPrenos.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnPrenos.IconSize = 24;
             this.btnPrenos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrenos.Location = new System.Drawing.Point(0, 325);
+            this.btnPrenos.Location = new System.Drawing.Point(0, 403);
+            this.btnPrenos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnPrenos.Name = "btnPrenos";
-            this.btnPrenos.Padding = new System.Windows.Forms.Padding(15, 0, 16, 0);
-            this.btnPrenos.Size = new System.Drawing.Size(180, 50);
+            this.btnPrenos.Padding = new System.Windows.Forms.Padding(20, 0, 21, 0);
+            this.btnPrenos.Size = new System.Drawing.Size(240, 62);
             this.btnPrenos.TabIndex = 12;
             this.btnPrenos.Text = "Prenos";
             this.btnPrenos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -284,10 +292,11 @@
             this.btnIstorija.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnIstorija.IconSize = 24;
             this.btnIstorija.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnIstorija.Location = new System.Drawing.Point(0, 275);
+            this.btnIstorija.Location = new System.Drawing.Point(0, 341);
+            this.btnIstorija.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnIstorija.Name = "btnIstorija";
-            this.btnIstorija.Padding = new System.Windows.Forms.Padding(15, 0, 16, 0);
-            this.btnIstorija.Size = new System.Drawing.Size(180, 50);
+            this.btnIstorija.Padding = new System.Windows.Forms.Padding(20, 0, 21, 0);
+            this.btnIstorija.Size = new System.Drawing.Size(240, 62);
             this.btnIstorija.TabIndex = 11;
             this.btnIstorija.Text = "Istorija";
             this.btnIstorija.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -307,10 +316,11 @@
             this.btnPonisti.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnPonisti.IconSize = 24;
             this.btnPonisti.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPonisti.Location = new System.Drawing.Point(0, 225);
+            this.btnPonisti.Location = new System.Drawing.Point(0, 279);
+            this.btnPonisti.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnPonisti.Name = "btnPonisti";
-            this.btnPonisti.Padding = new System.Windows.Forms.Padding(15, 0, 16, 0);
-            this.btnPonisti.Size = new System.Drawing.Size(180, 50);
+            this.btnPonisti.Padding = new System.Windows.Forms.Padding(20, 0, 21, 0);
+            this.btnPonisti.Size = new System.Drawing.Size(240, 62);
             this.btnPonisti.TabIndex = 10;
             this.btnPonisti.Text = "Poništi";
             this.btnPonisti.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -330,10 +340,11 @@
             this.btnPregledi.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnPregledi.IconSize = 24;
             this.btnPregledi.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPregledi.Location = new System.Drawing.Point(0, 175);
+            this.btnPregledi.Location = new System.Drawing.Point(0, 217);
+            this.btnPregledi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnPregledi.Name = "btnPregledi";
-            this.btnPregledi.Padding = new System.Windows.Forms.Padding(15, 0, 16, 0);
-            this.btnPregledi.Size = new System.Drawing.Size(180, 50);
+            this.btnPregledi.Padding = new System.Windows.Forms.Padding(20, 0, 21, 0);
+            this.btnPregledi.Size = new System.Drawing.Size(240, 62);
             this.btnPregledi.TabIndex = 7;
             this.btnPregledi.Text = "Pregledi";
             this.btnPregledi.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -353,10 +364,11 @@
             this.btnIsporuka.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnIsporuka.IconSize = 24;
             this.btnIsporuka.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnIsporuka.Location = new System.Drawing.Point(0, 125);
+            this.btnIsporuka.Location = new System.Drawing.Point(0, 155);
+            this.btnIsporuka.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnIsporuka.Name = "btnIsporuka";
-            this.btnIsporuka.Padding = new System.Windows.Forms.Padding(15, 0, 16, 0);
-            this.btnIsporuka.Size = new System.Drawing.Size(180, 50);
+            this.btnIsporuka.Padding = new System.Windows.Forms.Padding(20, 0, 21, 0);
+            this.btnIsporuka.Size = new System.Drawing.Size(240, 62);
             this.btnIsporuka.TabIndex = 6;
             this.btnIsporuka.Text = "Isporuke";
             this.btnIsporuka.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -376,10 +388,11 @@
             this.BtnWEBSPodaci.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.BtnWEBSPodaci.IconSize = 24;
             this.BtnWEBSPodaci.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnWEBSPodaci.Location = new System.Drawing.Point(0, 75);
+            this.BtnWEBSPodaci.Location = new System.Drawing.Point(0, 93);
+            this.BtnWEBSPodaci.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnWEBSPodaci.Name = "BtnWEBSPodaci";
-            this.BtnWEBSPodaci.Padding = new System.Windows.Forms.Padding(15, 0, 16, 0);
-            this.BtnWEBSPodaci.Size = new System.Drawing.Size(180, 50);
+            this.BtnWEBSPodaci.Padding = new System.Windows.Forms.Padding(20, 0, 21, 0);
+            this.BtnWEBSPodaci.Size = new System.Drawing.Size(240, 62);
             this.BtnWEBSPodaci.TabIndex = 5;
             this.BtnWEBSPodaci.Text = "WEBS podaci";
             this.BtnWEBSPodaci.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -399,10 +412,11 @@
             this.btnEmp.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnEmp.IconSize = 22;
             this.btnEmp.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEmp.Location = new System.Drawing.Point(0, 50);
+            this.btnEmp.Location = new System.Drawing.Point(0, 62);
+            this.btnEmp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnEmp.Name = "btnEmp";
-            this.btnEmp.Padding = new System.Windows.Forms.Padding(15, 0, 16, 0);
-            this.btnEmp.Size = new System.Drawing.Size(180, 25);
+            this.btnEmp.Padding = new System.Windows.Forms.Padding(20, 0, 21, 0);
+            this.btnEmp.Size = new System.Drawing.Size(240, 31);
             this.btnEmp.TabIndex = 2;
             this.btnEmp.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnEmp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -414,16 +428,18 @@
             this.panelLogo.Controls.Add(this.IconButton);
             this.panelLogo.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelLogo.Location = new System.Drawing.Point(0, 0);
+            this.panelLogo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelLogo.Name = "panelLogo";
-            this.panelLogo.Size = new System.Drawing.Size(180, 50);
+            this.panelLogo.Size = new System.Drawing.Size(240, 62);
             this.panelLogo.TabIndex = 0;
             // 
             // IconButton
             // 
             this.IconButton.Image = ((System.Drawing.Image)(resources.GetObject("IconButton.Image")));
-            this.IconButton.Location = new System.Drawing.Point(36, 9);
+            this.IconButton.Location = new System.Drawing.Point(48, 11);
+            this.IconButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.IconButton.Name = "IconButton";
-            this.IconButton.Size = new System.Drawing.Size(109, 32);
+            this.IconButton.Size = new System.Drawing.Size(145, 39);
             this.IconButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.IconButton.TabIndex = 1;
             this.IconButton.TabStop = false;
@@ -431,10 +447,12 @@
             // panel3
             // 
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(180, 0);
+            this.panel3.Location = new System.Drawing.Point(240, 0);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1026, 50);
+            this.panel3.Size = new System.Drawing.Size(1368, 62);
             this.panel3.TabIndex = 1;
+            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
             // panelDesktop
             // 
@@ -454,9 +472,10 @@
             this.panelDesktop.Controls.Add(this.progressBar5);
             this.panelDesktop.Controls.Add(this.progressBar1);
             this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelDesktop.Location = new System.Drawing.Point(180, 50);
+            this.panelDesktop.Location = new System.Drawing.Point(240, 62);
+            this.panelDesktop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelDesktop.Name = "panelDesktop";
-            this.panelDesktop.Size = new System.Drawing.Size(1026, 633);
+            this.panelDesktop.Size = new System.Drawing.Size(1368, 779);
             this.panelDesktop.TabIndex = 2;
             // 
             // dataGridView5
@@ -479,8 +498,8 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView5.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView5.Location = new System.Drawing.Point(779, 312);
-            this.dataGridView5.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView5.Location = new System.Drawing.Point(1039, 384);
+            this.dataGridView5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView5.Name = "dataGridView5";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
@@ -490,8 +509,9 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView5.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridView5.RowHeadersWidth = 51;
             this.dataGridView5.RowTemplate.Height = 24;
-            this.dataGridView5.Size = new System.Drawing.Size(131, 263);
+            this.dataGridView5.Size = new System.Drawing.Size(175, 324);
             this.dataGridView5.TabIndex = 31;
             // 
             // dataGridView4
@@ -514,8 +534,8 @@
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView4.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dataGridView4.Location = new System.Drawing.Point(610, 312);
-            this.dataGridView4.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView4.Location = new System.Drawing.Point(813, 384);
+            this.dataGridView4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView4.Name = "dataGridView4";
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
@@ -525,8 +545,9 @@
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView4.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.dataGridView4.RowHeadersWidth = 51;
             this.dataGridView4.RowTemplate.Height = 24;
-            this.dataGridView4.Size = new System.Drawing.Size(131, 263);
+            this.dataGridView4.Size = new System.Drawing.Size(175, 324);
             this.dataGridView4.TabIndex = 30;
             // 
             // dataGridView3
@@ -549,8 +570,8 @@
             dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView3.DefaultCellStyle = dataGridViewCellStyle8;
-            this.dataGridView3.Location = new System.Drawing.Point(441, 312);
-            this.dataGridView3.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView3.Location = new System.Drawing.Point(588, 384);
+            this.dataGridView3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView3.Name = "dataGridView3";
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
@@ -560,8 +581,9 @@
             dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView3.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            this.dataGridView3.RowHeadersWidth = 51;
             this.dataGridView3.RowTemplate.Height = 24;
-            this.dataGridView3.Size = new System.Drawing.Size(131, 263);
+            this.dataGridView3.Size = new System.Drawing.Size(175, 324);
             this.dataGridView3.TabIndex = 29;
             // 
             // dataGridView2
@@ -584,8 +606,8 @@
             dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle11;
-            this.dataGridView2.Location = new System.Drawing.Point(272, 312);
-            this.dataGridView2.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView2.Location = new System.Drawing.Point(363, 384);
+            this.dataGridView2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView2.Name = "dataGridView2";
             dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
@@ -595,8 +617,9 @@
             dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(131, 263);
+            this.dataGridView2.Size = new System.Drawing.Size(175, 324);
             this.dataGridView2.TabIndex = 28;
             // 
             // dataGridView1
@@ -619,8 +642,8 @@
             dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle14;
-            this.dataGridView1.Location = new System.Drawing.Point(103, 312);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView1.Location = new System.Drawing.Point(137, 384);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
@@ -630,8 +653,9 @@
             dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(131, 263);
+            this.dataGridView1.Size = new System.Drawing.Size(175, 324);
             this.dataGridView1.TabIndex = 27;
             // 
             // label5
@@ -639,9 +663,10 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(54)))), ((int)(((byte)(56)))));
-            this.label5.Location = new System.Drawing.Point(99, 230);
+            this.label5.Location = new System.Drawing.Point(132, 283);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(120, 19);
+            this.label5.Size = new System.Drawing.Size(145, 23);
             this.label5.TabIndex = 26;
             this.label5.Text = "Azuriranje vozača";
             // 
@@ -650,9 +675,10 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(54)))), ((int)(((byte)(56)))));
-            this.label4.Location = new System.Drawing.Point(99, 180);
+            this.label4.Location = new System.Drawing.Point(132, 222);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(114, 19);
+            this.label4.Size = new System.Drawing.Size(136, 23);
             this.label4.TabIndex = 25;
             this.label4.Text = "Azuriranje vozila";
             // 
@@ -661,9 +687,10 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(54)))), ((int)(((byte)(56)))));
-            this.label3.Location = new System.Drawing.Point(99, 130);
+            this.label3.Location = new System.Drawing.Point(132, 160);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(117, 19);
+            this.label3.Size = new System.Drawing.Size(141, 23);
             this.label3.TabIndex = 24;
             this.label3.Text = "Azuriranje salona";
             // 
@@ -672,9 +699,10 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(54)))), ((int)(((byte)(56)))));
-            this.label2.Location = new System.Drawing.Point(99, 80);
+            this.label2.Location = new System.Drawing.Point(132, 98);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(130, 19);
+            this.label2.Size = new System.Drawing.Size(156, 23);
             this.label2.TabIndex = 23;
             this.label2.Text = "Azuriranje klijenata";
             // 
@@ -683,63 +711,69 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(54)))), ((int)(((byte)(56)))));
-            this.label1.Location = new System.Drawing.Point(99, 30);
+            this.label1.Location = new System.Drawing.Point(132, 37);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(204, 19);
+            this.label1.Size = new System.Drawing.Size(247, 23);
             this.label1.TabIndex = 22;
             this.label1.Text = "Azuriranje referencijalne tabele";
             // 
             // progressBar2
             // 
             this.progressBar2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
-            this.progressBar2.Location = new System.Drawing.Point(103, 102);
+            this.progressBar2.Location = new System.Drawing.Point(137, 126);
+            this.progressBar2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.progressBar2.Name = "progressBar2";
-            this.progressBar2.Size = new System.Drawing.Size(809, 23);
+            this.progressBar2.Size = new System.Drawing.Size(1079, 28);
             this.progressBar2.TabIndex = 21;
             // 
             // progressBar3
             // 
             this.progressBar3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
-            this.progressBar3.Location = new System.Drawing.Point(103, 152);
+            this.progressBar3.Location = new System.Drawing.Point(137, 187);
+            this.progressBar3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.progressBar3.Name = "progressBar3";
-            this.progressBar3.Size = new System.Drawing.Size(809, 23);
+            this.progressBar3.Size = new System.Drawing.Size(1079, 28);
             this.progressBar3.TabIndex = 20;
             // 
             // progressBar4
             // 
             this.progressBar4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
-            this.progressBar4.Location = new System.Drawing.Point(103, 202);
+            this.progressBar4.Location = new System.Drawing.Point(137, 249);
+            this.progressBar4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.progressBar4.Name = "progressBar4";
-            this.progressBar4.Size = new System.Drawing.Size(809, 23);
+            this.progressBar4.Size = new System.Drawing.Size(1079, 28);
             this.progressBar4.TabIndex = 19;
             // 
             // progressBar5
             // 
             this.progressBar5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
-            this.progressBar5.Location = new System.Drawing.Point(103, 252);
+            this.progressBar5.Location = new System.Drawing.Point(137, 310);
+            this.progressBar5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.progressBar5.Name = "progressBar5";
-            this.progressBar5.Size = new System.Drawing.Size(809, 23);
+            this.progressBar5.Size = new System.Drawing.Size(1079, 28);
             this.progressBar5.TabIndex = 18;
             // 
             // progressBar1
             // 
             this.progressBar1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
-            this.progressBar1.Location = new System.Drawing.Point(103, 52);
+            this.progressBar1.Location = new System.Drawing.Point(137, 64);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(809, 23);
+            this.progressBar1.Size = new System.Drawing.Size(1079, 28);
             this.progressBar1.TabIndex = 17;
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(247)))), ((int)(((byte)(246)))));
-            this.ClientSize = new System.Drawing.Size(1206, 683);
+            this.ClientSize = new System.Drawing.Size(1608, 841);
             this.Controls.Add(this.panelDesktop);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.PanelMenu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Main";
             this.Text = "mainn";
             this.Load += new System.EventHandler(this.Main_Load);

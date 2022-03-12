@@ -878,5 +878,10 @@ namespace WindowsFormsApplication1
             ActivateButton(sender, RGBColors.color1);
             OpenChildForm(new Meniji.frmAnalizeMagacin());
         }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

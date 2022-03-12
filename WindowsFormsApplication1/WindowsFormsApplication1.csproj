@@ -113,7 +113,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.1016.290\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -404,6 +404,74 @@
     </Compile>
     <Compile Include="IzbrisiIsporuku.Designer.cs">
       <DependentUpon>IzbrisiIsporuku.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Kalkulacije\frmBazaProdajnihCena.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kalkulacije\frmBazaProdajnihCena.Designer.cs">
+      <DependentUpon>frmBazaProdajnihCena.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Kalkulacije\frmCenaKamiona.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kalkulacije\frmCenaKamiona.Designer.cs">
+      <DependentUpon>frmCenaKamiona.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Kalkulacije\frmKalkulacioniCenovnici.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kalkulacije\frmKalkulacioniCenovnici.Designer.cs">
+      <DependentUpon>frmKalkulacioniCenovnici.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Kalkulacije\frmKalkulatorStavke.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kalkulacije\frmKalkulatorStavke.Designer.cs">
+      <DependentUpon>frmKalkulatorStavke.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Kalkulacije\frmKolekcije.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kalkulacije\frmKolekcije.Designer.cs">
+      <DependentUpon>frmKolekcije.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Kalkulacije\frmKolekcijePripadnost.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kalkulacije\frmKolekcijePripadnost.Designer.cs">
+      <DependentUpon>frmKolekcijePripadnost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Kalkulacije\frmNoviKalkulator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kalkulacije\frmNoviKalkulator.Designer.cs">
+      <DependentUpon>frmNoviKalkulator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Kalkulacije\frmPrimenaTroskovnogCenovnika.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kalkulacije\frmPrimenaTroskovnogCenovnika.Designer.cs">
+      <DependentUpon>frmPrimenaTroskovnogCenovnika.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Kalkulacije\frmZaglavlja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kalkulacije\frmZaglavlja.Designer.cs">
+      <DependentUpon>frmZaglavlja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Kalkulacije\InsertBazaProdajnihCena.cs" />
+    <Compile Include="Kalkulacije\InsertKalkulacioniCenovnik.cs" />
+    <Compile Include="Kalkulacije\InsertKalkulator.cs" />
+    <Compile Include="Kalkulacije\InsertKalkulatorStavke.cs" />
+    <Compile Include="Kalkulacije\InsertKamion.cs" />
+    <Compile Include="Kalkulacije\InsertKolekcije.cs" />
+    <Compile Include="Kalkulacije\InsertKolekcijePripadnost.cs" />
+    <Compile Include="Kalkulacije\InsertPrimenaTroskovnogCenovnika.cs" />
+    <Compile Include="Kalkulacije\MainKalkulacije.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kalkulacije\MainKalkulacije.Designer.cs">
+      <DependentUpon>MainKalkulacije.cs</DependentUpon>
     </Compile>
     <Compile Include="Komitenti.cs">
       <SubType>Form</SubType>
@@ -1140,6 +1208,36 @@
     </EmbeddedResource>
     <EmbeddedResource Include="IzbrisiIsporuku.resx">
       <DependentUpon>IzbrisiIsporuku.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kalkulacije\frmBazaProdajnihCena.resx">
+      <DependentUpon>frmBazaProdajnihCena.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kalkulacije\frmCenaKamiona.resx">
+      <DependentUpon>frmCenaKamiona.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kalkulacije\frmKalkulacioniCenovnici.resx">
+      <DependentUpon>frmKalkulacioniCenovnici.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kalkulacije\frmKalkulatorStavke.resx">
+      <DependentUpon>frmKalkulatorStavke.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kalkulacije\frmKolekcije.resx">
+      <DependentUpon>frmKolekcije.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kalkulacije\frmKolekcijePripadnost.resx">
+      <DependentUpon>frmKolekcijePripadnost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kalkulacije\frmNoviKalkulator.resx">
+      <DependentUpon>frmNoviKalkulator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kalkulacije\frmPrimenaTroskovnogCenovnika.resx">
+      <DependentUpon>frmPrimenaTroskovnogCenovnika.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kalkulacije\frmZaglavlja.resx">
+      <DependentUpon>frmZaglavlja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kalkulacije\MainKalkulacije.resx">
+      <DependentUpon>MainKalkulacije.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Komitenti.resx">
       <DependentUpon>Komitenti.cs</DependentUpon>
