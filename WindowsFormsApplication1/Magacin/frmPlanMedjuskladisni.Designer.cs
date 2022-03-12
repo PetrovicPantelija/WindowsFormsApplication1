@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPlanMedjuskladisni));
-            this.btnOsvezi = new System.Windows.Forms.Button();
             this.cboSkladisteIzbor = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -43,9 +42,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtKolicina = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
-            this.btnUbaci = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.button1 = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.PrSifSklad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrLokacija = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -61,33 +58,24 @@
             this.cboVPPrijemno = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtOperater = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.button1 = new FontAwesome.Sharp.IconButton();
+            this.btnOsvezi = new FontAwesome.Sharp.IconButton();
+            this.button2 = new FontAwesome.Sharp.IconButton();
+            this.button3 = new FontAwesome.Sharp.IconButton();
+            this.btnUbaci = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPotrebnaKolicina)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtKolicina)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnOsvezi
-            // 
-            this.btnOsvezi.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnOsvezi.BackgroundImage")));
-            this.btnOsvezi.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnOsvezi.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.btnOsvezi.ForeColor = System.Drawing.Color.White;
-            this.btnOsvezi.Location = new System.Drawing.Point(22, 69);
-            this.btnOsvezi.Name = "btnOsvezi";
-            this.btnOsvezi.Size = new System.Drawing.Size(260, 25);
-            this.btnOsvezi.TabIndex = 237;
-            this.btnOsvezi.Text = "Pretraži prazne";
-            this.btnOsvezi.UseVisualStyleBackColor = true;
-            this.btnOsvezi.Click += new System.EventHandler(this.btnOsvezi_Click);
             // 
             // cboSkladisteIzbor
             // 
             this.cboSkladisteIzbor.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.cboSkladisteIzbor.FormattingEnabled = true;
-            this.cboSkladisteIzbor.Location = new System.Drawing.Point(22, 39);
+            this.cboSkladisteIzbor.Location = new System.Drawing.Point(22, 30);
             this.cboSkladisteIzbor.Name = "cboSkladisteIzbor";
             this.cboSkladisteIzbor.Size = new System.Drawing.Size(260, 24);
             this.cboSkladisteIzbor.TabIndex = 236;
@@ -95,11 +83,11 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(22, 21);
+            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.Location = new System.Drawing.Point(22, 11);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(70, 16);
+            this.label5.Size = new System.Drawing.Size(68, 19);
             this.label5.TabIndex = 235;
             this.label5.Text = "Skladište:";
             // 
@@ -115,11 +103,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(297, 41);
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(297, 33);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 16);
+            this.label2.Size = new System.Drawing.Size(68, 19);
             this.label2.TabIndex = 241;
             this.label2.Text = "MP naziv:";
             // 
@@ -127,7 +115,7 @@
             // 
             this.cboMaticni.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cboMaticni.FormattingEnabled = true;
-            this.cboMaticni.Location = new System.Drawing.Point(368, 38);
+            this.cboMaticni.Location = new System.Drawing.Point(368, 30);
             this.cboMaticni.Name = "cboMaticni";
             this.cboMaticni.Size = new System.Drawing.Size(159, 24);
             this.cboMaticni.TabIndex = 240;
@@ -136,7 +124,7 @@
             // 
             this.txtPotrebnaKolicina.DecimalPlaces = 2;
             this.txtPotrebnaKolicina.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.txtPotrebnaKolicina.Location = new System.Drawing.Point(414, 79);
+            this.txtPotrebnaKolicina.Location = new System.Drawing.Point(414, 66);
             this.txtPotrebnaKolicina.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -150,13 +138,13 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(290, 81);
+            this.label13.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.Black;
+            this.label13.Location = new System.Drawing.Point(290, 68);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(118, 16);
+            this.label13.Size = new System.Drawing.Size(116, 19);
             this.label13.TabIndex = 243;
-            this.label13.Text = "Potrebna količina.:";
+            this.label13.Text = "Potrebna količina:";
             // 
             // cboPozicija
             // 
@@ -170,11 +158,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(290, 177);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(78, 16);
+            this.label3.Size = new System.Drawing.Size(76, 19);
             this.label3.TabIndex = 246;
             this.label3.Text = "Pozicija iz:";
             // 
@@ -183,7 +171,7 @@
             this.cboSkladiste.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.cboSkladiste.ForeColor = System.Drawing.Color.Black;
             this.cboSkladiste.FormattingEnabled = true;
-            this.cboSkladiste.Location = new System.Drawing.Point(289, 140);
+            this.cboSkladiste.Location = new System.Drawing.Point(289, 138);
             this.cboSkladiste.Name = "cboSkladiste";
             this.cboSkladiste.Size = new System.Drawing.Size(238, 24);
             this.cboSkladiste.TabIndex = 245;
@@ -192,11 +180,11 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(290, 122);
+            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(290, 119);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(85, 16);
+            this.label4.Size = new System.Drawing.Size(83, 19);
             this.label4.TabIndex = 244;
             this.label4.Text = "Skladište iz:";
             // 
@@ -218,49 +206,23 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Black;
             this.label6.Location = new System.Drawing.Point(290, 252);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(61, 16);
+            this.label6.Size = new System.Drawing.Size(63, 19);
             this.label6.TabIndex = 249;
-            this.label6.Text = "Količina.:";
-            // 
-            // btnUbaci
-            // 
-            this.btnUbaci.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnUbaci.BackgroundImage")));
-            this.btnUbaci.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnUbaci.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.btnUbaci.ForeColor = System.Drawing.Color.White;
-            this.btnUbaci.Location = new System.Drawing.Point(293, 286);
-            this.btnUbaci.Name = "btnUbaci";
-            this.btnUbaci.Size = new System.Drawing.Size(210, 390);
-            this.btnUbaci.TabIndex = 250;
-            this.btnUbaci.Text = ">>>>";
-            this.btnUbaci.UseVisualStyleBackColor = true;
-            this.btnUbaci.Click += new System.EventHandler(this.btnUbaci_Click);
+            this.label6.Text = "Količina:";
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(532, 98);
+            this.progressBar1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.progressBar1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
+            this.progressBar1.Location = new System.Drawing.Point(531, 98);
             this.progressBar1.Margin = new System.Windows.Forms.Padding(2);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(677, 19);
+            this.progressBar1.Size = new System.Drawing.Size(688, 19);
             this.progressBar1.TabIndex = 253;
-            // 
-            // button1
-            // 
-            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(819, 68);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(390, 25);
-            this.button1.TabIndex = 252;
-            this.button1.Text = "Formiraj međuskladišni prenos";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // dataGridView2
             // 
@@ -278,7 +240,7 @@
             this.MpDoNaziv,
             this.Kolicina,
             this.MPSifEnoteMere1});
-            this.dataGridView2.Location = new System.Drawing.Point(531, 122);
+            this.dataGridView2.Location = new System.Drawing.Point(530, 122);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(688, 554);
             this.dataGridView2.TabIndex = 251;
@@ -326,11 +288,11 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(552, 42);
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.Black;
+            this.label7.Location = new System.Drawing.Point(552, 33);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(75, 16);
+            this.label7.Size = new System.Drawing.Size(77, 19);
             this.label7.TabIndex = 255;
             this.label7.Text = "VP Izdajno:";
             // 
@@ -338,7 +300,7 @@
             // 
             this.cboVPIzdajno.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cboVPIzdajno.FormattingEnabled = true;
-            this.cboVPIzdajno.Location = new System.Drawing.Point(643, 41);
+            this.cboVPIzdajno.Location = new System.Drawing.Point(643, 30);
             this.cboVPIzdajno.Name = "cboVPIzdajno";
             this.cboVPIzdajno.Size = new System.Drawing.Size(159, 24);
             this.cboVPIzdajno.TabIndex = 254;
@@ -346,11 +308,11 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(552, 71);
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.Black;
+            this.label8.Location = new System.Drawing.Point(552, 68);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(85, 16);
+            this.label8.Size = new System.Drawing.Size(87, 19);
             this.label8.TabIndex = 257;
             this.label8.Text = "VP Prijemno:";
             // 
@@ -358,7 +320,7 @@
             // 
             this.cboVPPrijemno.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cboVPPrijemno.FormattingEnabled = true;
-            this.cboVPPrijemno.Location = new System.Drawing.Point(643, 68);
+            this.cboVPPrijemno.Location = new System.Drawing.Point(643, 65);
             this.cboVPPrijemno.Name = "cboVPPrijemno";
             this.cboVPPrijemno.Size = new System.Drawing.Size(159, 24);
             this.cboVPPrijemno.TabIndex = 256;
@@ -366,56 +328,144 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(818, 39);
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.Black;
+            this.label9.Location = new System.Drawing.Point(818, 33);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(92, 16);
+            this.label9.Size = new System.Drawing.Size(96, 19);
             this.label9.TabIndex = 258;
             this.label9.Text = "Operater šifra:";
             // 
             // txtOperater
             // 
-            this.txtOperater.Location = new System.Drawing.Point(917, 38);
+            this.txtOperater.Location = new System.Drawing.Point(917, 32);
             this.txtOperater.Name = "txtOperater";
             this.txtOperater.Size = new System.Drawing.Size(119, 20);
             this.txtOperater.TabIndex = 259;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(1082, 679);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(137, 54);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 284;
+            this.pictureBox2.TabStop = false;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.button1.IconChar = FontAwesome.Sharp.IconChar.ExchangeAlt;
+            this.button1.IconColor = System.Drawing.Color.Black;
+            this.button1.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.button1.IconSize = 22;
+            this.button1.Location = new System.Drawing.Point(829, 65);
+            this.button1.Name = "button1";
+            this.button1.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.button1.Size = new System.Drawing.Size(390, 25);
+            this.button1.TabIndex = 285;
+            this.button1.Text = "Formiraj međuskladišni prenos";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnOsvezi
+            // 
+            this.btnOsvezi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
+            this.btnOsvezi.FlatAppearance.BorderSize = 0;
+            this.btnOsvezi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOsvezi.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.btnOsvezi.IconChar = FontAwesome.Sharp.IconChar.Eye;
+            this.btnOsvezi.IconColor = System.Drawing.Color.Black;
+            this.btnOsvezi.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.btnOsvezi.IconSize = 22;
+            this.btnOsvezi.Location = new System.Drawing.Point(22, 65);
+            this.btnOsvezi.Name = "btnOsvezi";
+            this.btnOsvezi.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnOsvezi.Size = new System.Drawing.Size(260, 25);
+            this.btnOsvezi.TabIndex = 286;
+            this.btnOsvezi.Text = "Pretraži prazne";
+            this.btnOsvezi.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnOsvezi.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnOsvezi.UseVisualStyleBackColor = false;
+            this.btnOsvezi.Click += new System.EventHandler(this.btnOsvezi_Click);
+            // 
             // button2
             // 
-            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(22, 100);
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.button2.IconChar = FontAwesome.Sharp.IconChar.Eye;
+            this.button2.IconColor = System.Drawing.Color.Black;
+            this.button2.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.button2.IconSize = 22;
+            this.button2.Location = new System.Drawing.Point(22, 101);
             this.button2.Name = "button2";
+            this.button2.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.button2.Size = new System.Drawing.Size(260, 25);
-            this.button2.TabIndex = 260;
+            this.button2.TabIndex = 287;
             this.button2.Text = "Pretraži prazne po redu";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button2.UseVisualStyleBackColor = false;
             // 
             // button3
             // 
-            this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(22, 131);
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.button3.IconChar = FontAwesome.Sharp.IconChar.Eye;
+            this.button3.IconColor = System.Drawing.Color.Black;
+            this.button3.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.button3.IconSize = 22;
+            this.button3.Location = new System.Drawing.Point(22, 137);
             this.button3.Name = "button3";
+            this.button3.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.button3.Size = new System.Drawing.Size(260, 25);
-            this.button3.TabIndex = 261;
+            this.button3.TabIndex = 288;
             this.button3.Text = "Pretraži prazne po MP";
-            this.button3.UseVisualStyleBackColor = true;
-          //  this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button3.UseVisualStyleBackColor = false;
+            // 
+            // btnUbaci
+            // 
+            this.btnUbaci.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
+            this.btnUbaci.FlatAppearance.BorderSize = 0;
+            this.btnUbaci.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUbaci.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.btnUbaci.IconChar = FontAwesome.Sharp.IconChar.Random;
+            this.btnUbaci.IconColor = System.Drawing.Color.Black;
+            this.btnUbaci.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.btnUbaci.IconSize = 90;
+            this.btnUbaci.Location = new System.Drawing.Point(290, 286);
+            this.btnUbaci.Name = "btnUbaci";
+            this.btnUbaci.Size = new System.Drawing.Size(232, 390);
+            this.btnUbaci.TabIndex = 289;
+            this.btnUbaci.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnUbaci.UseVisualStyleBackColor = false;
+            this.btnUbaci.Click += new System.EventHandler(this.btnUbaci_Click);
             // 
             // frmPlanMedjuskladisni
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(187)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(1231, 688);
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ClientSize = new System.Drawing.Size(1231, 733);
+            this.Controls.Add(this.btnUbaci);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnOsvezi);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txtOperater);
             this.Controls.Add(this.label8);
@@ -423,9 +473,7 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.cboVPIzdajno);
             this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView2);
-            this.Controls.Add(this.btnUbaci);
             this.Controls.Add(this.txtKolicina);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cboPozicija);
@@ -437,9 +485,9 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cboMaticni);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.btnOsvezi);
             this.Controls.Add(this.cboSkladisteIzbor);
             this.Controls.Add(this.label5);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmPlanMedjuskladisni";
             this.Text = "Plan medjuskladisnog prenosa";
             this.Load += new System.EventHandler(this.frmPlanMedjuskladisni_Load);
@@ -447,14 +495,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtPotrebnaKolicina)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtKolicina)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnOsvezi;
         private System.Windows.Forms.ComboBox cboSkladisteIzbor;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridView dataGridView1;
@@ -468,9 +515,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown txtKolicina;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button btnUbaci;
         private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.DataGridViewTextBoxColumn PrSifSklad;
         private System.Windows.Forms.DataGridViewTextBoxColumn PrLokacija;
@@ -486,7 +531,11 @@
         private System.Windows.Forms.ComboBox cboVPPrijemno;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtOperater;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private FontAwesome.Sharp.IconButton button1;
+        private FontAwesome.Sharp.IconButton btnOsvezi;
+        private FontAwesome.Sharp.IconButton button2;
+        private FontAwesome.Sharp.IconButton button3;
+        private FontAwesome.Sharp.IconButton btnUbaci;
     }
 }

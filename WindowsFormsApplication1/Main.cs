@@ -810,7 +810,7 @@ namespace WindowsFormsApplication1
         private void BtnWEBSPodaci_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color1);
-            OpenChildForm(new Meniji.frmWEBSPodaci());
+            OpenChildForm(new Meniji.frmMenijiWEBSPodaci());
         }
 
         private void btnIsporuka_Click(object sender, EventArgs e)

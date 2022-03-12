@@ -151,6 +151,7 @@
             // 
             // pictureBox2
             // 
+            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(871, 358);
@@ -269,6 +270,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(187)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(1020, 426);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
@@ -285,6 +287,7 @@
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmPorudzbinaImport";
             this.Text = "Uvoz u porudzbinu";
             this.Load += new System.EventHandler(this.frmPorudzbinaImport_Load);

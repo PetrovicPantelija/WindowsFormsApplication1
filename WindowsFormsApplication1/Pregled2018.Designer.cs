@@ -69,7 +69,7 @@
             this.cboPaleta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cboPaleta.FormattingEnabled = true;
             this.cboPaleta.Location = new System.Drawing.Point(759, 39);
-            this.cboPaleta.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboPaleta.Margin = new System.Windows.Forms.Padding(2);
             this.cboPaleta.Name = "cboPaleta";
             this.cboPaleta.Size = new System.Drawing.Size(162, 25);
             this.cboPaleta.TabIndex = 48;
@@ -79,7 +79,7 @@
             this.cboDatumUtovara.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cboDatumUtovara.FormattingEnabled = true;
             this.cboDatumUtovara.Location = new System.Drawing.Point(9, 39);
-            this.cboDatumUtovara.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboDatumUtovara.Margin = new System.Windows.Forms.Padding(2);
             this.cboDatumUtovara.Name = "cboDatumUtovara";
             this.cboDatumUtovara.Size = new System.Drawing.Size(162, 25);
             this.cboDatumUtovara.TabIndex = 45;
@@ -89,7 +89,7 @@
             this.cboVozila.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cboVozila.FormattingEnabled = true;
             this.cboVozila.Location = new System.Drawing.Point(306, 39);
-            this.cboVozila.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboVozila.Margin = new System.Windows.Forms.Padding(2);
             this.cboVozila.Name = "cboVozila";
             this.cboVozila.Size = new System.Drawing.Size(162, 25);
             this.cboVozila.TabIndex = 44;
@@ -125,7 +125,7 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(9, 89);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1067, 707);
@@ -135,9 +135,9 @@
             // 
             this.tabPage1.Controls.Add(this.dataGridView1);
             this.tabPage1.Location = new System.Drawing.Point(4, 26);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
             this.tabPage1.Size = new System.Drawing.Size(1059, 677);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "PAKETI";
@@ -152,7 +152,7 @@
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(158)))), ((int)(((byte)(192)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(4, 5);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(1052, 747);
@@ -162,9 +162,9 @@
             // 
             this.tabPage2.Controls.Add(this.dataGridView2);
             this.tabPage2.Location = new System.Drawing.Point(4, 26);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
             this.tabPage2.Size = new System.Drawing.Size(1059, 677);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "REKLAMACIJE";
@@ -179,7 +179,7 @@
             this.dataGridView2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(158)))), ((int)(((byte)(192)))));
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(2, 5);
-            this.dataGridView2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView2.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 24;
             this.dataGridView2.Size = new System.Drawing.Size(1352, 677);
@@ -280,7 +280,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1085, 857);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(187)))), ((int)(((byte)(0)))));
+            this.ClientSize = new System.Drawing.Size(1085, 749);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button1);
@@ -294,7 +295,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Pregled2018";
             this.Text = "Pregled 2018";
             this.Load += new System.EventHandler(this.Pregled2018_Load);

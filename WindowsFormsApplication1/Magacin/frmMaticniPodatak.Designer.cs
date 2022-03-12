@@ -61,17 +61,19 @@
             this.txtSirina = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtVisina = new System.Windows.Forms.TextBox();
-            this.btnOsvezi = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.cboMaticniSifra = new System.Windows.Forms.ComboBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.button2 = new FontAwesome.Sharp.IconButton();
+            this.btnOsvezi = new FontAwesome.Sharp.IconButton();
+            this.button1 = new FontAwesome.Sharp.IconButton();
+            this.button3 = new FontAwesome.Sharp.IconButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaxKol)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBruto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTezinaPalete)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -165,11 +167,11 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(9, 41);
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.Location = new System.Drawing.Point(13, 48);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(68, 16);
+            this.label5.Size = new System.Drawing.Size(70, 19);
             this.label5.TabIndex = 212;
             this.label5.Text = "MP Naziv:";
             // 
@@ -177,19 +179,19 @@
             // 
             this.cboMaticni.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cboMaticni.FormattingEnabled = true;
-            this.cboMaticni.Location = new System.Drawing.Point(79, 42);
+            this.cboMaticni.Location = new System.Drawing.Point(12, 68);
             this.cboMaticni.Name = "cboMaticni";
-            this.cboMaticni.Size = new System.Drawing.Size(159, 24);
+            this.cboMaticni.Size = new System.Drawing.Size(162, 24);
             this.cboMaticni.TabIndex = 211;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(12, 103);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(13, 143);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 16);
+            this.label1.Size = new System.Drawing.Size(49, 19);
             this.label1.TabIndex = 216;
             this.label1.Text = "Paleta:";
             // 
@@ -197,16 +199,16 @@
             // 
             this.cboPaleta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cboPaleta.FormattingEnabled = true;
-            this.cboPaleta.Location = new System.Drawing.Point(79, 103);
+            this.cboPaleta.Location = new System.Drawing.Point(12, 162);
             this.cboPaleta.Name = "cboPaleta";
-            this.cboPaleta.Size = new System.Drawing.Size(159, 24);
+            this.cboPaleta.Size = new System.Drawing.Size(162, 24);
             this.cboPaleta.TabIndex = 215;
             // 
             // txtMaxKol
             // 
             this.txtMaxKol.DecimalPlaces = 2;
             this.txtMaxKol.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.txtMaxKol.Location = new System.Drawing.Point(437, 46);
+            this.txtMaxKol.Location = new System.Drawing.Point(322, 69);
             this.txtMaxKol.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -220,11 +222,11 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(306, 42);
+            this.label13.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label13.ForeColor = System.Drawing.Color.Black;
+            this.label13.Location = new System.Drawing.Point(322, 48);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(88, 16);
+            this.label13.Size = new System.Drawing.Size(90, 19);
             this.label13.TabIndex = 218;
             this.label13.Text = "Max količina.:";
             // 
@@ -232,7 +234,7 @@
             // 
             this.txtBruto.DecimalPlaces = 2;
             this.txtBruto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.txtBruto.Location = new System.Drawing.Point(437, 109);
+            this.txtBruto.Location = new System.Drawing.Point(322, 163);
             this.txtBruto.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -246,11 +248,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(306, 77);
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(322, 96);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(84, 16);
+            this.label2.Size = new System.Drawing.Size(87, 19);
             this.label2.TabIndex = 220;
             this.label2.Text = "Bruto Paleta:";
             // 
@@ -258,7 +260,7 @@
             // 
             this.txtTezinaPalete.DecimalPlaces = 2;
             this.txtTezinaPalete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.txtTezinaPalete.Location = new System.Drawing.Point(437, 80);
+            this.txtTezinaPalete.Location = new System.Drawing.Point(322, 115);
             this.txtTezinaPalete.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -272,30 +274,30 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(306, 111);
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(322, 144);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(129, 16);
+            this.label3.Size = new System.Drawing.Size(134, 19);
             this.label3.TabIndex = 222;
             this.label3.Text = "Max Paketi + Paleta:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(306, 142);
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(322, 192);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(81, 16);
+            this.label4.Size = new System.Drawing.Size(80, 19);
             this.label4.TabIndex = 224;
             this.label4.Text = "Regalni red:";
             // 
             // txtRegalniRed
             // 
-            this.txtRegalniRed.Location = new System.Drawing.Point(437, 142);
+            this.txtRegalniRed.Location = new System.Drawing.Point(322, 212);
             this.txtRegalniRed.Name = "txtRegalniRed";
-            this.txtRegalniRed.Size = new System.Drawing.Size(110, 20);
+            this.txtRegalniRed.Size = new System.Drawing.Size(162, 20);
             this.txtRegalniRed.TabIndex = 225;
             // 
             // dataGridView1
@@ -308,6 +310,7 @@
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(158)))), ((int)(((byte)(192)))));
             dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -320,111 +323,83 @@
             dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle11.BackColor = System.Drawing.Color.WhiteSmoke;
             dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle11;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 181);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 260);
             this.dataGridView1.Name = "dataGridView1";
             dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.Blue;
             dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle12;
-            this.dataGridView1.Size = new System.Drawing.Size(941, 299);
+            this.dataGridView1.Size = new System.Drawing.Size(941, 412);
             this.dataGridView1.TabIndex = 226;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged_1);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(571, 44);
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Location = new System.Drawing.Point(632, 48);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(52, 16);
+            this.label6.Size = new System.Drawing.Size(54, 19);
             this.label6.TabIndex = 227;
             this.label6.Text = "Dužina:";
             // 
             // txtDuzina
             // 
-            this.txtDuzina.Location = new System.Drawing.Point(658, 42);
+            this.txtDuzina.Location = new System.Drawing.Point(632, 70);
             this.txtDuzina.Name = "txtDuzina";
-            this.txtDuzina.Size = new System.Drawing.Size(110, 20);
+            this.txtDuzina.Size = new System.Drawing.Size(113, 20);
             this.txtDuzina.TabIndex = 228;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(571, 70);
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label7.ForeColor = System.Drawing.Color.Black;
+            this.label7.Location = new System.Drawing.Point(632, 96);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(45, 16);
+            this.label7.Size = new System.Drawing.Size(45, 19);
             this.label7.TabIndex = 229;
             this.label7.Text = "Širina:";
             // 
             // txtSirina
             // 
-            this.txtSirina.Location = new System.Drawing.Point(658, 68);
+            this.txtSirina.Location = new System.Drawing.Point(632, 116);
             this.txtSirina.Name = "txtSirina";
-            this.txtSirina.Size = new System.Drawing.Size(110, 20);
+            this.txtSirina.Size = new System.Drawing.Size(113, 20);
             this.txtSirina.TabIndex = 230;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(571, 95);
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label8.ForeColor = System.Drawing.Color.Black;
+            this.label8.Location = new System.Drawing.Point(632, 144);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(48, 16);
+            this.label8.Size = new System.Drawing.Size(48, 19);
             this.label8.TabIndex = 231;
             this.label8.Text = "Visina:";
             // 
             // txtVisina
             // 
-            this.txtVisina.Location = new System.Drawing.Point(658, 93);
+            this.txtVisina.Location = new System.Drawing.Point(632, 164);
             this.txtVisina.Name = "txtVisina";
-            this.txtVisina.Size = new System.Drawing.Size(110, 20);
+            this.txtVisina.Size = new System.Drawing.Size(113, 20);
             this.txtVisina.TabIndex = 232;
-            // 
-            // btnOsvezi
-            // 
-            this.btnOsvezi.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnOsvezi.BackgroundImage")));
-            this.btnOsvezi.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnOsvezi.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.btnOsvezi.ForeColor = System.Drawing.Color.White;
-            this.btnOsvezi.Location = new System.Drawing.Point(244, 42);
-            this.btnOsvezi.Name = "btnOsvezi";
-            this.btnOsvezi.Size = new System.Drawing.Size(16, 25);
-            this.btnOsvezi.TabIndex = 274;
-            this.btnOsvezi.Text = "?";
-            this.btnOsvezi.UseVisualStyleBackColor = true;
-            this.btnOsvezi.Click += new System.EventHandler(this.btnOsvezi_Click);
-            // 
-            // button1
-            // 
-            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(244, 73);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(16, 25);
-            this.button1.TabIndex = 277;
-            this.button1.Text = "?";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(9, 73);
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label9.ForeColor = System.Drawing.Color.Black;
+            this.label9.Location = new System.Drawing.Point(13, 95);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(61, 16);
+            this.label9.Size = new System.Drawing.Size(63, 19);
             this.label9.TabIndex = 276;
             this.label9.Text = "MP Šifra:";
             // 
@@ -432,51 +407,111 @@
             // 
             this.cboMaticniSifra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cboMaticniSifra.FormattingEnabled = true;
-            this.cboMaticniSifra.Location = new System.Drawing.Point(79, 73);
+            this.cboMaticniSifra.Location = new System.Drawing.Point(12, 114);
             this.cboMaticniSifra.Name = "cboMaticniSifra";
-            this.cboMaticniSifra.Size = new System.Drawing.Size(159, 24);
+            this.cboMaticniSifra.Size = new System.Drawing.Size(162, 24);
             this.cboMaticniSifra.TabIndex = 275;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(816, 178);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(137, 54);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 280;
+            this.pictureBox2.TabStop = false;
             // 
             // button2
             // 
-            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(266, 42);
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.button2.IconChar = FontAwesome.Sharp.IconChar.Registered;
+            this.button2.IconColor = System.Drawing.Color.Black;
+            this.button2.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.button2.IconSize = 23;
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.Location = new System.Drawing.Point(223, 68);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(16, 25);
-            this.button2.TabIndex = 278;
-            this.button2.Text = "R";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Size = new System.Drawing.Size(32, 25);
+            this.button2.TabIndex = 282;
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // btnOsvezi
+            // 
+            this.btnOsvezi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
+            this.btnOsvezi.FlatAppearance.BorderSize = 0;
+            this.btnOsvezi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOsvezi.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.btnOsvezi.IconChar = FontAwesome.Sharp.IconChar.QuestionCircle;
+            this.btnOsvezi.IconColor = System.Drawing.Color.Black;
+            this.btnOsvezi.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.btnOsvezi.IconSize = 23;
+            this.btnOsvezi.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOsvezi.Location = new System.Drawing.Point(182, 68);
+            this.btnOsvezi.Name = "btnOsvezi";
+            this.btnOsvezi.Size = new System.Drawing.Size(32, 25);
+            this.btnOsvezi.TabIndex = 283;
+            this.btnOsvezi.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnOsvezi.UseVisualStyleBackColor = false;
+            this.btnOsvezi.Click += new System.EventHandler(this.btnOsvezi_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.button1.IconChar = FontAwesome.Sharp.IconChar.QuestionCircle;
+            this.button1.IconColor = System.Drawing.Color.Black;
+            this.button1.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.button1.IconSize = 23;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(182, 114);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(32, 25);
+            this.button1.TabIndex = 285;
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button3
             // 
-            this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(266, 74);
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.button3.IconChar = FontAwesome.Sharp.IconChar.Registered;
+            this.button3.IconColor = System.Drawing.Color.Black;
+            this.button3.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.button3.IconSize = 23;
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button3.Location = new System.Drawing.Point(223, 114);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(16, 24);
-            this.button3.TabIndex = 279;
-            this.button3.Text = "R";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Size = new System.Drawing.Size(32, 25);
+            this.button3.TabIndex = 284;
+            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // frmMaticniPodatak
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(187)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(965, 492);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ClientSize = new System.Drawing.Size(965, 684);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.btnOsvezi);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.cboMaticniSifra);
-            this.Controls.Add(this.btnOsvezi);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txtVisina);
             this.Controls.Add(this.label7);
@@ -498,6 +533,7 @@
             this.Controls.Add(this.cboMaticni);
             this.Controls.Add(this.toolStrip1);
             this.ForeColor = System.Drawing.Color.White;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmMaticniPodatak";
             this.Text = "Matični podatak - Dodatni podaci";
             this.Load += new System.EventHandler(this.frmMaticniPodatak_Load);
@@ -507,6 +543,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtBruto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTezinaPalete)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -542,11 +579,12 @@
         private System.Windows.Forms.TextBox txtSirina;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtVisina;
-        private System.Windows.Forms.Button btnOsvezi;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox cboMaticniSifra;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private FontAwesome.Sharp.IconButton button2;
+        private FontAwesome.Sharp.IconButton btnOsvezi;
+        private FontAwesome.Sharp.IconButton button1;
+        private FontAwesome.Sharp.IconButton button3;
     }
 }

@@ -136,7 +136,5 @@ namespace WindowsFormsApplication1.Magacin
                 MessageBox.Show("Nije uspela selekcija stavki");
             }
         }
-    
-    
     }
 }

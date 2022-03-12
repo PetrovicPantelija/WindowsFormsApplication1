@@ -42,7 +42,7 @@
             // 
             this.btnInsertNakNalog.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnInsertNakNalog.Location = new System.Drawing.Point(661, 10);
-            this.btnInsertNakNalog.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnInsertNakNalog.Margin = new System.Windows.Forms.Padding(2);
             this.btnInsertNakNalog.Name = "btnInsertNakNalog";
             this.btnInsertNakNalog.Size = new System.Drawing.Size(240, 33);
             this.btnInsertNakNalog.TabIndex = 14;
@@ -54,7 +54,7 @@
             // 
             this.btnPoDatumuIVozilu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnPoDatumuIVozilu.Location = new System.Drawing.Point(404, 10);
-            this.btnPoDatumuIVozilu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnPoDatumuIVozilu.Margin = new System.Windows.Forms.Padding(2);
             this.btnPoDatumuIVozilu.Name = "btnPoDatumuIVozilu";
             this.btnPoDatumuIVozilu.Size = new System.Drawing.Size(240, 32);
             this.btnPoDatumuIVozilu.TabIndex = 13;
@@ -66,7 +66,7 @@
             // 
             this.txtVozilo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.txtVozilo.Location = new System.Drawing.Point(175, 41);
-            this.txtVozilo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtVozilo.Margin = new System.Windows.Forms.Padding(2);
             this.txtVozilo.Name = "txtVozilo";
             this.txtVozilo.Size = new System.Drawing.Size(210, 23);
             this.txtVozilo.TabIndex = 12;
@@ -97,7 +97,7 @@
             // 
             this.txtDatumIsporuke.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.txtDatumIsporuke.Location = new System.Drawing.Point(175, 7);
-            this.txtDatumIsporuke.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtDatumIsporuke.Margin = new System.Windows.Forms.Padding(2);
             this.txtDatumIsporuke.Name = "txtDatumIsporuke";
             this.txtDatumIsporuke.Size = new System.Drawing.Size(210, 23);
             this.txtDatumIsporuke.TabIndex = 9;
@@ -108,17 +108,18 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(9, 88);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Location = new System.Drawing.Point(6, 88);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(892, 297);
+            this.dataGridView1.Size = new System.Drawing.Size(895, 345);
             this.dataGridView1.TabIndex = 15;
             // 
             // Reklamacije
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(187)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(943, 444);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnInsertNakNalog);
@@ -127,7 +128,7 @@
             this.Controls.Add(this.lblVozila);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtDatumIsporuke);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Reklamacije";
             this.Text = "r";
             this.Load += new System.EventHandler(this.Reklamacije_Load);

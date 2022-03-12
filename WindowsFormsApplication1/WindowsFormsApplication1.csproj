@@ -719,6 +719,12 @@
     <Compile Include="Meniji\frmMagacin.designer.cs">
       <DependentUpon>frmMagacin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Meniji\frmMenijiWEBSPodaci.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Meniji\frmMenijiWEBSPodaci.Designer.cs">
+      <DependentUpon>frmMenijiWEBSPodaci.cs</DependentUpon>
+    </Compile>
     <Compile Include="Meniji\frmPonisti.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1350,6 +1356,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Meniji\frmMagacin.resx">
       <DependentUpon>frmMagacin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Meniji\frmMenijiWEBSPodaci.resx">
+      <DependentUpon>frmMenijiWEBSPodaci.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Meniji\frmPonisti.resx">
       <DependentUpon>frmPonisti.cs</DependentUpon>

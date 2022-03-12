@@ -12,7 +12,7 @@ namespace WindowsFormsApplication1.Portirnica
 {
     class InsertStatusNajave
     {
-        public void InsSatusNajave(string RegistarskiBroj, string PrevoznikKlijent, string Partner, DateTime DatumVremeDolaska, string Napomena, string UtovarBroj, string KorisnikOtvorio, DateTime DatumVremeOtvaranja, string Gate, DateTime DatumVremePrijema, string KorinsikPrimio, string NapomenaPrijema, int PaletaSpremne1, DateTime DatumSpremne1, int PaletaSpremne2, DateTime DatumSpremne2, string KontrolorSpremne1, string KontrolorSpremne2, int DokumentacijaSpremne, string ProdajaKorisnik, DateTime DatumDokumentSpremne, DateTime DatumKamionIzasao, string Korisnik, string DatumNajave, string Vozilo, string NapomenaKontrola, string NapomenaIzlaz)
+        public void InsSatusNajave(string RegistarskiBroj, string PrevoznikKlijent, string Partner, DateTime DatumVremeDolaska, string Napomena, string UtovarBroj, string KorisnikOtvorio, DateTime DatumVremeOtvaranja, string Gate, DateTime DatumVremePrijema, string KorinsikPrimio, string NapomenaPrijema, int PaletaSpremne1, DateTime DatumSpremne1, int PaletaSpremne2, DateTime DatumSpremne2, string KontrolorSpremne1, string KontrolorSpremne2, int DokumentacijaSpremne, string ProdajaKorisnik, DateTime DatumDokumentSpremne, DateTime DatumKamionIzasao, string Korisnik, string DatumNajave, string Vozilo, string NapomenaKontrola, string NapomenaIzlaz, int MestoIsporuke)
         {
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -55,7 +55,7 @@ namespace WindowsFormsApplication1.Portirnica
             SqlParameter parameter5 = new SqlParameter();
             parameter5.ParameterName = "@Napomena";
             parameter5.SqlDbType = SqlDbType.NVarChar;
-            parameter5.Size = 50;
+            parameter5.Size = 250;
             parameter5.Direction = ParameterDirection.Input;
             parameter5.Value = Napomena;
             myCommand.Parameters.Add(parameter5);
@@ -227,6 +227,15 @@ namespace WindowsFormsApplication1.Portirnica
             parameter27.Value = NapomenaIzlaz;
             myCommand.Parameters.Add(parameter27);
 
+
+            SqlParameter parameter28 = new SqlParameter();
+            parameter28.ParameterName = "@MestoIsporuke";
+            parameter28.SqlDbType = SqlDbType.Int;
+            //  parameter28.Size = 100;
+            parameter28.Direction = ParameterDirection.Input;
+            parameter28.Value = MestoIsporuke;
+            myCommand.Parameters.Add(parameter28);
+
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;
@@ -265,7 +274,7 @@ namespace WindowsFormsApplication1.Portirnica
             }
         }
 
-        public void UpdStatusNajave(int ID, string RegistarskiBroj, string PrevoznikKlijent, string Partner, DateTime DatumVremeDolaska, string Napomena, string UtovarBroj, string KorisnikOtvorio, DateTime DatumVremeOtvaranja, string Gate, DateTime DatumVremePrijema, string KorinsikPrimio, string NapomenaPrijema, int PaletaSpremne1, DateTime DatumSpremne1, int PaletaSpremne2, DateTime DatumSpremne2, string KontrolorSpremne1, string KontrolorSpremne2, int DokumentacijaSpremne, string ProdajaKorisnik, DateTime DatumDokumentSpremne, DateTime DatumKamionIzasao, string Korisnik, string DatumNajave, string Vozilo, string NapomenaKontrola, string NapomenaIzlaz)
+        public void UpdStatusNajave(int ID, string RegistarskiBroj, string PrevoznikKlijent, string Partner, DateTime DatumVremeDolaska, string Napomena, string UtovarBroj, string KorisnikOtvorio, DateTime DatumVremeOtvaranja, string Gate, DateTime DatumVremePrijema, string KorinsikPrimio, string NapomenaPrijema, int PaletaSpremne1, DateTime DatumSpremne1, int PaletaSpremne2, DateTime DatumSpremne2, string KontrolorSpremne1, string KontrolorSpremne2, int DokumentacijaSpremne, string ProdajaKorisnik, DateTime DatumDokumentSpremne, DateTime DatumKamionIzasao, string Korisnik, string DatumNajave, string Vozilo, string NapomenaKontrola, string NapomenaIzlaz, int MestoIsporuke)
         {
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -315,7 +324,7 @@ namespace WindowsFormsApplication1.Portirnica
             SqlParameter parameter5 = new SqlParameter();
             parameter5.ParameterName = "@Napomena";
             parameter5.SqlDbType = SqlDbType.NVarChar;
-            parameter5.Size = 50;
+            parameter5.Size = 250;
             parameter5.Direction = ParameterDirection.Input;
             parameter5.Value = Napomena;
             myCommand.Parameters.Add(parameter5);
@@ -486,6 +495,14 @@ namespace WindowsFormsApplication1.Portirnica
             parameter27.Direction = ParameterDirection.Input;
             parameter27.Value = NapomenaIzlaz;
             myCommand.Parameters.Add(parameter27);
+
+            SqlParameter parameter28 = new SqlParameter();
+            parameter28.ParameterName = "@MestoIsporuke";
+            parameter28.SqlDbType = SqlDbType.Int;
+          //  parameter28.Size = 100;
+            parameter28.Direction = ParameterDirection.Input;
+            parameter28.Value = MestoIsporuke;
+            myCommand.Parameters.Add(parameter28);
 
 
 

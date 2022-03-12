@@ -52,5 +52,10 @@ namespace WindowsFormsApplication1.Meniji
             v123v vs = new v123v();
             vs.Show();
         }
+
+        private void frmWEBSPodaci_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
