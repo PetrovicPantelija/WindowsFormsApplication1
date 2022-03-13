@@ -193,5 +193,18 @@ namespace WindowsFormsApplication1
         {
             this.WindowState = FormWindowState.Minimized;
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if(cboKorisnik.Text=="pantelija" && txtPassword.Text == "307")
+            {
+                Kalkulacije.MainKalkulacije kalk = new Kalkulacije.MainKalkulacije();
+                kalk.Show();
+            }
+            else
+            {
+                MessageBox.Show("Nemate prava za pristup ovoj formi");
+            }
+        }
     }
 }
