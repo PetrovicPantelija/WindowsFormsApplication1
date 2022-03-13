@@ -645,8 +645,10 @@ namespace WindowsFormsApplication1
                     conn.Close();
                    
                 }
+            button5.BackColor = Color.OrangeRed;
+            MessageBox.Show("Posao završen");
 
-}
+        }
 
         private void button6_Click(object sender, EventArgs e)
         {

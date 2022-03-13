@@ -138,7 +138,7 @@
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(833, 350);
+            this.dataGridView1.Size = new System.Drawing.Size(833, 400);
             this.dataGridView1.TabIndex = 61;
             // 
             // label4

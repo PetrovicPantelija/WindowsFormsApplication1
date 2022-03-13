@@ -59,14 +59,12 @@
             this.button5 = new FontAwesome.Sharp.IconButton();
             this.button6 = new FontAwesome.Sharp.IconButton();
             this.button7 = new FontAwesome.Sharp.IconButton();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -130,7 +128,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(541, 19);
+            this.label4.Location = new System.Drawing.Point(490, 18);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(110, 19);
@@ -141,7 +139,7 @@
             // 
             this.Tezina.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(200)))), ((int)(((byte)(0)))));
             this.Tezina.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.Tezina.Location = new System.Drawing.Point(541, 37);
+            this.Tezina.Location = new System.Drawing.Point(490, 36);
             this.Tezina.Margin = new System.Windows.Forms.Padding(2);
             this.Tezina.Name = "Tezina";
             this.Tezina.Size = new System.Drawing.Size(162, 28);
@@ -152,7 +150,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label5.Location = new System.Drawing.Point(541, 69);
+            this.label5.Location = new System.Drawing.Point(490, 68);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(117, 19);
@@ -163,7 +161,7 @@
             // 
             this.txtCeoNalog.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(200)))), ((int)(((byte)(0)))));
             this.txtCeoNalog.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.txtCeoNalog.Location = new System.Drawing.Point(541, 87);
+            this.txtCeoNalog.Location = new System.Drawing.Point(490, 86);
             this.txtCeoNalog.Margin = new System.Windows.Forms.Padding(2);
             this.txtCeoNalog.Name = "txtCeoNalog";
             this.txtCeoNalog.Size = new System.Drawing.Size(162, 28);
@@ -178,18 +176,18 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(158)))), ((int)(((byte)(192)))));
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(899, 39);
+            this.dataGridView2.Location = new System.Drawing.Point(843, 40);
             this.dataGridView2.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(0, 224);
+            this.dataGridView2.Size = new System.Drawing.Size(226, 179);
             this.dataGridView2.TabIndex = 30;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label6.Location = new System.Drawing.Point(899, 19);
+            this.label6.Location = new System.Drawing.Point(839, 18);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(133, 19);
@@ -221,7 +219,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.label8.Location = new System.Drawing.Point(541, 119);
+            this.label8.Location = new System.Drawing.Point(490, 118);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(119, 19);
@@ -232,7 +230,7 @@
             // 
             this.txtPakovanja.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(200)))), ((int)(((byte)(0)))));
             this.txtPakovanja.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.txtPakovanja.Location = new System.Drawing.Point(541, 137);
+            this.txtPakovanja.Location = new System.Drawing.Point(490, 136);
             this.txtPakovanja.Margin = new System.Windows.Forms.Padding(2);
             this.txtPakovanja.Name = "txtPakovanja";
             this.txtPakovanja.Size = new System.Drawing.Size(162, 28);
@@ -247,11 +245,11 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.tabControl1.Location = new System.Drawing.Point(11, 231);
+            this.tabControl1.Location = new System.Drawing.Point(11, 219);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(878, 295);
+            this.tabControl1.Size = new System.Drawing.Size(1067, 295);
             this.tabControl1.TabIndex = 39;
             // 
             // tabPage1
@@ -261,7 +259,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage1.Size = new System.Drawing.Size(870, 269);
+            this.tabPage1.Size = new System.Drawing.Size(1059, 269);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Paketi";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -269,11 +267,11 @@
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.dataGridView3);
-            this.tabPage2.Location = new System.Drawing.Point(4, 26);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage2.Size = new System.Drawing.Size(1072, 408);
+            this.tabPage2.Size = new System.Drawing.Size(1059, 269);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Reklamacije";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -292,7 +290,7 @@
             // 
             this.cboVozaci.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cboVozaci.FormattingEnabled = true;
-            this.cboVozaci.Location = new System.Drawing.Point(541, 188);
+            this.cboVozaci.Location = new System.Drawing.Point(490, 187);
             this.cboVozaci.Margin = new System.Windows.Forms.Padding(2);
             this.cboVozaci.Name = "cboVozaci";
             this.cboVozaci.Size = new System.Drawing.Size(162, 25);
@@ -302,7 +300,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(541, 169);
+            this.label9.Location = new System.Drawing.Point(490, 168);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(48, 17);
@@ -452,7 +450,7 @@
             this.button5.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.button5.IconSize = 23;
             this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button5.Location = new System.Drawing.Point(713, 89);
+            this.button5.Location = new System.Drawing.Point(662, 88);
             this.button5.Name = "button5";
             this.button5.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.button5.Size = new System.Drawing.Size(176, 25);
@@ -474,7 +472,7 @@
             this.button6.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.button6.IconSize = 23;
             this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button6.Location = new System.Drawing.Point(713, 139);
+            this.button6.Location = new System.Drawing.Point(662, 138);
             this.button6.Name = "button6";
             this.button6.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.button6.Size = new System.Drawing.Size(176, 25);
@@ -496,7 +494,7 @@
             this.button7.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.button7.IconSize = 23;
             this.button7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button7.Location = new System.Drawing.Point(713, 188);
+            this.button7.Location = new System.Drawing.Point(662, 187);
             this.button7.Name = "button7";
             this.button7.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.button7.Size = new System.Drawing.Size(176, 25);
@@ -507,34 +505,25 @@
             this.button7.UseVisualStyleBackColor = false;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(497, 4);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(137, 34);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 161;
-            this.pictureBox2.TabStop = false;
-            // 
             // dataGridView3
             // 
+            this.dataGridView3.AllowUserToAddRows = false;
             this.dataGridView3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView3.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(158)))), ((int)(((byte)(192)))));
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(8, 4);
+            this.dataGridView3.Location = new System.Drawing.Point(2, 4);
             this.dataGridView3.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowTemplate.Height = 24;
-            this.dataGridView3.Size = new System.Drawing.Size(1060, 400);
+            this.dataGridView3.Size = new System.Drawing.Size(1052, 261);
             this.dataGridView3.TabIndex = 3;
+            this.dataGridView3.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -544,16 +533,16 @@
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(862, 261);
+            this.dataGridView1.Size = new System.Drawing.Size(1051, 261);
             this.dataGridView1.TabIndex = 3;
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // ObradaIsporuke
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(187)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(891, 537);
-            this.Controls.Add(this.pictureBox2);
+            this.ClientSize = new System.Drawing.Size(1080, 537);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button7);
@@ -592,7 +581,6 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -632,7 +620,6 @@
         private FontAwesome.Sharp.IconButton button5;
         private FontAwesome.Sharp.IconButton button6;
         private FontAwesome.Sharp.IconButton button7;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridView dataGridView3;
     }

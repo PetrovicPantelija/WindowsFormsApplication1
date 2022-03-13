@@ -114,7 +114,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.tabControl1.Location = new System.Drawing.Point(11, 219);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
@@ -137,11 +137,11 @@
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.dataGridView2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 26);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage2.Size = new System.Drawing.Size(1001, 499);
+            this.tabPage2.Size = new System.Drawing.Size(1001, 503);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "REKLAMACIJE";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -289,6 +289,7 @@
             this.dataGridView2.RowTemplate.Height = 24;
             this.dataGridView2.Size = new System.Drawing.Size(989, 489);
             this.dataGridView2.TabIndex = 59;
+            this.dataGridView2.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // PregledKontrolorIstorija
             // 

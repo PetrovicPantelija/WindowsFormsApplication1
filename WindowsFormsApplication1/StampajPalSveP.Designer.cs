@@ -143,6 +143,9 @@
             // 
             // reportViewer1
             // 
+            this.reportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "WindowsFormsApplication1.Report5.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(28, 58);
             this.reportViewer1.Name = "reportViewer1";

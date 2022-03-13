@@ -37,7 +37,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.cboUtovar = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.button3 = new FontAwesome.Sharp.IconButton();
             this.button2 = new FontAwesome.Sharp.IconButton();
             this.button4 = new FontAwesome.Sharp.IconButton();
@@ -45,7 +44,6 @@
             this.button1 = new FontAwesome.Sharp.IconButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -138,18 +136,6 @@
             this.label7.Size = new System.Drawing.Size(82, 17);
             this.label7.TabIndex = 65;
             this.label7.Text = "Broj utovara:";
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(650, 2);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(137, 34);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 151;
-            this.pictureBox2.TabStop = false;
             // 
             // button3
             // 
@@ -296,7 +282,6 @@
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.cboUtovar);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label4);
@@ -310,7 +295,6 @@
             this.Name = "ObradaPaletar";
             this.Text = "Obrada Paletar";
             this.Load += new System.EventHandler(this.ObradaPaletar_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
@@ -327,7 +311,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cboUtovar;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private FontAwesome.Sharp.IconButton button3;
         private FontAwesome.Sharp.IconButton button2;
         private FontAwesome.Sharp.IconButton button4;
