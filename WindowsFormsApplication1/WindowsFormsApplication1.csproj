@@ -453,6 +453,12 @@
     <Compile Include="Kalkulacije\frmPrimenaTroskovnogCenovnika.Designer.cs">
       <DependentUpon>frmPrimenaTroskovnogCenovnika.cs</DependentUpon>
     </Compile>
+    <Compile Include="Kalkulacije\frmProgram.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kalkulacije\frmProgram.Designer.cs">
+      <DependentUpon>frmProgram.cs</DependentUpon>
+    </Compile>
     <Compile Include="Kalkulacije\frmZaglavlja.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -467,6 +473,7 @@
     <Compile Include="Kalkulacije\InsertKolekcije.cs" />
     <Compile Include="Kalkulacije\InsertKolekcijePripadnost.cs" />
     <Compile Include="Kalkulacije\InsertPrimenaTroskovnogCenovnika.cs" />
+    <Compile Include="Kalkulacije\InsertProgram.cs" />
     <Compile Include="Kalkulacije\MainKalkulacije.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1238,6 +1245,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Kalkulacije\frmPrimenaTroskovnogCenovnika.resx">
       <DependentUpon>frmPrimenaTroskovnogCenovnika.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kalkulacije\frmProgram.resx">
+      <DependentUpon>frmProgram.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Kalkulacije\frmZaglavlja.resx">
       <DependentUpon>frmZaglavlja.cs</DependentUpon>

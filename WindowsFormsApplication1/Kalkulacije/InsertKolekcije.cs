@@ -13,7 +13,7 @@ namespace WindowsFormsApplication1.Kalkulacije
     class InsertKolekcije
     {
         string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-        public void InsKolekcije(string Naziv)
+        public void InsKolekcije(string Naziv, int ProgramID)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -27,6 +27,13 @@ namespace WindowsFormsApplication1.Kalkulacije
             naziv.Direction = ParameterDirection.Input;
             naziv.Value = Naziv;
             cmd.Parameters.Add(naziv);
+
+            SqlParameter program = new SqlParameter();
+            program.ParameterName = "@ProgramID";
+            program.SqlDbType = SqlDbType.Int;
+            program.Direction = ParameterDirection.Input;
+            program.Value = ProgramID;
+            cmd.Parameters.Add(program);
 
             conn.Open();
             SqlTransaction tran = conn.BeginTransaction();
@@ -57,7 +64,7 @@ namespace WindowsFormsApplication1.Kalkulacije
                 }
             }
         }
-        public void UpdKolekcije(int ID,string Naziv)
+        public void UpdKolekcije(int ID,string Naziv,int ProgramID)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -78,6 +85,13 @@ namespace WindowsFormsApplication1.Kalkulacije
             naziv.Direction = ParameterDirection.Input;
             naziv.Value = Naziv;
             cmd.Parameters.Add(naziv);
+
+            SqlParameter program = new SqlParameter();
+            program.ParameterName = "@ProgramID";
+            program.SqlDbType = SqlDbType.Int;
+            program.Direction = ParameterDirection.Input;
+            program.Value = ProgramID;
+            cmd.Parameters.Add(program);
 
             conn.Open();
             SqlTransaction tran = conn.BeginTransaction();

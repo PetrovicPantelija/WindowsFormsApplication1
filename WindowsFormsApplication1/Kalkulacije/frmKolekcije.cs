@@ -20,11 +20,14 @@ namespace WindowsFormsApplication1.Kalkulacije
         {
             InitializeComponent();
             FillGV();
+            FillCombo();
             txt_ID.Enabled = false;
         }
         private void FillGV()
         {
-            var query = "Select * from Kolekcije";
+            var query = "Select Kolekcije.ID as ID,Kolekcije.Naziv as Naziv,Kolekcije.ProgramID as ProgramID,Program.Naziv as Program " +
+                "from Kolekcije " +
+                "Inner join Program on Kolekcije.ProgramID = Program.ID";
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();
@@ -32,7 +35,17 @@ namespace WindowsFormsApplication1.Kalkulacije
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
         }
-
+        private void FillCombo()
+        {
+            var query = " Select * from Program";
+            SqlConnection conn = new SqlConnection(connect);
+            var da = new SqlDataAdapter(query, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            combo_Program.DataSource = ds.Tables[0];
+            combo_Program.DisplayMember = "Naziv";
+            combo_Program.ValueMember = "ID";
+        }
         private void tsNew_Click(object sender, EventArgs e)
         {
             status = true;
@@ -43,13 +56,13 @@ namespace WindowsFormsApplication1.Kalkulacije
             if (status == true)
             {
                 Kalkulacije.InsertKolekcije kol = new InsertKolekcije();
-                kol.InsKolekcije(txt_Naziv.Text.ToString().TrimEnd());
+                kol.InsKolekcije(txt_Naziv.Text.ToString().TrimEnd(),Convert.ToInt32(combo_Program.SelectedValue));
                 status = false;
             }
             else
             {
                 Kalkulacije.InsertKolekcije kol = new InsertKolekcije();
-                kol.UpdKolekcije(Convert.ToInt32(txt_ID.Text), txt_Naziv.Text.ToString().TrimEnd());
+                kol.UpdKolekcije(Convert.ToInt32(txt_ID.Text), txt_Naziv.Text.ToString().TrimEnd(),Convert.ToInt32(combo_Program.SelectedValue));
             }
             FillGV();
         }
@@ -70,6 +83,7 @@ namespace WindowsFormsApplication1.Kalkulacije
                     {
                         txt_ID.Text = row.Cells[0].Value.ToString();
                         txt_Naziv.Text = row.Cells[1].Value.ToString().TrimEnd();
+                        combo_Program.Text = row.Cells[3].Value.ToString();
                     }
                 }
             }
