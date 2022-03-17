@@ -153,5 +153,21 @@ namespace WindowsFormsApplication1.Kalkulacije
             frmBazaProdajnihCena cene = new frmBazaProdajnihCena();
             cene.Show();
         }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+            frmProgram program = new frmProgram();
+            program.Show();
+        }
+
+        private void label8_MouseEnter(object sender, EventArgs e)
+        {
+            label8.ForeColor = Color.Blue;
+        }
+
+        private void label8_MouseLeave(object sender, EventArgs e)
+        {
+            label8.ForeColor = Color.White;
+        }
     }
 }
