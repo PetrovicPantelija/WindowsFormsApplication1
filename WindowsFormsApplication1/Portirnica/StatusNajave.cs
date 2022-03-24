@@ -687,7 +687,74 @@ namespace WindowsFormsApplication1.Portirnica
            
             InsertStatusNajave upd = new InsertStatusNajave();
 
-            upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, txtKorisnikOtvorio.Text, Convert.ToDateTime(dtpVremeOtvaranja.Value), txtGate.Text, Convert.ToDateTime(DateTime.Now), UlogovaniKorisnik, txtNapomenaPrijem.Text, 0, Convert.ToDateTime(dtpVreme.Value), 0, Convert.ToDateTime(dtpVreme.Value), "", "", tmpDokumentacijaSpremna, txtProdajaKorisnik.Text, Convert.ToDateTime(dtpDokumentacijaSpremna.Value), Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text, txtNapomenaKontrola.Text, txtNapomenaIzlaz.Text, Convert.ToInt32(cboMestoIsporuke.SelectedValue));
+
+            int tmpKontrolor1 = 0;
+            int tmpKontrolor2 = 0;
+
+            if (chkPaleta1.Checked == true)
+            {
+                tmpKontrolor1 = 1;
+            }
+            else
+            {
+                tmpKontrolor1 = 0;
+
+            }
+            if (chkPaleta2.Checked == true)
+            {
+                tmpKontrolor2 = 1;
+            }
+            else
+            {
+                tmpKontrolor2 = 0;
+
+            }
+
+            if (chkDokumentacijaSpremna.Checked == true)
+            {
+                tmpDokumentacijaSpremna = 1;
+            }
+            else
+            {
+                tmpDokumentacijaSpremna = 0;
+
+            }
+
+
+
+            // spremniZaIzlazakToolStripMenuItem.BackColor = default;
+            /*
+            if (txtkorisnikPrimio.Text.TrimEnd() == "")
+            {
+            MessageBox.Show("Vozilo nije još ni došlo fizički niste mogli ni predati dokumentaciju, možete obeležiti da je dokumentacija spremna nakon dolaska vozila!!!!!!");
+            return;
+            }
+            */
+            /*
+            if (chkPaleta1.Checked == true)
+            {
+                tmpKontrolor1 = 1;
+            }
+            else
+            {
+                tmpKontrolor1 = 0;
+
+            }
+            if (chkPaleta2.Checked == true)
+            {
+                tmpKontrolor2 = 1;
+            }
+            else
+            {
+                tmpKontrolor2 = 0;
+
+            }
+            InsertStatusNajave upd = new InsertStatusNajave();
+            upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, txtKorisnikOtvorio.Text, Convert.ToDateTime(dtpVremeOtvaranja.Value), txtGate.Text, Convert.ToDateTime(dtpDatumVremePrijem.Value), txtkorisnikPrimio.Text, txtNapomenaPrijem.Text, tmpKontrolor1, Convert.ToDateTime(dtpDatum1.Value), tmpKontrolor2, Convert.ToDateTime(dtpDatum2.Value), txtKontrolor1.Text, txtKontrolor2.Text, 1, UlogovaniKorisnik, DateTime.Now, Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text, txtNapomenaKontrola.Text, txtNapomenaIzlaz.Text, Convert.ToInt32(cboMestoIsporuke.SelectedValue));
+            */
+
+
+            upd.UpdStatusNajave(Convert.ToInt32(txtSifra.Text), txtRegistarskiBroj.Text, txtPrevozniKlijent.Text, txtPartner.Text, Convert.ToDateTime(dtpDatumVremeDolaska.Value), txtNapomena.Text, txtUtovarBroj.Text, txtKorisnikOtvorio.Text, Convert.ToDateTime(dtpVremeOtvaranja.Value), txtGate.Text, Convert.ToDateTime(DateTime.Now), UlogovaniKorisnik, txtNapomenaPrijem.Text, tmpKontrolor1, Convert.ToDateTime(dtpDatum1.Value), tmpKontrolor2, Convert.ToDateTime(dtpDatum2.Value), txtKontrolor1.Text, txtKontrolor2.Text, tmpDokumentacijaSpremna, txtProdajaKorisnik.Text, Convert.ToDateTime(dtpDokumentacijaSpremna.Value), Convert.ToDateTime(Convert.ToDateTime(dtpVreme.Value)), "", cboDatumUtovara.Text, cboVozila.Text, txtNapomenaKontrola.Text, txtNapomenaIzlaz.Text, Convert.ToInt32(cboMestoIsporuke.SelectedValue));
             InsertLogNajave inslog = new InsertLogNajave();
             inslog.InsLogNajave(Convert.ToInt32(txtSifra.Text), "Portir ulaz promena", UlogovaniKorisnik, DateTime.Now);
 
@@ -1276,7 +1343,13 @@ namespace WindowsFormsApplication1.Portirnica
             int tmpKontrolor1 = 0;
             int tmpKontrolor2 = 0;
             spremniZaIzlazakToolStripMenuItem.BackColor = default;
-
+            /*
+            if (txtkorisnikPrimio.Text.TrimEnd() == "")
+            {
+            MessageBox.Show("Vozilo nije još ni došlo fizički niste mogli ni predati dokumentaciju, možete obeležiti da je dokumentacija spremna nakon dolaska vozila!!!!!!");
+            return;
+            }
+            */
             if (chkPaleta1.Checked == true)
             {
                 tmpKontrolor1 = 1;
