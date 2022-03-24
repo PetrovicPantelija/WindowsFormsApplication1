@@ -43,10 +43,11 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.label4 = new System.Windows.Forms.Label();
             this.btn_Kalkulator = new FontAwesome.Sharp.IconButton();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
-            this.label7 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.iconButton2 = new FontAwesome.Sharp.IconButton();
+            this.label7 = new System.Windows.Forms.Label();
+            this.iconButton1 = new FontAwesome.Sharp.IconButton();
+            this.label8 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IconButton)).BeginInit();
@@ -58,6 +59,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
@@ -243,44 +245,6 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.panel4.Size = new System.Drawing.Size(306, 338);
             this.panel4.TabIndex = 5;
             // 
-            // iconButton1
-            // 
-            this.iconButton1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.iconButton1.FlatAppearance.BorderSize = 0;
-            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton1.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconButton1.ForeColor = System.Drawing.Color.White;
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.EuroSign;
-            this.iconButton1.IconColor = System.Drawing.Color.White;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.IconSize = 24;
-            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.Location = new System.Drawing.Point(0, 0);
-            this.iconButton1.Margin = new System.Windows.Forms.Padding(4);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Padding = new System.Windows.Forms.Padding(20, 0, 21, 0);
-            this.iconButton1.Size = new System.Drawing.Size(306, 36);
-            this.iconButton1.TabIndex = 18;
-            this.iconButton1.Text = "Baza prodajnih cena";
-            this.iconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iconButton1.UseVisualStyleBackColor = true;
-            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(12, 40);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(161, 23);
-            this.label7.TabIndex = 19;
-            this.label7.Text = "• Vrednost kamiona";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
-            this.label7.MouseEnter += new System.EventHandler(this.label7_MouseEnter);
-            this.label7.MouseLeave += new System.EventHandler(this.label7_MouseLeave);
-            // 
             // panel5
             // 
             this.panel5.Controls.Add(this.iconButton2);
@@ -312,6 +276,58 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.iconButton2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.iconButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconButton2.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(12, 40);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(161, 23);
+            this.label7.TabIndex = 19;
+            this.label7.Text = "• Vrednost kamiona";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
+            this.label7.MouseEnter += new System.EventHandler(this.label7_MouseEnter);
+            this.label7.MouseLeave += new System.EventHandler(this.label7_MouseLeave);
+            // 
+            // iconButton1
+            // 
+            this.iconButton1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.iconButton1.FlatAppearance.BorderSize = 0;
+            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconButton1.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iconButton1.ForeColor = System.Drawing.Color.White;
+            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.EuroSign;
+            this.iconButton1.IconColor = System.Drawing.Color.White;
+            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton1.IconSize = 24;
+            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconButton1.Location = new System.Drawing.Point(0, 0);
+            this.iconButton1.Margin = new System.Windows.Forms.Padding(4);
+            this.iconButton1.Name = "iconButton1";
+            this.iconButton1.Padding = new System.Windows.Forms.Padding(20, 0, 21, 0);
+            this.iconButton1.Size = new System.Drawing.Size(306, 36);
+            this.iconButton1.TabIndex = 18;
+            this.iconButton1.Text = "Baza prodajnih cena";
+            this.iconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.iconButton1.UseVisualStyleBackColor = true;
+            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold);
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(9, 206);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(92, 23);
+            this.label8.TabIndex = 19;
+            this.label8.Text = "• Programi";
+            this.label8.Click += new System.EventHandler(this.label8_Click);
+            this.label8.MouseEnter += new System.EventHandler(this.label8_MouseEnter);
+            this.label8.MouseLeave += new System.EventHandler(this.label8_MouseLeave);
             // 
             // MainKalkulacije
             // 
@@ -357,5 +373,6 @@ namespace WindowsFormsApplication1.Kalkulacije
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panel5;
         private FontAwesome.Sharp.IconButton iconButton2;
+        private System.Windows.Forms.Label label8;
     }
 }

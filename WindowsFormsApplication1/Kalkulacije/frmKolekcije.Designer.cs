@@ -40,6 +40,8 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label3 = new System.Windows.Forms.Label();
+            this.combo_Program = new System.Windows.Forms.ComboBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -95,7 +97,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             // txt_Naziv
             // 
-            this.txt_Naziv.Location = new System.Drawing.Point(16, 164);
+            this.txt_Naziv.Location = new System.Drawing.Point(12, 165);
             this.txt_Naziv.Name = "txt_Naziv";
             this.txt_Naziv.Size = new System.Drawing.Size(206, 22);
             this.txt_Naziv.TabIndex = 204;
@@ -138,15 +140,35 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.dataGridView1.TabIndex = 206;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(12, 211);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(95, 20);
+            this.label3.TabIndex = 203;
+            this.label3.Text = "PROGRAM";
+            // 
+            // combo_Program
+            // 
+            this.combo_Program.FormattingEnabled = true;
+            this.combo_Program.Location = new System.Drawing.Point(12, 237);
+            this.combo_Program.Name = "combo_Program";
+            this.combo_Program.Size = new System.Drawing.Size(206, 24);
+            this.combo_Program.TabIndex = 207;
+            // 
             // frmKolekcije
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1147, 411);
+            this.Controls.Add(this.combo_Program);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.txt_Naziv);
             this.Controls.Add(this.txt_ID);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.toolStrip1);
             this.Name = "frmKolekcije";
@@ -171,5 +193,7 @@ namespace WindowsFormsApplication1.Kalkulacije
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox combo_Program;
     }
 }

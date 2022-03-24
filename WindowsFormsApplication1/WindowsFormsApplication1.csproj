@@ -111,7 +111,9 @@
     <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportViewer.Common.10.0.40219.1\lib\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ReportViewer.WinForms">
+      <HintPath>..\..\..\..\Desktop\DLL\New folder\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.1016.290\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
@@ -136,6 +138,34 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administracija - Prava pristupa\frmDodeliGrupu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administracija - Prava pristupa\frmDodeliGrupu.Designer.cs">
+      <DependentUpon>frmDodeliGrupu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administracija - Prava pristupa\frmDodeliPravo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administracija - Prava pristupa\frmDodeliPravo.Designer.cs">
+      <DependentUpon>frmDodeliPravo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administracija - Prava pristupa\frmForme.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administracija - Prava pristupa\frmForme.Designer.cs">
+      <DependentUpon>frmForme.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administracija - Prava pristupa\frmGrupe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administracija - Prava pristupa\frmGrupe.Designer.cs">
+      <DependentUpon>frmGrupe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administracija - Prava pristupa\InsertForme.cs" />
+    <Compile Include="Administracija - Prava pristupa\InsertGrupaForma.cs" />
+    <Compile Include="Administracija - Prava pristupa\InsertGrupe.cs" />
+    <Compile Include="Administracija - Prava pristupa\InsertKorisnikGrupa.cs" />
     <Compile Include="Artikal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -453,6 +483,12 @@
     <Compile Include="Kalkulacije\frmPrimenaTroskovnogCenovnika.Designer.cs">
       <DependentUpon>frmPrimenaTroskovnogCenovnika.cs</DependentUpon>
     </Compile>
+    <Compile Include="Kalkulacije\frmProgram.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kalkulacije\frmProgram.Designer.cs">
+      <DependentUpon>frmProgram.cs</DependentUpon>
+    </Compile>
     <Compile Include="Kalkulacije\frmZaglavlja.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -467,6 +503,7 @@
     <Compile Include="Kalkulacije\InsertKolekcije.cs" />
     <Compile Include="Kalkulacije\InsertKolekcijePripadnost.cs" />
     <Compile Include="Kalkulacije\InsertPrimenaTroskovnogCenovnika.cs" />
+    <Compile Include="Kalkulacije\InsertProgram.cs" />
     <Compile Include="Kalkulacije\MainKalkulacije.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1122,6 +1159,18 @@
     <Compile Include="ŠtampajReklamacijeP.Designer.cs">
       <DependentUpon>ŠtampajReklamacijeP.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Administracija - Prava pristupa\frmDodeliGrupu.resx">
+      <DependentUpon>frmDodeliGrupu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administracija - Prava pristupa\frmDodeliPravo.resx">
+      <DependentUpon>frmDodeliPravo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administracija - Prava pristupa\frmForme.resx">
+      <DependentUpon>frmForme.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administracija - Prava pristupa\frmGrupe.resx">
+      <DependentUpon>frmGrupe.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Artikal.resx">
       <DependentUpon>Artikal.cs</DependentUpon>
     </EmbeddedResource>
@@ -1238,6 +1287,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Kalkulacije\frmPrimenaTroskovnogCenovnika.resx">
       <DependentUpon>frmPrimenaTroskovnogCenovnika.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kalkulacije\frmProgram.resx">
+      <DependentUpon>frmProgram.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Kalkulacije\frmZaglavlja.resx">
       <DependentUpon>frmZaglavlja.cs</DependentUpon>
@@ -1894,18 +1946,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="SqlServerTypes\readme.htm" />
-    <Content Include="SqlServerTypes\x64\msvcr120.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SqlServerTypes\x86\msvcr120.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="webs_baza16.mdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1932,7 +1972,10 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="SqlServerTypes\x64\" />
+    <Folder Include="SqlServerTypes\x86\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
