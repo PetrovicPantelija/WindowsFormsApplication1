@@ -19,10 +19,22 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
         bool upis = false;
         bool izmena = false;
         bool brisanje = false;
+
+        public static string code = "frmDodeliPravo";
+        public bool Pravo;
+        int idGrupe;
+        int idForme;
+        bool insert;
+        bool update;
+        bool delete;
+        string Kor = frmLogovanje.user.ToString().TrimEnd();
         public frmDodeliPravo()
         {
             InitializeComponent();
             txt_ID.Enabled = false;
+            IdGrupe();
+            IdForme();
+            PravoPristupa();
         }
 
         private void frmDodeliPravo_Load(object sender, EventArgs e)
@@ -30,10 +42,82 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             FillCombo();
             FillGV();
         }
+        public int IdGrupe()
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
+            string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
+            SqlConnection conn = new SqlConnection(s_connection);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                idGrupe = Convert.ToInt32(dr["IdGrupe"].ToString());
+            }
+            conn.Close();
+            return idGrupe;
+        }
+        private int IdForme()
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
+            SqlConnection conn = new SqlConnection(s_connection);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                idForme = Convert.ToInt32(dr["IdForme"].ToString());
+            }
+            conn.Close();
+            return idForme;
+        }
+
+        private void PravoPristupa()
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            string query = "Select * From GrupaForma Where IdGrupe=" + idGrupe + " and IdForme=" + idForme;
+            SqlConnection conn = new SqlConnection(s_connection);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader reader = cmd.ExecuteReader();
+            if (reader.HasRows == false)
+            {
+                MessageBox.Show("Nemate prava za pristup ovoj formi", code);
+                Pravo = false;
+                return;
+            }
+            else
+            {
+                Pravo = true;
+                while (reader.Read())
+                {
+                    insert = Convert.ToBoolean(reader["Upis"]);
+                    if (insert == false)
+                    {
+                        tsNew.Enabled = false;
+                    }
+                    update = Convert.ToBoolean(reader["Izmena"]);
+                    if (update == false)
+                    {
+                        tsSave.Enabled = false;
+                    }
+                    delete = Convert.ToBoolean(reader["Brisanje"]);
+                    if (delete == false)
+                    {
+                        tsDelete.Enabled = false;
+                    }
+                }
+            }
+
+            conn.Close();
+        }
         private void FillCombo()
         {
             SqlConnection conn = new SqlConnection(connect);
-            var query = "Select * From Grupe";
+            var query = "Select * From Grupe order by Naziv";
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();
             da.Fill(ds);
@@ -60,6 +144,14 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             da.Fill(ds);
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
+            dataGridView1.Columns[0].Width = 60;
+            dataGridView1.Columns[1].Width = 60;
+            dataGridView1.Columns[2].Width = 150;
+            dataGridView1.Columns[3].Width = 60;
+            dataGridView1.Columns[4].Width = 200;
+            dataGridView1.Columns[5].Width = 70;
+            dataGridView1.Columns[6].Width = 70;
+            dataGridView1.Columns[7].Width = 70;
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)

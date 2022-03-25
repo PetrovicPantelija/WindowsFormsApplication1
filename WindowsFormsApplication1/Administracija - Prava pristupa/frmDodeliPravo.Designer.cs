@@ -59,7 +59,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             this.toolStripSeparator1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1145, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1170, 27);
             this.toolStrip1.TabIndex = 203;
             this.toolStrip1.Text = "Osveži";
             // 
@@ -121,7 +121,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             this.combo_Grupa.FormattingEnabled = true;
             this.combo_Grupa.Location = new System.Drawing.Point(165, 72);
             this.combo_Grupa.Name = "combo_Grupa";
-            this.combo_Grupa.Size = new System.Drawing.Size(191, 24);
+            this.combo_Grupa.Size = new System.Drawing.Size(232, 24);
             this.combo_Grupa.TabIndex = 211;
             // 
             // label3
@@ -140,7 +140,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(391, 44);
+            this.label2.Location = new System.Drawing.Point(421, 44);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(62, 20);
             this.label2.TabIndex = 210;
@@ -149,9 +149,9 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             // combo_Forma
             // 
             this.combo_Forma.FormattingEnabled = true;
-            this.combo_Forma.Location = new System.Drawing.Point(395, 72);
+            this.combo_Forma.Location = new System.Drawing.Point(425, 70);
             this.combo_Forma.Name = "combo_Forma";
-            this.combo_Forma.Size = new System.Drawing.Size(204, 24);
+            this.combo_Forma.Size = new System.Drawing.Size(321, 24);
             this.combo_Forma.TabIndex = 211;
             // 
             // cb_Upis
@@ -159,7 +159,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             this.cb_Upis.AutoSize = true;
             this.cb_Upis.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cb_Upis.ForeColor = System.Drawing.Color.White;
-            this.cb_Upis.Location = new System.Drawing.Point(631, 72);
+            this.cb_Upis.Location = new System.Drawing.Point(773, 72);
             this.cb_Upis.Name = "cb_Upis";
             this.cb_Upis.Size = new System.Drawing.Size(69, 24);
             this.cb_Upis.TabIndex = 212;
@@ -171,7 +171,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             this.cb_Izmena.AutoSize = true;
             this.cb_Izmena.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cb_Izmena.ForeColor = System.Drawing.Color.White;
-            this.cb_Izmena.Location = new System.Drawing.Point(757, 72);
+            this.cb_Izmena.Location = new System.Drawing.Point(899, 72);
             this.cb_Izmena.Name = "cb_Izmena";
             this.cb_Izmena.Size = new System.Drawing.Size(91, 24);
             this.cb_Izmena.TabIndex = 212;
@@ -183,7 +183,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             this.cb_Brisanje.AutoSize = true;
             this.cb_Brisanje.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cb_Brisanje.ForeColor = System.Drawing.Color.White;
-            this.cb_Brisanje.Location = new System.Drawing.Point(885, 72);
+            this.cb_Brisanje.Location = new System.Drawing.Point(1027, 72);
             this.cb_Brisanje.Name = "cb_Brisanje";
             this.cb_Brisanje.Size = new System.Drawing.Size(101, 24);
             this.cb_Brisanje.TabIndex = 212;
@@ -197,7 +197,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1119, 435);
+            this.dataGridView1.Size = new System.Drawing.Size(1135, 654);
             this.dataGridView1.TabIndex = 213;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -206,7 +206,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(83)))), ((int)(((byte)(87)))));
-            this.ClientSize = new System.Drawing.Size(1145, 567);
+            this.ClientSize = new System.Drawing.Size(1170, 786);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.cb_Brisanje);
             this.Controls.Add(this.cb_Izmena);

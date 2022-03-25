@@ -12,6 +12,7 @@ namespace WindowsFormsApplication1.Portirnica
 {
     public partial class StatusNajave : Form
     {
+        public bool PravoP;
         bool click = false;
         bool status = false;
         int PomPaleta1 = 0;
@@ -19,17 +20,98 @@ namespace WindowsFormsApplication1.Portirnica
         int PomDokumentacijaSpremna = 0;
         string UlogovaniKorisnik = "";
         MailMessage mailMessage;
+
+        public static string code = "frmStatusNajave";
+        public bool Pravo;
+        int idGrupe;
+        int idForme;
+        bool insert;
+        bool update;
+        bool delete;
+        string Kor = frmLogovanje.user.ToString().TrimEnd();
         public StatusNajave()
         {
             InitializeComponent();
-
-
         }
 
         public StatusNajave(string Korisnik)
         {
             InitializeComponent();
             UlogovaniKorisnik = Korisnik;
+            IdGrupe();
+            IdForme();
+            PravoPristupa();
+        }
+        public int IdGrupe()
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
+            string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
+            SqlConnection conn = new SqlConnection(s_connection);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                idGrupe = Convert.ToInt32(dr["IdGrupe"].ToString());
+            }
+            conn.Close();
+            return idGrupe;
+        }
+        private int IdForme()
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
+            SqlConnection conn = new SqlConnection(s_connection);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                idForme = Convert.ToInt32(dr["IdForme"].ToString());
+            }
+            conn.Close();
+            return idForme;
+        }
+
+        private void PravoPristupa()
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            string query = "Select * From GrupaForma Where IdGrupe=" + idGrupe + " and IdForme=" + idForme;
+            SqlConnection conn = new SqlConnection(s_connection);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader reader = cmd.ExecuteReader();
+            if (reader.HasRows == false)
+            {
+                MessageBox.Show("Nemate prava za pristup ovoj formi", code);
+                Pravo = false;
+            }
+            else
+            {
+                Pravo = true;
+                while (reader.Read())
+                {
+                    insert = Convert.ToBoolean(reader["Upis"]);
+                    if (insert == false)
+                    {
+                        //tsNew.Enabled = false;
+                    }
+                    update = Convert.ToBoolean(reader["Izmena"]);
+                    if (update == false)
+                    {
+                        //tsSave.Enabled = false;
+                    }
+                    delete = Convert.ToBoolean(reader["Brisanje"]);
+                    if (delete == false)
+                    {
+                        //tsDelete.Enabled = false;
+                    }
+                }
+            }
+
+            conn.Close();
         }
         private void RefreshDataGrid()
         {
@@ -1686,7 +1768,8 @@ namespace WindowsFormsApplication1.Portirnica
             izašliToolStripMenuItem.BackColor = default;
             posaljiMailPesicuToolStripMenuItem.BackColor = default;
             StatusNajaveLog snl = new StatusNajaveLog(Convert.ToInt32(txtSifra.Text));
-            snl.Show();
+            PravoP = snl.Pravo;
+            if (PravoP == true) { snl.Show(); } else { return; }
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -1697,7 +1780,8 @@ namespace WindowsFormsApplication1.Portirnica
         private void statusNajavePregledToolStripMenuItem_Click(object sender, EventArgs e)
         {
             StatusNajavePregled snp = new StatusNajavePregled();
-            snp.Show();
+            PravoP = snp.Pravo;
+            if (PravoP == true) { snp.Show(); } else { return; }
         }
 
         private void button3_Click(object sender, EventArgs e)

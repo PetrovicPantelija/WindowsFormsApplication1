@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,87 +14,182 @@ namespace WindowsFormsApplication1.Meniji
 {
     public partial class frmIsporuke : Form
     {
+        public bool PravoP;
+        public static string code = "frmIsporuke";
+        public bool Pravo;
+        int idGrupe;
+        int idForme;
+        bool insert;
+        bool update;
+        bool delete;
+        string Kor = frmLogovanje.user.ToString().TrimEnd();
         public frmIsporuke()
         {
             InitializeComponent();
+            IdGrupe();
+            IdForme();
+            PravoPristupa();
+        }
+        public int IdGrupe()
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
+            string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
+            SqlConnection conn = new SqlConnection(s_connection);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                idGrupe = Convert.ToInt32(dr["IdGrupe"].ToString());
+            }
+            conn.Close();
+            return idGrupe;
+        }
+        private int IdForme()
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
+            SqlConnection conn = new SqlConnection(s_connection);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                idForme = Convert.ToInt32(dr["IdForme"].ToString());
+            }
+            conn.Close();
+            return idForme;
         }
 
+        private void PravoPristupa()
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            string query = "Select * From GrupaForma Where IdGrupe=" + idGrupe + " and IdForme=" + idForme;
+            SqlConnection conn = new SqlConnection(s_connection);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader reader = cmd.ExecuteReader();
+            if (reader.HasRows == false)
+            {
+                MessageBox.Show("Nemate prava za pristup ovoj formi", code);
+                Pravo = false;
+            }
+            else
+            {
+                Pravo = true;
+                while (reader.Read())
+                {
+                    insert = Convert.ToBoolean(reader["Upis"]);
+                    if (insert == false)
+                    {
+                        //tsNew.Enabled = false;
+                    }
+                    update = Convert.ToBoolean(reader["Izmena"]);
+                    if (update == false)
+                    {
+                        //tsSave.Enabled = false;
+                    }
+                    delete = Convert.ToBoolean(reader["Brisanje"]);
+                    if (delete == false)
+                    {
+                        //tsDelete.Enabled = false;
+                    }
+                }
+            }
+
+            conn.Close();
+        }
         private void btnsZaposleni_Click(object sender, EventArgs e)
         {
             WebIsporuka wi = new WebIsporuka();
-            wi.Show();
+            PravoP = wi.Pravo;
+            if (PravoP == true) { wi.Show(); } else { return; }
         }
 
         private void btnsVrstaRobe_Click(object sender, EventArgs e)
         {
             ObradaIsporukePocetna oi = new ObradaIsporukePocetna();
-            oi.Show();
+            PravoP = oi.Pravo;
+            if (PravoP == true) { oi.Show(); } else { return; }
         }
 
         private void iconButton1_Click(object sender, EventArgs e)
         {
             ObradaIsporuke oi = new ObradaIsporuke();
-            oi.Show();
+            PravoP = oi.Pravo;
+            if (PravoP == true) { oi.Show(); } else { return; }
         }
 
         private void iconButton2_Click(object sender, EventArgs e)
         {
             WebIsporukaVoziloPocetna wiv = new WebIsporukaVoziloPocetna();
-            wiv.Show();
+            PravoP = wiv.Pravo;
+            if (PravoP == true) { wiv.Show(); } else { return; }
         }
 
         private void iconButton3_Click(object sender, EventArgs e)
         {
             StampaP sp = new StampaP();
-            sp.Show();
+            PravoP = sp.Pravo;
+            if (PravoP == true) { sp.Show(); } else { return; }
         }
 
         private void iconButton4_Click(object sender, EventArgs e)
         {
             ZakljucavanjeIsporuke zak = new ZakljucavanjeIsporuke();
-            zak.Show();
+            PravoP = zak.Pravo;
+            if (PravoP == true) { zak.Show(); } else { return; }
         }
 
         private void iconButton5_Click(object sender, EventArgs e)
         {
             StampajPal sp = new StampajPal();
-            sp.Show();
+            PravoP = sp.Pravo;
+            if (PravoP == true) { sp.Show(); } else { return; }
         }
 
         private void iconButton6_Click(object sender, EventArgs e)
         {
             ObradaPaletar op = new ObradaPaletar();
-            op.Show();
+            PravoP = op.Pravo;
+            if (PravoP == true) { op.Show(); } else { return; }
         }
 
         private void iconButton7_Click(object sender, EventArgs e)
         {
             PromenaVozila pvoz = new PromenaVozila();
-            pvoz.Show();
+            PravoP = pvoz.Pravo;
+            if (PravoP == true) { pvoz.Show(); } else { return; }
         }
 
         private void iconButton8_Click(object sender, EventArgs e)
         {
             ŠtampajReklamacijeP srp = new ŠtampajReklamacijeP();
-            srp.Show();
+            PravoP = srp.Pravo;
+            if (PravoP == true) { srp.Show(); } else { return; }
         }
 
         private void iconButton9_Click(object sender, EventArgs e)
         {
             IzbrisiIsporuku izbr = new IzbrisiIsporuku();
-            izbr.Show();
+            PravoP = izbr.Pravo;
+            if (PravoP == true) { izbr.Show(); } else { return; }
         }
 
         private void iconButton10_Click(object sender, EventArgs e)
         {
             StampajPalZavrseno sp = new StampajPalZavrseno();
-            sp.Show();
+            PravoP = sp.Pravo;
+            if (PravoP == true) { sp.Show(); } else { return; }
         }
 
         private void iconButton11_Click(object sender, EventArgs e)
         {
             StampajReklamacijePZavrseno srp = new StampajReklamacijePZavrseno();
-            srp.Show();
+            PravoP = srp.Pravo;
+            if (PravoP == true) { srp.Show(); } else { return; }
         }
     }
 }
