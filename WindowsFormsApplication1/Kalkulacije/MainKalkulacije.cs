@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,28 +14,113 @@ namespace WindowsFormsApplication1.Kalkulacije
 {
     public partial class MainKalkulacije : Form
     {
+        public bool PravoP;
+        public static string code = "frmMainKalkulacije";
+        public bool Pravo;
+        int idGrupe;
+        int idForme;
+        bool insert;
+        bool update;
+        bool delete;
+        string Kor = frmLogovanje.user.ToString().TrimEnd();
         public MainKalkulacije()
         {
             InitializeComponent();
             this.Focus();
+            IdGrupe();
+            IdForme();
+            PravoPristupa();
+        }
+        public int IdGrupe()
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
+            string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
+            SqlConnection conn = new SqlConnection(s_connection);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                idGrupe = Convert.ToInt32(dr["IdGrupe"].ToString());
+            }
+            conn.Close();
+            return idGrupe;
+        }
+        private int IdForme()
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
+            SqlConnection conn = new SqlConnection(s_connection);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                idForme = Convert.ToInt32(dr["IdForme"].ToString());
+            }
+            conn.Close();
+            return idForme;
         }
 
+        private void PravoPristupa()
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            string query = "Select * From GrupaForma Where IdGrupe=" + idGrupe + " and IdForme=" + idForme;
+            SqlConnection conn = new SqlConnection(s_connection);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader reader = cmd.ExecuteReader();
+            if (reader.HasRows == false)
+            {
+                MessageBox.Show("Nemate prava za pristup ovoj formi", code);
+                Pravo = false;
+            }
+            else
+            {
+                Pravo = true;
+                while (reader.Read())
+                {
+                    insert = Convert.ToBoolean(reader["Upis"]);
+                    if (insert == false)
+                    {
+                        //tsNew.Enabled = false;
+                    }
+                    update = Convert.ToBoolean(reader["Izmena"]);
+                    if (update == false)
+                    {
+                        //tsSave.Enabled = false;
+                    }
+                    delete = Convert.ToBoolean(reader["Brisanje"]);
+                    if (delete == false)
+                    {
+                        //tsDelete.Enabled = false;
+                    }
+                }
+            }
+
+            conn.Close();
+        }
         private void label1_Click(object sender, EventArgs e)
         {
             Kalkulacije.frmKalkulacioniCenovnici kalk = new frmKalkulacioniCenovnici();
-            kalk.Show();
+            PravoP = kalk.Pravo;
+            if (PravoP == true) { kalk.Show(); } else { return; }
         }
 
         private void label2_Click(object sender, EventArgs e)
         {
             Kalkulacije.frmKolekcije kol = new frmKolekcije();
-            kol.Show();
+            PravoP = kol.Pravo;
+            if (PravoP == true) { kol.Show(); } else { return; }
         }
 
         private void label3_Click(object sender, EventArgs e)
         {
             Kalkulacije.frmKolekcijePripadnost kolP = new frmKolekcijePripadnost();
-            kolP.Show();
+            PravoP = kolP.Pravo;
+            if (PravoP == true) { kolP.Show(); } else { return; }
         }
 
         private void label1_MouseEnter(object sender, EventArgs e)
@@ -69,13 +156,15 @@ namespace WindowsFormsApplication1.Kalkulacije
         private void label4_Click(object sender, EventArgs e)
         {
             Kalkulacije.frmZaglavlja zag = new frmZaglavlja();
-            zag.Show();
+            PravoP = zag.Pravo;
+            if (PravoP == true) { zag.Show(); } else { return; }
         }
 
         private void label5_Click(object sender, EventArgs e)
         {
             Kalkulacije.frmKalkulatorStavke kalk = new frmKalkulatorStavke();
-            kalk.Show();
+            PravoP = kalk.Pravo;
+            if (PravoP == true) { kalk.Show(); } else { return; }
         }
 
         private void label4_MouseEnter(object sender, EventArgs e)
@@ -131,13 +220,15 @@ namespace WindowsFormsApplication1.Kalkulacije
         private void label6_Click(object sender,EventArgs e)
         {
             Kalkulacije.frmPrimenaTroskovnogCenovnika tc = new frmPrimenaTroskovnogCenovnika();
-            tc.Show();
+            PravoP = tc.Pravo;
+            if (PravoP == true) { tc.Show(); } else { return; }
         }
 
         private void label7_Click(object sender, EventArgs e)
         {
             Kalkulacije.frmCenaKamiona kam = new frmCenaKamiona();
-            kam.Show();
+            PravoP = kam.Pravo;
+            if (PravoP == true) { kam.Show(); } else { return; }
         }
         private void label7_MouseLeave(object sender, EventArgs e)
         {
@@ -151,13 +242,15 @@ namespace WindowsFormsApplication1.Kalkulacije
         private void iconButton1_Click(object sender, EventArgs e)
         {
             frmBazaProdajnihCena cene = new frmBazaProdajnihCena();
-            cene.Show();
+            PravoP = cene.Pravo;
+            if (PravoP == true) { cene.Show(); } else { return; }
         }
 
         private void label8_Click(object sender, EventArgs e)
         {
             frmProgram program = new frmProgram();
-            program.Show();
+            PravoP = program.Pravo;
+            if (PravoP == true) { program.Show(); } else { return; }
         }
 
         private void label8_MouseEnter(object sender, EventArgs e)

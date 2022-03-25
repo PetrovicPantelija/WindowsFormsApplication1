@@ -17,6 +17,8 @@ namespace WindowsFormsApplication1
   
     public partial class frmLogovanje : Form
     {
+        public static string user = "";
+        public bool PravoP;
         int usao = 0;
         public frmLogovanje()
         {
@@ -48,7 +50,8 @@ namespace WindowsFormsApplication1
                     {
                        // MessageBox.Show("PA0");
                     Main mainf = new Main(0);
-                    mainf.Show();
+                PravoP = mainf.Pravo;
+                if (PravoP == true) { mainf.Show(); } else { return; }
                       
                     }
                     else
@@ -56,11 +59,14 @@ namespace WindowsFormsApplication1
                        // MessageBox.Show("PA1");
                     Main mainf = new Main(1);
                     mainf.Show();
-	                }
+                PravoP = mainf.Pravo;
+                if (PravoP == true) { mainf.Show(); } else { return; }
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            user = cboKorisnik.Text.ToString();
             // var select = " Select Distinct DatumUtovara From RkShipping where Stanje = 1 and Vozilo = '" + cboVozila.Text + "'";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -81,6 +87,7 @@ namespace WindowsFormsApplication1
                 // Do somthing with this rows string, for example to put them in to a list
                 if (myString.TrimEnd() == cboKorisnik.Text)
                 {
+                    user = myString;
                     if (cboKorisnik.Text.Trim() == "NEbojša pešic") 
                     {
                        // MessageBox.Show("Korisnik");
@@ -104,7 +111,8 @@ namespace WindowsFormsApplication1
                     {
                        // MessageBox.Show("Nije korisnik");
                         Main mainf = new Main(0);
-                        mainf.Show();
+                        PravoP = mainf.Pravo;
+                        if (PravoP == true) { mainf.Show(); } else { return; }
                     }
                   
 
@@ -116,6 +124,7 @@ namespace WindowsFormsApplication1
         }
         private void button2_Click(object sender, EventArgs e)
         {
+            user = cboKorisnik.Text.ToString();
             int ReadNabavka = 0;
             string KorisnikN = "";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -136,10 +145,12 @@ namespace WindowsFormsApplication1
                 // Do somthing with this rows string, for example to put them in to a list
                 if (myString.TrimEnd() == cboKorisnik.Text)
                 {
+                    user = myString;
                     KorisnikN = reader["Korisnik"].ToString();
                     ReadNabavka = Convert.ToInt32(reader["ReadNabavka"].ToString());
                     MainNabavka mn = new MainNabavka(KorisnikN, ReadNabavka);
-                    mn.Show();
+                    PravoP = mn.Pravo;
+                    if (PravoP == true) { mn.Show(); } else { return; }
                 }
                 else
                 {
@@ -153,15 +164,18 @@ namespace WindowsFormsApplication1
 
         private void button3_Click(object sender, EventArgs e)
         {
+            user = cboKorisnik.Text.ToString();
             if (txtPassword.Text == "9145")
             {
                 Magacin.MainAdministracija ma = new Magacin.MainAdministracija();
-                ma.Show();
+                PravoP = ma.Pravo;
+                if (PravoP == true) { ma.Show(); } else { return; }
             }
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
+            user = cboKorisnik.Text.ToString();
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -177,7 +191,8 @@ namespace WindowsFormsApplication1
             else
             {
                 Portirnica.StatusNajave stat = new Portirnica.StatusNajave(cboKorisnik.Text);
-                stat.Show();
+                PravoP = stat.Pravo;
+                if (PravoP == true) { stat.Show(); } else { return; }
             }
           
 
@@ -196,10 +211,12 @@ namespace WindowsFormsApplication1
 
         private void button5_Click(object sender, EventArgs e)
         {
+            user = cboKorisnik.Text;
             if(cboKorisnik.Text=="pantelija" && txtPassword.Text == "307")
             {
                 Kalkulacije.MainKalkulacije kalk = new Kalkulacije.MainKalkulacije();
-                kalk.Show();
+                PravoP = kalk.Pravo;
+                if (PravoP == true) { kalk.Show(); } else { return; }
             }
             else
             {

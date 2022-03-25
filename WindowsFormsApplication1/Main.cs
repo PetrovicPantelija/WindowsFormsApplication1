@@ -16,6 +16,15 @@ namespace WindowsFormsApplication1
 {
     public partial class Main : Form
     {
+        public bool PravoP;
+        public static string code = "Main";
+        public bool Pravo;
+        int idGrupe;
+        int idForme;
+        bool insert;
+        bool update;
+        bool delete;
+        string Kor = frmLogovanje.user.ToString().TrimEnd();
         // polja
         private IconButton curentBtn;
         private Panel leftBorderBtn;
@@ -25,6 +34,10 @@ namespace WindowsFormsApplication1
         public Main()
         {
             InitializeComponent();
+            IdGrupe();
+            IdForme();
+            PravoPristupa();
+
             leftBorderBtn = new Panel();
             leftBorderBtn.Size = new Size(7, 50);
             PanelMenu.Controls.Add(leftBorderBtn);
@@ -34,7 +47,77 @@ namespace WindowsFormsApplication1
             this.DoubleBuffered = true;
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
         }
+        public int IdGrupe()
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
+            string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
+            SqlConnection conn = new SqlConnection(s_connection);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                idGrupe = Convert.ToInt32(dr["IdGrupe"].ToString());
+            }
+            conn.Close();
+            return idGrupe;
+        }
+        private int IdForme()
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
+            SqlConnection conn = new SqlConnection(s_connection);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
 
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                idForme = Convert.ToInt32(dr["IdForme"].ToString());
+            }
+            conn.Close();
+            return idForme;
+        }
+
+        private void PravoPristupa()
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            string query = "Select * From GrupaForma Where IdGrupe=" + idGrupe + " and IdForme=" + idForme;
+            SqlConnection conn = new SqlConnection(s_connection);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader reader = cmd.ExecuteReader();
+            if (reader.HasRows == false)
+            {
+                MessageBox.Show("Nemate prava za pristup ovoj formi", code);
+                Pravo = false;
+            }
+            else
+            {
+                Pravo = true;
+                while (reader.Read())
+                {
+                    insert = Convert.ToBoolean(reader["Upis"]);
+                    if (insert == false)
+                    {
+                        //tsNew.Enabled = false;
+                    }
+                    update = Convert.ToBoolean(reader["Izmena"]);
+                    if (update == false)
+                    {
+                        //tsSave.Enabled = false;
+                    }
+                    delete = Convert.ToBoolean(reader["Brisanje"]);
+                    if (delete == false)
+                    {
+                        //tsDelete.Enabled = false;
+                    }
+                }
+            }
+
+            conn.Close();
+        }
         //Struktura za boje
         private struct RGBColors
         {
@@ -108,24 +191,30 @@ namespace WindowsFormsApplication1
         {
             InitializeComponent();
             trebaazurirati = azuriraj;
+            IdGrupe();
+            IdForme();
+            PravoPristupa();
         }
 
         private void partneriToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Partneri part = new Partneri();
-            part.Show();
+            PravoP = part.Pravo;
+            if (PravoP == true) { part.Show(); } else { return; }
         }
 
         private void naloziZaUtovarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form1 nn = new Form1();
-            nn.Show();
+            PravoP = nn.Pravo;
+            if (PravoP == true) { nn.Show(); } else { return; }
         }
 
         private void reklamacijeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Reklamacije rek = new Reklamacije();
-            rek.Show();
+            PravoP = rek.Pravo;
+            if (PravoP == true) { rek.Show(); } else { return; }
 
         }
 
@@ -137,7 +226,8 @@ namespace WindowsFormsApplication1
         private void rkShippingWEBSLargoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ReferencijalnaTabela rt = new ReferencijalnaTabela();
-            rt.Show();
+            PravoP = rt.Pravo;
+            if (PravoP == true) { rt.Show(); } else { return; }
         }
 
         private void wEBSIsporukaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -153,25 +243,29 @@ namespace WindowsFormsApplication1
         private void pregledIsporukaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             PregledIsporuka pi = new PregledIsporuka();
-            pi.Show();
+            PravoP = pi.Pravo;
+            if (PravoP == true) { pi.Show(); } else { return; }
         }
 
         private void paketiPakeristiToolStripMenuItem_Click(object sender, EventArgs e)
         {
             PregledPaketi pak = new PregledPaketi();
-            pak.Show();
+            PravoP = pak.Pravo;
+            if (PravoP == true) { pak.Show(); } else { return; }
         }
 
         private void pregledPreostaliPaketiPoIsporuciToolStripMenuItem_Click(object sender, EventArgs e)
         {
             PreostaliPaketi preos = new PreostaliPaketi();
-            preos.Show();
+            PravoP = preos.Pravo;
+            if (PravoP == true) { preos.Show(); } else { return; }
         }
 
         private void pregledKontroloriToolStripMenuItem_Click(object sender, EventArgs e)
         {
             PregledKontrolor pk = new PregledKontrolor();
-            pk.Show();
+            PravoP = pk.Pravo;
+            if (PravoP == true) { pk.Show(); } else { return; }
         }
 
         private void wEBSPodaciToolStripMenuItem_Click(object sender, EventArgs e)
@@ -182,104 +276,121 @@ namespace WindowsFormsApplication1
         private void trVozilaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Vozila voz = new Vozila();
-            voz.Show();
+            PravoP = voz.Pravo;
+            if (PravoP == true) { voz.Show(); } else { return; }
         }
 
         private void partneriToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Komitenti part = new Komitenti();
-            part.Show();
+            PravoP = part.Pravo;
+            if (PravoP == true) { part.Show(); } else { return; }
         }
 
         private void saloniToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Saloni sal = new Saloni();
-            sal.Show();
+            PravoP = sal.Pravo;
+            if (PravoP == true) { sal.Show(); } else { return; }
         }
 
         private void isporukaUvozToolStripMenuItem_Click(object sender, EventArgs e)
         {
             WebIsporuka wi = new WebIsporuka();
-            wi.Show();
+            PravoP = wi.Pravo;
+            if (PravoP == true) { wi.Show(); } else { return; }
         }
 
         private void kontrolorObradaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ObradaIsporuke oi = new ObradaIsporuke();
-            oi.Show();
+            PravoP = oi.Pravo;
+            if (PravoP == true) { oi.Show(); } else { return; }
         }
 
         private void isporukaUvozPoVoziluToolStripMenuItem_Click(object sender, EventArgs e)
         {
             WebIsporukaVozilo wiv = new WebIsporukaVozilo();
-            wiv.Show();
+            PravoP = wiv.Pravo;
+            if (PravoP == true) { wiv.Show(); } else { return; }
         }
 
         private void istorijaRadaKontroloraToolStripMenuItem_Click(object sender, EventArgs e)
         {
             IstorijaRadaKontrolor irk = new IstorijaRadaKontrolor();
-            irk.Show();
+            PravoP = irk.Pravo;
+            if (PravoP == true) { irk.Show(); } else { return; }
         }
 
         private void štampaZaPakeristuToolStripMenuItem_Click(object sender, EventArgs e)
         {
            StampaP sp = new StampaP();
-             sp.Show();
+            PravoP = sp.Pravo;
+            if (PravoP == true) { sp.Show(); } else { return; }
         }
 
         private void poništiKontroloraToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UpdateKontrolor upk = new UpdateKontrolor();
-            upk.Show();
+            PravoP = upk.Pravo;
+            if (PravoP == true) { upk.Show(); } else { return; }
 
         }
 
         private void poništiPakeristuToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UpdatePakerista upp = new UpdatePakerista();
-            upp.Show();
+            PravoP = upp.Pravo;
+            if (PravoP == true) { upp.Show(); } else { return; }
         }
 
         private void istorijaRadaPoKontroloruToolStripMenuItem_Click(object sender, EventArgs e)
         {
             IstorijaRadaKontrolor isk = new IstorijaRadaKontrolor();
-            isk.Show();
+            PravoP = isk.Pravo;
+            if (PravoP == true) { isk.Show(); } else { return; }
         }
 
         private void istorijaRadaPoPaletaruToolStripMenuItem_Click(object sender, EventArgs e)
         {
             IstorijaRadaPakeriste isp = new IstorijaRadaPakeriste();
-            isp.Show();
+            PravoP = isp.Pravo;
+            if (PravoP == true) { isp.Show(); } else { return; }
         }
 
         private void sumarnoIsporukaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ProveraIsporukeSum pis = new ProveraIsporukeSum();
-            pis.Show();
+            PravoP = pis.Pravo;
+            if (PravoP == true) { pis.Show(); } else { return; }
         }
 
         private void završetakIsporukeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ZakljucavanjeIsporuke zak = new ZakljucavanjeIsporuke();
-            zak.Show();
+            PravoP = zak.Pravo;
+            if (PravoP == true) { zak.Show(); } else { return; }
         }
 
         private void artikalProveraBarkodaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Artikal art = new Artikal();
-            art.Show();
+            PravoP = art.Pravo;
+            if (PravoP == true) { art.Show(); } else { return; }
         }
 
         private void štampaZaPaletuToolStripMenuItem_Click(object sender, EventArgs e)
         {
             StampajPal sp = new StampajPal();
-            sp.Show();
+            PravoP = sp.Pravo;
+            if (PravoP == true) { sp.Show(); } else { return; }
         }
 
         private void vToolStripMenuItem_Click(object sender, EventArgs e)
         {
             v123v vs = new v123v();
-            vs.Show();
+            PravoP = vs.Pravo;
+            if (PravoP == true) { vs.Show(); } else { return; }
         }
 
         private void RefreshReferencna()
@@ -536,199 +647,232 @@ namespace WindowsFormsApplication1
         private void obradaPaletarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ObradaPaletar op = new ObradaPaletar();
-            op.Show();
+            PravoP = op.Pravo;
+            if (PravoP == true) { op.Show(); } else { return; }
         }
 
         private void štampajNeisporučenePaketeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             StampajNeisporucene sneis = new StampajNeisporucene();
-            sneis.Show();
+            PravoP = sneis.Pravo;
+            if (PravoP == true) { sneis.Show(); } else { return; }
         }
 
         private void promenaVozilaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             PromenaVozila pvoz = new PromenaVozila();
-            pvoz.Show();
+            PravoP = pvoz.Pravo;
+            if (PravoP == true) { pvoz.Show(); } else { return; }
         }
 
         private void štampajSvePaletePoVoziluToolStripMenuItem_Click(object sender, EventArgs e)
         {
             StampajPalSve sps = new StampajPalSve();
-            sps.Show();
+            PravoP = sps.Pravo;
+            if (PravoP == true) { sps.Show(); } else { return; }
         }
 
         private void štampajNedostajućePaketePoVoziluToolStripMenuItem_Click(object sender, EventArgs e)
         {
             StampajPalSveP spsp = new StampajPalSveP();
-            spsp.Show();
+            PravoP = spsp.Pravo;
+            if (PravoP == true) { spsp.Show(); } else { return; }
         }
 
         private void uvozReklamacijaPoVoziluToolStripMenuItem_Click(object sender, EventArgs e)
         {
             WebReklamacijeVozilo wrv = new WebReklamacijeVozilo();
-            wrv.Show();
+            PravoP = wrv.Pravo;
+            if (PravoP == true) { wrv.Show(); } else { return; }
         }
 
         private void štampajPregledPoVremenuPakovanjaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             StampajPalVremePak spkk = new StampajPalVremePak();
-            spkk.Show();
+            PravoP = spkk.Pravo;
+            if (PravoP == true) { spkk.Show(); } else { return; }
         }
 
         private void pregledPaletarKontrolorIstorijaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             PregledKontrolorIstorija pki = new PregledKontrolorIstorija();
-            pki.Show();
+            PravoP = pki.Pravo;
+            if (PravoP == true) { pki.Show(); } else { return; }
         }
 
         private void štampajReklamacijeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             ŠtampajReklamacijeP srp = new ŠtampajReklamacijeP();
-            srp.Show();
+            PravoP = srp.Pravo;
+            if (PravoP == true) { srp.Show(); } else { return; }
         }
 
         private void izbrisiCeluIsporukuToolStripMenuItem_Click(object sender, EventArgs e)
         {
             IzbrisiIsporuku izbr = new IzbrisiIsporuku();
-            izbr.Show();
+            PravoP = izbr.Pravo;
+            if (PravoP == true) { izbr.Show(); } else { return; }
         }
 
         private void otpremnicaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmOtpremnicaUvoz frmOU = new frmOtpremnicaUvoz();
-            frmOU.Show();
+            PravoP = frmOU.Pravo;
+            if (PravoP == true) { frmOU.Show(); } else { return; }
         }
 
         private void pregledKontrolorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Pregled2018 prgl2018 = new Pregled2018();
-            prgl2018.Show();
+            PravoP = prgl2018.Pravo;
+            if (PravoP == true) { prgl2018.Show(); } else { return; }
         }
 
         private void porudžbinaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmExcelImportPorudzbina frmExcelimp = new frmExcelImportPorudzbina();
-            frmExcelimp.Show();
+            PravoP = frmExcelimp.Pravo;
+            if (PravoP == true) { frmExcelimp.Show(); } else { return; }
         }
 
         private void formiranjeTimovaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmTimovi nft = new frmTimovi();
-            nft.Show();
+            PravoP = nft.Pravo;
+            if (PravoP == true) { nft.Show(); } else { return; }
         }
 
         private void reklamacijeToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             frmReklamacijaUvoz frek = new frmReklamacijaUvoz();
-            frek.Show();
+            PravoP = frek.Pravo;
+            if (PravoP == true) { frek.Show(); } else { return; }
         }
 
         private void porudzbinaDirektnoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmPorudzbinaImport pimp = new frmPorudzbinaImport();
-            pimp.Show();
+            PravoP = pimp.Pravo;
+            if (PravoP == true) { pimp.Show(); } else { return; }
         }
 
         private void pregledToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmPrikazStanja prikstan = new frmPrikazStanja();
-            prikstan.Show();
+            PravoP = prikstan.Pravo;
+            if (PravoP == true) { prikstan.Show(); } else { return; }
         }
 
         private void pregledPoOtpremniciToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmOtpremnicaPregled otp = new frmOtpremnicaPregled();
-            otp.Show();
+            PravoP = otp.Pravo;
+            if (PravoP == true) { otp.Show(); } else { return; }
         }
 
         private void pregledPorudžbineLargoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmPorudzbinaPregled pregled = new frmPorudzbinaPregled();
-            pregled.Show();
+            PravoP = pregled.Pravo;
+            if (PravoP == true) { pregled.Show(); } else { return; }
         }
 
         private void arhivirajDoBrojaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form2 pr = new Form2();
-            pr.Show();
+            PravoP = pr.Pravo;
+            if (PravoP == true) { pr.Show(); } else { return; }
         }
 
         private void pregledPodatakaArhivToolStripMenuItem_Click(object sender, EventArgs e)
         {
             PregledKontrolorIstorijaArhiv pkis = new PregledKontrolorIstorijaArhiv();
-            pkis.Show();
+            PravoP = pkis.Pravo;
+            if (PravoP == true) { pkis.Show(); } else { return; }
         }
 
         private void obradaReklamacijeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ObradaReklamacije obr = new ObradaReklamacije();
-            obr.Show();
+            PravoP = obr.Pravo;
+            if (PravoP == true) { obr.Show(); } else { return; }
         }
 
         private void pozicijeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Magacin.frmPozicije poz = new Magacin.frmPozicije();
-            poz.Show();
+            PravoP = poz.Pravo;
+            if (PravoP == true) { poz.Show(); } else { return; }
         }
 
         private void paleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Magacin.frmPaleta paleta = new Magacin.frmPaleta();
-            paleta.Show();
+            PravoP = paleta.Pravo;
+            if (PravoP == true) { paleta.Show(); } else { return; }
         }
 
         private void matičniPodaaciToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Magacin.frmMaticniPodatak maticni = new Magacin.frmMaticniPodatak();
-            maticni.Show();
+            PravoP = maticni.Pravo;
+            if (PravoP == true) { maticni.Show(); } else { return; }
         }
 
         private void međuskladišniPrenosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmMedjuskaldisniPrenosi frmM = new frmMedjuskaldisniPrenosi();
-            frmM.Show();
+            PravoP = frmM.Pravo;
+            if (PravoP == true) { frmM.Show(); } else { return; }
         }
 
         private void formiranjeMedjuskladišnogPrenosaIzZalihaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmPrebacivanjeMedjuskladisniPrenos mprp = new frmPrebacivanjeMedjuskladisniPrenos();
-            mprp.Show();
+            PravoP = mprp.Pravo;
+            if (PravoP == true) { mprp.Show(); } else { return; }
         }
 
         private void štampaEtiketeRegalaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Magacin.frmStampaPozicije poz = new Magacin.frmStampaPozicije();
-            poz.Show();
+            PravoP = poz.Pravo;
+            if (PravoP == true) { poz.Show(); } else { return; }
         }
 
         private void formiranjeMedjuskladišnogOperativniPešićToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Magacin.frmPlanMedjuskladisni plan = new Magacin.frmPlanMedjuskladisni();
-            plan.Show();
+            PravoP = plan.Pravo;
+            if (PravoP == true) { plan.Show(); } else { return; }
         }
 
         private void direktnaIzdavanjaTrebovanjaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Magacin.frmPregledIzdavanja izd = new Magacin.frmPregledIzdavanja();
-            izd.Show();
+            PravoP = izd.Pravo;
+            if (PravoP == true) { izd.Show(); } else { return; }
         }
 
         private void direktniPrijemiToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Magacin.frmPregledPrijemi pre = new Magacin.frmPregledPrijemi();
-            pre.Show();
+            PravoP = pre.Pravo;
+            if (PravoP == true) { pre.Show(); } else { return; }
         }
 
         private void pregledStanjaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Magacin.frmPrijavaStanja prijstan = new Magacin.frmPrijavaStanja();
-            prijstan.Show();
+            PravoP = prijstan.Pravo;
+            if (PravoP == true) { prijstan.Show(); } else { return; }
         }
 
         private void pregledRadnihNalogaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Magacin.frmPregledRadnihNaloga radninalozi = new Magacin.frmPregledRadnihNaloga();
-            radninalozi.Show();
+            PravoP = radninalozi.Pravo;
+            if (PravoP == true) { radninalozi.Show(); } else { return; }
         }
 
         private void pregledStanjaPoPozicijamaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -739,19 +883,22 @@ namespace WindowsFormsApplication1
         private void pregledStanjaPoPozicijamaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Magacin.frmPregledStanjaPoPozicijama pesic = new Magacin.frmPregledStanjaPoPozicijama();
-            pesic.Show();
+            PravoP = pesic.Pravo;
+            if (PravoP == true) { pesic.Show(); } else { return; }
         }
 
         private void raspolozivoStanjeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmRaspolozivoStanje pesic2 = new frmRaspolozivoStanje();
-            pesic2.Show();
+            PravoP = pesic2.Pravo;
+            if (PravoP == true) { pesic2.Show(); } else { return; }
         }
 
         private void maticniPodaciPrikazToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Magacin.frmMaticniPodaciPrikaz mpPrikaz = new Magacin.frmMaticniPodaciPrikaz();
-            mpPrikaz.Show();
+            PravoP = mpPrikaz.Pravo;
+            if (PravoP == true) { mpPrikaz.Show(); } else { return; }
         }
 
         private void pregledRezervacijaPoPorudžbinamaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -762,121 +909,199 @@ namespace WindowsFormsApplication1
         private void kalkulatorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ReklmacijaKalkulator rkl = new ReklmacijaKalkulator();
-            rkl.Show();
+            PravoP = rkl.Pravo;
+            if (PravoP == true) { rkl.Show(); } else { return; }
         }
 
         private void šifreReklamacijeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmSifraReklamacije fSR = new frmSifraReklamacije();
-            fSR.Show();
+            PravoP = fSR.Pravo;
+            if (PravoP == true) { fSR.Show(); } else { return; }
         }
 
         private void pregledReklamacijaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmPregledReklamacijaSonja prs = new frmPregledReklamacijaSonja();
-            prs.Show();
+            PravoP = prs.Pravo;
+            if (PravoP == true) { prs.Show(); } else { return; }
         }
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
             ObradaIsporukePocetna oi = new ObradaIsporukePocetna();
-            oi.Show();
+            PravoP = oi.Pravo;
+            if (PravoP == true) {oi.Show(); } else { return; }
         }
 
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
         {
             WebIsporukaVoziloPocetna wiv = new WebIsporukaVoziloPocetna();
-            wiv.Show();
+            PravoP = wiv.Pravo;
+            if (PravoP == true) { wiv.Show(); } else { return; }
         }
 
         private void toolStripMenuItem4_Click(object sender, EventArgs e)
         {
             PregledKontrolorZavrseno pkz = new PregledKontrolorZavrseno();
-            pkz.Show();
+            PravoP = pkz.Pravo;
+            if (PravoP == true) { pkz.Show(); } else { return; }
         }
 
         private void toolStripMenuItem5_Click(object sender, EventArgs e)
         {
             Magacin.frmOtpremnicaUvozPocetna pocot = new Magacin.frmOtpremnicaUvozPocetna();
-            pocot.Show();
+            PravoP = pocot.Pravo;
+            if (PravoP == true) { pocot.Show(); } else { return; };
         }
 
         private void toolStripMenuItem6_Click(object sender, EventArgs e)
         {
             frmReklamacijeUvozPocetna reklpoc = new frmReklamacijeUvozPocetna();
-            reklpoc.Show();
+            PravoP = reklpoc.Pravo;
+            if (PravoP == true) { reklpoc.Show(); } else { return; }
         }
 
         private void BtnWEBSPodaci_Click(object sender, EventArgs e)
         {
+            Meniji.frmMenijiWEBSPodaci web = new Meniji.frmMenijiWEBSPodaci();
             ActivateButton(sender, RGBColors.color1);
-            OpenChildForm(new Meniji.frmMenijiWEBSPodaci());
+            PravoP = web.Pravo;
+            if (PravoP == true) { OpenChildForm(web); } else { return; }    
+            
+            
         }
 
         private void btnIsporuka_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender, RGBColors.color1);
-            OpenChildForm(new Meniji.frmIsporuke());
+            Meniji.frmIsporuke i = new Meniji.frmIsporuke();
+            PravoP = i.Pravo;
+            if (PravoP == true)
+            {
+                ActivateButton(sender, RGBColors.color1);
+                OpenChildForm(new Meniji.frmIsporuke());
+            }
+            else { return; }
         }
 
         private void btnPregledi_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender, RGBColors.color1);
-            OpenChildForm(new Meniji.frmPregledi());
+            Meniji.frmPregledi p = new Meniji.frmPregledi();
+            PravoP = p.Pravo;
+            if (PravoP == true)
+            {
+                ActivateButton(sender, RGBColors.color1);
+                OpenChildForm(new Meniji.frmPregledi());
+            }
+            else { return; }
         }
 
         private void btnPonisti_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender, RGBColors.color1);
-            OpenChildForm(new Meniji.frmPonisti());
+            Meniji.frmPonisti p = new Meniji.frmPonisti();
+            PravoP = p.Pravo;
+            if (PravoP == true)
+            {
+                ActivateButton(sender, RGBColors.color1);
+                OpenChildForm(new Meniji.frmPonisti());
+            }
+            else { return; }
         }
 
         private void btnIstorija_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender, RGBColors.color1);
-            OpenChildForm(new Meniji.frmIstorija());
+            Meniji.frmIstorija i = new Meniji.frmIstorija();
+            PravoP = i.Pravo;
+            if (PravoP == true)
+            {
+                ActivateButton(sender, RGBColors.color1);
+                OpenChildForm(new Meniji.frmIstorija());
+            }
+            else { return; }
         }
 
         private void btnPrenos_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender, RGBColors.color1);
-            OpenChildForm(new Meniji.frmPrenos());
+            Meniji.frmPrenos p = new Meniji.frmPrenos();
+            PravoP = p.Pravo;
+            if (PravoP == true)
+            {
+                ActivateButton(sender, RGBColors.color1);
+                OpenChildForm(new Meniji.frmPrenos());
+            }
+            else { return; }
         }
 
         private void btn2018_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender, RGBColors.color1);
-            OpenChildForm(new Meniji.frm2018());
+            Meniji.frm2018 f = new Meniji.frm2018();
+            PravoP = f.Pravo;
+            if (PravoP == true)
+            {
+                ActivateButton(sender, RGBColors.color1);
+                OpenChildForm(new Meniji.frm2018());
+            }
+            else { return; }
         }
 
         private void btnTimovi_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender, RGBColors.color1);
-            OpenChildForm(new Meniji.frmTimovi());
+            Meniji.frmTimovi t = new Meniji.frmTimovi();
+            PravoP = t.Pravo;
+            if (PravoP == true)
+            {
+                ActivateButton(sender, RGBColors.color1);
+                OpenChildForm(new Meniji.frmTimovi());
+            }
+            else { return; }
         }
 
         private void btnArhiviranje_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender, RGBColors.color1);
-            OpenChildForm(new Meniji.frmArhiviranje());
+            Meniji.frmArhiviranje a = new Meniji.frmArhiviranje();
+            PravoP = a.Pravo;
+            if (PravoP == true)
+            {
+                ActivateButton(sender, RGBColors.color1);
+                OpenChildForm(new Meniji.frmArhiviranje());
+            }
+            else { return; }
         }
 
         private void btnReklamacija_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender, RGBColors.color1);
-            OpenChildForm(new Meniji.frmReklamacije());
+            Meniji.frmReklamacije r = new Meniji.frmReklamacije();
+            PravoP = r.Pravo;
+            if (PravoP == true)
+            {
+                ActivateButton(sender, RGBColors.color1);
+                OpenChildForm(new Meniji.frmReklamacije());
+            }
+            else { return; }
         }
 
         private void btnMagacin_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender, RGBColors.color1);
-            OpenChildForm(new Meniji.frmMagacin());
+            Meniji.frmMagacin m = new Meniji.frmMagacin();
+            PravoP = m.Pravo;
+            if (PravoP == true)
+            {
+                ActivateButton(sender, RGBColors.color1);
+                OpenChildForm(new Meniji.frmMagacin());
+            }
+            else { return; }
         }
 
         private void btnAnalaizeMagacin_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender, RGBColors.color1);
-            OpenChildForm(new Meniji.frmAnalizeMagacin());
+            Meniji.frmAnalizeMagacin m = new Meniji.frmAnalizeMagacin();
+            PravoP = m.Pravo;
+            if (PravoP == true)
+            {
+                ActivateButton(sender, RGBColors.color1);
+                OpenChildForm(new Meniji.frmAnalizeMagacin());
+            }
+            else { return; }
         }
 
         private void panel3_Paint(object sender, PaintEventArgs e)
