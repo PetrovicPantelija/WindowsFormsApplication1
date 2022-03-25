@@ -32,38 +32,7 @@ namespace WindowsFormsApplication1.Kalkulacije
 
             InitializeComponent();
             FillCombo();
-            RefreshGV();
-            FillCombo();
-
-            txt_Trosak.Enabled = false;
-            txt_ID.Enabled = false;
-            txt_MpCena.Enabled = false;
-            txt_Mp2.Enabled = false;
-            txt_VpCena.Enabled = false;
-            combo_Zaglavlje.Text = zag;
-
-            var query = "Select Zavrsen from Kalkulator Where Naziv= '" +zaglavlje+"'";
-            SqlConnection conn = new SqlConnection(connect);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                zavrsen = Convert.ToInt32(dr["Zavrsen"].ToString());
-            }
-            conn.Close();
-
-            if (zavrsen == 1)
-            {
-                tsNew.Enabled = false;
-                tsSave.Enabled = false;
-                tsDelete.Enabled = false;
-                toolStrip1.Enabled = false;
-                toolStripButton2.Enabled = false;
-                btn_Akcija.Enabled = false;
-                btn_Rabat.Enabled = false;
-                button1.Enabled = false;
-            }
+           
         }
         private void RefreshGV()
         {
@@ -73,18 +42,22 @@ namespace WindowsFormsApplication1.Kalkulacije
             }
             else
             {
+
                 FillGvID();
             }
             
         }
         public void FillGvID()
         {
-            var query = "Select KalkulatorStavke.ID,KalkulatorStavke.MPSifra,MaticniPodatki.MpNaziv,KalkulatorStavke.IDKalkulator," +
+            
+            var query = "Select KalkulatorStavke.ID,KalkulatorStavke.WSifra, Program.Naziv as Program, Kolekcije.Naziv as Kolekcija, KalkulatorStavke.MPSifra,MaticniPodatki.MpNaziv,KalkulatorStavke.IDKalkulator," +
                 "Kalkulator.Naziv,TrosakProizvodnje,Avans,Provizija,Transport,VpCena,Rabat,Marza,Akcija,MPCena,PrimenaTroskovnogCenovnika.MpSifraVeznog " +
                 "From KalkulatorStavke " +
                 "Inner join MaticniPodatki on KalkulatorStavke.MPSifra = MaticniPodatki.MpSifra " +
                 "Inner join Kalkulator on KalkulatorStavke.IDKalkulator = Kalkulator.ID " +
-                "Inner join PrimenaTroskovnogCenovnika on KalkulatorStavke.MPSifra = PrimenaTroskovnogCenovnika.MpSifra " +
+                "Inner join Program on KalkulatorStavke.ProgramID = Program.ID " +
+                "Inner join Kolekcije on KalkulatorStavke.KolekcijaID = Kolekcije.ID " +
+                "left join PrimenaTroskovnogCenovnika on KalkulatorStavke.MPSifra = PrimenaTroskovnogCenovnika.MpSifra " +
                 "Where IDKalkulator = "+kalkulator;
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
@@ -95,12 +68,14 @@ namespace WindowsFormsApplication1.Kalkulacije
         }
         private void FillGV()
         {
-            var query = "Select KalkulatorStavke.ID,KalkulatorStavke.MPSifra,MaticniPodatki.MpNaziv,KalkulatorStavke.IDKalkulator," +
+            var query =  "Select KalkulatorStavke.ID,KalkulatorStavke.WSifra, Program.Naziv as Program, Kolekcije.Naziv as Kolekcija, KalkulatorStavke.MPSifra,MaticniPodatki.MpNaziv,KalkulatorStavke.IDKalkulator," +
                 "Kalkulator.Naziv,TrosakProizvodnje,Avans,Provizija,Transport,VpCena,Rabat,Marza,Akcija,MPCena,PrimenaTroskovnogCenovnika.MpSifraVeznog " +
                 "From KalkulatorStavke " +
                 "Inner join MaticniPodatki on KalkulatorStavke.MPSifra = MaticniPodatki.MpSifra " +
                 "Inner join Kalkulator on KalkulatorStavke.IDKalkulator = Kalkulator.ID " +
-                "Inner join PrimenaTroskovnogCenovnika on KalkulatorStavke.MPSifra = PrimenaTroskovnogCenovnika.MpSifra";
+                "Inner join Program on KalkulatorStavke.ProgramID = Program.ID " +
+                "Inner join Kolekcije on KalkulatorStavke.KolekcijaID = Kolekcije.ID " +
+                "left join PrimenaTroskovnogCenovnika on KalkulatorStavke.MPSifra = PrimenaTroskovnogCenovnika.MpSifra ";
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();
@@ -463,7 +438,38 @@ namespace WindowsFormsApplication1.Kalkulacije
 
         private void frmKalkulatorStavke_Load(object sender, EventArgs e)
         {
+            RefreshGV();
+            FillCombo();
 
+            txt_Trosak.Enabled = false;
+            txt_ID.Enabled = false;
+            txt_MpCena.Enabled = false;
+            txt_Mp2.Enabled = false;
+            txt_VpCena.Enabled = false;
+            combo_Zaglavlje.Text = zaglavlje;
+
+            var query = "Select Zavrsen from Kalkulator Where Rtrim(Naziv) = '" + zaglavlje.Trim() + "'";
+            SqlConnection conn = new SqlConnection(connect);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                zavrsen = Convert.ToInt32(dr["Zavrsen"].ToString());
+            }
+            conn.Close();
+
+            if (zavrsen == 1)
+            {
+                tsNew.Enabled = false;
+                tsSave.Enabled = false;
+                tsDelete.Enabled = false;
+                toolStrip1.Enabled = false;
+                toolStripButton2.Enabled = false;
+                btn_Akcija.Enabled = false;
+                btn_Rabat.Enabled = false;
+                button1.Enabled = false;
+            }
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
@@ -496,6 +502,13 @@ namespace WindowsFormsApplication1.Kalkulacije
             tsDelete.Enabled = false;
             toolStrip1.Enabled = false;
             toolStripButton2.Enabled = false;
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            Kalkulacije.InsertKalkulatorStavke kalk = new InsertKalkulatorStavke();
+            kalk.AzurirajCeneTroskaStavke(Convert.ToInt32(kalkulator));
+            RefreshGV();
         }
     }
 }
