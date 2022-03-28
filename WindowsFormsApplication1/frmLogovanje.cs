@@ -50,8 +50,8 @@ namespace WindowsFormsApplication1
                     {
                        // MessageBox.Show("PA0");
                     Main mainf = new Main(0);
-                PravoP = mainf.Pravo;
                 if (PravoP == true) { mainf.Show(); } else { return; }
+                PravoP = mainf.Pravo;
                       
                     }
                     else
@@ -212,7 +212,7 @@ namespace WindowsFormsApplication1
         private void button5_Click(object sender, EventArgs e)
         {
             user = cboKorisnik.Text;
-            if(cboKorisnik.Text=="pantelija" && txtPassword.Text == "307")
+            if(cboKorisnik.Text=="pantelija" && txtPassword.Text == "0307")
             {
                 Kalkulacije.MainKalkulacije kalk = new Kalkulacije.MainKalkulacije();
                 PravoP = kalk.Pravo;
