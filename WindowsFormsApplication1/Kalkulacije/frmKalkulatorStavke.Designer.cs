@@ -67,8 +67,15 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.btn_Rabat = new System.Windows.Forms.Button();
             this.btn_Akcija = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.button2 = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -392,12 +399,12 @@ namespace WindowsFormsApplication1.Kalkulacije
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(407, 24);
+            this.dataGridView1.Location = new System.Drawing.Point(412, 29);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1063, 463);
+            this.dataGridView1.Size = new System.Drawing.Size(605, 578);
             this.dataGridView1.TabIndex = 204;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -434,11 +441,60 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(5, 18);
+            this.dataGridView2.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.RowHeadersVisible = false;
+            this.dataGridView2.RowHeadersWidth = 51;
+            this.dataGridView2.RowTemplate.Height = 24;
+            this.dataGridView2.Size = new System.Drawing.Size(138, 263);
+            this.dataGridView2.TabIndex = 206;
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Location = new System.Drawing.Point(147, 18);
+            this.dataGridView3.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.RowHeadersVisible = false;
+            this.dataGridView3.RowHeadersWidth = 51;
+            this.dataGridView3.RowTemplate.Height = 24;
+            this.dataGridView3.Size = new System.Drawing.Size(175, 263);
+            this.dataGridView3.TabIndex = 207;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(326, 18);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(58, 263);
+            this.button2.TabIndex = 208;
+            this.button2.Text = "Prikaži po programu i kolekciji";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.dataGridView2);
+            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.dataGridView3);
+            this.groupBox1.Location = new System.Drawing.Point(9, 326);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(389, 286);
+            this.groupBox1.TabIndex = 209;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Po programu i kolekciji";
+            // 
             // frmKalkulatorStavke
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1028, 517);
+            this.ClientSize = new System.Drawing.Size(1028, 624);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btn_Akcija);
             this.Controls.Add(this.btn_Rabat);
@@ -477,6 +533,9 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -521,5 +580,9 @@ namespace WindowsFormsApplication1.Kalkulacije
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
