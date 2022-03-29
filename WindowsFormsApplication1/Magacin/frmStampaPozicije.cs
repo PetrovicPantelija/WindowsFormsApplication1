@@ -25,6 +25,7 @@ namespace WindowsFormsApplication1.Magacin
         bool update;
         bool delete;
         string Kor = frmLogovanje.user.ToString().TrimEnd();
+        string niz = "";
         public frmStampaPozicije()
         {
             InitializeComponent();
@@ -32,7 +33,7 @@ namespace WindowsFormsApplication1.Magacin
             IdForme();
             PravoPristupa();
         }
-        public int IdGrupe()
+        public string IdGrupe()
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
@@ -41,12 +42,24 @@ namespace WindowsFormsApplication1.Magacin
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
             SqlDataReader dr = cmd.ExecuteReader();
+            int count = 0;
+
             while (dr.Read())
             {
-                idGrupe = Convert.ToInt32(dr["IdGrupe"].ToString());
+                if (count == 0)
+                {
+                    niz = dr["IdGrupe"].ToString();
+                    count++;
+                }
+                else
+                {
+                    niz = niz + "," + dr["IdGrupe"].ToString();
+                    count++;
+                }
+
             }
             conn.Close();
-            return idGrupe;
+            return niz;
         }
         private int IdForme()
         {
@@ -68,7 +81,7 @@ namespace WindowsFormsApplication1.Magacin
         private void PravoPristupa()
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select * From GrupaForma Where IdGrupe=" + idGrupe + " and IdForme=" + idForme;
+            string query = "Select * From GrupaForma Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
             SqlConnection conn = new SqlConnection(s_connection);
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);

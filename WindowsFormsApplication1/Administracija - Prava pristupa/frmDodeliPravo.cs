@@ -28,6 +28,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
         bool update;
         bool delete;
         string Kor = frmLogovanje.user.ToString().TrimEnd();
+        string niz = "";
         public frmDodeliPravo()
         {
             InitializeComponent();
@@ -42,7 +43,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             FillCombo();
             FillGV();
         }
-        public int IdGrupe()
+        public string IdGrupe()
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
@@ -51,12 +52,24 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
             SqlDataReader dr = cmd.ExecuteReader();
+            int count = 0;
+
             while (dr.Read())
             {
-                idGrupe = Convert.ToInt32(dr["IdGrupe"].ToString());
+                if (count == 0)
+                {
+                    niz = dr["IdGrupe"].ToString();
+                    count++;
+                }
+                else
+                {
+                    niz = niz + "," + dr["IdGrupe"].ToString();
+                    count++;
+                }
+
             }
             conn.Close();
-            return idGrupe;
+            return niz;
         }
         private int IdForme()
         {
@@ -78,7 +91,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
         private void PravoPristupa()
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select * From GrupaForma Where IdGrupe=" + idGrupe + " and IdForme=" + idForme;
+            string query = "Select * From GrupaForma Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
             SqlConnection conn = new SqlConnection(s_connection);
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
@@ -87,7 +100,6 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             {
                 MessageBox.Show("Nemate prava za pristup ovoj formi", code);
                 Pravo = false;
-                return;
             }
             else
             {
