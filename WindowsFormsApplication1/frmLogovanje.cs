@@ -212,16 +212,17 @@ namespace WindowsFormsApplication1
         private void button5_Click(object sender, EventArgs e)
         {
             user = cboKorisnik.Text;
-            if(cboKorisnik.Text=="pantelija" && txtPassword.Text == "0307")
-            {
+
+             if(cboKorisnik.Text=="pantelija" && txtPassword.Text == "0307")
+              {
                 Kalkulacije.MainKalkulacije kalk = new Kalkulacije.MainKalkulacije();
                 PravoP = kalk.Pravo;
                 if (PravoP == true) { kalk.Show(); } else { return; }
-            }
-            else
-            {
+             }
+             else
+             {
                 MessageBox.Show("Nemate prava za pristup ovoj formi");
-            }
+             }
         }
     }
 }

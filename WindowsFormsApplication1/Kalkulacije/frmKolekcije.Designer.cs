@@ -56,7 +56,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.toolStripSeparator1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1147, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(860, 27);
             this.toolStrip1.TabIndex = 200;
             this.toolStrip1.Text = "Osveži";
             // 
@@ -66,7 +66,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
             this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(29, 24);
+            this.tsNew.Size = new System.Drawing.Size(24, 24);
             this.tsNew.Text = "Novi";
             this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
             // 
@@ -76,7 +76,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(29, 24);
+            this.tsSave.Size = new System.Drawing.Size(24, 24);
             this.tsSave.Text = "tsSave";
             this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
             // 
@@ -86,7 +86,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
             this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsDelete.Name = "tsDelete";
-            this.tsDelete.Size = new System.Drawing.Size(29, 24);
+            this.tsDelete.Size = new System.Drawing.Size(24, 24);
             this.tsDelete.Text = "toolStripButton1";
             this.tsDelete.Click += new System.EventHandler(this.tsDelete_Click);
             // 
@@ -97,25 +97,28 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             // txt_Naziv
             // 
-            this.txt_Naziv.Location = new System.Drawing.Point(12, 165);
+            this.txt_Naziv.Location = new System.Drawing.Point(9, 134);
+            this.txt_Naziv.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_Naziv.Name = "txt_Naziv";
-            this.txt_Naziv.Size = new System.Drawing.Size(206, 22);
+            this.txt_Naziv.Size = new System.Drawing.Size(156, 20);
             this.txt_Naziv.TabIndex = 204;
             // 
             // txt_ID
             // 
-            this.txt_ID.Location = new System.Drawing.Point(12, 88);
+            this.txt_ID.Location = new System.Drawing.Point(9, 72);
+            this.txt_ID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_ID.Name = "txt_ID";
-            this.txt_ID.Size = new System.Drawing.Size(117, 22);
+            this.txt_ID.Size = new System.Drawing.Size(89, 20);
             this.txt_ID.TabIndex = 205;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 131);
+            this.label2.Location = new System.Drawing.Point(9, 106);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 20);
+            this.label2.Size = new System.Drawing.Size(48, 17);
             this.label2.TabIndex = 202;
             this.label2.Text = "NAZIV";
             // 
@@ -123,20 +126,22 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 55);
+            this.label1.Location = new System.Drawing.Point(9, 45);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(26, 20);
+            this.label1.Size = new System.Drawing.Size(21, 17);
             this.label1.TabIndex = 203;
             this.label1.Text = "ID";
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(285, 30);
+            this.dataGridView1.Location = new System.Drawing.Point(214, 24);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(849, 364);
+            this.dataGridView1.Size = new System.Drawing.Size(637, 296);
             this.dataGridView1.TabIndex = 206;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -144,25 +149,27 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(12, 211);
+            this.label3.Location = new System.Drawing.Point(9, 171);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(95, 20);
+            this.label3.Size = new System.Drawing.Size(79, 17);
             this.label3.TabIndex = 203;
             this.label3.Text = "PROGRAM";
             // 
             // combo_Program
             // 
             this.combo_Program.FormattingEnabled = true;
-            this.combo_Program.Location = new System.Drawing.Point(12, 237);
+            this.combo_Program.Location = new System.Drawing.Point(9, 193);
+            this.combo_Program.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.combo_Program.Name = "combo_Program";
-            this.combo_Program.Size = new System.Drawing.Size(206, 24);
+            this.combo_Program.Size = new System.Drawing.Size(156, 21);
             this.combo_Program.TabIndex = 207;
             // 
             // frmKolekcije
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1147, 411);
+            this.ClientSize = new System.Drawing.Size(860, 334);
             this.Controls.Add(this.combo_Program);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.txt_Naziv);
@@ -171,8 +178,10 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.toolStrip1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmKolekcije";
             this.Text = "frmKolekcije";
+            this.Load += new System.EventHandler(this.frmKolekcije_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

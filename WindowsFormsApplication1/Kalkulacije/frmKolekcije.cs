@@ -187,5 +187,10 @@ namespace WindowsFormsApplication1.Kalkulacije
 
             }
         }
+
+        private void frmKolekcije_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

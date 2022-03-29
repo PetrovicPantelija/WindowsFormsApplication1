@@ -61,7 +61,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.toolStripSeparator1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1508, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1241, 27);
             this.toolStrip1.TabIndex = 200;
             this.toolStrip1.Text = "Osveži";
             // 
@@ -71,7 +71,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
             this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(29, 24);
+            this.tsNew.Size = new System.Drawing.Size(24, 24);
             this.tsNew.Text = "Novi";
             this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
             // 
@@ -81,7 +81,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(29, 24);
+            this.tsSave.Size = new System.Drawing.Size(24, 24);
             this.tsSave.Text = "tsSave";
             this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
             // 
@@ -91,7 +91,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
             this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsDelete.Name = "tsDelete";
-            this.tsDelete.Size = new System.Drawing.Size(29, 24);
+            this.tsDelete.Size = new System.Drawing.Size(24, 24);
             this.tsDelete.Text = "toolStripButton1";
             this.tsDelete.Click += new System.EventHandler(this.tsDelete_Click);
             // 
@@ -104,26 +104,29 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(26, 47);
+            this.label1.Location = new System.Drawing.Point(20, 38);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(26, 20);
+            this.label1.Size = new System.Drawing.Size(21, 17);
             this.label1.TabIndex = 4;
             this.label1.Text = "ID";
             // 
             // txt_ID
             // 
-            this.txt_ID.Location = new System.Drawing.Point(30, 80);
+            this.txt_ID.Location = new System.Drawing.Point(22, 65);
+            this.txt_ID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_ID.Name = "txt_ID";
-            this.txt_ID.Size = new System.Drawing.Size(107, 22);
+            this.txt_ID.Size = new System.Drawing.Size(81, 20);
             this.txt_ID.TabIndex = 5;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(175, 47);
+            this.label2.Location = new System.Drawing.Point(131, 38);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(121, 20);
+            this.label2.Size = new System.Drawing.Size(102, 17);
             this.label2.TabIndex = 4;
             this.label2.Text = "Datum važenja";
             // 
@@ -132,54 +135,60 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.dateTimePicker1.CustomFormat = "dd.MM.yyyy";
             this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(179, 80);
+            this.dateTimePicker1.Location = new System.Drawing.Point(134, 65);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(167, 22);
+            this.dateTimePicker1.Size = new System.Drawing.Size(126, 19);
             this.dateTimePicker1.TabIndex = 6;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(391, 47);
+            this.label3.Location = new System.Drawing.Point(293, 38);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(51, 20);
+            this.label3.Size = new System.Drawing.Size(43, 17);
             this.label3.TabIndex = 4;
             this.label3.Text = "Naziv";
             // 
             // txt_Naziv
             // 
             this.txt_Naziv.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_Naziv.Location = new System.Drawing.Point(395, 78);
+            this.txt_Naziv.Location = new System.Drawing.Point(296, 63);
+            this.txt_Naziv.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_Naziv.Name = "txt_Naziv";
-            this.txt_Naziv.Size = new System.Drawing.Size(369, 24);
+            this.txt_Naziv.Size = new System.Drawing.Size(278, 21);
             this.txt_Naziv.TabIndex = 5;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(792, 47);
+            this.label4.Location = new System.Drawing.Point(594, 38);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(44, 20);
+            this.label4.Size = new System.Drawing.Size(37, 17);
             this.label4.TabIndex = 4;
             this.label4.Text = "Kurs";
             // 
             // txt_Kurs
             // 
             this.txt_Kurs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_Kurs.Location = new System.Drawing.Point(796, 80);
+            this.txt_Kurs.Location = new System.Drawing.Point(597, 65);
+            this.txt_Kurs.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_Kurs.Name = "txt_Kurs";
-            this.txt_Kurs.Size = new System.Drawing.Size(142, 24);
+            this.txt_Kurs.Size = new System.Drawing.Size(108, 21);
             this.txt_Kurs.TabIndex = 5;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(961, 47);
+            this.label5.Location = new System.Drawing.Point(721, 38);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(104, 20);
+            this.label5.Size = new System.Drawing.Size(88, 17);
             this.label5.TabIndex = 4;
             this.label5.Text = "VP Cenovnik";
             // 
@@ -187,28 +196,31 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             this.combo_VP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combo_VP.FormattingEnabled = true;
-            this.combo_VP.Location = new System.Drawing.Point(965, 78);
+            this.combo_VP.Location = new System.Drawing.Point(724, 63);
+            this.combo_VP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.combo_VP.Name = "combo_VP";
-            this.combo_VP.Size = new System.Drawing.Size(319, 28);
+            this.combo_VP.Size = new System.Drawing.Size(240, 25);
             this.combo_VP.TabIndex = 7;
             this.combo_VP.SelectedIndexChanged += new System.EventHandler(this.combo_VP_SelectedIndexChanged);
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(18, 131);
+            this.dataGridView1.Location = new System.Drawing.Point(14, 103);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1468, 490);
+            this.dataGridView1.Size = new System.Drawing.Size(1216, 401);
             this.dataGridView1.TabIndex = 201;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1320, 61);
+            this.button1.Location = new System.Drawing.Point(990, 50);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(165, 41);
+            this.button1.Size = new System.Drawing.Size(124, 33);
             this.button1.TabIndex = 202;
             this.button1.Text = "Otvori kalkulator";
             this.button1.UseVisualStyleBackColor = true;
@@ -216,9 +228,9 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             // frmZaglavlja
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1508, 642);
+            this.ClientSize = new System.Drawing.Size(1241, 522);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.combo_VP);
@@ -232,6 +244,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.Controls.Add(this.txt_ID);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmZaglavlja";
             this.Text = "frmZaglavlja";
             this.toolStrip1.ResumeLayout(false);
