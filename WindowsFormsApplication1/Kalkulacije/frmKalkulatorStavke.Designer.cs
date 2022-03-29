@@ -398,13 +398,16 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             // dataGridView1
             // 
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(412, 29);
+            this.dataGridView1.Location = new System.Drawing.Point(438, 29);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(605, 578);
+            this.dataGridView1.Size = new System.Drawing.Size(579, 578);
             this.dataGridView1.TabIndex = 204;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -448,27 +451,25 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.dataGridView2.Location = new System.Drawing.Point(5, 18);
             this.dataGridView2.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowHeadersVisible = false;
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(138, 263);
+            this.dataGridView2.Size = new System.Drawing.Size(166, 263);
             this.dataGridView2.TabIndex = 206;
             // 
             // dataGridView3
             // 
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(147, 18);
+            this.dataGridView3.Location = new System.Drawing.Point(175, 18);
             this.dataGridView3.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.RowHeadersVisible = false;
             this.dataGridView3.RowHeadersWidth = 51;
             this.dataGridView3.RowTemplate.Height = 24;
-            this.dataGridView3.Size = new System.Drawing.Size(175, 263);
+            this.dataGridView3.Size = new System.Drawing.Size(181, 263);
             this.dataGridView3.TabIndex = 207;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(326, 18);
+            this.button2.Location = new System.Drawing.Point(361, 18);
             this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(58, 263);
@@ -484,10 +485,11 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.groupBox1.Controls.Add(this.dataGridView3);
             this.groupBox1.Location = new System.Drawing.Point(9, 326);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(389, 286);
+            this.groupBox1.Size = new System.Drawing.Size(424, 286);
             this.groupBox1.TabIndex = 209;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Po programu i kolekciji";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // frmKalkulatorStavke
             // 

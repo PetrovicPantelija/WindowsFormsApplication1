@@ -148,6 +148,46 @@ namespace WindowsFormsApplication1.Kalkulacije
             da.Fill(ds);
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
+
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "ID";
+            dataGridView1.Columns[0].Width = 20;
+
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "WKOD";
+            dataGridView1.Columns[1].Width = 100;
+
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Program";
+            dataGridView1.Columns[2].Width = 70;
+
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "Kolekcija";
+            dataGridView1.Columns[3].Width = 70;
+
+            DataGridViewColumn column5 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "MP Sif";
+            dataGridView1.Columns[4].Width = 50;
+
+            DataGridViewColumn column6 = dataGridView1.Columns[5];
+            dataGridView1.Columns[5].HeaderText = "MP Naziv";
+            dataGridView1.Columns[5].Width = 100;
+
+            DataGridViewColumn column7 = dataGridView1.Columns[6];
+            dataGridView1.Columns[6].HeaderText = "KALKID";
+            dataGridView1.Columns[6].Width = 10;
+
+            DataGridViewColumn column8 = dataGridView1.Columns[7];
+            dataGridView1.Columns[7].HeaderText = "KALKNAZ";
+            dataGridView1.Columns[7].Width = 70;
+
+            DataGridViewColumn column9 = dataGridView1.Columns[8];
+            dataGridView1.Columns[8].HeaderText = "Trosak";
+            dataGridView1.Columns[8].Width = 80;
+
+            DataGridViewColumn column10 = dataGridView1.Columns[9];
+            dataGridView1.Columns[9].HeaderText = "Avans";
+            dataGridView1.Columns[9].Width = 40;
         }
         private void FillGV()
         {
@@ -165,6 +205,48 @@ namespace WindowsFormsApplication1.Kalkulacije
             da.Fill(ds);
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
+
+            string value = dataGridView1.Rows[0].Cells[0].Value.ToString();
+
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "ID";
+            dataGridView1.Columns[0].Width = 20;
+
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "WKOD";
+            dataGridView1.Columns[1].Width = 100;
+
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Program";
+            dataGridView1.Columns[2].Width = 70;
+
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "Kolekcija";
+            dataGridView1.Columns[3].Width = 70;
+
+            DataGridViewColumn column5 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "MP Sif";
+            dataGridView1.Columns[4].Width = 50;
+
+            DataGridViewColumn column6 = dataGridView1.Columns[5];
+            dataGridView1.Columns[5].HeaderText = "MP Naziv";
+            dataGridView1.Columns[5].Width = 100;
+
+            DataGridViewColumn column7 = dataGridView1.Columns[6];
+            dataGridView1.Columns[6].HeaderText = "KALKID";
+            dataGridView1.Columns[6].Width = 10;
+
+            DataGridViewColumn column8 = dataGridView1.Columns[7];
+            dataGridView1.Columns[7].HeaderText = "KALKNAZ";
+            dataGridView1.Columns[7].Width = 70;
+
+            DataGridViewColumn column9 = dataGridView1.Columns[8];
+            dataGridView1.Columns[8].HeaderText = "Trosak";
+            dataGridView1.Columns[8].Width = 80;
+
+            DataGridViewColumn column10 = dataGridView1.Columns[9];
+            dataGridView1.Columns[9].HeaderText = "Avans";
+            dataGridView1.Columns[9].Width = 40;
         }
         private void FillCombo()
         {
@@ -529,6 +611,16 @@ namespace WindowsFormsApplication1.Kalkulacije
             dataGridView2.ReadOnly = true;
             dataGridView2.DataSource = ds.Tables[0];
 
+            string value = dataGridView2.Rows[0].Cells[0].Value.ToString();
+
+            DataGridViewColumn column = dataGridView2.Columns[0];
+            dataGridView2.Columns[0].HeaderText = "ID";
+            dataGridView2.Columns[0].Width = 20;
+
+            DataGridViewColumn column2 = dataGridView2.Columns[1];
+            dataGridView2.Columns[1].HeaderText = "Program";
+            dataGridView2.Columns[1].Width = 145;
+
             var query2 = "Select Kolekcije.ID as ID,Kolekcije.Naziv as Naziv " +
                 " from Kolekcije ";
             SqlConnection conn2 = new SqlConnection(connect);
@@ -538,6 +630,15 @@ namespace WindowsFormsApplication1.Kalkulacije
             dataGridView3.ReadOnly = true;
             dataGridView3.DataSource = ds2.Tables[0];
 
+            string value2 = dataGridView3.Rows[0].Cells[0].Value.ToString();
+
+            DataGridViewColumn column3 = dataGridView3.Columns[0];
+            dataGridView3.Columns[0].HeaderText = "ID";
+            dataGridView3.Columns[0].Width = 20;
+
+            DataGridViewColumn column4 = dataGridView3.Columns[1];
+            dataGridView3.Columns[1].HeaderText = "Kolekcija";
+            dataGridView3.Columns[1].Width = 145;
         }
 
         private void frmKalkulatorStavke_Load(object sender, EventArgs e)
@@ -668,12 +769,19 @@ namespace WindowsFormsApplication1.Kalkulacije
                "Inner join Kolekcije on KalkulatorStavke.KolekcijaID = Kolekcije.ID " +
                "left join PrimenaTroskovnogCenovnika on KalkulatorStavke.MPSifra = PrimenaTroskovnogCenovnika.MpSifra " +
                "Where KalkulatorStavke.ProgramID in (" + programi + ") and KalkulatorStavke.KolekcijaID in (" + kolekcije + ")";
+            MessageBox.Show(query);
+            
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();
             da.Fill(ds);
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
