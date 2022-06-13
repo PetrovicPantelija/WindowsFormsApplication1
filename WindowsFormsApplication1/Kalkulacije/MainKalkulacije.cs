@@ -275,5 +275,11 @@ namespace WindowsFormsApplication1.Kalkulacije
         {
             label8.ForeColor = Color.White;
         }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+            frmPoredjenjeKalkulatora program = new frmPoredjenjeKalkulatora();
+            program.Show();
+        }
     }
 }

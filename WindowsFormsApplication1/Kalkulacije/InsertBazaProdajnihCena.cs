@@ -330,5 +330,49 @@ namespace WindowsFormsApplication1.Kalkulacije
                 }
             }
         }
+
+        public void UpdejtCene(int ID)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdateCenaBazaProdajnihCenovnika";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
+
+            conn.Open();
+            SqlTransaction tran = conn.BeginTransaction();
+            cmd.Transaction = tran;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                tran.Commit();
+                tran = conn.BeginTransaction();
+                cmd.Transaction = tran;
+            }
+            catch (SqlException)
+            {
+                throw new Exception("Neuspesan updejt");
+            }
+            finally
+            {
+                if (!error)
+                {
+                    tran.Commit();
+                    MessageBox.Show("Unos NHM broja je uspesno zavrsena", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                conn.Close();
+                if (error)
+                {
+
+                }
+            }
+        }
     }
 }

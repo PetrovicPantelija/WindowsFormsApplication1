@@ -29,7 +29,7 @@ namespace WindowsFormsApplication1.Kalkulacije
         bool delete;
         string Kor = frmLogovanje.user.ToString().TrimEnd();
         string niz = "";
-
+        string KursPrenesen = "0";
         public frmKalkulatorStavke()
         {
             InitializeComponent();
@@ -120,13 +120,14 @@ namespace WindowsFormsApplication1.Kalkulacije
 
             conn.Close();
         }
-        public frmKalkulatorStavke(int idK,string zag)
+        public frmKalkulatorStavke(int idK,string zag, string Kurs)
         {
-
+          
+            InitializeComponent();
             kalkulator = idK;
             zaglavlje = zag;
-
-            InitializeComponent();
+            txtKurs.Text = Kurs;
+            KursPrenesen = Kurs;
             FillCombo();
            
         }
@@ -147,7 +148,7 @@ namespace WindowsFormsApplication1.Kalkulacije
         {
             
             var query = "Select KalkulatorStavke.ID,KalkulatorStavke.WSifra, Program.Naziv as Program, Kolekcije.Naziv as Kolekcija, KalkulatorStavke.MPSifra,MaticniPodatki.MpNaziv,KalkulatorStavke.IDKalkulator," +
-                "Kalkulator.Naziv,TrosakProizvodnje,Avans,Provizija,Transport,VpCena,Rabat,Marza,Akcija,MPCena,PrimenaTroskovnogCenovnika.MpSifraVeznog " +
+                "Kalkulator.Naziv,TrosakProizvodnje,Avans,Provizija,Transport,VpCena,Rabat,Marza,Akcija,MPCena,PrimenaTroskovnogCenovnika.MpSifraVeznog, MarzaRef " +
                 "From KalkulatorStavke " +
                 "Inner join MaticniPodatki on KalkulatorStavke.MPSifra = MaticniPodatki.MpSifra " +
                 "Inner join Kalkulator on KalkulatorStavke.IDKalkulator = Kalkulator.ID " +
@@ -205,7 +206,7 @@ namespace WindowsFormsApplication1.Kalkulacije
         private void FillGV()
         {
             var query =  "Select KalkulatorStavke.ID,KalkulatorStavke.WSifra, Program.Naziv as Program, Kolekcije.Naziv as Kolekcija, KalkulatorStavke.MPSifra,MaticniPodatki.MpNaziv,KalkulatorStavke.IDKalkulator," +
-                "Kalkulator.Naziv,TrosakProizvodnje,Avans,Provizija,Transport,VpCena,Rabat,Marza,Akcija,MPCena,PrimenaTroskovnogCenovnika.MpSifraVeznog " +
+                "Kalkulator.Naziv,TrosakProizvodnje,Avans,Provizija,Transport,VpCena,Rabat,Marza,Akcija,MPCena,PrimenaTroskovnogCenovnika.MpSifraVeznog, MarzaRef " +
                 "From KalkulatorStavke " +
                 "Inner join MaticniPodatki on KalkulatorStavke.MPSifra = MaticniPodatki.MpSifra " +
                 "Inner join Kalkulator on KalkulatorStavke.IDKalkulator = Kalkulator.ID " +
@@ -354,6 +355,7 @@ namespace WindowsFormsApplication1.Kalkulacije
         }
         private void Cene()
         {
+            /*
             if (txt_Trosak.Text != "" && txt_Avans.Text!="" &&  txt_Provizija.Text != "" && txt_Transport.Text != "" && txt_Rabat.Text != "" && txt_Marza.Text != "" 
                 && txt_Akcija.Text != "")
             {
@@ -373,6 +375,7 @@ namespace WindowsFormsApplication1.Kalkulacije
                 txt_MpCena.Text = "";
                 txt_Mp2.Text = "";
             }
+            */
         }
 
         private void txt_Avans_Leave(object sender, EventArgs e)
@@ -413,22 +416,128 @@ namespace WindowsFormsApplication1.Kalkulacije
                 {
                     if (row.Selected)
                     {
+                        txt_mpSifra.Text = row.Cells[4].Value.ToString();
                         txt_ID.Text = row.Cells[0].Value.ToString();
-                        txt_mpSifra.Text = row.Cells[1].Value.ToString();
-                        combo_Zaglavlje.Text = row.Cells[4].Value.ToString();
-                        txt_Avans.Text = row.Cells[6].Value.ToString();
-                        txt_Provizija.Text = row.Cells[7].Value.ToString();
-                        txt_Transport.Text = row.Cells[8].Value.ToString();
-                        txt_Rabat.Text = row.Cells[10].Value.ToString();
-                        txt_Marza.Text = row.Cells[11].Value.ToString();
-                        txt_Akcija.Text = row.Cells[12].Value.ToString();
-                        Trosak();
-                        Cene();
+                       
+                        combo_Zaglavlje.SelectedValue = row.Cells[6].Value.ToString();
+                        txtWebsSifra.Text = row.Cells[1].Value.ToString();
+                        txt_Trosak.Text = row.Cells[8].Value.ToString();
+                        txt_Avans.Text = row.Cells[9].Value.ToString();
+                        txt_Provizija.Text = row.Cells[10].Value.ToString();
+                        txt_Transport.Text = row.Cells[11].Value.ToString();
+                       
+                        txt_Rabat.Text = row.Cells[13].Value.ToString();
+                        txt_Marza.Text = row.Cells[14].Value.ToString();
+                        txt_Akcija.Text = row.Cells[15].Value.ToString();
+                        txt_VpCena.Text = row.Cells[12].Value.ToString();
+                        txt_MpCena.Text = row.Cells[16].Value.ToString();
+                        txtMarzaRefer.Text = row.Cells[18].Value.ToString();
+                        txtAvansUK.Text = (Convert.ToDecimal(txt_Avans.Text) * Convert.ToDecimal(txt_VpCena.Text) * Convert.ToDecimal(0.01)).ToString();
+                        txtProvizijaUK.Text = (Convert.ToDecimal(txt_Provizija.Text) * Convert.ToDecimal(txt_VpCena.Text) * Convert.ToDecimal(0.01)).ToString();
+                        txtTransportUK.Text = (Convert.ToDecimal(txt_Transport.Text) * Convert.ToDecimal(txt_VpCena.Text) * Convert.ToDecimal(0.01)).ToString();
+                     
+
+                        decimal VCena = Convert.ToDecimal(txt_VpCena.Text);
+                        decimal marza1 = Convert.ToDecimal(txt_Marza.Text) - (Convert.ToDecimal(txt_Avans.Text) + Convert.ToDecimal(txt_Provizija.Text) + Convert.ToDecimal(txt_Transport.Text));
+                        decimal marza2 = ((VCena / (Convert.ToDecimal(txt_Trosak.Text) / Convert.ToDecimal(txtKurs.Text))) - 1) * 100;
+                        txt_MarzaPocetna.Text = marza2.ToString();
+                        
+                        decimal VPCENASaRabatom = VCena - (VCena * (Convert.ToDecimal(txt_Rabat.Text) * Convert.ToDecimal(0.01)));
+                        // decimal 
+                        // decimal MarzaNova = marza - (Convert.ToDecimal(txt_Rabat.Text)- rabat);
+                        decimal MarzaNova2 = ((VPCENASaRabatom / (Convert.ToDecimal(txt_Trosak.Text) / Convert.ToDecimal(txtKurs.Text))) - 1) * 100;
+
+                        txt_MarzaPArtner.Text = MarzaNova2.ToString();
+                        txt_MarzaPArtnerIznos.Text = (VPCENASaRabatom - (Convert.ToDecimal(txt_Trosak.Text) / Convert.ToDecimal(txtKurs.Text))).ToString();
+                        decimal VPCENASaAkcijom = VPCENASaRabatom - (VPCENASaRabatom * (Convert.ToDecimal(txt_Akcija.Text) * Convert.ToDecimal(0.01)));
+                        // decimal 
+                        // decimal MarzaNova = marza - (Convert.ToDecimal(txt_Rabat.Text)- rabat);
+                        decimal MarzaNova = ((VPCENASaAkcijom / (Convert.ToDecimal(txt_Trosak.Text) / Convert.ToDecimal(txtKurs.Text))) - 1) * 100;
+
+                        txt_Marza.Text = MarzaNova.ToString();
+                        txt_MarzaIznos.Text = (VPCENASaAkcijom - (Convert.ToDecimal(txt_Trosak.Text) / Convert.ToDecimal(txtKurs.Text))).ToString();
+
+
+                        txt_MarzaPocetna.Text = marza2.ToString();
+                        txt_MarzaPocetnaIznos.Text = (VCena - (Convert.ToDecimal(txt_Trosak.Text) / Convert.ToDecimal(txtKurs.Text))).ToString();
+
+
+                        txt_VpCenaRSD.Text = (Convert.ToDecimal(txt_VpCena.Text) * Convert.ToDecimal(txtKurs.Text)).ToString();
+                        txt_VpCenaRabat.Text = (Convert.ToDecimal(txt_VpCena.Text) - (Convert.ToDecimal(txt_VpCena.Text) * Convert.ToDecimal(txt_Rabat.Text) * Convert.ToDecimal(0.01))).ToString();
+                        txt_VpCenaAkcija.Text = (Convert.ToDecimal(txt_VpCenaRabat.Text) - (Convert.ToDecimal(txt_VpCenaRabat.Text) * Convert.ToDecimal(txt_Akcija.Text) * Convert.ToDecimal(0.01))).ToString();
+                        txt_MpCenaRSD.Text = (Convert.ToDecimal(txt_VpCenaAkcija.Text) * Convert.ToDecimal(txtKurs.Text) * Convert.ToDecimal(1.25) * Convert.ToDecimal(1.2)).ToString();
+                        txt_MpCena.Text = (Convert.ToDecimal(txt_VpCenaAkcija.Text) * Convert.ToDecimal(1.25) * Convert.ToDecimal(1.2)).ToString();
+                        // txt_MarzaPocetnaIznos
+                        //  Trosak();
+                        // Cene();
+                       // IzracunajUkupnoIProsek();
                     }
                 }
             }
             catch { }
         }
+        private void IzracunajUkupnoIProsek()
+        {
+            int BrojRekorda = 0;
+            double Akcija = 0;
+            double Marza = 0;
+            double Rabat = 0;
+            decimal SRabat = 0;
+            decimal SMarza = 0;
+            decimal SAkcija = 0;
+            decimal SmarzaPom = 0;
+            decimal AkcijaIRabat = 0;
+            MessageBox.Show("Usao u obracun gornji");
+            decimal VCena = Convert.ToDecimal(txt_VpCena.Text);
+            decimal VCenaPoc = Convert.ToDecimal(txt_VpCenaRabat.Text);
+            txtSAEUR.Text = (Convert.ToDecimal(txt_VpCenaRabat.Text) * (Convert.ToDecimal(txt_Akcija.Text) * Convert.ToDecimal(0.01))).ToString();
+            txtSA.Text = (Convert.ToDecimal(txtSA.Text) * Convert.ToDecimal(txtKurs.Text)).ToString();
+            txtSREUR.Text = (Convert.ToDecimal(txt_VpCenaRabat.Text) * Convert.ToDecimal(txt_Rabat.Text) * (Convert.ToDecimal(txt_Akcija.Text) * Convert.ToDecimal(0.01))).ToString();
+            txtSR.Text = (Convert.ToDecimal(txtSR.Text) * Convert.ToDecimal(txtKurs.Text)).ToString();
+            txtSMEUR.Text = (Convert.ToDecimal(txt_VpCenaRabat.Text) - Convert.ToDecimal(txt_Trosak.Text) / Convert.ToDecimal(txtKurs.Text)).ToString();
+            txtSM.Text = (Convert.ToDecimal(txtSM.Text) * Convert.ToDecimal(txtKurs.Text)).ToString();
+            // decimal ARProcenatAkcijeIRabata = Convert.ToDecimal(txt_Rabat.Text) + Convert.ToDecimal(txt_Akcija.Text);
+            // decimal Razlika3 = VCena - (VCena * ARProcenatAkcijeIRabata * Convert.ToDecimal(0.01));
+            // marza = (Razlika3 / trosak) * 100; // Procenat Marze
+
+
+            /*
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                
+                if (row.Selected)
+                {
+                    //Panta1
+                    BrojRekorda = BrojRekorda + 1;
+                    Akcija = Akcija + Convert.ToDouble(row.Cells[15].Value.ToString());
+                    Marza = Marza + Convert.ToDouble(row.Cells[14].Value.ToString());
+                    Rabat = Rabat + Convert.ToDouble(row.Cells[13].Value.ToString());
+                    SRabat = SRabat + (Convert.ToDecimal(row.Cells[12].Value.ToString()) * Convert.ToDecimal(row.Cells[13].Value.ToString()) * Convert.ToDecimal(0.01));
+                    SAkcija = SAkcija + (Convert.ToDecimal(row.Cells[12].Value.ToString()) * Convert.ToDecimal(row.Cells[15].Value.ToString()) * Convert.ToDecimal(0.01));
+                    AkcijaIRabat = (Convert.ToDecimal(row.Cells[13].Value.ToString()) + (Convert.ToDecimal(row.Cells[15].Value.ToString()))); //Ukupni procenti Akcija i Marza
+
+                    // MessageBox.Show(AkcijaIRabat.ToString());
+                    // SmarzaPom = Convert.ToDecimal(row.Cells[12].Value.ToString()) * AkcijaIRabat * Convert.ToDecimal(0.01);
+                    // MessageBox.Show(SmarzaPom.ToString());
+                    SmarzaPom = Convert.ToDecimal(row.Cells[12].Value.ToString()) * ((Convert.ToDecimal(Marza) * Convert.ToDecimal(0.01)) - 1);
+                   // SmarzaPom = (SmarzaPom / (Convert.ToDecimal(Marza) * Convert.ToDecimal(0.01) + 1)) * (Convert.ToDecimal(Marza) * Convert.ToDecimal(0.01)); // Izracun iznosa Marze
+                    SMarza = SMarza + SmarzaPom;
+                    txtSM.Text = SMarza.ToString();
+                    txtSR.Text = SRabat.ToString();
+                    txtSA.Text = SAkcija.ToString();
+                    txtSMEUR.Text = (SMarza  / Convert.ToDecimal(txtKurs.Text)).ToString();
+                    txtSREUR.Text = (SRabat / Convert.ToDecimal(txtKurs.Text)).ToString();
+                    txtSAEUR.Text = (SAkcija / Convert.ToDecimal(txtKurs.Text)).ToString();
+                    txtA.Text = (Akcija / BrojRekorda).ToString();
+                    txtUKM.Text = (Marza / BrojRekorda).ToString();
+                    txtR.Text = (Rabat / BrojRekorda).ToString();
+                }
+           
+            }
+             */
+
+        }
+
 
         private void tsNew_Click(object sender, EventArgs e)
         {
@@ -439,12 +548,31 @@ namespace WindowsFormsApplication1.Kalkulacije
 
         private void tsSave_Click(object sender, EventArgs e)
         {
+            int ProgramID = 0;
+            int KolekcijaID = 0;
+
+            foreach (DataGridViewRow row in dataGridView3.Rows)
+            {
+                if (row.Selected == true)
+                {
+                    ProgramID = Convert.ToInt32(row.Cells[0].Value.ToString());
+                }
+            }
+
+            foreach (DataGridViewRow row in dataGridView3.Rows)
+            {
+                if (row.Selected == true)
+                {
+                    KolekcijaID = Convert.ToInt32(row.Cells[0].Value.ToString());
+                }
+            }
+
             if (status == true)
             {
                 Kalkulacije.InsertKalkulatorStavke kalk = new InsertKalkulatorStavke();
                 kalk.InsKalkulatorStavke(Convert.ToInt32(txt_mpSifra.Text), Convert.ToInt32(combo_Zaglavlje.SelectedValue), Convert.ToDecimal(txt_Trosak.Text),
                     Convert.ToDecimal(txt_Avans.Text), Convert.ToDecimal(txt_Provizija.Text), Convert.ToDecimal(txt_Transport.Text), Convert.ToDecimal(txt_VpCena.Text),
-                    Convert.ToDecimal(txt_Rabat.Text), Convert.ToDecimal(txt_Marza.Text), Convert.ToDecimal(txt_Akcija.Text), Convert.ToDecimal(txt_MpCena.Text));
+                    Convert.ToDecimal(txt_Rabat.Text), Convert.ToDecimal(txt_Marza.Text), Convert.ToDecimal(txt_Akcija.Text), Convert.ToDecimal(txt_MpCena.Text), txtWebsSifra.Text, Convert.ToInt32(ProgramID), Convert.ToInt32(KolekcijaID));
                 status = false;
                 tsNew.Checked = false;
                 tsNew.Enabled = true;
@@ -455,7 +583,7 @@ namespace WindowsFormsApplication1.Kalkulacije
                 Kalkulacije.InsertKalkulatorStavke kalk = new InsertKalkulatorStavke();
                 kalk.UpdKalkulatorStavke(Convert.ToInt32(txt_ID.Text), Convert.ToInt32(txt_mpSifra.Text), Convert.ToInt32(combo_Zaglavlje.SelectedValue), Convert.ToDecimal(txt_Trosak.Text),
                     Convert.ToDecimal(txt_Avans.Text), Convert.ToDecimal(txt_Provizija.Text), Convert.ToDecimal(txt_Transport.Text), Convert.ToDecimal(txt_VpCena.Text),
-                    Convert.ToDecimal(txt_Rabat.Text), Convert.ToDecimal(txt_Marza.Text), Convert.ToDecimal(txt_Akcija.Text), Convert.ToDecimal(txt_MpCena.Text));
+                    Convert.ToDecimal(txt_Rabat.Text), Convert.ToDecimal(txt_Marza.Text), Convert.ToDecimal(txt_Akcija.Text), Convert.ToDecimal(txt_MpCena.Text), txtWebsSifra.Text, ProgramID, KolekcijaID);
                 RefreshGV();
             }
             
@@ -473,40 +601,87 @@ namespace WindowsFormsApplication1.Kalkulacije
             DialogResult dialogResult = MessageBox.Show("Da li ste sigurni da za sve stavke želite da primenite rabat od " + txt_Rabat.Text + "% ?","Rabat", 
                 MessageBoxButtons.YesNo, MessageBoxIcon.Information);
 
+            int ProgramID = 0;
+            int KolekcijaID = 0;
+
+            foreach (DataGridViewRow row in dataGridView3.Rows)
+            {
+                if (row.Selected == true)
+                {
+                    ProgramID = Convert.ToInt32(row.Cells[0].Value.ToString());
+                }
+            }
+
+            foreach (DataGridViewRow row in dataGridView3.Rows)
+            {
+                if (row.Selected == true)
+                {
+                    KolekcijaID = Convert.ToInt32(row.Cells[0].Value.ToString());
+                }
+            }
+
+
+
             if (dialogResult == DialogResult.Yes)
             {
                 try
                 {
                     foreach (DataGridViewRow row in dataGridView1.Rows)
                     {
-                        var query = "Select * from KalkulatorStavke Where IDKalkulator="+Convert.ToInt32(combo_Zaglavlje.SelectedValue);
-                        SqlConnection conn = new SqlConnection(connect);
-                        conn.Open();
-                        SqlCommand cmd = new SqlCommand(query, conn);
-                        SqlDataReader dr = cmd.ExecuteReader();
-                        while (dr.Read())
+                        if (row.Selected == true)
                         {
-                            int id = Convert.ToInt32(dr["ID"].ToString());
-                            int mpSifre = Convert.ToInt32(dr["MPSifra"].ToString());
-                            int idKalk = Convert.ToInt32(dr["IDKalkulator"].ToString());
-                            decimal trosak = Convert.ToDecimal(dr["TrosakProizvodnje"].ToString());
-                            decimal avans = Convert.ToDecimal(dr["Avans"].ToString());
-                            decimal provizija = Convert.ToDecimal(dr["Provizija"].ToString());
-                            decimal transport = Convert.ToDecimal(dr["Transport"].ToString());
-                            decimal marza = Convert.ToDecimal(dr["Marza"].ToString());
-                            decimal akcija = Convert.ToDecimal(dr["Akcija"].ToString());
+                            //Resen avans
+                            var query = "Select * from KalkulatorStavke Where ID=" + Convert.ToInt32(row.Cells[0].Value.ToString());
+                            //  var query = "Select * from KalkulatorStavke Where IDKalkulator="+Convert.ToInt32(combo_Zaglavlje.SelectedValue);
+                            SqlConnection conn = new SqlConnection(connect);
+                            conn.Open();
+                            SqlCommand cmd = new SqlCommand(query, conn);
+                            SqlDataReader dr = cmd.ExecuteReader();
+                            while (dr.Read())
+                            {
+                                int id = Convert.ToInt32(dr["ID"].ToString());
+                                string wSifra = dr["WSifra"].ToString();
+                                int mpSifre = Convert.ToInt32(dr["MPSifra"].ToString());
+                                int idKalk = Convert.ToInt32(dr["IDKalkulator"].ToString());
+                                decimal trosak = Convert.ToDecimal(dr["TrosakProizvodnje"].ToString());
+                                decimal avans = Convert.ToDecimal(dr["Avans"].ToString());
+                                decimal provizija = Convert.ToDecimal(dr["Provizija"].ToString());
+                                decimal transport = Convert.ToDecimal(dr["Transport"].ToString());
+                                decimal rabat = Convert.ToDecimal(txt_Rabat.Text);
+                                decimal marza = Convert.ToDecimal(dr["Marza"].ToString()); ;
+                                //= Convert.ToDecimal(dr["Marza"].ToString());
+                                decimal akcija = Convert.ToDecimal(dr["Akcija"].ToString());
+                                decimal mpCena = Convert.ToDecimal(dr["MpCena"].ToString());
+                                decimal marzaRef = Convert.ToDecimal(dr["MpCena"].ToString());
+                                decimal VCena = Convert.ToDecimal(dr["VPCena"].ToString());
 
-                            decimal VCena, MCena;
-                            VCena = trosak + marza + avans + provizija + transport - Convert.ToDecimal(txt_Rabat.Text) - akcija;
-                            MCena = VCena + (VCena * 25 / 100) * Convert.ToDecimal(1.2);
 
-                            Kalkulacije.InsertKalkulatorStavke kalk = new InsertKalkulatorStavke();
-                            kalk.UpdKalkulatorStavke(id, mpSifre, idKalk, trosak, avans, provizija, transport, VCena, Convert.ToDecimal(txt_Rabat.Text), marza, akcija, MCena);
+                                decimal marza1 = Convert.ToDecimal(marza) - (Convert.ToDecimal(avans) + Convert.ToDecimal(provizija) + Convert.ToDecimal(transport));
+                                decimal marza2 = ((VCena / (Convert.ToDecimal(trosak) / Convert.ToDecimal(txtKurs.Text))) - 1) * 100;
+                              
+
+                                decimal VPCENASaRabatom = VCena - (VCena * (Convert.ToDecimal(rabat) * Convert.ToDecimal(0.01)));
+                                decimal MarzaNova2 = ((VPCENASaRabatom / (Convert.ToDecimal(trosak) / Convert.ToDecimal(txtKurs.Text))) - 1) * 100;
+
+                               decimal VPCENASaAkcijom = VPCENASaRabatom - (VPCENASaRabatom * (Convert.ToDecimal(akcija) * Convert.ToDecimal(0.01)));
+                                decimal MarzaNova = ((VPCENASaAkcijom / (Convert.ToDecimal(trosak) / Convert.ToDecimal(txtKurs.Text))) - 1) * 100;
+
+                                decimal VPCenaRabat = (Convert.ToDecimal(VCena) - (Convert.ToDecimal(VCena) * Convert.ToDecimal(rabat) * Convert.ToDecimal(0.01)));
+                                decimal VPCenaAkcija = (Convert.ToDecimal(VPCenaRabat) - (Convert.ToDecimal(rabat) * Convert.ToDecimal(akcija) * Convert.ToDecimal(0.01)));
+                               // txt_MpCenaRSD.Text = (Convert.ToDecimal(VPCenaAkcija) * Convert.ToDecimal(txtKurs.Text) * Convert.ToDecimal(1.25) * Convert.ToDecimal(1.2)).ToString();
+                                decimal MCena = (Convert.ToDecimal(VPCenaAkcija) * Convert.ToDecimal(1.25) * Convert.ToDecimal(1.2));
+
+
+                                int programid = Convert.ToInt32(dr["ProgramID"].ToString());
+                                int kolekcijaid = Convert.ToInt32(dr["kolekcijaID"].ToString());
+                                Kalkulacije.InsertKalkulatorStavke kalk = new InsertKalkulatorStavke();
+                                kalk.UpdKalkulatorStavke(id, mpSifre, idKalk, trosak, avans, provizija, transport, VCena, Convert.ToDecimal(txt_Rabat.Text), MarzaNova, akcija, MCena, wSifra, programid, kolekcijaid);
+                            }
+                            conn.Close();
                         }
-                        conn.Close();
                     }
-                   
-                    RefreshGV();
+
+                    refreshGGGG();
                 }
                 catch { }
             }
@@ -527,31 +702,54 @@ namespace WindowsFormsApplication1.Kalkulacije
                 {
                     foreach (DataGridViewRow row in dataGridView1.Rows)
                     {
-                        var query = "Select * from KalkulatorStavke Where IDKalkulator=" + Convert.ToInt32(combo_Zaglavlje.SelectedValue);
-                        SqlConnection conn = new SqlConnection(connect);
-                        conn.Open();
-                        SqlCommand cmd = new SqlCommand(query, conn);
-                        SqlDataReader dr = cmd.ExecuteReader();
-                        while (dr.Read())
+                        if (row.Selected == true)
                         {
-                            int id = Convert.ToInt32(dr["ID"].ToString());
-                            int mpSifre = Convert.ToInt32(dr["MPSifra"].ToString());
-                            int idKalk = Convert.ToInt32(dr["IDKalkulator"].ToString());
-                            decimal trosak = Convert.ToDecimal(dr["TrosakProizvodnje"].ToString());
-                            decimal avans = Convert.ToDecimal(dr["Avans"].ToString());
-                            decimal provizija = Convert.ToDecimal(dr["Provizija"].ToString());
-                            decimal transport = Convert.ToDecimal(dr["Transport"].ToString());
-                            decimal marza = Convert.ToDecimal(dr["Marza"].ToString());
-                            decimal rabat = Convert.ToDecimal(dr["Rabat"].ToString());
 
-                            decimal VCena, MCena;
-                            VCena = trosak + marza + avans + provizija + transport - rabat -Convert.ToDecimal(txt_Akcija.Text);
-                            MCena = VCena + (VCena * 25 / 100) * Convert.ToDecimal(1.2);
+                            var query = "Select * from KalkulatorStavke Where ID=" + Convert.ToInt32(row.Cells[0].Value.ToString());
+                            //  var query = "Select * from KalkulatorStavke Where IDKalkulator=" + Convert.ToInt32(combo_Zaglavlje.SelectedValue);
+                            SqlConnection conn = new SqlConnection(connect);
+                            conn.Open();
+                            SqlCommand cmd = new SqlCommand(query, conn);
+                            SqlDataReader dr = cmd.ExecuteReader();
+                            while (dr.Read())
+                            {
+                                int id = Convert.ToInt32(dr["ID"].ToString());
+                                int mpSifre = Convert.ToInt32(dr["MPSifra"].ToString());
+                                int idKalk = Convert.ToInt32(dr["IDKalkulator"].ToString());
+                                decimal trosak = Convert.ToDecimal(dr["TrosakProizvodnje"].ToString());
+                                decimal avans = Convert.ToDecimal(dr["Avans"].ToString());
+                                decimal provizija = Convert.ToDecimal(dr["Provizija"].ToString());
+                                decimal transport = Convert.ToDecimal(dr["Transport"].ToString());
+                                decimal rabat = Convert.ToDecimal(dr["Rabat"].ToString());
+                                decimal marza;
+                                //= Convert.ToDecimal(dr["Marza"].ToString());
+                                decimal akcija = Convert.ToDecimal(dr["Akcija"].ToString());
 
-                            Kalkulacije.InsertKalkulatorStavke kalk = new InsertKalkulatorStavke();
-                            kalk.UpdKalkulatorStavke(id, mpSifre, idKalk, trosak, avans, provizija, transport, VCena, rabat, marza, Convert.ToDecimal(txt_Akcija.Text), MCena);
+                                decimal VCena = Convert.ToDecimal(dr["VPCena"].ToString());
+                                trosak = trosak / Convert.ToDecimal(txtKurs.Text); //Proracun cene troska u EUR
+                                decimal MCena;
+                                decimal Razlika = VCena - trosak;
+                                decimal Av = (avans * Razlika);
+                                decimal Tr =  (transport * Razlika);
+                                decimal Pr =  (provizija * Razlika);
+                                decimal Razlika2 = Razlika - (Av + Tr + Pr); // Troskovi sa uracunatim dodatnim troskovima oduzimam
+                                                                             //Sada od dobijenog rezultata oduzmem Akciju i Novi RAbat
+                                decimal Razlika3 = Razlika2 - (Convert.ToDecimal(txt_Akcija.Text) * Razlika2) - (rabat * Razlika2);
+                                marza = VCena - Razlika3 / 100; // Procenat Marze
+                                MCena = VCena + (VCena * 25 / 100) * Convert.ToDecimal(1.2);
+                                //Maloprodajna cena dedam 25 % i pomnozim sa 20% za PDV
+                                Kalkulacije.InsertKalkulatorStavke kalk = new InsertKalkulatorStavke();
+                                // kalk.UpdKalkulatorStavke(id, mpSifre, idKalk, trosak, avans, provizija, transport, VCena, Convert.ToDecimal(txt_Rabat.Text), marza, akcija, MCena);
+                                string wsifra = dr["WSifra"].ToString();
+                                txtMarzaRefer.Text = dr["MarzaRef"].ToString();
+                                int programid = Convert.ToInt32(dr["ProgramID"].ToString());
+                                int kolekcijaid = Convert.ToInt32(dr["kolekcijaID"].ToString());
+                                // kalk.UpdKalkulatorStavke(id, mpSifre, idKalk, trosak * Convert.ToDecimal(txtKurs.Text), avans, provizija, transport, VCena, Convert.ToDecimal(txt_Rabat.Text), MarzaNova, akcija, MCena, wsifra, programid, kolekcijaid);
+                
+                                kalk.UpdKalkulatorStavke(id, mpSifre, idKalk, trosak* Convert.ToDecimal(txtKurs.Text), avans, provizija, transport, VCena, rabat, marza, Convert.ToDecimal(txt_Akcija.Text), MCena, wsifra, programid, kolekcijaid);
+                            }
+                            conn.Close();
                         }
-                        conn.Close();
                     }
                     RefreshGV();
                 }
@@ -609,9 +807,9 @@ namespace WindowsFormsApplication1.Kalkulacije
             txt_Mp2.Text = MCena.ToString();
 
             Kalkulacije.InsertKalkulatorStavke kalk = new InsertKalkulatorStavke();
-            kalk.InsKalkulatorStavke(mpVeznog, Convert.ToInt32(combo_Zaglavlje.SelectedValue), trosak, Convert.ToDecimal(txt_Avans.Text),
-                Convert.ToDecimal(txt_Provizija.Text), Convert.ToDecimal(txt_Transport.Text), VCena, Convert.ToDecimal(txt_Rabat.Text),
-                Convert.ToDecimal(txt_Marza.Text), Convert.ToDecimal(txt_Akcija.Text), MCena);
+           // kalk.InsKalkulatorStavke(mpVeznog, Convert.ToInt32(combo_Zaglavlje.SelectedValue), trosak, Convert.ToDecimal(txt_Avans.Text),
+             //   Convert.ToDecimal(txt_Provizija.Text), Convert.ToDecimal(txt_Transport.Text), VCena, Convert.ToDecimal(txt_Rabat.Text),
+               // Convert.ToDecimal(txt_Marza.Text), Convert.ToDecimal(txt_Akcija.Text), MCena);
         }
 
         private void PrikaziProgrameIKolekcije()
@@ -657,15 +855,15 @@ namespace WindowsFormsApplication1.Kalkulacije
         private void frmKalkulatorStavke_Load(object sender, EventArgs e)
         {
             PrikaziProgrameIKolekcije();
-            
+            txtKurs.Text = KursPrenesen;
             RefreshGV();
             FillCombo();
 
             txt_Trosak.Enabled = false;
             txt_ID.Enabled = false;
-            txt_MpCena.Enabled = false;
+            txt_MpCena.Enabled = true;
             txt_Mp2.Enabled = false;
-            txt_VpCena.Enabled = false;
+            txt_VpCena.Enabled = true;
             combo_Zaglavlje.Text = zaglavlje;
 
             var query = "Select Zavrsen from Kalkulator Where Rtrim(Naziv) = '" + zaglavlje.Trim() + "'";
@@ -686,7 +884,7 @@ namespace WindowsFormsApplication1.Kalkulacije
                 tsDelete.Enabled = false;
                 toolStrip1.Enabled = false;
                 toolStripButton2.Enabled = false;
-                btn_Akcija.Enabled = false;
+              //  btn_Akcija.Enabled = false;
                 btn_Rabat.Enabled = false;
                 button1.Enabled = false;
             }
@@ -726,8 +924,11 @@ namespace WindowsFormsApplication1.Kalkulacije
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
+            //Ayurira se marza
+            
             Kalkulacije.InsertKalkulatorStavke kalk = new InsertKalkulatorStavke();
             kalk.AzurirajCeneTroskaStavke(Convert.ToInt32(kalkulator));
+            kalk.AzurirajMarzeTroskaStavke(Convert.ToInt32(kalkulator), Convert.ToDouble(txtKurs.Text));
             RefreshGV();
         }
 
@@ -774,15 +975,15 @@ namespace WindowsFormsApplication1.Kalkulacije
             }
 
             var query = "Select KalkulatorStavke.ID,KalkulatorStavke.WSifra, Program.Naziv as Program, Kolekcije.Naziv as Kolekcija, KalkulatorStavke.MPSifra,MaticniPodatki.MpNaziv,KalkulatorStavke.IDKalkulator," +
-               "Kalkulator.Naziv,TrosakProizvodnje,Avans,Provizija,Transport,VpCena,Rabat,Marza,Akcija,MPCena,PrimenaTroskovnogCenovnika.MpSifraVeznog " +
+               "Kalkulator.Naziv,TrosakProizevodnje,Avans,Provizija,Transport,VpCena,Rabat,Marza,Akcija,MPCena,PrimenaTroskovnogCenovnika.MpSifraVeznog, MarzaRef " +
                "From KalkulatorStavke " +
                "Inner join MaticniPodatki on KalkulatorStavke.MPSifra = MaticniPodatki.MpSifra " +
                "Inner join Kalkulator on KalkulatorStavke.IDKalkulator = Kalkulator.ID " +
                "Inner join Program on KalkulatorStavke.ProgramID = Program.ID " +
                "Inner join Kolekcije on KalkulatorStavke.KolekcijaID = Kolekcije.ID " +
                "left join PrimenaTroskovnogCenovnika on KalkulatorStavke.MPSifra = PrimenaTroskovnogCenovnika.MpSifra " +
-               "Where KalkulatorStavke.ProgramID in (" + programi + ") and KalkulatorStavke.KolekcijaID in (" + kolekcije + ")";
-            MessageBox.Show(query);
+               "Where KalkulatorStavke.ProgramID in (" + programi + ") and KalkulatorStavke.KolekcijaID in (" + kolekcije + ") and KalkulatorStavke.IDKalkulator = " + kalkulator;
+           // MessageBox.Show(query);
             
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
@@ -792,9 +993,753 @@ namespace WindowsFormsApplication1.Kalkulacije
             dataGridView1.DataSource = ds.Tables[0];
         }
 
+        private void refreshGGGG()
+        {
+            string programi = "";
+            int prviprogram = 0;
+
+            string kolekcije = "";
+            int prvakolekcija = 0;
+
+            foreach (DataGridViewRow row in dataGridView2.Rows)
+            {
+                if (row.Selected)
+                {
+                    if (prviprogram == 0)
+                    {
+                        programi = row.Cells[0].Value.ToString();
+                        prviprogram = prviprogram + 1;
+                    }
+                    else
+                    {
+                        programi = programi + "," + row.Cells[0].Value.ToString();
+                        prviprogram = prviprogram + 1;
+                    }
+                }
+            }
+
+            foreach (DataGridViewRow row in dataGridView3.Rows)
+            {
+                if (row.Selected)
+                {
+                    if (prvakolekcija == 0)
+                    {
+                        kolekcije = row.Cells[0].Value.ToString();
+                        prvakolekcija = prvakolekcija + 1;
+                    }
+                    else
+                    {
+                        kolekcije = kolekcije + "," + row.Cells[0].Value.ToString();
+                        prvakolekcija = prvakolekcija + 1;
+                    }
+                }
+            }
+
+            var query = "Select KalkulatorStavke.ID,KalkulatorStavke.WSifra, Program.Naziv as Program, Kolekcije.Naziv as Kolekcija, KalkulatorStavke.MPSifra,MaticniPodatki.MpNaziv,KalkulatorStavke.IDKalkulator," +
+               "Kalkulator.Naziv,TrosakProizvodnje,Avans,Provizija,Transport,VpCena,Rabat,Marza,Akcija,MPCena,PrimenaTroskovnogCenovnika.MpSifraVeznog, MarzaRef " +
+               "From KalkulatorStavke " +
+               "Inner join MaticniPodatki on KalkulatorStavke.MPSifra = MaticniPodatki.MpSifra " +
+               "Inner join Kalkulator on KalkulatorStavke.IDKalkulator = Kalkulator.ID " +
+               "Inner join Program on KalkulatorStavke.ProgramID = Program.ID " +
+               "Inner join Kolekcije on KalkulatorStavke.KolekcijaID = Kolekcije.ID " +
+               "left join PrimenaTroskovnogCenovnika on KalkulatorStavke.MPSifra = PrimenaTroskovnogCenovnika.MpSifra " +
+               "Where KalkulatorStavke.ProgramID in (" + programi + ") and KalkulatorStavke.KolekcijaID in (" + kolekcije + ") and KalkulatorStavke.IDKalkulator = " + kalkulator;
+            // MessageBox.Show(query);
+
+            SqlConnection conn = new SqlConnection(connect);
+            var da = new SqlDataAdapter(query, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+
+
+        }
+
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Da li ste sigurni da za sve stavke želite da primenite marzu: " + txt_Marza.Text + "% ?", "Akcija",
+               MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                try
+                {
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        if (row.Selected == true)
+                        {
+
+
+                        
+                        var query = "Select * from KalkulatorStavke Where ID=" + Convert.ToInt32(row.Cells[0].Value.ToString());
+                        SqlConnection conn = new SqlConnection(connect);
+                        conn.Open();
+                        SqlCommand cmd = new SqlCommand(query, conn);
+                        SqlDataReader dr = cmd.ExecuteReader();
+                        while (dr.Read())
+                        {
+                            int id = Convert.ToInt32(dr["ID"].ToString());
+                            int mpSifre = Convert.ToInt32(dr["MPSifra"].ToString());
+                            int idKalk = Convert.ToInt32(dr["IDKalkulator"].ToString());
+                            decimal trosak = Convert.ToDecimal(dr["TrosakProizvodnje"].ToString());
+                            decimal avans = Convert.ToDecimal(dr["Avans"].ToString());
+                            decimal provizija = Convert.ToDecimal(dr["Provizija"].ToString());
+                            decimal transport = Convert.ToDecimal(dr["Transport"].ToString());
+                            decimal rabat = Convert.ToDecimal(dr["Rabat"].ToString());
+                            decimal marza = Convert.ToDecimal(dr["Marza"].ToString()); 
+                            //= Convert.ToDecimal(dr["Marza"].ToString());
+                            decimal akcija = Convert.ToDecimal(dr["Akcija"].ToString());
+
+                            decimal VCena = Convert.ToDecimal(dr["VPCena"].ToString());
+                                trosak = trosak / Convert.ToDecimal(txtKurs.Text);
+                            decimal MCena;
+                            decimal Razlika = VCena - trosak;
+                                decimal ProcenatDodavanja = (((avans + provizija + transport + akcija + rabat + Convert.ToDecimal(txt_Marza.Text)) * Convert.ToDecimal(0.01)) + 1);
+                            // Troskovi sa uracunatim dodatnim troskovima oduzimam
+                           // MessageBox.Show("VCena " + VCena + "marza" + marza + "Rabat " + rabat + "Akcija " + akcija);
+                            decimal VCenaBezStareMarze = VCena - (VCena * marza * Convert.ToDecimal(0.01));
+                                //Izracunati Cenu sa novom Marzom, poveca se cena kao zbir svih procenata
+                                decimal RazlikaUMarzi = Convert.ToDecimal(txt_Marza.Text) - marza;
+                                // MessageBox.Show("Razlika u marzi " + RazlikaUMarzi.ToString());
+                                decimal VCenaSaNovomMarzom = trosak * ProcenatDodavanja;
+
+                                // decimal VCenaSaNovomMarzom = VCena +  (RazlikaUMarzi * Convert.ToDecimal(0.01) * VCena);
+                              //  decimal ProcenatPromene = (VCenaSaNovomMarzom / VCena);
+                            //decimal NoviRabat = rabat * ProcenatPromene;
+                            //decimal NovaAkcija = akcija * ProcenatPromene;
+                            //decimal NovaProvizija = provizija * ProcenatPromene;
+                            //decimal NoviTransport = transport * ProcenatPromene;
+                            //decimal NoviAvans = avans * ProcenatPromene;
+
+                          //  MessageBox.Show("Cena Bez stare marze" + VCenaBezStareMarze);
+                           // MessageBox.Show("Cena nova marza " + VCenaSaNovomMarzom);
+                           // MessageBox.Show("Procenat promene " + ProcenatPromene);
+                            MCena = VCenaSaNovomMarzom + (VCenaSaNovomMarzom * 25 / 100) * Convert.ToDecimal(1.2);
+                            //Maloprodajna cena dedam 25 % i pomnozim sa 20% za PDV
+                            Kalkulacije.InsertKalkulatorStavke kalk = new InsertKalkulatorStavke();
+                                // kalk.UpdKalkulatorStavke(id, mpSifre, idKalk, trosak, avans, provizija, transport, VCena, Convert.ToDecimal(txt_Rabat.Text), marza, akcija, MCena);
+                                string wsifra = dr["WSifra"].ToString();
+                                txtMarzaRefer.Text = dr["MarzaRef"].ToString();
+                                int programid = Convert.ToInt32(dr["ProgramID"].ToString());
+                                int kolekcijaid = Convert.ToInt32(dr["kolekcijaID"].ToString());
+                                // kalk.UpdKalkulatorStavke(id, mpSifre, idKalk, trosak * Convert.ToDecimal(txtKurs.Text), avans, provizija, transport, VCena, Convert.ToDecimal(txt_Rabat.Text), MarzaNova, akcija, MCena, wsifra, programid, kolekcijaid);
+           
+                                kalk.UpdKalkulatorStavke(id, mpSifre, idKalk, trosak* Convert.ToDecimal(txtKurs.Text), avans, provizija, transport, VCenaSaNovomMarzom, rabat, Convert.ToDecimal(txt_Marza.Text), akcija, MCena, wsifra, programid, kolekcijaid);
+                        }
+                        conn.Close();
+                        }
+                    }
+                    RefreshGV();
+                }
+                catch { }
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                return;
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            int ProgramID = 0;
+            int KolekcijaID = 0;
+
+            foreach (DataGridViewRow row in dataGridView3.Rows)
+            {
+                if (row.Selected == true)
+                {
+                    ProgramID = Convert.ToInt32(row.Cells[0].Value.ToString());
+                }
+            }
+
+            foreach (DataGridViewRow row in dataGridView3.Rows)
+            {
+                if (row.Selected == true)
+                {
+                    KolekcijaID = Convert.ToInt32(row.Cells[0].Value.ToString());
+                }
+            }
+            //Promenom troska menja se samo Marza
+
+            try
+            {
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        txt_mpSifra.Text = row.Cells[4].Value.ToString();
+                        txt_ID.Text = row.Cells[0].Value.ToString();
+
+                        combo_Zaglavlje.SelectedValue = row.Cells[6].Value.ToString();
+                        txtWebsSifra.Text = row.Cells[1].Value.ToString();
+                        //txt_Trosak.Text = row.Cells[8].Value.ToString();
+                        txt_Avans.Text = row.Cells[9].Value.ToString();
+                        txt_Provizija.Text = row.Cells[10].Value.ToString();
+                        txt_Transport.Text = row.Cells[11].Value.ToString();
+
+                        txt_Rabat.Text = row.Cells[13].Value.ToString();
+                        txt_Marza.Text = row.Cells[14].Value.ToString();
+                        txt_Akcija.Text = row.Cells[15].Value.ToString();
+                        txt_VpCena.Text = row.Cells[12].Value.ToString();
+                        txt_MpCena.Text = row.Cells[16].Value.ToString();
+                        txtMarzaRefer.Text = row.Cells[18].Value.ToString();
+                        txtAvansUK.Text = (Convert.ToDecimal(txt_Avans.Text) * Convert.ToDecimal(txt_VpCena.Text) * Convert.ToDecimal(0.01)).ToString();
+                        txtProvizijaUK.Text = (Convert.ToDecimal(txt_Provizija.Text) * Convert.ToDecimal(txt_VpCena.Text) * Convert.ToDecimal(0.01)).ToString();
+                        txtTransportUK.Text = (Convert.ToDecimal(txt_Transport.Text) * Convert.ToDecimal(txt_VpCena.Text) * Convert.ToDecimal(0.01)).ToString();
+
+
+                        decimal VCena = Convert.ToDecimal(txt_VpCena.Text);
+                        decimal marza1 = Convert.ToDecimal(txt_Marza.Text) - (Convert.ToDecimal(txt_Avans.Text) + Convert.ToDecimal(txt_Provizija.Text) + Convert.ToDecimal(txt_Transport.Text));
+                        decimal marza2 = ((VCena / (Convert.ToDecimal(txt_Trosak.Text) / Convert.ToDecimal(txtKurs.Text))) - 1) * 100;
+                        txt_MarzaPocetna.Text = marza2.ToString();
+
+                        decimal VPCENASaRabatom = VCena - (VCena * (Convert.ToDecimal(txt_Rabat.Text) * Convert.ToDecimal(0.01)));
+                      
+                        decimal MarzaNova2 = ((VPCENASaRabatom / (Convert.ToDecimal(txt_Trosak.Text) / Convert.ToDecimal(txtKurs.Text))) - 1) * 100;
+
+                        txt_MarzaPArtner.Text = MarzaNova2.ToString();
+                        txt_MarzaPArtnerIznos.Text = (VPCENASaRabatom - (Convert.ToDecimal(txt_Trosak.Text) / Convert.ToDecimal(txtKurs.Text))).ToString();
+                        decimal VPCENASaAkcijom = VPCENASaRabatom - (VPCENASaRabatom * (Convert.ToDecimal(txt_Akcija.Text) * Convert.ToDecimal(0.01)));
+                        // decimal 
+                        // decimal MarzaNova = marza - (Convert.ToDecimal(txt_Rabat.Text)- rabat);
+                        decimal MarzaNova = ((VPCENASaAkcijom / (Convert.ToDecimal(txt_Trosak.Text) / Convert.ToDecimal(txtKurs.Text))) - 1) * 100;
+
+                        txt_Marza.Text = MarzaNova.ToString();
+                        txt_MarzaIznos.Text = (VPCENASaAkcijom - (Convert.ToDecimal(txt_Trosak.Text) / Convert.ToDecimal(txtKurs.Text))).ToString();
+
+
+                        txt_MarzaPocetna.Text = marza2.ToString();
+                        txt_MarzaPocetnaIznos.Text = (VCena - (Convert.ToDecimal(txt_Trosak.Text) / Convert.ToDecimal(txtKurs.Text))).ToString();
+
+
+                        txt_VpCenaRSD.Text = (Convert.ToDecimal(txt_VpCena.Text) * Convert.ToDecimal(txtKurs.Text)).ToString();
+                        txt_VpCenaRabat.Text = (Convert.ToDecimal(txt_VpCena.Text) - (Convert.ToDecimal(txt_VpCena.Text) * Convert.ToDecimal(txt_Rabat.Text) * Convert.ToDecimal(0.01))).ToString();
+                        txt_VpCenaAkcija.Text = (Convert.ToDecimal(txt_VpCenaRabat.Text) - (Convert.ToDecimal(txt_VpCenaRabat.Text) * Convert.ToDecimal(txt_Akcija.Text) * Convert.ToDecimal(0.01))).ToString();
+                        txt_MpCenaRSD.Text = (Convert.ToDecimal(txt_VpCenaAkcija.Text) * Convert.ToDecimal(txtKurs.Text) * Convert.ToDecimal(1.25) * Convert.ToDecimal(1.2)).ToString();
+                        txt_MpCena.Text = (Convert.ToDecimal(txt_VpCenaAkcija.Text) * Convert.ToDecimal(1.25) * Convert.ToDecimal(1.2)).ToString();
+                        Kalkulacije.InsertKalkulatorStavke kalk = new InsertKalkulatorStavke();
+                        kalk.UpdKalkulatorStavke(Convert.ToInt32(txt_ID.Text), Convert.ToInt32(txt_mpSifra.Text), Convert.ToInt32(combo_Zaglavlje.SelectedValue),  Convert.ToDecimal(txt_Trosak.Text), Convert.ToDecimal(txt_Avans.Text), Convert.ToDecimal(txt_Provizija.Text), Convert.ToDecimal(txt_Transport.Text), VCena, Convert.ToDecimal(txt_Rabat.Text), marza2, Convert.ToDecimal(txt_Akcija.Text), Convert.ToDecimal(txt_MpCena), txtWebsSifra.Text, ProgramID, KolekcijaID);
+
+
+                        // txt_MarzaPocetnaIznos
+                        //  Trosak();
+                        // Cene();
+                        // IzracunajUkupnoIProsek();
+                    }
+                }
+            }
+            catch { }
+
+
+
+
+
+
+            //End of promena troska
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            /*
+
+
+            DialogResult dialogResult = MessageBox.Show("Da li ste sigurni da za sve stavke želite da primenite rabat od " + txt_Rabat.Text + "% ?", "Rabat",
+               MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                try
+                {
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        //Reseno avans
+                        if (row.Selected == true)
+                        {
+
+                            //Promenom troska se menja Marza
+
+                            var query = "Select * from KalkulatorStavke Where ID=" + Convert.ToInt32(row.Cells[0].Value.ToString());
+
+                            //  var query = "Select * from KalkulatorStavke Where IDKalkulator="+Convert.ToInt32(combo_Zaglavlje.SelectedValue);
+                            SqlConnection conn = new SqlConnection(connect);
+                            conn.Open();
+                            SqlCommand cmd = new SqlCommand(query, conn);
+                            SqlDataReader dr = cmd.ExecuteReader();
+                            while (dr.Read())
+                            {
+                                int id = Convert.ToInt32(dr["ID"].ToString());
+                                int mpSifre = Convert.ToInt32(dr["MPSifra"].ToString());
+                                int idKalk = Convert.ToInt32(dr["IDKalkulator"].ToString());
+                                decimal trosak = Convert.ToDecimal(dr["TrosakProizvodnje"].ToString());
+                                decimal avans = Convert.ToDecimal(dr["Avans"].ToString());
+                                decimal provizija = Convert.ToDecimal(dr["Provizija"].ToString());
+                                decimal transport = Convert.ToDecimal(dr["Transport"].ToString());
+                                decimal rabat = Convert.ToDecimal(dr["Rabat"].ToString());
+                                decimal marza;
+                                //= Convert.ToDecimal(dr["Marza"].ToString());
+                                decimal akcija = Convert.ToDecimal(dr["Akcija"].ToString());
+
+                                decimal VCena = Convert.ToDecimal(dr["VPCena"].ToString());
+                                trosak = trosak / Convert.ToDecimal(txtKurs.Text);
+                                decimal MCena;
+                                decimal Razlika = VCena - trosak; //500
+                                decimal Av = (avans * VCena * Convert.ToDecimal(0.01));
+                                decimal Tr = (transport * VCena * Convert.ToDecimal(0.01));
+                                decimal Pr = (provizija * VCena * Convert.ToDecimal(0.01));
+                                decimal UKTrosak = trosak + (Av + Tr + Pr); // Troskovi sa uracunatim dodatnim troskovima oduzimam
+                                                                            // decimal NoviRabat = VCena *                                             //Sada od dobijenog rezultata oduzmem Akciju i Novi RAbat
+                                                                            //  decimal Razlika3 = Razlika2 - (akcija * Razlika2) - (Convert.ToDecimal(txt_Rabat.Text) * Razlika2);
+                                decimal ARProcenatAkcijeIRabata = avans + transport + provizija + Convert.ToDecimal(txt_Rabat.Text) + Convert.ToDecimal(txt_Akcija.Text);
+                                decimal Razlika3 = VCena - (VCena * ARProcenatAkcijeIRabata * Convert.ToDecimal(0.01));
+                                marza = (Razlika3 / trosak) * 100; // Procenat Marze
+                                                                   // MessageBox.Show("Akcija " + txt_Akcija.Text + " RABAT " + txt_Rabat + " MARZA " + marza);
+                                MCena = VCena + (VCena * 25 / 100) * Convert.ToDecimal(1.2);
+                                //Maloprodajna cena dedam 25 % i pomnozim sa 20% za PDV
+                                Kalkulacije.InsertKalkulatorStavke kalk = new InsertKalkulatorStavke();
+                                string wsifra = dr["WSifra"].ToString();
+                                txtMarzaRefer.Text = dr["MarzaRef"].ToString();
+                                int programid = Convert.ToInt32(dr["ProgramID"].ToString());
+                                int kolekcijaid = Convert.ToInt32(dr["kolekcijaID"].ToString());
+                                // kalk.UpdKalkulatorStavke(id, mpSifre, idKalk, trosak * Convert.ToDecimal(txtKurs.Text), avans, provizija, transport, VCena, Convert.ToDecimal(txt_Rabat.Text), MarzaNova, akcija, MCena, wsifra, programid, kolekcijaid);
+                               
+                                kalk.UpdKalkulatorStavke(id, mpSifre, idKalk, trosak * Convert.ToDecimal(txtKurs.Text), avans, provizija, transport, VCena, Convert.ToDecimal(txt_Rabat.Text), marza, Convert.ToDecimal(txt_Akcija.Text), MCena, wsifra, programid, kolekcijaid);
+                            }
+                            conn.Close();
+                        }
+                    }
+
+                    RefreshGV();
+                }
+                catch { }
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                return;
+            }
+            */
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Da li ste sigurni da za sve stavke želite da primenite akciju od " + txt_Rabat.Text + "% ?", "Rabat",
+          MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+            int ProgramID = 0;
+            int KolekcijaID = 0;
+
+            foreach (DataGridViewRow row in dataGridView3.Rows)
+            {
+                if (row.Selected == true)
+                {
+                    ProgramID = Convert.ToInt32(row.Cells[0].Value.ToString());
+                }
+            }
+
+            foreach (DataGridViewRow row in dataGridView3.Rows)
+            {
+                if (row.Selected == true)
+                {
+                    KolekcijaID = Convert.ToInt32(row.Cells[0].Value.ToString());
+                }
+            }
+
+
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                try
+                {
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        if (row.Selected == true)
+                        {
+                            //Resen avans
+                            var query = "Select * from KalkulatorStavke Where ID=" + Convert.ToInt32(row.Cells[0].Value.ToString());
+                            //  var query = "Select * from KalkulatorStavke Where IDKalkulator="+Convert.ToInt32(combo_Zaglavlje.SelectedValue);
+                            SqlConnection conn = new SqlConnection(connect);
+                            conn.Open();
+                            SqlCommand cmd = new SqlCommand(query, conn);
+                            SqlDataReader dr = cmd.ExecuteReader();
+                            while (dr.Read())
+                            {
+                                int id = Convert.ToInt32(dr["ID"].ToString());
+                                string wSifra = dr["WSifra"].ToString();
+                                int mpSifre = Convert.ToInt32(dr["MPSifra"].ToString());
+                                int idKalk = Convert.ToInt32(dr["IDKalkulator"].ToString());
+                                decimal trosak = Convert.ToDecimal(dr["TrosakProizvodnje"].ToString());
+                                decimal avans = Convert.ToDecimal(dr["Avans"].ToString());
+                                decimal provizija = Convert.ToDecimal(dr["Provizija"].ToString());
+                                decimal transport = Convert.ToDecimal(dr["Transport"].ToString());
+                                decimal rabat = Convert.ToDecimal(dr["Transport"].ToString());
+                                decimal marza = Convert.ToDecimal(dr["Marza"].ToString()); ;
+                                //= Convert.ToDecimal(dr["Marza"].ToString());
+                                decimal akcija = Convert.ToDecimal(txt_Akcija.Text);
+                                decimal mpCena = Convert.ToDecimal(dr["MpCena"].ToString());
+                                decimal marzaRef = Convert.ToDecimal(dr["MpCena"].ToString());
+                                decimal VCena = Convert.ToDecimal(dr["VPCena"].ToString());
+
+
+                                decimal marza1 = Convert.ToDecimal(marza) - (Convert.ToDecimal(avans) + Convert.ToDecimal(provizija) + Convert.ToDecimal(transport));
+                                decimal marza2 = ((VCena / (Convert.ToDecimal(trosak) / Convert.ToDecimal(txtKurs.Text))) - 1) * 100;
+
+
+                                decimal VPCENASaRabatom = VCena - (VCena * (Convert.ToDecimal(rabat) * Convert.ToDecimal(0.01)));
+                                decimal MarzaNova2 = ((VPCENASaRabatom / (Convert.ToDecimal(trosak) / Convert.ToDecimal(txtKurs.Text))) - 1) * 100;
+
+                                decimal VPCENASaAkcijom = VPCENASaRabatom - (VPCENASaRabatom * (Convert.ToDecimal(akcija) * Convert.ToDecimal(0.01)));
+                                decimal MarzaNova = ((VPCENASaAkcijom / (Convert.ToDecimal(trosak) / Convert.ToDecimal(txtKurs.Text))) - 1) * 100;
+
+                                decimal VPCenaRabat = (Convert.ToDecimal(VCena) - (Convert.ToDecimal(VCena) * Convert.ToDecimal(rabat) * Convert.ToDecimal(0.01)));
+                                decimal VPCenaAkcija = (Convert.ToDecimal(VPCenaRabat) - (Convert.ToDecimal(rabat) * Convert.ToDecimal(akcija) * Convert.ToDecimal(0.01)));
+                                // txt_MpCenaRSD.Text = (Convert.ToDecimal(VPCenaAkcija) * Convert.ToDecimal(txtKurs.Text) * Convert.ToDecimal(1.25) * Convert.ToDecimal(1.2)).ToString();
+                                decimal MCena = (Convert.ToDecimal(VPCenaAkcija) * Convert.ToDecimal(1.25) * Convert.ToDecimal(1.2));
+
+
+                                int programid = Convert.ToInt32(dr["ProgramID"].ToString());
+                                int kolekcijaid = Convert.ToInt32(dr["kolekcijaID"].ToString());
+                                Kalkulacije.InsertKalkulatorStavke kalk = new InsertKalkulatorStavke();
+                                kalk.UpdKalkulatorStavke(id, mpSifre, idKalk, trosak, avans, provizija, transport, VCena, Convert.ToDecimal(txt_Rabat.Text), MarzaNova, akcija, MCena, wSifra, programid, kolekcijaid);
+                            }
+                            conn.Close();
+                        }
+                    }
+
+                    refreshGGGG();
+                }
+                catch { }
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                return;
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Da li ste sigurni da za sve stavke želite da primenite rabat od " + txt_Rabat.Text + "% ?", "Rabat",
+             MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                try
+                {
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        if (row.Selected == true)
+                        {
+                            //Resen avans
+                            var query = "Select * from KalkulatorStavke Where ID=" + Convert.ToInt32(row.Cells[0].Value.ToString());
+                            //  var query = "Select * from KalkulatorStavke Where IDKalkulator="+Convert.ToInt32(combo_Zaglavlje.SelectedValue);
+                            SqlConnection conn = new SqlConnection(connect);
+                            conn.Open();
+                            SqlCommand cmd = new SqlCommand(query, conn);
+                            SqlDataReader dr = cmd.ExecuteReader();
+                            while (dr.Read())
+                            {
+                                int id = Convert.ToInt32(dr["ID"].ToString());
+                                int mpSifre = Convert.ToInt32(dr["MPSifra"].ToString());
+                                int idKalk = Convert.ToInt32(dr["IDKalkulator"].ToString());
+                                decimal trosak = Convert.ToDecimal(dr["TrosakProizvodnje"].ToString());
+                                decimal avans = Convert.ToDecimal(dr["Avans"].ToString());
+                                decimal provizija = Convert.ToDecimal(dr["Provizija"].ToString());
+                                decimal transport = Convert.ToDecimal(dr["Transport"].ToString());
+                                decimal rabat = Convert.ToDecimal(dr["Rabat"].ToString());
+                                decimal marza = Convert.ToDecimal(dr["Marza"].ToString()); ;
+                                //= Convert.ToDecimal(dr["Marza"].ToString());
+                                decimal akcija = Convert.ToDecimal(dr["Akcija"].ToString());
+
+                                decimal VCena = Convert.ToDecimal(dr["VPCena"].ToString());
+                                decimal MarzaNova = marza - (Convert.ToDecimal(txt_Avans.Text) - avans);
+                               decimal MCena = VCena + (VCena * 25 / 100) * Convert.ToDecimal(1.2);
+                                //Maloprodajna cena dedam 25 % i pomnozim sa 20% za PDV
+                                Kalkulacije.InsertKalkulatorStavke kalk = new InsertKalkulatorStavke();
+                                string wsifra = dr["WSifra"].ToString();
+                                txtMarzaRefer.Text = dr["MarzaRef"].ToString();
+                                int programid = Convert.ToInt32(dr["ProgramID"].ToString());
+                                int kolekcijaid = Convert.ToInt32(dr["kolekcijaID"].ToString());
+                                // kalk.UpdKalkulatorStavke(id, mpSifre, idKalk, trosak * Convert.ToDecimal(txtKurs.Text), avans, provizija, transport, VCena, Convert.ToDecimal(txt_Rabat.Text), MarzaNova, akcija, MCena, wsifra, programid, kolekcijaid);
+                              //  kalk.UpdKalkulatorStavke(id, mpSifre, idKalk, trosak * Convert.ToDecimal(txtKurs.Text), avans, provizija, transport, VCena, rabat, MarzaNova, Convert.ToDecimal(txt_Akcija.Text), MCena, wsifra, programid, kolekcijaid);
+
+                                kalk.UpdKalkulatorStavke(id, mpSifre, idKalk, trosak * Convert.ToDecimal(txtKurs.Text), Convert.ToDecimal(txt_Avans.Text), provizija, transport, VCena, rabat, MarzaNova, akcija, MCena, wsifra, programid, kolekcijaid);
+                            }
+                            conn.Close();
+                        }
+                    }
+
+                    refreshGGGG();
+                }
+                catch { }
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                return;
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Da li ste sigurni da za sve stavke želite da primenite rabat od " + txt_Rabat.Text + "% ?", "Rabat",
+             MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                try
+                {
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        if (row.Selected == true)
+                        {
+                            //Resen avans
+                            var query = "Select * from KalkulatorStavke Where ID=" + Convert.ToInt32(row.Cells[0].Value.ToString());
+                            //  var query = "Select * from KalkulatorStavke Where IDKalkulator="+Convert.ToInt32(combo_Zaglavlje.SelectedValue);
+                            SqlConnection conn = new SqlConnection(connect);
+                            conn.Open();
+                            SqlCommand cmd = new SqlCommand(query, conn);
+                            SqlDataReader dr = cmd.ExecuteReader();
+                            while (dr.Read())
+                            {
+                                int id = Convert.ToInt32(dr["ID"].ToString());
+                                int mpSifre = Convert.ToInt32(dr["MPSifra"].ToString());
+                                int idKalk = Convert.ToInt32(dr["IDKalkulator"].ToString());
+                                decimal trosak = Convert.ToDecimal(dr["TrosakProizvodnje"].ToString());
+                                decimal avans = Convert.ToDecimal(dr["Avans"].ToString());
+                                decimal provizija = Convert.ToDecimal(dr["Provizija"].ToString());
+                                decimal transport = Convert.ToDecimal(dr["Transport"].ToString());
+                                decimal rabat = Convert.ToDecimal(dr["Rabat"].ToString());
+                                decimal marza = Convert.ToDecimal(dr["Marza"].ToString()); ;
+                                //= Convert.ToDecimal(dr["Marza"].ToString());
+                                decimal akcija = Convert.ToDecimal(dr["Akcija"].ToString());
+
+                                decimal VCena = Convert.ToDecimal(dr["VPCena"].ToString());
+                                decimal MarzaNova = marza - (Convert.ToDecimal(txt_Provizija.Text) - provizija);
+                               
+                                // MessageBox.Show("Akcija " + txt_Akcija.Text + " RABAT " + txt_Rabat + " MARZA " + marza);
+                                decimal MCena = VCena + (VCena * 25 / 100) * Convert.ToDecimal(1.2);
+                                //Maloprodajna cena dedam 25 % i pomnozim sa 20% za PDV
+                                Kalkulacije.InsertKalkulatorStavke kalk = new InsertKalkulatorStavke();
+                                string wsifra = dr["WSifra"].ToString();
+                                txtMarzaRefer.Text = dr["MarzaRef"].ToString();
+                                int programid = Convert.ToInt32(dr["ProgramID"].ToString());
+                                int kolekcijaid = Convert.ToInt32(dr["kolekcijaID"].ToString());
+                               
+                                kalk.UpdKalkulatorStavke(id, mpSifre, idKalk, trosak * Convert.ToDecimal(txtKurs.Text), avans, Convert.ToDecimal(txt_Provizija.Text), transport, VCena, rabat, MarzaNova, akcija, MCena, wsifra, programid, kolekcijaid);
+                            }
+                            conn.Close();
+                        }
+                    }
+
+                    refreshGGGG();
+                }
+                catch { }
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                return;
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Da li ste sigurni da za sve stavke želite da primenite rabat od " + txt_Rabat.Text + "% ?", "Rabat",
+             MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                try
+                {
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        if (row.Selected == true)
+                        {
+                            //Resen avans
+                            var query = "Select * from KalkulatorStavke Where ID=" + Convert.ToInt32(row.Cells[0].Value.ToString());
+                            //  var query = "Select * from KalkulatorStavke Where IDKalkulator="+Convert.ToInt32(combo_Zaglavlje.SelectedValue);
+                            SqlConnection conn = new SqlConnection(connect);
+                            conn.Open();
+                            SqlCommand cmd = new SqlCommand(query, conn);
+                            SqlDataReader dr = cmd.ExecuteReader();
+                            while (dr.Read())
+                            {
+                                int id = Convert.ToInt32(dr["ID"].ToString());
+                                int mpSifre = Convert.ToInt32(dr["MPSifra"].ToString());
+                                int idKalk = Convert.ToInt32(dr["IDKalkulator"].ToString());
+                                decimal trosak = Convert.ToDecimal(dr["TrosakProizvodnje"].ToString());
+                                decimal avans = Convert.ToDecimal(dr["Avans"].ToString());
+                                decimal provizija = Convert.ToDecimal(dr["Provizija"].ToString());
+                                decimal transport = Convert.ToDecimal(dr["Transport"].ToString());
+                                decimal rabat = Convert.ToDecimal(dr["Rabat"].ToString());
+                                decimal marza = Convert.ToDecimal(dr["Marza"].ToString()); ;
+                                //= Convert.ToDecimal(dr["Marza"].ToString());
+                                decimal akcija = Convert.ToDecimal(dr["Akcija"].ToString());
+
+                                decimal VCena = Convert.ToDecimal(dr["VPCena"].ToString());
+                                decimal MarzaNova = marza - (Convert.ToDecimal(txt_Transport.Text) - transport);
+                               
+                                decimal MCena = VCena + (VCena * 25 / 100) * Convert.ToDecimal(1.2);
+                                //Maloprodajna cena dedam 25 % i pomnozim sa 20% za PDV
+                                Kalkulacije.InsertKalkulatorStavke kalk = new InsertKalkulatorStavke();
+                                string wsifra = dr["WSifra"].ToString();
+                                txtMarzaRefer.Text = dr["MarzaRef"].ToString();
+                                int programid = Convert.ToInt32(dr["ProgramID"].ToString());
+                                int kolekcijaid = Convert.ToInt32(dr["kolekcijaID"].ToString());
+
+                               // kalk.UpdKalkulatorStavke(id, mpSifre, idKalk, trosak * Convert.ToDecimal(txtKurs.Text), avans, Convert.ToDecimal(txt_Provizija.Text), transport, VCena, rabat, MarzaNova, akcija, MCena, wsifra, programid, kolekcijaid);
+
+
+                                kalk.UpdKalkulatorStavke(id, mpSifre, idKalk, trosak * Convert.ToDecimal(txtKurs.Text), avans, provizija, Convert.ToDecimal(txt_Transport.Text), VCena, rabat, MarzaNova, akcija, MCena, wsifra, programid, kolekcijaid);
+                            }
+                            conn.Close();
+                        }
+                    }
+
+                    refreshGGGG();
+                }
+                catch { }
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                return;
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkBezDecimala.Checked == true)
+            {
+                txt_VpCena.Text = Math.Round(Convert.ToDecimal(txt_VpCena.Text), 0).ToString();
+                txt_VpCenaRabat.Text = Math.Round(Convert.ToDecimal(txt_VpCenaRabat.Text), 0).ToString();
+                txt_MpCenaRSD.Text = Math.Round(Convert.ToDecimal(txt_MpCenaRSD.Text), 0).ToString();
+                txt_VpCenaRSD.Text = Math.Round(Convert.ToDecimal(txt_VpCenaRSD.Text), 0).ToString();
+                txt_VpCenaAkcija.Text = Math.Round(Convert.ToDecimal(txt_VpCenaAkcija.Text), 0).ToString();
+                txt_MpCena.Text = Math.Round(Convert.ToDecimal(txt_MpCena.Text), 0).ToString();
+                txt_MarzaPArtner.Text = Math.Round(Convert.ToDecimal(txt_MarzaPArtner.Text), 0).ToString();
+                txt_Marza.Text = Math.Round(Convert.ToDecimal(txt_Marza.Text), 0).ToString();
+                txt_MarzaPocetna.Text = Math.Round(Convert.ToDecimal(txt_MarzaPocetna.Text), 0).ToString();
+                txt_MarzaPArtnerIznos.Text = Math.Round(Convert.ToDecimal(txt_MarzaPArtnerIznos.Text), 0).ToString();
+                txt_MarzaIznos.Text = Math.Round(Convert.ToDecimal(txt_MarzaIznos.Text), 0).ToString();
+                txt_MarzaPocetnaIznos.Text = Math.Round(Convert.ToDecimal(txt_MarzaPocetnaIznos.Text), 0).ToString();
+
+            }    
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            int ProgramID = 0;
+            int KolekcijaID = 0;
+
+            foreach (DataGridViewRow row in dataGridView3.Rows)
+            {
+                if (row.Selected == true)
+                {
+                    ProgramID = Convert.ToInt32(row.Cells[0].Value.ToString());
+                }
+            }
+
+            foreach (DataGridViewRow row in dataGridView3.Rows)
+            {
+                if (row.Selected == true)
+                {
+                    KolekcijaID = Convert.ToInt32(row.Cells[0].Value.ToString());
+                }
+            }
+            //Promenom troska menja se samo Marza
+
+            try
+            {
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        txt_mpSifra.Text = row.Cells[4].Value.ToString();
+                        txt_ID.Text = row.Cells[0].Value.ToString();
+
+                        combo_Zaglavlje.SelectedValue = row.Cells[6].Value.ToString();
+                        txtWebsSifra.Text = row.Cells[1].Value.ToString();
+                        //txt_Trosak.Text = row.Cells[8].Value.ToString();
+                        txt_Avans.Text = row.Cells[9].Value.ToString();
+                        txt_Provizija.Text = row.Cells[10].Value.ToString();
+                        txt_Transport.Text = row.Cells[11].Value.ToString();
+
+                        txt_Rabat.Text = row.Cells[13].Value.ToString();
+                        txt_Marza.Text = row.Cells[14].Value.ToString();
+                        txt_Akcija.Text = row.Cells[15].Value.ToString();
+                        txt_VpCena.Text = row.Cells[12].Value.ToString();
+                        txt_MpCena.Text = row.Cells[16].Value.ToString();
+                       // txtMarzaRefer.Text = row.Cells[16].Value.ToString();
+                        txtMarzaRefer.Text = row.Cells[18].Value.ToString();
+                        txtAvansUK.Text = (Convert.ToDecimal(txt_Avans.Text) * Convert.ToDecimal(txt_VpCena.Text) * Convert.ToDecimal(0.01)).ToString();
+                        txtProvizijaUK.Text = (Convert.ToDecimal(txt_Provizija.Text) * Convert.ToDecimal(txt_VpCena.Text) * Convert.ToDecimal(0.01)).ToString();
+                        txtTransportUK.Text = (Convert.ToDecimal(txt_Transport.Text) * Convert.ToDecimal(txt_VpCena.Text) * Convert.ToDecimal(0.01)).ToString();
+
+
+                        decimal VCena = Convert.ToDecimal(txt_VpCena.Text);
+                        decimal marza1 = Convert.ToDecimal(txt_Marza.Text) - (Convert.ToDecimal(txt_Avans.Text) + Convert.ToDecimal(txt_Provizija.Text) + Convert.ToDecimal(txt_Transport.Text));
+                        decimal marza2 = ((VCena / (Convert.ToDecimal(txt_Trosak.Text) / Convert.ToDecimal(txtKurs.Text))) - 1) * 100;
+                        marza2 = Convert.ToDecimal(txtMarzaRefer.Text);
+                        //Izracun 
+                        VCena = ((marza2 / 100) + 1) * (Convert.ToDecimal(txt_Trosak.Text) / Convert.ToDecimal(txtKurs.Text));
+                        txt_MarzaPocetna.Text = marza2.ToString();
+                        
+
+                        decimal VPCENASaRabatom = VCena - (VCena * (Convert.ToDecimal(txt_Rabat.Text) * Convert.ToDecimal(0.01)));
+                        // decimal 
+                        // decimal MarzaNova = marza - (Convert.ToDecimal(txt_Rabat.Text)- rabat);
+                        decimal MarzaNova2 = ((VPCENASaRabatom / (Convert.ToDecimal(txt_Trosak.Text) / Convert.ToDecimal(txtKurs.Text))) - 1) * 100;
+
+                        txt_MarzaPArtner.Text = MarzaNova2.ToString();
+                        txt_MarzaPArtnerIznos.Text = (VPCENASaRabatom - (Convert.ToDecimal(txt_Trosak.Text) / Convert.ToDecimal(txtKurs.Text))).ToString();
+                        decimal VPCENASaAkcijom = VPCENASaRabatom - (VPCENASaRabatom * (Convert.ToDecimal(txt_Akcija.Text) * Convert.ToDecimal(0.01)));
+                        // decimal 
+                        // decimal MarzaNova = marza - (Convert.ToDecimal(txt_Rabat.Text)- rabat);
+                        decimal MarzaNova = ((VPCENASaAkcijom / (Convert.ToDecimal(txt_Trosak.Text) / Convert.ToDecimal(txtKurs.Text))) - 1) * 100;
+
+                        txt_Marza.Text = MarzaNova.ToString();
+                        txt_MarzaIznos.Text = (VPCENASaAkcijom - (Convert.ToDecimal(txt_Trosak.Text) / Convert.ToDecimal(txtKurs.Text))).ToString();
+
+
+                        txt_MarzaPocetnaIznos.Text = (VCena - (Convert.ToDecimal(txt_Trosak.Text) / Convert.ToDecimal(txtKurs.Text))).ToString();
+
+
+                        txt_VpCenaRSD.Text = (Convert.ToDecimal(txt_VpCena.Text) * Convert.ToDecimal(txtKurs.Text)).ToString();
+                        txt_VpCenaRabat.Text = (Convert.ToDecimal(txt_VpCena.Text) - (Convert.ToDecimal(txt_VpCena.Text) * Convert.ToDecimal(txt_Rabat.Text) * Convert.ToDecimal(0.01))).ToString();
+                        txt_VpCenaAkcija.Text = (Convert.ToDecimal(txt_VpCenaRabat.Text) - (Convert.ToDecimal(txt_VpCenaRabat.Text) * Convert.ToDecimal(txt_Akcija.Text) * Convert.ToDecimal(0.01))).ToString();
+                        txt_MpCenaRSD.Text = (Convert.ToDecimal(txt_VpCenaAkcija.Text) * Convert.ToDecimal(txtKurs.Text) * Convert.ToDecimal(1.25) * Convert.ToDecimal(1.2)).ToString();
+                        txt_MpCena.Text = (Convert.ToDecimal(txt_VpCenaAkcija.Text) * Convert.ToDecimal(1.25) * Convert.ToDecimal(1.2)).ToString();
+                       
+                        
+                        
+                        Kalkulacije.InsertKalkulatorStavke kalk = new InsertKalkulatorStavke();
+
+                       // MessageBox.Show("Nova marza" + txtMarzaRefer.Text + "ID" + txt_ID);
+                        kalk.UpdKalkulatorStavke(Convert.ToInt32(txt_ID.Text), Convert.ToInt32(txt_mpSifra.Text), Convert.ToInt32(combo_Zaglavlje.SelectedValue), Convert.ToDecimal(txt_Trosak.Text),
+                            Convert.ToDecimal(txt_Avans.Text), Convert.ToDecimal(txt_Provizija.Text), Convert.ToDecimal(txt_Transport.Text), Convert.ToDecimal(VCena),
+                            Convert.ToDecimal(txt_Rabat.Text), Convert.ToDecimal(txtMarzaRefer.Text), Convert.ToDecimal(txt_Akcija.Text), Convert.ToDecimal(txt_MpCena.Text), txtWebsSifra.Text, ProgramID, KolekcijaID);
+
+                      
+                        RefreshGV();
+
+
+                    }
+                }
+            }
+            catch { }
         }
     }
 }

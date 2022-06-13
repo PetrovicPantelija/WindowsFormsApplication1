@@ -161,6 +161,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             {
                 Kalkulacije.InsertKalkulator kalk = new InsertKalkulator();
                 kalk.InsKalkulator(Convert.ToDateTime(dateTimePicker1.Value), txt_Naziv.Text.ToString().TrimEnd(), Convert.ToDecimal(txt_Kurs.Text), Convert.ToInt32(combo_VP.SelectedValue),0);
+                //Treba da vratim najveci broj
                 status = false;
 
                 tsNew.Checked = false;
@@ -176,11 +177,12 @@ namespace WindowsFormsApplication1.Kalkulacije
                     idNovi = Convert.ToInt32(dr["ID"].ToString());
                 }
                 conn.Close();
+                kalk.PrekopirajStavke(Convert.ToInt32(idNovi), Convert.ToInt32(txtKalkulatorStari.Text));
 
-                Kalkulacije.frmNoviKalkulator novi = new frmNoviKalkulator(idNovi,txt_Naziv.Text.ToString().TrimEnd());
+             /*  Kalkulacije.frmNoviKalkulator novi = new frmNoviKalkulator(idNovi,txt_Naziv.Text.ToString().TrimEnd(), txt_Kurs.Text);
                 PravoP = novi.Pravo;
                 if (PravoP == true) { novi.Show(); } else { return; }
-
+             */
 
             }
             else
@@ -207,7 +209,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             }
             else
             {
-                Kalkulacije.frmKalkulatorStavke stavke = new frmKalkulatorStavke(Convert.ToInt32(txt_ID.Text),txt_Naziv.Text);
+                Kalkulacije.frmKalkulatorStavke stavke = new frmKalkulatorStavke(Convert.ToInt32(txt_ID.Text),txt_Naziv.Text, txt_Kurs.Text);
                 stavke.Show();
             }
         }

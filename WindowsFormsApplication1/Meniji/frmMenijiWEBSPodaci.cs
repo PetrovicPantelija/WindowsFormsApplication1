@@ -149,5 +149,13 @@ namespace WindowsFormsApplication1.Meniji
             PravoP = vs.Pravo;
             if (PravoP == true) { vs.Show(); } else { return; }
         }
+
+        private void iconButton2_Click(object sender, EventArgs e)
+        {
+
+            ReferencijalnaTabela rt = new ReferencijalnaTabela();
+            PravoP = rt.Pravo;
+            if (PravoP == true) { rt.Show(); } else { return; }
+        }
     }
 }

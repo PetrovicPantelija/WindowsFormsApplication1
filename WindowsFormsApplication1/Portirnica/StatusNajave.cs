@@ -1905,6 +1905,7 @@ namespace WindowsFormsApplication1.Portirnica
 
         private void najavljeniToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            txtSifra.Text = "";
             button1.Enabled = false;
             if (txtkorisnikPrimio.Text != "")
             {
@@ -2094,6 +2095,8 @@ namespace WindowsFormsApplication1.Portirnica
 
         private void primljeniToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            txtSifra.Text = "";
+            
             button1.Enabled = false;
             button2.Enabled = false;
             button5.Enabled = false;
@@ -2277,6 +2280,9 @@ namespace WindowsFormsApplication1.Portirnica
 
         private void spremniZaIzlazakToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            txtSifra.Text = "";
+
+
             button1.Enabled = false;
             button2.Enabled = false;
             button6.Enabled = false;
@@ -2459,6 +2465,7 @@ namespace WindowsFormsApplication1.Portirnica
 
         private void izašliToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            txtSifra.Text = "";
             button1.Enabled = false;
             button2.Enabled = false;
             button6.Enabled = false;

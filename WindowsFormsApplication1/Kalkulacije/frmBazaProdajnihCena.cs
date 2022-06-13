@@ -236,5 +236,12 @@ namespace WindowsFormsApplication1.Kalkulacije
             baza.DelBazaProdajnihCena(Convert.ToInt32(txt_ID.Text));
             FillGV();
         }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            Kalkulacije.InsertBazaProdajnihCena baza = new InsertBazaProdajnihCena();
+            baza.UpdejtCene(Convert.ToInt32(txtKalkulator.Text));
+            FillGV();
+        }
     }
 }

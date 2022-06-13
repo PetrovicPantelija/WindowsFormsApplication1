@@ -19,10 +19,11 @@ namespace WindowsFormsApplication1.Kalkulacije
         string naz;
         int idK;
         public bool PravoP;
-
+        decimal Kurs = 0;
         public static string code = "frmNoviKalkulator";
         public bool Pravo;
         int idGrupe;
+        decimal kurs = 0;
         int idForme;
         bool insert;
         bool update;
@@ -37,11 +38,12 @@ namespace WindowsFormsApplication1.Kalkulacije
             PravoPristupa();
 
         }
-        public frmNoviKalkulator(int noviK,string naziv)
+        public frmNoviKalkulator(int noviK,string naziv, string sKurs)
         {
             InitializeComponent();
             kalk = noviK;
             naz = naziv;
+            Kurs = Convert.ToDecimal(sKurs);
             FillCombo();
         }
         public string IdGrupe()
@@ -179,9 +181,10 @@ namespace WindowsFormsApplication1.Kalkulacije
                 decimal mp = Convert.ToDecimal(row["MpCena"].ToString());
 
                 Kalkulacije.InsertKalkulatorStavke klk = new InsertKalkulatorStavke();
-                klk.InsKalkulatorStavke(mpSifra, kalk, trosak, avans, provizija, transport, vp, rabat, marza, akcija, mp);
+                
+                //klk.InsKalkulatorStavke(mpSifra, kalk, trosak, avans, provizija, transport, vp, rabat, marza, akcija, mp);
             }
-            Kalkulacije.frmKalkulatorStavke stavke = new frmKalkulatorStavke(kalk, naz);
+            Kalkulacije.frmKalkulatorStavke stavke = new frmKalkulatorStavke(kalk, naz, Kurs.ToString());
             stavke.Show();
         }
     }

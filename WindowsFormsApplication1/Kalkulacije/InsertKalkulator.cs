@@ -222,5 +222,59 @@ namespace WindowsFormsApplication1.Kalkulacije
                 }
             }
         }
+
+        public void PrekopirajStavke(int Kalkulator, int KalkulatorStari)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "PrekopirajStavkeKalkulator";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@Kalkulator";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = Kalkulator;
+            cmd.Parameters.Add(id);
+
+            SqlParameter id2 = new SqlParameter();
+            id2.ParameterName = "@KalkulatorStari";
+            id2.SqlDbType = SqlDbType.Int;
+            id2.Direction = ParameterDirection.Input;
+            id2.Value = KalkulatorStari;
+            cmd.Parameters.Add(id2);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis stavki");
+            }
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Brisanje uspešno", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
     }
 }

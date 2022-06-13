@@ -184,7 +184,7 @@ namespace WindowsFormsApplication1.Magacin
             {
 
 
-                if (row.Cells[9].Value.ToString() != "" && row.Cells[9].Value.ToString() == "null")
+                if (row.Cells[8].Value.ToString() != "" && row.Cells[8].Value.ToString() == "null")
                 {
                     row.DefaultCellStyle.BackColor = Color.Green;
                     row.DefaultCellStyle.SelectionBackColor = Color.Green;
@@ -363,26 +363,24 @@ namespace WindowsFormsApplication1.Magacin
             dataGridView2.Columns[4].HeaderText = "Kolicina";
             dataGridView2.Columns[4].Width = 70;
 
-            DataGridViewColumn column61 = dataGridView1.Columns[5];
-            dataGridView1.Columns[5].HeaderText = "ID";
-            dataGridView1.Columns[5].Width = 30;
+            DataGridViewColumn column61 = dataGridView2.Columns[5];
+            dataGridView2.Columns[5].HeaderText = "ID";
+            dataGridView2.Columns[5].Width = 30;
 
-            DataGridViewColumn column71 = dataGridView1.Columns[6];
-            dataGridView1.Columns[6].HeaderText = "Preostalo";
-            dataGridView1.Columns[6].Width = 80;
+            
 
-            DataGridViewColumn column81 = dataGridView1.Columns[7];
-            dataGridView1.Columns[7].HeaderText = "Lokacija naziv";
-            dataGridView1.Columns[7].Width = 150;
+            DataGridViewColumn column81 = dataGridView2.Columns[6];
+            dataGridView2.Columns[6].HeaderText = "Lokacija naziv";
+            dataGridView2.Columns[6].Width = 150;
 
-            DataGridViewColumn column91 = dataGridView1.Columns[8];
-            dataGridView1.Columns[8].HeaderText = "FormiranDokument";
-            dataGridView1.Columns[8].Width = 40;
+            DataGridViewColumn column91 = dataGridView2.Columns[7];
+            dataGridView2.Columns[7].HeaderText = "FormiranDokument";
+            dataGridView2.Columns[7].Width = 40;
 
 
-            DataGridViewColumn column101 = dataGridView1.Columns[9];
-            dataGridView1.Columns[9].HeaderText = "Broj";
-            dataGridView1.Columns[9].Width = 40;
+            DataGridViewColumn column101 = dataGridView2.Columns[8];
+            dataGridView2.Columns[8].HeaderText = "Broj";
+            dataGridView2.Columns[8].Width = 40;
         
         }
 

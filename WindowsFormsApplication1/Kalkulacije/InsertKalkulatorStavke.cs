@@ -14,7 +14,7 @@ namespace WindowsFormsApplication1.Kalkulacije
     {
         string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
         public void InsKalkulatorStavke(int MpSifra,int IDKalkulator,decimal TrosakProizvodnje,decimal Avans,decimal Provizija,decimal Transport,
-            decimal VpCena,decimal Rabat,decimal Marza,decimal Akcija,decimal MpCena)
+            decimal VpCena,decimal Rabat,decimal Marza,decimal Akcija,decimal MpCena, string WSifra, int ProgramID, int KolekcijaID)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -98,6 +98,28 @@ namespace WindowsFormsApplication1.Kalkulacije
             mp.Value = MpCena;
             cmd.Parameters.Add(mp);
 
+            SqlParameter ws = new SqlParameter();
+            ws.ParameterName = "@WSifra";
+            ws.SqlDbType = SqlDbType.NVarChar;
+            ws.Size = 100;
+            ws.Direction = ParameterDirection.Input;
+            ws.Value = WSifra;
+            cmd.Parameters.Add(ws);
+
+            SqlParameter pr = new SqlParameter();
+            pr.ParameterName = "@ProgramID";
+            pr.SqlDbType = SqlDbType.Int;
+            pr.Direction = ParameterDirection.Input;
+            pr.Value = ProgramID;
+            cmd.Parameters.Add(pr);
+
+            SqlParameter ko = new SqlParameter();
+            ko.ParameterName = "@KolekcijaID";
+            ko.SqlDbType = SqlDbType.Int;
+            ko.Direction = ParameterDirection.Input;
+            ko.Value = KolekcijaID;
+            cmd.Parameters.Add(ko);
+
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
             cmd.Transaction = myTransaction;
@@ -134,7 +156,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             }
         }
         public void UpdKalkulatorStavke(int ID,int MpSifra, int IDKalkulator, decimal TrosakProizvodnje, decimal Avans, decimal Provizija, decimal Transport,
-                    decimal VpCena, decimal Rabat, decimal Marza, decimal Akcija, decimal MpCena)
+                    decimal VpCena, decimal Rabat, decimal Marza, decimal Akcija, decimal MpCena, string WSifra, int ProgramID, int KolekcijaID)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -225,6 +247,29 @@ namespace WindowsFormsApplication1.Kalkulacije
             mp.Value = MpCena;
             cmd.Parameters.Add(mp);
 
+
+            SqlParameter ws = new SqlParameter();
+            ws.ParameterName = "@WSifra";
+            ws.SqlDbType = SqlDbType.NVarChar;
+            ws.Size = 100;
+            ws.Direction = ParameterDirection.Input;
+            ws.Value = WSifra;
+            cmd.Parameters.Add(ws);
+
+            SqlParameter pr = new SqlParameter();
+            pr.ParameterName = "@ProgramID";
+            pr.SqlDbType = SqlDbType.Int;
+            pr.Direction = ParameterDirection.Input;
+            pr.Value = ProgramID;
+            cmd.Parameters.Add(pr);
+
+            SqlParameter ko = new SqlParameter();
+            ko.ParameterName = "@KolekcijaID";
+            ko.SqlDbType = SqlDbType.Int;
+            ko.Direction = ParameterDirection.Input;
+            ko.Value = KolekcijaID;
+            cmd.Parameters.Add(ko);
+
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
             cmd.Transaction = myTransaction;
@@ -260,6 +305,8 @@ namespace WindowsFormsApplication1.Kalkulacije
                 }
             }
         }
+
+        
         public void DelKalkulatorStavke(int ID)
         {
             SqlConnection conn = new SqlConnection(connect);
@@ -288,6 +335,61 @@ namespace WindowsFormsApplication1.Kalkulacije
             catch (SqlException)
             {
                 throw new Exception("Neuspešan upis NHM brojeva");
+            }
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Brisanje uspešno", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
+       
+        public void AzurirajMarzeTroskaStavke(int ID, double Kurs)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "AzurirajMarzePTKalulatorStavke";
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
+
+            SqlParameter kurs = new SqlParameter();
+            kurs.ParameterName = "@Kurs";
+            kurs.SqlDbType = SqlDbType.Decimal;
+            kurs.Direction = ParameterDirection.Input;
+            kurs.Value = Kurs;
+            cmd.Parameters.Add(Kurs);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešno odradjena stavka");
             }
             finally
             {

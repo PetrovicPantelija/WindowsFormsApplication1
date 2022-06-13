@@ -477,6 +477,12 @@
     <Compile Include="Kalkulacije\frmNoviKalkulator.Designer.cs">
       <DependentUpon>frmNoviKalkulator.cs</DependentUpon>
     </Compile>
+    <Compile Include="Kalkulacije\frmPoredjenjeKalkulatora.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kalkulacije\frmPoredjenjeKalkulatora.Designer.cs">
+      <DependentUpon>frmPoredjenjeKalkulatora.cs</DependentUpon>
+    </Compile>
     <Compile Include="Kalkulacije\frmPrimenaTroskovnogCenovnika.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1284,6 +1290,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Kalkulacije\frmNoviKalkulator.resx">
       <DependentUpon>frmNoviKalkulator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kalkulacije\frmPoredjenjeKalkulatora.resx">
+      <DependentUpon>frmPoredjenjeKalkulatora.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Kalkulacije\frmPrimenaTroskovnogCenovnika.resx">
       <DependentUpon>frmPrimenaTroskovnogCenovnika.cs</DependentUpon>

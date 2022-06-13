@@ -203,9 +203,23 @@ namespace WindowsFormsApplication1
 
         public MainNabavka(string KorisnikN, int ReadNabavka)
         {
+           
+            InitializeComponent();
             KorisnikM = KorisnikN;
             ReadNabavka = ReadNabavkaM;
-            InitializeComponent();
+
+            IdGrupe();
+            IdForme();
+            PravoPristupa();
+
+            leftBorderBtn = new Panel();
+            leftBorderBtn.Size = new Size(7, 50);
+            PanelMenu.Controls.Add(leftBorderBtn);
+            //form
+            this.Text = string.Empty;
+            this.ControlBox = false;
+            this.DoubleBuffered = true;
+            this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
         }
 
         private void međuskladišniPrenosToolStripMenuItem_Click(object sender, EventArgs e)
