@@ -203,13 +203,21 @@ namespace WindowsFormsApplication1.Kalkulacije
 
         private void button1_Click(object sender, EventArgs e)
         {
+            int Devizni = 1;
+            
+            if (combo_VP.Text.TrimEnd() == "Dinarski")
+            {
+
+                Devizni = 0;
+            }
+
             if (txt_ID.Text == "")
             {
                 MessageBox.Show("Izaberite cenovnik");
             }
             else
             {
-                Kalkulacije.frmKalkulatorStavke stavke = new frmKalkulatorStavke(Convert.ToInt32(txt_ID.Text),txt_Naziv.Text, txt_Kurs.Text);
+                Kalkulacije.frmKalkulatorStavke stavke = new frmKalkulatorStavke(Convert.ToInt32(txt_ID.Text),txt_Naziv.Text, txt_Kurs.Text, Devizni);
                 stavke.Show();
             }
         }

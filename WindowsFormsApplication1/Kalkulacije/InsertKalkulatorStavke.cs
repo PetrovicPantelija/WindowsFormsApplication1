@@ -14,7 +14,7 @@ namespace WindowsFormsApplication1.Kalkulacije
     {
         string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
         public void InsKalkulatorStavke(int MpSifra,int IDKalkulator,decimal TrosakProizvodnje,decimal Avans,decimal Provizija,decimal Transport,
-            decimal VpCena,decimal Rabat,decimal Marza,decimal Akcija,decimal MpCena, string WSifra, int ProgramID, int KolekcijaID)
+            decimal VpCena,decimal Rabat,decimal Marza,decimal Akcija,decimal MpCena, string WSifra, int ProgramID, int KolekcijaID, decimal MarzaRef, decimal PragMarze)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -120,6 +120,20 @@ namespace WindowsFormsApplication1.Kalkulacije
             ko.Value = KolekcijaID;
             cmd.Parameters.Add(ko);
 
+            SqlParameter mr = new SqlParameter();
+            mr.ParameterName = "@MarzaRef";
+            mr.SqlDbType = SqlDbType.Decimal;
+            mr.Direction = ParameterDirection.Input;
+            mr.Value = MarzaRef;
+            cmd.Parameters.Add(mr);
+
+            SqlParameter pm= new SqlParameter();
+            pm.ParameterName = "@PragMarze";
+            pm.SqlDbType = SqlDbType.Decimal;
+            pm.Direction = ParameterDirection.Input;
+            pm.Value = PragMarze;
+            cmd.Parameters.Add(pm);
+
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
             cmd.Transaction = myTransaction;
@@ -156,7 +170,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             }
         }
         public void UpdKalkulatorStavke(int ID,int MpSifra, int IDKalkulator, decimal TrosakProizvodnje, decimal Avans, decimal Provizija, decimal Transport,
-                    decimal VpCena, decimal Rabat, decimal Marza, decimal Akcija, decimal MpCena, string WSifra, int ProgramID, int KolekcijaID)
+                    decimal VpCena, decimal Rabat, decimal Marza, decimal Akcija, decimal MpCena, string WSifra, int ProgramID, int KolekcijaID, decimal MarzaRef, decimal PragMarze)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -270,6 +284,21 @@ namespace WindowsFormsApplication1.Kalkulacije
             ko.Value = KolekcijaID;
             cmd.Parameters.Add(ko);
 
+            SqlParameter mr = new SqlParameter();
+            mr.ParameterName = "@MarzaRef";
+            mr.SqlDbType = SqlDbType.Decimal;
+            mr.Direction = ParameterDirection.Input;
+            mr.Value = MarzaRef;
+            cmd.Parameters.Add(mr);
+
+
+            SqlParameter pm = new SqlParameter();
+            pm.ParameterName = "@PragMarze";
+            pm.SqlDbType = SqlDbType.Decimal;
+            pm.Direction = ParameterDirection.Input;
+            pm.Value = PragMarze;
+            cmd.Parameters.Add(pm);
+
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
             cmd.Transaction = myTransaction;
@@ -284,7 +313,7 @@ namespace WindowsFormsApplication1.Kalkulacije
 
             catch (SqlException)
             {
-                throw new Exception("Neuspešan upis NHM brojeva");
+                throw new Exception("Neuspešan upis ");
             }
 
             finally
@@ -292,7 +321,7 @@ namespace WindowsFormsApplication1.Kalkulacije
                 if (!error)
                 {
                     myTransaction.Commit();
-                    MessageBox.Show("Unos NHM broja je uspešno završena", "",
+                    MessageBox.Show("Unos je uspešno završen", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }

@@ -483,6 +483,12 @@
     <Compile Include="Kalkulacije\frmPoredjenjeKalkulatora.Designer.cs">
       <DependentUpon>frmPoredjenjeKalkulatora.cs</DependentUpon>
     </Compile>
+    <Compile Include="Kalkulacije\frmPregledEURRSD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kalkulacije\frmPregledEURRSD.Designer.cs">
+      <DependentUpon>frmPregledEURRSD.cs</DependentUpon>
+    </Compile>
     <Compile Include="Kalkulacije\frmPrimenaTroskovnogCenovnika.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1293,6 +1299,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Kalkulacije\frmPoredjenjeKalkulatora.resx">
       <DependentUpon>frmPoredjenjeKalkulatora.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kalkulacije\frmPregledEURRSD.resx">
+      <DependentUpon>frmPregledEURRSD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Kalkulacije\frmPrimenaTroskovnogCenovnika.resx">
       <DependentUpon>frmPrimenaTroskovnogCenovnika.cs</DependentUpon>

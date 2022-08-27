@@ -184,7 +184,7 @@ namespace WindowsFormsApplication1.Kalkulacije
                 
                 //klk.InsKalkulatorStavke(mpSifra, kalk, trosak, avans, provizija, transport, vp, rabat, marza, akcija, mp);
             }
-            Kalkulacije.frmKalkulatorStavke stavke = new frmKalkulatorStavke(kalk, naz, Kurs.ToString());
+            Kalkulacije.frmKalkulatorStavke stavke = new frmKalkulatorStavke(kalk, naz, Kurs.ToString(),1);
             stavke.Show();
         }
     }
