@@ -452,8 +452,10 @@ namespace WindowsFormsApplication1.Kalkulacije
  " KalkulatorStavke.Akcija, " +
  " Round(KalkulatorStavke.Marza,1) as MarzaAkcija, " +
  " Round(((KalkulatorStavke.VpCena - (KalkulatorStavke.VpCena * Rabat * 0.01) - (KalkulatorStavke.VpCena * akcija * 0.01 * Rabat * 0.01)) - (KalkulatorStavke.TrosakProizvodnje / Kalkulator.Kurs)),0) as Zarada, " +
- " Round((KalkulatorStavke.VpCena - (KalkulatorStavke.VpCena * Rabat * 0.01) - ((KalkulatorStavke.VpCena - (KalkulatorStavke.VpCena * Rabat * 0.01))  * akcija * 0.01)),0) " +
+ " Round((KalkulatorStavke.VpCena  - (KalkulatorStavke.VpCena   * akcija * 0.01)),0) " +
  "as VpAkcija,  " +
+  " Round((KalkulatorStavke.VpCena  - (KalkulatorStavke.VpCena   * akcija * 0.01) * Kurs),0) " +
+ "as VpAkcijaRSD,  " +
  " Round((MpCena ),0) as MpCena " +
  " from KalkulatorStavke " +
  " inner join Program on KalkulatorStavke.ProgramID = Program.ID " +
@@ -543,14 +545,20 @@ namespace WindowsFormsApplication1.Kalkulacije
             dataGridView1.Columns[14].Width = 80;
 
             DataGridViewColumn column16 = dataGridView1.Columns[15];
-            dataGridView1.Columns[15].HeaderText = "MP cena Akcija";
+            dataGridView1.Columns[15].HeaderText = "MP cena Akcija EUR";
+            dataGridView1.Columns[15].Visible = false;
             dataGridView1.Columns[15].DefaultCellStyle.Format = "N0";
             dataGridView1.Columns[15].Width = 80;
 
             DataGridViewColumn column17 = dataGridView1.Columns[16];
-            dataGridView1.Columns[16].HeaderText = "Mp cena";
+            dataGridView1.Columns[16].HeaderText = "MP cena Akcija";
             dataGridView1.Columns[16].DefaultCellStyle.Format = "N0";
             dataGridView1.Columns[16].Width = 80;
+
+            DataGridViewColumn column18 = dataGridView1.Columns[17];
+            dataGridView1.Columns[17].HeaderText = "Mp cena";
+            dataGridView1.Columns[17].DefaultCellStyle.Format = "N0";
+            dataGridView1.Columns[17].Width = 80;
 
 
             ObojDatagrid();
@@ -609,6 +617,8 @@ namespace WindowsFormsApplication1.Kalkulacije
 " Round(KalkulatorStavke.VpCena -  (KalkulatorStavke.VpCena * akcija * 0.01  * 0.01) - (KalkulatorStavke.TrosakProizvodnje / Kalkulator.Kurs),0) as Zarada, " +
 " Round( (KalkulatorStavke.VpCena - (KalkulatorStavke.VpCena * Akcija * 0.01) ),0) " +
 "as VpAkcija,  " +
+" Round(((KalkulatorStavke.VpCena  - (KalkulatorStavke.VpCena   * akcija * 0.01)) * Kurs),0) " +
+ "as VpAkcijaRSD,  " +
 " Round((MpCena ),0) as MpCena " +
 " from KalkulatorStavke " +
 " inner join Program on KalkulatorStavke.ProgramID = Program.ID " +
@@ -698,14 +708,20 @@ namespace WindowsFormsApplication1.Kalkulacije
             dataGridView1.Columns[14].Width = 80;
 
             DataGridViewColumn column16 = dataGridView1.Columns[15];
-            dataGridView1.Columns[15].HeaderText = "MP cena Akcija";
+            dataGridView1.Columns[15].HeaderText = "MP cena Akcija EUR";
+            dataGridView1.Columns[15].Visible = false;
             dataGridView1.Columns[15].DefaultCellStyle.Format = "N0";
             dataGridView1.Columns[15].Width = 80;
 
             DataGridViewColumn column17 = dataGridView1.Columns[16];
-            dataGridView1.Columns[16].HeaderText = "Mp cena";
+            dataGridView1.Columns[16].HeaderText = "MP cena Akcija";
             dataGridView1.Columns[16].DefaultCellStyle.Format = "N0";
             dataGridView1.Columns[16].Width = 80;
+
+            DataGridViewColumn column18 = dataGridView1.Columns[17];
+            dataGridView1.Columns[17].HeaderText = "Mp cena";
+            dataGridView1.Columns[17].DefaultCellStyle.Format = "N0";
+            dataGridView1.Columns[17].Width = 80;
 
             ObojDatagrid();
         }
@@ -1400,20 +1416,23 @@ namespace WindowsFormsApplication1.Kalkulacije
                                 
                                 decimal VPCenaAkcija = 0;
                                 decimal VPCENASaAkcijom = 0;
+                                decimal VPCENASaAkcijomRSD = 0;
                                 if (chkDevizni.Checked == true)
                                 {
                                     VPCenaAkcija = (Convert.ToDecimal(VPCenaRabat) - (Convert.ToDecimal(rabat) * Convert.ToDecimal(akcija) * Convert.ToDecimal(0.01)));
                                     VPCENASaAkcijom = VPCENASaRabatom - (VPCENASaRabatom * (Convert.ToDecimal(akcija) * Convert.ToDecimal(0.01)));
+                                    VPCENASaAkcijomRSD = VPCENASaAkcijom * Convert.ToDecimal(txtKurs.Text);
                                 }
                                 else
                                 {
                                     VPCenaAkcija = VCena - (VCena * (Convert.ToDecimal(akcija) * Convert.ToDecimal(0.01)));
                                     VPCENASaAkcijom = VCena - (VCena * (Convert.ToDecimal(akcija) * Convert.ToDecimal(0.01)));
-
+                                    VPCENASaAkcijomRSD = VPCENASaAkcijom * Convert.ToDecimal(txtKurs.Text);
                                 }
                                 decimal MarzaNova = ((VPCENASaAkcijom / (Convert.ToDecimal(trosak) / Convert.ToDecimal(txtKurs.Text))) - 1) * 100;
                                 // txt_MpCenaRSD.Text = (Convert.ToDecimal(VPCenaAkcija) * Convert.ToDecimal(txtKurs.Text) * Convert.ToDecimal(1.25) * Convert.ToDecimal(1.2)).ToString();
                                 //  decimal MCena = (Convert.ToDecimal(VPCenaAkcija) * Convert.ToDecimal(1.25) * Convert.ToDecimal(1.2));
+                                
                                 decimal MCena = (Convert.ToDecimal(VPCENASaAkcijom) * Convert.ToDecimal(1.25) * Convert.ToDecimal(1.2));
 
 
@@ -1435,6 +1454,7 @@ namespace WindowsFormsApplication1.Kalkulacije
                                 if (chkDevizni.Checked == true)
                                 {
                                     // row.Cells[10].Value = VCena.ToString();
+                                    
                                     row.Cells[16].Value = VPCenaAkcija.ToString();
                                     row.Cells[15].Value = MarzaNova.ToString(); 
                                     row.Cells[14].Value = akcija.ToString();
@@ -1448,7 +1468,8 @@ namespace WindowsFormsApplication1.Kalkulacije
                                     row.Cells[12].Value = akcija.ToString();
                                     row.Cells[13].Value = MarzaNova.ToString();
                                     row.Cells[15].Value = VPCenaAkcija.ToString();
-                                    row.Cells[16].Value = MCena.ToString();
+                                    row.Cells[16].Value = VPCENASaAkcijomRSD.ToString();
+                                    row.Cells[17].Value = MCena.ToString();
                                 }
                               
                               
@@ -2011,20 +2032,22 @@ namespace WindowsFormsApplication1.Kalkulacije
                         txt_MarzaPArtnerIznos.Text = (VPCENASaRabatom - (Convert.ToDecimal(txt_Trosak.Text) / Convert.ToDecimal(txtKurs.Text))).ToString();
                         decimal VPCenaAkcija = 0;
                         decimal VPCENASaAkcijom = 0;
+                        decimal VPCENASaAkcijomRSD = 0;
                         if (chkDevizni.Checked == true)
                         {
                             VPCenaAkcija = (Convert.ToDecimal(VPCENASaRabatom) - (Convert.ToDecimal(txt_Rabat.Text) * Convert.ToDecimal(txt_Akcija.Text) * Convert.ToDecimal(0.01)));
                             VPCENASaAkcijom = VPCENASaRabatom - (VPCENASaRabatom * (Convert.ToDecimal(txt_Akcija.Text) * Convert.ToDecimal(0.01)));
+                            VPCENASaAkcijomRSD = VPCENASaAkcijom * Convert.ToDecimal(txtKurs.Text);
                         }
                         else
                         {
                             VPCenaAkcija = VCena - (VCena * (Convert.ToDecimal(txt_Akcija.Text) * Convert.ToDecimal(0.01)));
                             VPCENASaAkcijom = VCena - (VCena * (Convert.ToDecimal(txt_Akcija.Text) * Convert.ToDecimal(0.01)));
-
+                            VPCENASaAkcijomRSD = VPCENASaAkcijom * Convert.ToDecimal(txtKurs.Text);
                         }
-                       
 
-                         // decimal 
+
+                        // decimal 
                         // decimal MarzaNova = marza - (Convert.ToDecimal(txt_Rabat.Text)- rabat);
                         decimal MarzaNova = ((VPCENASaAkcijom / (Convert.ToDecimal(txt_Trosak.Text) / Convert.ToDecimal(txtKurs.Text))) - 1) * 100;
 
@@ -2072,7 +2095,8 @@ namespace WindowsFormsApplication1.Kalkulacije
                             row.Cells[11].Value = txt_Rabat.Text;
                             row.Cells[13].Value = MarzaNova.ToString();
                             row.Cells[12].Value = txt_Akcija.Text;
-                            row.Cells[16].Value = txt_MpCena.Text;
+                            row.Cells[16].Value = VPCENASaAkcijomRSD.ToString();
+                            row.Cells[17].Value = txt_MpCena.Text;
                         }
 
                         /* Bilo
@@ -2283,16 +2307,18 @@ namespace WindowsFormsApplication1.Kalkulacije
                                 decimal VPCenaRabat = (Convert.ToDecimal(VCena) - (Convert.ToDecimal(VCena) * Convert.ToDecimal(rabat) * Convert.ToDecimal(0.01)));
                                 decimal VPCenaAkcija = 0;
                                 decimal VPCENASaAkcijom = 0;
+                                decimal VPCENASaAkcijomRSD = 0;
                                 if (chkDevizni.Checked == true)
                                 {
                                     VPCenaAkcija = (Convert.ToDecimal(VPCenaRabat) - (Convert.ToDecimal(rabat) * Convert.ToDecimal(akcija) * Convert.ToDecimal(0.01)));
                                     VPCENASaAkcijom = VPCENASaRabatom - (VPCENASaRabatom * (Convert.ToDecimal(akcija) * Convert.ToDecimal(0.01)));
+                                    VPCENASaAkcijomRSD = VPCENASaAkcijom * Convert.ToDecimal(txtKurs.Text);
                                 }
                                 else
                                 {
                                     VPCenaAkcija = VCena - (VCena * (Convert.ToDecimal(akcija) * Convert.ToDecimal(0.01)));
                                     VPCENASaAkcijom = VCena - (VCena * (Convert.ToDecimal(akcija) * Convert.ToDecimal(0.01)));
-
+                                    VPCENASaAkcijomRSD = VPCENASaAkcijom * Convert.ToDecimal(txtKurs.Text);
                                 }
                                 decimal MarzaNova = ((VPCENASaAkcijom / (Convert.ToDecimal(trosak) / Convert.ToDecimal(txtKurs.Text))) - 1) * 100;
                                 // txt_MpCenaRSD.Text = (Convert.ToDecimal(VPCenaAkcija) * Convert.ToDecimal(txtKurs.Text) * Convert.ToDecimal(1.25) * Convert.ToDecimal(1.2)).ToString();
@@ -2332,7 +2358,8 @@ namespace WindowsFormsApplication1.Kalkulacije
                                     row.Cells[11].Value = rabat.ToString();
                                     row.Cells[13].Value = MarzaNova.ToString();
                                     row.Cells[12].Value = akcija.ToString();
-                                    row.Cells[16].Value = MCena.ToString();
+                                    row.Cells[17].Value = MCena.ToString();
+                                    row.Cells[16].Value = VPCENASaAkcijomRSD.ToString();
                                 }
                                 // txtMarzaRefer.Text = row.Cells[18].Value.ToString();
                                 // txtPragMarze.Text = row.Cells[19].Value.ToString();
@@ -2700,7 +2727,24 @@ namespace WindowsFormsApplication1.Kalkulacije
 
                         txt_MarzaPArtner.Text = MarzaNova2.ToString();
                         txt_MarzaPArtnerIznos.Text = (VPCENASaRabatom - (Convert.ToDecimal(txt_Trosak.Text) / Convert.ToDecimal(txtKurs.Text))).ToString();
-                        decimal VPCENASaAkcijom = VPCENASaRabatom - (VPCENASaRabatom * (Convert.ToDecimal(txt_Akcija.Text) * Convert.ToDecimal(0.01)));
+                        decimal VPCenaAkcija = 0;
+                        decimal VPCENASaAkcijom = 0;
+                        decimal VPCENASaAkcijomRSD = 0;
+                        if (chkDevizni.Checked == true)
+                        {
+                            VPCenaAkcija = (Convert.ToDecimal(VPCENASaRabatom) - (Convert.ToDecimal(txt_Rabat.Text) * Convert.ToDecimal(txt_Akcija.Text) * Convert.ToDecimal(0.01)));
+                            VPCENASaAkcijom = VPCENASaRabatom - (VPCENASaRabatom * (Convert.ToDecimal(txt_Akcija.Text) * Convert.ToDecimal(0.01)));
+                            VPCENASaAkcijomRSD = VPCENASaAkcijom * Convert.ToDecimal(txtKurs.Text);
+                        }
+                        else
+                        {
+                            VPCenaAkcija = VCena - (VCena * (Convert.ToDecimal(txt_Akcija.Text) * Convert.ToDecimal(0.01)));
+                            VPCENASaAkcijom = VCena - (VCena * (Convert.ToDecimal(txt_Akcija.Text) * Convert.ToDecimal(0.01)));
+                            VPCENASaAkcijomRSD = VPCENASaAkcijom * Convert.ToDecimal(txtKurs.Text);
+                        }
+
+
+                       // decimal VPCENASaAkcijom = VPCENASaRabatom - (VPCENASaRabatom * (Convert.ToDecimal(txt_Akcija.Text) * Convert.ToDecimal(0.01)));
                         // decimal 
                         // decimal MarzaNova = marza - (Convert.ToDecimal(txt_Rabat.Text)- rabat);
                         decimal MarzaNova = ((VPCENASaAkcijom / (Convert.ToDecimal(txt_Trosak.Text) / Convert.ToDecimal(txtKurs.Text))) - 1) * 100;
@@ -2740,7 +2784,8 @@ namespace WindowsFormsApplication1.Kalkulacije
                             row.Cells[11].Value = Convert.ToDecimal(txt_Rabat.Text);
                             row.Cells[13].Value = MarzaNova.ToString();
                             row.Cells[12].Value = Convert.ToDecimal(txt_Akcija.Text);
-                            row.Cells[16].Value = Convert.ToDecimal(txt_MpCena.Text);
+                            row.Cells[16].Value = VPCENASaAkcijomRSD.ToString();
+                            row.Cells[17].Value = Convert.ToDecimal(txt_MpCena.Text);
                         }
 
 
@@ -2898,16 +2943,18 @@ namespace WindowsFormsApplication1.Kalkulacije
 
                     decimal VPCenaAkcija = 0;
                     decimal VPCENASaAkcijom = 0;
+                    decimal VPCENASaAkcijomRSD = 0;
                     if (chkDevizni.Checked == true)
                     {
                         VPCenaAkcija = (Convert.ToDecimal(VPCENASaRabatom) - (Convert.ToDecimal(txt_Rabat.Text) * Convert.ToDecimal(txt_Akcija.Text) * Convert.ToDecimal(0.01)));
                         VPCENASaAkcijom = VPCENASaRabatom - (VPCENASaRabatom * (Convert.ToDecimal(txt_Akcija.Text) * Convert.ToDecimal(0.01)));
+                        VPCENASaAkcijomRSD = VPCENASaAkcijom * Convert.ToDecimal(txtKurs.Text);
                     }
                     else
                     {
                         VPCenaAkcija = PocVPCENA - (PocVPCENA * (Convert.ToDecimal(txt_Akcija.Text) * Convert.ToDecimal(0.01)));
                         VPCENASaAkcijom = PocVPCENA - (PocVPCENA * (Convert.ToDecimal(txt_Akcija.Text) * Convert.ToDecimal(0.01)));
-
+                        VPCENASaAkcijomRSD = VPCENASaAkcijom * Convert.ToDecimal(txtKurs.Text);
                     }
                     decimal MarzaNova = ((VPCENASaAkcijom / (Convert.ToDecimal(txt_Trosak.Text) / Convert.ToDecimal(txtKurs.Text))) - 1) * 100;
                     // txt_MpCenaRSD.Text = (Convert.ToDecimal(VPCenaAkcija) * Convert.ToDecimal(txtKurs.Text) * Convert.ToDecimal(1.25) * Convert.ToDecimal(1.2)).ToString();
@@ -2952,7 +2999,8 @@ namespace WindowsFormsApplication1.Kalkulacije
                         row.Cells[12].Value = Convert.ToDecimal(txt_Akcija.Text);
                         row.Cells[13].Value = MarzaNova.ToString();
                         row.Cells[15].Value = VPCenaAkcija.ToString();
-                        row.Cells[16].Value = MCena.ToString();
+                        row.Cells[16].Value = VPCENASaAkcijomRSD.ToString();
+                        row.Cells[17].Value = MCena.ToString();
                     }
 
                   

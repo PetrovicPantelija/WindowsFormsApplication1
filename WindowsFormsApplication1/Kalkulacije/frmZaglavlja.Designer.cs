@@ -263,7 +263,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.Controls.Add(this.label3);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmZaglavlja";
-            this.Text = "frmZaglavlja";
+            this.Text = "Svi cenovnici";
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

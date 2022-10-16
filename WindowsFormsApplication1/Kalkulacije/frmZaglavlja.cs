@@ -127,7 +127,8 @@ namespace WindowsFormsApplication1.Kalkulacije
         {
             var query = "Select Kalkulator.ID,DatumVazenja,Kalkulator.Naziv,Kurs,VpCenovnik,KalkulacioniCenovnici.Naziv as CenovnikNaziv,Kalkulator.Zavrsen " +
                 "From Kalkulator " +
-                "Inner join KalkulacioniCenovnici on Kalkulator.VpCenovnik=KalkulacioniCenovnici.ID";
+                "Inner join KalkulacioniCenovnici on Kalkulator.VpCenovnik=KalkulacioniCenovnici.ID" +
+                " order by Kalkulator.ID desc";
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();
