@@ -345,7 +345,7 @@
             this.button3.IconSize = 23;
             this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button3.Location = new System.Drawing.Point(260, 48);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
             this.button3.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
             this.button3.Size = new System.Drawing.Size(100, 31);
@@ -367,8 +367,8 @@
             this.btnPozovi.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.btnPozovi.IconSize = 23;
             this.btnPozovi.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPozovi.Location = new System.Drawing.Point(260, 110);
-            this.btnPozovi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPozovi.Location = new System.Drawing.Point(260, 109);
+            this.btnPozovi.Margin = new System.Windows.Forms.Padding(4);
             this.btnPozovi.Name = "btnPozovi";
             this.btnPozovi.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
             this.btnPozovi.Size = new System.Drawing.Size(208, 31);
@@ -391,7 +391,7 @@
             this.button2.IconSize = 23;
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.Location = new System.Drawing.Point(260, 171);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
             this.button2.Size = new System.Drawing.Size(100, 31);
@@ -414,7 +414,7 @@
             this.button1.IconSize = 23;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.Location = new System.Drawing.Point(368, 171);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
             this.button1.Size = new System.Drawing.Size(129, 31);
@@ -437,7 +437,7 @@
             this.button4.IconSize = 23;
             this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button4.Location = new System.Drawing.Point(397, 233);
-            this.button4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button4.Margin = new System.Windows.Forms.Padding(4);
             this.button4.Name = "button4";
             this.button4.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
             this.button4.Size = new System.Drawing.Size(223, 31);
@@ -460,7 +460,7 @@
             this.btnPostaviPaletu.IconSize = 23;
             this.btnPostaviPaletu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnPostaviPaletu.Location = new System.Drawing.Point(260, 233);
-            this.btnPostaviPaletu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPostaviPaletu.Margin = new System.Windows.Forms.Padding(4);
             this.btnPostaviPaletu.Name = "btnPostaviPaletu";
             this.btnPostaviPaletu.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
             this.btnPostaviPaletu.Size = new System.Drawing.Size(129, 31);
@@ -483,7 +483,7 @@
             this.button5.IconSize = 23;
             this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button5.Location = new System.Drawing.Point(883, 108);
-            this.button5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button5.Margin = new System.Windows.Forms.Padding(4);
             this.button5.Name = "button5";
             this.button5.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
             this.button5.Size = new System.Drawing.Size(235, 31);
@@ -506,7 +506,7 @@
             this.button6.IconSize = 23;
             this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button6.Location = new System.Drawing.Point(883, 170);
-            this.button6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button6.Margin = new System.Windows.Forms.Padding(4);
             this.button6.Name = "button6";
             this.button6.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
             this.button6.Size = new System.Drawing.Size(235, 31);
@@ -529,7 +529,7 @@
             this.button7.IconSize = 23;
             this.button7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button7.Location = new System.Drawing.Point(883, 230);
-            this.button7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button7.Margin = new System.Windows.Forms.Padding(4);
             this.button7.Name = "button7";
             this.button7.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
             this.button7.Size = new System.Drawing.Size(235, 31);

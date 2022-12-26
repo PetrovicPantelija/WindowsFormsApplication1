@@ -116,7 +116,7 @@ namespace WindowsFormsApplication1.Magacin
         }
         private void frmOtpremnicaUvoz_Load(object sender, EventArgs e)
         {
-            var select = " Select Distinct DatumIstovara, Cast(SUBSTRING(DatumIstovara, 1, Charindex('.',DatumIstovara) -1) as int)  as  Dan, Cast(Replace(SUBSTRING(DatumIstovara, Charindex('.',DatumIstovara)+1, Len(DatumIstovara)-12 -1 -( (Charindex('.',DatumIstovara) ))),'.','') as int) as  Mesec  From RkShippingPocetna where Stanje = 1  order by  Mesec, Dan";
+            var select = " Select Distinct DatumUtovara, Cast(SUBSTRING(DatumUtovara, 1, Charindex('.',DatumUtovara) -1) as int)  as  Dan, Cast(Replace(SUBSTRING(DatumUtovara, Charindex('.',DatumUtovara)+1, Len(DatumUtovara)-12 -1 -( (Charindex('.',DatumUtovara) ))),'.','') as int) as  Mesec  From RkShippingPocetna where Stanje = 1  order by  Mesec, Dan";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -126,8 +126,8 @@ namespace WindowsFormsApplication1.Magacin
             var ds = new DataSet();
             dataAdapter.Fill(ds);
             cboDatumUtovara.DataSource = ds.Tables[0];
-            cboDatumUtovara.DisplayMember = "DatumIstovara";
-            cboDatumUtovara.ValueMember = "DatumIstovara";
+            cboDatumUtovara.DisplayMember = "DatumUtovara";
+            cboDatumUtovara.ValueMember = "DatumUtovara";
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -139,11 +139,11 @@ namespace WindowsFormsApplication1.Magacin
         private void RefreshDataGrid()
         {
             var select2 = "SELECT [LargoPakID],LargoNaziv,sum([KolicinaOrg]) as Kolicina,1,  PaketName, RkShippingItemPakPocetna.ProizvodGTIN, [RkShippingPocetna].BrojIstovara as BrojUtovara,1  FROM [dbo].[RkShippingItemPakPocetna] inner join RkShippingPocetna on RkShippingPocetna.ShippingID=RkShippingItemPakPocetna.ShipingIdz " +
-" where (PaketName NOT  LIKE 'RP%' and PaketName NOT  LIKE 'SOKLA%') and RkShippingPocetna.DatumIstovara = '" + cboDatumUtovara.Text + "'" +
+" where (PaketName NOT  LIKE 'RP%' and PaketName NOT  LIKE 'SOKLA%') and RkShippingPocetna.DatumUtovara = '" + cboDatumUtovara.Text + "'" +
 " group by [LargoPakID], LargoNaziv,RkShippingItemPakPocetna.ProizvodGTIN,PaketName, [RkShippingPocetna].BrojIstovara " +
 " union " +
 " SELECT [LargoPakID],LargoNaziv,[KolicinaOrg] as Kolicina, 1, PaketName, RkShippingItemPakPocetna.ProizvodGTIN, [RkShippingPocetna].BrojIstovara as BrojUtovara, rb  FROM [dbo].[RkShippingItemPakPocetna] inner join RkShippingPocetna on RkShippingPocetna.ShippingID=RkShippingItemPakPocetna.ShipingIdz " +
-" where (PaketName LIKE 'RP%' or PaketName LIKE 'SOKLA%') and RkShippingPocetna.DatumIstovara = '" + cboDatumUtovara.Text + "'";
+" where (PaketName LIKE 'RP%' or PaketName LIKE 'SOKLA%') and RkShippingPocetna.DatumUtovara = '" + cboDatumUtovara.Text + "'";
 
             var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection2 = new SqlConnection(s_connection2);
@@ -229,7 +229,7 @@ namespace WindowsFormsApplication1.Magacin
             var select2 = "SELECT Distinct [LargoPakID],LargoNaziv,PaketName, RkShippingItemPakPocetna.ProizvodGTIN ,MaticniPodatki.MpStatus " +
  " FROM [dbo].[RkShippingItemPakPocetna] inner join RkShippingPocetna on RkShippingPocetna.ShippingID=RkShippingItemPakPocetna.ShipingIdz " +
  " inner join MaticniPodatki on  [RkShippingItemPakPocetna].LargoPakID = MaticniPodatki.MpSifra " +
- " where MaticniPodatki.MpStatus = 1 and RkShippingPocetna.DatumIstovara = '" + cboDatumUtovara.Text + "'";
+ " where MaticniPodatki.MpStatus = 1 and RkShippingPocetna.DatumUtovara = '" + cboDatumUtovara.Text + "'";
 
             var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection2 = new SqlConnection(s_connection2);

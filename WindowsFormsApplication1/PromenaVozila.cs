@@ -168,7 +168,7 @@ namespace WindowsFormsApplication1
         private void button1_Click(object sender, EventArgs e)
         {
             //Obrnuto Datum i broj Utovara
-            var select = " SELECT  RkShipping.ShippingNo as BarkodUtovara, RkShipping.BrojIstovara as BrojUtovara, RkShipping.DatumIstovara as DatumUtovara, RkShipping.BrojUtovara as BrojIstovara, RkShipping.DatumUtovara as DatumIstovara ,RkShipping.KupacIdz, RkShipping.SalonIdz FROM  RkShipping  where RkShipping.Vozilo  = '" + cboVozila.Text + "' and RkShipping.DatumUtovara = '" + cboDatumUtovara.Text + "'";
+            var select = " SELECT  RkShipping.ShippingNo as BarkodUtovara, RkShipping.BrojUtovara as BrojUtovara, RkShipping.DatumIStovara as DatumUtovara, RkShipping.BrojIstovara as BrojIstovara, RkShipping.DatumIstovara as DatumIstovara ,RkShipping.KupacIdz, RkShipping.SalonIdz FROM  RkShipping  where RkShipping.Vozilo  = '" + cboVozila.Text + "' and RkShipping.DatumUtovara = '" + cboDatumUtovara.Text + "'";
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);

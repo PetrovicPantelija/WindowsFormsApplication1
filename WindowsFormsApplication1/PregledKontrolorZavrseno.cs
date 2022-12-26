@@ -142,7 +142,7 @@ namespace WindowsFormsApplication1
 
         private void refresh1()
         {
-            var select = " SELECT Paleta, RkShippingZavrseno.BrojIstovara as BrojUtovara, RkShippingZavrseno.BrojUtovara as BrojIsporuke , " +
+            var select = " SELECT Paleta, RkShippingZavrseno.BrojUtovara as BrojUtovara, RkShippingZavrseno.BrojIstovara as BrojIsporuke , " +
                 "MestoIsporuke, RkShippingItemPakZavrseno.ShippingItemPakID , RkShippingItemPakZavrseno.PaketName, " +
                 "RkShippingItemPakZavrseno.LargoPakID as SifLargo , RkShippingItemPakZavrseno.LargoNaziv, KolicinaOrg, Kolicina, " +
                 " Pakerista as Paletirano, Pakuje as Paletar, VremePakovanja as VremePaletiranja,Kontrolisao as Kontrolisano," +
@@ -384,8 +384,8 @@ namespace WindowsFormsApplication1
         {
 
             pregled = 2;//Pregled po paleti
-            var select = " SELECT Paleta, RkShippingZavrseno.BrojIstovara as BrojUtovara, " +
-                "RkShippingZavrseno.BrojUtovara as BrojIsporuke , MestoIsporuke, RkShippingItemPakZavrseno.ShippingItemPakID ," +
+            var select = " SELECT Paleta, RkShippingZavrseno.BrojUtovara as BrojUtovara, " +
+                "RkShippingZavrseno.BrojIstovara as BrojIsporuke , MestoIsporuke, RkShippingItemPakZavrseno.ShippingItemPakID ," +
                 " RkShippingItemPakZavrseno.PaketName, RkShippingItemPakZavrseno.LargoPakID as SifLargo , RkShippingItemPakZavrseno.LargoNaziv," +
                 " Kolicina, KolicinaOrg,  Pakerista as Paletirano, Pakuje as Paletar, VremePakovanja as VremePaletiranja," +
                 "Kontrolisao as Kontrolisano, KOntrolise as Kontrolor, VremeKontrole FROM [dbo].RkShippingItemPakZavrseno " +
@@ -610,8 +610,8 @@ namespace WindowsFormsApplication1
 
         private void refresh3()
         {
-            var select = " SELECT Paleta, RkShippingZavrseno.BrojIstovara as BrojUtovara," +
-                " RkShippingZavrseno.BrojUtovara as BrojIsporuke , MestoIsporuke, RkShippingItemRecZavrseno.ShippingItemRecID ," +
+            var select = " SELECT Paleta, RkShippingZavrseno.BrojUtovara as BrojUtovara," +
+                " RkShippingZavrseno.BrojIstovara as BrojIsporuke , MestoIsporuke, RkShippingItemRecZavrseno.ShippingItemRecID ," +
                 " RkShippingItemRecZavrseno.Zapisnik AS Zapisnik, RkShippingItemRecZavrseno.SifraReklamacije as SifLargo ," +
                 " RkShippingItemRECZavrseno.NazivReklamacije,  RkShippingItemRECZavrseno.Opis,KolicinaOrg,  Kolicina," +
                 " Paletirano, Paletar as Paletar, VremePakovanja as VremePaletiranja, " +
@@ -739,8 +739,8 @@ namespace WindowsFormsApplication1
 
         private void refresh4()
         {
-            var select = " SELECT Paleta, RkShippingZavrseno.BrojIstovara as BrojUtovara, " +
-                "RkShippingZavrseno.BrojUtovara as BrojIsporuke , MestoIsporuke, RkShippingItemRecZavrseno.ShippingItemRecID , " +
+            var select = " SELECT Paleta, RkShippingZavrseno.BrojUtovara as BrojUtovara, " +
+                "RkShippingZavrseno.BrojIstovara as BrojIsporuke , MestoIsporuke, RkShippingItemRecZavrseno.ShippingItemRecID , " +
                 "dbo.RkShippingItemRecZavrseno.Zapisnik AS Zapisnik, RkShippingItemRecZavrseno.SifraReklamacije as SifLargo , " +
                 "RkShippingItemRECZavrseno.NazivReklamacije,  RkShippingItemRECZavrseno.Opis,KolicinaOrg,  Kolicina,  " +
                 " Paletirano, Paletar as Paletar, VremePakovanja as VremePaletiranja, " +

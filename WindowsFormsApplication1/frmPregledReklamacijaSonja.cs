@@ -281,7 +281,7 @@ namespace WindowsFormsApplication1
                 }
             }
 
-            var select = " SELECT Paleta, RkShippingZavrseno.BrojIstovara as BrojUtovara, RkShippingZavrseno.BrojUtovara as BrojIsporuke , " +
+            var select = " SELECT Paleta, RkShippingZavrseno.BrojUtovara as BrojUtovara, RkShippingZavrseno.BrojIstovara as BrojIsporuke , " +
            " MestoIsporuke, RkShippingItemRecZavrseno.ShippingItemRecID , RkShippingItemRecZavrseno.Zapisnik AS Zapisnik, " +
            " RkShippingItemRecZavrseno.SifraReklamacije as SifLargo , RkShippingItemRECZavrseno.NazivReklamacije, " +
            " RkShippingItemRECZavrseno.Opis, RkShippingItemRECZavrseno.Paket, KolicinaOrg,  Kolicina,  " +
@@ -558,7 +558,7 @@ namespace WindowsFormsApplication1
                 }
             }
 
-            var select = " SELECT Paleta, RkShippingZavrseno.BrojIstovara as BrojUtovara, RkShippingZavrseno.BrojUtovara as BrojIsporuke , " +
+            var select = " SELECT Paleta, RkShippingZavrseno.BrojUtovara as BrojUtovara, RkShippingZavrseno.BrojIstovara as BrojIsporuke , " +
             " MestoIsporuke, RkShippingItemPakZavrseno.ShippingItemPakID , RkShippingItemPakZavrseno.PaketName, " +
             " RkShippingItemPakZavrseno.LargoPakID as SifLargo , RkShippingItemPakZavrseno.LargoNaziv, KolicinaOrg, Kolicina, " +
             " Pakerista as Paletirano, Pakuje as Paletar, VremePakovanja as VremePaletiranja,Kontrolisao as Kontrolisano, " +

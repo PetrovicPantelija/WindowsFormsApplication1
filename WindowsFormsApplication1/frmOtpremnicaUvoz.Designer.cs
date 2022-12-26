@@ -59,10 +59,10 @@
             // 
             this.cboDatumUtovara.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cboDatumUtovara.FormattingEnabled = true;
-            this.cboDatumUtovara.Location = new System.Drawing.Point(6, 29);
-            this.cboDatumUtovara.Margin = new System.Windows.Forms.Padding(2);
+            this.cboDatumUtovara.Location = new System.Drawing.Point(8, 36);
+            this.cboDatumUtovara.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboDatumUtovara.Name = "cboDatumUtovara";
-            this.cboDatumUtovara.Size = new System.Drawing.Size(162, 25);
+            this.cboDatumUtovara.Size = new System.Drawing.Size(215, 28);
             this.cboDatumUtovara.TabIndex = 32;
             this.cboDatumUtovara.SelectedIndexChanged += new System.EventHandler(this.cboDatumUtovara_SelectedIndexChanged);
             // 
@@ -70,12 +70,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(6, 10);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(8, 12);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(54, 19);
+            this.label2.Size = new System.Drawing.Size(129, 23);
             this.label2.TabIndex = 31;
-            this.label2.Text = "Datum:";
+            this.label2.Text = "Datum utovara:";
             // 
             // dataGridView3
             // 
@@ -84,21 +83,22 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.dataGridView3.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(158)))), ((int)(((byte)(192)))));
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(6, 70);
-            this.dataGridView3.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView3.Location = new System.Drawing.Point(8, 86);
+            this.dataGridView3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.RowHeadersWidth = 51;
             this.dataGridView3.RowTemplate.Height = 24;
-            this.dataGridView3.Size = new System.Drawing.Size(679, 416);
+            this.dataGridView3.Size = new System.Drawing.Size(905, 512);
             this.dataGridView3.TabIndex = 33;
             // 
             // progressBar1
             // 
             this.progressBar1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(247)))), ((int)(((byte)(246)))));
             this.progressBar1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
-            this.progressBar1.Location = new System.Drawing.Point(6, 507);
-            this.progressBar1.Margin = new System.Windows.Forms.Padding(2);
+            this.progressBar1.Location = new System.Drawing.Point(8, 624);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(1197, 23);
+            this.progressBar1.Size = new System.Drawing.Size(1596, 28);
             this.progressBar1.TabIndex = 36;
             // 
             // dataGridView1
@@ -109,11 +109,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.BackgroundColor = System.Drawing.Color.LightCoral;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(1207, 138);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView1.Location = new System.Drawing.Point(1609, 170);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(148, 348);
+            this.dataGridView1.Size = new System.Drawing.Size(197, 428);
             this.dataGridView1.TabIndex = 38;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -131,51 +132,65 @@
             this.ID,
             this.Imepaketa,
             this.ProizvodGTIN});
-            this.dataGridView2.Location = new System.Drawing.Point(718, 70);
-            this.dataGridView2.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView2.Location = new System.Drawing.Point(957, 86);
+            this.dataGridView2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(486, 416);
+            this.dataGridView2.Size = new System.Drawing.Size(648, 512);
             this.dataGridView2.TabIndex = 42;
             // 
             // LargoID
             // 
             this.LargoID.HeaderText = "LargoID";
+            this.LargoID.MinimumWidth = 6;
             this.LargoID.Name = "LargoID";
+            this.LargoID.Width = 125;
             // 
             // LArgonaziv
             // 
             this.LArgonaziv.HeaderText = "LArgo naziv";
+            this.LArgonaziv.MinimumWidth = 6;
             this.LArgonaziv.Name = "LArgonaziv";
+            this.LArgonaziv.Width = 125;
             // 
             // Kolicina
             // 
             this.Kolicina.HeaderText = "Kolicina";
+            this.Kolicina.MinimumWidth = 6;
             this.Kolicina.Name = "Kolicina";
+            this.Kolicina.Width = 125;
             // 
             // ID
             // 
             this.ID.HeaderText = "ID";
+            this.ID.MinimumWidth = 6;
             this.ID.Name = "ID";
+            this.ID.Width = 125;
             // 
             // Imepaketa
             // 
             this.Imepaketa.HeaderText = "Ime paketa";
+            this.Imepaketa.MinimumWidth = 6;
             this.Imepaketa.Name = "Imepaketa";
+            this.Imepaketa.Width = 125;
             // 
             // ProizvodGTIN
             // 
             this.ProizvodGTIN.HeaderText = "Proizvod GTIN";
+            this.ProizvodGTIN.MinimumWidth = 6;
             this.ProizvodGTIN.Name = "ProizvodGTIN";
+            this.ProizvodGTIN.Width = 125;
             // 
             // pictureBox2
             // 
             this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(1218, 496);
+            this.pictureBox2.Location = new System.Drawing.Point(1624, 610);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(137, 34);
+            this.pictureBox2.Size = new System.Drawing.Size(183, 42);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 164;
             this.pictureBox2.TabStop = false;
@@ -186,9 +201,10 @@
             this.label3.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(82)))), ((int)(((byte)(75)))));
-            this.label3.Location = new System.Drawing.Point(1203, 16);
+            this.label3.Location = new System.Drawing.Point(1604, 20);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(128, 38);
+            this.label3.Size = new System.Drawing.Size(157, 46);
             this.label3.TabIndex = 165;
             this.label3.Text = "Spisak neaktivnih \r\nmatičnih podataka:";
             // 
@@ -203,10 +219,11 @@
             this.button4.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.button4.IconSize = 30;
             this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(1207, 68);
+            this.button4.Location = new System.Drawing.Point(1609, 84);
+            this.button4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button4.Name = "button4";
-            this.button4.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.button4.Size = new System.Drawing.Size(148, 65);
+            this.button4.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
+            this.button4.Size = new System.Drawing.Size(197, 80);
             this.button4.TabIndex = 169;
             this.button4.Text = "Nastavi dalje iako ima neaktivnih";
             this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -225,10 +242,11 @@
             this.button2.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.button2.IconSize = 22;
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(499, 29);
+            this.button2.Location = new System.Drawing.Point(665, 36);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button2.Name = "button2";
-            this.button2.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.button2.Size = new System.Drawing.Size(194, 25);
+            this.button2.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
+            this.button2.Size = new System.Drawing.Size(259, 31);
             this.button2.TabIndex = 174;
             this.button2.Text = "Formiraj otpremnicu 1";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -247,10 +265,11 @@
             this.button3.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.button3.IconSize = 22;
             this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(338, 29);
+            this.button3.Location = new System.Drawing.Point(451, 36);
+            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button3.Name = "button3";
-            this.button3.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.button3.Size = new System.Drawing.Size(152, 25);
+            this.button3.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
+            this.button3.Size = new System.Drawing.Size(203, 31);
             this.button3.TabIndex = 173;
             this.button3.Text = "Ispitaj aktivnost";
             this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -269,10 +288,11 @@
             this.button1.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.button1.IconSize = 22;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(177, 29);
+            this.button1.Location = new System.Drawing.Point(236, 36);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.button1.Size = new System.Drawing.Size(152, 25);
+            this.button1.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
+            this.button1.Size = new System.Drawing.Size(203, 31);
             this.button1.TabIndex = 172;
             this.button1.Text = "Prikaži pakete";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -291,10 +311,11 @@
             this.button6.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.button6.IconSize = 22;
             this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button6.Location = new System.Drawing.Point(702, 29);
+            this.button6.Location = new System.Drawing.Point(936, 36);
+            this.button6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button6.Name = "button6";
-            this.button6.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.button6.Size = new System.Drawing.Size(194, 25);
+            this.button6.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
+            this.button6.Size = new System.Drawing.Size(259, 31);
             this.button6.TabIndex = 171;
             this.button6.Text = "Formiraj otpremnicu 2";
             this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -309,10 +330,10 @@
             this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button5.Location = new System.Drawing.Point(688, 70);
-            this.button5.Margin = new System.Windows.Forms.Padding(2);
+            this.button5.Location = new System.Drawing.Point(917, 86);
+            this.button5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(27, 416);
+            this.button5.Size = new System.Drawing.Size(36, 512);
             this.button5.TabIndex = 175;
             this.button5.Text = "Otpremnica 2";
             this.button5.UseVisualStyleBackColor = false;
@@ -320,10 +341,10 @@
             // 
             // frmOtpremnicaUvoz
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(187)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(1370, 548);
+            this.ClientSize = new System.Drawing.Size(1827, 674);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button3);
@@ -339,7 +360,7 @@
             this.Controls.Add(this.cboDatumUtovara);
             this.Controls.Add(this.label2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmOtpremnicaUvoz";
             this.Text = "Pregled paketa sa datumom isporuke";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
