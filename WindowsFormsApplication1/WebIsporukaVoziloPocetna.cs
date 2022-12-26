@@ -129,7 +129,10 @@ namespace WindowsFormsApplication1
 
             using (OleDbConnection conn = new OleDbConnection(connString))
             {
-                OleDbCommand cmd = new OleDbCommand("SELECT * FROM RkShipping where ExportLargo = false and RkShipping.VoziloIDz  = (Select Min(VoziloID) from TrVozila where TrVozila.RegistarskiBroj = '" + cboVozila.Text + "') and DatumIstovara =  CDate('" + cboDatumUtovara.Text + "')", conn);
+                //Panta E fakture
+               // OleDbCommand cmd = new OleDbCommand("SELECT * FROM RkShipping where ExportLargo = false and RkShipping.VoziloIDz  = (Select Min(VoziloID) from TrVozila where TrVozila.RegistarskiBroj = '" + cboVozila.Text + "') and DatumIstovara =  CDate('" + cboDatumUtovara.Text + "')", conn);
+
+                OleDbCommand cmd = new OleDbCommand("SELECT * FROM RkShipping where ExportLargo = false and RkShipping.VoziloIDz  = (Select Min(VoziloID) from TrVozila where TrVozila.RegistarskiBroj = '" + cboVozila.Text + "') and DatumUtovara =  CDate('" + cboDatumUtovara.Text + "')", conn);
 
                 conn.Open();
 
@@ -201,7 +204,10 @@ namespace WindowsFormsApplication1
             }
             using (OleDbConnection conn = new OleDbConnection(connString))
             {
-                OleDbCommand cmd2 = new OleDbCommand("SELECT * FROM RkShippingItemPro inner join RkShipping on  RkShipping.ShippingID = RkShippingItemPro.ShipingIdz where ExportLargo = false and RkShipping.VoziloIDz  = (Select Min(VoziloID) from TrVozila where TrVozila.RegistarskiBroj = '" + cboVozila.Text + "') and DatumIstovara =  CDate('" + cboDatumUtovara.Text + "')", conn);
+                //PantaE
+
+                //  OleDbCommand cmd2 = new OleDbCommand("SELECT * FROM RkShippingItemPro inner join RkShipping on  RkShipping.ShippingID = RkShippingItemPro.ShipingIdz where ExportLargo = false and RkShipping.VoziloIDz  = (Select Min(VoziloID) from TrVozila where TrVozila.RegistarskiBroj = '" + cboVozila.Text + "') and DatumIstovara =  CDate('" + cboDatumUtovara.Text + "')", conn);
+                OleDbCommand cmd2 = new OleDbCommand("SELECT * FROM RkShippingItemPro inner join RkShipping on  RkShipping.ShippingID = RkShippingItemPro.ShipingIdz where ExportLargo = false and RkShipping.VoziloIDz  = (Select Min(VoziloID) from TrVozila where TrVozila.RegistarskiBroj = '" + cboVozila.Text + "') and DatumUtovara =  CDate('" + cboDatumUtovara.Text + "')", conn);
 
                 conn.Open();
                 DataTable dataTableResProizvodi = new DataTable();
@@ -214,7 +220,10 @@ namespace WindowsFormsApplication1
             using (OleDbConnection conn = new OleDbConnection(connString))
             {
                 DataTable dataTableResPaketi = new DataTable();
-                OleDbCommand cmd3 = new OleDbCommand("SELECT * FROM RkShippingItemPak inner join RkShipping on  RkShipping.ShippingID = RkShippingItemPak.ShipingIdz where ExportLargo = false and RkShipping.VoziloIDz  = (Select Min(VoziloID) from TrVozila where TrVozila.RegistarskiBroj = '" + cboVozila.Text + "') and DatumIstovara =  CDate('" + cboDatumUtovara.Text + "') and StornoIsporuke <> true", conn);
+               
+                //PantaE
+              //  OleDbCommand cmd3 = new OleDbCommand("SELECT * FROM RkShippingItemPak inner join RkShipping on  RkShipping.ShippingID = RkShippingItemPak.ShipingIdz where ExportLargo = false and RkShipping.VoziloIDz  = (Select Min(VoziloID) from TrVozila where TrVozila.RegistarskiBroj = '" + cboVozila.Text + "') and DatumIstovara =  CDate('" + cboDatumUtovara.Text + "') and StornoIsporuke <> true", conn);
+                OleDbCommand cmd3 = new OleDbCommand("SELECT * FROM RkShippingItemPak inner join RkShipping on  RkShipping.ShippingID = RkShippingItemPak.ShipingIdz where ExportLargo = false and RkShipping.VoziloIDz  = (Select Min(VoziloID) from TrVozila where TrVozila.RegistarskiBroj = '" + cboVozila.Text + "') and DatumUtovara =  CDate('" + cboDatumUtovara.Text + "') and StornoIsporuke <> true", conn);
 
                 conn.Open();
 
@@ -240,9 +249,12 @@ namespace WindowsFormsApplication1
             using (OleDbConnection conn = new OleDbConnection(connString))
             {
                // OleDbCommand cmd = new OleDbCommand("SELECT Distinct(Format(DatumIstovara, " + "dd.MM.yyyy" + ")) as DatumIstovara FROM RkShipping where ExportLargo = false", conn);
-                OleDbCommand cmd = new OleDbCommand("SELECT Distinct(DatumIstovara) as DatumIstovara FROM RkShipping where ExportLargo = false", conn);
-                
-                
+               
+                //PantaE
+              // OleDbCommand cmd = new OleDbCommand("SELECT Distinct(DatumIstovara) as DatumIstovara FROM RkShipping where ExportLargo = false", conn);
+                OleDbCommand cmd = new OleDbCommand("SELECT Distinct(DatumUtovara) as DatumUtovara FROM RkShipping where ExportLargo = false", conn);
+
+
                 //FORMAT(@d, 'dd/MM/yyyy', 'en-US' )
                 conn.Open();
 
@@ -250,8 +262,8 @@ namespace WindowsFormsApplication1
 
                 adapter.Fill(dataTableRes);
                 cboDatumUtovara.DataSource = dataTableRes;
-                cboDatumUtovara.DisplayMember = "DatumIstovara";
-                cboDatumUtovara.ValueMember = "DatumIstovara";
+                cboDatumUtovara.DisplayMember = "DatumUtovara";
+                cboDatumUtovara.ValueMember = "DatumUtovara";
 
                 conn.Close();
             }
@@ -277,9 +289,11 @@ namespace WindowsFormsApplication1
 
                 using (OleDbConnection conn = new OleDbConnection(connString))
                 {
-                    OleDbCommand cmd = new OleDbCommand("SELECT Distinct(TrVozila.RegistarskiBroj) as RegistarskiBroj FROM RkShipping INNER JOIN TrVozila ON RkShipping.VoziloIDz = TrVozila.VoziloID where ExportLargo = false and DatumIstovara = CDate('" + cboDatumUtovara.Text + "')", conn);
+                   //PantaE
+                  //  OleDbCommand cmd = new OleDbCommand("SELECT Distinct(TrVozila.RegistarskiBroj) as RegistarskiBroj FROM RkShipping INNER JOIN TrVozila ON RkShipping.VoziloIDz = TrVozila.VoziloID where ExportLargo = false and DatumIstovara = CDate('" + cboDatumUtovara.Text + "')", conn);
+                OleDbCommand cmd = new OleDbCommand("SELECT Distinct(TrVozila.RegistarskiBroj) as RegistarskiBroj FROM RkShipping INNER JOIN TrVozila ON RkShipping.VoziloIDz = TrVozila.VoziloID where ExportLargo = false and DatumUtovara = CDate('" + cboDatumUtovara.Text + "')", conn);
 
-                    conn.Open();
+                conn.Open();
 
                     OleDbDataAdapter adapter = new OleDbDataAdapter(cmd);
 
@@ -298,6 +312,7 @@ namespace WindowsFormsApplication1
 
         private void btnInsertRefTabela_Click(object sender, EventArgs e)
         {
+           // pantaE
             if (chkPrenesen.Checked == true)
                 return;
             progressBar1.Maximum = dataGridView3.Rows.Count;
@@ -308,8 +323,10 @@ namespace WindowsFormsApplication1
                 if (row != null && row.Cells[0].Value != null)
                 {
                    InsertIsporuka isporuka = new InsertIsporuka();
-                   isporuka.InsertIsporPocetna(Convert.ToInt32(row.Cells[0].Value.ToString()), row.Cells[1].Value.ToString(), row.Cells[3].Value.ToString(), row.Cells[2].Value.ToString(), row.Cells[5].Value.ToString(), row.Cells[4].Value.ToString(), row.Cells[6].Value.ToString(), Convert.ToInt32(row.Cells[7].Value.ToString()), Convert.ToInt32(row.Cells[8].Value.ToString()), Convert.ToInt32(row.Cells[11].Value.ToString()), Convert.ToInt32((row.Cells[12].Value = true ? 1 : 0)), Convert.ToInt32((row.Cells[13].Value = true ? 1 : 0)), Convert.ToDateTime(DateTime.Now), Convert.ToInt32(row.Cells[10].Value.ToString()), Convert.ToInt32(row.Cells[9].Value.ToString()));
-                   isporuka.SrediIstovar1Pocetna(Convert.ToInt32(row.Cells[0].Value.ToString()));
+                  // isporuka.InsertIsporPocetna(Convert.ToInt32(row.Cells[0].Value.ToString()), row.Cells[1].Value.ToString(), row.Cells[3].Value.ToString(), row.Cells[2].Value.ToString(), row.Cells[5].Value.ToString(), row.Cells[4].Value.ToString(), row.Cells[6].Value.ToString(), Convert.ToInt32(row.Cells[7].Value.ToString()), Convert.ToInt32(row.Cells[8].Value.ToString()), Convert.ToInt32(row.Cells[11].Value.ToString()), Convert.ToInt32((row.Cells[12].Value = true ? 1 : 0)), Convert.ToInt32((row.Cells[13].Value = true ? 1 : 0)), Convert.ToDateTime(DateTime.Now), Convert.ToInt32(row.Cells[10].Value.ToString()), Convert.ToInt32(row.Cells[9].Value.ToString()));
+                    isporuka.InsertIsporPocetna(Convert.ToInt32(row.Cells[0].Value.ToString()), row.Cells[1].Value.ToString(), row.Cells[2].Value.ToString(),row.Cells[3].Value.ToString(),  row.Cells[5].Value.ToString(), row.Cells[4].Value.ToString(), row.Cells[6].Value.ToString(), Convert.ToInt32(row.Cells[7].Value.ToString()), Convert.ToInt32(row.Cells[8].Value.ToString()), Convert.ToInt32(row.Cells[11].Value.ToString()), Convert.ToInt32((row.Cells[12].Value = true ? 1 : 0)), Convert.ToInt32((row.Cells[13].Value = true ? 1 : 0)), Convert.ToDateTime(DateTime.Now), Convert.ToInt32(row.Cells[10].Value.ToString()), Convert.ToInt32(row.Cells[9].Value.ToString()));
+
+                    isporuka.SrediIstovar1Pocetna(Convert.ToInt32(row.Cells[0].Value.ToString()));
                    isporuka.SrediIstovar2Pocetna(Convert.ToInt32(row.Cells[0].Value.ToString()));
                    isporuka.SrediUtovar1Pocetna(Convert.ToInt32(row.Cells[0].Value.ToString()));
                    isporuka.SrediUtovar2Pocetna(Convert.ToInt32(row.Cells[0].Value.ToString()));

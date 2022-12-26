@@ -146,7 +146,7 @@ namespace WindowsFormsApplication1
 
             using (OleDbConnection conn = new OleDbConnection(connString))
             {
-                OleDbCommand cmd = new OleDbCommand("SELECT * FROM NalogZaUtovarReklamacije where Vozilo = " + "'" + txtVozilo.Text + "' and DatumIsporuke =" + "DateValue('" + txtDatumIsporuke.Text + "')", conn);
+                OleDbCommand cmd = new OleDbCommand("SELECT * FROM NalogZaUtovarReklamacije where Vozilo = " + "'" + txtVozilo.Text + "' and DatumUtovara =" + "DateValue('" + txtDatumIsporuke.Text + "')", conn);
 
                 conn.Open();
 

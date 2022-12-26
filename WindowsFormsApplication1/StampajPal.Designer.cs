@@ -81,7 +81,7 @@
             // 
             this.button1.BackColor = System.Drawing.Color.Silver;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button1.Location = new System.Drawing.Point(900, 16);
+            this.button1.Location = new System.Drawing.Point(1010, 16);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(179, 37);
             this.button1.TabIndex = 4;
@@ -93,7 +93,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.Location = new System.Drawing.Point(580, 25);
+            this.label3.Location = new System.Drawing.Point(690, 25);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 20);
             this.label3.TabIndex = 51;
@@ -102,7 +102,7 @@
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button3.Location = new System.Drawing.Point(527, 18);
+            this.button3.Location = new System.Drawing.Point(637, 18);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(21, 32);
             this.button3.TabIndex = 49;
@@ -114,7 +114,7 @@
             // 
             this.cboPaleta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cboPaleta.FormattingEnabled = true;
-            this.cboPaleta.Location = new System.Drawing.Point(647, 21);
+            this.cboPaleta.Location = new System.Drawing.Point(757, 21);
             this.cboPaleta.Name = "cboPaleta";
             this.cboPaleta.Size = new System.Drawing.Size(186, 28);
             this.cboPaleta.TabIndex = 48;
@@ -122,7 +122,7 @@
             // button5
             // 
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button5.Location = new System.Drawing.Point(252, 21);
+            this.button5.Location = new System.Drawing.Point(309, 16);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(21, 27);
             this.button5.TabIndex = 46;
@@ -134,7 +134,7 @@
             // 
             this.cboDatumUtovara.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cboDatumUtovara.FormattingEnabled = true;
-            this.cboDatumUtovara.Location = new System.Drawing.Point(85, 20);
+            this.cboDatumUtovara.Location = new System.Drawing.Point(142, 15);
             this.cboDatumUtovara.Name = "cboDatumUtovara";
             this.cboDatumUtovara.Size = new System.Drawing.Size(161, 28);
             this.cboDatumUtovara.TabIndex = 45;
@@ -143,7 +143,7 @@
             // 
             this.cboVozila.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cboVozila.FormattingEnabled = true;
-            this.cboVozila.Location = new System.Drawing.Point(360, 20);
+            this.cboVozila.Location = new System.Drawing.Point(470, 20);
             this.cboVozila.Name = "cboVozila";
             this.cboVozila.Size = new System.Drawing.Size(161, 28);
             this.cboVozila.TabIndex = 44;
@@ -154,15 +154,15 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label2.Location = new System.Drawing.Point(12, 18);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(64, 20);
+            this.label2.Size = new System.Drawing.Size(124, 20);
             this.label2.TabIndex = 43;
-            this.label2.Text = "Datum:";
+            this.label2.Text = "Datum utovara:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(279, 18);
+            this.label1.Location = new System.Drawing.Point(389, 18);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(60, 20);
             this.label1.TabIndex = 42;

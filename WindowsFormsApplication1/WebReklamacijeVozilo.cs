@@ -128,7 +128,7 @@ namespace WindowsFormsApplication1
 
             using (OleDbConnection conn = new OleDbConnection(connString))
             {
-                OleDbCommand cmd = new OleDbCommand("SELECT * FROM RkShipping where  RkShipping.VoziloIDz  = (Select Min(VoziloID) from TrVozila where TrVozila.RegistarskiBroj = '" + cboVozila.Text + "') and DatumIstovara =  CDate('" + cboDatumUtovara.Text + "')", conn);
+                OleDbCommand cmd = new OleDbCommand("SELECT * FROM RkShipping where  RkShipping.VoziloIDz  = (Select Min(VoziloID) from TrVozila where TrVozila.RegistarskiBroj = '" + cboVozila.Text + "') and DatumUtovara =  CDate('" + cboDatumUtovara.Text + "')", conn);
 
                 conn.Open();
 
@@ -216,7 +216,7 @@ namespace WindowsFormsApplication1
             {
                 
                 DataTable dataTableResPaketi = new DataTable();
-                OleDbCommand cmd3 = new OleDbCommand("SELECT RkShippingItemRec.* FROM RkShippingItemRec inner join RkShipping on  RkShipping.ShippingID = RkShippingItemRec.ShipingIdz where RkShipping.VoziloIDz  = (Select Min(VoziloID) from TrVozila where TrVozila.RegistarskiBroj = '" + cboVozila.Text + "') and DatumIstovara =  CDate('" + cboDatumUtovara.Text + "') ", conn);
+                OleDbCommand cmd3 = new OleDbCommand("SELECT RkShippingItemRec.* FROM RkShippingItemRec inner join RkShipping on  RkShipping.ShippingID = RkShippingItemRec.ShipingIdz where RkShipping.VoziloIDz  = (Select Min(VoziloID) from TrVozila where TrVozila.RegistarskiBroj = '" + cboVozila.Text + "') and DatumUtovara =  CDate('" + cboDatumUtovara.Text + "') ", conn);
 
                 conn.Open();
 
@@ -240,7 +240,7 @@ namespace WindowsFormsApplication1
 
             using (OleDbConnection conn = new OleDbConnection(connString))
             {
-                OleDbCommand cmd = new OleDbCommand("SELECT Distinct(DatumIstovara) as DatumIstovara FROM RkShipping", conn);
+                OleDbCommand cmd = new OleDbCommand("SELECT Distinct(DatumUtovara) as DatumUtovara FROM RkShipping", conn);
 
                 conn.Open();
 
@@ -248,8 +248,8 @@ namespace WindowsFormsApplication1
 
                 adapter.Fill(dataTableRes);
                 cboDatumUtovara.DataSource = dataTableRes;
-                cboDatumUtovara.DisplayMember = "DatumIstovara";
-                cboDatumUtovara.ValueMember = "DatumIstovara";
+                cboDatumUtovara.DisplayMember = "DatumUtovara";
+                cboDatumUtovara.ValueMember = "DatumUtovara";
 
                 conn.Close();
             }
@@ -269,7 +269,7 @@ namespace WindowsFormsApplication1
 
                 using (OleDbConnection conn = new OleDbConnection(connString))
                 {
-                    OleDbCommand cmd = new OleDbCommand("SELECT Distinct(TrVozila.RegistarskiBroj) as RegistarskiBroj FROM RkShipping INNER JOIN TrVozila ON RkShipping.VoziloIDz = TrVozila.VoziloID where  DatumIstovara= CDate('" + cboDatumUtovara.Text + "')", conn);
+                    OleDbCommand cmd = new OleDbCommand("SELECT Distinct(TrVozila.RegistarskiBroj) as RegistarskiBroj FROM RkShipping INNER JOIN TrVozila ON RkShipping.VoziloIDz = TrVozila.VoziloID where  DatumUtovara= CDate('" + cboDatumUtovara.Text + "')", conn);
 
                     conn.Open();
 

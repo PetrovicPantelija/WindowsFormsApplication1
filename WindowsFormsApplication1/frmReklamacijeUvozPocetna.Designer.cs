@@ -43,12 +43,13 @@ namespace WindowsFormsApplication1
             // 
             // progressBar1
             // 
+            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.progressBar1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(247)))), ((int)(((byte)(246)))));
             this.progressBar1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
-            this.progressBar1.Location = new System.Drawing.Point(23, 645);
-            this.progressBar1.Margin = new System.Windows.Forms.Padding(2);
+            this.progressBar1.Location = new System.Drawing.Point(875, 70);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(862, 23);
+            this.progressBar1.Size = new System.Drawing.Size(513, 28);
             this.progressBar1.TabIndex = 48;
             // 
             // dataGridView3
@@ -59,41 +60,43 @@ namespace WindowsFormsApplication1
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView3.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(158)))), ((int)(((byte)(192)))));
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(23, 90);
-            this.dataGridView3.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView3.Location = new System.Drawing.Point(12, 111);
+            this.dataGridView3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.RowHeadersWidth = 51;
             this.dataGridView3.RowTemplate.Height = 24;
-            this.dataGridView3.Size = new System.Drawing.Size(1004, 529);
+            this.dataGridView3.Size = new System.Drawing.Size(1377, 728);
             this.dataGridView3.TabIndex = 45;
             // 
             // cboDatumUtovara
             // 
             this.cboDatumUtovara.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cboDatumUtovara.FormattingEnabled = true;
-            this.cboDatumUtovara.Location = new System.Drawing.Point(23, 39);
-            this.cboDatumUtovara.Margin = new System.Windows.Forms.Padding(2);
+            this.cboDatumUtovara.Location = new System.Drawing.Point(31, 48);
+            this.cboDatumUtovara.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboDatumUtovara.Name = "cboDatumUtovara";
-            this.cboDatumUtovara.Size = new System.Drawing.Size(162, 25);
+            this.cboDatumUtovara.Size = new System.Drawing.Size(215, 28);
             this.cboDatumUtovara.TabIndex = 44;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(23, 18);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(31, 22);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(54, 19);
+            this.label2.Size = new System.Drawing.Size(129, 23);
             this.label2.TabIndex = 43;
-            this.label2.Text = "Datum:";
+            this.label2.Text = "Datum utovara:";
             // 
             // pictureBox2
             // 
+            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(890, 634);
+            this.pictureBox2.Location = new System.Drawing.Point(1205, 22);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(137, 34);
+            this.pictureBox2.Size = new System.Drawing.Size(183, 42);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 165;
             this.pictureBox2.TabStop = false;
@@ -108,10 +111,11 @@ namespace WindowsFormsApplication1
             this.button1.IconColor = System.Drawing.Color.Black;
             this.button1.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.button1.IconSize = 22;
-            this.button1.Location = new System.Drawing.Point(194, 39);
+            this.button1.Location = new System.Drawing.Point(259, 48);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
-            this.button1.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.button1.Size = new System.Drawing.Size(179, 25);
+            this.button1.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
+            this.button1.Size = new System.Drawing.Size(239, 31);
             this.button1.TabIndex = 168;
             this.button1.Text = "Prikaži pakete";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -130,10 +134,11 @@ namespace WindowsFormsApplication1
             this.button2.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.button2.IconSize = 22;
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(382, 39);
+            this.button2.Location = new System.Drawing.Point(509, 48);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
-            this.button2.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.button2.Size = new System.Drawing.Size(179, 25);
+            this.button2.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
+            this.button2.Size = new System.Drawing.Size(239, 31);
             this.button2.TabIndex = 169;
             this.button2.Text = "Formiraj reklamaciju";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -143,10 +148,10 @@ namespace WindowsFormsApplication1
             // 
             // frmReklamacijeUvozPocetna
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(187)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(1051, 691);
+            this.ClientSize = new System.Drawing.Size(1401, 850);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox2);
@@ -155,6 +160,7 @@ namespace WindowsFormsApplication1
             this.Controls.Add(this.label2);
             this.Controls.Add(this.progressBar1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmReklamacijeUvozPocetna";
             this.Text = "Početna reklamacije";
             this.Load += new System.EventHandler(this.frmReklamacijaUvoz_Load);

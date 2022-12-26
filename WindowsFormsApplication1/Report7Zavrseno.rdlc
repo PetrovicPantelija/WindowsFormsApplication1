@@ -2,18 +2,18 @@
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="DataSet55">
+    <DataSource Name="DataSet7">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>0496fe8c-8d9c-4177-9e3c-43c2f9004574</rd:DataSourceID>
+      <rd:DataSourceID>3eed8db7-541b-49b4-a00b-f2b4fe5629c5</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="DataSet55">
       <Query>
-        <DataSourceName>DataSet55</DataSourceName>
+        <DataSourceName>DataSet7</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -116,7 +116,7 @@
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>DataSet55</rd:DataSetName>
-        <rd:SchemaPath>D:\JelaVS2019\WindowsFormsApplication1\WindowsFormsApplication1\DataSet55.xsd</rd:SchemaPath>
+        <rd:SchemaPath>D:\JelaVS2019\WindowsFormsApplication1 - 22-01-28 C\WindowsFormsApplication1\DataSet55.xsd</rd:SchemaPath>
         <rd:TableName>TestProcedurePalSveRZavrseno</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
@@ -1584,7 +1584,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Opis11">
+                        <Textbox Name="Opis1">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1602,7 +1602,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Opis11</rd:DefaultName>
+                          <rd:DefaultName>Opis1</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>

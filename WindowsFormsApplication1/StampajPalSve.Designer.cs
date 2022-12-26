@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StampajPalSve));
+            this.TestProcedurePalSveBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.DataSet10 = new WindowsFormsApplication1.DataSet10();
             this.button5 = new System.Windows.Forms.Button();
             this.cboDatumUtovara = new System.Windows.Forms.ComboBox();
             this.cboVozila = new System.Windows.Forms.ComboBox();
@@ -41,12 +43,20 @@
             this.cb3 = new System.Windows.Forms.CheckBox();
             this.cb2 = new System.Windows.Forms.CheckBox();
             this.cb1 = new System.Windows.Forms.CheckBox();
-            this.TestProcedurePalSveBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.DataSet10 = new WindowsFormsApplication1.DataSet10();
             this.TestProcedurePalSveTableAdapter = new WindowsFormsApplication1.DataSet10TableAdapters.TestProcedurePalSveTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.TestProcedurePalSveBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataSet10)).BeginInit();
             this.SuspendLayout();
+            // 
+            // TestProcedurePalSveBindingSource
+            // 
+            this.TestProcedurePalSveBindingSource.DataMember = "TestProcedurePalSve";
+            this.TestProcedurePalSveBindingSource.DataSource = this.DataSet10;
+            // 
+            // DataSet10
+            // 
+            this.DataSet10.DataSetName = "DataSet10";
+            this.DataSet10.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // button5
             // 
@@ -83,9 +93,9 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label2.Location = new System.Drawing.Point(9, 15);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(128, 20);
+            this.label2.Size = new System.Drawing.Size(124, 20);
             this.label2.TabIndex = 49;
-            this.label2.Text = "Datum istovara:";
+            this.label2.Text = "Datum utovara:";
             // 
             // label1
             // 
@@ -152,16 +162,6 @@
             this.cb1.TabIndex = 69;
             this.cb1.Text = "Normal";
             this.cb1.UseVisualStyleBackColor = true;
-            // 
-            // TestProcedurePalSveBindingSource
-            // 
-            this.TestProcedurePalSveBindingSource.DataMember = "TestProcedurePalSve";
-            this.TestProcedurePalSveBindingSource.DataSource = this.DataSet10;
-            // 
-            // DataSet10
-            // 
-            this.DataSet10.DataSetName = "DataSet10";
-            this.DataSet10.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // TestProcedurePalSveTableAdapter
             // 

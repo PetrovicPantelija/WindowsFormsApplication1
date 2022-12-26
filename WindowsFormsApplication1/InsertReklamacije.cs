@@ -77,7 +77,7 @@ namespace WindowsFormsApplication1
             SqlParameter parameter10 = new SqlParameter();
             parameter10.ParameterName = "@Zapisnik";
             parameter10.SqlDbType = SqlDbType.Char;
-            parameter10.Size = 26;
+            parameter10.Size = 35;
             parameter10.Direction = ParameterDirection.Input;
             parameter10.Value = Zapisnik;
             myCommand.Parameters.Add(parameter10);
@@ -208,7 +208,7 @@ namespace WindowsFormsApplication1
             SqlParameter parameter10 = new SqlParameter();
             parameter10.ParameterName = "@Zapisnik";
             parameter10.SqlDbType = SqlDbType.Char;
-            parameter10.Size = 26;
+            parameter10.Size = 35;
             parameter10.Direction = ParameterDirection.Input;
             parameter10.Value = Zapisnik;
             myCommand.Parameters.Add(parameter10);
