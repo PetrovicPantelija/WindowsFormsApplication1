@@ -235,21 +235,27 @@ namespace WindowsFormsApplication1.Pakovanja.PlanPakovanja
             // btnBack
             // 
             this.btnBack.BackColor = System.Drawing.Color.SlateGray;
+            this.btnBack.Image = global::WindowsFormsApplication1.Properties.Resources.back;
+            this.btnBack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnBack.Location = new System.Drawing.Point(15, 15);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(100, 30);
             this.btnBack.TabIndex = 55;
             this.btnBack.Text = "Back";
+            this.btnBack.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnBack.UseVisualStyleBackColor = false;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // btnDetails
             // 
+            this.btnDetails.Image = global::WindowsFormsApplication1.Properties.Resources.details;
+            this.btnDetails.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDetails.Location = new System.Drawing.Point(121, 15);
             this.btnDetails.Name = "btnDetails";
             this.btnDetails.Size = new System.Drawing.Size(100, 30);
             this.btnDetails.TabIndex = 56;
             this.btnDetails.Text = "Details";
+            this.btnDetails.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnDetails.UseVisualStyleBackColor = true;
             this.btnDetails.Click += new System.EventHandler(this.btnDetails_Click);
             // 

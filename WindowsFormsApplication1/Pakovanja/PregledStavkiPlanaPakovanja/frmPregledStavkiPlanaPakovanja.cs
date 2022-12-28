@@ -225,6 +225,7 @@ namespace WindowsFormsApplication1.Pakovanja.PregledStavkiPlanaPakovanja
             e.Handled = General.IsDecimal(sender, e);
         }
 
+
         private void txt_ukucati_količinu_za_rezervaciju_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = General.IsDecimal(sender, e);

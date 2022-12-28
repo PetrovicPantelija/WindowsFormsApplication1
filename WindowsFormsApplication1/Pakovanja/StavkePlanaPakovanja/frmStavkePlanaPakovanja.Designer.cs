@@ -29,8 +29,6 @@ namespace WindowsFormsApplication1.Pakovanja.StavkePlanaPakovanja
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnDetails = new System.Windows.Forms.Button();
-            this.btnBack = new System.Windows.Forms.Button();
             this.btnAddItem = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -74,33 +72,14 @@ namespace WindowsFormsApplication1.Pakovanja.StavkePlanaPakovanja
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.textBoxSearch = new System.Windows.Forms.TextBox();
+            this.btnDetails = new System.Windows.Forms.Button();
+            this.btnBack = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             this.InsertBox.SuspendLayout();
             this.panelDNP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid1)).BeginInit();
             this.groupBoxAddEdit.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnDetails
-            // 
-            this.btnDetails.Location = new System.Drawing.Point(121, 15);
-            this.btnDetails.Name = "btnDetails";
-            this.btnDetails.Size = new System.Drawing.Size(100, 30);
-            this.btnDetails.TabIndex = 65;
-            this.btnDetails.Text = "Details";
-            this.btnDetails.UseVisualStyleBackColor = true;
-            this.btnDetails.Click += new System.EventHandler(this.btnDetails_Click);
-            // 
-            // btnBack
-            // 
-            this.btnBack.BackColor = System.Drawing.Color.SlateGray;
-            this.btnBack.Location = new System.Drawing.Point(15, 15);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(100, 30);
-            this.btnBack.TabIndex = 64;
-            this.btnBack.Text = "Back";
-            this.btnBack.UseVisualStyleBackColor = false;
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // btnAddItem
             // 
@@ -207,6 +186,8 @@ namespace WindowsFormsApplication1.Pakovanja.StavkePlanaPakovanja
             // 
             // btnInsertStavke
             // 
+            this.btnInsertStavke.Image = global::WindowsFormsApplication1.Properties.Resources.arrow_up;
+            this.btnInsertStavke.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnInsertStavke.Location = new System.Drawing.Point(3, 41);
             this.btnInsertStavke.Name = "btnInsertStavke";
             this.btnInsertStavke.Size = new System.Drawing.Size(151, 44);
@@ -332,7 +313,7 @@ namespace WindowsFormsApplication1.Pakovanja.StavkePlanaPakovanja
             this.groupBoxAddEdit.Controls.Add(this.btnCancel);
             this.groupBoxAddEdit.Controls.Add(this.btnUpdate);
             this.groupBoxAddEdit.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxAddEdit.Location = new System.Drawing.Point(12, 306);
+            this.groupBoxAddEdit.Location = new System.Drawing.Point(12, 305);
             this.groupBoxAddEdit.Name = "groupBoxAddEdit";
             this.groupBoxAddEdit.Size = new System.Drawing.Size(783, 279);
             this.groupBoxAddEdit.TabIndex = 67;
@@ -555,16 +536,43 @@ namespace WindowsFormsApplication1.Pakovanja.StavkePlanaPakovanja
             this.textBoxSearch.Size = new System.Drawing.Size(117, 22);
             this.textBoxSearch.TabIndex = 68;
             // 
+            // btnDetails
+            // 
+            this.btnDetails.Image = global::WindowsFormsApplication1.Properties.Resources.details;
+            this.btnDetails.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDetails.Location = new System.Drawing.Point(118, 15);
+            this.btnDetails.Name = "btnDetails";
+            this.btnDetails.Size = new System.Drawing.Size(100, 30);
+            this.btnDetails.TabIndex = 70;
+            this.btnDetails.Text = "Details";
+            this.btnDetails.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDetails.UseVisualStyleBackColor = true;
+            this.btnDetails.Click += new System.EventHandler(this.btnDetails_Click);
+            // 
+            // btnBack
+            // 
+            this.btnBack.BackColor = System.Drawing.Color.SlateGray;
+            this.btnBack.Image = global::WindowsFormsApplication1.Properties.Resources.back;
+            this.btnBack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBack.Location = new System.Drawing.Point(12, 15);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(100, 30);
+            this.btnBack.TabIndex = 69;
+            this.btnBack.Text = "Back";
+            this.btnBack.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnBack.UseVisualStyleBackColor = false;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
             // frmStavkePlanaPakovanja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1578, 817);
+            this.Controls.Add(this.btnDetails);
+            this.Controls.Add(this.btnBack);
             this.Controls.Add(this.textBoxSearch);
             this.Controls.Add(this.groupBoxAddEdit);
             this.Controls.Add(this.InsertBox);
-            this.Controls.Add(this.btnDetails);
-            this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnAddItem);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnDelete);
@@ -588,9 +596,6 @@ namespace WindowsFormsApplication1.Pakovanja.StavkePlanaPakovanja
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnDetails;
-        private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnAddItem;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnDelete;
@@ -634,5 +639,7 @@ namespace WindowsFormsApplication1.Pakovanja.StavkePlanaPakovanja
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox comboBox;
         private System.Windows.Forms.TextBox textBoxSearch;
+        private System.Windows.Forms.Button btnDetails;
+        private System.Windows.Forms.Button btnBack;
     }
 }

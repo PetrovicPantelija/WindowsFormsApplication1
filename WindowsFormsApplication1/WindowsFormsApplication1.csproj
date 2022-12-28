@@ -2041,6 +2041,13 @@
     <Content Include="Content\fontawesome\font-awesome.css" />
     <Content Include="Content\fontawesome\font-awesome.min.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <None Include="Resources\arrow_up.png" />
+    <None Include="Resources\back.png" />
+    <None Include="Resources\close windows.png" />
+    <None Include="Resources\details.png" />
+    <None Include="Resources\maximize.png" />
+    <None Include="Resources\minimize.png" />
+    <None Include="Resources\restore down.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="webs_baza16.mdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

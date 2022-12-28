@@ -29,7 +29,6 @@ namespace WindowsFormsApplication1.Pakovanja.PregledStavkiPlanaPakovanja
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnBack = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
@@ -58,20 +57,10 @@ namespace WindowsFormsApplication1.Pakovanja.PregledStavkiPlanaPakovanja
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.textBoxSearch = new System.Windows.Forms.TextBox();
+            this.btnBack = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             this.groupBoxAddEdit.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnBack
-            // 
-            this.btnBack.BackColor = System.Drawing.Color.SlateGray;
-            this.btnBack.Location = new System.Drawing.Point(15, 15);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(100, 30);
-            this.btnBack.TabIndex = 72;
-            this.btnBack.Text = "Back";
-            this.btnBack.UseVisualStyleBackColor = false;
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // btnEdit
             // 
@@ -367,21 +356,34 @@ namespace WindowsFormsApplication1.Pakovanja.PregledStavkiPlanaPakovanja
             this.textBoxSearch.Size = new System.Drawing.Size(117, 22);
             this.textBoxSearch.TabIndex = 75;
             // 
+            // btnBack
+            // 
+            this.btnBack.BackColor = System.Drawing.Color.SlateGray;
+            this.btnBack.Image = global::WindowsFormsApplication1.Properties.Resources.back;
+            this.btnBack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBack.Location = new System.Drawing.Point(15, 15);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(100, 30);
+            this.btnBack.TabIndex = 76;
+            this.btnBack.Text = "Back";
+            this.btnBack.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnBack.UseVisualStyleBackColor = false;
+            // 
             // frmPregledStavkiPlanaPakovanja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1679, 791);
+            this.Controls.Add(this.btnBack);
             this.Controls.Add(this.textBoxSearch);
             this.Controls.Add(this.groupBoxAddEdit);
-            this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.dataGrid);
             this.Name = "frmPregledStavkiPlanaPakovanja";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Izmeni Stavke Za Pregled Plana Pakovanja";
+            this.Text = "Pregled Stavki Plana Pakovanja";
             this.Load += new System.EventHandler(this.frmPregledStavkiPlanaPakovanja_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
             this.groupBoxAddEdit.ResumeLayout(false);
@@ -392,7 +394,6 @@ namespace WindowsFormsApplication1.Pakovanja.PregledStavkiPlanaPakovanja
         }
 
         #endregion
-        private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnSearch;
@@ -421,5 +422,6 @@ namespace WindowsFormsApplication1.Pakovanja.PregledStavkiPlanaPakovanja
         private System.Windows.Forms.TextBox txt_ukucati_količinu_za_rezervaciju;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxSearch;
+        private System.Windows.Forms.Button btnBack;
     }
 }
