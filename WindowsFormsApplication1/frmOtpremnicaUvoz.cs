@@ -126,6 +126,8 @@ namespace WindowsFormsApplication1
             cboDatumUtovara.DataSource = ds.Tables[0];
             cboDatumUtovara.DisplayMember = "DatumUtovara";
             cboDatumUtovara.ValueMember = "DatumUtovara";
+
+            //Test 2
         }
 
         private void button1_Click(object sender, EventArgs e)
