@@ -204,5 +204,11 @@ namespace WindowsFormsApplication1.Meniji
             PravoP = srp.Pravo;
             if (PravoP == true) { srp.Show(); } else { return; }
         }
+
+        private void iconButton12_Click(object sender, EventArgs e)
+        {
+            Pakovanja.PlanPakovanja.frmPlanPakovanja plpak = new Pakovanja.PlanPakovanja.frmPlanPakovanja();
+            plpak.Show();
+        }
     }
 }

@@ -44,6 +44,7 @@
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.btnsVrstaRobe = new FontAwesome.Sharp.IconButton();
             this.btnsZaposleni = new FontAwesome.Sharp.IconButton();
+            this.iconButton12 = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -52,15 +53,17 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(796, 556);
+            this.pictureBox2.Location = new System.Drawing.Point(1061, 684);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(218, 65);
+            this.pictureBox2.Size = new System.Drawing.Size(291, 80);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 144;
             this.pictureBox2.TabStop = false;
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.iconButton12);
             this.panel1.Controls.Add(this.iconButton11);
             this.panel1.Controls.Add(this.iconButton10);
             this.panel1.Controls.Add(this.iconButton9);
@@ -77,8 +80,9 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(296, 633);
+            this.panel1.Size = new System.Drawing.Size(395, 779);
             this.panel1.TabIndex = 145;
             // 
             // iconButton11
@@ -92,10 +96,11 @@
             this.iconButton11.IconColor = System.Drawing.Color.Black;
             this.iconButton11.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton11.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton11.Location = new System.Drawing.Point(0, 480);
+            this.iconButton11.Location = new System.Drawing.Point(0, 588);
+            this.iconButton11.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.iconButton11.Name = "iconButton11";
-            this.iconButton11.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
-            this.iconButton11.Size = new System.Drawing.Size(296, 40);
+            this.iconButton11.Padding = new System.Windows.Forms.Padding(27, 0, 27, 0);
+            this.iconButton11.Size = new System.Drawing.Size(395, 49);
             this.iconButton11.TabIndex = 24;
             this.iconButton11.Text = "Štampaj reklamacije - Završeno";
             this.iconButton11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -113,10 +118,11 @@
             this.iconButton10.IconColor = System.Drawing.Color.Black;
             this.iconButton10.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton10.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton10.Location = new System.Drawing.Point(0, 440);
+            this.iconButton10.Location = new System.Drawing.Point(0, 539);
+            this.iconButton10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.iconButton10.Name = "iconButton10";
-            this.iconButton10.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
-            this.iconButton10.Size = new System.Drawing.Size(296, 40);
+            this.iconButton10.Padding = new System.Windows.Forms.Padding(27, 0, 27, 0);
+            this.iconButton10.Size = new System.Drawing.Size(395, 49);
             this.iconButton10.TabIndex = 23;
             this.iconButton10.Text = "Štampa za paletu - Završeno";
             this.iconButton10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -134,10 +140,11 @@
             this.iconButton9.IconColor = System.Drawing.Color.Black;
             this.iconButton9.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton9.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton9.Location = new System.Drawing.Point(0, 400);
+            this.iconButton9.Location = new System.Drawing.Point(0, 490);
+            this.iconButton9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.iconButton9.Name = "iconButton9";
-            this.iconButton9.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
-            this.iconButton9.Size = new System.Drawing.Size(296, 40);
+            this.iconButton9.Padding = new System.Windows.Forms.Padding(27, 0, 27, 0);
+            this.iconButton9.Size = new System.Drawing.Size(395, 49);
             this.iconButton9.TabIndex = 22;
             this.iconButton9.Text = "Brisanje isporuka";
             this.iconButton9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -155,10 +162,11 @@
             this.iconButton8.IconColor = System.Drawing.Color.Black;
             this.iconButton8.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton8.Location = new System.Drawing.Point(0, 360);
+            this.iconButton8.Location = new System.Drawing.Point(0, 441);
+            this.iconButton8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.iconButton8.Name = "iconButton8";
-            this.iconButton8.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
-            this.iconButton8.Size = new System.Drawing.Size(296, 40);
+            this.iconButton8.Padding = new System.Windows.Forms.Padding(27, 0, 27, 0);
+            this.iconButton8.Size = new System.Drawing.Size(395, 49);
             this.iconButton8.TabIndex = 21;
             this.iconButton8.Text = "Štampaj reklamacije";
             this.iconButton8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -176,10 +184,11 @@
             this.iconButton7.IconColor = System.Drawing.Color.Black;
             this.iconButton7.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton7.Location = new System.Drawing.Point(0, 320);
+            this.iconButton7.Location = new System.Drawing.Point(0, 392);
+            this.iconButton7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.iconButton7.Name = "iconButton7";
-            this.iconButton7.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
-            this.iconButton7.Size = new System.Drawing.Size(296, 40);
+            this.iconButton7.Padding = new System.Windows.Forms.Padding(27, 0, 27, 0);
+            this.iconButton7.Size = new System.Drawing.Size(395, 49);
             this.iconButton7.TabIndex = 20;
             this.iconButton7.Text = "Promena vozila";
             this.iconButton7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -197,10 +206,11 @@
             this.iconButton6.IconColor = System.Drawing.Color.Black;
             this.iconButton6.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton6.Location = new System.Drawing.Point(0, 280);
+            this.iconButton6.Location = new System.Drawing.Point(0, 343);
+            this.iconButton6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.iconButton6.Name = "iconButton6";
-            this.iconButton6.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
-            this.iconButton6.Size = new System.Drawing.Size(296, 40);
+            this.iconButton6.Padding = new System.Windows.Forms.Padding(27, 0, 27, 0);
+            this.iconButton6.Size = new System.Drawing.Size(395, 49);
             this.iconButton6.TabIndex = 19;
             this.iconButton6.Text = "Paletar obrada";
             this.iconButton6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -218,10 +228,11 @@
             this.iconButton5.IconColor = System.Drawing.Color.Black;
             this.iconButton5.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton5.Location = new System.Drawing.Point(0, 240);
+            this.iconButton5.Location = new System.Drawing.Point(0, 294);
+            this.iconButton5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.iconButton5.Name = "iconButton5";
-            this.iconButton5.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
-            this.iconButton5.Size = new System.Drawing.Size(296, 40);
+            this.iconButton5.Padding = new System.Windows.Forms.Padding(27, 0, 27, 0);
+            this.iconButton5.Size = new System.Drawing.Size(395, 49);
             this.iconButton5.TabIndex = 18;
             this.iconButton5.Text = "Štampa za paletu";
             this.iconButton5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -239,10 +250,11 @@
             this.iconButton4.IconColor = System.Drawing.Color.Black;
             this.iconButton4.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton4.Location = new System.Drawing.Point(0, 200);
+            this.iconButton4.Location = new System.Drawing.Point(0, 245);
+            this.iconButton4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.iconButton4.Name = "iconButton4";
-            this.iconButton4.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
-            this.iconButton4.Size = new System.Drawing.Size(296, 40);
+            this.iconButton4.Padding = new System.Windows.Forms.Padding(27, 0, 27, 0);
+            this.iconButton4.Size = new System.Drawing.Size(395, 49);
             this.iconButton4.TabIndex = 17;
             this.iconButton4.Text = "Završetak isporuke";
             this.iconButton4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -260,10 +272,11 @@
             this.iconButton3.IconColor = System.Drawing.Color.Black;
             this.iconButton3.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton3.Location = new System.Drawing.Point(0, 160);
+            this.iconButton3.Location = new System.Drawing.Point(0, 196);
+            this.iconButton3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.iconButton3.Name = "iconButton3";
-            this.iconButton3.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
-            this.iconButton3.Size = new System.Drawing.Size(296, 40);
+            this.iconButton3.Padding = new System.Windows.Forms.Padding(27, 0, 27, 0);
+            this.iconButton3.Size = new System.Drawing.Size(395, 49);
             this.iconButton3.TabIndex = 16;
             this.iconButton3.Text = "Štampa za pakeristu";
             this.iconButton3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -281,10 +294,11 @@
             this.iconButton2.IconColor = System.Drawing.Color.Black;
             this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton2.Location = new System.Drawing.Point(0, 120);
+            this.iconButton2.Location = new System.Drawing.Point(0, 147);
+            this.iconButton2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.iconButton2.Name = "iconButton2";
-            this.iconButton2.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
-            this.iconButton2.Size = new System.Drawing.Size(296, 40);
+            this.iconButton2.Padding = new System.Windows.Forms.Padding(27, 0, 27, 0);
+            this.iconButton2.Size = new System.Drawing.Size(395, 49);
             this.iconButton2.TabIndex = 15;
             this.iconButton2.Text = "Isporuka po vozilu - Pocetna";
             this.iconButton2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -302,10 +316,11 @@
             this.iconButton1.IconColor = System.Drawing.Color.Black;
             this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.Location = new System.Drawing.Point(0, 80);
+            this.iconButton1.Location = new System.Drawing.Point(0, 98);
+            this.iconButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
-            this.iconButton1.Size = new System.Drawing.Size(296, 40);
+            this.iconButton1.Padding = new System.Windows.Forms.Padding(27, 0, 27, 0);
+            this.iconButton1.Size = new System.Drawing.Size(395, 49);
             this.iconButton1.TabIndex = 14;
             this.iconButton1.Text = "Kontrolor obrada - Trenutna";
             this.iconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -323,10 +338,11 @@
             this.btnsVrstaRobe.IconColor = System.Drawing.Color.Black;
             this.btnsVrstaRobe.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnsVrstaRobe.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnsVrstaRobe.Location = new System.Drawing.Point(0, 40);
+            this.btnsVrstaRobe.Location = new System.Drawing.Point(0, 49);
+            this.btnsVrstaRobe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnsVrstaRobe.Name = "btnsVrstaRobe";
-            this.btnsVrstaRobe.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
-            this.btnsVrstaRobe.Size = new System.Drawing.Size(296, 40);
+            this.btnsVrstaRobe.Padding = new System.Windows.Forms.Padding(27, 0, 27, 0);
+            this.btnsVrstaRobe.Size = new System.Drawing.Size(395, 49);
             this.btnsVrstaRobe.TabIndex = 13;
             this.btnsVrstaRobe.Text = "Kontrolor obrada - Pocetna";
             this.btnsVrstaRobe.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -345,24 +361,48 @@
             this.btnsZaposleni.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnsZaposleni.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnsZaposleni.Location = new System.Drawing.Point(0, 0);
+            this.btnsZaposleni.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnsZaposleni.Name = "btnsZaposleni";
-            this.btnsZaposleni.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
-            this.btnsZaposleni.Size = new System.Drawing.Size(296, 40);
+            this.btnsZaposleni.Padding = new System.Windows.Forms.Padding(27, 0, 27, 0);
+            this.btnsZaposleni.Size = new System.Drawing.Size(395, 49);
             this.btnsZaposleni.TabIndex = 10;
             this.btnsZaposleni.Text = "Isporuka uvoz po utovaru";
             this.btnsZaposleni.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnsZaposleni.UseVisualStyleBackColor = true;
             this.btnsZaposleni.Click += new System.EventHandler(this.btnsZaposleni_Click);
             // 
+            // iconButton12
+            // 
+            this.iconButton12.Dock = System.Windows.Forms.DockStyle.Top;
+            this.iconButton12.FlatAppearance.BorderSize = 0;
+            this.iconButton12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconButton12.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.iconButton12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(54)))), ((int)(((byte)(56)))));
+            this.iconButton12.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.iconButton12.IconColor = System.Drawing.Color.Black;
+            this.iconButton12.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton12.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconButton12.Location = new System.Drawing.Point(0, 637);
+            this.iconButton12.Margin = new System.Windows.Forms.Padding(4);
+            this.iconButton12.Name = "iconButton12";
+            this.iconButton12.Padding = new System.Windows.Forms.Padding(27, 0, 27, 0);
+            this.iconButton12.Size = new System.Drawing.Size(395, 49);
+            this.iconButton12.TabIndex = 25;
+            this.iconButton12.Text = "Plan pakovanja";
+            this.iconButton12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconButton12.UseVisualStyleBackColor = true;
+            this.iconButton12.Click += new System.EventHandler(this.iconButton12_Click);
+            // 
             // frmIsporuke
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(1026, 633);
+            this.ClientSize = new System.Drawing.Size(1368, 779);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmIsporuke";
             this.Text = "frmIsporuke";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -388,5 +428,6 @@
         private FontAwesome.Sharp.IconButton btnsZaposleni;
         private FontAwesome.Sharp.IconButton iconButton11;
         private FontAwesome.Sharp.IconButton iconButton10;
+        private FontAwesome.Sharp.IconButton iconButton12;
     }
 }
