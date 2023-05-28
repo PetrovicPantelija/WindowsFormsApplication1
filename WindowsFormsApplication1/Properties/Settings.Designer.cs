@@ -12,7 +12,7 @@ namespace WindowsFormsApplication1.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.8.1.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.10.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -47,21 +47,22 @@ namespace WindowsFormsApplication1.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=PANTA\\sqlexpress2008r2;Initial Catalog=Perftech_Beograd;Integrated Se" +
-            "curity=True")]
-        public string PerftehConnectionString {
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.1.3\\sql20082;Initial Catalog=Jela_Test;User ID=panta;Password" +
+            "=1234;")]
+        public string NedraConnectionString {
             get {
-                return ((string)(this["PerftehConnectionString"]));
+                return ((string)(this["NedraConnectionString"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-2UF763B;Initial Catalog=Jela;Integrated Security=True")]
-        public string NedraConnectionString {
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.1.3\\sql20082;Initial Catalog=Jela_Test;User ID=panta;Password" +
+            "=1234;")]
+        public string PerftehConnectionString {
             get {
-                return ((string)(this["NedraConnectionString"]));
+                return ((string)(this["PerftehConnectionString"]));
             }
         }
     }

@@ -44,9 +44,10 @@
             // 
             // txtPutanja
             // 
-            this.txtPutanja.Location = new System.Drawing.Point(23, 39);
+            this.txtPutanja.Location = new System.Drawing.Point(31, 48);
+            this.txtPutanja.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPutanja.Name = "txtPutanja";
-            this.txtPutanja.Size = new System.Drawing.Size(419, 20);
+            this.txtPutanja.Size = new System.Drawing.Size(557, 22);
             this.txtPutanja.TabIndex = 13;
             this.txtPutanja.TextChanged += new System.EventHandler(this.txtPutanja_TextChanged);
             // 
@@ -54,9 +55,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(23, 19);
+            this.label1.Location = new System.Drawing.Point(31, 23);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(215, 19);
+            this.label1.Size = new System.Drawing.Size(269, 23);
             this.label1.TabIndex = 12;
             this.label1.Text = "Ulazni folder / Custumer input file";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -71,9 +73,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.progressBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(247)))), ((int)(((byte)(246)))));
             this.progressBar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
-            this.progressBar.Location = new System.Drawing.Point(23, 137);
+            this.progressBar.Location = new System.Drawing.Point(31, 150);
+            this.progressBar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(816, 23);
+            this.progressBar.Size = new System.Drawing.Size(1088, 28);
             this.progressBar.TabIndex = 42;
             this.progressBar.Click += new System.EventHandler(this.progressBar_Click);
             // 
@@ -81,10 +84,9 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.label2.Location = new System.Drawing.Point(23, 69);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(31, 85);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(54, 19);
+            this.label2.Size = new System.Drawing.Size(66, 23);
             this.label2.TabIndex = 43;
             this.label2.Text = "Datum:";
             this.label2.Click += new System.EventHandler(this.label2_Click);
@@ -93,9 +95,10 @@
             // 
             this.cboDatumUtovara.CustomFormat = "dd.MM.yyyy";
             this.cboDatumUtovara.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.cboDatumUtovara.Location = new System.Drawing.Point(23, 89);
+            this.cboDatumUtovara.Location = new System.Drawing.Point(31, 110);
+            this.cboDatumUtovara.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cboDatumUtovara.Name = "cboDatumUtovara";
-            this.cboDatumUtovara.Size = new System.Drawing.Size(169, 20);
+            this.cboDatumUtovara.Size = new System.Drawing.Size(224, 22);
             this.cboDatumUtovara.TabIndex = 44;
             this.cboDatumUtovara.ValueChanged += new System.EventHandler(this.cboDatumUtovara_ValueChanged);
             // 
@@ -103,9 +106,10 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(724, 4);
+            this.pictureBox2.Location = new System.Drawing.Point(965, 5);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(137, 34);
+            this.pictureBox2.Size = new System.Drawing.Size(183, 42);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 165;
             this.pictureBox2.TabStop = false;
@@ -121,9 +125,10 @@
             this.btnImeFajla.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.btnImeFajla.IconSize = 23;
             this.btnImeFajla.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnImeFajla.Location = new System.Drawing.Point(452, 37);
+            this.btnImeFajla.Location = new System.Drawing.Point(603, 46);
+            this.btnImeFajla.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnImeFajla.Name = "btnImeFajla";
-            this.btnImeFajla.Size = new System.Drawing.Size(102, 25);
+            this.btnImeFajla.Size = new System.Drawing.Size(136, 31);
             this.btnImeFajla.TabIndex = 167;
             this.btnImeFajla.Text = "Ime fajla";
             this.btnImeFajla.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -141,9 +146,10 @@
             this.button1.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.button1.IconSize = 23;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(201, 87);
+            this.button1.Location = new System.Drawing.Point(268, 107);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(102, 25);
+            this.button1.Size = new System.Drawing.Size(136, 31);
             this.button1.TabIndex = 168;
             this.button1.Text = "Obradi";
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -152,10 +158,10 @@
             // 
             // frmExcelImportPorudzbina
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(187)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(863, 177);
+            this.ClientSize = new System.Drawing.Size(1151, 199);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.cboDatumUtovara);
@@ -165,8 +171,9 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnImeFajla);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmExcelImportPorudzbina";
-            this.Text = "Excel import porudžbina";
+            this.Text = "Excel import MP";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -127,6 +127,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.txtSA = new System.Windows.Forms.TextBox();
             this.txt_VpCenaAkcijaRSD = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
+            this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -146,7 +147,8 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.toolStripButton2,
             this.toolStripButton3,
             this.toolStripButton4,
-            this.toolStripButton5});
+            this.toolStripButton5,
+            this.toolStripButton6});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1576, 31);
@@ -1104,6 +1106,17 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.label17.TabIndex = 279;
             this.label17.Text = "CENA Akcija RSD";
             // 
+            // toolStripButton6
+            // 
+            this.toolStripButton6.BackColor = System.Drawing.Color.Lime;
+            this.toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
+            this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton6.Name = "toolStripButton6";
+            this.toolStripButton6.Size = new System.Drawing.Size(133, 28);
+            this.toolStripButton6.Text = "Troskovni obracun";
+            this.toolStripButton6.Click += new System.EventHandler(this.toolStripButton6_Click);
+            // 
             // frmKalkulatorStavke
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1307,5 +1320,6 @@ namespace WindowsFormsApplication1.Kalkulacije
         private System.Windows.Forms.TextBox txtSA;
         private System.Windows.Forms.TextBox txt_VpCenaAkcijaRSD;
         private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.ToolStripButton toolStripButton6;
     }
 }

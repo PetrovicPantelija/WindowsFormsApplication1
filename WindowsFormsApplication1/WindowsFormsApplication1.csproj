@@ -114,8 +114,9 @@
     <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportViewer.Common.10.0.40219.1\lib\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ReportViewer.WinForms.10.0.40219.1\lib\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\x86\Release\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.1016.290\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -129,7 +130,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll</HintPath>
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -537,6 +538,12 @@
     </Compile>
     <Compile Include="Kalkulacije\frmProgram.Designer.cs">
       <DependentUpon>frmProgram.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Kalkulacije\frmTroskoviIzracun.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kalkulacije\frmTroskoviIzracun.Designer.cs">
+      <DependentUpon>frmTroskoviIzracun.cs</DependentUpon>
     </Compile>
     <Compile Include="Kalkulacije\frmZaglavlja.cs">
       <SubType>Form</SubType>
@@ -946,43 +953,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Perftech_BeogradDataSet5.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Planovi-Excel\InsertPlanovi.cs" />
-    <Compile Include="Planovi-Excel\Izlaznost.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Planovi-Excel\Izlaznost.Designer.cs">
-      <DependentUpon>Izlaznost.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Planovi-Excel\PlanAktiv.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Planovi-Excel\PlanAktiv.Designer.cs">
-      <DependentUpon>PlanAktiv.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Planovi-Excel\PlanDetaljno.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Planovi-Excel\PlanDetaljno.Designer.cs">
-      <DependentUpon>PlanDetaljno.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Planovi-Excel\PlanStavke.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Planovi-Excel\PlanStavke.Designer.cs">
-      <DependentUpon>PlanStavke.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Planovi-Excel\Podesavanje.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Planovi-Excel\Podesavanje.Designer.cs">
-      <DependentUpon>Podesavanje.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Planovi-Excel\PripadnostKP.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Planovi-Excel\PripadnostKP.Designer.cs">
-      <DependentUpon>PripadnostKP.cs</DependentUpon>
     </Compile>
     <Compile Include="Portirnica\InsertLogNajave.cs" />
     <Compile Include="Portirnica\InsertStatusNajave.cs" />
@@ -1408,6 +1378,9 @@
     <EmbeddedResource Include="Kalkulacije\frmProgram.resx">
       <DependentUpon>frmProgram.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Kalkulacije\frmTroskoviIzracun.resx">
+      <DependentUpon>frmTroskoviIzracun.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Kalkulacije\frmZaglavlja.resx">
       <DependentUpon>frmZaglavlja.cs</DependentUpon>
     </EmbeddedResource>
@@ -1570,24 +1543,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Partneri.resx">
       <DependentUpon>Partneri.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Planovi-Excel\Izlaznost.resx">
-      <DependentUpon>Izlaznost.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Planovi-Excel\PlanAktiv.resx">
-      <DependentUpon>PlanAktiv.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Planovi-Excel\PlanDetaljno.resx">
-      <DependentUpon>PlanDetaljno.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Planovi-Excel\PlanStavke.resx">
-      <DependentUpon>PlanStavke.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Planovi-Excel\Podesavanje.resx">
-      <DependentUpon>Podesavanje.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Planovi-Excel\PripadnostKP.resx">
-      <DependentUpon>PripadnostKP.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Portirnica\StatusNajave.resx">
       <DependentUpon>StatusNajave.cs</DependentUpon>

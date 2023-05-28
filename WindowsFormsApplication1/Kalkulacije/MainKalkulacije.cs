@@ -169,15 +169,19 @@ namespace WindowsFormsApplication1.Kalkulacije
         private void label4_Click(object sender, EventArgs e)
         {
             Kalkulacije.frmZaglavlja zag = new frmZaglavlja();
-            PravoP = zag.Pravo;
-            if (PravoP == true) { zag.Show(); } else { return; }
+            zag.Show();
+
+           // PravoP = zag.Pravo;
+           // if (PravoP == true) { zag.Show(); } else { return; }
         }
 
         private void label5_Click(object sender, EventArgs e)
         {
-            Kalkulacije.frmKalkulatorStavke kalk = new frmKalkulatorStavke();
-            PravoP = kalk.Pravo;
-            if (PravoP == true) { kalk.Show(); } else { return; }
+            Kalkulacije.frmKalkulatorStavke kalk = new frmKalkulatorStavke(1);
+            kalk.Show();
+
+           // PravoP = kalk.Pravo;
+           // if (PravoP == true) { kalk.Show(); } else { return; }
         }
 
         private void label4_MouseEnter(object sender, EventArgs e)

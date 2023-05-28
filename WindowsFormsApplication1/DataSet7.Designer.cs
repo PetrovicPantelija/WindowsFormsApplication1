@@ -780,7 +780,7 @@ namespace WindowsFormsApplication1 {
                 this.columnSifraReklamacije.ReadOnly = true;
                 this.columnSifraReklamacije.MaxLength = 30;
                 this.columnNazivReklamacije.MaxLength = 30;
-                this.columnZapisnik.MaxLength = 35;
+                this.columnZapisnik.MaxLength = 26;
                 this.columnDatumUtovara.ReadOnly = true;
                 this.columnDatumUtovara.MaxLength = 10;
                 this.columnVozilo.ReadOnly = true;
@@ -1832,7 +1832,7 @@ namespace WindowsFormsApplication1.DataSet7TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::WindowsFormsApplication1.Properties.Settings.Default.NedraConnectionString;
+            this._connection.ConnectionString = global::WindowsFormsApplication1.Properties.Settings.Default.PerftehConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

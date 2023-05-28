@@ -32,12 +32,23 @@ namespace WindowsFormsApplication1.Kalkulacije
         string niz = "";
         string KursPrenesen = "0";
         int Deviznicenovnik = 0;
+
+        int SamoOtvori = 0;
         public frmKalkulatorStavke()
         {
             InitializeComponent();
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
+         //   IdGrupe();
+         //   IdForme();
+         //   PravoPristupa();
+        }
+
+        public frmKalkulatorStavke(int Nesto)
+        {
+            InitializeComponent();
+            //   IdGrupe();
+            //   IdForme();
+            //   PravoPristupa();
+            SamoOtvori = 1;
         }
         public string IdGrupe()
         {
@@ -1658,40 +1669,51 @@ namespace WindowsFormsApplication1.Kalkulacije
 
         private void frmKalkulatorStavke_Load(object sender, EventArgs e)
         {
-            PrikaziProgrameIKolekcije();
-            txtKurs.Text = KursPrenesen;
-            RefreshGV();
-            FillCombo();
-
-            txt_Trosak.Enabled = false;
-            txt_ID.Enabled = false;
-            txt_MpCena.Enabled = true;
-            txt_Mp2.Enabled = false;
-            txt_VpCena.Enabled = true;
-            combo_Zaglavlje.Text = zaglavlje;
-
-            var query = "Select Zavrsen from Kalkulator Where Rtrim(Naziv) = '" + zaglavlje.Trim() + "'";
-            SqlConnection conn = new SqlConnection(connect);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
+            
+           
+          
+            if (SamoOtvori == 0)
             {
-                zavrsen = Convert.ToInt32(dr["Zavrsen"].ToString());
-            }
-            conn.Close();
+                PrikaziProgrameIKolekcije();
+                txtKurs.Text = KursPrenesen;
 
-            if (zavrsen == 1)
-            {
-                tsNew.Enabled = false;
-                tsSave.Enabled = false;
-                tsDelete.Enabled = false;
-                toolStrip1.Enabled = false;
-                toolStripButton2.Enabled = false;
-                //  btn_Akcija.Enabled = false;
-                btn_Rabat.Enabled = false;
-                button1.Enabled = false;
+
+                RefreshGV();
+                FillCombo();
+
+                txt_Trosak.Enabled = false;
+                txt_ID.Enabled = false;
+                txt_MpCena.Enabled = true;
+                txt_Mp2.Enabled = false;
+                txt_VpCena.Enabled = true;
+                combo_Zaglavlje.Text = zaglavlje;
+
+                var query = "Select Zavrsen from Kalkulator Where Rtrim(Naziv) = '" + zaglavlje.Trim() + "'";
+                SqlConnection conn = new SqlConnection(connect);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    zavrsen = Convert.ToInt32(dr["Zavrsen"].ToString());
+                }
+                conn.Close();
+
+                if (zavrsen == 1)
+                {
+                    tsNew.Enabled = false;
+                    tsSave.Enabled = false;
+                    tsDelete.Enabled = false;
+                    toolStrip1.Enabled = false;
+                    toolStripButton2.Enabled = false;
+                    //  btn_Akcija.Enabled = false;
+                    btn_Rabat.Enabled = false;
+                    button1.Enabled = false;
+                }
             }
+
+                
+          
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
@@ -3008,7 +3030,11 @@ namespace WindowsFormsApplication1.Kalkulacije
                 }
             }
         }
-    
-    
+
+        private void toolStripButton6_Click(object sender, EventArgs e)
+        {
+            frmTroskoviIzracun ti = new frmTroskoviIzracun();
+            ti.Show();
+        }
     }
 }

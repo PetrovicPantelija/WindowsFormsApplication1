@@ -216,8 +216,9 @@ namespace WindowsFormsApplication1
              if(cboKorisnik.Text=="pantelija" && txtPassword.Text == "0307")
               {
                 Kalkulacije.MainKalkulacije kalk = new Kalkulacije.MainKalkulacije();
-                PravoP = kalk.Pravo;
-                if (PravoP == true) { kalk.Show(); } else { return; }
+                kalk.Show();
+              //  PravoP = kalk.Pravo;
+               // if (PravoP == true) { kalk.Show(); } else { return; }
              }
              else
              {

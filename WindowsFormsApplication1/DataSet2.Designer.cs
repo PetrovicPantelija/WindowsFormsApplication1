@@ -1155,7 +1155,7 @@ namespace WindowsFormsApplication1 {
                 this.columnMestoIsporuke.MaxLength = 50;
                 this.columnSifraReklamacije.MaxLength = 30;
                 this.columnNazivReklamacije.MaxLength = 30;
-                this.columnZapisnik.MaxLength = 35;
+                this.columnZapisnik.MaxLength = 26;
                 this.columnOpis.MaxLength = 80;
                 this.columnDatumIstovara.MaxLength = 20;
                 this.columnBarkod.MaxLength = 15;

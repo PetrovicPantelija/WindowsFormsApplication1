@@ -132,7 +132,7 @@ namespace WindowsFormsApplication1
                 //Panta E fakture
                // OleDbCommand cmd = new OleDbCommand("SELECT * FROM RkShipping where ExportLargo = false and RkShipping.VoziloIDz  = (Select Min(VoziloID) from TrVozila where TrVozila.RegistarskiBroj = '" + cboVozila.Text + "') and DatumIstovara =  CDate('" + cboDatumUtovara.Text + "')", conn);
 
-                OleDbCommand cmd = new OleDbCommand("SELECT * FROM RkShipping where ExportLargo = false and RkShipping.VoziloIDz  = (Select Min(VoziloID) from TrVozila where TrVozila.RegistarskiBroj = '" + cboVozila.Text + "') and DatumUtovara =  CDate('" + cboDatumUtovara.Text + "')", conn);
+                OleDbCommand cmd = new OleDbCommand("SELECT * FROM RkShipping where ExportLargo = false and RkShipping.VoziloIDz  = (Select Min(VoziloID) from TrVozila where TrVozila.RegistarskiBroj = '" + cboVozila.Text + "') and DatumIstovara=  CDate('" + cboDatumUtovara.Text + "')", conn);
 
                 conn.Open();
 
@@ -207,7 +207,7 @@ namespace WindowsFormsApplication1
                 //PantaE
 
                 //  OleDbCommand cmd2 = new OleDbCommand("SELECT * FROM RkShippingItemPro inner join RkShipping on  RkShipping.ShippingID = RkShippingItemPro.ShipingIdz where ExportLargo = false and RkShipping.VoziloIDz  = (Select Min(VoziloID) from TrVozila where TrVozila.RegistarskiBroj = '" + cboVozila.Text + "') and DatumIstovara =  CDate('" + cboDatumUtovara.Text + "')", conn);
-                OleDbCommand cmd2 = new OleDbCommand("SELECT * FROM RkShippingItemPro inner join RkShipping on  RkShipping.ShippingID = RkShippingItemPro.ShipingIdz where ExportLargo = false and RkShipping.VoziloIDz  = (Select Min(VoziloID) from TrVozila where TrVozila.RegistarskiBroj = '" + cboVozila.Text + "') and DatumUtovara =  CDate('" + cboDatumUtovara.Text + "')", conn);
+                OleDbCommand cmd2 = new OleDbCommand("SELECT * FROM RkShippingItemPro inner join RkShipping on  RkShipping.ShippingID = RkShippingItemPro.ShipingIdz where ExportLargo = false and RkShipping.VoziloIDz  = (Select Min(VoziloID) from TrVozila where TrVozila.RegistarskiBroj = '" + cboVozila.Text + "') and DatumIstovara =  CDate('" + cboDatumUtovara.Text + "')", conn);
 
                 conn.Open();
                 DataTable dataTableResProizvodi = new DataTable();
@@ -223,7 +223,7 @@ namespace WindowsFormsApplication1
                
                 //PantaE
               //  OleDbCommand cmd3 = new OleDbCommand("SELECT * FROM RkShippingItemPak inner join RkShipping on  RkShipping.ShippingID = RkShippingItemPak.ShipingIdz where ExportLargo = false and RkShipping.VoziloIDz  = (Select Min(VoziloID) from TrVozila where TrVozila.RegistarskiBroj = '" + cboVozila.Text + "') and DatumIstovara =  CDate('" + cboDatumUtovara.Text + "') and StornoIsporuke <> true", conn);
-                OleDbCommand cmd3 = new OleDbCommand("SELECT * FROM RkShippingItemPak inner join RkShipping on  RkShipping.ShippingID = RkShippingItemPak.ShipingIdz where ExportLargo = false and RkShipping.VoziloIDz  = (Select Min(VoziloID) from TrVozila where TrVozila.RegistarskiBroj = '" + cboVozila.Text + "') and DatumUtovara =  CDate('" + cboDatumUtovara.Text + "') and StornoIsporuke <> true", conn);
+                OleDbCommand cmd3 = new OleDbCommand("SELECT * FROM RkShippingItemPak inner join RkShipping on  RkShipping.ShippingID = RkShippingItemPak.ShipingIdz where ExportLargo = false and RkShipping.VoziloIDz  = (Select Min(VoziloID) from TrVozila where TrVozila.RegistarskiBroj = '" + cboVozila.Text + "') and DatumIstovara =  CDate('" + cboDatumUtovara.Text + "') and StornoIsporuke <> true", conn);
 
                 conn.Open();
 
@@ -252,7 +252,7 @@ namespace WindowsFormsApplication1
                
                 //PantaE
               // OleDbCommand cmd = new OleDbCommand("SELECT Distinct(DatumIstovara) as DatumIstovara FROM RkShipping where ExportLargo = false", conn);
-                OleDbCommand cmd = new OleDbCommand("SELECT Distinct(DatumUtovara) as DatumUtovara FROM RkShipping where ExportLargo = false", conn);
+                OleDbCommand cmd = new OleDbCommand("SELECT Distinct(DatumIstovara) as DatumUtovara FROM RkShipping where ExportLargo = false", conn);
 
 
                 //FORMAT(@d, 'dd/MM/yyyy', 'en-US' )
@@ -291,7 +291,7 @@ namespace WindowsFormsApplication1
                 {
                    //PantaE
                   //  OleDbCommand cmd = new OleDbCommand("SELECT Distinct(TrVozila.RegistarskiBroj) as RegistarskiBroj FROM RkShipping INNER JOIN TrVozila ON RkShipping.VoziloIDz = TrVozila.VoziloID where ExportLargo = false and DatumIstovara = CDate('" + cboDatumUtovara.Text + "')", conn);
-                OleDbCommand cmd = new OleDbCommand("SELECT Distinct(TrVozila.RegistarskiBroj) as RegistarskiBroj FROM RkShipping INNER JOIN TrVozila ON RkShipping.VoziloIDz = TrVozila.VoziloID where ExportLargo = false and DatumUtovara = CDate('" + cboDatumUtovara.Text + "')", conn);
+                OleDbCommand cmd = new OleDbCommand("SELECT Distinct(TrVozila.RegistarskiBroj) as RegistarskiBroj FROM RkShipping INNER JOIN TrVozila ON RkShipping.VoziloIDz = TrVozila.VoziloID where ExportLargo = false and DatumIstovara = CDate('" + cboDatumUtovara.Text + "')", conn);
 
                 conn.Open();
 
