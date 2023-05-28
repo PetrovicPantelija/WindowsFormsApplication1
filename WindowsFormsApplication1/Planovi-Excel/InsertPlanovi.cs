@@ -699,11 +699,14 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 if (error)
                 {
                     // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+
                 }
             }
         }
         public void PoveziTrend()
         {
+            //Komentar 
+
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "PoveziTrend";
