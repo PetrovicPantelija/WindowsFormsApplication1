@@ -225,5 +225,11 @@ namespace WindowsFormsApplication1
                 MessageBox.Show("Nemate prava za pristup ovoj formi");
              }
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            Planovi_Excel.MainPlaniranje plp = new Planovi_Excel.MainPlaniranje();
+            plp.Show();
+        }
     }
 }

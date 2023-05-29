@@ -954,6 +954,55 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Perftech_BeogradDataSet5.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Planovi_Excel\frmPrikazPorudzbinaWebs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Planovi_Excel\frmPrikazPorudzbinaWebs.Designer.cs">
+      <DependentUpon>frmPrikazPorudzbinaWebs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Planovi_Excel\InsertPlanovi.cs" />
+    <Compile Include="Planovi_Excel\Izlaznost.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Planovi_Excel\Izlaznost.Designer.cs">
+      <DependentUpon>Izlaznost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Planovi_Excel\MainPlaniranje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Planovi_Excel\MainPlaniranje.Designer.cs">
+      <DependentUpon>MainPlaniranje.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Planovi_Excel\PlanAktiv.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Planovi_Excel\PlanAktiv.Designer.cs">
+      <DependentUpon>PlanAktiv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Planovi_Excel\PlanDetaljno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Planovi_Excel\PlanDetaljno.Designer.cs">
+      <DependentUpon>PlanDetaljno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Planovi_Excel\PlanStavke.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Planovi_Excel\PlanStavke.Designer.cs">
+      <DependentUpon>PlanStavke.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Planovi_Excel\Podesavanje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Planovi_Excel\Podesavanje.Designer.cs">
+      <DependentUpon>Podesavanje.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Planovi_Excel\PripadnostKP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Planovi_Excel\PripadnostKP.Designer.cs">
+      <DependentUpon>PripadnostKP.cs</DependentUpon>
+    </Compile>
     <Compile Include="Portirnica\InsertLogNajave.cs" />
     <Compile Include="Portirnica\InsertStatusNajave.cs" />
     <Compile Include="Portirnica\StatusNajave.cs">
@@ -1543,6 +1592,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Partneri.resx">
       <DependentUpon>Partneri.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Planovi_Excel\frmPrikazPorudzbinaWebs.resx">
+      <DependentUpon>frmPrikazPorudzbinaWebs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Planovi_Excel\Izlaznost.resx">
+      <DependentUpon>Izlaznost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Planovi_Excel\MainPlaniranje.resx">
+      <DependentUpon>MainPlaniranje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Planovi_Excel\PlanAktiv.resx">
+      <DependentUpon>PlanAktiv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Planovi_Excel\PlanDetaljno.resx">
+      <DependentUpon>PlanDetaljno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Planovi_Excel\PlanStavke.resx">
+      <DependentUpon>PlanStavke.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Planovi_Excel\Podesavanje.resx">
+      <DependentUpon>Podesavanje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Planovi_Excel\PripadnostKP.resx">
+      <DependentUpon>PripadnostKP.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Portirnica\StatusNajave.resx">
       <DependentUpon>StatusNajave.cs</DependentUpon>
