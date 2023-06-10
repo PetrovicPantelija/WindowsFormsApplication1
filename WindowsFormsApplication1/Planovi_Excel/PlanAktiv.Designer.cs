@@ -48,6 +48,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.label6 = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -146,9 +147,9 @@ namespace WindowsFormsApplication1.Planovi_Excel
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(865, 116);
+            this.button2.Location = new System.Drawing.Point(746, 105);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(127, 33);
+            this.button2.Size = new System.Drawing.Size(127, 41);
             this.button2.TabIndex = 5;
             this.button2.Text = "Dodeli stavke";
             this.button2.UseVisualStyleBackColor = true;
@@ -222,11 +223,22 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.txtID.TabIndex = 1;
             this.txtID.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(897, 97);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(95, 52);
+            this.button1.TabIndex = 202;
+            this.button1.Text = "Poveži plan i RN";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // PlanAktiv
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1004, 629);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.dataGridView1);
@@ -272,5 +284,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtID;
+        private System.Windows.Forms.Button button1;
     }
 }
