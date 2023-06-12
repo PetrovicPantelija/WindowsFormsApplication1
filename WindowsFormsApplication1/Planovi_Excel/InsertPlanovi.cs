@@ -410,7 +410,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 }
             }
         }
-        public void ProglasiIzlaznost(int ID)
+        public void ProglasiIzlaznost(int Id)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -420,7 +420,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             SqlParameter id = new SqlParameter();
             id.ParameterName = "@IDPlana";
             id.SqlDbType = SqlDbType.Int;
-            id.Value = ID;
+            id.Value = Id;
             cmd.Parameters.Add(id);
 
             conn.Open();
@@ -459,20 +459,13 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 }
             }
         }
-        public void PoveziIzlaznost(int ID)
+        public void PoveziIzlaznost()
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "PoveziIzlaznost";
             cmd.CommandType = CommandType.StoredProcedure;
 
-            SqlParameter id = new SqlParameter();
-            id.ParameterName = "@ID";
-            id.SqlDbType = SqlDbType.Int;
-            id.Value = ID;
-            cmd.Parameters.Add(id);
-
-
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
             cmd.Transaction = myTransaction;
@@ -505,18 +498,12 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 }
             }
         }
-        public void PoveziPlanove(int ID,int Plan1,int Plan2,int Plan3,int Plan4, int Plan5)
+        public void PoveziPlanove(int Plan1,int Plan2,int Plan3,int Plan4, int Plan5)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "PoveziPlanove";
             cmd.CommandType = CommandType.StoredProcedure;
-
-            SqlParameter id = new SqlParameter();
-            id.ParameterName = "@IDPlana";
-            id.SqlDbType = SqlDbType.Int;
-            id.Value = ID;
-            cmd.Parameters.Add(id);
 
             SqlParameter plan1 = new SqlParameter();
             plan1.ParameterName = "@Plan1";
@@ -588,18 +575,12 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 }
             }
         }
-        public void PoveziPredloge(int ID,int Mesec)
+        public void PoveziPredloge(int Mesec)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "PoveziPredloge";
             cmd.CommandType = CommandType.StoredProcedure;
-
-            SqlParameter id = new SqlParameter();
-            id.ParameterName = "@IDPlana";
-            id.SqlDbType = SqlDbType.Int;
-            id.Value = ID;
-            cmd.Parameters.Add(id);
 
             SqlParameter mesec = new SqlParameter();
             mesec.ParameterName = "@Meseci1";
@@ -643,19 +624,13 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 }
             }
         }
-        public void PoveziProseke(int ID)
+        public void PoveziProseke()
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "PoveziProseke";
             cmd.CommandType = CommandType.StoredProcedure;
 
-            SqlParameter id = new SqlParameter();
-            id.ParameterName = "@IDPlana";
-            id.SqlDbType = SqlDbType.Int;
-            id.Value = ID;
-            cmd.Parameters.Add(id);
-
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
             cmd.Transaction = myTransaction;
@@ -688,19 +663,13 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 }
             }
         }
-        public void PoveziStanja(int ID)
+        public void PoveziStanja()
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "PoveziStanja";
             cmd.CommandType = CommandType.StoredProcedure;
 
-            SqlParameter id = new SqlParameter();
-            id.ParameterName = "@IDPlana";
-            id.SqlDbType = SqlDbType.Int;
-            id.Value = ID;
-            cmd.Parameters.Add(id);
-
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
             cmd.Transaction = myTransaction;
@@ -734,7 +703,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 }
             }
         }
-        public void PoveziTrend(int ID)
+        public void PoveziTrend()
         {
             //Komentar 
 
@@ -742,13 +711,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "PoveziTrend";
             cmd.CommandType = CommandType.StoredProcedure;
-
-            SqlParameter id = new SqlParameter();
-            id.ParameterName = "@IDPlana";
-            id.SqlDbType = SqlDbType.Int;
-            id.Value = ID;
-            cmd.Parameters.Add(id);
-
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -904,419 +866,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
 
                 conn.Close();
 
-                if (error)
-                {
-                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
-                }
-            }
-        }
-        public void UpdatePodesavanje(int ID,int Visible)
-        {
-            SqlConnection conn = new SqlConnection(connect);
-            SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = "UpdatePodesavanjePlan";
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            SqlParameter id = new SqlParameter();
-            id.ParameterName = "@ID";
-            id.SqlDbType = SqlDbType.Int;
-            id.Value = ID;
-            cmd.Parameters.Add(id);
-
-            SqlParameter visible = new SqlParameter();
-            visible.ParameterName = "@Visible";
-            visible.SqlDbType = SqlDbType.Int;
-            visible.Value = Visible;
-            cmd.Parameters.Add(visible);
-
-            conn.Open();
-            SqlTransaction myTransaction = conn.BeginTransaction();
-            cmd.Transaction = myTransaction;
-            bool error = true;
-            try
-            {
-                cmd.ExecuteNonQuery();
-                myTransaction.Commit();
-                myTransaction = conn.BeginTransaction();
-                cmd.Transaction = myTransaction;
-            }
-
-            catch (SqlException ex)
-            {
-                MessageBox.Show(ex.ToString());
-                throw new Exception("Neuspešan upis NHM brojeva");
-            }
-
-            finally
-            {
-                if (!error)
-                {
-                    myTransaction.Commit();
-                    MessageBox.Show("Unos NHM broja je uspešno završena", "",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                }
-
-                conn.Close();
-
-                if (error)
-                {
-                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
-                }
-            }
-        }
-        public void DodeliGrupi(int ID, int MpSifra)
-        {
-            SqlConnection conn = new SqlConnection(connect);
-            SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = "InsertPlanMpVezniPostojeci";
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            SqlParameter id = new SqlParameter();
-            id.ParameterName = "@IdGrupe";
-            id.SqlDbType = SqlDbType.Int;
-            id.Value = ID;
-            cmd.Parameters.Add(id);
-
-            SqlParameter mp = new SqlParameter();
-            mp.ParameterName = "@MpSifra";
-            mp.SqlDbType = SqlDbType.Int;
-            mp.Value = MpSifra;
-            cmd.Parameters.Add(mp);
-
-            conn.Open();
-            SqlTransaction myTransaction = conn.BeginTransaction();
-            cmd.Transaction = myTransaction;
-            bool error = true;
-            try
-            {
-                cmd.ExecuteNonQuery();
-                myTransaction.Commit();
-                myTransaction = conn.BeginTransaction();
-                cmd.Transaction = myTransaction;
-            }
-
-            catch (SqlException ex)
-            {
-                MessageBox.Show(ex.ToString());
-                throw new Exception("Neuspešan upis NHM brojeva");
-            }
-
-            finally
-            {
-                if (!error)
-                {
-                    myTransaction.Commit();
-                    MessageBox.Show("Unos NHM broja je uspešno završena", "",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                }
-
-                conn.Close();
-
-                if (error)
-                {
-                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
-                }
-            }
-        }
-        public void KreirajNovuGrupu()
-        {
-            SqlConnection conn = new SqlConnection(connect);
-            SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = "PlanMpVezniGrupa";
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            conn.Open();
-            SqlTransaction myTransaction = conn.BeginTransaction();
-            cmd.Transaction = myTransaction;
-            bool error = true;
-            try
-            {
-                cmd.ExecuteNonQuery();
-                myTransaction.Commit();
-                myTransaction = conn.BeginTransaction();
-                cmd.Transaction = myTransaction;
-            }
-
-            catch (SqlException ex)
-            {
-                MessageBox.Show(ex.ToString());
-                throw new Exception("Neuspešan upis NHM brojeva");
-            }
-
-            finally
-            {
-                if (!error)
-                {
-                    myTransaction.Commit();
-                    MessageBox.Show("Unos NHM broja je uspešno završena", "",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                }
-                conn.Close();
-                if (error)
-                {
-                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
-                }
-            }
-        }
-        public void DodeliNovuGrupu(int MpSifra)
-        {
-            SqlConnection conn = new SqlConnection(connect);
-            SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = "InsertPlanMpVezniNovi";
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            SqlParameter mp = new SqlParameter();
-            mp.ParameterName = "@MpSifra";
-            mp.SqlDbType = SqlDbType.Int;
-            mp.Value = MpSifra;
-            cmd.Parameters.Add(mp);
-
-            conn.Open();
-            SqlTransaction myTransaction = conn.BeginTransaction();
-            cmd.Transaction = myTransaction;
-            bool error = true;
-            try
-            {
-                cmd.ExecuteNonQuery();
-                myTransaction.Commit();
-                myTransaction = conn.BeginTransaction();
-                cmd.Transaction = myTransaction;
-            }
-
-            catch (SqlException ex)
-            {
-                MessageBox.Show(ex.ToString());
-                throw new Exception("Neuspešan upis NHM brojeva");
-            }
-
-            finally
-            {
-                if (!error)
-                {
-                    myTransaction.Commit();
-                    MessageBox.Show("Unos NHM broja je uspešno završena", "",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                }
-                conn.Close();
-                if (error)
-                {
-                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
-                }
-            }
-        }
-        public void ObrisiIzGrupe(int MpSifra,int ID)
-        {
-            SqlConnection conn = new SqlConnection(connect);
-            SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = "DeletePlanMpVezni";
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            SqlParameter mp = new SqlParameter();
-            mp.ParameterName = "@MpSifra";
-            mp.SqlDbType = SqlDbType.Int;
-            mp.Value = MpSifra;
-            cmd.Parameters.Add(mp);
-
-            SqlParameter id = new SqlParameter();
-            id.ParameterName = "@IDGrupe";
-            id.SqlDbType = SqlDbType.Int;
-            id.Value = ID;
-            cmd.Parameters.Add(id);
-
-            conn.Open();
-            SqlTransaction myTransaction = conn.BeginTransaction();
-            cmd.Transaction = myTransaction;
-            bool error = true;
-            try
-            {
-                cmd.ExecuteNonQuery();
-                myTransaction.Commit();
-                myTransaction = conn.BeginTransaction();
-                cmd.Transaction = myTransaction;
-            }
-
-            catch (SqlException ex)
-            {
-                MessageBox.Show(ex.ToString());
-                throw new Exception("Neuspešan upis NHM brojeva");
-            }
-
-            finally
-            {
-                if (!error)
-                {
-                    myTransaction.Commit();
-                    MessageBox.Show("Unos NHM broja je uspešno završena", "",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                }
-
-                conn.Close();
-
-                if (error)
-                {
-                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
-                }
-            }
-        }
-        public void PoveziUsvojenuOdluku(int IDPlana,int MpSifra,decimal Odluka)
-        {
-            SqlConnection conn = new SqlConnection(connect);
-            SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = "PoveziUsvojenuOdluku";
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            SqlParameter id = new SqlParameter();
-            id.ParameterName = "@IDPlana";
-            id.SqlDbType = SqlDbType.Int;
-            id.Value = IDPlana;
-            cmd.Parameters.Add(id);
-
-            SqlParameter mp = new SqlParameter();
-            mp.ParameterName = "@MpSifra";
-            mp.SqlDbType = SqlDbType.Int;
-            mp.Value = MpSifra;
-            cmd.Parameters.Add(mp);
-
-            SqlParameter odluka = new SqlParameter();
-            odluka.ParameterName = "@Odluka";
-            odluka.SqlDbType = SqlDbType.Decimal;
-            odluka.Value = Odluka;
-            cmd.Parameters.Add(odluka);
-
-            conn.Open();
-            SqlTransaction myTransaction = conn.BeginTransaction();
-            cmd.Transaction = myTransaction;
-            bool error = true;
-            try
-            {
-                cmd.ExecuteNonQuery();
-                myTransaction.Commit();
-                myTransaction = conn.BeginTransaction();
-                cmd.Transaction = myTransaction;
-            }
-
-            catch (SqlException ex)
-            {
-                MessageBox.Show(ex.ToString());
-                throw new Exception("Neuspešan upis NHM brojeva");
-            }
-
-            finally
-            {
-                if (!error)
-                {
-                    myTransaction.Commit();
-                    MessageBox.Show("Unos NHM broja je uspešno završena", "",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                }
-                conn.Close();
-                if (error)
-                {
-                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
-                }
-            }
-        }
-        public void DodeliPlan(int IDPlana,int RN)
-        {
-            SqlConnection conn = new SqlConnection(connect);
-            SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = "PoveziRN";
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            SqlParameter id = new SqlParameter();
-            id.ParameterName = "@IDPlana";
-            id.SqlDbType = SqlDbType.Int;
-            id.Value = IDPlana;
-            cmd.Parameters.Add(id);
-
-            SqlParameter rn = new SqlParameter();
-            rn.ParameterName = "@RN";
-            rn.SqlDbType = SqlDbType.Int;
-            rn.Value = RN;
-            cmd.Parameters.Add(rn);
-
-            conn.Open();
-            SqlTransaction myTransaction = conn.BeginTransaction();
-            cmd.Transaction = myTransaction;
-            bool error = true;
-            try
-            {
-                cmd.ExecuteNonQuery();
-                myTransaction.Commit();
-                myTransaction = conn.BeginTransaction();
-                cmd.Transaction = myTransaction;
-            }
-
-            catch (SqlException ex)
-            {
-                MessageBox.Show(ex.ToString());
-                throw new Exception("Neuspešan upis NHM brojeva");
-            }
-
-            finally
-            {
-                if (!error)
-                {
-                    myTransaction.Commit();
-                    MessageBox.Show("Unos NHM broja je uspešno završena", "",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                }
-                conn.Close();
-                if (error)
-                {
-                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
-                }
-            }
-        }
-
-        public void IskljuciPlan(int RN)
-        {
-            SqlConnection conn = new SqlConnection(connect);
-            SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = "IskljuciPlan";
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            SqlParameter rn = new SqlParameter();
-            rn.ParameterName = "@RN";
-            rn.SqlDbType = SqlDbType.Int;
-            rn.Value = RN;
-            cmd.Parameters.Add(rn);
-
-            conn.Open();
-            SqlTransaction myTransaction = conn.BeginTransaction();
-            cmd.Transaction = myTransaction;
-            bool error = true;
-            try
-            {
-                cmd.ExecuteNonQuery();
-                myTransaction.Commit();
-                myTransaction = conn.BeginTransaction();
-                cmd.Transaction = myTransaction;
-            }
-
-            catch (SqlException ex)
-            {
-                MessageBox.Show(ex.ToString());
-                throw new Exception("Neuspešan upis NHM brojeva");
-            }
-
-            finally
-            {
-                if (!error)
-                {
-                    myTransaction.Commit();
-                    MessageBox.Show("Unos NHM broja je uspešno završena", "",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                }
-                conn.Close();
                 if (error)
                 {
                     // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();

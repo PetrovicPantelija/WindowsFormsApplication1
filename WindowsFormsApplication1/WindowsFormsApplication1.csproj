@@ -130,7 +130,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll</HintPath>
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -961,6 +961,7 @@
       <DependentUpon>frmPrikazPorudzbinaWebs.cs</DependentUpon>
     </Compile>
     <Compile Include="Planovi_Excel\InsertPlanovi.cs" />
+    <Compile Include="Planovi_Excel\InsertRkShippingPorudzbine.cs" />
     <Compile Include="Planovi_Excel\Izlaznost.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -973,23 +974,11 @@
     <Compile Include="Planovi_Excel\MainPlaniranje.Designer.cs">
       <DependentUpon>MainPlaniranje.cs</DependentUpon>
     </Compile>
-    <Compile Include="Planovi_Excel\PlanArhiv.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Planovi_Excel\PlanArhiv.Designer.cs">
-      <DependentUpon>PlanArhiv.cs</DependentUpon>
-    </Compile>
     <Compile Include="Planovi_Excel\PlanAktiv.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Planovi_Excel\PlanAktiv.Designer.cs">
       <DependentUpon>PlanAktiv.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Planovi_Excel\PlanArhivDetaljno.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Planovi_Excel\PlanArhivDetaljno.Designer.cs">
-      <DependentUpon>PlanArhivDetaljno.cs</DependentUpon>
     </Compile>
     <Compile Include="Planovi_Excel\PlanDetaljno.cs">
       <SubType>Form</SubType>
@@ -1003,23 +992,11 @@
     <Compile Include="Planovi_Excel\PlanStavke.Designer.cs">
       <DependentUpon>PlanStavke.cs</DependentUpon>
     </Compile>
-    <Compile Include="Planovi_Excel\PlanVeza.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Planovi_Excel\PlanVeza.Designer.cs">
-      <DependentUpon>PlanVeza.cs</DependentUpon>
-    </Compile>
     <Compile Include="Planovi_Excel\Podesavanje.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Planovi_Excel\Podesavanje.Designer.cs">
       <DependentUpon>Podesavanje.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Planovi_Excel\PoveziRN.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Planovi_Excel\PoveziRN.Designer.cs">
-      <DependentUpon>PoveziRN.cs</DependentUpon>
     </Compile>
     <Compile Include="Planovi_Excel\PripadnostKP.cs">
       <SubType>Form</SubType>
@@ -1626,14 +1603,8 @@
     <EmbeddedResource Include="Planovi_Excel\MainPlaniranje.resx">
       <DependentUpon>MainPlaniranje.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Planovi_Excel\PlanArhiv.resx">
-      <DependentUpon>PlanArhiv.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Planovi_Excel\PlanAktiv.resx">
       <DependentUpon>PlanAktiv.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Planovi_Excel\PlanArhivDetaljno.resx">
-      <DependentUpon>PlanArhivDetaljno.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Planovi_Excel\PlanDetaljno.resx">
       <DependentUpon>PlanDetaljno.cs</DependentUpon>
@@ -1641,14 +1612,8 @@
     <EmbeddedResource Include="Planovi_Excel\PlanStavke.resx">
       <DependentUpon>PlanStavke.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Planovi_Excel\PlanVeza.resx">
-      <DependentUpon>PlanVeza.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Planovi_Excel\Podesavanje.resx">
       <DependentUpon>Podesavanje.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Planovi_Excel\PoveziRN.resx">
-      <DependentUpon>PoveziRN.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Planovi_Excel\PripadnostKP.resx">
       <DependentUpon>PripadnostKP.cs</DependentUpon>

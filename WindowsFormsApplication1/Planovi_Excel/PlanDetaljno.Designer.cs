@@ -52,13 +52,8 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnPodesavanje = new System.Windows.Forms.Button();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -75,10 +70,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(1900, 617);
             this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
-            this.dataGridView1.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellLeave);
-            this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
-            this.dataGridView1.CausesValidationChanged += new System.EventHandler(this.dataGridView1_CausesValidationChanged);
             // 
             // textBox1
             // 
@@ -108,7 +99,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(681, 83);
+            this.button2.Location = new System.Drawing.Point(681, 106);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(181, 33);
             this.button2.TabIndex = 3;
@@ -276,61 +267,22 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.checkBox5.Text = "Uključi";
             this.checkBox5.UseVisualStyleBackColor = true;
             // 
-            // panel1
+            // button3
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.panel1.BackColor = System.Drawing.SystemColors.Info;
-            this.panel1.Controls.Add(this.btnPodesavanje);
-            this.panel1.Controls.Add(this.dataGridView2);
-            this.panel1.Location = new System.Drawing.Point(825, 14);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(707, 779);
-            this.panel1.TabIndex = 17;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
-            // 
-            // btnPodesavanje
-            // 
-            this.btnPodesavanje.Location = new System.Drawing.Point(605, 10);
-            this.btnPodesavanje.Name = "btnPodesavanje";
-            this.btnPodesavanje.Size = new System.Drawing.Size(99, 45);
-            this.btnPodesavanje.TabIndex = 1;
-            this.btnPodesavanje.Text = "Podesi";
-            this.btnPodesavanje.UseVisualStyleBackColor = true;
-            this.btnPodesavanje.Click += new System.EventHandler(this.btnPodesavanje_Click);
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(13, 5);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(573, 771);
-            this.dataGridView2.TabIndex = 0;
-            // 
-            // button4
-            // 
-            this.button4.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(12, 66);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(23, 31);
-            this.button4.TabIndex = 18;
-            this.button4.Text = "-";
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.button3.Location = new System.Drawing.Point(681, 60);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(181, 33);
+            this.button3.TabIndex = 16;
+            this.button3.Text = "Dodeli usvojenu odluku";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // PlanDetaljno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1924, 800);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.checkBox5);
             this.Controls.Add(this.checkBox4);
             this.Controls.Add(this.checkBox3);
@@ -356,11 +308,8 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.Controls.Add(this.dataGridView1);
             this.Name = "PlanDetaljno";
             this.Text = "PlanDetaljno";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.PlanDetaljno_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -391,9 +340,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.CheckBox checkBox4;
         private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btnPodesavanje;
-        private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button3;
     }
 }

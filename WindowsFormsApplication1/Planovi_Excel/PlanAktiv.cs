@@ -85,11 +85,5 @@ namespace WindowsFormsApplication1.Planovi_Excel
         {
 
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            PoveziRN frm = new PoveziRN();
-            frm.Show();
-        }
     }
 }

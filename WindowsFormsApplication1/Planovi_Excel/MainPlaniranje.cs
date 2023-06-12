@@ -73,14 +73,8 @@ namespace WindowsFormsApplication1.Planovi_Excel
 
         private void label7_Click(object sender, EventArgs e)
         {
-            Planovi_Excel.PlanArhiv pa = new PlanArhiv();
-            pa.Show();
-        }
-
-        private void label9_Click(object sender, EventArgs e)
-        {
-            Planovi_Excel.PlanVeza pv = new PlanVeza();
-            pv.Show();
+            Planovi_Excel.PlanDetaljno pas = new PlanDetaljno();
+            pas.Show();
         }
     }
 }

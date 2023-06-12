@@ -46,12 +46,12 @@ namespace WindowsFormsApplication1.Planovi_Excel
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
 
-            dataGridView1.Columns[0].Visible = false; //kolekcija
-            dataGridView1.Columns[2].Visible = false; //program
+            dataGridView1.Columns[0].Width = 0; //kolekcija
+            dataGridView1.Columns[2].Width = 0; //program
             //MpSifra 4
             //Kod 6
             //Tip 7
-            dataGridView1.Columns[8].Visible = false; //sklad
+            dataGridView1.Columns[8].Width = 0; //sklad
             //lokacija 10
         }
         int idPlana, idPrograma, idKolekcije, mpSifra;
@@ -66,8 +66,8 @@ namespace WindowsFormsApplication1.Planovi_Excel
                     if (row.Selected)
                     {
                         idPlana = Convert.ToInt32(txtIdPlana.Text);
-                        idPrograma = Convert.ToInt32(row.Cells["IDProgram"].Value.ToString());
-                        idKolekcije = Convert.ToInt32(row.Cells["IDKol"].Value.ToString());
+                        idPrograma = Convert.ToInt32(row.Cells[2].Value.ToString());
+                        idKolekcije = Convert.ToInt32(row.Cells[0].Value.ToString());
                         mpSifra = Convert.ToInt32(row.Cells[4].Value.ToString());
 
                         ins.InsertPlanStavke(idPlana, idPrograma, idKolekcije, mpSifra);
@@ -94,8 +94,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
             da2.Fill(ds2);
             dataGridView2.ReadOnly = true;
             dataGridView2.DataSource = ds2.Tables[0];
-            dataGridView2.Columns[0].Width = 50;
-            dataGridView2.Columns[1].Width = 50;
         }
         private void PlanStavke_Load(object sender, EventArgs e)
         {
@@ -118,6 +116,12 @@ namespace WindowsFormsApplication1.Planovi_Excel
             }
             catch { }
             FillStavke();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            InsertPlanovi ins = new InsertPlanovi();
+            ins.ProglasiIzlaznost(Convert.ToInt32(txtIdPlana.Text.ToString()));
         }
 
         private void button4_Click(object sender, EventArgs e)
