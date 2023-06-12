@@ -21,24 +21,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
             InitializeComponent();
         }
 
-        private void InsertPorudzbine()
-        {
-            InsertRkShippingPorudzbine rkS = new InsertRkShippingPorudzbine();
-
-            try
-            {
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    rkS.InsertRkShipping(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()), row.Cells[2].Value.ToString(), Convert.ToInt32(row.Cells[3].Value.ToString()), row.Cells[4].Value.ToString(), Convert.ToInt32(row.Cells[5].Value.ToString()), row.Cells[6].Value.ToString(), row.Cells[7].Value.ToString(), row.Cells[8].Value.ToString());
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Nije uspela selekcija stavki");
-            }
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -123,7 +105,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 dataGridView1.Columns[14].Width = 70;
                 */
                 conn.Close();
-                InsertPorudzbine();
             }
         }
     }

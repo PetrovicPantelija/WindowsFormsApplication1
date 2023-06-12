@@ -98,15 +98,15 @@ namespace WindowsFormsApplication1.Kalkulacije
             // txt_Naziv
             // 
             this.txt_Naziv.Location = new System.Drawing.Point(9, 134);
-            this.txt_Naziv.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_Naziv.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_Naziv.Name = "txt_Naziv";
-            this.txt_Naziv.Size = new System.Drawing.Size(178, 20);
+            this.txt_Naziv.Size = new System.Drawing.Size(156, 20);
             this.txt_Naziv.TabIndex = 204;
             // 
             // txt_ID
             // 
             this.txt_ID.Location = new System.Drawing.Point(9, 72);
-            this.txt_ID.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_ID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_ID.Name = "txt_ID";
             this.txt_ID.Size = new System.Drawing.Size(89, 20);
             this.txt_ID.TabIndex = 205;
@@ -137,7 +137,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(214, 24);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
@@ -160,9 +160,9 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             this.combo_Program.FormattingEnabled = true;
             this.combo_Program.Location = new System.Drawing.Point(9, 193);
-            this.combo_Program.Margin = new System.Windows.Forms.Padding(2);
+            this.combo_Program.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.combo_Program.Name = "combo_Program";
-            this.combo_Program.Size = new System.Drawing.Size(178, 21);
+            this.combo_Program.Size = new System.Drawing.Size(156, 21);
             this.combo_Program.TabIndex = 207;
             // 
             // frmKolekcije
@@ -178,9 +178,9 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.toolStrip1);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmKolekcije";
-            this.Text = "Kolekcije";
+            this.Text = "frmKolekcije";
             this.Load += new System.EventHandler(this.frmKolekcije_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();

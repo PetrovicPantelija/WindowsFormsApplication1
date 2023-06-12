@@ -42,12 +42,12 @@ namespace WindowsFormsApplication1.Planovi_Excel
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(158)))), ((int)(((byte)(192)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(11, 65);
+            this.dataGridView1.Location = new System.Drawing.Point(11, 85);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(947, 534);
+            this.dataGridView1.Size = new System.Drawing.Size(947, 514);
             this.dataGridView1.TabIndex = 45;
             // 
             // button1
@@ -80,7 +80,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "frmPrikazPorudzbinaWebs";
-            this.Text = "Prikaz porudzbina preko Webs-a";
+            this.Text = "frmPrikazPorudzbinaWebs";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
