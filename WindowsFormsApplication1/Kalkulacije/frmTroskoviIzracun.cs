@@ -783,7 +783,8 @@ namespace WindowsFormsApplication1.Kalkulacije
             char[] seperators = { ',' };
 
             StreamReader sr = new StreamReader(txtPutanja.Text);
-
+            InsertPorudzbina porudzbina = new InsertPorudzbina();
+            porudzbina.DeleteMPCene();
             string data = sr.ReadLine();
            // MessageBox.Show(data);
             while ((data = sr.ReadLine()) != null)
@@ -793,12 +794,13 @@ namespace WindowsFormsApplication1.Kalkulacije
                     read = data.Split(seperators, StringSplitOptions.RemoveEmptyEntries);
                    //MessageBox.Show(read[0]);
                     string PaketID = read[0];
-                    InsertPorudzbina porudzbina = new InsertPorudzbina();
+                  //  InsertPorudzbina porudzbina = new InsertPorudzbina();
                     porudzbina.InsertMPCene(Convert.ToInt32(PaketID), "1");
                 }
 
                 Prvi = Prvi + 1;
             }
+            porudzbina.ObracunajMPCene();
             FillGV();
         }
     }
