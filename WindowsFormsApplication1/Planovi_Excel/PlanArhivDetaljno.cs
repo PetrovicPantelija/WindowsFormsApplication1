@@ -179,6 +179,21 @@ namespace WindowsFormsApplication1.Planovi_Excel
             dataGridView1.Columns["TrenutnoLager"].Width = 70;
             dataGridView1.Columns["TrajnostLagera"].Width = 70;
             dataGridView1.Columns["IzdatiNeisporuceni"].Width = 80;
+
+
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (dataGridView1[78, row.Index].Value.ToString() != "" || dataGridView1[78, row.Index].Value.ToString() != "0.00")
+                {
+                    dataGridView1[78, row.Index].Style.BackColor = Color.LightGreen; //doesn't work
+
+                }
+                //row.Cells[col.Index].Style.BackColor = Color.Green; //doesn't work
+                //col.Cells[row.Index].Style.BackColor = Color.Green; //doesn't work
+                //dataGridView1[col.Index, row.Index].Style.BackColor = Color.Green; //doesn't work
+
+            }
+
         }
         private void button1_Click(object sender, EventArgs e)
         {

@@ -89,5 +89,14 @@ namespace WindowsFormsApplication1.Planovi_Excel
         {
 
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            Planovi_Excel.InsertPlanovi ins = new InsertPlanovi();
+            ins.DeletePlanSaStavkama(Convert.ToInt32(txtID.Text));
+            FillGV();
+            status = false;
+           // DeletePlanSaStavkama
+        }
     }
 }

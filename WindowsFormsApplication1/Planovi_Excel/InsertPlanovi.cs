@@ -93,6 +93,61 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 }
             }
         }
+
+        public void DeletePlanSaStavkama(int ID)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "DeletePlanAktivSaStavkama";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            //  naziv.Size = 100;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
+
+           
+
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw new Exception("Neuspešan brisanje Planova");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Brisanje Plana nije ispesno", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
         public void InsertPlanStavke(int IDPlana,int IDPrograma,int IDKolekcije,int MpSifra)
         {
             SqlConnection conn = new SqlConnection(connect);
