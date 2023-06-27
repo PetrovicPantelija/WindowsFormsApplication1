@@ -91,5 +91,12 @@ namespace WindowsFormsApplication1.Planovi_Excel
             PoveziRN frm = new PoveziRN();
             frm.Show();
         }
+
+        private void tsDelete_Click(object sender, EventArgs e)
+        {
+            Planovi_Excel.InsertPlanovi ins = new InsertPlanovi();
+            ins.DeletePlanSaStavkama(Convert.ToInt32(txtID.Text));
+            FillGV();
+        }
     }
 }

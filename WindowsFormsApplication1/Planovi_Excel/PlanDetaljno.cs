@@ -29,8 +29,39 @@ namespace WindowsFormsApplication1.Planovi_Excel
             FillGV();
             FillCombo();
             panel1.Visible = true;
+            FillChecks();
         }
 
+        private void FillChecks()
+        {
+            DateTime date = DateTime.Now;
+            pr1cb1.Text = "01/" + date.AddYears(-1).ToString("yyyy");
+            pr1cb2.Text = "02/" + date.AddYears(-1).ToString("yyyy");
+            pr1cb3.Text = "03/" + date.AddYears(-1).ToString("yyyy");
+            pr1cb4.Text = "04/" + date.AddYears(-1).ToString("yyyy");
+            pr1cb5.Text = "05/" + date.AddYears(-1).ToString("yyyy");
+            pr1cb6.Text = "06/" + date.AddYears(-1).ToString("yyyy");
+            pr1cb7.Text = "07/" + date.AddYears(-1).ToString("yyyy");
+            pr1cb8.Text = "08/" + date.AddYears(-1).ToString("yyyy");
+            pr1cb9.Text = "09/" + date.AddYears(-1).ToString("yyyy");
+            pr1cb10.Text = "10/" + date.AddYears(-1).ToString("yyyy");
+            pr1cb11.Text = "11/" + date.AddYears(-1).ToString("yyyy");
+            pr1cb12.Text = "12/" + date.AddYears(-1).ToString("yyyy");
+
+            //Predlog 2
+            pr2cb1.Text = date.AddMonths(-1).ToString("MM/yyyy");
+            pr2cb2.Text = date.AddMonths(-2).ToString("MM/yyyy");
+            pr2cb3.Text = date.AddMonths(-3).ToString("MM/yyyy");
+            pr2cb4.Text = date.AddMonths(-4).ToString("MM/yyyy");
+            pr2cb5.Text = date.AddMonths(-5).ToString("MM/yyyy");
+            pr2cb6.Text = date.AddMonths(-6).ToString("MM/yyyy");
+            pr2cb7.Text = date.AddMonths(-7).ToString("MM/yyyy");
+            pr2cb8.Text = date.AddMonths(-8).ToString("MM/yyyy");
+            pr2cb9.Text = date.AddMonths(-9).ToString("MM/yyyy");
+            pr2cb10.Text = date.AddMonths(-10).ToString("MM/yyyy");
+            pr2cb11.Text = date.AddMonths(-11).ToString("MM/yyyy");
+            pr2cb12.Text = date.AddMonths(-12).ToString("MM/yyyy");
+        }
         private void PlanDetaljno_Load(object sender, EventArgs e)
         {
             
@@ -50,28 +81,67 @@ namespace WindowsFormsApplication1.Planovi_Excel
         }
         private void FillGV()
         {
-            var query = "Select pas.ID,IDPlana,PlanAktiv.Naziv as [Plan],IDPrograma,Program.Naziv as [Program],IDKolekcije,Kolekcije.Naziv as [Kolekcija],pas.MPSifra,RTrim(MaticniPodatki.MpStaraSif) as MpStaraSif," +
-                "MaticniPodatki.MpOsnSklad as [Skladiste],MaticniPodatki.MpOsnLokacija as [Lokacija],UOpticaju,Stanje,I36,I35,I34,I33,I32,I31,I30,I29,I28,I27,I26,I25,I24,I23,I22,I21,I20,I19,I18,I17,I16," +
-                "I15,I14,I13,I12,I11,I10,I9,I8,I7,I6,I5,I4,I3,I2,I1,Tekuci,UkupnoStanje,PL1_ID as [Plan1],PL1_KOl as [Plan1 kolicina],PL2_ID as [Plan2],PL2_Kol as [Plan2 kolicina],PL3_ID as [Plan3]," +
-                "PL3_Kol as [Plan3 kolicina],PL4_ID as [Plan4],PL4_KOL as [Plan4 kolicina],PL5_ID as [Plan5],PL5_KOL as [Plan5 kolicina],Realizacija,Neisporuceno,Raspolozivo,PR12 as [Prosek - 12]," +
-                "PR11 as [Prosek - 11],PR10 as [Prosek - 10],PR9 as [Prosek - 9],PR8 as [Prosek - 8],PR7 as [Prosek - 7],PR6 as [Prosek - 6],PR5 as [Prosek - 5],PR4 as [Prosek - 4],PR3 as [Prosek - 3]," +
-                "PR2 as [Prosek - 2],Prosek as [Mesecni prosek],Koeficijent,Predlog,UsvojenaOdluka,Prosek2,Predlog2,LagerOdluka as [Lager + Odluka],TrenutnoLager,Trend as [Trend +/ -],TrajnostLagera," +
-                "IzdatiNeisporuceni,OttoKol,SteinerKol,DatumAzuriranja " +
-                "From PlanAktivStavke pas " +
-                "Inner Join PlanAktiv on pas.IDPlana = PlanAktiv.ID " +
-                "inner join Program on pas.IDPrograma = Program.ID " +
-                "inner join Kolekcije on pas.IDKolekcije = Kolekcije.ID " +
-                "Inner join MaticniPodatki on pas.MpSifra = MaticniPodatki.MpSifra " +
-                "Where IDPlana = "+Convert.ToInt32(textBox1.Text.ToString())+" order by pas.ID asc";
-
+            var query = "";
+            if (checkBox6.Checked == true)
+            {
+                query = "Select pas.ID,IDPlana,PlanAktiv.Naziv as [Plan],pas.IDPrograma,Program.Naziv as [Program],pas.IDKolekcije,Kolekcije.Naziv as [Kolekcija],pas.MPSifra,RTrim(MaticniPodatki.MpStaraSif) as MpStaraSif, " +
+                    "MaticniPodatki.MpOsnSklad as [Skladiste],MaticniPodatki.MpOsnLokacija as [Lokacija],UOpticaju,Stanje,I36,I35,I34,I33,I32,I31,I30,I29,I28,I27,I26,I25,I24,I23,I22,I21,I20,I19,I18,I17,I16, " +
+                    "I15,I14,I13,I12,I11,I10,I9,I8,I7,I6,I5,I4,I3,I2,I1,Tekuci,UkupnoStanje,PL1_ID as [Plan1],PL1_KOl as [Plan1 kolicina],PL2_ID as [Plan2],PL2_Kol as [Plan2 kolicina],PL3_ID as [Plan3], " +
+                    "PL3_Kol as [Plan3 kolicina],PL4_ID as [Plan4],PL4_KOL as [Plan4 kolicina],PL5_ID as [Plan5],PL5_KOL as [Plan5 kolicina],Realizacija,Neisporuceno,Raspolozivo,PR12 as [Prosek - 12], " +
+                    "PR11 as [Prosek - 11],PR10 as [Prosek - 10],PR9 as [Prosek - 9],PR8 as [Prosek - 8],PR7 as [Prosek - 7],PR6 as [Prosek - 6],PR5 as [Prosek - 5],PR4 as [Prosek - 4],PR3 as [Prosek - 3], " +
+                    "PR2 as [Prosek - 2],Prosek as [Mesecni prosek],pas.Koeficijent,Predlog,UsvojenaOdluka,Prosek2,Predlog2,LagerOdluka as [Lager + Odluka],TrenutnoLager,Trend as [Trend +/ -],TrajnostLagera, " +
+                    "IzdatiNeisporuceni,OttoKol,SteinerKol,DatumAzuriranja " +
+                    "From PlanAktivStavke pas " +
+                    "Inner Join PlanAktiv on pas.IDPlana = PlanAktiv.ID " +
+                    "inner join Program on pas.IDPrograma = Program.ID " +
+                    "inner join Kolekcije on pas.IDKolekcije = Kolekcije.ID " +
+                    "Inner join MaticniPodatki on pas.MpSifra = MaticniPodatki.MpSifra " +
+                    "inner join PripadnostKolProgram on pas.MpSifra = PripadnostKolProgram.MPSifra " +
+                    "Where IDPlana = " + Convert.ToInt32(textBox1.Text.ToString()) + " and PripadnostKolProgram.TipPaketa = 1 order by pas.ID asc";
+            }
+            if (checkBox7.Checked == true)
+            {
+                query = "Select pas.ID,IDPlana,PlanAktiv.Naziv as [Plan],pas.IDPrograma,Program.Naziv as [Program],pas.IDKolekcije,Kolekcije.Naziv as [Kolekcija],pas.MPSifra,RTrim(MaticniPodatki.MpStaraSif) as MpStaraSif, " +
+                    "MaticniPodatki.MpOsnSklad as [Skladiste],MaticniPodatki.MpOsnLokacija as [Lokacija],UOpticaju,Stanje,I36,I35,I34,I33,I32,I31,I30,I29,I28,I27,I26,I25,I24,I23,I22,I21,I20,I19,I18,I17,I16, " +
+                    "I15,I14,I13,I12,I11,I10,I9,I8,I7,I6,I5,I4,I3,I2,I1,Tekuci,UkupnoStanje,PL1_ID as [Plan1],PL1_KOl as [Plan1 kolicina],PL2_ID as [Plan2],PL2_Kol as [Plan2 kolicina],PL3_ID as [Plan3], " +
+                    "PL3_Kol as [Plan3 kolicina],PL4_ID as [Plan4],PL4_KOL as [Plan4 kolicina],PL5_ID as [Plan5],PL5_KOL as [Plan5 kolicina],Realizacija,Neisporuceno,Raspolozivo,PR12 as [Prosek - 12], " +
+                    "PR11 as [Prosek - 11],PR10 as [Prosek - 10],PR9 as [Prosek - 9],PR8 as [Prosek - 8],PR7 as [Prosek - 7],PR6 as [Prosek - 6],PR5 as [Prosek - 5],PR4 as [Prosek - 4],PR3 as [Prosek - 3], " +
+                    "PR2 as [Prosek - 2],Prosek as [Mesecni prosek],pas.Koeficijent,Predlog,UsvojenaOdluka,Prosek2,Predlog2,LagerOdluka as [Lager + Odluka],TrenutnoLager,Trend as [Trend +/ -],TrajnostLagera, " +
+                    "IzdatiNeisporuceni,OttoKol,SteinerKol,DatumAzuriranja " +
+                    "From PlanAktivStavke pas " +
+                    "Inner Join PlanAktiv on pas.IDPlana = PlanAktiv.ID " +
+                    "inner join Program on pas.IDPrograma = Program.ID " +
+                    "inner join Kolekcije on pas.IDKolekcije = Kolekcije.ID " +
+                    "Inner join MaticniPodatki on pas.MpSifra = MaticniPodatki.MpSifra " +
+                    "inner join PripadnostKolProgram on pas.MpSifra = PripadnostKolProgram.MPSifra " +
+                    "Where IDPlana = " + Convert.ToInt32(textBox1.Text.ToString()) + " and PripadnostKolProgram.TipPaketa = 0 order by pas.ID asc";
+            }
+            if ((checkBox6.Checked == true && checkBox7.Checked == true) || (checkBox6.Checked == false && checkBox7.Checked == false))
+            {
+                query = "Select pas.ID,IDPlana,PlanAktiv.Naziv as [Plan],IDPrograma,Program.Naziv as [Program],IDKolekcije,Kolekcije.Naziv as [Kolekcija],pas.MPSifra,RTrim(MaticniPodatki.MpStaraSif) as MpStaraSif," +
+                    "MaticniPodatki.MpOsnSklad as [Skladiste],MaticniPodatki.MpOsnLokacija as [Lokacija],UOpticaju,Stanje,I36,I35,I34,I33,I32,I31,I30,I29,I28,I27,I26,I25,I24,I23,I22,I21,I20,I19,I18,I17,I16," +
+                    "I15,I14,I13,I12,I11,I10,I9,I8,I7,I6,I5,I4,I3,I2,I1,Tekuci,UkupnoStanje,PL1_ID as [Plan1],PL1_KOl as [Plan1 kolicina],PL2_ID as [Plan2],PL2_Kol as [Plan2 kolicina],PL3_ID as [Plan3]," +
+                    "PL3_Kol as [Plan3 kolicina],PL4_ID as [Plan4],PL4_KOL as [Plan4 kolicina],PL5_ID as [Plan5],PL5_KOL as [Plan5 kolicina],Realizacija,Neisporuceno,Raspolozivo,PR12 as [Prosek - 12]," +
+                    "PR11 as [Prosek - 11],PR10 as [Prosek - 10],PR9 as [Prosek - 9],PR8 as [Prosek - 8],PR7 as [Prosek - 7],PR6 as [Prosek - 6],PR5 as [Prosek - 5],PR4 as [Prosek - 4],PR3 as [Prosek - 3]," +
+                    "PR2 as [Prosek - 2],Prosek as [Mesecni prosek],Koeficijent,Predlog,UsvojenaOdluka,Prosek2,Predlog2,LagerOdluka as [Lager + Odluka],TrenutnoLager,Trend as [Trend +/ -],TrajnostLagera," +
+                    "IzdatiNeisporuceni,OttoKol,SteinerKol,DatumAzuriranja " +
+                    "From PlanAktivStavke pas " +
+                    "Inner Join PlanAktiv on pas.IDPlana = PlanAktiv.ID " +
+                    "inner join Program on pas.IDPrograma = Program.ID " +
+                    "inner join Kolekcije on pas.IDKolekcije = Kolekcije.ID " +
+                    "Inner join MaticniPodatki on pas.MpSifra = MaticniPodatki.MpSifra " +
+                    "Where IDPlana = " + Convert.ToInt32(textBox1.Text.ToString()) + " order by pas.ID asc";
+            }
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();
             da.Fill(ds);
 
-            dataGridView1.ReadOnly = false;
             dataGridView1.DataSource = ds.Tables[0];
+            dataGridView1.ReadOnly = false;
+            dataGridView1.Columns["UsvojenaOdluka"].ReadOnly = false;
             
+
             string query2 = "Select * from PodesavanjePlan";
             conn.Open();
             SqlCommand cmd = new SqlCommand(query2, conn);
@@ -79,7 +149,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
 
             while (dr.Read())
             {
-                foreach(DataGridViewColumn col in dataGridView1.Columns)
+                foreach (DataGridViewColumn col in dataGridView1.Columns)
                 {
                     if (col.HeaderText == dr["Kolona"].ToString())
                     {
@@ -96,7 +166,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 }
             }
             conn.Close();
-            //dataGridView1.Columns["UsvojenaOdluka"].ReadOnly = false;
+
             dataGridView1.Columns["ID"].Width = 50;
             dataGridView1.Columns["IDPlana"].Width = 50;
             dataGridView1.Columns["IdPrograma"].Width = 50;
@@ -183,35 +253,66 @@ namespace WindowsFormsApplication1.Planovi_Excel
 
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-                if (dataGridView1[78, row.Index].Value.ToString() != "" )
+                if (dataGridView1[78, row.Index].Value.ToString() != "")
                 {
                     dataGridView1[78, row.Index].Style.BackColor = Color.LightGreen; //doesn't work
 
                 }
-}
-               // || dataGridView1[78, row.Index].Value.ToString() != "0.00"
+            }
+        }
 
-                //row.Cells[col.Index].Style.BackColor = Color.Green; //doesn't work
-                //col.Cells[row.Index].Style.BackColor = Color.Green; //doesn't work
-                //dataGridView1[col.Index, row.Index].Style.BackColor = Color.Green; //doesn't work
 
-            
+        int countPR1 = 0;
+        int countPR2 = 0;
+        int p1m1 = 0, p1m2 = 0, p1m3 = 0, p1m4 = 0, p1m5 = 0, p1m6 = 0, p1m7 = 0, p1m8 = 0, p1m9 = 0, p1m10 = 0, p1m11 = 0, p1m12 = 0;
+        int p2m1 = 0, p2m2 = 0, p2m3 = 0, p2m4 = 0, p2m5 = 0, p2m6 = 0, p2m7 = 0, p2m8 = 0, p2m9 = 0, p2m10 = 0, p2m11 = 0, p2m12 = 0;
+        private void Predlozi()
+        {
+            if (pr1cb1.Checked == true) { countPR1++; p1m1 = 1; }
+            if (pr1cb2.Checked == true) { countPR1++; p1m2 = 1; }
+            if (pr1cb3.Checked == true) { countPR1++; p1m3 = 1; }
+            if (pr1cb4.Checked == true) { countPR1++; p1m4 = 1; }
+            if (pr1cb5.Checked == true) { countPR1++; p1m5 = 1; }
+            if (pr1cb6.Checked == true) { countPR1++; p1m6 = 1; }
+            if (pr1cb7.Checked == true) { countPR1++; p1m7 = 1; }
+            if (pr1cb8.Checked == true) { countPR1++; p1m8 = 1; }
+            if (pr1cb9.Checked == true) { countPR1++; p1m9 = 1; }
+            if (pr1cb10.Checked == true) { countPR1++; p1m10 = 1; }
+            if (pr1cb11.Checked == true) { countPR1++; p1m11 = 1; }
+            if (pr1cb12.Checked == true) { countPR1++; p1m12 = 1; }
+
+            if (pr2cb1.Checked == true) { countPR2++; p2m1 = 1; }
+            if (pr2cb2.Checked == true) { countPR2++; p2m2 = 1; }
+            if (pr2cb3.Checked == true) { countPR2++; p2m3 = 1; }
+            if (pr2cb4.Checked == true) { countPR2++; p2m4 = 1; }
+            if (pr2cb5.Checked == true) { countPR2++; p2m5 = 1; }
+            if (pr2cb6.Checked == true) { countPR2++; p2m6 = 1; }
+            if (pr2cb7.Checked == true) { countPR2++; p2m7 = 1; }
+            if (pr2cb8.Checked == true) { countPR2++; p2m8 = 1; }
+            if (pr2cb9.Checked == true) { countPR2++; p2m9 = 1; }
+            if (pr2cb10.Checked == true) { countPR2++; p2m10 = 1; }
+            if (pr2cb11.Checked == true) { countPR2++; p2m11 = 1; }
+            if (pr2cb12.Checked == true) { countPR2++; p2m12 = 1; }
+
+            InsertPlanovi ins = new InsertPlanovi();
+            ins.PoveziPredloge(Convert.ToInt32(textBox1.Text.ToString()), countPR1, countPR2, p1m1, p1m2, p1m3, p1m4, p1m5, p1m6, p1m7, p1m8, p1m9, p1m10, p1m11, p1m12, p2m1, p2m2, p2m3, p2m4, p2m5, p2m6, p2m7, p2m8, p2m9, p2m10, p2m11, p2m12);
 
         }
         private void Azuriraj()
         {
-            InsertPlanovi ins = new InsertPlanovi();
+          
+
+            InsertPlanovi ins = new InsertPlanovi(); 
             ins.PoveziIzlaznost(Convert.ToInt32(textBox1.Text.ToString()));
             ins.PoveziStanja(Convert.ToInt32(textBox1.Text.ToString()));
             ins.PoveziPlanove(Convert.ToInt32(textBox1.Text.ToString()),pl1, pl2, pl3, pl4, pl5);
             ins.PoveziProseke(Convert.ToInt32(textBox1.Text.ToString()));
-            ins.PoveziPredloge(Convert.ToInt32(textBox1.Text.ToString()), Convert.ToInt32(textBox2.Text.ToString()));
+            Predlozi();
             ins.PoveziTrend(Convert.ToInt32(textBox1.Text.ToString()));
             FillGV();
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            
             Azuriraj();
         }
         
@@ -288,6 +389,21 @@ namespace WindowsFormsApplication1.Planovi_Excel
                     dataGridView1.Focus();
                     dataGridView1.CurrentCell = dataGridView1.Rows[row].Cells[col];
                 }
+            }
+            if (cell.OwningColumn.Name == "Koeficijent")
+            {
+                decimal koef = (decimal)cell.Value;
+                ins.UpdateKoeficijent(Convert.ToInt32(cell.OwningRow.Cells["IDKolekcije"].Value), Convert.ToInt32(cell.OwningRow.Cells["IDPrograma"].Value),Convert.ToInt32(cell.OwningRow.Cells["MpSifra"].Value), koef);
+                Predlozi();
+                ins.PoveziTrend(Convert.ToInt32(textBox1.Text));
+
+                int row = cell.RowIndex;
+                int col = cell.ColumnIndex;
+                FillGV();
+
+                dataGridView1.Rows[row].Cells[col].Selected = true;
+                dataGridView1.Focus();
+                dataGridView1.CurrentCell = dataGridView1.Rows[row].Cells[col];
             }
         }
 

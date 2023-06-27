@@ -45,7 +45,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
@@ -53,9 +52,36 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnPodesavanje = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.checkBox7 = new System.Windows.Forms.CheckBox();
+            this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.btnPodesavanje = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.pr1cb1 = new System.Windows.Forms.CheckBox();
+            this.pr1cb2 = new System.Windows.Forms.CheckBox();
+            this.pr1cb3 = new System.Windows.Forms.CheckBox();
+            this.pr1cb4 = new System.Windows.Forms.CheckBox();
+            this.pr1cb5 = new System.Windows.Forms.CheckBox();
+            this.pr1cb6 = new System.Windows.Forms.CheckBox();
+            this.pr1cb7 = new System.Windows.Forms.CheckBox();
+            this.pr1cb8 = new System.Windows.Forms.CheckBox();
+            this.pr1cb9 = new System.Windows.Forms.CheckBox();
+            this.pr1cb10 = new System.Windows.Forms.CheckBox();
+            this.pr1cb11 = new System.Windows.Forms.CheckBox();
+            this.pr1cb12 = new System.Windows.Forms.CheckBox();
+            this.pr2cb4 = new System.Windows.Forms.CheckBox();
+            this.pr2cb3 = new System.Windows.Forms.CheckBox();
+            this.pr2cb2 = new System.Windows.Forms.CheckBox();
+            this.pr2cb1 = new System.Windows.Forms.CheckBox();
+            this.pr2cb8 = new System.Windows.Forms.CheckBox();
+            this.pr2cb7 = new System.Windows.Forms.CheckBox();
+            this.pr2cb6 = new System.Windows.Forms.CheckBox();
+            this.pr2cb5 = new System.Windows.Forms.CheckBox();
+            this.pr2cb12 = new System.Windows.Forms.CheckBox();
+            this.pr2cb11 = new System.Windows.Forms.CheckBox();
+            this.pr2cb10 = new System.Windows.Forms.CheckBox();
+            this.pr2cb9 = new System.Windows.Forms.CheckBox();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -98,7 +124,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(681, 14);
+            this.button1.Location = new System.Drawing.Point(1285, 18);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(108, 33);
             this.button1.TabIndex = 3;
@@ -108,7 +134,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(681, 83);
+            this.button2.Location = new System.Drawing.Point(1285, 57);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(181, 33);
             this.button2.TabIndex = 3;
@@ -210,21 +236,14 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.label2.TabIndex = 9;
             this.label2.Text = "Uključi planove";
             // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(521, 38);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 22);
-            this.textBox2.TabIndex = 1;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(478, 14);
+            this.label8.Location = new System.Drawing.Point(478, 9);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(193, 17);
+            this.label8.Size = new System.Drawing.Size(131, 17);
             this.label8.TabIndex = 2;
-            this.label8.Text = "Broj meseci za predloge 1-12";
+            this.label8.Text = "Meseci za predlog1";
             // 
             // checkBox1
             // 
@@ -281,23 +300,15 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.BackColor = System.Drawing.SystemColors.Info;
-            this.panel1.Controls.Add(this.btnPodesavanje);
             this.panel1.Controls.Add(this.dataGridView2);
-            this.panel1.Location = new System.Drawing.Point(825, 14);
+            this.panel1.Controls.Add(this.checkBox7);
+            this.panel1.Controls.Add(this.checkBox6);
+            this.panel1.Controls.Add(this.btnPodesavanje);
+            this.panel1.Location = new System.Drawing.Point(415, 8);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(707, 779);
+            this.panel1.Size = new System.Drawing.Size(816, 780);
             this.panel1.TabIndex = 17;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
-            // 
-            // btnPodesavanje
-            // 
-            this.btnPodesavanje.Location = new System.Drawing.Point(605, 10);
-            this.btnPodesavanje.Name = "btnPodesavanje";
-            this.btnPodesavanje.Size = new System.Drawing.Size(99, 45);
-            this.btnPodesavanje.TabIndex = 1;
-            this.btnPodesavanje.Text = "Podesi";
-            this.btnPodesavanje.UseVisualStyleBackColor = true;
-            this.btnPodesavanje.Click += new System.EventHandler(this.btnPodesavanje_Click);
             // 
             // dataGridView2
             // 
@@ -309,8 +320,38 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(573, 771);
+            this.dataGridView2.Size = new System.Drawing.Size(564, 772);
             this.dataGridView2.TabIndex = 0;
+            // 
+            // checkBox7
+            // 
+            this.checkBox7.AutoSize = true;
+            this.checkBox7.Location = new System.Drawing.Point(605, 113);
+            this.checkBox7.Name = "checkBox7";
+            this.checkBox7.Size = new System.Drawing.Size(79, 21);
+            this.checkBox7.TabIndex = 20;
+            this.checkBox7.Text = "Boja - 0";
+            this.checkBox7.UseVisualStyleBackColor = true;
+            // 
+            // checkBox6
+            // 
+            this.checkBox6.AutoSize = true;
+            this.checkBox6.Location = new System.Drawing.Point(605, 81);
+            this.checkBox6.Name = "checkBox6";
+            this.checkBox6.Size = new System.Drawing.Size(79, 21);
+            this.checkBox6.TabIndex = 21;
+            this.checkBox6.Text = "Boja - 1";
+            this.checkBox6.UseVisualStyleBackColor = true;
+            // 
+            // btnPodesavanje
+            // 
+            this.btnPodesavanje.Location = new System.Drawing.Point(605, 10);
+            this.btnPodesavanje.Name = "btnPodesavanje";
+            this.btnPodesavanje.Size = new System.Drawing.Size(99, 45);
+            this.btnPodesavanje.TabIndex = 1;
+            this.btnPodesavanje.Text = "Podesi";
+            this.btnPodesavanje.UseVisualStyleBackColor = true;
+            this.btnPodesavanje.Click += new System.EventHandler(this.btnPodesavanje_Click);
             // 
             // button4
             // 
@@ -323,6 +364,303 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.button4.Text = "-";
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // pr1cb1
+            // 
+            this.pr1cb1.AutoSize = true;
+            this.pr1cb1.Checked = true;
+            this.pr1cb1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.pr1cb1.Location = new System.Drawing.Point(481, 33);
+            this.pr1cb1.Name = "pr1cb1";
+            this.pr1cb1.Size = new System.Drawing.Size(98, 21);
+            this.pr1cb1.TabIndex = 19;
+            this.pr1cb1.Text = "checkBox8";
+            this.pr1cb1.UseVisualStyleBackColor = true;
+            // 
+            // pr1cb2
+            // 
+            this.pr1cb2.AutoSize = true;
+            this.pr1cb2.Checked = true;
+            this.pr1cb2.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.pr1cb2.Location = new System.Drawing.Point(481, 61);
+            this.pr1cb2.Name = "pr1cb2";
+            this.pr1cb2.Size = new System.Drawing.Size(98, 21);
+            this.pr1cb2.TabIndex = 19;
+            this.pr1cb2.Text = "checkBox8";
+            this.pr1cb2.UseVisualStyleBackColor = true;
+            // 
+            // pr1cb3
+            // 
+            this.pr1cb3.AutoSize = true;
+            this.pr1cb3.Checked = true;
+            this.pr1cb3.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.pr1cb3.Location = new System.Drawing.Point(481, 88);
+            this.pr1cb3.Name = "pr1cb3";
+            this.pr1cb3.Size = new System.Drawing.Size(98, 21);
+            this.pr1cb3.TabIndex = 19;
+            this.pr1cb3.Text = "checkBox8";
+            this.pr1cb3.UseVisualStyleBackColor = true;
+            // 
+            // pr1cb4
+            // 
+            this.pr1cb4.AutoSize = true;
+            this.pr1cb4.Checked = true;
+            this.pr1cb4.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.pr1cb4.Location = new System.Drawing.Point(481, 115);
+            this.pr1cb4.Name = "pr1cb4";
+            this.pr1cb4.Size = new System.Drawing.Size(98, 21);
+            this.pr1cb4.TabIndex = 19;
+            this.pr1cb4.Text = "checkBox8";
+            this.pr1cb4.UseVisualStyleBackColor = true;
+            // 
+            // pr1cb5
+            // 
+            this.pr1cb5.AutoSize = true;
+            this.pr1cb5.Checked = true;
+            this.pr1cb5.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.pr1cb5.Location = new System.Drawing.Point(585, 33);
+            this.pr1cb5.Name = "pr1cb5";
+            this.pr1cb5.Size = new System.Drawing.Size(98, 21);
+            this.pr1cb5.TabIndex = 19;
+            this.pr1cb5.Text = "checkBox8";
+            this.pr1cb5.UseVisualStyleBackColor = true;
+            // 
+            // pr1cb6
+            // 
+            this.pr1cb6.AutoSize = true;
+            this.pr1cb6.Checked = true;
+            this.pr1cb6.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.pr1cb6.Location = new System.Drawing.Point(585, 61);
+            this.pr1cb6.Name = "pr1cb6";
+            this.pr1cb6.Size = new System.Drawing.Size(98, 21);
+            this.pr1cb6.TabIndex = 19;
+            this.pr1cb6.Text = "checkBox8";
+            this.pr1cb6.UseVisualStyleBackColor = true;
+            // 
+            // pr1cb7
+            // 
+            this.pr1cb7.AutoSize = true;
+            this.pr1cb7.Checked = true;
+            this.pr1cb7.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.pr1cb7.Location = new System.Drawing.Point(585, 88);
+            this.pr1cb7.Name = "pr1cb7";
+            this.pr1cb7.Size = new System.Drawing.Size(98, 21);
+            this.pr1cb7.TabIndex = 19;
+            this.pr1cb7.Text = "checkBox8";
+            this.pr1cb7.UseVisualStyleBackColor = true;
+            // 
+            // pr1cb8
+            // 
+            this.pr1cb8.AutoSize = true;
+            this.pr1cb8.Checked = true;
+            this.pr1cb8.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.pr1cb8.Location = new System.Drawing.Point(585, 115);
+            this.pr1cb8.Name = "pr1cb8";
+            this.pr1cb8.Size = new System.Drawing.Size(98, 21);
+            this.pr1cb8.TabIndex = 19;
+            this.pr1cb8.Text = "checkBox8";
+            this.pr1cb8.UseVisualStyleBackColor = true;
+            // 
+            // pr1cb9
+            // 
+            this.pr1cb9.AutoSize = true;
+            this.pr1cb9.Checked = true;
+            this.pr1cb9.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.pr1cb9.Location = new System.Drawing.Point(689, 33);
+            this.pr1cb9.Name = "pr1cb9";
+            this.pr1cb9.Size = new System.Drawing.Size(98, 21);
+            this.pr1cb9.TabIndex = 19;
+            this.pr1cb9.Text = "checkBox8";
+            this.pr1cb9.UseVisualStyleBackColor = true;
+            // 
+            // pr1cb10
+            // 
+            this.pr1cb10.AutoSize = true;
+            this.pr1cb10.Checked = true;
+            this.pr1cb10.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.pr1cb10.Location = new System.Drawing.Point(689, 61);
+            this.pr1cb10.Name = "pr1cb10";
+            this.pr1cb10.Size = new System.Drawing.Size(98, 21);
+            this.pr1cb10.TabIndex = 19;
+            this.pr1cb10.Text = "checkBox8";
+            this.pr1cb10.UseVisualStyleBackColor = true;
+            // 
+            // pr1cb11
+            // 
+            this.pr1cb11.AutoSize = true;
+            this.pr1cb11.Checked = true;
+            this.pr1cb11.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.pr1cb11.Location = new System.Drawing.Point(689, 88);
+            this.pr1cb11.Name = "pr1cb11";
+            this.pr1cb11.Size = new System.Drawing.Size(98, 21);
+            this.pr1cb11.TabIndex = 19;
+            this.pr1cb11.Text = "checkBox8";
+            this.pr1cb11.UseVisualStyleBackColor = true;
+            // 
+            // pr1cb12
+            // 
+            this.pr1cb12.AutoSize = true;
+            this.pr1cb12.Checked = true;
+            this.pr1cb12.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.pr1cb12.Location = new System.Drawing.Point(689, 115);
+            this.pr1cb12.Name = "pr1cb12";
+            this.pr1cb12.Size = new System.Drawing.Size(98, 21);
+            this.pr1cb12.TabIndex = 19;
+            this.pr1cb12.Text = "checkBox8";
+            this.pr1cb12.UseVisualStyleBackColor = true;
+            // 
+            // pr2cb4
+            // 
+            this.pr2cb4.AutoSize = true;
+            this.pr2cb4.Checked = true;
+            this.pr2cb4.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.pr2cb4.Location = new System.Drawing.Point(925, 114);
+            this.pr2cb4.Name = "pr2cb4";
+            this.pr2cb4.Size = new System.Drawing.Size(98, 21);
+            this.pr2cb4.TabIndex = 19;
+            this.pr2cb4.Text = "checkBox8";
+            this.pr2cb4.UseVisualStyleBackColor = true;
+            // 
+            // pr2cb3
+            // 
+            this.pr2cb3.AutoSize = true;
+            this.pr2cb3.Checked = true;
+            this.pr2cb3.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.pr2cb3.Location = new System.Drawing.Point(925, 87);
+            this.pr2cb3.Name = "pr2cb3";
+            this.pr2cb3.Size = new System.Drawing.Size(98, 21);
+            this.pr2cb3.TabIndex = 19;
+            this.pr2cb3.Text = "checkBox8";
+            this.pr2cb3.UseVisualStyleBackColor = true;
+            // 
+            // pr2cb2
+            // 
+            this.pr2cb2.AutoSize = true;
+            this.pr2cb2.Checked = true;
+            this.pr2cb2.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.pr2cb2.Location = new System.Drawing.Point(925, 60);
+            this.pr2cb2.Name = "pr2cb2";
+            this.pr2cb2.Size = new System.Drawing.Size(98, 21);
+            this.pr2cb2.TabIndex = 19;
+            this.pr2cb2.Text = "checkBox8";
+            this.pr2cb2.UseVisualStyleBackColor = true;
+            // 
+            // pr2cb1
+            // 
+            this.pr2cb1.AutoSize = true;
+            this.pr2cb1.Checked = true;
+            this.pr2cb1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.pr2cb1.Location = new System.Drawing.Point(925, 32);
+            this.pr2cb1.Name = "pr2cb1";
+            this.pr2cb1.Size = new System.Drawing.Size(98, 21);
+            this.pr2cb1.TabIndex = 19;
+            this.pr2cb1.Text = "checkBox8";
+            this.pr2cb1.UseVisualStyleBackColor = true;
+            // 
+            // pr2cb8
+            // 
+            this.pr2cb8.AutoSize = true;
+            this.pr2cb8.Checked = true;
+            this.pr2cb8.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.pr2cb8.Location = new System.Drawing.Point(1029, 114);
+            this.pr2cb8.Name = "pr2cb8";
+            this.pr2cb8.Size = new System.Drawing.Size(98, 21);
+            this.pr2cb8.TabIndex = 19;
+            this.pr2cb8.Text = "checkBox8";
+            this.pr2cb8.UseVisualStyleBackColor = true;
+            // 
+            // pr2cb7
+            // 
+            this.pr2cb7.AutoSize = true;
+            this.pr2cb7.Checked = true;
+            this.pr2cb7.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.pr2cb7.Location = new System.Drawing.Point(1029, 87);
+            this.pr2cb7.Name = "pr2cb7";
+            this.pr2cb7.Size = new System.Drawing.Size(98, 21);
+            this.pr2cb7.TabIndex = 19;
+            this.pr2cb7.Text = "checkBox8";
+            this.pr2cb7.UseVisualStyleBackColor = true;
+            // 
+            // pr2cb6
+            // 
+            this.pr2cb6.AutoSize = true;
+            this.pr2cb6.Checked = true;
+            this.pr2cb6.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.pr2cb6.Location = new System.Drawing.Point(1029, 60);
+            this.pr2cb6.Name = "pr2cb6";
+            this.pr2cb6.Size = new System.Drawing.Size(98, 21);
+            this.pr2cb6.TabIndex = 19;
+            this.pr2cb6.Text = "checkBox8";
+            this.pr2cb6.UseVisualStyleBackColor = true;
+            // 
+            // pr2cb5
+            // 
+            this.pr2cb5.AutoSize = true;
+            this.pr2cb5.Checked = true;
+            this.pr2cb5.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.pr2cb5.Location = new System.Drawing.Point(1029, 32);
+            this.pr2cb5.Name = "pr2cb5";
+            this.pr2cb5.Size = new System.Drawing.Size(98, 21);
+            this.pr2cb5.TabIndex = 19;
+            this.pr2cb5.Text = "checkBox8";
+            this.pr2cb5.UseVisualStyleBackColor = true;
+            // 
+            // pr2cb12
+            // 
+            this.pr2cb12.AutoSize = true;
+            this.pr2cb12.Checked = true;
+            this.pr2cb12.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.pr2cb12.Location = new System.Drawing.Point(1133, 114);
+            this.pr2cb12.Name = "pr2cb12";
+            this.pr2cb12.Size = new System.Drawing.Size(98, 21);
+            this.pr2cb12.TabIndex = 19;
+            this.pr2cb12.Text = "checkBox8";
+            this.pr2cb12.UseVisualStyleBackColor = true;
+            // 
+            // pr2cb11
+            // 
+            this.pr2cb11.AutoSize = true;
+            this.pr2cb11.Checked = true;
+            this.pr2cb11.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.pr2cb11.Location = new System.Drawing.Point(1133, 87);
+            this.pr2cb11.Name = "pr2cb11";
+            this.pr2cb11.Size = new System.Drawing.Size(98, 21);
+            this.pr2cb11.TabIndex = 19;
+            this.pr2cb11.Text = "checkBox8";
+            this.pr2cb11.UseVisualStyleBackColor = true;
+            // 
+            // pr2cb10
+            // 
+            this.pr2cb10.AutoSize = true;
+            this.pr2cb10.Checked = true;
+            this.pr2cb10.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.pr2cb10.Location = new System.Drawing.Point(1133, 60);
+            this.pr2cb10.Name = "pr2cb10";
+            this.pr2cb10.Size = new System.Drawing.Size(98, 21);
+            this.pr2cb10.TabIndex = 19;
+            this.pr2cb10.Text = "checkBox8";
+            this.pr2cb10.UseVisualStyleBackColor = true;
+            // 
+            // pr2cb9
+            // 
+            this.pr2cb9.AutoSize = true;
+            this.pr2cb9.Checked = true;
+            this.pr2cb9.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.pr2cb9.Location = new System.Drawing.Point(1133, 32);
+            this.pr2cb9.Name = "pr2cb9";
+            this.pr2cb9.Size = new System.Drawing.Size(98, 21);
+            this.pr2cb9.TabIndex = 19;
+            this.pr2cb9.Text = "checkBox8";
+            this.pr2cb9.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(922, 8);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(131, 17);
+            this.label9.TabIndex = 2;
+            this.label9.Text = "Meseci za predlog2";
             // 
             // PlanDetaljno
             // 
@@ -349,17 +687,42 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.pr2cb9);
+            this.Controls.Add(this.pr1cb9);
+            this.Controls.Add(this.pr2cb10);
+            this.Controls.Add(this.pr1cb10);
+            this.Controls.Add(this.pr2cb11);
+            this.Controls.Add(this.pr1cb11);
+            this.Controls.Add(this.pr2cb12);
+            this.Controls.Add(this.pr1cb12);
+            this.Controls.Add(this.pr2cb5);
+            this.Controls.Add(this.pr1cb5);
+            this.Controls.Add(this.pr2cb6);
+            this.Controls.Add(this.pr1cb6);
+            this.Controls.Add(this.pr2cb7);
+            this.Controls.Add(this.pr1cb7);
+            this.Controls.Add(this.pr2cb8);
+            this.Controls.Add(this.pr1cb8);
+            this.Controls.Add(this.pr2cb1);
+            this.Controls.Add(this.pr1cb1);
+            this.Controls.Add(this.pr2cb2);
+            this.Controls.Add(this.pr1cb2);
+            this.Controls.Add(this.pr2cb3);
+            this.Controls.Add(this.pr1cb3);
+            this.Controls.Add(this.pr2cb4);
+            this.Controls.Add(this.pr1cb4);
             this.Name = "PlanDetaljno";
             this.Text = "PlanDetaljno";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.PlanDetaljno_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -384,7 +747,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox checkBox2;
@@ -395,5 +757,32 @@ namespace WindowsFormsApplication1.Planovi_Excel
         private System.Windows.Forms.Button btnPodesavanje;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.CheckBox checkBox7;
+        private System.Windows.Forms.CheckBox checkBox6;
+        private System.Windows.Forms.CheckBox pr1cb1;
+        private System.Windows.Forms.CheckBox pr1cb2;
+        private System.Windows.Forms.CheckBox pr1cb3;
+        private System.Windows.Forms.CheckBox pr1cb4;
+        private System.Windows.Forms.CheckBox pr1cb5;
+        private System.Windows.Forms.CheckBox pr1cb6;
+        private System.Windows.Forms.CheckBox pr1cb7;
+        private System.Windows.Forms.CheckBox pr1cb8;
+        private System.Windows.Forms.CheckBox pr1cb9;
+        private System.Windows.Forms.CheckBox pr1cb10;
+        private System.Windows.Forms.CheckBox pr1cb11;
+        private System.Windows.Forms.CheckBox pr1cb12;
+        private System.Windows.Forms.CheckBox pr2cb4;
+        private System.Windows.Forms.CheckBox pr2cb3;
+        private System.Windows.Forms.CheckBox pr2cb2;
+        private System.Windows.Forms.CheckBox pr2cb1;
+        private System.Windows.Forms.CheckBox pr2cb8;
+        private System.Windows.Forms.CheckBox pr2cb7;
+        private System.Windows.Forms.CheckBox pr2cb6;
+        private System.Windows.Forms.CheckBox pr2cb5;
+        private System.Windows.Forms.CheckBox pr2cb12;
+        private System.Windows.Forms.CheckBox pr2cb11;
+        private System.Windows.Forms.CheckBox pr2cb10;
+        private System.Windows.Forms.CheckBox pr2cb9;
+        private System.Windows.Forms.Label label9;
     }
 }

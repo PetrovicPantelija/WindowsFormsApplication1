@@ -643,7 +643,9 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 }
             }
         }
-        public void PoveziPredloge(int ID,int Mesec)
+        public void PoveziPredloge(int ID,int Predlog1Count,int Predlog2Count,
+            int Predlog1m1, int Predlog1m2, int Predlog1m3, int Predlog1m4, int Predlog1m5, int Predlog1m6, int Predlog1m7, int Predlog1m8, int Predlog1m9, int Predlog1m10, int Predlog1m11, int Predlog1m12,
+            int Predlog2m1, int Predlog2m2, int Predlog2m3, int Predlog2m4, int Predlog2m5, int Predlog2m6, int Predlog2m7, int Predlog2m8, int Predlog2m9, int Predlog2m10, int Predlog2m11, int Predlog2m12)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -656,11 +658,163 @@ namespace WindowsFormsApplication1.Planovi_Excel
             id.Value = ID;
             cmd.Parameters.Add(id);
 
-            SqlParameter mesec = new SqlParameter();
-            mesec.ParameterName = "@Meseci1";
-            mesec.SqlDbType = SqlDbType.Int;
-            mesec.Value = Mesec;
-            cmd.Parameters.Add(mesec);
+            SqlParameter p1Count = new SqlParameter();
+            p1Count.ParameterName = "@Predlog1Count";
+            p1Count.SqlDbType = SqlDbType.Int;
+            p1Count.Value = Predlog1Count;
+            cmd.Parameters.Add(p1Count);
+
+            SqlParameter p2Count = new SqlParameter();
+            p2Count.ParameterName = "@Predlog2Count";
+            p2Count.SqlDbType = SqlDbType.Int;
+            p2Count.Value = Predlog2Count;
+            cmd.Parameters.Add(p2Count);
+
+
+            SqlParameter p1m1 = new SqlParameter();
+            p1m1.ParameterName = "@Predlog1m1";
+            p1m1.SqlDbType = SqlDbType.Int;
+            p1m1.Value = Predlog1m1;
+            cmd.Parameters.Add(p1m1);
+
+            SqlParameter p1m2 = new SqlParameter();
+            p1m2.ParameterName = "@Predlog1m2";
+            p1m2.SqlDbType = SqlDbType.Int;
+            p1m2.Value = Predlog1m2;
+            cmd.Parameters.Add(p1m2);
+
+            SqlParameter p1m3 = new SqlParameter();
+            p1m3.ParameterName = "@Predlog1m3";
+            p1m3.SqlDbType = SqlDbType.Int;
+            p1m3.Value = Predlog1m3;
+            cmd.Parameters.Add(p1m3);
+
+            SqlParameter p1m4 = new SqlParameter();
+            p1m4.ParameterName = "@Predlog1m4";
+            p1m4.SqlDbType = SqlDbType.Int;
+            p1m4.Value = Predlog1m4;
+            cmd.Parameters.Add(p1m4);
+
+            SqlParameter p1m5 = new SqlParameter();
+            p1m5.ParameterName = "@Predlog1m5";
+            p1m5.SqlDbType = SqlDbType.Int;
+            p1m5.Value = Predlog1m5;
+            cmd.Parameters.Add(p1m5);
+
+            SqlParameter p1m6 = new SqlParameter();
+            p1m6.ParameterName = "@Predlog1m6";
+            p1m6.SqlDbType = SqlDbType.Int;
+            p1m6.Value = Predlog1m6;
+            cmd.Parameters.Add(p1m6);
+
+            SqlParameter p1m7 = new SqlParameter();
+            p1m7.ParameterName = "@Predlog1m7";
+            p1m7.SqlDbType = SqlDbType.Int;
+            p1m7.Value = Predlog1m7;
+            cmd.Parameters.Add(p1m7);
+
+            SqlParameter p1m8 = new SqlParameter();
+            p1m8.ParameterName = "@Predlog1m8";
+            p1m8.SqlDbType = SqlDbType.Int;
+            p1m8.Value = Predlog1m8;
+            cmd.Parameters.Add(p1m8);
+
+            SqlParameter p1m9 = new SqlParameter();
+            p1m9.ParameterName = "@Predlog1m9";
+            p1m9.SqlDbType = SqlDbType.Int;
+            p1m9.Value = Predlog1m9;
+            cmd.Parameters.Add(p1m9);
+
+            SqlParameter p1m10 = new SqlParameter();
+            p1m10.ParameterName = "@Predlog1m10";
+            p1m10.SqlDbType = SqlDbType.Int;
+            p1m10.Value = Predlog1m10;
+            cmd.Parameters.Add(p1m10);
+
+            SqlParameter p1m11 = new SqlParameter();
+            p1m11.ParameterName = "@Predlog1m11";
+            p1m11.SqlDbType = SqlDbType.Int;
+            p1m11.Value = Predlog1m11;
+            cmd.Parameters.Add(p1m11);
+
+            SqlParameter p1m12 = new SqlParameter();
+            p1m12.ParameterName = "@Predlog1m12";
+            p1m12.SqlDbType = SqlDbType.Int;
+            p1m12.Value = Predlog1m12;
+            cmd.Parameters.Add(p1m12);
+
+            SqlParameter p2m1 = new SqlParameter();
+            p2m1.ParameterName = "@Predlog2m1";
+            p2m1.SqlDbType = SqlDbType.Int;
+            p2m1.Value = Predlog2m1;
+            cmd.Parameters.Add(p2m1);
+
+            SqlParameter p2m2 = new SqlParameter();
+            p2m2.ParameterName = "@Predlog2m2";
+            p2m2.SqlDbType = SqlDbType.Int;
+            p2m2.Value = Predlog2m2;
+            cmd.Parameters.Add(p2m2);
+
+            SqlParameter p2m3 = new SqlParameter();
+            p2m3.ParameterName = "@Predlog2m3";
+            p2m3.SqlDbType = SqlDbType.Int;
+            p2m3.Value = Predlog2m3;
+            cmd.Parameters.Add(p2m3);
+
+            SqlParameter p2m4 = new SqlParameter();
+            p2m4.ParameterName = "@Predlog2m4";
+            p2m4.SqlDbType = SqlDbType.Int;
+            p2m4.Value = Predlog2m4;
+            cmd.Parameters.Add(p2m4);
+
+            SqlParameter p2m5 = new SqlParameter();
+            p2m5.ParameterName = "@Predlog2m5";
+            p2m5.SqlDbType = SqlDbType.Int;
+            p2m5.Value = Predlog2m5;
+            cmd.Parameters.Add(p2m5);
+
+            SqlParameter p2m6 = new SqlParameter();
+            p2m6.ParameterName = "@Predlog2m6";
+            p2m6.SqlDbType = SqlDbType.Int;
+            p2m6.Value = Predlog2m6;
+            cmd.Parameters.Add(p2m6);
+
+            SqlParameter p2m7 = new SqlParameter();
+            p2m7.ParameterName = "@Predlog2m7";
+            p2m7.SqlDbType = SqlDbType.Int;
+            p2m7.Value = Predlog2m7;
+            cmd.Parameters.Add(p2m7);
+
+            SqlParameter p2m8 = new SqlParameter();
+            p2m8.ParameterName = "@Predlog2m8";
+            p2m8.SqlDbType = SqlDbType.Int;
+            p2m8.Value = Predlog2m8;
+            cmd.Parameters.Add(p2m8);
+
+            SqlParameter p2m9 = new SqlParameter();
+            p2m9.ParameterName = "@Predlog2m9";
+            p2m9.SqlDbType = SqlDbType.Int;
+            p2m9.Value = Predlog2m9;
+            cmd.Parameters.Add(p2m9);
+
+            SqlParameter p2m10 = new SqlParameter();
+            p2m10.ParameterName = "@Predlog2m10";
+            p2m10.SqlDbType = SqlDbType.Int;
+            p2m10.Value = Predlog2m10;
+            cmd.Parameters.Add(p2m10);
+
+            SqlParameter p2m11 = new SqlParameter();
+            p2m11.ParameterName = "@Predlog2m11";
+            p2m11.SqlDbType = SqlDbType.Int;
+            p2m11.Value = Predlog2m11;
+            cmd.Parameters.Add(p2m11);
+
+            SqlParameter p2m12 = new SqlParameter();
+            p2m12.ParameterName = "@Predlog2m12";
+            p2m12.SqlDbType = SqlDbType.Int;
+            p2m12.Value = Predlog2m12;
+            cmd.Parameters.Add(p2m12);
+
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -1371,6 +1525,73 @@ namespace WindowsFormsApplication1.Planovi_Excel
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
+                conn.Close();
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
+        public void UpdateKoeficijent(int IDKolekcije,int IDPrograma,int MpSifra,decimal Koeficijent)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdateKoeficijent";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter idk = new SqlParameter();
+            idk.ParameterName = "@IDKolekcije";
+            idk.SqlDbType = SqlDbType.Int;
+            idk.Value = IDKolekcije;
+            cmd.Parameters.Add(idk);
+
+
+            SqlParameter idp = new SqlParameter();
+            idp.ParameterName = "@IDPrograma";
+            idp.SqlDbType = SqlDbType.Int;
+            idp.Value = IDPrograma;
+            cmd.Parameters.Add(idp);
+
+
+            SqlParameter mp = new SqlParameter();
+            mp.ParameterName = "@MpSifra";
+            mp.SqlDbType = SqlDbType.Int;
+            mp.Value = MpSifra;
+            cmd.Parameters.Add(mp);
+
+
+            SqlParameter koef = new SqlParameter();
+            koef.ParameterName = "@Koeficijent";
+            koef.SqlDbType = SqlDbType.Decimal;
+            koef.Value = Koeficijent;
+            cmd.Parameters.Add(koef);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw new Exception("Neuspešan upis NHM brojeva");
+            }
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos NHM broja je uspešno završena", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
                 conn.Close();
                 if (error)
                 {
