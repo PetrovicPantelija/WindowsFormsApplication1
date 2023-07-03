@@ -296,12 +296,12 @@ namespace WindowsFormsApplication1.Planovi_Excel
 
             InsertPlanovi ins = new InsertPlanovi();
             ins.PoveziPredloge(Convert.ToInt32(textBox1.Text.ToString()), countPR1, countPR2, p1m1, p1m2, p1m3, p1m4, p1m5, p1m6, p1m7, p1m8, p1m9, p1m10, p1m11, p1m12, p2m1, p2m2, p2m3, p2m4, p2m5, p2m6, p2m7, p2m8, p2m9, p2m10, p2m11, p2m12);
+            countPR1 = 0;
+            countPR2 = 0;
 
         }
         private void Azuriraj()
         {
-          
-
             InsertPlanovi ins = new InsertPlanovi(); 
             ins.PoveziIzlaznost(Convert.ToInt32(textBox1.Text.ToString()));
             ins.PoveziStanja(Convert.ToInt32(textBox1.Text.ToString()));
@@ -323,7 +323,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 InsertPlanovi ins = new InsertPlanovi();
                 ins.UpdatePlanAktivStavke(Convert.ToInt32(row.Cells["ID"].Value.ToString()), Convert.ToInt32(textBox1.Text.ToString()), Convert.ToInt32(row.Cells["IDKolekcije"].Value.ToString()),
                     Convert.ToInt32(row.Cells["IDPrograma"].Value.ToString()), Convert.ToInt32(row.Cells["MPSifra"].Value.ToString()), Convert.ToDecimal(row.Cells["UsvojenaOdluka"].Value.ToString()));
-
             }
         }
 
@@ -371,7 +370,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
                         ins.PoveziUsvojenuOdluku(Convert.ToInt32(textBox1.Text), mp, odluka);
                         ins.PoveziTrend(Convert.ToInt32(textBox1.Text));
                         //dataGridView1.Update();
-
                     }
                     else
                     {
@@ -393,7 +391,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             if (cell.OwningColumn.Name == "Koeficijent")
             {
                 decimal koef = (decimal)cell.Value;
-                ins.UpdateKoeficijent(Convert.ToInt32(cell.OwningRow.Cells["IDKolekcije"].Value), Convert.ToInt32(cell.OwningRow.Cells["IDPrograma"].Value),Convert.ToInt32(cell.OwningRow.Cells["MpSifra"].Value), koef);
+                ins.UpdateKoeficijent(Convert.ToInt32(cell.OwningRow.Cells["IDKolekcije"].Value), koef);
                 Predlozi();
                 ins.PoveziTrend(Convert.ToInt32(textBox1.Text));
 
@@ -407,7 +405,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             }
         }
 
-        int pl1=0, pl2=0, pl3=0, pl4=0, pl5;
+        int pl1=0, pl2=0, pl3=0, pl4=0, pl5=0;
 
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {

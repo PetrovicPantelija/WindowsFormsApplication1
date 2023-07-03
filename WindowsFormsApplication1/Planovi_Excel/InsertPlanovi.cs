@@ -1533,7 +1533,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             }
         }
 
-        public void UpdateKoeficijent(int IDKolekcije,int IDPrograma,int MpSifra,decimal Koeficijent)
+        public void UpdateKoeficijent(int IDKolekcije,decimal Koeficijent)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -1545,20 +1545,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
             idk.SqlDbType = SqlDbType.Int;
             idk.Value = IDKolekcije;
             cmd.Parameters.Add(idk);
-
-
-            SqlParameter idp = new SqlParameter();
-            idp.ParameterName = "@IDPrograma";
-            idp.SqlDbType = SqlDbType.Int;
-            idp.Value = IDPrograma;
-            cmd.Parameters.Add(idp);
-
-
-            SqlParameter mp = new SqlParameter();
-            mp.ParameterName = "@MpSifra";
-            mp.SqlDbType = SqlDbType.Int;
-            mp.Value = MpSifra;
-            cmd.Parameters.Add(mp);
 
 
             SqlParameter koef = new SqlParameter();

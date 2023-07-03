@@ -147,7 +147,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(746, 105);
+            this.button2.Location = new System.Drawing.Point(764, 103);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(127, 41);
             this.button2.TabIndex = 5;
