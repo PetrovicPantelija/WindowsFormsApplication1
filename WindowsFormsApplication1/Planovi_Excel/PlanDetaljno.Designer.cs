@@ -82,6 +82,11 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.pr2cb10 = new System.Windows.Forms.CheckBox();
             this.pr2cb9 = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.checkBox8 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -124,7 +129,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1285, 18);
+            this.button1.Location = new System.Drawing.Point(1731, 5);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(108, 33);
             this.button1.TabIndex = 3;
@@ -134,7 +139,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(1285, 57);
+            this.button2.Location = new System.Drawing.Point(1731, 44);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(181, 33);
             this.button2.TabIndex = 3;
@@ -304,9 +309,9 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.panel1.Controls.Add(this.checkBox7);
             this.panel1.Controls.Add(this.checkBox6);
             this.panel1.Controls.Add(this.btnPodesavanje);
-            this.panel1.Location = new System.Drawing.Point(415, 8);
+            this.panel1.Location = new System.Drawing.Point(762, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(816, 780);
+            this.panel1.Size = new System.Drawing.Size(816, 783);
             this.panel1.TabIndex = 17;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -320,7 +325,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(564, 772);
+            this.dataGridView2.Size = new System.Drawing.Size(564, 775);
             this.dataGridView2.TabIndex = 0;
             // 
             // checkBox7
@@ -662,6 +667,53 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.label9.TabIndex = 2;
             this.label9.Text = "Meseci za predlog2";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(1290, 17);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(127, 17);
+            this.label10.TabIndex = 21;
+            this.label10.Text = "Pretraži po MP šifri";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(1290, 69);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(146, 17);
+            this.label11.TabIndex = 21;
+            this.label11.Text = "Pretraži po MP nazivu";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(1293, 36);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(85, 22);
+            this.textBox2.TabIndex = 22;
+            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
+            this.textBox2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox2_KeyUp);
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(1293, 91);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(240, 22);
+            this.textBox3.TabIndex = 22;
+            this.textBox3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox3_KeyDown);
+            this.textBox3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox3_KeyUp);
+            // 
+            // checkBox8
+            // 
+            this.checkBox8.AutoSize = true;
+            this.checkBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox8.Location = new System.Drawing.Point(1293, 121);
+            this.checkBox8.Name = "checkBox8";
+            this.checkBox8.Size = new System.Drawing.Size(166, 22);
+            this.checkBox8.TabIndex = 23;
+            this.checkBox8.Text = "Uključi tekući mesec";
+            this.checkBox8.UseVisualStyleBackColor = true;
+            // 
             // PlanDetaljno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -716,6 +768,11 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.Controls.Add(this.pr1cb3);
             this.Controls.Add(this.pr2cb4);
             this.Controls.Add(this.pr1cb4);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.checkBox8);
             this.Name = "PlanDetaljno";
             this.Text = "PlanDetaljno";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -784,5 +841,10 @@ namespace WindowsFormsApplication1.Planovi_Excel
         private System.Windows.Forms.CheckBox pr2cb10;
         private System.Windows.Forms.CheckBox pr2cb9;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.CheckBox checkBox8;
     }
 }

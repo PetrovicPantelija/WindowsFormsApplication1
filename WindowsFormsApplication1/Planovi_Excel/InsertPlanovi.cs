@@ -520,6 +520,8 @@ namespace WindowsFormsApplication1.Planovi_Excel
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "PoveziIzlaznost";
             cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 180;
+
 
             SqlParameter id = new SqlParameter();
             id.ParameterName = "@ID";
@@ -566,6 +568,8 @@ namespace WindowsFormsApplication1.Planovi_Excel
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "PoveziPlanove";
             cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 180;
+
 
             SqlParameter id = new SqlParameter();
             id.ParameterName = "@IDPlana";
@@ -651,6 +655,8 @@ namespace WindowsFormsApplication1.Planovi_Excel
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "PoveziPredloge";
             cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 180;
+
 
             SqlParameter id = new SqlParameter();
             id.ParameterName = "@IDPlana";
@@ -858,6 +864,8 @@ namespace WindowsFormsApplication1.Planovi_Excel
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "PoveziProseke";
             cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 180;
+
 
             SqlParameter id = new SqlParameter();
             id.ParameterName = "@IDPlana";
@@ -903,6 +911,8 @@ namespace WindowsFormsApplication1.Planovi_Excel
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "PoveziStanja";
             cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 180;
+
 
             SqlParameter id = new SqlParameter();
             id.ParameterName = "@IDPlana";
@@ -943,7 +953,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 }
             }
         }
-        public void PoveziTrend(int ID)
+        public void PoveziTrend(int ID,int Tekuci)
         {
             //Komentar 
 
@@ -951,12 +961,20 @@ namespace WindowsFormsApplication1.Planovi_Excel
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "PoveziTrend";
             cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 180;
+
 
             SqlParameter id = new SqlParameter();
             id.ParameterName = "@IDPlana";
             id.SqlDbType = SqlDbType.Int;
             id.Value = ID;
             cmd.Parameters.Add(id);
+
+            SqlParameter tekuci = new SqlParameter();
+            tekuci.ParameterName = "@Tekuci";
+            tekuci.SqlDbType = SqlDbType.Int;
+            tekuci.Value = Tekuci;
+            cmd.Parameters.Add(tekuci);
 
 
             conn.Open();

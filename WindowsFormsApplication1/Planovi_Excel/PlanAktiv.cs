@@ -98,5 +98,37 @@ namespace WindowsFormsApplication1.Planovi_Excel
             ins.DeletePlanSaStavkama(Convert.ToInt32(txtID.Text));
             FillGV();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            int stariplan = Convert.ToInt32(txtID.Text);
+            int noviPlan=0;
+            InsertPlanovi ins = new InsertPlanovi();
+            ins.InsertPlan(txtNaziv.Text.ToString().TrimEnd(), DateTime.Now, DateTime.Now, txtNapomena.Text.ToString().TrimEnd(), "Aktivan");
+
+            string query = "(select (Max(t1.ID)) from (select ID from PlanArhiv union Select ID from PlanAktiv) as t1 )";
+            SqlConnection conn = new SqlConnection(connect);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                noviPlan = Convert.ToInt32(dr[0].ToString());
+            }
+            conn.Close();
+            var query2 = "Select IDPrograma,IDKolekcije,MPSifra From PLanAktivStavke Where IDPLana=" + stariplan;
+            conn.Open();
+            SqlCommand cmd2 = new SqlCommand(query2, conn);
+            SqlDataReader dr2 = cmd2.ExecuteReader();
+            while (dr2.Read())
+            {
+                ins.InsertPlanStavke(noviPlan, Convert.ToInt32(dr2["IDPrograma"].ToString()), Convert.ToInt32(dr2["IdKolekcije"].ToString()),
+                    Convert.ToInt32(dr2["MpSifra"].ToString()));
+            }
+            conn.Close();
+            FillGV();
+
+        }
     }
 }

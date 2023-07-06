@@ -1,10 +1,14 @@
-﻿using System;
+﻿using CsvHelper;
+using CsvHelper.Configuration;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +30,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
         }
         private void FillGV()
         {
-            var query = "Select ID,RTrim(Naziv) as Naziv,DatumOd,DatumDo From PlanAktiv order by ID desc";
+            var query = "Select ID,RTrim(Naziv) as Naziv,DatumOd,DatumDo From PlanArhiv order by ID desc";
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();
@@ -62,7 +66,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             catch { }
             FillGV();
         }
-
+        string Naziv = "";
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             foreach(DataGridViewRow row in dataGridView1.Rows)
@@ -70,6 +74,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 if (row.Selected)
                 {
                     textBox1.Text = row.Cells[0].Value.ToString();
+                    Naziv = row.Cells[1].Value.ToString();
                 }
             }
         }
@@ -89,6 +94,47 @@ namespace WindowsFormsApplication1.Planovi_Excel
             }
             catch { }
             FillGV();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string[] path = { Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Plan-RN-" };
+            string folder = Path.Combine(path);
+
+            var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+            {
+                ShouldQuote = (field) => true
+            };
+            SqlConnection conn = new SqlConnection(connect);
+            conn.Open();
+            var query = "Select '' as a,'' as b,'' as c,PlanArhivStavke.MpSifra,RTrim(MaticniPodatki.MpStaraSif) as MpStaraSif,'','',UsvojenaOdluka from PlanArhivStavke Inner join MaticniPodatki on PlanArhivStavke.MpSifra=MaticniPodatki.MpSifra Where IDPlana="+Convert.ToInt32(textBox1.Text);
+            SqlCommand cmd = new SqlCommand(query, conn);
+            string file = folder + Naziv + ".csv";
+            try
+            {
+                using (var textWriter = File.CreateText(file))
+                {
+                    using (CsvWriter csv = new CsvWriter(textWriter, config))
+                    {
+                        DataTable dt = new DataTable();
+                        dt.Load(cmd.ExecuteReader());
+                        int count = 1110;
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            count++;
+                            csv.WriteField(count);
+                            for (var i = 0; i < dt.Columns.Count; i++)
+                            {
+                                csv.WriteField(row[i]);
+                            }
+                            csv.NextRecord();
+                        }
+                    }
+                }
+                MessageBox.Show("Kreiran dokument", "CSV");
+            }
+            catch (Exception ex) { MessageBox.Show(ex.ToString(), "CSV"); }
+            conn.Close();
         }
     }
 }
