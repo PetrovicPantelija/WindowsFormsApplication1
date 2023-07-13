@@ -1,26 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsFormsApplication1.Planovi_Excel
 {
     public partial class PlanArhiv : Form
     {
-        string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-        bool status = false;
+        private string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        private bool status = false;
         public int ID;
+
         public PlanArhiv()
         {
             InitializeComponent();
         }
+
         private void FillGV()
         {
             var query = "Select * from PlanArhiv";
@@ -56,7 +52,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-            foreach(DataGridViewRow row in dataGridView1.Rows)
+            foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 if (row.Selected)
                 {
@@ -71,7 +67,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -82,19 +77,16 @@ namespace WindowsFormsApplication1.Planovi_Excel
 
         private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-
             status = false;
-           // DeletePlanSaStavkama
+            // DeletePlanSaStavkama
         }
     }
 }

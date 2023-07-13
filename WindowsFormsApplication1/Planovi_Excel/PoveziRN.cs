@@ -40,13 +40,16 @@ namespace WindowsFormsApplication1.Planovi_Excel
             dataGridView1.DataSource = ds.Tables[0];
             dataGridView1.Columns[0].Width = 60;
 
-            var query2 = "select DnpStZapisa as [RN],DNpSifVrsteDN as [Vrsta RN],DNpSifStat as [Status],IDPlana from DelNalogProizvodni " +
+            var query2 = "select DnPStZapisa as [Sifra RN], DNPStevilka as [Broj RN],DNpSifVrsteDN as [Vrsta RN],DNpSifStat as [Status],IDPlana from DelNalogProizvodni " +
                 "where (DNpSifVrsteDN=40 or DNpSifVrsteDN=41) AND DNpSifStat IN ('OD','LA','PO','PF','PL') order by DNpStZapisa desc";
             var da2 = new SqlDataAdapter(query2, conn);
             var ds2 = new DataSet();
             da2.Fill(ds2);
             dataGridView2.ReadOnly = true;
             dataGridView2.DataSource = ds2.Tables[0];
+            dataGridView2.Columns[0].Width = 60;
+            dataGridView2.Columns[1].Width = 60;
+            dataGridView2.Columns[2].Width = 60;
             dataGridView2.Columns[3].Width = 60;
         }
 
@@ -103,7 +106,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
 
             var config = new CsvConfiguration(CultureInfo.InvariantCulture)
             {
-                ShouldQuote = (field) => true
+                ShouldQuote = (field) => false
             };
             SqlConnection conn = new SqlConnection(connect);
             conn.Open();

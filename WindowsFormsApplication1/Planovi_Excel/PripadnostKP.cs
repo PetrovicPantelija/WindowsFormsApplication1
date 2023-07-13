@@ -86,14 +86,14 @@ namespace WindowsFormsApplication1.Planovi_Excel
                     if (row.Selected)
                     {
                         MpSifra = Convert.ToInt32(row.Cells[0].Value.ToString());
-                        ins.InsertPripadnostKP(Convert.ToInt32(cboKolekcija.SelectedValue), Convert.ToInt32(cboProgram.SelectedValue), MpSifra, boja,Convert.ToDecimal(textBox1.Text.ToString().TrimEnd()));
+                        ins.InsertPripadnostKP(Convert.ToInt32(cboKolekcija.SelectedValue), Convert.ToInt32(cboProgram.SelectedValue), MpSifra, boja, Convert.ToDecimal(textBox1.Text.ToString().TrimEnd()));
                     }
                 }
                 ObrisiDuplirano();
                 FillGV();
             }
             catch
-            {}
+            { }
         }
         private void ObrisiDuplirano()
         {
@@ -140,14 +140,14 @@ namespace WindowsFormsApplication1.Planovi_Excel
                         else { checkBox1.Checked = false; }
                         textBox1.Text = row.Cells[6].Value.ToString();
 
-                        ins.UpdatePripadnostKP(ID,Convert.ToInt32(cboKolekcija.SelectedValue), Convert.ToInt32(cboProgram.SelectedValue), Convert.ToInt32(row.Cells[3].Value), boja,Convert.ToDecimal(textBox1.Text.ToString()));
+                        ins.UpdatePripadnostKP(ID, Convert.ToInt32(cboKolekcija.SelectedValue), Convert.ToInt32(cboProgram.SelectedValue), Convert.ToInt32(row.Cells[3].Value), boja, Convert.ToDecimal(textBox1.Text.ToString()));
                     }
                 }
                 ObrisiDuplirano();
                 FillGV();
             }
             catch
-            {}
+            { }
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -166,13 +166,28 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 FillGV();
             }
             catch
-            {}
+            { }
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             Planovi_Excel.Izlaznost frm = new Izlaznost();
             frm.Show();
+        }
+
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (Convert.ToInt32(row.Cells["MpSifra"].Value.ToString()) == Convert.ToInt32(textBox2.Text.ToString()))
+                    {
+                        row.Selected = true;
+                        dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.SelectedRows[0].Index;
+                    }
+                }
+            }
         }
     }
 }

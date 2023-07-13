@@ -1,16 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-using System.Globalization;
+using System.Data;
+using System.Data.OleDb;
+using System.Windows.Forms;
 
 namespace WindowsFormsApplication1.Planovi_Excel
 {
@@ -23,8 +15,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-          
             string connString =
           ConfigurationManager.AppSettings["webs"];
 
@@ -43,7 +33,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
 
                 adapter.Fill(dataTableRes);
                 dataGridView1.DataSource = dataTableRes;
-               
+
                 /*DataGridViewColumn column = dataGridView1.Columns[0];
                 dataGridView1.Columns[0].HeaderText = "Isporuka ID";
                 dataGridView1.Columns[0].Width = 50;

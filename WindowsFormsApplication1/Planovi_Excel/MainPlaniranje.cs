@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsFormsApplication1.Planovi_Excel
@@ -15,13 +8,14 @@ namespace WindowsFormsApplication1.Planovi_Excel
         public bool PravoP;
         public static string code = "frmMainPlaniranje";
         public bool Pravo;
-        int idGrupe;
-        int idForme;
-        bool insert;
-        bool update;
-        bool delete;
-        string Kor = frmLogovanje.user.ToString().TrimEnd();
-        string niz = "";
+        private int idGrupe;
+        private int idForme;
+        private bool insert;
+        private bool update;
+        private bool delete;
+        private string Kor = frmLogovanje.user.ToString().TrimEnd();
+        private string niz = "";
+
         public MainPlaniranje()
         {
             InitializeComponent();
@@ -30,13 +24,13 @@ namespace WindowsFormsApplication1.Planovi_Excel
         private void label2_Click(object sender, EventArgs e)
         {
             Kalkulacije.frmKolekcije kol = new Kalkulacije.frmKolekcije();
-            kol.Show(); 
+            kol.Show();
         }
 
         private void label8_Click(object sender, EventArgs e)
         {
             Kalkulacije.frmProgram program = new Kalkulacije.frmProgram();
-            program.Show(); 
+            program.Show();
         }
 
         private void label4_Click(object sender, EventArgs e)

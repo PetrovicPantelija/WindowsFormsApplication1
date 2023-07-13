@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsFormsApplication1.Planovi_Excel
 {
-    class InsertPlanovi
+    internal class InsertPlanovi
     {
-        string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        private string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+
         public void InsertPlan(string Naziv, DateTime DatumOd, DateTime DatumDo, string Napomena, string Status)
         {
             SqlConnection conn = new SqlConnection(connect);
@@ -56,6 +53,82 @@ namespace WindowsFormsApplication1.Planovi_Excel
             status.Value = Status;
             cmd.Parameters.Add(status);
 
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw new Exception("Neuspešan upis NHM brojeva");
+            }
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos NHM broja je uspešno završena", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
+        public void UpdatePlakAktiv(int ID, string Naziv, DateTime DatumOd, DateTime DatumDo, string Napomena)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdatePlanAktiv";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
+
+            SqlParameter naziv = new SqlParameter();
+            naziv.ParameterName = "@Naziv";
+            naziv.SqlDbType = SqlDbType.NVarChar;
+            naziv.Size = 100;
+            naziv.Direction = ParameterDirection.Input;
+            naziv.Value = Naziv;
+            cmd.Parameters.Add(naziv);
+
+            SqlParameter datOD = new SqlParameter();
+            datOD.ParameterName = "@DatumOd";
+            datOD.SqlDbType = SqlDbType.Date;
+            datOD.Direction = ParameterDirection.Input;
+            datOD.Value = DatumOd;
+            cmd.Parameters.Add(datOD);
+
+            SqlParameter datDO = new SqlParameter();
+            datDO.ParameterName = "@DatumDo";
+            datDO.SqlDbType = SqlDbType.Date;
+            datDO.Direction = ParameterDirection.Input;
+            datDO.Value = DatumDo;
+            cmd.Parameters.Add(datDO);
+
+            SqlParameter napomena = new SqlParameter();
+            napomena.ParameterName = "@Napomena";
+            napomena.SqlDbType = SqlDbType.NVarChar;
+            napomena.Size = 500;
+            napomena.Value = Napomena;
+            cmd.Parameters.Add(napomena);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -68,13 +141,11 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 myTransaction = conn.BeginTransaction();
                 cmd.Transaction = myTransaction;
             }
-
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.ToString());
                 throw new Exception("Neuspešan upis NHM brojeva");
             }
-
             finally
             {
                 if (!error)
@@ -82,7 +153,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
                     myTransaction.Commit();
                     MessageBox.Show("Unos NHM broja je uspešno završena", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 }
 
                 conn.Close();
@@ -109,9 +179,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
             id.Value = ID;
             cmd.Parameters.Add(id);
 
-           
-
-
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
             cmd.Transaction = myTransaction;
@@ -123,13 +190,11 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 myTransaction = conn.BeginTransaction();
                 cmd.Transaction = myTransaction;
             }
-
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.ToString());
                 throw new Exception("Neuspešan brisanje Planova");
             }
-
             finally
             {
                 if (!error)
@@ -137,7 +202,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
                     myTransaction.Commit();
                     MessageBox.Show("Brisanje Plana nije ispesno", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 }
 
                 conn.Close();
@@ -148,7 +212,8 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 }
             }
         }
-        public void InsertPlanStavke(int IDPlana,int IDPrograma,int IDKolekcije,int MpSifra)
+
+        public void InsertPlanStavke(int IDPlana, int IDPrograma, int IDKolekcije, int MpSifra)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -190,13 +255,11 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 myTransaction = conn.BeginTransaction();
                 cmd.Transaction = myTransaction;
             }
-
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.ToString());
                 throw new Exception("Neuspešan upis NHM brojeva");
             }
-
             finally
             {
                 if (!error)
@@ -204,7 +267,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
                     myTransaction.Commit();
                     MessageBox.Show("Unos NHM broja je uspešno završena", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 }
 
                 conn.Close();
@@ -215,6 +277,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 }
             }
         }
+
         public void DeletePlanStavke(int Id)
         {
             SqlConnection conn = new SqlConnection(connect);
@@ -239,13 +302,11 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 myTransaction = conn.BeginTransaction();
                 cmd.Transaction = myTransaction;
             }
-
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.ToString());
                 throw new Exception("Neuspešan upis NHM brojeva");
             }
-
             finally
             {
                 if (!error)
@@ -253,7 +314,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
                     myTransaction.Commit();
                     MessageBox.Show("Unos NHM broja je uspešno završena", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 }
 
                 conn.Close();
@@ -264,7 +324,8 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 }
             }
         }
-        public void InsertPripadnostKP(int IdKol,int IdProgram,int MpSifra,int Tip,decimal Koeficijent)
+
+        public void InsertPripadnostKP(int IdKol, int IdProgram, int MpSifra, int Tip, decimal Koeficijent)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -312,13 +373,11 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 myTransaction = conn.BeginTransaction();
                 cmd.Transaction = myTransaction;
             }
-
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.ToString());
                 throw new Exception("Neuspešan upis NHM brojeva");
             }
-
             finally
             {
                 if (!error)
@@ -326,7 +385,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
                     myTransaction.Commit();
                     MessageBox.Show("Unos NHM broja je uspešno završena", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 }
 
                 conn.Close();
@@ -337,7 +395,8 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 }
             }
         }
-        public void UpdatePripadnostKP(int Id,int IdKol, int IdProgram, int MpSifra, int Tip,decimal Koeficijent)
+
+        public void UpdatePripadnostKP(int Id, int IdKol, int IdProgram, int MpSifra, int Tip, decimal Koeficijent)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -391,13 +450,11 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 myTransaction = conn.BeginTransaction();
                 cmd.Transaction = myTransaction;
             }
-
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.ToString());
                 throw new Exception("Neuspešan upis NHM brojeva");
             }
-
             finally
             {
                 if (!error)
@@ -405,7 +462,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
                     myTransaction.Commit();
                     MessageBox.Show("Unos NHM broja je uspešno završena", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 }
 
                 conn.Close();
@@ -416,6 +472,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 }
             }
         }
+
         public void DeletePripadnostKP(int Id)
         {
             SqlConnection conn = new SqlConnection(connect);
@@ -440,13 +497,11 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 myTransaction = conn.BeginTransaction();
                 cmd.Transaction = myTransaction;
             }
-
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.ToString());
                 throw new Exception("Neuspešan upis NHM brojeva");
             }
-
             finally
             {
                 if (!error)
@@ -454,7 +509,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
                     myTransaction.Commit();
                     MessageBox.Show("Unos NHM broja je uspešno završena", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 }
 
                 conn.Close();
@@ -465,6 +519,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 }
             }
         }
+
         public void ProglasiIzlaznost(int ID)
         {
             SqlConnection conn = new SqlConnection(connect);
@@ -489,13 +544,11 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 myTransaction = conn.BeginTransaction();
                 cmd.Transaction = myTransaction;
             }
-
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.ToString());
                 throw new Exception("Neuspešan upis NHM brojeva");
             }
-
             finally
             {
                 if (!error)
@@ -503,7 +556,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
                     myTransaction.Commit();
                     MessageBox.Show("Unos NHM broja je uspešno završena", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 }
 
                 conn.Close();
@@ -514,6 +566,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 }
             }
         }
+
         public void PoveziIzlaznost(int ID)
         {
             SqlConnection conn = new SqlConnection(connect);
@@ -522,13 +575,11 @@ namespace WindowsFormsApplication1.Planovi_Excel
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandTimeout = 180;
 
-
             SqlParameter id = new SqlParameter();
             id.ParameterName = "@ID";
             id.SqlDbType = SqlDbType.Int;
             id.Value = ID;
             cmd.Parameters.Add(id);
-
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -562,14 +613,14 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 }
             }
         }
-        public void PoveziPlanove(int ID,int Plan1,int Plan2,int Plan3,int Plan4, int Plan5)
+
+        public void PoveziPlanove(int ID, int Plan1, int Plan2, int Plan3, int Plan4, int Plan5)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "PoveziPlanove";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandTimeout = 180;
-
 
             SqlParameter id = new SqlParameter();
             id.ParameterName = "@IDPlana";
@@ -589,13 +640,11 @@ namespace WindowsFormsApplication1.Planovi_Excel
             plan2.Value = Plan2;
             cmd.Parameters.Add(plan2);
 
-
             SqlParameter plan3 = new SqlParameter();
             plan3.ParameterName = "@Plan3";
             plan3.SqlDbType = SqlDbType.Int;
             plan3.Value = Plan3;
             cmd.Parameters.Add(plan3);
-
 
             SqlParameter plan4 = new SqlParameter();
             plan4.ParameterName = "@Plan4";
@@ -603,13 +652,11 @@ namespace WindowsFormsApplication1.Planovi_Excel
             plan4.Value = Plan4;
             cmd.Parameters.Add(plan4);
 
-
             SqlParameter plan5 = new SqlParameter();
             plan5.ParameterName = "@Plan5";
             plan5.SqlDbType = SqlDbType.Int;
             plan5.Value = Plan5;
             cmd.Parameters.Add(plan5);
-
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -622,13 +669,11 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 myTransaction = conn.BeginTransaction();
                 cmd.Transaction = myTransaction;
             }
-
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.ToString());
                 throw new Exception("Neuspešan upis NHM brojeva");
             }
-
             finally
             {
                 if (!error)
@@ -636,7 +681,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
                     myTransaction.Commit();
                     MessageBox.Show("Unos NHM broja je uspešno završena", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 }
 
                 conn.Close();
@@ -647,7 +691,8 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 }
             }
         }
-        public void PoveziPredloge(int ID,int Predlog1Count,int Predlog2Count,
+
+        public void PoveziPredloge(int ID, int Predlog1Count, int Predlog2Count,
             int Predlog1m1, int Predlog1m2, int Predlog1m3, int Predlog1m4, int Predlog1m5, int Predlog1m6, int Predlog1m7, int Predlog1m8, int Predlog1m9, int Predlog1m10, int Predlog1m11, int Predlog1m12,
             int Predlog2m1, int Predlog2m2, int Predlog2m3, int Predlog2m4, int Predlog2m5, int Predlog2m6, int Predlog2m7, int Predlog2m8, int Predlog2m9, int Predlog2m10, int Predlog2m11, int Predlog2m12)
         {
@@ -656,7 +701,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
             cmd.CommandText = "PoveziPredloge";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandTimeout = 180;
-
 
             SqlParameter id = new SqlParameter();
             id.ParameterName = "@IDPlana";
@@ -675,7 +719,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
             p2Count.SqlDbType = SqlDbType.Int;
             p2Count.Value = Predlog2Count;
             cmd.Parameters.Add(p2Count);
-
 
             SqlParameter p1m1 = new SqlParameter();
             p1m1.ParameterName = "@Predlog1m1";
@@ -821,7 +864,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
             p2m12.Value = Predlog2m12;
             cmd.Parameters.Add(p2m12);
 
-
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
             cmd.Transaction = myTransaction;
@@ -833,13 +875,11 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 myTransaction = conn.BeginTransaction();
                 cmd.Transaction = myTransaction;
             }
-
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.ToString());
                 throw new Exception("Neuspešan upis NHM brojeva");
             }
-
             finally
             {
                 if (!error)
@@ -847,7 +887,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
                     myTransaction.Commit();
                     MessageBox.Show("Unos NHM broja je uspešno završena", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 }
 
                 conn.Close();
@@ -858,6 +897,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 }
             }
         }
+
         public void PoveziProseke(int ID)
         {
             SqlConnection conn = new SqlConnection(connect);
@@ -866,7 +906,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandTimeout = 180;
 
-
             SqlParameter id = new SqlParameter();
             id.ParameterName = "@IDPlana";
             id.SqlDbType = SqlDbType.Int;
@@ -905,6 +944,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 }
             }
         }
+
         public void PoveziStanja(int ID)
         {
             SqlConnection conn = new SqlConnection(connect);
@@ -913,7 +953,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandTimeout = 180;
 
-
             SqlParameter id = new SqlParameter();
             id.ParameterName = "@IDPlana";
             id.SqlDbType = SqlDbType.Int;
@@ -949,20 +988,19 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 if (error)
                 {
                     // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
-
                 }
             }
         }
-        public void PoveziTrend(int ID,int Tekuci)
+
+        public void PoveziTrend(int ID, int Tekuci)
         {
-            //Komentar 
+            //Komentar
 
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "PoveziTrend";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandTimeout = 180;
-
 
             SqlParameter id = new SqlParameter();
             id.ParameterName = "@IDPlana";
@@ -976,7 +1014,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
             tekuci.Value = Tekuci;
             cmd.Parameters.Add(tekuci);
 
-
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
             cmd.Transaction = myTransaction;
@@ -1009,6 +1046,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 }
             }
         }
+
         public void ArhivirajPlan(int PlanID)
         {
             SqlConnection conn = new SqlConnection(connect);
@@ -1033,13 +1071,11 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 myTransaction = conn.BeginTransaction();
                 cmd.Transaction = myTransaction;
             }
-
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.ToString());
                 throw new Exception("Neuspešan upis NHM brojeva");
             }
-
             finally
             {
                 if (!error)
@@ -1047,7 +1083,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
                     myTransaction.Commit();
                     MessageBox.Show("Unos NHM broja je uspešno završena", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 }
 
                 conn.Close();
@@ -1058,7 +1093,8 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 }
             }
         }
-        public void UpdatePlanAktivStavke(int Id,int IdPlana,int IdKolekcije,int IdPrograma,int MpSifra,decimal? Odluka)
+
+        public void UpdatePlanAktivStavke(int Id, int IdPlana, int IdKolekcije, int IdPrograma, int MpSifra, decimal? Odluka)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -1112,13 +1148,11 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 myTransaction = conn.BeginTransaction();
                 cmd.Transaction = myTransaction;
             }
-
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.ToString());
                 throw new Exception("Neuspešan upis NHM brojeva");
             }
-
             finally
             {
                 if (!error)
@@ -1126,7 +1160,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
                     myTransaction.Commit();
                     MessageBox.Show("Unos NHM broja je uspešno završena", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 }
 
                 conn.Close();
@@ -1137,7 +1170,8 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 }
             }
         }
-        public void UpdatePodesavanje(int ID,int Visible)
+
+        public void UpdatePodesavanje(int ID, int Visible)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -1167,13 +1201,11 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 myTransaction = conn.BeginTransaction();
                 cmd.Transaction = myTransaction;
             }
-
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.ToString());
                 throw new Exception("Neuspešan upis NHM brojeva");
             }
-
             finally
             {
                 if (!error)
@@ -1181,7 +1213,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
                     myTransaction.Commit();
                     MessageBox.Show("Unos NHM broja je uspešno završena", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 }
 
                 conn.Close();
@@ -1192,6 +1223,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 }
             }
         }
+
         public void DodeliGrupi(int ID, int MpSifra)
         {
             SqlConnection conn = new SqlConnection(connect);
@@ -1222,13 +1254,11 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 myTransaction = conn.BeginTransaction();
                 cmd.Transaction = myTransaction;
             }
-
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.ToString());
                 throw new Exception("Neuspešan upis NHM brojeva");
             }
-
             finally
             {
                 if (!error)
@@ -1236,7 +1266,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
                     myTransaction.Commit();
                     MessageBox.Show("Unos NHM broja je uspešno završena", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 }
 
                 conn.Close();
@@ -1247,6 +1276,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 }
             }
         }
+
         public void KreirajNovuGrupu()
         {
             SqlConnection conn = new SqlConnection(connect);
@@ -1265,13 +1295,11 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 myTransaction = conn.BeginTransaction();
                 cmd.Transaction = myTransaction;
             }
-
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.ToString());
                 throw new Exception("Neuspešan upis NHM brojeva");
             }
-
             finally
             {
                 if (!error)
@@ -1279,7 +1307,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
                     myTransaction.Commit();
                     MessageBox.Show("Unos NHM broja je uspešno završena", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 }
                 conn.Close();
                 if (error)
@@ -1288,6 +1315,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 }
             }
         }
+
         public void DodeliNovuGrupu(int MpSifra)
         {
             SqlConnection conn = new SqlConnection(connect);
@@ -1312,13 +1340,11 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 myTransaction = conn.BeginTransaction();
                 cmd.Transaction = myTransaction;
             }
-
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.ToString());
                 throw new Exception("Neuspešan upis NHM brojeva");
             }
-
             finally
             {
                 if (!error)
@@ -1326,7 +1352,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
                     myTransaction.Commit();
                     MessageBox.Show("Unos NHM broja je uspešno završena", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 }
                 conn.Close();
                 if (error)
@@ -1335,7 +1360,8 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 }
             }
         }
-        public void ObrisiIzGrupe(int MpSifra,int ID)
+
+        public void ObrisiIzGrupe(int MpSifra, int ID)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -1365,13 +1391,11 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 myTransaction = conn.BeginTransaction();
                 cmd.Transaction = myTransaction;
             }
-
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.ToString());
                 throw new Exception("Neuspešan upis NHM brojeva");
             }
-
             finally
             {
                 if (!error)
@@ -1379,7 +1403,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
                     myTransaction.Commit();
                     MessageBox.Show("Unos NHM broja je uspešno završena", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 }
 
                 conn.Close();
@@ -1390,7 +1413,8 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 }
             }
         }
-        public void PoveziUsvojenuOdluku(int IDPlana,int MpSifra,decimal Odluka)
+
+        public void PoveziUsvojenuOdluku(int IDPlana, int MpSifra, decimal Odluka)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -1426,13 +1450,11 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 myTransaction = conn.BeginTransaction();
                 cmd.Transaction = myTransaction;
             }
-
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.ToString());
                 throw new Exception("Neuspešan upis NHM brojeva");
             }
-
             finally
             {
                 if (!error)
@@ -1440,7 +1462,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
                     myTransaction.Commit();
                     MessageBox.Show("Unos NHM broja je uspešno završena", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 }
                 conn.Close();
                 if (error)
@@ -1449,7 +1470,8 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 }
             }
         }
-        public void DodeliPlan(int IDPlana,int RN)
+
+        public void DodeliPlan(int IDPlana, int RN)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -1479,13 +1501,11 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 myTransaction = conn.BeginTransaction();
                 cmd.Transaction = myTransaction;
             }
-
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.ToString());
                 throw new Exception("Neuspešan upis NHM brojeva");
             }
-
             finally
             {
                 if (!error)
@@ -1493,7 +1513,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
                     myTransaction.Commit();
                     MessageBox.Show("Unos NHM broja je uspešno završena", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 }
                 conn.Close();
                 if (error)
@@ -1527,13 +1546,11 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 myTransaction = conn.BeginTransaction();
                 cmd.Transaction = myTransaction;
             }
-
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.ToString());
                 throw new Exception("Neuspešan upis NHM brojeva");
             }
-
             finally
             {
                 if (!error)
@@ -1541,7 +1558,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
                     myTransaction.Commit();
                     MessageBox.Show("Unos NHM broja je uspešno završena", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 }
                 conn.Close();
                 if (error)
@@ -1551,7 +1567,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             }
         }
 
-        public void UpdateKoeficijent(int IDKolekcije,decimal Koeficijent)
+        public void UpdateKoeficijent(int IDKolekcije, decimal Koeficijent)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -1563,7 +1579,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
             idk.SqlDbType = SqlDbType.Int;
             idk.Value = IDKolekcije;
             cmd.Parameters.Add(idk);
-
 
             SqlParameter koef = new SqlParameter();
             koef.ParameterName = "@Koeficijent";

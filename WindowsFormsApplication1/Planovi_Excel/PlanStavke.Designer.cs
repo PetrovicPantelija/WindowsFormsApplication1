@@ -46,32 +46,32 @@ namespace WindowsFormsApplication1.Planovi_Excel
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 7);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 13);
+            this.label1.Size = new System.Drawing.Size(61, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "ID Plana";
             // 
             // txtIdPlana
             // 
-            this.txtIdPlana.Location = new System.Drawing.Point(9, 27);
-            this.txtIdPlana.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtIdPlana.Location = new System.Drawing.Point(12, 33);
+            this.txtIdPlana.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtIdPlana.Name = "txtIdPlana";
-            this.txtIdPlana.Size = new System.Drawing.Size(76, 20);
+            this.txtIdPlana.Size = new System.Drawing.Size(100, 22);
             this.txtIdPlana.TabIndex = 1;
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(9, 50);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 62);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1112, 600);
+            this.dataGridView1.Size = new System.Drawing.Size(1483, 738);
             this.dataGridView1.TabIndex = 2;
             // 
             // dataGridView2
@@ -80,21 +80,21 @@ namespace WindowsFormsApplication1.Planovi_Excel
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(1154, 50);
-            this.dataGridView2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView2.Location = new System.Drawing.Point(1539, 62);
+            this.dataGridView2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(100, 600);
+            this.dataGridView2.Size = new System.Drawing.Size(133, 738);
             this.dataGridView2.TabIndex = 2;
             // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.LawnGreen;
-            this.button1.Location = new System.Drawing.Point(1126, 70);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Location = new System.Drawing.Point(1501, 86);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(24, 266);
+            this.button1.Size = new System.Drawing.Size(32, 327);
             this.button1.TabIndex = 3;
             this.button1.Text = ">>";
             this.button1.UseVisualStyleBackColor = false;
@@ -103,10 +103,10 @@ namespace WindowsFormsApplication1.Planovi_Excel
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.Red;
-            this.button2.Location = new System.Drawing.Point(1126, 371);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Location = new System.Drawing.Point(1501, 457);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(24, 266);
+            this.button2.Size = new System.Drawing.Size(32, 327);
             this.button2.TabIndex = 3;
             this.button2.Text = "<<";
             this.button2.UseVisualStyleBackColor = false;
@@ -115,10 +115,10 @@ namespace WindowsFormsApplication1.Planovi_Excel
             // button4
             // 
             this.button4.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.button4.Location = new System.Drawing.Point(1087, 10);
-            this.button4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button4.Location = new System.Drawing.Point(1449, 12);
+            this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(100, 35);
+            this.button4.Size = new System.Drawing.Size(133, 43);
             this.button4.TabIndex = 5;
             this.button4.Text = "Otvori detaljno";
             this.button4.UseVisualStyleBackColor = false;
@@ -127,30 +127,29 @@ namespace WindowsFormsApplication1.Planovi_Excel
             // cboKolekcija
             // 
             this.cboKolekcija.FormattingEnabled = true;
-            this.cboKolekcija.Location = new System.Drawing.Point(223, 24);
-            this.cboKolekcija.Margin = new System.Windows.Forms.Padding(2);
+            this.cboKolekcija.Location = new System.Drawing.Point(297, 30);
+            this.cboKolekcija.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboKolekcija.Name = "cboKolekcija";
-            this.cboKolekcija.Size = new System.Drawing.Size(156, 21);
+            this.cboKolekcija.Size = new System.Drawing.Size(207, 24);
             this.cboKolekcija.TabIndex = 209;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(155, 24);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(207, 30);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(64, 17);
+            this.label3.Size = new System.Drawing.Size(76, 20);
             this.label3.TabIndex = 208;
             this.label3.Text = "Kolekcija";
             // 
             // button3
             // 
             this.button3.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.button3.Location = new System.Drawing.Point(393, 24);
-            this.button3.Margin = new System.Windows.Forms.Padding(2);
+            this.button3.Location = new System.Drawing.Point(524, 30);
+            this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(82, 23);
+            this.button3.Size = new System.Drawing.Size(109, 28);
             this.button3.TabIndex = 210;
             this.button3.Text = "Pretraži";
             this.button3.UseVisualStyleBackColor = false;
@@ -158,9 +157,9 @@ namespace WindowsFormsApplication1.Planovi_Excel
             // 
             // PlanStavke
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1264, 659);
+            this.ClientSize = new System.Drawing.Size(1685, 811);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.cboKolekcija);
             this.Controls.Add(this.label3);
@@ -171,7 +170,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.txtIdPlana);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "PlanStavke";
             this.Text = "PlanStavke";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

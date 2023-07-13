@@ -1,25 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsFormsApplication1.Planovi_Excel
 {
     public partial class Izlaznost : Form
     {
-        string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        private string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
 
         public Izlaznost()
         {
             InitializeComponent();
         }
+
         private void FillGV()
         {
             var query = "Select ID,Izlaznost.MPSifra,MpStaraSif,MpNaziv,Mesec,Godina,Kolicina " +
@@ -33,7 +28,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
 
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
-
         }
 
         private void Izlaznost_Load(object sender, EventArgs e)
@@ -43,7 +37,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
         }
     }
 }

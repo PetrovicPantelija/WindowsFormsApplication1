@@ -1,25 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsFormsApplication1.Planovi_Excel
 {
     public partial class PlanArhivDetaljno : Form
     {
-        string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        private string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
         public int ID;
+
         public PlanArhivDetaljno()
         {
             InitializeComponent();
         }
+
         public PlanArhivDetaljno(int id)
         {
             InitializeComponent();
@@ -28,12 +25,12 @@ namespace WindowsFormsApplication1.Planovi_Excel
 
         private void PlanDetaljno_Load(object sender, EventArgs e)
         {
-            
             textBox1.Text = ID.ToString();
             FillPanel();
             FillGV();
             panel1.Visible = true;
         }
+
         private void FillPanel()
         {
             var query = "Select * from PodesavanjePlan";
@@ -47,6 +44,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             dataGridView2.Columns[0].ReadOnly = true;
             dataGridView2.Columns[1].ReadOnly = true;
         }
+
         private void FillGV()
         {
             var query = "Select pas.ID,IDPlana,PlanArhiv.Naziv as [Plan],IDPrograma,Program.Naziv as [Program],IDKolekcije,Kolekcije.Naziv as [Kolekcija],pas.MPSifra,RTrim(MaticniPodatki.MpStaraSif) as MpStaraSif," +
@@ -61,7 +59,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 "inner join Program on pas.IDPrograma = Program.ID " +
                 "inner join Kolekcije on pas.IDKolekcije = Kolekcije.ID " +
                 "Inner join MaticniPodatki on pas.MpSifra = MaticniPodatki.MpSifra " +
-                "Where IDPlana = "+Convert.ToInt32(textBox1.Text.ToString())+" order by pas.ID asc";
+                "Where IDPlana = " + Convert.ToInt32(textBox1.Text.ToString()) + " order by pas.ID asc";
 
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
@@ -70,7 +68,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
 
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
-            
+
             string query2 = "Select * from PodesavanjePlan";
             conn.Open();
             SqlCommand cmd = new SqlCommand(query2, conn);
@@ -78,7 +76,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
 
             while (dr.Read())
             {
-                foreach(DataGridViewColumn col in dataGridView1.Columns)
+                foreach (DataGridViewColumn col in dataGridView1.Columns)
                 {
                     if (col.HeaderText == dr["Kolona"].ToString())
                     {
@@ -180,29 +178,24 @@ namespace WindowsFormsApplication1.Planovi_Excel
             dataGridView1.Columns["TrajnostLagera"].Width = 70;
             dataGridView1.Columns["IzdatiNeisporuceni"].Width = 80;
 
-
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 if (dataGridView1[78, row.Index].Value.ToString() != "" || dataGridView1[78, row.Index].Value.ToString() != "0.00")
                 {
                     dataGridView1[78, row.Index].Style.BackColor = Color.LightGreen; //doesn't work
-
                 }
                 //row.Cells[col.Index].Style.BackColor = Color.Green; //doesn't work
                 //col.Cells[row.Index].Style.BackColor = Color.Green; //doesn't work
                 //dataGridView1[col.Index, row.Index].Style.BackColor = Color.Green; //doesn't work
-
             }
-
         }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            
         }
-        
+
         private void button3_Click(object sender, EventArgs e)
         {
-
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -213,33 +206,29 @@ namespace WindowsFormsApplication1.Planovi_Excel
         private void btnPodesavanje_Click(object sender, EventArgs e)
         {
             InsertPlanovi ins = new InsertPlanovi();
-            foreach(DataGridViewRow row in dataGridView2.Rows)
+            foreach (DataGridViewRow row in dataGridView2.Rows)
             {
                 ins.UpdatePodesavanje(Convert.ToInt32(row.Cells[0].Value), Convert.ToInt32(row.Cells[2].Value));
             }
-            
+
             panel1.Visible = false;
             FillGV();
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-
         }
 
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            
         }
 
         private void dataGridView1_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
         }
 
-
         private void button2_Click(object sender, EventArgs e)
         {
-
         }
     }
 }

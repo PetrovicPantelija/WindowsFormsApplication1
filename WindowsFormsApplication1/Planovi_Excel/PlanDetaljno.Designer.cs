@@ -309,7 +309,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.panel1.Controls.Add(this.checkBox7);
             this.panel1.Controls.Add(this.checkBox6);
             this.panel1.Controls.Add(this.btnPodesavanje);
-            this.panel1.Location = new System.Drawing.Point(762, 5);
+            this.panel1.Location = new System.Drawing.Point(529, 14);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(816, 783);
             this.panel1.TabIndex = 17;
@@ -692,7 +692,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.textBox2.Size = new System.Drawing.Size(85, 22);
             this.textBox2.TabIndex = 22;
             this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
-            this.textBox2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox2_KeyUp);
             // 
             // textBox3
             // 
@@ -700,8 +699,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(240, 22);
             this.textBox3.TabIndex = 22;
-            this.textBox3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox3_KeyDown);
-            this.textBox3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox3_KeyUp);
+            this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
             // 
             // checkBox8
             // 
