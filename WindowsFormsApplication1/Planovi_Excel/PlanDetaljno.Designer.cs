@@ -87,6 +87,8 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.checkBox8 = new System.Windows.Forms.CheckBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -104,7 +106,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1900, 617);
+            this.dataGridView1.Size = new System.Drawing.Size(1942, 617);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
             this.dataGridView1.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellLeave);
@@ -129,9 +131,9 @@ namespace WindowsFormsApplication1.Planovi_Excel
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1731, 5);
+            this.button1.Location = new System.Drawing.Point(1616, 17);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(108, 33);
+            this.button1.Size = new System.Drawing.Size(108, 52);
             this.button1.TabIndex = 3;
             this.button1.Text = "Ažuriraj plan";
             this.button1.UseVisualStyleBackColor = true;
@@ -139,9 +141,9 @@ namespace WindowsFormsApplication1.Planovi_Excel
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(1731, 44);
+            this.button2.Location = new System.Drawing.Point(1802, 73);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(181, 33);
+            this.button2.Size = new System.Drawing.Size(152, 40);
             this.button2.TabIndex = 3;
             this.button2.Text = "Proglasi konačno";
             this.button2.UseVisualStyleBackColor = true;
@@ -309,9 +311,9 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.panel1.Controls.Add(this.checkBox7);
             this.panel1.Controls.Add(this.checkBox6);
             this.panel1.Controls.Add(this.btnPodesavanje);
-            this.panel1.Location = new System.Drawing.Point(529, 14);
+            this.panel1.Location = new System.Drawing.Point(538, 9);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(816, 783);
+            this.panel1.Size = new System.Drawing.Size(816, 782);
             this.panel1.TabIndex = 17;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -325,7 +327,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(564, 775);
+            this.dataGridView2.Size = new System.Drawing.Size(564, 774);
             this.dataGridView2.TabIndex = 0;
             // 
             // checkBox7
@@ -712,11 +714,35 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.checkBox8.Text = "Uključi tekući mesec";
             this.checkBox8.UseVisualStyleBackColor = true;
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(1616, 87);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(108, 51);
+            this.button3.TabIndex = 24;
+            this.button3.Text = "Vezni MP";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click_1);
+            // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.LimeGreen;
+            this.button5.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button5.Location = new System.Drawing.Point(1802, 14);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(152, 45);
+            this.button5.TabIndex = 25;
+            this.button5.Text = "Export Excel";
+            this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // PlanDetaljno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1924, 800);
+            this.ClientSize = new System.Drawing.Size(1966, 800);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.checkBox5);
@@ -844,5 +870,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.CheckBox checkBox8;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button5;
     }
 }

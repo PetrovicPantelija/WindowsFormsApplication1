@@ -44,6 +44,8 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -71,13 +73,13 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(881, 624);
+            this.dataGridView2.Size = new System.Drawing.Size(945, 624);
             this.dataGridView2.TabIndex = 0;
             this.dataGridView2.SelectionChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(1479, 16);
+            this.button4.Location = new System.Drawing.Point(1543, 81);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(109, 45);
             this.button4.TabIndex = 18;
@@ -192,17 +194,34 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.textBox2.TabIndex = 23;
             this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
             // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(1486, 38);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(100, 22);
+            this.textBox3.TabIndex = 17;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(1483, 18);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(153, 21);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Minimalna količina";
+            // 
             // PripadnostKP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1614, 840);
+            this.ClientSize = new System.Drawing.Size(1678, 840);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.cboKolekcija);
@@ -211,6 +230,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.Controls.Add(this.label1);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.cboProgram);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
             this.Name = "PripadnostKP";
             this.Text = "PripadnostKP";
@@ -239,5 +259,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label5;
     }
 }

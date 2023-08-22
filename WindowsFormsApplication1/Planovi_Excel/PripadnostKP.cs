@@ -26,7 +26,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
         }
         private void FillGV()
         {
-            var query = "select pk.ID,RTrim(Kolekcije.Naziv) as [Kolekcija],RTrim(Program.Naziv) as [Program],pk.MpSifra,RTrim(MpNaziv) as [Naziv],TipPaketa,Koeficijent " +
+            var query = "select pk.ID,RTrim(Kolekcije.Naziv) as [Kolekcija],RTrim(Program.Naziv) as [Program],pk.MpSifra,RTrim(MpNaziv) as [Naziv],TipPaketa,Koeficijent,MinimalnaKol " +
                 "From PripadnostKolProgram pk " +
                 "Inner join Kolekcije on pk.IdKolekcije = Kolekcije.ID " +
                 "Inner join Program on pk.IDPrograma = Program.ID " +
@@ -39,6 +39,9 @@ namespace WindowsFormsApplication1.Planovi_Excel
             dataGridView2.DataSource = ds.Tables[0];
 
             dataGridView2.Columns[0].Width = 50;
+            dataGridView2.Columns["TipPaketa"].Width = 60;
+            dataGridView2.Columns["Koeficijent"].Width = 60;
+            dataGridView2.Columns["MinimalnaKol"].Width = 60;
 
 
 
@@ -86,7 +89,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
                     if (row.Selected)
                     {
                         MpSifra = Convert.ToInt32(row.Cells[0].Value.ToString());
-                        ins.InsertPripadnostKP(Convert.ToInt32(cboKolekcija.SelectedValue), Convert.ToInt32(cboProgram.SelectedValue), MpSifra, boja, Convert.ToDecimal(textBox1.Text.ToString().TrimEnd()));
+                        ins.InsertPripadnostKP(Convert.ToInt32(cboKolekcija.SelectedValue), Convert.ToInt32(cboProgram.SelectedValue), MpSifra, boja, Convert.ToDecimal(textBox1.Text.ToString().TrimEnd()),Convert.ToDecimal(textBox3.Text.ToString().TrimEnd()));
                     }
                 }
                 ObrisiDuplirano();
@@ -107,7 +110,29 @@ namespace WindowsFormsApplication1.Planovi_Excel
         }
         private void dataGridView2_SelectionChanged(object sender, EventArgs e)
         {
-
+            try
+            {
+                foreach(DataGridViewRow row in dataGridView2.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        textBox1.Text = row.Cells[6].Value.ToString();
+                        textBox3.Text = row.Cells[7].Value.ToString();
+                        if (Convert.ToInt32(row.Cells[5].Value.ToString()) == 1)
+                        {
+                            checkBox1.Checked = true;
+                        }
+                        else
+                        {
+                            checkBox1.Checked = false;
+                        }
+                        cboKolekcija.SelectedValue = row.Cells[1].Value.ToString();
+                        cboProgram.SelectedValue = row.Cells[2].Value.ToString();
+                        
+                    }
+                }
+            }
+            catch { }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -117,11 +142,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
         int ID;
         private void button2_Click(object sender, EventArgs e)
         {
-            if (checkBox1.Checked == true)
-            {
-                boja = 1;
-            }
-            else { boja = 0; }
+
             InsertPlanovi ins = new InsertPlanovi();
             try
             {
@@ -129,25 +150,25 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 {
                     if (row.Selected)
                     {
-                        ID = Convert.ToInt32(row.Cells[0].Value.ToString());
-                        cboKolekcija.SelectedValue = row.Cells[1].Value.ToString();
-                        cboProgram.SelectedValue = row.Cells[2].Value.ToString();
-                        boja = Convert.ToInt32(row.Cells[5].Value.ToString());
-                        if (boja == 1)
+                        if (checkBox1.Checked == true)
                         {
-                            checkBox1.Checked = true;
+                            boja = 1;
                         }
-                        else { checkBox1.Checked = false; }
-                        textBox1.Text = row.Cells[6].Value.ToString();
+                        else { boja = 0; }
+                        ID = Convert.ToInt32(row.Cells[0].Value.ToString());
 
-                        ins.UpdatePripadnostKP(ID, Convert.ToInt32(cboKolekcija.SelectedValue), Convert.ToInt32(cboProgram.SelectedValue), Convert.ToInt32(row.Cells[3].Value), boja, Convert.ToDecimal(textBox1.Text.ToString()));
+                        ins.UpdatePripadnostKP(ID,Convert.ToInt32(cboKolekcija.SelectedValue), Convert.ToInt32(cboProgram.SelectedValue), Convert.ToInt32(row.Cells[3].Value), boja, Convert.ToDecimal(textBox1.Text.ToString().TrimEnd()), Convert.ToDecimal(textBox3.Text.ToString().TrimEnd()));
+
+
+                        //ins.UpdatePripadnostKP(ID, Convert.ToInt32(cboKolekcija.SelectedValue), Convert.ToInt32(cboProgram.SelectedValue), Convert.ToInt32(row.Cells[3].Value), boja, Convert.ToDecimal(textBox1.Text.ToString()),Convert.ToDecimal(textBox3.Text.ToString().TrimEnd()));
                     }
                 }
-                ObrisiDuplirano();
-                FillGV();
+               // ObrisiDuplirano();
+               
             }
             catch
             { }
+            FillGV();
         }
 
         private void button3_Click(object sender, EventArgs e)

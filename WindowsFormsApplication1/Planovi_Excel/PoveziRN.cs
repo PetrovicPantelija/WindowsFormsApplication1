@@ -106,11 +106,12 @@ namespace WindowsFormsApplication1.Planovi_Excel
 
             var config = new CsvConfiguration(CultureInfo.InvariantCulture)
             {
-                ShouldQuote = (field) => false
+                ShouldQuote = (field) => false,
+                Delimiter = ";"
             };
             SqlConnection conn = new SqlConnection(connect);
             conn.Open();
-            var query = "Select '' as a,'' as b,'' as c,PlanArhivStavke.MpSifra,RTrim(MaticniPodatki.MpStaraSif) as MpStaraSif,'','',UsvojenaOdluka from PlanArhivStavke Inner join MaticniPodatki on PlanArhivStavke.MpSifra=MaticniPodatki.MpSifra Where IDPlana="+Convert.ToInt32(textBox1.Text);
+            var query = "Select '' as a,'' as b,'' as c,PlanArhivStavke.MpSifra,RTrim(MaticniPodatki.MpStaraSif) as MpStaraSif,'','',UsvojenaOdluka from PlanArhivStavke Inner join MaticniPodatki on PlanArhivStavke.MpSifra=MaticniPodatki.MpSifra Where IDPlana="+Convert.ToInt32(textBox1.Text)+" order by PlanArhivStavke.ID";
             SqlCommand cmd = new SqlCommand(query, conn);
             string file = folder + Naziv + ".csv";
             try

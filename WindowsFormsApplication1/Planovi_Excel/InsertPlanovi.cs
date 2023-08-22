@@ -325,7 +325,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             }
         }
 
-        public void InsertPripadnostKP(int IdKol, int IdProgram, int MpSifra, int Tip, decimal Koeficijent)
+        public void InsertPripadnostKP(int IdKol, int IdProgram, int MpSifra, int Tip, decimal Koeficijent,decimal MinimalnaKol)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -362,6 +362,12 @@ namespace WindowsFormsApplication1.Planovi_Excel
             koef.Value = Koeficijent;
             cmd.Parameters.Add(koef);
 
+            SqlParameter kol = new SqlParameter();
+            kol.ParameterName = "@MinimalnaKol";
+            kol.SqlDbType = SqlDbType.Decimal;
+            kol.Value = MinimalnaKol;
+            cmd.Parameters.Add(kol);
+
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
             cmd.Transaction = myTransaction;
@@ -396,7 +402,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             }
         }
 
-        public void UpdatePripadnostKP(int Id, int IdKol, int IdProgram, int MpSifra, int Tip, decimal Koeficijent)
+        public void UpdatePripadnostKP(int Id, int IdKol, int IdProgram, int MpSifra, int Tip, decimal Koeficijent,decimal MinimalnaKol)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -438,6 +444,12 @@ namespace WindowsFormsApplication1.Planovi_Excel
             koef.SqlDbType = SqlDbType.Decimal;
             koef.Value = Koeficijent;
             cmd.Parameters.Add(koef);
+
+            SqlParameter kol = new SqlParameter();
+            kol.ParameterName = "@MinimalnaKol";
+            kol.SqlDbType = SqlDbType.Decimal;
+            kol.Value = MinimalnaKol;
+            cmd.Parameters.Add(kol);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -1585,6 +1597,51 @@ namespace WindowsFormsApplication1.Planovi_Excel
             koef.SqlDbType = SqlDbType.Decimal;
             koef.Value = Koeficijent;
             cmd.Parameters.Add(koef);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw new Exception("Neuspešan upis NHM brojeva");
+            }
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos NHM broja je uspešno završena", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                conn.Close();
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+        public void VezaMP(int IDPlana)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "VezniMP";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter idk = new SqlParameter();
+            idk.ParameterName = "@IDPlana";
+            idk.SqlDbType = SqlDbType.Int;
+            idk.Value = IDPlana;
+            cmd.Parameters.Add(idk);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();

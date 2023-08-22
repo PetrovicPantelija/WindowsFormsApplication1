@@ -105,6 +105,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             }
             catch(Exception ex) { MessageBox.Show(ex.ToString()); }
             FillStavke();
+            MessageBox.Show("Uspešno unete stavke kolekcije");
         }
         private void FillStavke()
         {
