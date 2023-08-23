@@ -325,7 +325,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             }
         }
 
-        public void InsertPripadnostKP(int IdKol, int IdProgram, int MpSifra, int Tip, decimal Koeficijent,decimal MinimalnaKol)
+        public void InsertPripadnostKP(int IdKol, int IdProgram, int MpSifra, int Tip, decimal Koeficijent, decimal MinimalnaKol)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -402,7 +402,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             }
         }
 
-        public void UpdatePripadnostKP(int Id, int IdKol, int IdProgram, int MpSifra, int Tip, decimal Koeficijent,decimal MinimalnaKol)
+        public void UpdatePripadnostKP(int Id, int IdKol, int IdProgram, int MpSifra, int Tip, decimal Koeficijent, decimal MinimalnaKol)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -1668,6 +1668,50 @@ namespace WindowsFormsApplication1.Planovi_Excel
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
+                conn.Close();
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+        public void RnPlanIzvestaj(int ID)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "RnPlanIzvestaj";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter rn = new SqlParameter();
+            rn.ParameterName = "@ID";
+            rn.SqlDbType = SqlDbType.Int;
+            rn.Value = ID;
+            cmd.Parameters.Add(rn);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw new Exception("Neuspešan upis NHM brojeva");
+            }
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos NHM broja je uspešno završena", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
                 conn.Close();
                 if (error)
                 {

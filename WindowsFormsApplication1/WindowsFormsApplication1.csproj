@@ -973,6 +973,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Perftech_BeogradDataSet5.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Planovi_Excel\DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Planovi_Excel\frmPrikazPorudzbinaWebs.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -985,6 +990,14 @@
     </Compile>
     <Compile Include="Planovi_Excel\Izlaznost.Designer.cs">
       <DependentUpon>Izlaznost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Planovi_Excel\Jela_testDataSet.cs">
+      <DependentUpon>Jela_testDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Planovi_Excel\Jela_testDataSet.Designer.cs">
+      <DependentUpon>Jela_testDataSet.xsd</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Planovi_Excel\MainPlaniranje.cs">
       <SubType>Form</SubType>
@@ -1045,6 +1058,12 @@
     </Compile>
     <Compile Include="Planovi_Excel\PripadnostKP.Designer.cs">
       <DependentUpon>PripadnostKP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Planovi_Excel\RNPlanIzvestaj.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Planovi_Excel\RNPlanIzvestaj.Designer.cs">
+      <DependentUpon>RNPlanIzvestaj.cs</DependentUpon>
     </Compile>
     <Compile Include="Portirnica\InsertLogNajave.cs" />
     <Compile Include="Portirnica\InsertStatusNajave.cs" />
@@ -1657,6 +1676,7 @@
     <EmbeddedResource Include="Planovi_Excel\PlanDetaljno.resx">
       <DependentUpon>PlanDetaljno.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Planovi_Excel\PlanRN.rdlc" />
     <EmbeddedResource Include="Planovi_Excel\PlanStavke.resx">
       <DependentUpon>PlanStavke.cs</DependentUpon>
     </EmbeddedResource>
@@ -1671,6 +1691,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Planovi_Excel\PripadnostKP.resx">
       <DependentUpon>PripadnostKP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Planovi_Excel\RNPlanIzvestaj.resx">
+      <DependentUpon>RNPlanIzvestaj.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Portirnica\StatusNajave.resx">
       <DependentUpon>StatusNajave.cs</DependentUpon>
@@ -2081,6 +2104,28 @@
     </None>
     <None Include="Perftech_BeogradDataSet5.xss">
       <DependentUpon>Perftech_BeogradDataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="Planovi_Excel\DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="Planovi_Excel\DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Planovi_Excel\DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="Planovi_Excel\Jela_testDataSet.xsc">
+      <DependentUpon>Jela_testDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Planovi_Excel\Jela_testDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Jela_testDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Planovi_Excel\Jela_testDataSet.xss">
+      <DependentUpon>Jela_testDataSet.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

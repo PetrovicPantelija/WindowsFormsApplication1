@@ -287,9 +287,9 @@ namespace WindowsFormsApplication1.Planovi_Excel
                     dataGridView1["MpStaraSif", row.Index].Style.BackColor = Color.LightGray;
                 }
 
-                if (dataGridView1[78, row.Index].Value.ToString() != "")
+                if (dataGridView1["UsvojenaOdluka", row.Index].Value.ToString() != "")
                 {
-                    dataGridView1[78, row.Index].Style.BackColor = Color.LightGreen; //doesn't work
+                    dataGridView1["UsvojenaOdluka", row.Index].Style.BackColor = Color.LightGreen; //doesn't work
                 }
                 dataGridView1["Tekuci", row.Index].Style.BackColor = Color.FromArgb(41, 244, 159);
                 dataGridView1["I36", row.Index].Style.BackColor = Color.FromArgb(110, 255, 194);
@@ -356,13 +356,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
                     {
                         row.Cells["Stanje"].Style.BackColor = Color.Red;
                     }
-                    if (row.Cells["MinimalnaKol"].Value.ToString() != "")
-                    {
-                        if (Convert.ToInt32(row.Cells["MinimalnaKol"].Value) > Convert.ToInt32(row.Cells["Stanje"].Value))
-                        {
-                            row.Cells["MinimalnaKol"].Style.BackColor = Color.Red;
-                        }
-                    }
                 }
                 if (row.Cells["Raspolozivo"].Value.ToString() != "")
                 {
@@ -371,7 +364,14 @@ namespace WindowsFormsApplication1.Planovi_Excel
                         row.Cells["Raspolozivo"].Style.BackColor = Color.Red;
                     }
                 }
-                
+                if (row.Cells["MinimalnaKol"].Value.ToString() != "")
+                {
+                    if (Convert.ToInt32(row.Cells["MinimalnaKol"].Value) > Convert.ToInt32(row.Cells["UkupnoStanje"].Value))
+                    {
+                        row.Cells["MinimalnaKol"].Style.BackColor = Color.Red;
+                    }
+                }
+
             }
             string query3 = "select distinct PlanAktivStavke.MpSifra from PlanAktivStavke inner join VezaMpPlan on PlanAktivStavke.MpSifra=VezaMpPlan.MpSifra Where IDPlana=" + textBox1.Text;
             conn.Open();

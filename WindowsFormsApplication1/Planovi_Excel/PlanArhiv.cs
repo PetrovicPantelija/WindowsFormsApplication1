@@ -88,5 +88,19 @@ namespace WindowsFormsApplication1.Planovi_Excel
             status = false;
             // DeletePlanSaStavkama
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (txtID.Text != "")
+            {
+                RNPlanIzvestaj frm = new RNPlanIzvestaj(Convert.ToInt32(txtID.Text.ToString().TrimEnd()));
+                frm.Show();
+            }
+            else
+            {
+                MessageBox.Show("Izaberite plan");
+            }
+            
+        }
     }
 }
