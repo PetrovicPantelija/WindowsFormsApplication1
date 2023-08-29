@@ -33,6 +33,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             FillGV();
             FillCombo();
             panel1.Visible = true;
+            panel2.Visible = false;
             FillChecks();
         }
 
@@ -364,7 +365,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
                         row.Cells["Raspolozivo"].Style.BackColor = Color.Red;
                     }
                 }
-                if (row.Cells["MinimalnaKol"].Value.ToString() != "")
+                if (row.Cells["MinimalnaKol"].Value.ToString() != "" && row.Cells["UkupnoStanje"].Value.ToString()!="")
                 {
                     if (Convert.ToInt32(row.Cells["MinimalnaKol"].Value) > Convert.ToInt32(row.Cells["UkupnoStanje"].Value))
                     {
@@ -399,6 +400,233 @@ namespace WindowsFormsApplication1.Planovi_Excel
         private int countPR2 = 0;
         private int p1m1 = 0, p1m2 = 0, p1m3 = 0, p1m4 = 0, p1m5 = 0, p1m6 = 0, p1m7 = 0, p1m8 = 0, p1m9 = 0, p1m10 = 0, p1m11 = 0, p1m12 = 0;
         private int p2m1 = 0, p2m2 = 0, p2m3 = 0, p2m4 = 0, p2m5 = 0, p2m6 = 0, p2m7 = 0, p2m8 = 0, p2m9 = 0, p2m10 = 0, p2m11 = 0, p2m12 = 0;
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            Statistika();
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            string naziv = "";
+            SqlConnection conn = new SqlConnection(connect);
+            string query = "Select Naziv From PlanAktiv Where ID=" + textBox1.Text;
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                if (dr.HasRows)
+                {
+                    naziv = dr[0].ToString().TrimEnd();
+                }
+            }
+            conn.Close();
+
+            string[] path = { Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Statistika-" };
+            string folder = Path.Combine(path);
+            string file = folder + naziv + ".csv";
+
+            var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+            {
+                ShouldQuote = (field) => false,
+                Delimiter = ";",
+            };
+            try
+            {
+                using (var textWriter = File.CreateText(file))
+                {
+                    using (CsvWriter csv = new CsvWriter(textWriter, config))
+                    {
+                        List<DataGridViewColumn> listVisible = new List<DataGridViewColumn>();
+                        foreach (DataGridViewColumn col in dataGridView3.Columns)
+                        {
+                            if (col.Visible)
+                            {
+                                listVisible.Add(col);
+                            }
+                        }
+
+                        for (int i = 0; i < listVisible.Count; i++)
+                        {
+                            csv.WriteField(listVisible[i].HeaderText);
+                        }
+                        csv.NextRecord();
+                        for (int i = 0; i < dataGridView3.Rows.Count; i++)
+                        {
+                            for (int j = 0; j < listVisible.Count; j++)
+                            {
+                                csv.WriteField(dataGridView3.Rows[i].Cells[listVisible[j].Name].Value.ToString());
+
+                            }
+                            csv.NextRecord();
+                        }
+                    }
+                    MessageBox.Show("Kreiran dokument", file.ToString());
+                }
+            }
+            catch (Exception ex) { MessageBox.Show(ex.ToString(), "CSV"); }
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            panel2.Visible = false;
+        }
+        private void Statistika()
+        {
+            string query = "select Sum(UOpticaju) as UOpticaju,Sum(Stanje) as Stanje,Cast(Sum(i36)as int)as I36,Cast(Sum(i35)as int)as I35,Cast(Sum(i34)as int)as I34,Cast(Sum(i33)as int)as I33," +
+                "Cast(Sum(i32)as int)as I32,Cast(Sum(i31) as int) as I31,Cast(Sum(i30) as int) as I30,Cast(Sum(i29) as int) as I29,Cast(Sum(i28) as int) as I28,Cast(Sum(i27) as int) as I27," +
+                "Cast(Sum(i26) as int) as I26,Cast(Sum(i25) as int) as I25,Cast(Sum(i24) as int) as I24,Cast(Sum(i23) as int) as I23,Cast(Sum(i22) as int) as I22," +
+                "Cast(Sum(i21) as int) as I21,Cast(Sum(i20) as int) as I20,Cast(Sum(i19) as int) as I19,Cast(Sum(i18) as int) as I18,Cast(Sum(i17) as int) as I17,Cast(Sum(i16) as int) as I16," +
+                "Cast(Sum(i15) as int) as I15,Cast(Sum(i14) as int) as I14,Cast(Sum(i13) as int) as I13,Cast(Sum(i12) as int) as I12,Cast(Sum(i11) as int) as I11,Cast(Sum(i10) as int) as I10," +
+                "Cast(Sum(i9) as int) as I9,Cast(Sum(i8) as int) as I8,Cast(Sum(i7) as int) as I7,Cast(Sum(i6) as int) as I6,Cast(Sum(i5) as int) as I5,Cast(Sum(i4) as int) as I4,Cast(Sum(i3) as int) as I3," +
+                "Cast(Sum(i2) as int) as I2,Cast(Sum(i1) as int) as I1,Sum(Tekuci) as Tekuci,Sum(UkupnoStanje) as UkupnoStanje,Cast(Sum(Pl1_Kol) as int) as [Plan1 kolicina],Cast(SUM(PL2_Kol) as int) as [Plan2 kolicina]," +
+                "Cast(SUM(PL3_Kol) as int) as [Plan3 kolicina],Cast(SUM(PL4_Kol) as int) as [Plan4 kolicina],Cast(SUM(PL5_Kol) as int) as [Plan5 kolicina],Sum(Realizacija) as Realizacija,Sum(Neisporuceno) as Neisporuceno," +
+                "Sum(Raspolozivo) as Raspolozivo,Cast(Isnull(Sum(UsvojenaOdluka), 0) as int) as UsvojenaOdluka,Sum(IzdatiNeisporuceni) as IzdatiNeisporuceni " +
+                "From PlanAktivStavke " +
+                "Where IDPlana =" + Convert.ToInt32(textBox1.Text.ToString().TrimEnd());
+            SqlConnection conn = new SqlConnection(connect);
+            var da = new SqlDataAdapter(query, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+
+            dataGridView3.DataSource = ds.Tables[0];
+            dataGridView3.ReadOnly = false;
+            dataGridView3.Columns["UsvojenaOdluka"].ReadOnly = false;
+
+            string query2 = "Select * from PodesavanjePlan";
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query2, conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                foreach (DataGridViewColumn col in dataGridView3.Columns)
+                {
+                    if (col.HeaderText == dr["Kolona"].ToString())
+                    {
+                        int pom = Convert.ToInt32(dr["Visible"].ToString());
+                        if (pom == 1)
+                        {
+                            col.Visible = true;
+                        }
+                        else
+                        {
+                            col.Visible = false;
+                        }
+                    }
+                }
+            }
+            conn.Close();
+
+            dataGridView3.Columns["UOpticaju"].Width = 70;
+            dataGridView3.Columns["Stanje"].Width = 60;
+            dataGridView3.Columns["I36"].Width = 50;
+            dataGridView3.Columns["I35"].Width = 50;
+            dataGridView3.Columns["I34"].Width = 50;
+            dataGridView3.Columns["I33"].Width = 50;
+            dataGridView3.Columns["I32"].Width = 50;
+            dataGridView3.Columns["I31"].Width = 50;
+            dataGridView3.Columns["I30"].Width = 50;
+            dataGridView3.Columns["I29"].Width = 50;
+            dataGridView3.Columns["I28"].Width = 50;
+            dataGridView3.Columns["I27"].Width = 50;
+            dataGridView3.Columns["I26"].Width = 50;
+            dataGridView3.Columns["I25"].Width = 50;
+            dataGridView3.Columns["I24"].Width = 50;
+            dataGridView3.Columns["I23"].Width = 50;
+            dataGridView3.Columns["I22"].Width = 50;
+            dataGridView3.Columns["I21"].Width = 50;
+            dataGridView3.Columns["I20"].Width = 50;
+            dataGridView3.Columns["I19"].Width = 50;
+            dataGridView3.Columns["I18"].Width = 50;
+            dataGridView3.Columns["I17"].Width = 50;
+            dataGridView3.Columns["I16"].Width = 50;
+            dataGridView3.Columns["I15"].Width = 50;
+            dataGridView3.Columns["I14"].Width = 50;
+            dataGridView3.Columns["I13"].Width = 50;
+            dataGridView3.Columns["I12"].Width = 50;
+            dataGridView3.Columns["I11"].Width = 50;
+            dataGridView3.Columns["I10"].Width = 50;
+            dataGridView3.Columns["I9"].Width = 50;
+            dataGridView3.Columns["I8"].Width = 50;
+            dataGridView3.Columns["I7"].Width = 50;
+            dataGridView3.Columns["I6"].Width = 50;
+            dataGridView3.Columns["I5"].Width = 50;
+            dataGridView3.Columns["I4"].Width = 50;
+            dataGridView3.Columns["I3"].Width = 50;
+            dataGridView3.Columns["I2"].Width = 50;
+            dataGridView3.Columns["I1"].Width = 50;
+            dataGridView3.Columns["Tekuci"].Width = 60;
+            dataGridView3.Columns["UkupnoStanje"].Width = 80;
+            dataGridView3.Columns["Plan1 kolicina"].Width = 90;
+            dataGridView3.Columns["Plan2 kolicina"].Width = 90;
+            dataGridView3.Columns["Plan3 kolicina"].Width = 90;
+            dataGridView3.Columns["Plan4 kolicina"].Width = 90;
+            dataGridView3.Columns["Plan5 kolicina"].Width = 90;
+            dataGridView3.Columns["Realizacija"].Width = 80;
+            dataGridView3.Columns["Neisporuceno"].Width = 80;
+            dataGridView3.Columns["Raspolozivo"].Width = 80;
+            dataGridView3.Columns["UsvojenaOdluka"].Width = 90;
+            dataGridView3.Columns["IzdatiNeisporuceni"].Width = 90;
+
+            panel2.Visible = true;
+            foreach (DataGridViewRow row in dataGridView3.Rows)
+            {
+                dataGridView3["Tekuci", row.Index].Style.BackColor = Color.FromArgb(41, 244, 159);
+                dataGridView3["I36", row.Index].Style.BackColor = Color.FromArgb(110, 255, 194);
+                dataGridView3["I35", row.Index].Style.BackColor = Color.FromArgb(110, 255, 194);
+                dataGridView3["I34", row.Index].Style.BackColor = Color.FromArgb(110, 255, 194);
+                dataGridView3["I33", row.Index].Style.BackColor = Color.FromArgb(110, 255, 194);
+                dataGridView3["I32", row.Index].Style.BackColor = Color.FromArgb(110, 255, 194);
+                dataGridView3["I31", row.Index].Style.BackColor = Color.FromArgb(110, 255, 194);
+                dataGridView3["I30", row.Index].Style.BackColor = Color.FromArgb(110, 255, 194);
+                dataGridView3["I29", row.Index].Style.BackColor = Color.FromArgb(110, 255, 194);
+                dataGridView3["I28", row.Index].Style.BackColor = Color.FromArgb(110, 255, 194);
+                dataGridView3["I27", row.Index].Style.BackColor = Color.FromArgb(110, 255, 194);
+                dataGridView3["I26", row.Index].Style.BackColor = Color.FromArgb(110, 255, 194);
+                dataGridView3["I25", row.Index].Style.BackColor = Color.FromArgb(110, 255, 194);
+                dataGridView3["I24", row.Index].Style.BackColor = Color.FromArgb(110, 255, 194);
+                dataGridView3["I23", row.Index].Style.BackColor = Color.FromArgb(110, 255, 194);
+                dataGridView3["I22", row.Index].Style.BackColor = Color.FromArgb(110, 255, 194);
+                dataGridView3["I21", row.Index].Style.BackColor = Color.FromArgb(110, 255, 194);
+                dataGridView3["I20", row.Index].Style.BackColor = Color.FromArgb(110, 255, 194);
+                dataGridView3["I19", row.Index].Style.BackColor = Color.FromArgb(110, 255, 194);
+                dataGridView3["I18", row.Index].Style.BackColor = Color.FromArgb(110, 255, 194);
+                dataGridView3["I17", row.Index].Style.BackColor = Color.FromArgb(110, 255, 194);
+                dataGridView3["I16", row.Index].Style.BackColor = Color.FromArgb(110, 255, 194);
+                dataGridView3["I15", row.Index].Style.BackColor = Color.FromArgb(110, 255, 194);
+                dataGridView3["I14", row.Index].Style.BackColor = Color.FromArgb(110, 255, 194);
+                dataGridView3["I13", row.Index].Style.BackColor = Color.FromArgb(110, 255, 194);
+                dataGridView3["I12", row.Index].Style.BackColor = Color.FromArgb(110, 255, 194);
+                dataGridView3["I11", row.Index].Style.BackColor = Color.FromArgb(110, 255, 194);
+                dataGridView3["I10", row.Index].Style.BackColor = Color.FromArgb(110, 255, 194);
+                dataGridView3["I9", row.Index].Style.BackColor = Color.FromArgb(110, 255, 194);
+                dataGridView3["I8", row.Index].Style.BackColor = Color.FromArgb(110, 255, 194);
+                dataGridView3["I7", row.Index].Style.BackColor = Color.FromArgb(110, 255, 194);
+                dataGridView3["I6", row.Index].Style.BackColor = Color.FromArgb(110, 255, 194);
+                dataGridView3["I5", row.Index].Style.BackColor = Color.FromArgb(110, 255, 194);
+                dataGridView3["I4", row.Index].Style.BackColor = Color.FromArgb(110, 255, 194);
+                dataGridView3["I3", row.Index].Style.BackColor = Color.FromArgb(110, 255, 194);
+                dataGridView3["I2", row.Index].Style.BackColor = Color.FromArgb(110, 255, 194);
+                dataGridView3["I1", row.Index].Style.BackColor = Color.FromArgb(110, 255, 194);
+
+                dataGridView3["Plan1 kolicina", row.Index].Style.BackColor = Color.FromArgb(134, 219, 246);
+                dataGridView3["Plan2 kolicina", row.Index].Style.BackColor = Color.FromArgb(134, 219, 246);
+                dataGridView3["Plan3 kolicina", row.Index].Style.BackColor = Color.FromArgb(134, 219, 246);
+                dataGridView3["Plan4 kolicina", row.Index].Style.BackColor = Color.FromArgb(134, 219, 246);
+                dataGridView3["Plan5 kolicina", row.Index].Style.BackColor = Color.FromArgb(134, 219, 246);
+                dataGridView3["Realizacija", row.Index].Style.BackColor = Color.FromArgb(51, 191, 236);
+
+                dataGridView3["UsvojenaOdluka", row.Index].Style.BackColor = Color.LightGreen;
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Statistika();
+        }
 
         private void button5_Click(object sender, EventArgs e)
         {
@@ -445,7 +673,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
                         {
                             csv.WriteField(listVisible[i].HeaderText);
                         }
-csv.NextRecord();
+                        csv.NextRecord();
                         for (int i = 0; i < dataGridView1.Rows.Count; i++)
                         {
                             for (int j = 0; j < listVisible.Count; j++)
@@ -454,20 +682,6 @@ csv.NextRecord();
 
                             }
                             csv.NextRecord();
-                            /*
-                            DataTable dt = new DataTable();
-                            dt.Load(cmd.ExecuteReader());
-                            int count = 1110;
-                            foreach (DataRow row in dt.Rows)
-                            {
-                                count++;
-                                csv.WriteField(count);
-                                for (var i = 0; i < dt.Columns.Count; i++)
-                                {
-                                    csv.WriteField(row[i]);
-                                }
-                                csv.NextRecord();
-                            }*/
                         }
                     }
                     MessageBox.Show("Kreiran dokument", file.ToString());
@@ -475,38 +689,6 @@ csv.NextRecord();
             }
             catch (Exception ex) { MessageBox.Show(ex.ToString(), "CSV"); }
 
-            /*
-            Microsoft.Office.Interop.Excel._Application app = new Microsoft.Office.Interop.Excel.Application();
-            Microsoft.Office.Interop.Excel._Workbook workbook = app.Workbooks.Add(Type.Missing);
-            Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
-            worksheet = workbook.Sheets["Sheet1"];
-            worksheet = workbook.ActiveSheet;
-            worksheet.Name = naziv;
-
-            List<DataGridViewColumn> listVisible = new List<DataGridViewColumn>();
-            foreach (DataGridViewColumn col in dataGridView1.Columns)
-            {
-                if (col.Visible)
-                    listVisible.Add(col);
-            }
-
-            for (int i = 0; i < listVisible.Count; i++)
-            {
-                worksheet.Cells[1, i + 1] = listVisible[i].HeaderText;
-            }
-
-            for (int i = 0; i < dataGridView1.Rows.Count; i++)
-            {
-                for (int j = 0; j < listVisible.Count; j++)
-                {
-                    worksheet.Cells[i + 2, j + 1] = dataGridView1.Rows[i].Cells[listVisible[j].Name].Value.ToString();
-                }
-            }
-
-            workbook.SaveAs(file, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
-            
-            MessageBox.Show("Kreiran dokument");
-            app.Quit();*/
         }
 
         private void button3_Click_1(object sender, EventArgs e)
