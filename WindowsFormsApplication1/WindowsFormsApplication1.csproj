@@ -985,6 +985,7 @@
       <DependentUpon>frmPrikazPorudzbinaWebs.cs</DependentUpon>
     </Compile>
     <Compile Include="Planovi_Excel\InsertPlanovi.cs" />
+    <Compile Include="Planovi_Excel\InsertPorudzbine.cs" />
     <Compile Include="Planovi_Excel\Izlaznost.cs">
       <SubType>Form</SubType>
     </Compile>

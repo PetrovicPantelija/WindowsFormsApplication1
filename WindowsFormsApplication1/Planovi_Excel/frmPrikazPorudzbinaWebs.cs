@@ -97,5 +97,34 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 conn.Close();
             }
         }
+
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+
+            dtpVremeOd.Value = DateTime.Now;
+
+                InsertPorudzbina porudzbina = new InsertPorudzbina();
+
+            porudzbina.InsertPor(dtpVremeOd.Text);
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                // porudzbina.InsertPorudzbinaPostav(Convert.ToInt32(LargoPaketID), Convert.ToDecimal(Kolicina));
+                porudzbina.InsertPorudzbinaPostav(Convert.ToInt32(row.Cells[3].Value.ToString()), Convert.ToInt32(row.Cells[5].Value.ToString()));
+               
+            }
+            MessageBox.Show("Zavrsen uvoz porudzbine");
+
+          
+            string NazivBeleske = DateTime.Now.ToString() + '-' + "Porudzbina";
+            MessageBox.Show(NazivBeleske);
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                // porudzbina.InsertPorudzbinaPostav(Convert.ToInt32(LargoPaketID), Convert.ToDecimal(Kolicina));
+                porudzbina.InsertBeleskaPostav(NazivBeleske, Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()), row.Cells[2].Value.ToString(), Convert.ToInt32(row.Cells[3].Value.ToString()), row.Cells[4].Value.ToString(), Convert.ToDouble(row.Cells[5].Value.ToString()));
+               
+            }
+            MessageBox.Show("Zavrsen uvoz porudzbine");
+
+        }
     }
 }
