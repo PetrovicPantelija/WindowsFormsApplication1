@@ -95,9 +95,30 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 dataGridView1.Columns[14].Width = 70;
                 */
                 conn.Close();
+                UbaciRkShiipingPorudzbina();
             }
         }
+        private void UbaciRkShiipingPorudzbina()
+        {
+            WindowsFormsApplication1.Planovi_Excel.InsertPorudzbine ins = new WindowsFormsApplication1.Planovi_Excel.InsertPorudzbine();
 
+            try
+            {
+                ins.DeleteRkStavkePorudzbine();
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+
+                    ins.InsertRKStavkePOrudzbine(Convert.ToInt32(row.Cells[0].ToString()), Convert.ToInt32(row.Cells[1].ToString()), row.Cells[2].ToString(), Convert.ToInt32(row.Cells[3].ToString()), row.Cells[4].ToString(), Convert.ToInt32(row.Cells[5].ToString()), row.Cells[6].ToString(), row.Cells[7].ToString(), row.Cells[7].ToString());
+
+                }
+            }
+            catch
+            {
+
+            }
+
+
+        }
         private void iconButton1_Click(object sender, EventArgs e)
         {
 
@@ -124,6 +145,11 @@ namespace WindowsFormsApplication1.Planovi_Excel
                
             }
             MessageBox.Show("Zavrsen uvoz porudzbine");
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
         }
     }
