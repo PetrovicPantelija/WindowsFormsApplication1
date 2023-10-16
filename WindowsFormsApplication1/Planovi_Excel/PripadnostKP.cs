@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Spreadsheet;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -202,13 +203,48 @@ namespace WindowsFormsApplication1.Planovi_Excel
             {
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-                    if (Convert.ToInt32(row.Cells["MpSifra"].Value.ToString()) == Convert.ToInt32(textBox2.Text.ToString()))
+                    if (Convert.ToInt32(row.Cells["MpSifra"].Value.ToString()) == Convert.ToInt32(textBox2.Text))
                     {
                         row.Selected = true;
                         dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.SelectedRows[0].Index;
+
                     }
                 }
+                foreach (DataGridViewRow row in dataGridView2.Rows)
+                {
+                    if (Convert.ToInt32(row.Cells["MpSifra"].Value.ToString()) == Convert.ToInt32(textBox2.Text))
+                    {
+                        row.Selected = true;
+                        dataGridView2.FirstDisplayedScrollingRowIndex = dataGridView2.SelectedRows[0].Index;
+
+                    }
+                }
+
+                /*
+                SqlConnection conn = new SqlConnection(connect);
+                string query2 = "Select ID from PripadnostKolProgram Where MPSifra= "+ Convert.ToInt32(textBox2.Text);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(query2, conn);
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    if (dr.HasRows)
+                    {
+                        foreach(DataGridViewRow r in dataGridView2.Rows)
+                        {
+                            if (r.Cells["MpSifra"].Value.ToString().Contains(dr[0].ToString()))
+                                r.Selected = true;
+                        }
+                        
+                    }
+                }
+                conn.Close();*/
             }
+        }
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
