@@ -101,14 +101,54 @@ namespace WindowsFormsApplication1.Planovi_Excel
         private void UbaciRkShiipingPorudzbina()
         {
             WindowsFormsApplication1.Planovi_Excel.InsertPorudzbine ins = new WindowsFormsApplication1.Planovi_Excel.InsertPorudzbine();
-
+            string rPom = " ";
+            string rPom2 = " ";
+            string rPom3 = " ";
             try
             {
                 ins.DeleteRkStavkePorudzbine();
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
 
-                    ins.InsertRKStavkePOrudzbine(Convert.ToInt32(row.Cells[0].ToString()), Convert.ToInt32(row.Cells[1].ToString()), row.Cells[2].ToString(), Convert.ToInt32(row.Cells[3].ToString()), row.Cells[4].ToString(), Convert.ToInt32(row.Cells[5].ToString()), row.Cells[6].ToString(), row.Cells[7].ToString(), row.Cells[7].ToString());
+                    if (row.Cells[6].Value.ToString() == "")
+                    {
+                        rPom = " ";
+                    }
+                    else
+                    {
+                        rPom = row.Cells[6].Value.ToString();
+                    }
+
+
+                    if (row.Cells[7].Value.ToString() == "")
+                    {
+                        rPom2 = " ";
+                    }
+                    else
+                    {
+                        rPom2 = row.Cells[7].Value.ToString();
+                    }
+
+                    if (row.Cells[8].Value.ToString() == "")
+                    {
+                        rPom3 = " ";
+                    }
+                    else
+                    {
+                        rPom3 = row.Cells[8].Value.ToString();
+                    }
+                   /*
+                    MessageBox.Show(row.Cells[0].Value.ToString());
+                    MessageBox.Show(row.Cells[1].ToString());
+                    MessageBox.Show(row.Cells[2].ToString());
+                    MessageBox.Show(row.Cells[3].ToString());
+                    MessageBox.Show(row.Cells[4].ToString());
+                    MessageBox.Show(row.Cells[5].ToString());
+                    MessageBox.Show(row.Cells[6].ToString());
+                    MessageBox.Show(row.Cells[7].ToString());
+                   */
+
+                    ins.InsertRKStavkePOrudzbine(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()), row.Cells[2].Value.ToString(), Convert.ToInt32(row.Cells[3].Value.ToString()), row.Cells[4].Value.ToString(), Convert.ToInt32(row.Cells[5].Value.ToString()), rPom, rPom2, rPom3);
 
                 }
             }

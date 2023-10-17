@@ -37,10 +37,10 @@ namespace WindowsFormsApplication1.Planovi_Excel
 
             SqlParameter largoProizvodID = new SqlParameter();
             largoProizvodID.ParameterName = "@LargoProizvodID";
-            largoProizvodID.SqlDbType = SqlDbType.NVarChar;
-            largoProizvodID.Size = 100;
+            largoProizvodID.SqlDbType = SqlDbType.Int;
+          //  largoProizvodID.Size = 100;
             largoProizvodID.Direction = ParameterDirection.Input;
-            largoProizvodID.Value = ID;
+            largoProizvodID.Value = LargoProizvodID;
             cmd.Parameters.Add(largoProizvodID);
 
             SqlParameter largoProizvodNaziv = new SqlParameter();
