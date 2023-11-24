@@ -59,8 +59,16 @@ namespace WindowsFormsApplication1.Planovi_Excel
 
         private void label3_Click(object sender, EventArgs e)
         {
-            Planovi_Excel.frmPrikazPorudzbinaWebs web = new frmPrikazPorudzbinaWebs();
-            web.Show();
+            if (Kor.Trim() == "stanojevic.ivan" || Kor.Trim() == "stanojlovic.djordje" || Kor.Trim() == "hasanovic.igor" || Kor.Trim() == "pantelija")
+            {
+                Planovi_Excel.frmPrikazPorudzbinaWebs web = new frmPrikazPorudzbinaWebs();
+                web.Show();
+            }
+            else
+            {
+                frmPrikazPorudzbinaWebsOgraniceno frm = new frmPrikazPorudzbinaWebsOgraniceno();
+                frm.Show();
+            }
             // Planovi_Excel.PlanStavke pas = new PlanStavke();
             // pas.Show();
         }

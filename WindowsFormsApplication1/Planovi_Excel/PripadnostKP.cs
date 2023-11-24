@@ -12,13 +12,26 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsFormsApplication1.Planovi_Excel
-{
+{    
     public partial class PripadnostKP : Form
     {
+        string Kor = frmLogovanje.user.ToString().TrimEnd();
+
         string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
         public PripadnostKP()
         {
             InitializeComponent();
+            if (Kor.Trim() == "stanojevic.ivan" || Kor.Trim() == "stanojlovic.djordje" || Kor.Trim() == "hasanovic.igor" || Kor.Trim() == "pantelija")
+            {
+                button1.Visible = true;
+                button2.Visible = true;
+                button3.Visible = true;
+            }
+            else {
+                button1.Visible = false;
+                button2.Visible = false;
+                button3.Visible = false;
+            }
         }
         private void PripadnostKP_Load(object sender, EventArgs e)
         {
@@ -90,14 +103,22 @@ namespace WindowsFormsApplication1.Planovi_Excel
                     if (row.Selected)
                     {
                         MpSifra = Convert.ToInt32(row.Cells[0].Value.ToString());
-                        ins.InsertPripadnostKP(Convert.ToInt32(cboKolekcija.SelectedValue), Convert.ToInt32(cboProgram.SelectedValue), MpSifra, boja, Convert.ToDecimal(textBox1.Text.ToString().TrimEnd()),Convert.ToDecimal(textBox3.Text.ToString().TrimEnd()));
+                        ins.InsertPripadnostKP(Convert.ToInt32(cboKolekcija.SelectedValue), Convert.ToInt32(cboProgram.SelectedValue), MpSifra, boja, Convert.ToDecimal(textBox1.Text.ToString().TrimEnd()),Convert.ToDecimal(textBox3.Text.ToString()));
                     }
                 }
-                ObrisiDuplirano();
-                FillGV();
+                if (textBox3.Text == "0")
+                {
+                    SqlConnection conn = new SqlConnection(connect);
+                    SqlCommand cmd = new SqlCommand("Update PripadnostKolProgram Set MinimalnaKol='' Where MpSifra="+MpSifra, conn);
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
             }
             catch
             { }
+            ObrisiDuplirano();
+            FillGV();
         }
         private void ObrisiDuplirano()
         {
@@ -243,6 +264,15 @@ namespace WindowsFormsApplication1.Planovi_Excel
             }
         }
         private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboProgram_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void button5_Click(object sender, EventArgs e)
         {
 
         }

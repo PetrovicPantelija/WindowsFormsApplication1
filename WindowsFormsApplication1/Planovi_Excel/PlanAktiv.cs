@@ -11,10 +11,25 @@ namespace WindowsFormsApplication1.Planovi_Excel
         private string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
         private bool status = false;
         public int ID;
+        string Kor = frmLogovanje.user.ToString().TrimEnd();
 
         public PlanAktiv()
         {
             InitializeComponent();
+            if (Kor.Trim() == "stanojevic.ivan" || Kor.Trim() == "stanojlovic.djordje" || Kor.Trim() == "hasanovic.igor" || Kor.Trim() == "pantelija")
+            {
+                toolStrip1.Visible = true;
+                button3.Enabled = true;
+                btnGrupisi.Enabled = true;
+                button1.Enabled = true;
+            }
+            else
+            {
+                toolStrip1.Visible = false;
+                button3.Enabled = false;
+                btnGrupisi.Enabled = false;
+                button1.Enabled = false;
+            }
         }
 
         private void FillGV()
@@ -127,6 +142,44 @@ namespace WindowsFormsApplication1.Planovi_Excel
                     Convert.ToInt32(dr2["MpSifra"].ToString()));
             }
             conn.Close();
+            FillGV();
+        }
+        int stariPlanovi;
+        int noviPlan;
+        private void btnGrupisi_Click(object sender, EventArgs e)
+        {
+            
+            InsertPlanovi ins = new InsertPlanovi();
+            ins.InsertPlan(txtNaziv.Text.ToString().TrimEnd(), DateTime.Now, DateTime.Now, txtNapomena.Text.ToString().TrimEnd(), "Aktivan");
+            var query = "(select (Max(t1.ID)) from (select ID from PlanArhiv union Select ID from PlanAktiv) as t1 )";
+            SqlConnection conn = new SqlConnection(connect);
+            conn.Open();
+            SqlCommand cmd=new SqlCommand(query, conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while(dr.Read())
+            {
+                noviPlan = Convert.ToInt32(dr[0].ToString());
+            }
+            conn.Close();
+            foreach(DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Selected)
+                {
+                    stariPlanovi = Convert.ToInt32(row.Cells[0].Value.ToString());
+
+                    var updateQuery = "Update PlanAktivStavke Set IDPlana=" + noviPlan + " Where IDPlana=" + stariPlanovi;
+                    var deletePlan = "Delete From PlanAktiv Where ID=" + stariPlanovi;
+                    conn.Open();
+                    SqlCommand cmd2= new SqlCommand(updateQuery, conn);
+                    cmd2.ExecuteNonQuery();
+                    conn.Close();
+                    conn.Open();
+                    SqlCommand cmd3=new SqlCommand(deletePlan, conn);
+                    cmd3.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }
+
             FillGV();
         }
     }

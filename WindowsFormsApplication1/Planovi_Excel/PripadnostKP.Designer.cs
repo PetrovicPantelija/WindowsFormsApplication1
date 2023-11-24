@@ -139,6 +139,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.cboProgram.Name = "cboProgram";
             this.cboProgram.Size = new System.Drawing.Size(204, 21);
             this.cboProgram.TabIndex = 14;
+            this.cboProgram.TextChanged += new System.EventHandler(this.cboProgram_TextChanged);
             // 
             // button1
             // 
@@ -219,6 +220,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(76, 20);
             this.textBox3.TabIndex = 17;
+            this.textBox3.Text = "0";
             // 
             // label5
             // 

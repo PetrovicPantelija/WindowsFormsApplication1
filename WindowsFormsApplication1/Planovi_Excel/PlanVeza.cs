@@ -14,10 +14,22 @@ namespace WindowsFormsApplication1.Planovi_Excel
 {
     public partial class PlanVeza : Form
     {
+        string Kor = frmLogovanje.user.ToString().TrimEnd();
         string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
         public PlanVeza()
         {
             InitializeComponent();
+            if (Kor.Trim() == "stanojevic.ivan" || Kor.Trim() == "stanojlovic.djordje" || Kor.Trim() == "hasanovic.igor" || Kor.Trim() == "pantelija")
+            {
+                btnDodeli.Visible = true;
+                btnNovaGrupa.Visible= true;
+                btnObrisi.Visible= true;
+            }
+            else {
+                btnDodeli.Visible = false;
+                btnNovaGrupa.Visible = false;
+                btnObrisi.Visible = false;
+            }
         }
         private void PlanVeza_Load(object sender, EventArgs e)
         {

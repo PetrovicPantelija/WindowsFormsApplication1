@@ -728,7 +728,7 @@ namespace WindowsFormsApplication1
             ///END
 
 
-            string mail = "nebojsa.pesic@jela.rs";
+            string mail = "igor.hasanovic@jela.rs";
          
             mailMessage = new MailMessage("reporter@jela.rs", mail);
 

@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Data.OleDb;
+using WindowsFormsApplication1.Planovi_Excel;
 
 namespace WindowsFormsApplication1
 {
@@ -802,6 +803,17 @@ namespace WindowsFormsApplication1
             cmd.ExecuteNonQuery();
             MessageBox.Show("Obrada izvršena vozač postavljen");
             con.Close();
+        }
+
+        private void txtPakovanja_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void iconButtonIzvestajNeisporuceni_Click(object sender, EventArgs e)
+        {
+            IzvestajNeisporuceni frm = new IzvestajNeisporuceni();
+            frm.Show();
         }
     }
 }

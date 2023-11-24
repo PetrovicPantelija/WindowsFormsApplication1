@@ -211,7 +211,7 @@ namespace WindowsFormsApplication1
 
         private void button5_Click(object sender, EventArgs e)
         {
-            user = cboKorisnik.Text;
+            user = cboKorisnik.Text.ToString().TrimEnd();
 
              if(cboKorisnik.Text=="pantelija" && txtPassword.Text == "0307")
               {
@@ -228,8 +228,13 @@ namespace WindowsFormsApplication1
 
         private void button7_Click(object sender, EventArgs e)
         {
-            Planovi_Excel.MainPlaniranje plp = new Planovi_Excel.MainPlaniranje();
-            plp.Show();
+            if (txtPassword.Text != "")
+            {
+                user = cboKorisnik.Text.ToString().TrimEnd();
+                Planovi_Excel.MainPlaniranje plp = new Planovi_Excel.MainPlaniranje();
+                plp.Show();
+            }
+            else { MessageBox.Show("Nije ispravno uneta lozinka"); }
         }
     }
 }

@@ -18,6 +18,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
     {
         private string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
         public int ID;
+        string Kor = frmLogovanje.user.ToString().TrimEnd();
 
         public PlanDetaljno()
         {
@@ -35,6 +36,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             panel1.Visible = true;
             panel2.Visible = false;
             FillChecks();
+            
         }
 
         private void FillChecks()
@@ -70,6 +72,20 @@ namespace WindowsFormsApplication1.Planovi_Excel
 
         private void PlanDetaljno_Load(object sender, EventArgs e)
         {
+            if (Kor.Trim() == "stanojevic.ivan" || Kor.Trim() == "stanojlovic.djordje" || Kor.Trim() == "hasanovic.igor" || Kor.Trim() == "pantelija")
+            {
+                button1.Enabled = true;
+                button3.Enabled = true;
+                button2.Enabled = true;
+                button5.Enabled = true;
+            }
+            else
+            {
+                button1.Enabled = false;
+                button2.Enabled = false;
+                button3.Enabled = false;
+                button5.Enabled = false;
+            }
         }
 
         private void FillPanel()
@@ -789,6 +805,29 @@ namespace WindowsFormsApplication1.Planovi_Excel
             countPR1 = 0;
             countPR2 = 0;
         }
+        private void NoviIzlaznost()
+        {
+            if (cbNoviPredlog.Checked)
+            {
+                countPR2 = 0;
+                if (pr2cb1.Checked == true) { countPR2++; p2m1 = 1; } else { p2m1 = 0; }
+                if (pr2cb2.Checked == true) { countPR2++; p2m2 = 1; } else { p2m2 = 0; }
+                if (pr2cb3.Checked == true) { countPR2++; p2m3 = 1; } else { p2m3 = 0; }
+                if (pr2cb4.Checked == true) { countPR2++; p2m4 = 1; } else { p2m4 = 0; }
+                if (pr2cb5.Checked == true) { countPR2++; p2m5 = 1; } else { p2m5 = 0; }
+                if (pr2cb6.Checked == true) { countPR2++; p2m6 = 1; } else { p2m6 = 0; }
+                if (pr2cb7.Checked == true) { countPR2++; p2m7 = 1; } else { p2m7 = 0; }
+                if (pr2cb8.Checked == true) { countPR2++; p2m8 = 1; } else { p2m8 = 0; }
+                if (pr2cb9.Checked == true) { countPR2++; p2m9 = 1; } else { p2m9 = 0; }
+                if (pr2cb10.Checked == true) { countPR2++; p2m10 = 1; } else { p2m10 = 0; }
+                if (pr2cb11.Checked == true) { countPR2++; p2m11 = 1; } else { p2m11 = 0; }
+                if (pr2cb12.Checked == true) { countPR2++; p2m12 = 1; } else { p2m12 = 0; }
+
+                InsertPlanovi ins = new InsertPlanovi();
+                ins.PoveziIzlaznostNoviMp(Convert.ToInt32(textBox1.Text.ToString()), countPR2, p2m1, p2m2, p2m3, p2m4, p2m5, p2m6, p2m7, p2m8, p2m9, p2m10, p2m11, p2m12);
+                countPR2 = 0;
+            }
+        }
 
         private int tekuci = 0;
 
@@ -827,6 +866,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             Predlozi();
             if (checkBox8.Checked == true) { tekuci = 1; } else { tekuci = 0; }
             ins.PoveziTrend(Convert.ToInt32(textBox1.Text.ToString()), tekuci);
+            NoviIzlaznost();
             FillGV();
         }
 
@@ -883,6 +923,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
                         ins.PoveziTrend(Convert.ToInt32(textBox1.Text), tekuci);
                     int row = cell.RowIndex;
                     int col = cell.ColumnIndex;
+                    NoviIzlaznost();
                     FillGV();
 
                     dataGridView1.Rows[row].Selected = true;
@@ -902,6 +943,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
 
                 int row = cell.RowIndex;
                 int col = cell.ColumnIndex;
+                NoviIzlaznost();
                 FillGV();
 
                 dataGridView1.Rows[row].Cells[col].Selected = true;

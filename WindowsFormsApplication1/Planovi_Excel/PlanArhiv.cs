@@ -8,6 +8,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
 {
     public partial class PlanArhiv : Form
     {
+        string Kor = frmLogovanje.user.ToString();
         private string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
         private bool status = false;
         public int ID;
@@ -15,11 +16,21 @@ namespace WindowsFormsApplication1.Planovi_Excel
         public PlanArhiv()
         {
             InitializeComponent();
+            if (Kor.Trim() == "stanojevic.ivan" || Kor.Trim() == "stanojlovic.djordje" || Kor.Trim() == "hasanovic.igor" || Kor.Trim() == "pantelija")
+            {
+                button1.Enabled = true;
+
+            }
+            else
+            {
+                button1.Enabled = false;
+
+            }
         }
 
         private void FillGV()
         {
-            var query = "Select * from PlanArhiv";
+            var query = "Select * from PlanArhiv order by ID desc";
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();

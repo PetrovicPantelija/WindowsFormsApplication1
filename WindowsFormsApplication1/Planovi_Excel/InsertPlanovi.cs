@@ -703,7 +703,132 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 }
             }
         }
+        public void PoveziIzlaznostNoviMp(int ID, int Predlog2Count, int Predlog2m1, int Predlog2m2, int Predlog2m3, int Predlog2m4, int Predlog2m5, int Predlog2m6, int Predlog2m7, int Predlog2m8, int Predlog2m9, int Predlog2m10, int Predlog2m11, int Predlog2m12)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "PoveziIzlaznostNoviMP";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 180;
 
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@IdPlana";
+            id.SqlDbType = SqlDbType.Int;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
+
+            SqlParameter p1Count = new SqlParameter();
+            p1Count.ParameterName = "@Predlog2Count";
+            p1Count.SqlDbType = SqlDbType.Int;
+            p1Count.Value = Predlog2Count;
+            cmd.Parameters.Add(p1Count);
+
+            SqlParameter p2m1 = new SqlParameter();
+            p2m1.ParameterName = "@Predlog2m1";
+            p2m1.SqlDbType = SqlDbType.Int;
+            p2m1.Value = Predlog2m1;
+            cmd.Parameters.Add(p2m1);
+
+            SqlParameter p2m2 = new SqlParameter();
+            p2m2.ParameterName = "@Predlog2m2";
+            p2m2.SqlDbType = SqlDbType.Int;
+            p2m2.Value = Predlog2m2;
+            cmd.Parameters.Add(p2m2);
+
+            SqlParameter p2m3 = new SqlParameter();
+            p2m3.ParameterName = "@Predlog2m3";
+            p2m3.SqlDbType = SqlDbType.Int;
+            p2m3.Value = Predlog2m3;
+            cmd.Parameters.Add(p2m3);
+
+            SqlParameter p2m4 = new SqlParameter();
+            p2m4.ParameterName = "@Predlog2m4";
+            p2m4.SqlDbType = SqlDbType.Int;
+            p2m4.Value = Predlog2m4;
+            cmd.Parameters.Add(p2m4);
+
+            SqlParameter p2m5 = new SqlParameter();
+            p2m5.ParameterName = "@Predlog2m5";
+            p2m5.SqlDbType = SqlDbType.Int;
+            p2m5.Value = Predlog2m5;
+            cmd.Parameters.Add(p2m5);
+
+            SqlParameter p2m6 = new SqlParameter();
+            p2m6.ParameterName = "@Predlog2m6";
+            p2m6.SqlDbType = SqlDbType.Int;
+            p2m6.Value = Predlog2m6;
+            cmd.Parameters.Add(p2m6);
+
+            SqlParameter p2m7 = new SqlParameter();
+            p2m7.ParameterName = "@Predlog2m7";
+            p2m7.SqlDbType = SqlDbType.Int;
+            p2m7.Value = Predlog2m7;
+            cmd.Parameters.Add(p2m7);
+
+            SqlParameter p2m8 = new SqlParameter();
+            p2m8.ParameterName = "@Predlog2m8";
+            p2m8.SqlDbType = SqlDbType.Int;
+            p2m8.Value = Predlog2m8;
+            cmd.Parameters.Add(p2m8);
+
+            SqlParameter p2m9 = new SqlParameter();
+            p2m9.ParameterName = "@Predlog2m9";
+            p2m9.SqlDbType = SqlDbType.Int;
+            p2m9.Value = Predlog2m9;
+            cmd.Parameters.Add(p2m9);
+
+            SqlParameter p2m10 = new SqlParameter();
+            p2m10.ParameterName = "@Predlog2m10";
+            p2m10.SqlDbType = SqlDbType.Int;
+            p2m10.Value = Predlog2m10;
+            cmd.Parameters.Add(p2m10);
+
+            SqlParameter p2m11 = new SqlParameter();
+            p2m11.ParameterName = "@Predlog2m11";
+            p2m11.SqlDbType = SqlDbType.Int;
+            p2m11.Value = Predlog2m11;
+            cmd.Parameters.Add(p2m11);
+
+            SqlParameter p2m12 = new SqlParameter();
+            p2m12.ParameterName = "@Predlog2m12";
+            p2m12.SqlDbType = SqlDbType.Int;
+            p2m12.Value = Predlog2m12;
+            cmd.Parameters.Add(p2m12);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw new Exception("Neuspešan upis NHM brojeva");
+            }
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos NHM broja je uspešno završena", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+
+        }
         public void PoveziPredloge(int ID, int Predlog1Count, int Predlog2Count,
             int Predlog1m1, int Predlog1m2, int Predlog1m3, int Predlog1m4, int Predlog1m5, int Predlog1m6, int Predlog1m7, int Predlog1m8, int Predlog1m9, int Predlog1m10, int Predlog1m11, int Predlog1m12,
             int Predlog2m1, int Predlog2m2, int Predlog2m3, int Predlog2m4, int Predlog2m5, int Predlog2m6, int Predlog2m7, int Predlog2m8, int Predlog2m9, int Predlog2m10, int Predlog2m11, int Predlog2m12)
@@ -1717,6 +1842,40 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 {
                     // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
                 }
+            }
+        }
+        public void NeisporuceniIzvestaj()
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "NeisporuceniIzvestaj";
+            cmd.CommandType = CommandType.StoredProcedure;
+            conn.Open();
+            SqlTransaction transaction = conn.BeginTransaction();
+            cmd.Transaction = transaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                transaction.Commit();
+                transaction = conn.BeginTransaction();
+                cmd.Transaction = transaction;
+            }
+            catch(SqlException ex) 
+            {
+                MessageBox.Show(ex.ToString());
+                throw new Exception("Neuspesan upis");
+            }
+            finally
+            { 
+                if (!error) 
+                {
+                    transaction.Commit();
+                    MessageBox.Show("Unos NHM broja je uspešno završena", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                conn.Close();
+                if(error) { }
             }
         }
     }

@@ -231,5 +231,10 @@ namespace WindowsFormsApplication1.Kalkulacije
 
             }
         }
+
+        private void combo_Kolekcija_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

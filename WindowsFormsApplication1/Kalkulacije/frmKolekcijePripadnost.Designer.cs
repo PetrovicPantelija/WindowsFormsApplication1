@@ -57,7 +57,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.toolStripSeparator1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1035, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(776, 27);
             this.toolStrip1.TabIndex = 200;
             this.toolStrip1.Text = "Osveži";
             // 
@@ -67,7 +67,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
             this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(29, 24);
+            this.tsNew.Size = new System.Drawing.Size(24, 24);
             this.tsNew.Text = "Novi";
             this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
             // 
@@ -77,7 +77,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(29, 24);
+            this.tsSave.Size = new System.Drawing.Size(24, 24);
             this.tsSave.Text = "tsSave";
             this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
             // 
@@ -87,7 +87,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
             this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsDelete.Name = "tsDelete";
-            this.tsDelete.Size = new System.Drawing.Size(29, 24);
+            this.tsDelete.Size = new System.Drawing.Size(24, 24);
             this.tsDelete.Text = "toolStripButton1";
             this.tsDelete.Click += new System.EventHandler(this.tsDelete_Click);
             // 
@@ -98,18 +98,20 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             // txt_ID
             // 
-            this.txt_ID.Location = new System.Drawing.Point(12, 59);
+            this.txt_ID.Location = new System.Drawing.Point(9, 48);
+            this.txt_ID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_ID.Name = "txt_ID";
-            this.txt_ID.Size = new System.Drawing.Size(117, 22);
+            this.txt_ID.Size = new System.Drawing.Size(89, 20);
             this.txt_ID.TabIndex = 203;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 36);
+            this.label1.Location = new System.Drawing.Point(9, 29);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(26, 20);
+            this.label1.Size = new System.Drawing.Size(21, 17);
             this.label1.TabIndex = 202;
             this.label1.Text = "ID";
             // 
@@ -117,24 +119,27 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 100);
+            this.label2.Location = new System.Drawing.Point(9, 81);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(80, 20);
+            this.label2.Size = new System.Drawing.Size(66, 17);
             this.label2.TabIndex = 202;
             this.label2.Text = "MpSIFRA";
             // 
             // txt_MpSifra
             // 
-            this.txt_MpSifra.Location = new System.Drawing.Point(12, 123);
+            this.txt_MpSifra.Location = new System.Drawing.Point(9, 100);
+            this.txt_MpSifra.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_MpSifra.Name = "txt_MpSifra";
-            this.txt_MpSifra.Size = new System.Drawing.Size(117, 22);
+            this.txt_MpSifra.Size = new System.Drawing.Size(89, 20);
             this.txt_MpSifra.TabIndex = 203;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 151);
+            this.button1.Location = new System.Drawing.Point(9, 123);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(92, 27);
+            this.button1.Size = new System.Drawing.Size(69, 22);
             this.button1.TabIndex = 204;
             this.button1.Text = "Pronađi";
             this.button1.UseVisualStyleBackColor = true;
@@ -144,36 +149,40 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(12, 200);
+            this.label3.Location = new System.Drawing.Point(9, 162);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(76, 20);
+            this.label3.Size = new System.Drawing.Size(64, 17);
             this.label3.TabIndex = 202;
             this.label3.Text = "Kolekcija";
             // 
             // combo_Kolekcija
             // 
             this.combo_Kolekcija.FormattingEnabled = true;
-            this.combo_Kolekcija.Location = new System.Drawing.Point(12, 223);
+            this.combo_Kolekcija.Location = new System.Drawing.Point(9, 181);
+            this.combo_Kolekcija.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.combo_Kolekcija.Name = "combo_Kolekcija";
-            this.combo_Kolekcija.Size = new System.Drawing.Size(209, 24);
+            this.combo_Kolekcija.Size = new System.Drawing.Size(158, 21);
             this.combo_Kolekcija.TabIndex = 205;
+            this.combo_Kolekcija.TextChanged += new System.EventHandler(this.combo_Kolekcija_TextChanged);
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(236, 36);
+            this.dataGridView1.Location = new System.Drawing.Point(177, 29);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(787, 332);
+            this.dataGridView1.Size = new System.Drawing.Size(590, 270);
             this.dataGridView1.TabIndex = 206;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // frmKolekcijePripadnost
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1035, 380);
+            this.ClientSize = new System.Drawing.Size(776, 309);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.combo_Kolekcija);
             this.Controls.Add(this.button1);
@@ -183,6 +192,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.toolStrip1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmKolekcijePripadnost";
             this.Text = "frmKolekcijePripadnost";
             this.Load += new System.EventHandler(this.frmKolekcijePripadnost_Load);

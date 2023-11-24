@@ -34,6 +34,11 @@ namespace WindowsFormsApplication1.Kalkulacije
             IdGrupe();
             IdForme();
             PravoPristupa();
+            if (Kor.Trim() == "stanojevic.ivan" || Kor.Trim() == "stanojlovic.djordje" || Kor.Trim() == "hasanovic.igor" || Kor.Trim() == "pantelija")
+            {
+                toolStrip1.Visible = true;
+            }
+            else { toolStrip1.Visible = false; }
         }
         public string IdGrupe()
         {

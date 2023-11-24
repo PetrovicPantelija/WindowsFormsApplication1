@@ -14,16 +14,21 @@ namespace WindowsFormsApplication1.Planovi_Excel
 {
     public partial class PlanStavke : Form
     {
+        string Kor = frmLogovanje.user.ToString().TrimEnd();
         public int ID;
         string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
         public PlanStavke()
         {
             InitializeComponent();
+
         }
         public PlanStavke(int id)
         {
             InitializeComponent();
             txtIdPlana.Text = id.ToString();
+
+            //InitializeComponent();
+
         }
         private void FillGV()
         {
@@ -138,6 +143,16 @@ namespace WindowsFormsApplication1.Planovi_Excel
             FillGV();
             FillStavke();
             FillCombo();
+            if (Kor.Trim() == "stanojevic.ivan" || Kor.Trim() == "stanojlovic.djordje" || Kor.Trim() == "hasanovic.igor" || Kor.Trim() == "pantelija")
+            {
+                button1.Enabled = true;
+                button2.Enabled = true;
+            }
+            else
+            {
+                button1.Enabled = false;
+                button2.Enabled = false;
+            }
         }
 
         private void FillCombo()
