@@ -112,7 +112,8 @@ namespace WindowsFormsApplication1.Pakovanja.PlanPakovanja
                     Naziv = txt_naziv.Text,
                     DatumOd = datum_od.Value,
                     DatumDo = datum_do.Value,
-                    Napomena = txt_napomena.Text
+                    Napomena = txt_napomena.Text,
+                    Konacan="0"
                 };
                 int resoult = _PackingPlan.Insert(packingPlan);
                 // MessageBox.Show(resoult + " row(s) is added");
@@ -130,7 +131,8 @@ namespace WindowsFormsApplication1.Pakovanja.PlanPakovanja
                     Naziv = txt_naziv.Text,
                     DatumOd = datum_od.Value,
                     DatumDo = datum_do.Value,
-                    Napomena = txt_napomena.Text
+                    Napomena = txt_napomena.Text,
+                    Konacan="0"
                 };
                 int resoult = _PackingPlan.Update(packingPlan);
                 // MessageBox.Show(resoult + " row is updated");
@@ -216,5 +218,19 @@ namespace WindowsFormsApplication1.Pakovanja.PlanPakovanja
             dataGrid.RowHeadersVisible = false;
         }
 
+        private void btnKonacan_Click(object sender, EventArgs e)
+        {
+            int id = (int)dataGrid.Rows[row_selected].Cells[0].Value;
+            PackingPlanModel packingPlan = new PackingPlanModel()
+            {
+                Id = id,
+            };
+            int resoult = _PackingPlan.ProglasiKonacan(packingPlan);
+            // MessageBox.Show(resoult + " row is updated");
+            // Refresh the table
+            PackingPlanList = _PackingPlan.GetAll();
+            dataGrid.DataSource = PackingPlanList;
+            groupBoxAddEdit.Visible = false;
+        }
     }
 }

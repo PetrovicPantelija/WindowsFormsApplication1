@@ -191,7 +191,39 @@ namespace WindowsFormsApplication1.Pakovanja.PackingPlanItem
             }
             return returnThese;
         }
-
+        public List<JObject> GetAllByPlanProizvodnje(int id,string vrsta)
+        {
+            List<JObject> returnThese = new List<JObject>();
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                SqlCommand command = new SqlCommand("PlanProizvodnje_GetAllByID", con);
+                command.CommandType= CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@id", id);
+                command.Parameters.AddWithValue("@vrsta", vrsta);
+                try
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            JObject newDNP = new JObject();
+                            for (int i = 0; i < reader.FieldCount; i++)
+                            {
+                                newDNP.Add(reader.GetName(i).ToString(), reader.GetValue(i).ToString());
+                            }
+                            returnThese.Add(newDNP);
+                        }
+                    }
+                }
+                catch (SqlException)
+                {
+                    throw new Exception("ERROR!");
+                }
+            }
+            return returnThese;
+        }
+        
         public List<JObject> GetAllByDateDNP(string typeDN, DateTime fromDate, DateTime toDate)
         {
             List<JObject> returnThese = new List<JObject>();

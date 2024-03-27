@@ -11,6 +11,7 @@ using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Globalization;
+using WindowsFormsApplication1.PakovanjaPlanovi;
 
 namespace WindowsFormsApplication1
 {
@@ -194,8 +195,6 @@ namespace WindowsFormsApplication1
                 PravoP = stat.Pravo;
                 if (PravoP == true) { stat.Show(); } else { return; }
             }
-          
-
             myConnection.Close();
         }
 
@@ -235,6 +234,12 @@ namespace WindowsFormsApplication1
                 plp.Show();
             }
             else { MessageBox.Show("Nije ispravno uneta lozinka"); }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            MainPakovanje frm = new MainPakovanje();
+            frm.Show();
         }
     }
 }

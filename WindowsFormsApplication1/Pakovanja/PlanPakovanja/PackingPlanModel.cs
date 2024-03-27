@@ -22,5 +22,7 @@ namespace WindowsFormsApplication1.Pakovanja.PlanPakovanja
         public DateTime DatumDo { get; set; }
         [Column("Napomena")]
         public string Napomena { get; set; }
+        [Column("Konacan")]
+        public string Konacan { get; set; }
     }
 }

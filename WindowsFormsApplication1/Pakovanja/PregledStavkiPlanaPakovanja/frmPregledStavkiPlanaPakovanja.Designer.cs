@@ -58,16 +58,21 @@ namespace WindowsFormsApplication1.Pakovanja.PregledStavkiPlanaPakovanja
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.textBoxSearch = new System.Windows.Forms.TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             this.groupBoxAddEdit.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnBack
             // 
             this.btnBack.BackColor = System.Drawing.Color.SlateGray;
-            this.btnBack.Location = new System.Drawing.Point(15, 15);
+            this.btnBack.Location = new System.Drawing.Point(11, 12);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(100, 30);
+            this.btnBack.Size = new System.Drawing.Size(75, 24);
             this.btnBack.TabIndex = 72;
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = false;
@@ -75,9 +80,10 @@ namespace WindowsFormsApplication1.Pakovanja.PregledStavkiPlanaPakovanja
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(376, 15);
+            this.btnEdit.Location = new System.Drawing.Point(282, 12);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(100, 30);
+            this.btnEdit.Size = new System.Drawing.Size(75, 24);
             this.btnEdit.TabIndex = 70;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
@@ -86,9 +92,10 @@ namespace WindowsFormsApplication1.Pakovanja.PregledStavkiPlanaPakovanja
             // btnDelete
             // 
             this.btnDelete.BackColor = System.Drawing.Color.IndianRed;
-            this.btnDelete.Location = new System.Drawing.Point(482, 15);
+            this.btnDelete.Location = new System.Drawing.Point(362, 12);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(100, 30);
+            this.btnDelete.Size = new System.Drawing.Size(75, 24);
             this.btnDelete.TabIndex = 69;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = false;
@@ -96,9 +103,10 @@ namespace WindowsFormsApplication1.Pakovanja.PregledStavkiPlanaPakovanja
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(643, 15);
+            this.btnSearch.Location = new System.Drawing.Point(482, 12);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(100, 30);
+            this.btnSearch.Size = new System.Drawing.Size(75, 24);
             this.btnSearch.TabIndex = 67;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -110,16 +118,18 @@ namespace WindowsFormsApplication1.Pakovanja.PregledStavkiPlanaPakovanja
             this.dataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(158)))), ((int)(((byte)(192)))));
             this.dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGrid.Location = new System.Drawing.Point(15, 50);
-            this.dataGrid.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dataGrid.Location = new System.Drawing.Point(11, 41);
+            this.dataGrid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGrid.Name = "dataGrid";
             this.dataGrid.RowHeadersWidth = 51;
             this.dataGrid.RowTemplate.Height = 24;
-            this.dataGrid.Size = new System.Drawing.Size(1540, 250);
+            this.dataGrid.Size = new System.Drawing.Size(1155, 203);
             this.dataGrid.TabIndex = 66;
             // 
             // groupBoxAddEdit
             // 
+            this.groupBoxAddEdit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxAddEdit.Controls.Add(this.txt_ukucati_količinu_za_rezervaciju);
             this.groupBoxAddEdit.Controls.Add(this.label1);
             this.groupBoxAddEdit.Controls.Add(this.txt_rezervisana_količina_po_planu);
@@ -143,19 +153,22 @@ namespace WindowsFormsApplication1.Pakovanja.PregledStavkiPlanaPakovanja
             this.groupBoxAddEdit.Controls.Add(this.btnCancel);
             this.groupBoxAddEdit.Controls.Add(this.btnUpdate);
             this.groupBoxAddEdit.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxAddEdit.Location = new System.Drawing.Point(15, 305);
+            this.groupBoxAddEdit.Location = new System.Drawing.Point(11, 248);
+            this.groupBoxAddEdit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBoxAddEdit.Name = "groupBoxAddEdit";
-            this.groupBoxAddEdit.Size = new System.Drawing.Size(910, 293);
+            this.groupBoxAddEdit.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBoxAddEdit.Size = new System.Drawing.Size(682, 238);
             this.groupBoxAddEdit.TabIndex = 74;
             this.groupBoxAddEdit.TabStop = false;
             this.groupBoxAddEdit.Text = "Izmeni Stavke Za Pregled Plana Pakovanja";
             // 
             // txt_ukucati_količinu_za_rezervaciju
             // 
-            this.txt_ukucati_količinu_za_rezervaciju.Location = new System.Drawing.Point(690, 194);
+            this.txt_ukucati_količinu_za_rezervaciju.Location = new System.Drawing.Point(518, 158);
+            this.txt_ukucati_količinu_za_rezervaciju.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_ukucati_količinu_za_rezervaciju.Multiline = true;
             this.txt_ukucati_količinu_za_rezervaciju.Name = "txt_ukucati_količinu_za_rezervaciju";
-            this.txt_ukucati_količinu_za_rezervaciju.Size = new System.Drawing.Size(206, 28);
+            this.txt_ukucati_količinu_za_rezervaciju.Size = new System.Drawing.Size(156, 24);
             this.txt_ukucati_količinu_za_rezervaciju.TabIndex = 90;
             this.txt_ukucati_količinu_za_rezervaciju.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_ukucati_količinu_za_rezervaciju_KeyPress);
             // 
@@ -163,80 +176,89 @@ namespace WindowsFormsApplication1.Pakovanja.PregledStavkiPlanaPakovanja
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(447, 197);
+            this.label1.Location = new System.Drawing.Point(335, 160);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(215, 20);
+            this.label1.Size = new System.Drawing.Size(171, 15);
             this.label1.TabIndex = 91;
             this.label1.Text = "Ukucati Količinu Za Rezervaciju";
             // 
             // txt_rezervisana_količina_po_planu
             // 
-            this.txt_rezervisana_količina_po_planu.Location = new System.Drawing.Point(690, 157);
+            this.txt_rezervisana_količina_po_planu.Location = new System.Drawing.Point(518, 128);
+            this.txt_rezervisana_količina_po_planu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_rezervisana_količina_po_planu.Multiline = true;
             this.txt_rezervisana_količina_po_planu.Name = "txt_rezervisana_količina_po_planu";
-            this.txt_rezervisana_količina_po_planu.Size = new System.Drawing.Size(206, 28);
+            this.txt_rezervisana_količina_po_planu.Size = new System.Drawing.Size(156, 24);
             this.txt_rezervisana_količina_po_planu.TabIndex = 89;
             this.txt_rezervisana_količina_po_planu.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_rezervisana_količina_po_planu_KeyPress);
             // 
             // txt_trenutna_količina_na_zalihama
             // 
-            this.txt_trenutna_količina_na_zalihama.Location = new System.Drawing.Point(690, 120);
+            this.txt_trenutna_količina_na_zalihama.Location = new System.Drawing.Point(518, 98);
+            this.txt_trenutna_količina_na_zalihama.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_trenutna_količina_na_zalihama.Multiline = true;
             this.txt_trenutna_količina_na_zalihama.Name = "txt_trenutna_količina_na_zalihama";
-            this.txt_trenutna_količina_na_zalihama.Size = new System.Drawing.Size(206, 28);
+            this.txt_trenutna_količina_na_zalihama.Size = new System.Drawing.Size(156, 24);
             this.txt_trenutna_količina_na_zalihama.TabIndex = 88;
             this.txt_trenutna_količina_na_zalihama.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_trenutna_količina_na_zalihama_KeyPress);
             // 
             // txt_potrebna_količina
             // 
-            this.txt_potrebna_količina.Location = new System.Drawing.Point(690, 83);
+            this.txt_potrebna_količina.Location = new System.Drawing.Point(518, 67);
+            this.txt_potrebna_količina.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_potrebna_količina.Multiline = true;
             this.txt_potrebna_količina.Name = "txt_potrebna_količina";
-            this.txt_potrebna_količina.Size = new System.Drawing.Size(206, 28);
+            this.txt_potrebna_količina.Size = new System.Drawing.Size(156, 24);
             this.txt_potrebna_količina.TabIndex = 86;
             this.txt_potrebna_količina.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_potrebna_količina_KeyPress);
             // 
             // txt_artikal_iz_prvog_nivoa_sastavnice
             // 
-            this.txt_artikal_iz_prvog_nivoa_sastavnice.Location = new System.Drawing.Point(690, 44);
+            this.txt_artikal_iz_prvog_nivoa_sastavnice.Location = new System.Drawing.Point(518, 36);
+            this.txt_artikal_iz_prvog_nivoa_sastavnice.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_artikal_iz_prvog_nivoa_sastavnice.Multiline = true;
             this.txt_artikal_iz_prvog_nivoa_sastavnice.Name = "txt_artikal_iz_prvog_nivoa_sastavnice";
-            this.txt_artikal_iz_prvog_nivoa_sastavnice.Size = new System.Drawing.Size(206, 28);
+            this.txt_artikal_iz_prvog_nivoa_sastavnice.Size = new System.Drawing.Size(156, 24);
             this.txt_artikal_iz_prvog_nivoa_sastavnice.TabIndex = 87;
             this.txt_artikal_iz_prvog_nivoa_sastavnice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_artikal_iz_prvog_nivoa_sastavnice_KeyPress);
             // 
             // txt_količina_za_proizvodnju
             // 
-            this.txt_količina_za_proizvodnju.Location = new System.Drawing.Point(197, 194);
+            this.txt_količina_za_proizvodnju.Location = new System.Drawing.Point(148, 158);
+            this.txt_količina_za_proizvodnju.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_količina_za_proizvodnju.Multiline = true;
             this.txt_količina_za_proizvodnju.Name = "txt_količina_za_proizvodnju";
-            this.txt_količina_za_proizvodnju.Size = new System.Drawing.Size(206, 28);
+            this.txt_količina_za_proizvodnju.Size = new System.Drawing.Size(156, 24);
             this.txt_količina_za_proizvodnju.TabIndex = 85;
             this.txt_količina_za_proizvodnju.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_količina_za_proizvodnju_KeyPress);
             // 
             // txt_artikal_paket
             // 
-            this.txt_artikal_paket.Location = new System.Drawing.Point(197, 157);
+            this.txt_artikal_paket.Location = new System.Drawing.Point(148, 128);
+            this.txt_artikal_paket.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_artikal_paket.Multiline = true;
             this.txt_artikal_paket.Name = "txt_artikal_paket";
-            this.txt_artikal_paket.Size = new System.Drawing.Size(206, 28);
+            this.txt_artikal_paket.Size = new System.Drawing.Size(156, 24);
             this.txt_artikal_paket.TabIndex = 84;
             this.txt_artikal_paket.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_artikal_paket_KeyPress);
             // 
             // txt_status_stavke
             // 
-            this.txt_status_stavke.Location = new System.Drawing.Point(197, 120);
+            this.txt_status_stavke.Location = new System.Drawing.Point(148, 98);
+            this.txt_status_stavke.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_status_stavke.Multiline = true;
             this.txt_status_stavke.Name = "txt_status_stavke";
-            this.txt_status_stavke.Size = new System.Drawing.Size(206, 28);
+            this.txt_status_stavke.Size = new System.Drawing.Size(156, 24);
             this.txt_status_stavke.TabIndex = 77;
             // 
             // txt_rn
             // 
-            this.txt_rn.Location = new System.Drawing.Point(197, 81);
+            this.txt_rn.Location = new System.Drawing.Point(148, 66);
+            this.txt_rn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_rn.Multiline = true;
             this.txt_rn.Name = "txt_rn";
-            this.txt_rn.Size = new System.Drawing.Size(206, 28);
+            this.txt_rn.Size = new System.Drawing.Size(156, 24);
             this.txt_rn.TabIndex = 83;
             this.txt_rn.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_rn_KeyPress);
             // 
@@ -244,9 +266,10 @@ namespace WindowsFormsApplication1.Pakovanja.PregledStavkiPlanaPakovanja
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(13, 197);
+            this.label14.Location = new System.Drawing.Point(10, 160);
+            this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(165, 20);
+            this.label14.Size = new System.Drawing.Size(131, 15);
             this.label14.TabIndex = 82;
             this.label14.Text = "Količina Za Proizvodnju";
             // 
@@ -254,9 +277,10 @@ namespace WindowsFormsApplication1.Pakovanja.PregledStavkiPlanaPakovanja
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(447, 84);
+            this.label13.Location = new System.Drawing.Point(335, 68);
+            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(125, 20);
+            this.label13.Size = new System.Drawing.Size(100, 15);
             this.label13.TabIndex = 81;
             this.label13.Text = "Potrebna Količina";
             // 
@@ -264,9 +288,10 @@ namespace WindowsFormsApplication1.Pakovanja.PregledStavkiPlanaPakovanja
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(447, 47);
+            this.label12.Location = new System.Drawing.Point(335, 38);
+            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(225, 20);
+            this.label12.Size = new System.Drawing.Size(178, 15);
             this.label12.TabIndex = 80;
             this.label12.Text = "Artikal Iz Prvog Nivoa Sastavnice";
             // 
@@ -274,9 +299,10 @@ namespace WindowsFormsApplication1.Pakovanja.PregledStavkiPlanaPakovanja
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(447, 157);
+            this.label10.Location = new System.Drawing.Point(335, 128);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(204, 20);
+            this.label10.Size = new System.Drawing.Size(163, 15);
             this.label10.TabIndex = 78;
             this.label10.Text = "Rezervisana Količina Po Planu";
             // 
@@ -284,18 +310,20 @@ namespace WindowsFormsApplication1.Pakovanja.PregledStavkiPlanaPakovanja
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(447, 123);
+            this.label9.Location = new System.Drawing.Point(335, 100);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(212, 20);
+            this.label9.Size = new System.Drawing.Size(168, 15);
             this.label9.TabIndex = 77;
             this.label9.Text = "Trenutna Količina Na Zalihama";
             // 
             // txt_id_stavke_plana_pakovanja
             // 
-            this.txt_id_stavke_plana_pakovanja.Location = new System.Drawing.Point(197, 44);
+            this.txt_id_stavke_plana_pakovanja.Location = new System.Drawing.Point(148, 36);
+            this.txt_id_stavke_plana_pakovanja.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_id_stavke_plana_pakovanja.Multiline = true;
             this.txt_id_stavke_plana_pakovanja.Name = "txt_id_stavke_plana_pakovanja";
-            this.txt_id_stavke_plana_pakovanja.Size = new System.Drawing.Size(206, 28);
+            this.txt_id_stavke_plana_pakovanja.Size = new System.Drawing.Size(156, 24);
             this.txt_id_stavke_plana_pakovanja.TabIndex = 76;
             this.txt_id_stavke_plana_pakovanja.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_id_stavke_plana_pakovanja_KeyPress);
             // 
@@ -303,9 +331,10 @@ namespace WindowsFormsApplication1.Pakovanja.PregledStavkiPlanaPakovanja
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(13, 157);
+            this.label4.Location = new System.Drawing.Point(10, 128);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(91, 20);
+            this.label4.Size = new System.Drawing.Size(73, 15);
             this.label4.TabIndex = 72;
             this.label4.Text = "Artikal Paket";
             // 
@@ -313,9 +342,10 @@ namespace WindowsFormsApplication1.Pakovanja.PregledStavkiPlanaPakovanja
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(13, 123);
+            this.label6.Location = new System.Drawing.Point(10, 100);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(73, 20);
+            this.label6.Size = new System.Drawing.Size(58, 15);
             this.label6.TabIndex = 71;
             this.label6.Text = "Status RN";
             // 
@@ -323,9 +353,10 @@ namespace WindowsFormsApplication1.Pakovanja.PregledStavkiPlanaPakovanja
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(13, 84);
+            this.label7.Location = new System.Drawing.Point(10, 68);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(29, 20);
+            this.label7.Size = new System.Drawing.Size(23, 15);
             this.label7.TabIndex = 70;
             this.label7.Text = "RN";
             // 
@@ -333,18 +364,20 @@ namespace WindowsFormsApplication1.Pakovanja.PregledStavkiPlanaPakovanja
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(13, 47);
+            this.label8.Location = new System.Drawing.Point(10, 38);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(179, 20);
+            this.label8.Size = new System.Drawing.Size(143, 15);
             this.label8.TabIndex = 69;
             this.label8.Text = "Id Stavke Plana Pakovanja";
             // 
             // btnCancel
             // 
             this.btnCancel.BackColor = System.Drawing.Color.SlateGray;
-            this.btnCancel.Location = new System.Drawing.Point(106, 247);
+            this.btnCancel.Location = new System.Drawing.Point(80, 201);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(100, 30);
+            this.btnCancel.Size = new System.Drawing.Size(75, 24);
             this.btnCancel.TabIndex = 64;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
@@ -352,9 +385,10 @@ namespace WindowsFormsApplication1.Pakovanja.PregledStavkiPlanaPakovanja
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(303, 247);
+            this.btnUpdate.Location = new System.Drawing.Point(227, 201);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(100, 30);
+            this.btnUpdate.Size = new System.Drawing.Size(75, 24);
             this.btnUpdate.TabIndex = 63;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
@@ -362,16 +396,37 @@ namespace WindowsFormsApplication1.Pakovanja.PregledStavkiPlanaPakovanja
             // 
             // textBoxSearch
             // 
-            this.textBoxSearch.Location = new System.Drawing.Point(749, 19);
+            this.textBoxSearch.Location = new System.Drawing.Point(562, 15);
+            this.textBoxSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxSearch.Name = "textBoxSearch";
-            this.textBoxSearch.Size = new System.Drawing.Size(117, 22);
+            this.textBoxSearch.Size = new System.Drawing.Size(89, 20);
             this.textBoxSearch.TabIndex = 75;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.dataGridView1);
+            this.panel1.Location = new System.Drawing.Point(698, 249);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(468, 382);
+            this.panel1.TabIndex = 76;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(462, 148);
+            this.dataGridView1.TabIndex = 0;
             // 
             // frmPregledStavkiPlanaPakovanja
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1679, 791);
+            this.ClientSize = new System.Drawing.Size(1259, 643);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.textBoxSearch);
             this.Controls.Add(this.groupBoxAddEdit);
             this.Controls.Add(this.btnBack);
@@ -379,6 +434,7 @@ namespace WindowsFormsApplication1.Pakovanja.PregledStavkiPlanaPakovanja
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.dataGrid);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmPregledStavkiPlanaPakovanja";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Izmeni Stavke Za Pregled Plana Pakovanja";
@@ -386,6 +442,8 @@ namespace WindowsFormsApplication1.Pakovanja.PregledStavkiPlanaPakovanja
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
             this.groupBoxAddEdit.ResumeLayout(false);
             this.groupBoxAddEdit.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -421,5 +479,7 @@ namespace WindowsFormsApplication1.Pakovanja.PregledStavkiPlanaPakovanja
         private System.Windows.Forms.TextBox txt_ukucati_količinu_za_rezervaciju;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxSearch;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -36,6 +37,28 @@ namespace WindowsFormsApplication1.Pakovanja.PregledStavkiPlanaPakovanja
             dataGrid.RowHeadersVisible = false;
             dataGrid.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
             dataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            DataTable dt = new DataTable();
+            dt.Columns.Add("ID");
+            dt.Columns.Add("ArtikalIzPrvogNivoaSastavnice");
+            dt.Columns.Add("PotrebnaKolicina");
+            dt.Columns.Add("TrenutnaKolicina");
+
+            foreach(var item in PackingPlanItemOverviewList)
+            {
+                var row = dt.NewRow();
+                row["ID"] = item.Id;
+                row["ArtikalIzPrvogNivoaSastavnice"] = item.ArtikalIzPrvogNivoaSastavnice;
+                row["PotrebnaKolicina"] = item.PotrebnaKolicina;
+                row["TrenutnaKolicina"] = item.TrenutnaKolicinaNaZalihama;
+
+                dt.Rows.Add(row);
+               
+            }
+            DataSet ds = new DataSet();
+            ds.Tables.Add(dt);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
         }
 
         private void btnSearch_Click(object sender, EventArgs e)

@@ -67,6 +67,30 @@ namespace WindowsFormsApplication1.Pakovanja.PlanPakovanja
             return success;
         }
 
+        public int ProglasiKonacan(PackingPlanModel obj)
+        {
+            int success = -1;
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                SqlCommand command = new SqlCommand("PlanoviPakovanja_ProglasiKonacan", con);
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@Id", obj.Id);
+
+                try
+                {
+                    success = command.ExecuteNonQuery();
+                }
+                catch (SqlException)
+                {
+                    throw new Exception("ERROR!");
+                }
+            }
+            return success;
+        }
+
         public int Delete(int Id)
         {
             int success = -1;

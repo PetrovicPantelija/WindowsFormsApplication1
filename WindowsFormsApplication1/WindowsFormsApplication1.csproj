@@ -226,6 +226,12 @@
     <Compile Include="Administracija - Prava pristupa\InsertGrupaForma.cs" />
     <Compile Include="Administracija - Prava pristupa\InsertGrupe.cs" />
     <Compile Include="Administracija - Prava pristupa\InsertKorisnikGrupa.cs" />
+    <Compile Include="Administracija - Prava pristupa\MainPrava.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administracija - Prava pristupa\MainPrava.Designer.cs">
+      <DependentUpon>MainPrava.cs</DependentUpon>
+    </Compile>
     <Compile Include="Artikal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -499,6 +505,24 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Jela_TestDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Jela_TestDataSet1.cs">
+      <DependentUpon>Jela_TestDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Jela_TestDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Jela_TestDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Jela_TestDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Jela_TestDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Jela_TestDataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Jela_TestDataSet3.xsd</DependentUpon>
     </Compile>
     <Compile Include="Kalkulacije\frmBazaProdajnihCena.cs">
       <SubType>Form</SubType>
@@ -919,6 +943,67 @@
     </Compile>
     <Compile Include="ObradaReklamacije.Designer.cs">
       <DependentUpon>ObradaReklamacije.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PakovanjaPlanovi\InsertPakovanja.cs" />
+    <Compile Include="PakovanjaPlanovi\MainPakovanje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PakovanjaPlanovi\MainPakovanje.Designer.cs">
+      <DependentUpon>MainPakovanje.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PakovanjaPlanovi\NalogStiropor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PakovanjaPlanovi\NalogStiropor.Designer.cs">
+      <DependentUpon>NalogStiropor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PakovanjaPlanovi\NaloziZaIzradu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PakovanjaPlanovi\NaloziZaIzradu.Designer.cs">
+      <DependentUpon>NaloziZaIzradu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PakovanjaPlanovi\NamenskoPakovanje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PakovanjaPlanovi\NamenskoPakovanje.Designer.cs">
+      <DependentUpon>NamenskoPakovanje.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PakovanjaPlanovi\NoviPlanPakovanja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PakovanjaPlanovi\NoviPlanPakovanja.Designer.cs">
+      <DependentUpon>NoviPlanPakovanja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PakovanjaPlanovi\Obavestenje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PakovanjaPlanovi\Obavestenje.Designer.cs">
+      <DependentUpon>Obavestenje.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PakovanjaPlanovi\PakovanjeReklamacijeIzvestaj.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PakovanjaPlanovi\PakovanjeReklamacijeIzvestaj.Designer.cs">
+      <DependentUpon>PakovanjeReklamacijeIzvestaj.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PakovanjaPlanovi\RealizacijaPlanaPakovanja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PakovanjaPlanovi\RealizacijaPlanaPakovanja.Designer.cs">
+      <DependentUpon>RealizacijaPlanaPakovanja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PakovanjaPlanovi\Reklamacije.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PakovanjaPlanovi\Reklamacije.Designer.cs">
+      <DependentUpon>Reklamacije.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PakovanjaPlanovi\StavkePlanaPakovanjaNovi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PakovanjaPlanovi\StavkePlanaPakovanjaNovi.Designer.cs">
+      <DependentUpon>StavkePlanaPakovanjaNovi.cs</DependentUpon>
     </Compile>
     <Compile Include="Pakovanja\General.cs" />
     <Compile Include="Pakovanja\PlanPakovanja\frmPlanPakovanja.cs">
@@ -1384,6 +1469,9 @@
     <EmbeddedResource Include="Administracija - Prava pristupa\frmGrupe.resx">
       <DependentUpon>frmGrupe.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Administracija - Prava pristupa\MainPrava.resx">
+      <DependentUpon>MainPrava.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Artikal.resx">
       <DependentUpon>Artikal.cs</DependentUpon>
     </EmbeddedResource>
@@ -1663,6 +1751,39 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ObradaReklamacije.resx">
       <DependentUpon>ObradaReklamacije.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PakovanjaPlanovi\MainPakovanje.resx">
+      <DependentUpon>MainPakovanje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PakovanjaPlanovi\NalogStiropor.rdlc" />
+    <EmbeddedResource Include="PakovanjaPlanovi\NalogStiropor.resx">
+      <DependentUpon>NalogStiropor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PakovanjaPlanovi\Nalozi.rdlc" />
+    <EmbeddedResource Include="PakovanjaPlanovi\NaloziZaIzradu.resx">
+      <DependentUpon>NaloziZaIzradu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PakovanjaPlanovi\NamenskoPakovanje.resx">
+      <DependentUpon>NamenskoPakovanje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PakovanjaPlanovi\NoviPlanPakovanja.resx">
+      <DependentUpon>NoviPlanPakovanja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PakovanjaPlanovi\Obavestenje.resx">
+      <DependentUpon>Obavestenje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PakovanjaPlanovi\PakovanjeReklamacijeIzvestaj.resx">
+      <DependentUpon>PakovanjeReklamacijeIzvestaj.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PakovanjaPlanovi\RealizacijaPlanaPakovanja.resx">
+      <DependentUpon>RealizacijaPlanaPakovanja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PakovanjaPlanovi\Reklamacije.resx">
+      <DependentUpon>Reklamacije.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PakovanjaPlanovi\ReklamacijeRPT.rdlc" />
+    <EmbeddedResource Include="PakovanjaPlanovi\StavkePlanaPakovanjaNovi.resx">
+      <DependentUpon>StavkePlanaPakovanjaNovi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pakovanja\PlanPakovanja\frmPlanPakovanja.resx">
       <DependentUpon>frmPlanPakovanja.cs</DependentUpon>
@@ -2043,6 +2164,39 @@
     </None>
     <None Include="Jela_TestDataSet.xss">
       <DependentUpon>Jela_TestDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Jela_TestDataSet1.xsc">
+      <DependentUpon>Jela_TestDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="Jela_TestDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Jela_TestDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Jela_TestDataSet1.xss">
+      <DependentUpon>Jela_TestDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="Jela_TestDataSet2.xsc">
+      <DependentUpon>Jela_TestDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="Jela_TestDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Jela_TestDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Jela_TestDataSet2.xss">
+      <DependentUpon>Jela_TestDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="Jela_TestDataSet3.xsc">
+      <DependentUpon>Jela_TestDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="Jela_TestDataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Jela_TestDataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Jela_TestDataSet3.xss">
+      <DependentUpon>Jela_TestDataSet3.xsd</DependentUpon>
     </None>
     <None Include="MyDataSet.xsc">
       <DependentUpon>MyDataSet.xsd</DependentUpon>

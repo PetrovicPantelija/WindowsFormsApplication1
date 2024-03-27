@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -22,6 +24,8 @@ namespace WindowsFormsApplication1.Pakovanja.StavkePlanaPakovanja
 
         int id_sup;
         int row_selected;
+
+        private string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
 
         public frmStavkePlanaPakovanja(int id)
         {
@@ -108,6 +112,16 @@ namespace WindowsFormsApplication1.Pakovanja.StavkePlanaPakovanja
             panelDNP.Visible = false;
             datum_od.Value = DateTime.Now.AddYears(-3);
             datum_do.Value = DateTime.Now;
+            SqlConnection conn = new SqlConnection(connect);
+
+            var query = "select ID,Naziv from PlanArhiv order by ID desc";
+            var da = new SqlDataAdapter(query, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            cboPlanProizvodnje.DataSource = ds.Tables[0];
+            cboPlanProizvodnje.DisplayMember = "Naziv";
+            cboPlanProizvodnje.ValueMember = "ID";
+
             List<string> items = _PackingPlanItem.GetAllVrsteDN();
             foreach (var item in items)
             {
@@ -118,34 +132,90 @@ namespace WindowsFormsApplication1.Pakovanja.StavkePlanaPakovanja
 
         private void btnApply_Click(object sender, EventArgs e)
         {
+            int id = Convert.ToInt32(cboPlanProizvodnje.SelectedValue);
             string DNType = comboBox.Text.ToString().Substring(0, comboBox.Text.ToString().IndexOf(' '));
+            panelDNP.Visible = true;
+            dataGrid1.DataSource = _PackingPlanItem.GetAllByPlanProizvodnje(id,DNType);
+            /*
+            string DNType = comboBox.Text.ToString().Substring(0, comboBox.Text.ToString().IndexOf(' '));
+
             panelDNP.Visible = true;
             // connect the list  to the grid view
             dataGrid1.DataSource = _PackingPlanItem.GetAllByDateDNP(DNType, datum_od.Value, datum_do.Value);
-            txt_UnesiteTermin.Text = "0";
+            txt_UnesiteTermin.Text = "0";*/
+
+            var query = "select * from DelNalogProizvodni Where DNpSifVrDok='PDN' and DNpSifStat='LA' or DnPSifStat='PL' or DnpSifStat='OD' and (Datum Between DATEADD(m, -3, GETDATE()) and GETDATE()) and IdPlana is not null and IDPlana<>"+Convert.ToInt32(cboPlanProizvodnje.SelectedValue)+"  order by DNpStZapisa asc";
+            SqlConnection conn = new SqlConnection(connect);
+            var da = new SqlDataAdapter(query, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+            dataGridView1.Columns[0].Width = 50;
+            dataGridView1.BackgroundColor = Color.Red;
+
+            dataGrid1.ClearSelection();
+
         }
 
         private void btnInsertStavke_Click(object sender, EventArgs e)
         {
-            int row = dataGrid1.CurrentRow.Index;
-            dataGrid1.Rows[row].DefaultCellStyle.BackColor = Color.FromArgb(225, 143, 4);
-            string sif_zapisa = dataGrid1.Rows[row].Cells[2].Value.ToString();
-            int sif = Int32.Parse(sif_zapisa);
-            int ter = Int32.Parse(txt_UnesiteTermin.Text);
-            txt_UnesiteTermin.Text = "0";
-            int resoult = _PackingPlanItem.InsertFromTable(id_sup, sif, ter);
-            // MessageBox.Show(resoult + " row(s) is added");
-            if (resoult == 1)
+            int row;
+            string sif_zapisa;
+            int sif;
+            int ter;
+            int resoult;
+
+            foreach (DataGridViewRow r in dataGridView1.Rows)
             {
-                // Refresh the table
-                PackingPlanItemList = _PackingPlanItem.SearchByIdSuperior(id_sup);
-                dataGrid.DataSource = PackingPlanItemList;
+                if (r.Selected)
+                {
+                    dataGrid1.ClearSelection();
+
+                    sif_zapisa = r.Cells[2].Value.ToString();
+                    sif = Int32.Parse(sif_zapisa);
+                    ter = Int32.Parse(txt_UnesiteTermin.Text);
+                    txt_UnesiteTermin.Text = "0";
+                    resoult = _PackingPlanItem.InsertFromTable(id_sup, sif, ter);
+                    if (resoult == 1)
+                    {
+                        // Refresh the table
+                        PackingPlanItemList = _PackingPlanItem.SearchByIdSuperior(id_sup);
+                        dataGrid.DataSource = PackingPlanItemList;
 
 
-                // Popunjavanje tabele 3
-                PackingPlanItemModel item = PackingPlanItemList.LastOrDefault();
-                resoult = _PackingPlanItemOverview.InsertFromTable(item.Id, item.KolicinaZaProizvodnju, item.Artikal);
-                //  MessageBox.Show(resoult + " row(s) is added");
+                        // Popunjavanje tabele 3
+                        PackingPlanItemModel item = PackingPlanItemList.LastOrDefault();
+                        resoult = _PackingPlanItemOverview.InsertFromTable(item.Id, item.KolicinaZaProizvodnju, item.Artikal);
+                        //  MessageBox.Show(resoult + " row(s) is added");
+                    }
+                    dataGridView1.ClearSelection();
+                    dataGridView1.CurrentCell = null;
+                }
+                else
+                {
+                    row = dataGrid1.CurrentRow.Index;
+                    dataGrid1.Rows[row].DefaultCellStyle.BackColor = Color.FromArgb(225, 143, 4);
+                    sif_zapisa = dataGrid1.Rows[row].Cells[2].Value.ToString();
+                    sif = Int32.Parse(sif_zapisa);
+                    ter = Int32.Parse(txt_UnesiteTermin.Text);
+                    txt_UnesiteTermin.Text = "0";
+                    resoult = _PackingPlanItem.InsertFromTable(id_sup, sif, ter);
+                    // MessageBox.Show(resoult + " row(s) is added");
+                    if (resoult == 1)
+                    {
+                        // Refresh the table
+                        PackingPlanItemList = _PackingPlanItem.SearchByIdSuperior(id_sup);
+                        dataGrid.DataSource = PackingPlanItemList;
+
+
+                        // Popunjavanje tabele 3
+                        PackingPlanItemModel item = PackingPlanItemList.LastOrDefault();
+                        resoult = _PackingPlanItemOverview.InsertFromTable(item.Id, item.KolicinaZaProizvodnju, item.Artikal);
+                        //  MessageBox.Show(resoult + " row(s) is added");
+                    }
+                }
+
             }
         }
 
@@ -265,10 +335,10 @@ namespace WindowsFormsApplication1.Pakovanja.StavkePlanaPakovanja
 
             this.BackColor = Color.FromArgb(124, 187, 0);
             this.Font = new Font("Segoe UI", 10);
-            this.Size = new Size(1600, 1000);
+            //this.Size = new Size(1600, 1000);
 
             dataGrid.BackgroundColor = Color.FromArgb(125, 158, 192);
-            dataGrid.Size = new Size(1540, 250);
+            //dataGrid.Size = new Size(1540, 250);
             dataGrid.DefaultCellStyle.SelectionBackColor = btnBC;
             dataGrid.AllowUserToAddRows = false;
             dataGrid.RowHeadersVisible = false;
@@ -276,12 +346,23 @@ namespace WindowsFormsApplication1.Pakovanja.StavkePlanaPakovanja
             dataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             dataGrid1.BackgroundColor = Color.FromArgb(125, 158, 192);
-            dataGrid1.Size = new Size(1000, 250);
+            //dataGrid1.Size = new Size(1000, 250);
             dataGrid1.DefaultCellStyle.SelectionBackColor = btnBC;
             dataGrid1.AllowUserToAddRows = false;
             dataGrid1.RowHeadersVisible = false;
             dataGrid1.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
             dataGrid1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+/*
+            int i = dataGridView1.ColumnCount;
+            for (int j = 0; j < i; j++)
+            {
+                dataGridView1.Columns[j].DefaultCellStyle.BackColor = Color.FromArgb(41, 244, 159);
+            }
+
+            //dataGridView1.BackgroundColor = Color.Red;
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.RowHeadersVisible = false;
+            //dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.MediumVioletRed;*/
         }
 
         private void txt_UnesiteTermin_KeyPress(object sender, KeyPressEventArgs e)
