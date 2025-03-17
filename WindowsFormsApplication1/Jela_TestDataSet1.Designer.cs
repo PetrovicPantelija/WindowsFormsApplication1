@@ -293,6 +293,14 @@ namespace WindowsFormsApplication1 {
             
             private global::System.Data.DataColumn columnPlaner;
             
+            private global::System.Data.DataColumn columnMaterijal;
+            
+            private global::System.Data.DataColumn columnPotrebnaKolicina;
+            
+            private global::System.Data.DataColumn columnTrenutnaKolicina;
+            
+            private global::System.Data.DataColumn columnRezervisanaKolicina;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public NalogProizvodnjaPlanDataTable() {
@@ -384,6 +392,38 @@ namespace WindowsFormsApplication1 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn MaterijalColumn {
+                get {
+                    return this.columnMaterijal;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn PotrebnaKolicinaColumn {
+                get {
+                    return this.columnPotrebnaKolicina;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn TrenutnaKolicinaColumn {
+                get {
+                    return this.columnTrenutnaKolicina;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn RezervisanaKolicinaColumn {
+                get {
+                    return this.columnRezervisanaKolicina;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -419,7 +459,7 @@ namespace WindowsFormsApplication1 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public NalogProizvodnjaPlanRow AddNalogProizvodnjaPlanRow(int IDStavke, int MP, string Kod, decimal Kolicina, int RN, string Planer) {
+            public NalogProizvodnjaPlanRow AddNalogProizvodnjaPlanRow(int IDStavke, int MP, string Kod, decimal Kolicina, int RN, string Planer, string Materijal, decimal PotrebnaKolicina, decimal TrenutnaKolicina, decimal RezervisanaKolicina) {
                 NalogProizvodnjaPlanRow rowNalogProizvodnjaPlanRow = ((NalogProizvodnjaPlanRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -428,7 +468,11 @@ namespace WindowsFormsApplication1 {
                         Kod,
                         Kolicina,
                         RN,
-                        Planer};
+                        Planer,
+                        Materijal,
+                        PotrebnaKolicina,
+                        TrenutnaKolicina,
+                        RezervisanaKolicina};
                 rowNalogProizvodnjaPlanRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowNalogProizvodnjaPlanRow);
                 return rowNalogProizvodnjaPlanRow;
@@ -465,6 +509,10 @@ namespace WindowsFormsApplication1 {
                 this.columnKolicina = base.Columns["Kolicina"];
                 this.columnRN = base.Columns["RN"];
                 this.columnPlaner = base.Columns["Planer"];
+                this.columnMaterijal = base.Columns["Materijal"];
+                this.columnPotrebnaKolicina = base.Columns["PotrebnaKolicina"];
+                this.columnTrenutnaKolicina = base.Columns["TrenutnaKolicina"];
+                this.columnRezervisanaKolicina = base.Columns["RezervisanaKolicina"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -484,6 +532,14 @@ namespace WindowsFormsApplication1 {
                 base.Columns.Add(this.columnRN);
                 this.columnPlaner = new global::System.Data.DataColumn("Planer", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPlaner);
+                this.columnMaterijal = new global::System.Data.DataColumn("Materijal", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMaterijal);
+                this.columnPotrebnaKolicina = new global::System.Data.DataColumn("PotrebnaKolicina", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPotrebnaKolicina);
+                this.columnTrenutnaKolicina = new global::System.Data.DataColumn("TrenutnaKolicina", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTrenutnaKolicina);
+                this.columnRezervisanaKolicina = new global::System.Data.DataColumn("RezervisanaKolicina", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRezervisanaKolicina);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AutoIncrement = true;
@@ -494,6 +550,9 @@ namespace WindowsFormsApplication1 {
                 this.columnKolicina.ReadOnly = true;
                 this.columnPlaner.ReadOnly = true;
                 this.columnPlaner.MaxLength = 50;
+                this.columnMaterijal.ReadOnly = true;
+                this.columnMaterijal.MaxLength = 100;
+                this.columnTrenutnaKolicina.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -743,6 +802,73 @@ namespace WindowsFormsApplication1 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Materijal {
+                get {
+                    try {
+                        return ((string)(this[this.tableNalogProizvodnjaPlan.MaterijalColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Materijal\' in table \'NalogProizvodnjaPlan\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableNalogProizvodnjaPlan.MaterijalColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public decimal PotrebnaKolicina {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableNalogProizvodnjaPlan.PotrebnaKolicinaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PotrebnaKolicina\' in table \'NalogProizvodnjaPlan\' is DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableNalogProizvodnjaPlan.PotrebnaKolicinaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public decimal TrenutnaKolicina {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableNalogProizvodnjaPlan.TrenutnaKolicinaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TrenutnaKolicina\' in table \'NalogProizvodnjaPlan\' is DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableNalogProizvodnjaPlan.TrenutnaKolicinaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public decimal RezervisanaKolicina {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableNalogProizvodnjaPlan.RezervisanaKolicinaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RezervisanaKolicina\' in table \'NalogProizvodnjaPlan\' is DBN" +
+                                "ull.", e);
+                    }
+                }
+                set {
+                    this[this.tableNalogProizvodnjaPlan.RezervisanaKolicinaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsIDStavkeNull() {
                 return this.IsNull(this.tableNalogProizvodnjaPlan.IDStavkeColumn);
             }
@@ -811,6 +937,54 @@ namespace WindowsFormsApplication1 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetPlanerNull() {
                 this[this.tableNalogProizvodnjaPlan.PlanerColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsMaterijalNull() {
+                return this.IsNull(this.tableNalogProizvodnjaPlan.MaterijalColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetMaterijalNull() {
+                this[this.tableNalogProizvodnjaPlan.MaterijalColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsPotrebnaKolicinaNull() {
+                return this.IsNull(this.tableNalogProizvodnjaPlan.PotrebnaKolicinaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetPotrebnaKolicinaNull() {
+                this[this.tableNalogProizvodnjaPlan.PotrebnaKolicinaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsTrenutnaKolicinaNull() {
+                return this.IsNull(this.tableNalogProizvodnjaPlan.TrenutnaKolicinaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetTrenutnaKolicinaNull() {
+                this[this.tableNalogProizvodnjaPlan.TrenutnaKolicinaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsRezervisanaKolicinaNull() {
+                return this.IsNull(this.tableNalogProizvodnjaPlan.RezervisanaKolicinaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetRezervisanaKolicinaNull() {
+                this[this.tableNalogProizvodnjaPlan.RezervisanaKolicinaColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -980,6 +1154,10 @@ namespace WindowsFormsApplication1.Jela_TestDataSet1TableAdapters {
             tableMapping.ColumnMappings.Add("Kolicina", "Kolicina");
             tableMapping.ColumnMappings.Add("RN", "RN");
             tableMapping.ColumnMappings.Add("Planer", "Planer");
+            tableMapping.ColumnMappings.Add("Materijal", "Materijal");
+            tableMapping.ColumnMappings.Add("PotrebnaKolicina", "PotrebnaKolicina");
+            tableMapping.ColumnMappings.Add("TrenutnaKolicina", "TrenutnaKolicina");
+            tableMapping.ColumnMappings.Add("RezervisanaKolicina", "RezervisanaKolicina");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -1002,13 +1180,14 @@ namespace WindowsFormsApplication1.Jela_TestDataSet1TableAdapters {
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDPlanaPakovanja", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Skladista", global::System.Data.SqlDbType.NVarChar, 10, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Korisnik", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Matarijal", global::System.Data.SqlDbType.NVarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(Jela_TestDataSet1.NalogProizvodnjaPlanDataTable dataTable, global::System.Nullable<int> IDPlanaPakovanja, string Skladista, string Korisnik) {
+        public virtual int Fill(Jela_TestDataSet1.NalogProizvodnjaPlanDataTable dataTable, global::System.Nullable<int> IDPlanaPakovanja, string Skladista, string Korisnik, string Matarijal) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((IDPlanaPakovanja.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(IDPlanaPakovanja.Value));
@@ -1027,6 +1206,12 @@ namespace WindowsFormsApplication1.Jela_TestDataSet1TableAdapters {
             }
             else {
                 this.Adapter.SelectCommand.Parameters[3].Value = ((string)(Korisnik));
+            }
+            if ((Matarijal == null)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((string)(Matarijal));
             }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1039,7 +1224,7 @@ namespace WindowsFormsApplication1.Jela_TestDataSet1TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Jela_TestDataSet1.NalogProizvodnjaPlanDataTable GetData(global::System.Nullable<int> IDPlanaPakovanja, string Skladista, string Korisnik) {
+        public virtual Jela_TestDataSet1.NalogProizvodnjaPlanDataTable GetData(global::System.Nullable<int> IDPlanaPakovanja, string Skladista, string Korisnik, string Matarijal) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((IDPlanaPakovanja.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(IDPlanaPakovanja.Value));
@@ -1058,6 +1243,12 @@ namespace WindowsFormsApplication1.Jela_TestDataSet1TableAdapters {
             }
             else {
                 this.Adapter.SelectCommand.Parameters[3].Value = ((string)(Korisnik));
+            }
+            if ((Matarijal == null)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((string)(Matarijal));
             }
             Jela_TestDataSet1.NalogProizvodnjaPlanDataTable dataTable = new Jela_TestDataSet1.NalogProizvodnjaPlanDataTable();
             this.Adapter.Fill(dataTable);

@@ -1,18 +1,16 @@
 ﻿using CsvHelper.Configuration;
 using CsvHelper;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Collections.Generic;
+using System.Web;
+using System.Drawing.Text;
 
 namespace WindowsFormsApplication1.PakovanjaPlanovi
 {
@@ -30,13 +28,10 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
             ID= id;
             InitializeComponent();
         }
-        DateTime datum,datum2;
-
+        DateTime datum;
         private void FillGV()
         {
-            datum = dateTimePicker1.Value;
-            string datumPom = datum.ToShortDateString();
-            var query = "select PrSifMp as MP,MpStaraSif as Sifra,MpNaziv as Naziv,PrSifSklad as Skladiste,0-(Sum(PrPRevKol)-Sum(PrIzdKol)) as [|Potrebno|] " +
+            var query = "select PrSifMp as MP,MpStaraSif as Sifra,MpNaziv as Naziv,PrSifSklad as Skladiste,0-(Sum(PrPRevKol)-Sum(PrIzdKol)) as Potrebno " +
                 "from Promet " +
                 "inner join MaticniPodatki on Promet.PrSifMp=MaticniPodatki.MpSifra " +
                 "Where PrDatTrans<=GetDate() and PrSifSklad in (13,14) " +
@@ -67,22 +62,53 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
             dataGridView1.Columns[3].Width = 70;
             dataGridView1.Columns[4].Width = 70;
 
-            var query2 = "Select ID,IDPlanPakovanja,Artikal,Kod,Naziv,KolicinaZaProizvodnju,PlaniraniKrajnjiDatumZavrsetka,Planer from StavkePlanaPakovanja WHere IdPlanPakovanja=" + ID;
+            
+
+        }
+        private void FillGVStavke()
+        {
+            SqlConnection conn = new SqlConnection(connect);
+
+            var query2 = "Select ID,IDPlanPakovanja,RnBroj,StatusRn,VrstaRN,Artikal,Kod,Naziv,KolicinaZaProizvodnju,PlaniraniKrajnjiDatumZavrsetka,Planer from StavkePlanaPakovanja WHere IdPlanPakovanja=" + ID;
             var da2 = new SqlDataAdapter(query2, conn);
             var ds2 = new DataSet();
             da2.Fill(ds2);
-            dataGridView2.ReadOnly = true;
-            dataGridView2.DataSource = ds2.Tables[0];
-        }
 
+            dataGridView2.DataSource = ds2.Tables[0];
+
+            dataGridView2.BorderStyle = BorderStyle.Fixed3D;
+            dataGridView2.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
+            dataGridView2.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView2.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView2.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView2.BackgroundColor = Color.FromArgb(125, 158, 192);
+            dataGridView2.RowHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.TopLeft;
+            dataGridView2.BackgroundColor = System.Drawing.Color.FromArgb(125, 158, 192);
+
+            dataGridView2.Columns[0].Width = 50;
+            dataGridView2.Columns[1].Width = 70;
+            dataGridView2.Columns[1].HeaderText = "IDPlana";
+            dataGridView2.Columns[2].Width = 70;
+            dataGridView2.Columns[3].Width = 60;
+            dataGridView2.Columns[4].Width = 60;
+            dataGridView2.Columns[5].Width = 80;
+            dataGridView2.Columns[6].Width = 150;
+            //dataGridView2.Columns[8].HeaderText = "Količina";
+            dataGridView2.Columns[8].Width = 70;
+            dataGridView2.Columns[8].ReadOnly = false;
+        }
         private void NamenskoPakovanje_Load(object sender, EventArgs e)
         {
             FillGV();
-            dateTimePicker1.Value= DateTime.Now;
+            FillGVStavke();
+            dateTimePicker2.Value= DateTime.Now;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            datum = dateTimePicker2.Value;
+            string datumPom = datum.ToString("yyyy-MM-dd");
+
             string[] path = { Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "NamenskoPakovanje_Plan-" };
             string folder = Path.Combine(path);
 
@@ -96,7 +122,7 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
             var query = "select '' as a,''as b,''as c,PrSifMp as MP,RTrim(MpStaraSif) as Sifra,'','',0-(Sum(PrPRevKol)-Sum(PrIzdKol)) as [|Potrebno|] " +
                 "from Promet " +
                 "inner join MaticniPodatki on Promet.PrSifMp=MaticniPodatki.MpSifra " +
-                "Where PrDatTrans<='"+dateTimePicker1.Value.ToString()+"' and PrSifSklad in (13,14) " +
+               "Where PrDatTrans<='"+datumPom+"' and PrSifSklad in (13,14) " +
                 "Group by PrSifMp,MpStaraSif,MpNaziv,PrSifSklad " +
                 "Having (Sum(PrPRevKol)-Sum(PrIzdKol))<0 " +
                 "order by PrSifSklad asc";
@@ -117,9 +143,7 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
                         csv.NextRecord();
 
                         foreach (DataRow row in dt.Rows)
-                        {
-                            
-                            
+                        {   
                             for (var i = 0; i < dt.Columns.Count; i++)
                             {
                                 csv.WriteField(row[i]);
@@ -148,29 +172,522 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
                 {
                     if (row.Selected)
                     {
-                        ins.InsertStavkePakovanjaNamensko(ID, Convert.ToInt32(row.Cells[0].Value.ToString()), row.Cells[1].Value.ToString().Trim(), row.Cells[2].Value.ToString().Trim(), Convert.ToDecimal(row.Cells[4].Value.ToString()),Convert.ToDateTime(dateTimePicker2.Value.ToString()),Korisnik);
+                        ins.InsertStavkePakovanjaNamensko(ID,RN,StatusRN,Vrsta,Convert.ToInt32(row.Cells[0].Value.ToString()), row.Cells[1].Value.ToString().Trim(), row.Cells[2].Value.ToString().Trim(), Convert.ToDecimal(row.Cells[4].Value.ToString()),Convert.ToDateTime(dateTimePicker2.Value.ToString()),Korisnik);
                     }
                 }
             }
             catch { }
             FillGV();
+            FillGVStavke();
+        }
+        
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            foreach(DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Selected)
+                {
+                    var query = "Select DNpStZapisa,DnPSifVrDok,DnpStevilka,DnpSifVrsteDN,DnpKolZaIzdelavo,DnpIzdelanaKol,DnpSifSklad,DnpSifStat,DnpPlanDatLans from DelNalogProizvodni Where (DNpSifStat<>'ZA' and DNpSifStat<>'ST') and DnpSifMp="+Convert.ToInt32(row.Cells[0].Value);
+                    SqlConnection conn = new SqlConnection(connect);
+                    var da = new SqlDataAdapter(query, conn);
+                    var ds = new DataSet();
+                    da.Fill(ds);
+                    dataGridView3.ReadOnly = true;
+                    dataGridView3.DataSource = ds.Tables[0];
+
+                    dataGridView3.BorderStyle = BorderStyle.Fixed3D;
+                    dataGridView3.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
+                    dataGridView3.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+                    dataGridView3.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+                    dataGridView3.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+                    dataGridView3.BackgroundColor = Color.FromArgb(125, 158, 192);
+                    dataGridView3.RowHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.TopLeft;
+                    dataGridView3.BackgroundColor = System.Drawing.Color.FromArgb(125, 158, 192);
+
+
+                    dataGridView3.Columns[0].HeaderText = "ID";
+                    dataGridView3.Columns[0].Width = 60;
+                    dataGridView3.Columns[1].HeaderText = "Sif vr.Dok";
+                    dataGridView3.Columns[1].Width = 70;
+                    dataGridView3.Columns[2].HeaderText = "RN";
+                    dataGridView3.Columns[2].Width = 70;
+                    dataGridView3.Columns[3].HeaderText = "Vrsta";
+                    dataGridView3.Columns[3].Width = 60;
+                    dataGridView3.Columns[4].HeaderText = "Potrebno";
+                    dataGridView3.Columns[4].Width = 70;
+                    dataGridView3.Columns[5].HeaderText = "Izradjeno";
+                    dataGridView3.Columns[5].Width = 70;
+                    dataGridView3.Columns[6].HeaderText = "Skladište";
+                    dataGridView3.Columns[6].Width = 60;
+                    dataGridView3.Columns[7].HeaderText = "Status";
+                    dataGridView3.Columns[7].Width = 50;
+                    dataGridView3.Columns[8].HeaderText = "Datum";
+
+                }
+            }
+        }
+        public class PocetniDatum
+        {
+            public int MP {  get; set; }
+            public string Sifra { get; set; }
+            public string Naziv { get; set; }
+            public int Skladiste { get; set; }
+            public decimal Potrebno { get; set; }
+        }
+        public class IzabraniDatum
+        {
+            public int MP { get; set; }
+            public string Sifra { get; set; }
+            public string Naziv { get; set; }
+            public int Skladiste { get; set; }
+            public decimal Potrebno { get; set; }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        public class PrviDan
         {
-            datum = dateTimePicker1.Value;
-            datum2 = dateTimePicker2.Value;
+            public int MP { get; set; }
+            public string Sifra { get; set; }
+            public string Naziv { get; set; }
+            public int Skladiste { get; set; }
+            public decimal Potrebno { get; set; }
+        }
+        public class DrugiDan
+        {
+            public int MP { get; set; }
+            public string Sifra { get; set; }
+            public string Naziv { get; set; }
+            public int Skladiste { get; set; }
+            public decimal Potrebno { get; set; }
+        }
+        List<PocetniDatum> poc;
+        List<IzabraniDatum> izabrani;
+        List<PrviDan> prvi;
+        List<DrugiDan> drugi;
 
-            string datumPom = datum.ToString("yyyy-MM-dd");
-            string datumPom2 = datum2.ToString("yyyy-MM-dd");
 
-            var query = "select PrSifMp as MP,MpStaraSif as Sifra,MpNaziv as Naziv,PrSifSklad as Skladiste,0-(Sum(PrPRevKol)-Sum(PrIzdKol)) as [|Potrebno|] " +
+        private void RefreshGV()
+        {
+            /*
+            string dan;
+            string danas = DateTime.Now.DayOfWeek.ToString();
+
+            if (danas == "Friday")
+            {
+                var query = "select PrSifMp as MP,MpStaraSif as Sifra,MpNaziv as Naziv,PrSifSklad as Skladiste,0-(Sum(PrPRevKol)-Sum(PrIzdKol)) as Potrebno " +
+    "from Promet " +
+    "inner join MaticniPodatki on Promet.PrSifMp=MaticniPodatki.MpSifra " +
+    "Where PrDatTrans<=GetDate() and PrSifSklad in (13,14) " +
+    "Group by PrSifMp,MpStaraSif,MpNaziv,PrSifSklad " +
+    "Having (Sum(PrPRevKol)-Sum(PrIzdKol))<0 " +
+    "order by PrSifSklad asc";
+
+                SqlConnection conn = new SqlConnection(connect);
+                var da = new SqlDataAdapter(query, conn);
+                var ds = new DataSet();
+                da.Fill(ds);
+                dataGridView1.ReadOnly = true;
+                dataGridView1.DataSource = ds.Tables[0];
+
+                dataGridView1.BorderStyle = BorderStyle.Fixed3D;
+                dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
+                dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+                dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+                dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+                dataGridView1.BackgroundColor = Color.FromArgb(125, 158, 192);
+                dataGridView1.RowHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.TopLeft;
+                dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(125, 158, 192);
+                //dataGridView1.MultiSelect = false;
+
+                dataGridView1.Columns[0].Width = 60;
+                dataGridView1.Columns[1].Width = 180;
+                dataGridView1.Columns[2].Width = 180;
+                dataGridView1.Columns[3].Width = 70;
+                dataGridView1.Columns[4].Width = 70;
+
+                dan = dateTimePicker2.Value.DayOfWeek.ToString();
+            }
+
+            
+            MessageBox.Show(danas);*/
+            
+            DateTime prvi = DateTime.Now;
+            DateTime drugi = dateTimePicker2.Value;
+            string pPom = prvi.ToShortDateString();
+            string dPom = drugi.ToShortDateString();
+
+            TimeSpan ts = Convert.ToDateTime(dPom) - Convert.ToDateTime(pPom);
+            int dani = ts.Days;
+            if (dani == 1)
+            {
+                var query = "select PrSifMp as MP,MpStaraSif as Sifra,MpNaziv as Naziv,PrSifSklad as Skladiste,0-(Sum(PrPRevKol)-Sum(PrIzdKol)) as Potrebno " +
                 "from Promet " +
                 "inner join MaticniPodatki on Promet.PrSifMp=MaticniPodatki.MpSifra " +
-                "Where (PrDatTrans between '"+datumPom+"' and '"+datumPom2+"') and PrSifSklad in (13,14) " +
+                "Where PrDatTrans<=GetDate()+1 and PrSifSklad in (13,14) " +
                 "Group by PrSifMp,MpStaraSif,MpNaziv,PrSifSklad " +
                 "Having (Sum(PrPRevKol)-Sum(PrIzdKol))<0 " +
-                "order by PrSifSklad asc";  
+                "order by PrSifSklad asc";
+                string a = query.ToString();
+                SqlConnection conn = new SqlConnection(connect);
+                var da = new SqlDataAdapter(query, conn);
+                var ds = new DataSet();
+                da.Fill(ds);
+                dataGridView1.ReadOnly = true;
+                dataGridView1.DataSource = ds.Tables[0];
+
+                dataGridView1.BorderStyle = BorderStyle.Fixed3D;
+                dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
+                dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+                dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+                dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+                dataGridView1.BackgroundColor = Color.FromArgb(125, 158, 192);
+                dataGridView1.RowHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.TopLeft;
+                dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(125, 158, 192);
+                //dataGridView1.MultiSelect = false;
+
+                dataGridView1.Columns[0].Width = 60;
+                dataGridView1.Columns[1].Width = 180;
+                dataGridView1.Columns[2].Width = 180;
+                dataGridView1.Columns[3].Width = 70;
+                dataGridView1.Columns[4].Width = 70;
+            }
+            if (dani == 2)
+            {
+
+                poc = new List<PocetniDatum>();
+                izabrani = new List<IzabraniDatum>();
+                var query = "select PrSifMp as MP,MpStaraSif as Sifra,MpNaziv as Naziv,PrSifSklad as Skladiste,0-(Sum(PrPRevKol)-Sum(PrIzdKol)) as Potrebno " +
+                    "from Promet " +
+                    "inner join MaticniPodatki on Promet.PrSifMp=MaticniPodatki.MpSifra " +
+                    "Where PrDatTrans<=DATEADD(day,1,GETDATE()) and PrSifSklad in (13,14) " +
+                    "Group by PrSifMp,MpStaraSif,MpNaziv,PrSifSklad " +
+                    "Having (Sum(PrPRevKol)-Sum(PrIzdKol))<0 " +
+                    "order by PrSifSklad asc";
+                using (SqlConnection conn = new SqlConnection(connect))
+                {
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    conn.Open();
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            int MP = Convert.ToInt32(dr["MP"].ToString());
+                            string Sifra = dr["Sifra"].ToString().TrimEnd();
+                            string Naziv = dr["Naziv"].ToString().TrimEnd();
+                            int Skladiste = Convert.ToInt32(dr["Skladiste"].ToString());
+                            decimal Potrebno = Convert.ToDecimal(dr["Potrebno"].ToString());
+
+                            var pocetniDatum = new PocetniDatum
+                            {
+                                MP = MP,
+                                Sifra = Sifra,
+                                Naziv = Naziv,
+                                Skladiste = Skladiste,
+                                Potrebno = Potrebno
+                            };
+
+                            // Add it to the list
+                            poc.Add(pocetniDatum);
+                        }
+                    }
+                    conn.Close();
+                }
+                datum = dateTimePicker2.Value;
+                string datumPom = datum.ToString("yyyy-MM-dd");
+
+                var query2 = "select PrSifMp as MP,MpStaraSif as Sifra,MpNaziv as Naziv,PrSifSklad as Skladiste,0-(Sum(PrPRevKol)-Sum(PrIzdKol)) as Potrebno " +
+                    "from Promet " +
+                    "inner join MaticniPodatki on Promet.PrSifMp=MaticniPodatki.MpSifra " +
+                    "Where PrDatTrans<='" + datumPom + "' and PrSifSklad in (13,14) " +
+                    "Group by PrSifMp,MpStaraSif,MpNaziv,PrSifSklad " +
+                    "Having (Sum(PrPRevKol)-Sum(PrIzdKol))<0 " +
+                    "order by PrSifSklad asc";
+                using (SqlConnection conn = new SqlConnection(connect))
+                {
+                    SqlCommand cmd2 = new SqlCommand(query2, conn);
+                    conn.Open();
+                    using (SqlDataReader dr2 = cmd2.ExecuteReader())
+                    {
+                        while (dr2.Read())
+                        {
+                            var izabraniDatum = new IzabraniDatum
+                            {
+                                MP = Convert.ToInt32(dr2["MP"].ToString()),
+                                Sifra = dr2["Sifra"].ToString().TrimEnd(),
+                                Naziv = dr2["Naziv"].ToString().TrimEnd(),
+                                Skladiste = Convert.ToInt32(dr2["Skladiste"].ToString()),
+                                Potrebno = Convert.ToDecimal(dr2["Potrebno"].ToString())
+                            };
+                            izabrani.Add(izabraniDatum);
+                        }
+                    }
+                    conn.Close();
+                }
+                var pocetniDatumDict = new Dictionary<int, decimal>();
+                foreach (var pd in poc)
+                {
+                    if (!pocetniDatumDict.ContainsKey(pd.MP))
+                    {
+                        pocetniDatumDict[pd.MP] = pd.Potrebno;
+                    }
+                }
+
+                foreach (var iz in izabrani)
+                {
+                    if (pocetniDatumDict.TryGetValue(iz.MP, out decimal pocetniPotrebno))
+                    {
+                        iz.Potrebno -= pocetniPotrebno;
+                    }
+                }
+                DataTable dt = new DataTable();
+                dt.Columns.Add("MP", typeof(int));
+                dt.Columns.Add("Sifra", typeof(string));
+                dt.Columns.Add("Naziv", typeof(string));
+                dt.Columns.Add("Skladiste", typeof(int));
+                dt.Columns.Add("Potrebno", typeof(decimal));
+
+                foreach (var iz in izabrani)
+                {
+                    if (iz.Potrebno != 0)
+                    {
+                        dt.Rows.Add(iz.MP, iz.Sifra, iz.Naziv, iz.Skladiste, iz.Potrebno);
+                    }
+                }
+
+                dataGridView1.DataSource = dt;
+                dataGridView1.BorderStyle = BorderStyle.Fixed3D;
+                dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
+                dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+                dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+                dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+                dataGridView1.BackgroundColor = Color.FromArgb(125, 158, 192);
+                dataGridView1.RowHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.TopLeft;
+                dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(125, 158, 192);
+
+                dataGridView1.Columns[0].Width = 60;
+                dataGridView1.Columns[1].Width = 180;
+                dataGridView1.Columns[2].Width = 180;
+                dataGridView1.Columns[3].Width = 70;
+                dataGridView1.Columns[4].Width = 70;
+            }
+            
+                /*
+                poc = new List<PocetniDatum>();
+                izabrani = new List<IzabraniDatum>();
+                var query = "select PrSifMp as MP,MpStaraSif as Sifra,MpNaziv as Naziv,PrSifSklad as Skladist" +
+                    "e,0-(Sum(PrPRevKol)-Sum(PrIzdKol)) as Potrebno " +
+                    "from Promet " +
+                    "inner join MaticniPodatki on Promet.PrSifMp=MaticniPodatki.MpSifra " +
+                    "Where PrDatTrans<=GetDate() and PrSifSklad in (13,14) " +
+                    "Group by PrSifMp,MpStaraSif,MpNaziv,PrSifSklad " +
+                    "Having (Sum(PrPRevKol)-Sum(PrIzdKol))<0 " +
+                    "order by PrSifSklad asc";
+                using (SqlConnection conn = new SqlConnection(connect))
+                {
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    conn.Open();
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            int MP = Convert.ToInt32(dr["MP"].ToString());
+                            string Sifra = dr["Sifra"].ToString().TrimEnd();
+                            string Naziv = dr["Naziv"].ToString().TrimEnd();
+                            int Skladiste = Convert.ToInt32(dr["Skladiste"].ToString());
+                            decimal Potrebno = Convert.ToDecimal(dr["Potrebno"].ToString());
+
+                            var pocetniDatum = new PocetniDatum
+                            {
+                                MP = MP,
+                                Sifra = Sifra,
+                                Naziv = Naziv,
+                                Skladiste = Skladiste,
+                                Potrebno = Potrebno
+                            };
+
+                            // Add it to the list
+                            poc.Add(pocetniDatum);
+                        }
+                    }
+                    conn.Close();
+                }
+                datum = dateTimePicker2.Value.AddDays(-1);
+                string datumPom = datum.ToString("yyyy-MM-dd");
+
+                var query2 = "select PrSifMp as MP,MpStaraSif as Sifra,MpNaziv as Naziv,PrSifSklad as Skladiste,0-(Sum(PrPRevKol)-Sum(PrIzdKol)) as Potrebno " +
+                    "from Promet " +
+                    "inner join MaticniPodatki on Promet.PrSifMp=MaticniPodatki.MpSifra " +
+                    "Where PrDatTrans<='" + datumPom + "' and PrSifSklad in (13,14) " +
+                    "Group by PrSifMp,MpStaraSif,MpNaziv,PrSifSklad " +
+                    "Having (Sum(PrPRevKol)-Sum(PrIzdKol))<0 " +
+                    "order by PrSifSklad asc";
+                using (SqlConnection conn = new SqlConnection(connect))
+                {
+                    SqlCommand cmd2 = new SqlCommand(query2, conn);
+                    conn.Open();
+                    using (SqlDataReader dr2 = cmd2.ExecuteReader())
+                    {
+                        while (dr2.Read())
+                        {
+                            var izabraniDatum = new IzabraniDatum
+                            {
+                                MP = Convert.ToInt32(dr2["MP"].ToString()),
+                                Sifra = dr2["Sifra"].ToString().TrimEnd(),
+                                Naziv = dr2["Naziv"].ToString().TrimEnd(),
+                                Skladiste = Convert.ToInt32(dr2["Skladiste"].ToString()),
+                                Potrebno = Convert.ToDecimal(dr2["Potrebno"].ToString())
+                            };
+                            izabrani.Add(izabraniDatum);
+                        }
+                    }
+                    conn.Close();
+                }
+                var pocetniDatumDict = new Dictionary<int, decimal>();
+                foreach (var pd in poc)
+                {
+                    if (!pocetniDatumDict.ContainsKey(pd.MP))
+                    {
+                        pocetniDatumDict[pd.MP] = pd.Potrebno;
+                    }
+                }
+
+                foreach (var iz in izabrani)
+                {
+                    if (pocetniDatumDict.TryGetValue(iz.MP, out decimal pocetniPotrebno))
+                    {
+                        iz.Potrebno -= pocetniPotrebno;
+                    }
+                }
+                List<PrviDan> prviDanList = new List<PrviDan>();
+                foreach (var iz in izabrani)
+                {
+                    var prviDan = new PrviDan
+                    {
+                        MP = iz.MP,
+                        Sifra = iz.Sifra,
+                        Naziv = iz.Naziv,
+                        Skladiste = iz.Skladiste,
+                        Potrebno = iz.Potrebno
+                    };
+
+                    prviDanList.Add(prviDan);
+                }
+                datum = dateTimePicker2.Value;
+                string datumPom2 = datum.ToString("yyyy-MM-dd");
+                List<DrugiDan> drugiDanList = new List<DrugiDan>();
+                var query3 = "select PrSifMp as MP,MpStaraSif as Sifra,MpNaziv as Naziv,PrSifSklad as Skladiste,0-(Sum(PrPRevKol)-Sum(PrIzdKol)) as Potrebno " +
+                    "from Promet " +
+                    "inner join MaticniPodatki on Promet.PrSifMp=MaticniPodatki.MpSifra " +
+                    "Where PrDatTrans<='" + datumPom2 + "' and PrSifSklad in (13,14) " +
+                    "Group by PrSifMp,MpStaraSif,MpNaziv,PrSifSklad " +
+                    "Having (Sum(PrPRevKol)-Sum(PrIzdKol))<0 " +
+                    "order by PrSifSklad asc";
+                using (SqlConnection conn = new SqlConnection(connect))
+                {
+                    SqlCommand cmd2 = new SqlCommand(query3, conn);
+                    conn.Open();
+                    using (SqlDataReader dr2 = cmd2.ExecuteReader())
+                    {
+                        while (dr2.Read())
+                        {
+                            var drugiDan = new DrugiDan
+                            {
+                                MP = Convert.ToInt32(dr2["MP"].ToString()),
+                                Sifra = dr2["Sifra"].ToString().TrimEnd(),
+                                Naziv = dr2["Naziv"].ToString().TrimEnd(),
+                                Skladiste = Convert.ToInt32(dr2["Skladiste"].ToString()),
+                                Potrebno = Convert.ToDecimal(dr2["Potrebno"].ToString())
+                            };
+                            drugiDanList.Add(drugiDan);
+                        }
+                    }
+                    conn.Close();
+                }
+                var prviDanListDict = new Dictionary<int, decimal>();
+                foreach (var pd in prviDanList)
+                {
+                    if (!prviDanListDict.ContainsKey(pd.MP))
+                    {
+                        prviDanListDict[pd.MP] = pd.Potrebno;
+                    }
+                }
+
+                foreach (var dd in drugiDanList)
+                {
+                    if (prviDanListDict.TryGetValue(dd.MP, out decimal prviPotrebno))
+                    {
+                        dd.Potrebno -= prviPotrebno;
+                    }
+                }
+                DataTable dt = new DataTable();
+                dt.Columns.Add("MP", typeof(int));
+                dt.Columns.Add("Sifra", typeof(string));
+                dt.Columns.Add("Naziv", typeof(string));
+                dt.Columns.Add("Skladiste", typeof(int));
+                dt.Columns.Add("Potrebno", typeof(decimal));
+
+                foreach (var dd in drugiDanList)
+                {
+                    if (dd.Potrebno != 0)
+                    {
+                        dt.Rows.Add(dd.MP, dd.Sifra, dd.Naziv, dd.Skladiste, dd.Potrebno);
+                    }
+                }
+
+                dataGridView1.DataSource = dt;
+                dataGridView1.BorderStyle = BorderStyle.Fixed3D;
+                dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
+                dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+                dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+                dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+                dataGridView1.BackgroundColor = Color.FromArgb(125, 158, 192);
+                dataGridView1.RowHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.TopLeft;
+                dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(125, 158, 192);
+
+                dataGridView1.Columns[0].Width = 60;
+                dataGridView1.Columns[1].Width = 180;
+                dataGridView1.Columns[2].Width = 180;
+                dataGridView1.Columns[3].Width = 70;
+                dataGridView1.Columns[4].Width = 70;
+                */
+            }
+        
+        private void button3_Click(object sender, EventArgs e)
+        {
+            RefreshGV();
+        }
+        int RN, Vrsta;
+        string StatusRN;
+
+        private void btnObrisi_Click(object sender, EventArgs e)
+        {
+            InsertPakovanja ins = new InsertPakovanja();
+            foreach (DataGridViewRow row in dataGridView2.Rows)
+            {
+                if (row.Selected)
+                {
+                    ins.DeleteStavkePakovanja(Convert.ToInt32(row.Cells[0].Value));
+                }
+            }
+            FillGV();
+            FillGVStavke();
+        }
+
+        private void btnIzvestaj_Click(object sender, EventArgs e)
+        {
+            NamenskoPakovanjeIzvestaj frm = new NamenskoPakovanjeIzvestaj(ID);
+            frm.Show();
+        }
+
+        private void btnDanas_Click(object sender, EventArgs e)
+        {
+            var query = "select PrSifMp as MP,MpStaraSif as Sifra,MpNaziv as Naziv,PrSifSklad as Skladiste,0-(Sum(PrPRevKol)-Sum(PrIzdKol)) as Potrebno " +
+                "from Promet " +
+                "inner join MaticniPodatki on Promet.PrSifMp=MaticniPodatki.MpSifra " +
+                "Where PrDatTrans<=GetDate() and PrSifSklad in (13,14) " +
+                "Group by PrSifMp,MpStaraSif,MpNaziv,PrSifSklad " +
+                "Having (Sum(PrPRevKol)-Sum(PrIzdKol))<0 " +
+                "order by PrSifSklad asc";
+            string a = query.ToString();
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();
@@ -186,12 +703,38 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
             dataGridView1.BackgroundColor = Color.FromArgb(125, 158, 192);
             dataGridView1.RowHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.TopLeft;
             dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(125, 158, 192);
+            //dataGridView1.MultiSelect = false;
 
             dataGridView1.Columns[0].Width = 60;
             dataGridView1.Columns[1].Width = 180;
             dataGridView1.Columns[2].Width = 180;
             dataGridView1.Columns[3].Width = 70;
             dataGridView1.Columns[4].Width = 70;
+        }
+
+        private void btnKolicine_Click(object sender, EventArgs e)
+        {
+            InsertPakovanja ins = new InsertPakovanja();
+            foreach (DataGridViewRow row in dataGridView2.Rows)
+            {
+                int id = Convert.ToInt32(row.Cells["ID"].Value);
+                decimal kolicina = Convert.ToDecimal(row.Cells["KolicinaZaProizvodnju"].Value);
+                ins.UpdateNamenskoKolicina(id, kolicina);
+            }
+            FillGVStavke();
+        }
+
+        private void dataGridView3_SelectionChanged(object sender, EventArgs e)
+        {
+            foreach(DataGridViewRow row in dataGridView3.Rows)
+            {
+                if (row.Selected)
+                {
+                    RN = Convert.ToInt32(row.Cells[2].Value.ToString());
+                    Vrsta = Convert.ToInt32(row.Cells[3].Value.ToString());
+                    StatusRN = row.Cells[7].Value.ToString();
+                }
+            }
         }
     }
 }

@@ -9,7 +9,7 @@
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="NalogPlanStiroporTableAdapter" GeneratorDataComponentClassName="NalogPlanStiroporTableAdapter" Name="NalogPlanStiropor" UserDataComponentName="NalogPlanStiroporTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="NedraConnectionString (Settings)" DbObjectName="Jela_test.dbo.NalogPlanStiropor" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="NedraConnectionString (Settings)" DbObjectName="Jela_test.dbo.NalogPlanStiropor" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.NalogPlanStiropor</CommandText>
@@ -31,6 +31,8 @@
               <Mapping SourceColumn="Kolicina" DataSetColumn="Kolicina" />
               <Mapping SourceColumn="RN" DataSetColumn="RN" />
               <Mapping SourceColumn="Planer" DataSetColumn="Planer" />
+              <Mapping SourceColumn="TrenutnaKolicina" DataSetColumn="TrenutnaKolicina" />
+              <Mapping SourceColumn="RezervisanaKolicina" DataSetColumn="RezervisanaKolicina" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -39,31 +41,33 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="Jela_TestDataSet3" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_UserDSName="Jela_TestDataSet3" msprop:Generator_DataSetName="Jela_TestDataSet3">
+  <xs:element name="Jela_TestDataSet3" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="Jela_TestDataSet3" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="Jela_TestDataSet3">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="NalogPlanStiropor" msprop:Generator_RowEvHandlerName="NalogPlanStiroporRowChangeEventHandler" msprop:Generator_RowDeletedName="NalogPlanStiroporRowDeleted" msprop:Generator_RowDeletingName="NalogPlanStiroporRowDeleting" msprop:Generator_RowEvArgName="NalogPlanStiroporRowChangeEvent" msprop:Generator_TablePropName="NalogPlanStiropor" msprop:Generator_RowChangedName="NalogPlanStiroporRowChanged" msprop:Generator_RowChangingName="NalogPlanStiroporRowChanging" msprop:Generator_TableClassName="NalogPlanStiroporDataTable" msprop:Generator_RowClassName="NalogPlanStiroporRow" msprop:Generator_TableVarName="tableNalogPlanStiropor" msprop:Generator_UserTableName="NalogPlanStiropor">
+        <xs:element name="NalogPlanStiropor" msprop:Generator_RowEvHandlerName="NalogPlanStiroporRowChangeEventHandler" msprop:Generator_RowDeletedName="NalogPlanStiroporRowDeleted" msprop:Generator_RowDeletingName="NalogPlanStiroporRowDeleting" msprop:Generator_RowEvArgName="NalogPlanStiroporRowChangeEvent" msprop:Generator_TablePropName="NalogPlanStiropor" msprop:Generator_RowChangedName="NalogPlanStiroporRowChanged" msprop:Generator_UserTableName="NalogPlanStiropor" msprop:Generator_RowChangingName="NalogPlanStiroporRowChanging" msprop:Generator_RowClassName="NalogPlanStiroporRow" msprop:Generator_TableClassName="NalogPlanStiroporDataTable" msprop:Generator_TableVarName="tableNalogPlanStiropor">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_UserColumnName="ID" type="xs:int" />
-              <xs:element name="IDStavke" msprop:Generator_ColumnPropNameInRow="IDStavke" msprop:Generator_ColumnPropNameInTable="IDStavkeColumn" msprop:Generator_ColumnVarNameInTable="columnIDStavke" msprop:Generator_UserColumnName="IDStavke" type="xs:int" minOccurs="0" />
-              <xs:element name="MP" msprop:Generator_ColumnPropNameInRow="MP" msprop:Generator_ColumnPropNameInTable="MPColumn" msprop:Generator_ColumnVarNameInTable="columnMP" msprop:Generator_UserColumnName="MP" type="xs:int" minOccurs="0" />
-              <xs:element name="Kod" msprop:Generator_ColumnPropNameInRow="Kod" msprop:Generator_ColumnPropNameInTable="KodColumn" msprop:Generator_ColumnVarNameInTable="columnKod" msprop:Generator_UserColumnName="Kod" minOccurs="0">
+              <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnVarNameInTable="columnID" type="xs:int" />
+              <xs:element name="IDStavke" msprop:Generator_ColumnPropNameInTable="IDStavkeColumn" msprop:Generator_ColumnPropNameInRow="IDStavke" msprop:Generator_UserColumnName="IDStavke" msprop:Generator_ColumnVarNameInTable="columnIDStavke" type="xs:int" minOccurs="0" />
+              <xs:element name="MP" msprop:Generator_ColumnPropNameInTable="MPColumn" msprop:Generator_ColumnPropNameInRow="MP" msprop:Generator_UserColumnName="MP" msprop:Generator_ColumnVarNameInTable="columnMP" type="xs:int" minOccurs="0" />
+              <xs:element name="Kod" msprop:Generator_ColumnPropNameInTable="KodColumn" msprop:Generator_ColumnPropNameInRow="Kod" msprop:Generator_UserColumnName="Kod" msprop:Generator_ColumnVarNameInTable="columnKod" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="24" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Kolicina" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="Kolicina" msprop:Generator_ColumnPropNameInTable="KolicinaColumn" msprop:Generator_ColumnVarNameInTable="columnKolicina" msprop:Generator_UserColumnName="Kolicina" type="xs:decimal" minOccurs="0" />
-              <xs:element name="RN" msprop:Generator_ColumnPropNameInRow="RN" msprop:Generator_ColumnPropNameInTable="RNColumn" msprop:Generator_ColumnVarNameInTable="columnRN" msprop:Generator_UserColumnName="RN" type="xs:int" minOccurs="0" />
-              <xs:element name="Planer" msprop:Generator_ColumnPropNameInRow="Planer" msprop:Generator_ColumnPropNameInTable="PlanerColumn" msprop:Generator_ColumnVarNameInTable="columnPlaner" msprop:Generator_UserColumnName="Planer" minOccurs="0">
+              <xs:element name="Kolicina" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInTable="KolicinaColumn" msprop:Generator_ColumnPropNameInRow="Kolicina" msprop:Generator_UserColumnName="Kolicina" msprop:Generator_ColumnVarNameInTable="columnKolicina" type="xs:decimal" minOccurs="0" />
+              <xs:element name="RN" msprop:Generator_ColumnPropNameInTable="RNColumn" msprop:Generator_ColumnPropNameInRow="RN" msprop:Generator_UserColumnName="RN" msprop:Generator_ColumnVarNameInTable="columnRN" type="xs:int" minOccurs="0" />
+              <xs:element name="Planer" msprop:Generator_ColumnPropNameInTable="PlanerColumn" msprop:Generator_ColumnPropNameInRow="Planer" msprop:Generator_UserColumnName="Planer" msprop:Generator_ColumnVarNameInTable="columnPlaner" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="TrenutnaKolicina" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInTable="TrenutnaKolicinaColumn" msprop:Generator_ColumnPropNameInRow="TrenutnaKolicina" msprop:Generator_UserColumnName="TrenutnaKolicina" msprop:Generator_ColumnVarNameInTable="columnTrenutnaKolicina" type="xs:decimal" minOccurs="0" />
+              <xs:element name="RezervisanaKolicina" msprop:Generator_UserColumnName="RezervisanaKolicina" msprop:Generator_ColumnPropNameInTable="RezervisanaKolicinaColumn" msprop:Generator_ColumnPropNameInRow="RezervisanaKolicina" msprop:Generator_ColumnVarNameInTable="columnRezervisanaKolicina" type="xs:decimal" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

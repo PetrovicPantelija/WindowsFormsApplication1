@@ -144,7 +144,8 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
             }
             else if(Tip == "NP")
             {
-                NamenskoPakovanje frm = new NamenskoPakovanje(ID);
+                NamenskoPakovanjeNovi frm = new NamenskoPakovanjeNovi(ID);
+                //NamenskoPakovanje frm = new NamenskoPakovanje(ID);
                 frm.Show();
             }
             else if (Tip == "RK")

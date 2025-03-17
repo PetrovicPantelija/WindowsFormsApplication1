@@ -35,5 +35,11 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
             PakovanjaPlanovi.NoviPlanPakovanja frm = new PakovanjaPlanovi.NoviPlanPakovanja(tip);
             frm.Show();
         }
+
+        private void btnPaketi_Click(object sender, EventArgs e)
+        {
+            KompletiPaket frm = new KompletiPaket();
+            frm.Show();
+        }
     }
 }

@@ -81,6 +81,7 @@
             this.btnObrisi = new System.Windows.Forms.Button();
             this.btnRealizacija = new System.Windows.Forms.Button();
             this.btnKolicine = new System.Windows.Forms.Button();
+            this.btnIzvestaj = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -629,12 +630,23 @@
             this.btnKolicine.UseVisualStyleBackColor = false;
             this.btnKolicine.Click += new System.EventHandler(this.btnKolicine_Click);
             // 
+            // btnIzvestaj
+            // 
+            this.btnIzvestaj.Location = new System.Drawing.Point(698, 12);
+            this.btnIzvestaj.Name = "btnIzvestaj";
+            this.btnIzvestaj.Size = new System.Drawing.Size(87, 31);
+            this.btnIzvestaj.TabIndex = 10;
+            this.btnIzvestaj.Text = "Izveštaj";
+            this.btnIzvestaj.UseVisualStyleBackColor = true;
+            this.btnIzvestaj.Click += new System.EventHandler(this.btnIzvestaj_Click);
+            // 
             // StavkePlanaPakovanjaNovi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.ForestGreen;
             this.ClientSize = new System.Drawing.Size(1567, 698);
+            this.Controls.Add(this.btnIzvestaj);
             this.Controls.Add(this.btnKolicine);
             this.Controls.Add(this.btnRealizacija);
             this.Controls.Add(this.groupBox2);
@@ -719,5 +731,6 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.ComboBox cboVrstaRN;
         private System.Windows.Forms.Button btnKolicine;
+        private System.Windows.Forms.Button btnIzvestaj;
     }
 }

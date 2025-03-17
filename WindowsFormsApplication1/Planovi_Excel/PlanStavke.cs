@@ -32,7 +32,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
         }
         private void FillGV()
         {
-            var query = "Select Kolekcije.ID as [IDKol], RTrim(Kolekcije.Naziv) as  Kolekcija,Program.ID as [IDProgram],RTrim(Program.Naziv) as Program,pkp.MpSifra as [Sifra], " +
+            var query = "Select pkp.ID as PripadnostID, Kolekcije.ID as [IDKol], RTrim(Kolekcije.Naziv) as  Kolekcija,Program.ID as [IDProgram],RTrim(Program.Naziv) as Program,pkp.MpSifra as [Sifra], " +
                 "RTrim(MpNaziv) as [Naziv],MpStaraSif as [Kod],TipPaketa,SkSifra as [Sklad], " +
                 "RTrim(SkNaziv) as [Skladista],MpOsnLokacija as [Osnovna lokacija] " +
                 "from PripadnostKolProgram pkp " +
@@ -51,17 +51,18 @@ namespace WindowsFormsApplication1.Planovi_Excel
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
 
-            dataGridView1.Columns[0].Visible = false; //kolekcija
-            dataGridView1.Columns[2].Visible = false; //program
+            dataGridView1.Columns[0].Width = 70;
+            dataGridView1.Columns[1].Visible = false; //kolekcija
+            dataGridView1.Columns[3].Visible = false; //program
             //MpSifra 4
             //Kod 6
             //Tip 7
-            dataGridView1.Columns[8].Visible = false; //sklad
+            dataGridView1.Columns[9].Visible = false; //sklad
             //lokacija 10
         }
         private void FillGVPoKolekciji()
         {
-            var query = "Select Kolekcije.ID as [IDKol], RTrim(Kolekcije.Naziv) as  Kolekcija,Program.ID as [IDProgram],RTrim(Program.Naziv) as Program,pkp.MpSifra as [Sifra], " +
+            var query = "Select pkp.ID as PripadnostID, Kolekcije.ID as [IDKol], RTrim(Kolekcije.Naziv) as  Kolekcija,Program.ID as [IDProgram],RTrim(Program.Naziv) as Program,pkp.MpSifra as [Sifra], " +
                 "RTrim(MpNaziv) as [Naziv],MpStaraSif as [Kod],TipPaketa,SkSifra as [Sklad], " +
                 "RTrim(SkNaziv) as [Skladista],MpOsnLokacija as [Osnovna lokacija] " +
                 "from PripadnostKolProgram pkp " +
@@ -80,12 +81,12 @@ namespace WindowsFormsApplication1.Planovi_Excel
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
 
-            dataGridView1.Columns[0].Visible = false; //kolekcija
-            dataGridView1.Columns[2].Visible = false; //program
+            dataGridView1.Columns[1].Visible = false; //kolekcija
+            dataGridView1.Columns[3].Visible = false; //program
             //MpSifra 4
             //Kod 6
             //Tip 7
-            dataGridView1.Columns[8].Visible = false; //sklad
+            dataGridView1.Columns[9].Visible = false; //sklad
             //lokacija 10
         }
         int idPlana, idPrograma, idKolekcije, mpSifra;
@@ -102,7 +103,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
                         idPlana = Convert.ToInt32(txtIdPlana.Text);
                         idPrograma = Convert.ToInt32(row.Cells["IDProgram"].Value.ToString());
                         idKolekcije = Convert.ToInt32(row.Cells["IDKol"].Value.ToString());
-                        mpSifra = Convert.ToInt32(row.Cells[4].Value.ToString());
+                        mpSifra = Convert.ToInt32(row.Cells[5].Value.ToString());
 
                         ins.InsertPlanStavke(idPlana, idPrograma, idKolekcije, mpSifra);
                     }

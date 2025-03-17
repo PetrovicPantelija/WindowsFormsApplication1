@@ -63,6 +63,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 }
                 else if (dialogResult == DialogResult.No)
                 {
+
                     var select = "select distinct rk.*,CAST(SUM((MaticniPodatki.MpBrutoTeza*rk.Kolicina))as decimal(18,2))as Tezina " +
                         "From RkShippingExportPorudzbine rk " +
                         "inner join MaticniPodatki on rk.LargoPaketID = MaticniPodatki.MpSifra " +

@@ -241,5 +241,11 @@ namespace WindowsFormsApplication1
             MainPakovanje frm = new MainPakovanje();
             frm.Show();
         }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            Barcode.Pregled frm = new Barcode.Pregled();
+            frm.Show();
+        }
     }
 }

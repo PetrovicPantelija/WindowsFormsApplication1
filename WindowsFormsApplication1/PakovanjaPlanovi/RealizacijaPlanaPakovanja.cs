@@ -1,28 +1,14 @@
 ﻿using CsvHelper;
 using CsvHelper.Configuration;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Spreadsheet;
-using DocumentFormat.OpenXml.Wordprocessing;
-using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Forms;
-using WindowsFormsApplication1.Magacin;
-using WindowsFormsApplication1.Planovi_Excel;
-using static WindowsFormsApplication1.PakovanjaPlanovi.StavkePlanaPakovanjaNovi;
 using Color = System.Drawing.Color;
 
 namespace WindowsFormsApplication1.PakovanjaPlanovi
@@ -96,11 +82,11 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
         private void FillGV()
         {
             var query = "select s.ID,IDPlanPakovanja,RnBroj,StatusRn,VrstaRn,Artikal,Kod,Naziv,s.KolicinaZaProizvodnju,PlaniraniKrajnjiDatumZavrsetka,Termin," +
-                "(Count(ArtikalIzPrvogNivoaSastavnice)) as [Delova] " +
+                "(Count(ArtikalIzPrvogNivoaSastavnice)) as [Delova],RasporedPakovanja " +
                 "from StavkePlanaPakovanja s " +
                 "inner join PregledStavkiPlanaPakovanja on s.id=PregledStavkiPlanaPakovanja.IDStavkePlanaPakovanja " +
                 "Where IDPlanPakovanja=" + planPakovanja + " " +
-                "Group by s.id,IDPlanPakovanja,RnBroj,StatusRn,VrstaRn,Artikal,Kod,Naziv,s.KolicinaZaProizvodnju,PlaniraniKrajnjiDatumZavrsetka,Termin order by Delova asc";
+                "Group by s.id,IDPlanPakovanja,RnBroj,StatusRn,VrstaRn,Artikal,Kod,Naziv,s.KolicinaZaProizvodnju,PlaniraniKrajnjiDatumZavrsetka,Termin,RasporedPakovanja order by RasporedPakovanja asc";
             
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
@@ -215,7 +201,7 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
         private void Stavke()
         {
             var query = "Select ID,IdStavkePlanaPakovanja,RN,StatusStavke,ArtikalPaket,MaticniPodatki.MpStaraSif,KolicinaZaProizvodnju,ArtikalIzPrvogNivoaSastavnice,m1.MpStaraSif,PotrebnaKolicina," +
-                   "TrenutnaKolicinaNaZalihama,RezervisanaKolicinaPoPlanu,UkucatiKolicinuZaRezervaciju " +
+                   "ISNull(TrenutnaKolicinaNaZalihama,0),RezervisanaKolicinaPoPlanu,UkucatiKolicinuZaRezervaciju " +
                    "from PregledStavkiPlanaPakovanja " +
                    "inner join MaticniPodatki on PregledStavkiPlanaPakovanja.ArtikalPaket=MaticniPodatki.MpSifra " +
                    "inner join MaticniPodatki as m1 on PregledStavkiPlanaPakovanja.ArtikalIzPrvogNivoaSastavnice=m1.MpSifra " +
@@ -240,7 +226,6 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
             dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.DarkOrange;
             dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
 
-            //Razlika();
             dataGridView2.Columns[0].Visible = false;
             dataGridView2.Columns[1].Visible = false;
             dataGridView2.Columns[2].HeaderText = "Sastavnica";
@@ -401,7 +386,7 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
                 InsertPakovanja ins = new InsertPakovanja();
                 ins.UpdateStanjePregledStavkiPakovanja(id, idS, artikal);
 
-                frm.IncrementProgressBar(); // Increment ProgressBar value
+                frm.IncrementProgressBar();
             }
 
             FillGV();
@@ -429,14 +414,20 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
         private void btnNalogAmbalaza_Click(object sender, EventArgs e)
         {
             string sklad = "5";
-            NaloziZaIzradu frm = new NaloziZaIzradu(planPakovanja, sklad);
+            NaloziZaIzradu frm = new NaloziZaIzradu(planPakovanja, sklad,"ambalaže");
             frm.Show();
         }
 
         private void btnNalogPanel_Click(object sender, EventArgs e)
         {
             string sklad = "6,7,9";
-            NaloziZaIzradu frm = new NaloziZaIzradu(planPakovanja, sklad);
+            NaloziPanel frm = new NaloziPanel(planPakovanja, sklad);
+            frm.Show();
+        }
+        private void btnNalogStiropor_Click(object sender, EventArgs e)
+        {
+            string sklad = "5";
+            NalogStiropor frm = new NalogStiropor(planPakovanja, sklad);
             frm.Show();
         }
 
@@ -474,7 +465,7 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
             dataGridView4.Columns[2].Width = 60;
 
         }
-
+        int pom;
         private void btnPotvrda_Click(object sender, EventArgs e)
         {
             InsertPakovanja ins = new InsertPakovanja();
@@ -500,9 +491,8 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
             var query = "Select PregledStavkiPlanaPakovanja.ID,StavkePlanaPakovanja.ID,PregledStavkiPlanaPakovanja.ArtikalIzPrvogNivoaSastavnice " +
                 "From PregledStavkiPlanaPakovanja " +
                 "inner join StavkePlanaPakovanja on PregledStavkiPlanaPakovanja.IDStavkePlanaPakovanja=StavkePlanaPakovanja.ID " +
-                "Where IDPlanPakovanja="+planPakovanja+" order by RasporedPakovanja asc";
+                "Where IDPlanPakovanja=" + planPakovanja + " order by RasporedPakovanja asc";
             SqlConnection conn = new SqlConnection(connect);
-
             conn.Open();
             DataTable dt = new DataTable();
             SqlCommand cmd = new SqlCommand(query, conn);
@@ -534,12 +524,7 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
             FillGV();
         }
 
-        private void btnNalogStiropor_Click(object sender, EventArgs e)
-        {
-            string sklad = "5";
-            NalogStiropor frm = new NalogStiropor(planPakovanja, sklad);
-            frm.Show();
-        }
+
 
         private void btnCSV_Click(object sender, EventArgs e)
         {
@@ -575,11 +560,8 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
                         }
                         csv.NextRecord();
 
-                        //int count = 1;
                         foreach (DataRow row in dt.Rows)
                         {
-                            //count++;
-                            //csv.WriteField(count);
                             for (var i = 0; i < dt.Columns.Count; i++)
                             {
                                 csv.WriteField(row[i]);
@@ -594,10 +576,57 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
             conn.Close();
         }
 
+        private void btnObrisi_Click(object sender, EventArgs e)
+        {
+            foreach(DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Selected)
+                {
+                    InsertPakovanja ins = new InsertPakovanja();
+                    ins.DeleteStavkePakovanja(Convert.ToInt32(row.Cells[0].Value.ToString()));
+                }
+            }
+            FillGV();
+        }
+
+        private void txtArtikal_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                if (txtArtikal.Text != "")
+                {
+                    foreach (DataGridViewRow row in dataGridView4.Rows)
+                    {
+                        if (Convert.ToInt32(row.Cells["Artikal"].Value.ToString()) == Convert.ToInt32(txtArtikal.Text.ToString()))
+                        {
+                            row.Selected = true;
+                            dataGridView4.FirstDisplayedScrollingRowIndex = dataGridView4.SelectedRows[0].Index;
+                        }
+                    }
+                }
+                else
+                {
+                    dataGridView4.ClearSelection();
+                }
+            }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnPaneliSvi_Click(object sender, EventArgs e)
+        {
+            string sklad = "6,7,9";
+            NalogPaneliSVI frm=new NalogPaneliSVI(planPakovanja, sklad);
+            frm.Show();
+        }
+
         private void btnNalogOkov_Click(object sender, EventArgs e)
         {
             string sklad = "4,11";
-            NaloziZaIzradu frm = new NaloziZaIzradu(planPakovanja, sklad);
+            NaloziZaIzradu frm = new NaloziZaIzradu(planPakovanja, sklad,"okova");
             frm.Show();
         }
     }

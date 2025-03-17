@@ -45,7 +45,9 @@
             this.btnNalogPanel = new System.Windows.Forms.Button();
             this.btnRezervisiZbirno = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtArtikal = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnPotvrda = new System.Windows.Forms.Button();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
@@ -53,6 +55,8 @@
             this.btnCSV = new System.Windows.Forms.Button();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.listMagacin = new System.Windows.Forms.Button();
+            this.btnObrisi = new System.Windows.Forms.Button();
+            this.btnPaneliSvi = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -66,8 +70,9 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(12, 30);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1168, 304);
+            this.dataGridView1.Size = new System.Drawing.Size(1143, 304);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // label1
@@ -99,9 +104,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(1223, 180);
+            this.dataGridView3.Location = new System.Drawing.Point(1223, 205);
             this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.Size = new System.Drawing.Size(604, 657);
+            this.dataGridView3.Size = new System.Drawing.Size(604, 632);
             this.dataGridView3.TabIndex = 3;
             // 
             // label2
@@ -131,7 +136,7 @@
             this.btn_Rezervisi.BackColor = System.Drawing.Color.DodgerBlue;
             this.btn_Rezervisi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Rezervisi.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btn_Rezervisi.Location = new System.Drawing.Point(1114, 528);
+            this.btn_Rezervisi.Location = new System.Drawing.Point(1114, 574);
             this.btn_Rezervisi.Name = "btn_Rezervisi";
             this.btn_Rezervisi.Size = new System.Drawing.Size(103, 49);
             this.btn_Rezervisi.TabIndex = 6;
@@ -141,7 +146,7 @@
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(1114, 372);
+            this.btnRefresh.Location = new System.Drawing.Point(1114, 427);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(103, 32);
             this.btnRefresh.TabIndex = 7;
@@ -154,7 +159,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label4.Location = new System.Drawing.Point(1220, 131);
+            this.label4.Location = new System.Drawing.Point(1218, 156);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(117, 15);
             this.label4.TabIndex = 8;
@@ -163,14 +168,14 @@
             // cboSkladiste
             // 
             this.cboSkladiste.FormattingEnabled = true;
-            this.cboSkladiste.Location = new System.Drawing.Point(1223, 151);
+            this.cboSkladiste.Location = new System.Drawing.Point(1221, 176);
             this.cboSkladiste.Name = "cboSkladiste";
             this.cboSkladiste.Size = new System.Drawing.Size(247, 21);
             this.cboSkladiste.TabIndex = 9;
             // 
             // btnSvi
             // 
-            this.btnSvi.Location = new System.Drawing.Point(1556, 150);
+            this.btnSvi.Location = new System.Drawing.Point(1554, 175);
             this.btnSvi.Name = "btnSvi";
             this.btnSvi.Size = new System.Drawing.Size(72, 24);
             this.btnSvi.TabIndex = 10;
@@ -180,7 +185,7 @@
             // 
             // btnPretrazi
             // 
-            this.btnPretrazi.Location = new System.Drawing.Point(1476, 150);
+            this.btnPretrazi.Location = new System.Drawing.Point(1474, 175);
             this.btnPretrazi.Name = "btnPretrazi";
             this.btnPretrazi.Size = new System.Drawing.Size(74, 24);
             this.btnPretrazi.TabIndex = 11;
@@ -195,9 +200,9 @@
             this.btnNalogOkov.ForeColor = System.Drawing.Color.White;
             this.btnNalogOkov.Location = new System.Drawing.Point(1640, 12);
             this.btnNalogOkov.Name = "btnNalogOkov";
-            this.btnNalogOkov.Size = new System.Drawing.Size(187, 25);
+            this.btnNalogOkov.Size = new System.Drawing.Size(187, 27);
             this.btnNalogOkov.TabIndex = 12;
-            this.btnNalogOkov.Text = "Nalog za izradu okova";
+            this.btnNalogOkov.Text = "Nalog za pripremu okova";
             this.btnNalogOkov.UseVisualStyleBackColor = false;
             this.btnNalogOkov.Click += new System.EventHandler(this.btnNalogOkov_Click);
             // 
@@ -206,11 +211,11 @@
             this.btnNalogAmbalaza.BackColor = System.Drawing.Color.DarkOrange;
             this.btnNalogAmbalaza.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNalogAmbalaza.ForeColor = System.Drawing.Color.White;
-            this.btnNalogAmbalaza.Location = new System.Drawing.Point(1640, 43);
+            this.btnNalogAmbalaza.Location = new System.Drawing.Point(1640, 45);
             this.btnNalogAmbalaza.Name = "btnNalogAmbalaza";
-            this.btnNalogAmbalaza.Size = new System.Drawing.Size(187, 25);
+            this.btnNalogAmbalaza.Size = new System.Drawing.Size(187, 27);
             this.btnNalogAmbalaza.TabIndex = 12;
-            this.btnNalogAmbalaza.Text = "Nalog za izradu ambalaže";
+            this.btnNalogAmbalaza.Text = "Nalog za pripremu ambalaže";
             this.btnNalogAmbalaza.UseVisualStyleBackColor = false;
             this.btnNalogAmbalaza.Click += new System.EventHandler(this.btnNalogAmbalaza_Click);
             // 
@@ -219,9 +224,9 @@
             this.btnNalogPanel.BackColor = System.Drawing.Color.DarkOrange;
             this.btnNalogPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNalogPanel.ForeColor = System.Drawing.Color.White;
-            this.btnNalogPanel.Location = new System.Drawing.Point(1640, 105);
+            this.btnNalogPanel.Location = new System.Drawing.Point(1640, 139);
             this.btnNalogPanel.Name = "btnNalogPanel";
-            this.btnNalogPanel.Size = new System.Drawing.Size(187, 25);
+            this.btnNalogPanel.Size = new System.Drawing.Size(187, 27);
             this.btnNalogPanel.TabIndex = 12;
             this.btnNalogPanel.Text = "Nalog za izradu panela\r\n";
             this.btnNalogPanel.UseVisualStyleBackColor = false;
@@ -232,7 +237,7 @@
             this.btnRezervisiZbirno.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnRezervisiZbirno.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRezervisiZbirno.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnRezervisiZbirno.Location = new System.Drawing.Point(1114, 461);
+            this.btnRezervisiZbirno.Location = new System.Drawing.Point(1114, 519);
             this.btnRezervisiZbirno.Name = "btnRezervisiZbirno";
             this.btnRezervisiZbirno.Size = new System.Drawing.Size(103, 49);
             this.btnRezervisiZbirno.TabIndex = 14;
@@ -244,7 +249,9 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.txtArtikal);
             this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.btnPotvrda);
             this.groupBox1.Controls.Add(this.dataGridView4);
@@ -257,6 +264,14 @@
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             // 
+            // txtArtikal
+            // 
+            this.txtArtikal.Location = new System.Drawing.Point(291, 30);
+            this.txtArtikal.Name = "txtArtikal";
+            this.txtArtikal.Size = new System.Drawing.Size(100, 22);
+            this.txtArtikal.TabIndex = 4;
+            this.txtArtikal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtArtikal_KeyPress);
+            // 
             // button2
             // 
             this.button2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -267,6 +282,15 @@
             this.button2.Text = "Nazad";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(298, 11);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(93, 16);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "Pronađi artikal";
             // 
             // label5
             // 
@@ -304,11 +328,11 @@
             this.btnNalogStiropor.BackColor = System.Drawing.Color.DarkOrange;
             this.btnNalogStiropor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNalogStiropor.ForeColor = System.Drawing.Color.White;
-            this.btnNalogStiropor.Location = new System.Drawing.Point(1640, 74);
+            this.btnNalogStiropor.Location = new System.Drawing.Point(1640, 78);
             this.btnNalogStiropor.Name = "btnNalogStiropor";
-            this.btnNalogStiropor.Size = new System.Drawing.Size(187, 25);
+            this.btnNalogStiropor.Size = new System.Drawing.Size(187, 27);
             this.btnNalogStiropor.TabIndex = 12;
-            this.btnNalogStiropor.Text = "Nalog za izradu stiropora";
+            this.btnNalogStiropor.Text = "Nalog za pripremu stiropora";
             this.btnNalogStiropor.UseVisualStyleBackColor = false;
             this.btnNalogStiropor.Click += new System.EventHandler(this.btnNalogStiropor_Click);
             // 
@@ -317,7 +341,7 @@
             this.btnCSV.BackColor = System.Drawing.Color.LimeGreen;
             this.btnCSV.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCSV.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnCSV.Location = new System.Drawing.Point(1730, 147);
+            this.btnCSV.Location = new System.Drawing.Point(1730, 172);
             this.btnCSV.Name = "btnCSV";
             this.btnCSV.Size = new System.Drawing.Size(97, 27);
             this.btnCSV.TabIndex = 16;
@@ -329,7 +353,7 @@
             // 
             this.checkedListBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(1223, 36);
+            this.checkedListBox1.Location = new System.Drawing.Point(1223, 33);
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.Size = new System.Drawing.Size(310, 84);
             this.checkedListBox1.TabIndex = 17;
@@ -337,7 +361,7 @@
             // listMagacin
             // 
             this.listMagacin.BackColor = System.Drawing.Color.Moccasin;
-            this.listMagacin.Location = new System.Drawing.Point(1539, 88);
+            this.listMagacin.Location = new System.Drawing.Point(1539, 78);
             this.listMagacin.Name = "listMagacin";
             this.listMagacin.Size = new System.Drawing.Size(75, 42);
             this.listMagacin.TabIndex = 18;
@@ -345,17 +369,45 @@
             this.listMagacin.UseVisualStyleBackColor = false;
             this.listMagacin.Click += new System.EventHandler(this.listMagacin_Click);
             // 
+            // btnObrisi
+            // 
+            this.btnObrisi.BackColor = System.Drawing.Color.Red;
+            this.btnObrisi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnObrisi.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnObrisi.Location = new System.Drawing.Point(1114, 372);
+            this.btnObrisi.Name = "btnObrisi";
+            this.btnObrisi.Size = new System.Drawing.Size(103, 49);
+            this.btnObrisi.TabIndex = 19;
+            this.btnObrisi.Text = "Obriši";
+            this.btnObrisi.UseVisualStyleBackColor = false;
+            this.btnObrisi.Click += new System.EventHandler(this.btnObrisi_Click);
+            // 
+            // btnPaneliSvi
+            // 
+            this.btnPaneliSvi.BackColor = System.Drawing.Color.DarkOrange;
+            this.btnPaneliSvi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPaneliSvi.ForeColor = System.Drawing.Color.White;
+            this.btnPaneliSvi.Location = new System.Drawing.Point(1640, 108);
+            this.btnPaneliSvi.Name = "btnPaneliSvi";
+            this.btnPaneliSvi.Size = new System.Drawing.Size(187, 25);
+            this.btnPaneliSvi.TabIndex = 12;
+            this.btnPaneliSvi.Text = "Nalog za izradu panela-sve";
+            this.btnPaneliSvi.UseVisualStyleBackColor = false;
+            this.btnPaneliSvi.Click += new System.EventHandler(this.btnPaneliSvi_Click);
+            // 
             // RealizacijaPlanaPakovanja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.ForestGreen;
             this.ClientSize = new System.Drawing.Size(1839, 849);
+            this.Controls.Add(this.btnObrisi);
             this.Controls.Add(this.listMagacin);
             this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.btnCSV);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnRezervisiZbirno);
+            this.Controls.Add(this.btnPaneliSvi);
             this.Controls.Add(this.btnNalogPanel);
             this.Controls.Add(this.btnNalogStiropor);
             this.Controls.Add(this.btnNalogAmbalaza);
@@ -415,5 +467,9 @@
         private System.Windows.Forms.Button btnCSV;
         private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.Button listMagacin;
+        private System.Windows.Forms.Button btnObrisi;
+        private System.Windows.Forms.TextBox txtArtikal;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnPaneliSvi;
     }
 }

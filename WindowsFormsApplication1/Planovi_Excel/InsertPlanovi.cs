@@ -585,7 +585,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "PoveziIzlaznost";
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandTimeout = 180;
+            cmd.CommandTimeout = 1000;
 
             SqlParameter id = new SqlParameter();
             id.ParameterName = "@ID";
@@ -1190,6 +1190,9 @@ namespace WindowsFormsApplication1.Planovi_Excel
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "ArhivirajPlan";
             cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 1000;
+
+
 
             SqlParameter id = new SqlParameter();
             id.ParameterName = "@IDPlana";
@@ -1767,6 +1770,173 @@ namespace WindowsFormsApplication1.Planovi_Excel
             idk.SqlDbType = SqlDbType.Int;
             idk.Value = IDPlana;
             cmd.Parameters.Add(idk);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw new Exception("Neuspešan upis NHM brojeva");
+            }
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos NHM broja je uspešno završena", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                conn.Close();
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+        public void ArhivirajIzlaznost(int Mesec,int Godina)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "ArhivirajIzlaznost";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter mesec = new SqlParameter();
+            mesec.ParameterName = "@MesecKrajnji";
+            mesec.SqlDbType = SqlDbType.Int;
+            mesec.Value = Mesec;
+            cmd.Parameters.Add(mesec);
+
+            SqlParameter godina = new SqlParameter();
+            godina.ParameterName = "@GodinaKrajnji";
+            godina.SqlDbType = SqlDbType.Int;
+            godina.Value= Godina;
+            cmd.Parameters.Add(godina);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw new Exception("Neuspešan upis NHM brojeva");
+            }
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos NHM broja je uspešno završena", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                conn.Close();
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+        public void UpisiIzlaznostRucno(int ID,int MP,int Mesec,int Godina,decimal Kolicina)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpisiIzlaznostRucno";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
+
+            SqlParameter mp = new SqlParameter();
+            mp.ParameterName = "@MpSifra";
+            mp.SqlDbType = SqlDbType.Int;
+            mp.Value = MP;
+            cmd.Parameters.Add(mp);
+
+            SqlParameter mesec = new SqlParameter();
+            mesec.ParameterName = "@Mesec";
+            mesec.SqlDbType= SqlDbType.Int;
+            mesec.Value = Mesec;
+            cmd.Parameters.Add(mesec);
+
+            SqlParameter godina = new SqlParameter();
+            godina.ParameterName = "@Godina";
+            godina.SqlDbType = SqlDbType.Int;
+            godina.Value = Godina;
+            cmd.Parameters.Add(godina);
+
+            SqlParameter kolicina = new SqlParameter();
+            kolicina.ParameterName = "@Kolicina";
+            kolicina.SqlDbType= SqlDbType.Decimal;
+            kolicina.Value = Kolicina;
+            cmd.Parameters.Add(kolicina);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw new Exception("Neuspešan upis NHM brojeva");
+            }
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos NHM broja je uspešno završena", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                conn.Close();
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+        public void DeleteIzlaznost(int ID)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "DeleteIzlaznost";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();

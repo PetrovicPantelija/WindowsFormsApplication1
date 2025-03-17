@@ -1,46 +1,38 @@
-﻿using DocumentFormat.OpenXml.Office2010.Excel;
-using Microsoft.Reporting.WinForms;
+﻿using Microsoft.Reporting.WinForms;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
 using System.Windows.Forms;
-using WindowsFormsApplication1.Planovi_Excel;
 
 namespace WindowsFormsApplication1.PakovanjaPlanovi
 {
     public partial class NaloziZaIzradu : Form
     {
         int plan;
-        string skladiste, korisnik;
+        string skladiste, korisnik,materijal;
         public NaloziZaIzradu()
         {
             InitializeComponent();
         }
-        public NaloziZaIzradu(int IDPlanaPakovanja,string Skladista)
+        public NaloziZaIzradu(int IDPlanaPakovanja,string Skladista,string Materijal)
         {
             InitializeComponent();
 
             plan=IDPlanaPakovanja;
             skladiste=Skladista;
+            materijal=Materijal;
         }
 
         private void NaloziZaIzradu_Load(object sender, EventArgs e)
         {
             Jela_TestDataSet1TableAdapters.NalogProizvodnjaPlanTableAdapter ta = new Jela_TestDataSet1TableAdapters.NalogProizvodnjaPlanTableAdapter();
             Jela_TestDataSet1.NalogProizvodnjaPlanDataTable dt = new Jela_TestDataSet1.NalogProizvodnjaPlanDataTable();
-            ta.Fill(dt,plan,skladiste,korisnik);
+            ta.Fill(dt,plan,skladiste,korisnik,materijal);
             ReportDataSource rds= new ReportDataSource();
             rds.Name = "DataSet1";
             rds.Value = dt;
-            ReportParameter[] par=new ReportParameter[2];
+            ReportParameter[] par=new ReportParameter[3];
             par[0] = new ReportParameter("IDPlanaPakovanja", plan.ToString());
             par[1] = new ReportParameter("Skladiste", skladiste);
+            par[2] = new ReportParameter("Materijal", materijal);
 
             reportViewer1.LocalReport.DataSources.Clear();
             reportViewer1.LocalReport.ReportPath = "Nalozi.rdlc";

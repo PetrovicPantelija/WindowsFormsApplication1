@@ -434,5 +434,11 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
             }
             FillGV();
         }
+
+        private void btnIzvestaj_Click(object sender, EventArgs e)
+        {
+            RedovnoPakovanjeIzvestaj frm = new RedovnoPakovanjeIzvestaj(IdPakovanja);
+            frm.Show();
+        }
     }
 }

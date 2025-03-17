@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainPakovanje));
             this.PanelMenu = new System.Windows.Forms.Panel();
+            this.btnPaketi = new FontAwesome.Sharp.IconButton();
             this.btnReklamacije = new FontAwesome.Sharp.IconButton();
             this.btnNamensko = new FontAwesome.Sharp.IconButton();
             this.btnRedovno = new FontAwesome.Sharp.IconButton();
@@ -44,6 +45,7 @@
             // PanelMenu
             // 
             this.PanelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(54)))), ((int)(((byte)(56)))));
+            this.PanelMenu.Controls.Add(this.btnPaketi);
             this.PanelMenu.Controls.Add(this.btnReklamacije);
             this.PanelMenu.Controls.Add(this.btnNamensko);
             this.PanelMenu.Controls.Add(this.btnRedovno);
@@ -52,8 +54,31 @@
             this.PanelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.PanelMenu.Location = new System.Drawing.Point(0, 0);
             this.PanelMenu.Name = "PanelMenu";
-            this.PanelMenu.Size = new System.Drawing.Size(590, 472);
+            this.PanelMenu.Size = new System.Drawing.Size(590, 538);
             this.PanelMenu.TabIndex = 1;
+            // 
+            // btnPaketi
+            // 
+            this.btnPaketi.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnPaketi.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gainsboro;
+            this.btnPaketi.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnPaketi.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPaketi.ForeColor = System.Drawing.Color.White;
+            this.btnPaketi.IconChar = FontAwesome.Sharp.IconChar.Pallet;
+            this.btnPaketi.IconColor = System.Drawing.Color.White;
+            this.btnPaketi.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnPaketi.IconSize = 24;
+            this.btnPaketi.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPaketi.Location = new System.Drawing.Point(0, 361);
+            this.btnPaketi.Name = "btnPaketi";
+            this.btnPaketi.Padding = new System.Windows.Forms.Padding(215, 0, 16, 0);
+            this.btnPaketi.Size = new System.Drawing.Size(590, 81);
+            this.btnPaketi.TabIndex = 18;
+            this.btnPaketi.Text = "Paketi";
+            this.btnPaketi.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPaketi.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnPaketi.UseVisualStyleBackColor = true;
+            this.btnPaketi.Click += new System.EventHandler(this.btnPaketi_Click);
             // 
             // btnReklamacije
             // 
@@ -171,7 +196,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(592, 472);
+            this.ClientSize = new System.Drawing.Size(592, 538);
             this.Controls.Add(this.PanelMenu);
             this.Name = "MainPakovanje";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -192,5 +217,6 @@
         private FontAwesome.Sharp.IconButton btnEmp;
         private System.Windows.Forms.Panel panelLogo;
         private System.Windows.Forms.PictureBox IconButton;
+        private FontAwesome.Sharp.IconButton btnPaketi;
     }
 }

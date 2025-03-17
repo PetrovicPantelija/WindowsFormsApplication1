@@ -827,10 +827,10 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.panel2.Controls.Add(this.button8);
             this.panel2.Controls.Add(this.button7);
             this.panel2.Controls.Add(this.dataGridView3);
-            this.panel2.Location = new System.Drawing.Point(9, 4);
+            this.panel2.Location = new System.Drawing.Point(9, 6);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1457, 129);
+            this.panel2.Size = new System.Drawing.Size(1457, 127);
             this.panel2.TabIndex = 27;
             // 
             // button9
