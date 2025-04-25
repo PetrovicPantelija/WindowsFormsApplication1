@@ -47,6 +47,7 @@
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.IconButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).BeginInit();
@@ -61,20 +62,20 @@
             this.cboKorisnik.Cursor = System.Windows.Forms.Cursors.Default;
             this.cboKorisnik.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cboKorisnik.FormattingEnabled = true;
-            this.cboKorisnik.Location = new System.Drawing.Point(75, 136);
-            this.cboKorisnik.Margin = new System.Windows.Forms.Padding(2);
+            this.cboKorisnik.Location = new System.Drawing.Point(100, 167);
+            this.cboKorisnik.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboKorisnik.Name = "cboKorisnik";
-            this.cboKorisnik.Size = new System.Drawing.Size(249, 29);
+            this.cboKorisnik.Size = new System.Drawing.Size(331, 36);
             this.cboKorisnik.TabIndex = 47;
             // 
             // txtPassword
             // 
             this.txtPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(247)))), ((int)(((byte)(246)))));
             this.txtPassword.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.txtPassword.Location = new System.Drawing.Point(75, 192);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(2);
+            this.txtPassword.Location = new System.Drawing.Point(100, 236);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(249, 29);
+            this.txtPassword.Size = new System.Drawing.Size(331, 34);
             this.txtPassword.TabIndex = 49;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
@@ -83,10 +84,10 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(29, 243);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Location = new System.Drawing.Point(39, 299);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(295, 41);
+            this.button1.Size = new System.Drawing.Size(393, 50);
             this.button1.TabIndex = 50;
             this.button1.Text = "Prijava kontrolor";
             this.button1.UseVisualStyleBackColor = true;
@@ -97,10 +98,10 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(29, 291);
-            this.button2.Margin = new System.Windows.Forms.Padding(2);
+            this.button2.Location = new System.Drawing.Point(39, 358);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(295, 41);
+            this.button2.Size = new System.Drawing.Size(393, 50);
             this.button2.TabIndex = 51;
             this.button2.Text = "Prijava nabavka";
             this.button2.UseVisualStyleBackColor = true;
@@ -111,10 +112,10 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(29, 340);
-            this.button3.Margin = new System.Windows.Forms.Padding(2);
+            this.button3.Location = new System.Drawing.Point(39, 418);
+            this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(295, 41);
+            this.button3.Size = new System.Drawing.Size(393, 50);
             this.button3.TabIndex = 52;
             this.button3.Text = "Prijava administracija";
             this.button3.UseVisualStyleBackColor = true;
@@ -125,10 +126,10 @@
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(30, 392);
-            this.button4.Margin = new System.Windows.Forms.Padding(2);
+            this.button4.Location = new System.Drawing.Point(40, 482);
+            this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(295, 41);
+            this.button4.Size = new System.Drawing.Size(393, 50);
             this.button4.TabIndex = 53;
             this.button4.Text = "Prijava Transport";
             this.button4.UseVisualStyleBackColor = true;
@@ -137,9 +138,10 @@
             // IconButton
             // 
             this.IconButton.Image = ((System.Drawing.Image)(resources.GetObject("IconButton.Image")));
-            this.IconButton.Location = new System.Drawing.Point(76, 35);
+            this.IconButton.Location = new System.Drawing.Point(101, 43);
+            this.IconButton.Margin = new System.Windows.Forms.Padding(4);
             this.IconButton.Name = "IconButton";
-            this.IconButton.Size = new System.Drawing.Size(210, 75);
+            this.IconButton.Size = new System.Drawing.Size(280, 92);
             this.IconButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.IconButton.TabIndex = 56;
             this.IconButton.TabStop = false;
@@ -151,9 +153,11 @@
             this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.UserAlt;
             this.iconPictureBox1.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
             this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox1.Location = new System.Drawing.Point(29, 134);
+            this.iconPictureBox1.IconSize = 39;
+            this.iconPictureBox1.Location = new System.Drawing.Point(39, 165);
+            this.iconPictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.iconPictureBox1.Name = "iconPictureBox1";
-            this.iconPictureBox1.Size = new System.Drawing.Size(32, 32);
+            this.iconPictureBox1.Size = new System.Drawing.Size(43, 39);
             this.iconPictureBox1.TabIndex = 57;
             this.iconPictureBox1.TabStop = false;
             // 
@@ -164,9 +168,11 @@
             this.iconPictureBox2.IconChar = FontAwesome.Sharp.IconChar.UnlockAlt;
             this.iconPictureBox2.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
             this.iconPictureBox2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox2.Location = new System.Drawing.Point(29, 190);
+            this.iconPictureBox2.IconSize = 39;
+            this.iconPictureBox2.Location = new System.Drawing.Point(39, 234);
+            this.iconPictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.iconPictureBox2.Name = "iconPictureBox2";
-            this.iconPictureBox2.Size = new System.Drawing.Size(32, 32);
+            this.iconPictureBox2.Size = new System.Drawing.Size(43, 39);
             this.iconPictureBox2.TabIndex = 58;
             this.iconPictureBox2.TabStop = false;
             // 
@@ -176,9 +182,10 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(36, 568);
+            this.label2.Location = new System.Drawing.Point(48, 699);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(194, 13);
+            this.label2.Size = new System.Drawing.Size(237, 19);
             this.label2.TabIndex = 146;
             this.label2.Text = "© 2021 MTA Soft. All rights reserved.";
             // 
@@ -186,9 +193,10 @@
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(39, 514);
+            this.pictureBox3.Location = new System.Drawing.Point(52, 633);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(192, 38);
+            this.pictureBox3.Size = new System.Drawing.Size(256, 47);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox3.TabIndex = 145;
             this.pictureBox3.TabStop = false;
@@ -199,9 +207,10 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(36, 498);
+            this.label1.Location = new System.Drawing.Point(48, 613);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 13);
+            this.label1.Size = new System.Drawing.Size(68, 19);
             this.label1.TabIndex = 144;
             this.label1.Text = "Create by";
             // 
@@ -212,10 +221,11 @@
             this.iconPictureBox3.IconChar = FontAwesome.Sharp.IconChar.WindowClose;
             this.iconPictureBox3.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(94)))), ((int)(((byte)(104)))));
             this.iconPictureBox3.IconFont = FontAwesome.Sharp.IconFont.Solid;
-            this.iconPictureBox3.IconSize = 22;
-            this.iconPictureBox3.Location = new System.Drawing.Point(675, -1);
+            this.iconPictureBox3.IconSize = 27;
+            this.iconPictureBox3.Location = new System.Drawing.Point(900, -1);
+            this.iconPictureBox3.Margin = new System.Windows.Forms.Padding(4);
             this.iconPictureBox3.Name = "iconPictureBox3";
-            this.iconPictureBox3.Size = new System.Drawing.Size(22, 22);
+            this.iconPictureBox3.Size = new System.Drawing.Size(29, 27);
             this.iconPictureBox3.TabIndex = 147;
             this.iconPictureBox3.TabStop = false;
             this.iconPictureBox3.Click += new System.EventHandler(this.iconPictureBox3_Click);
@@ -227,10 +237,11 @@
             this.iconPictureBox4.IconChar = FontAwesome.Sharp.IconChar.AngleDown;
             this.iconPictureBox4.IconColor = System.Drawing.Color.Yellow;
             this.iconPictureBox4.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox4.IconSize = 22;
-            this.iconPictureBox4.Location = new System.Drawing.Point(645, -1);
+            this.iconPictureBox4.IconSize = 27;
+            this.iconPictureBox4.Location = new System.Drawing.Point(860, -1);
+            this.iconPictureBox4.Margin = new System.Windows.Forms.Padding(4);
             this.iconPictureBox4.Name = "iconPictureBox4";
-            this.iconPictureBox4.Size = new System.Drawing.Size(24, 22);
+            this.iconPictureBox4.Size = new System.Drawing.Size(32, 27);
             this.iconPictureBox4.TabIndex = 148;
             this.iconPictureBox4.TabStop = false;
             this.iconPictureBox4.Click += new System.EventHandler(this.iconPictureBox4_Click);
@@ -240,10 +251,10 @@
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.button5.ForeColor = System.Drawing.Color.White;
-            this.button5.Location = new System.Drawing.Point(30, 443);
-            this.button5.Margin = new System.Windows.Forms.Padding(2);
+            this.button5.Location = new System.Drawing.Point(40, 545);
+            this.button5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(295, 41);
+            this.button5.Size = new System.Drawing.Size(393, 50);
             this.button5.TabIndex = 53;
             this.button5.Text = "Kalkulacije";
             this.button5.UseVisualStyleBackColor = true;
@@ -254,10 +265,10 @@
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button6.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.button6.ForeColor = System.Drawing.Color.White;
-            this.button6.Location = new System.Drawing.Point(342, 243);
-            this.button6.Margin = new System.Windows.Forms.Padding(2);
+            this.button6.Location = new System.Drawing.Point(456, 299);
+            this.button6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(295, 41);
+            this.button6.Size = new System.Drawing.Size(393, 50);
             this.button6.TabIndex = 149;
             this.button6.Text = "Pakovanje";
             this.button6.UseVisualStyleBackColor = true;
@@ -268,10 +279,10 @@
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button7.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.button7.ForeColor = System.Drawing.Color.White;
-            this.button7.Location = new System.Drawing.Point(342, 291);
-            this.button7.Margin = new System.Windows.Forms.Padding(2);
+            this.button7.Location = new System.Drawing.Point(456, 358);
+            this.button7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(295, 41);
+            this.button7.Size = new System.Drawing.Size(393, 50);
             this.button7.TabIndex = 150;
             this.button7.Text = "Planiranje";
             this.button7.UseVisualStyleBackColor = true;
@@ -282,21 +293,36 @@
             this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button8.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.button8.ForeColor = System.Drawing.Color.White;
-            this.button8.Location = new System.Drawing.Point(342, 340);
-            this.button8.Margin = new System.Windows.Forms.Padding(2);
+            this.button8.Location = new System.Drawing.Point(456, 418);
+            this.button8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(295, 41);
+            this.button8.Size = new System.Drawing.Size(393, 50);
             this.button8.TabIndex = 150;
             this.button8.Text = "Statistika magacina";
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
+            // button9
+            // 
+            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button9.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.button9.ForeColor = System.Drawing.Color.White;
+            this.button9.Location = new System.Drawing.Point(456, 481);
+            this.button9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(393, 50);
+            this.button9.TabIndex = 151;
+            this.button9.Text = "Proizvodnja u kadrovskoj";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
             // frmLogovanje
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(83)))), ((int)(((byte)(87)))));
-            this.ClientSize = new System.Drawing.Size(703, 610);
+            this.ClientSize = new System.Drawing.Size(937, 751);
+            this.Controls.Add(this.button9);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
@@ -317,7 +343,7 @@
             this.Controls.Add(this.cboKorisnik);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmLogovanje";
             this.Text = "Ulazak u aplikaciju";
             this.TopMost = true;
@@ -352,5 +378,6 @@
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button9;
     }
 }

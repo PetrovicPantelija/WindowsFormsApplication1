@@ -36,7 +36,7 @@ namespace WindowsFormsApplication1
 
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
-            dataAdapter.Fill(ds);
+           dataAdapter.Fill(ds);
             cboKorisnik.DataSource = ds.Tables[0];
             cboKorisnik.DisplayMember = "Korisnik";
             cboKorisnik.ValueMember = "Korisnik";
@@ -247,5 +247,37 @@ namespace WindowsFormsApplication1
             Barcode.Pregled frm = new Barcode.Pregled();
             frm.Show();
         }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            if (txtPassword.Text != "")
+            {
+                user = cboKorisnik.Text.ToString().TrimEnd();
+                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                SqlConnection myConnection = new SqlConnection(s_connection);
+                var c = new SqlConnection(s_connection);
+                SqlCommand command = new SqlCommand("SELECT SifraLargo FROM Korisnici where LTRIM(RTRIM(Korisnik)) = '"+ user + "' AND Password = '" + txtPassword.Text + "'", myConnection);
+                myConnection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows == false)
+                {
+                    MessageBox.Show("Nije ispravno uneta lozinka");
+                    return;
+                }
+                int SifraLargo = 0;
+                while (reader.Read())
+                {
+                    SifraLargo = reader.GetInt32(0);
+                } 
+       
+                reader.Close();
+                myConnection.Close();
+
+                ProizvodnjaUKadrovskoj.MainZaposleni plp = new ProizvodnjaUKadrovskoj.MainZaposleni(SifraLargo);
+                plp.Show();
+        }
+            else { MessageBox.Show("Nije ispravno uneta lozinka"); }
+}
     }
 }
