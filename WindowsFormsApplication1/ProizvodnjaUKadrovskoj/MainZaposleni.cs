@@ -60,7 +60,7 @@ namespace WindowsFormsApplication1.ProizvodnjaUKadrovskoj
             var c = new SqlConnection(s_connection);
             SqlCommand command = new SqlCommand("SELECT * " +
                                                 "FROM Korisnici k " +
-                                                "INNER JOIN KadroviRadnihMesta krm ON k.SifraLargo = krm.LargoBroj " +
+                                                "INNER JOIN KadroviRadnihMesta krm ON k.SifraLargo = krm.LargoBroj AND krm.Aktivan = 1 " +
                                                 "INNER JOIN RadnaMesta rm ON krm.IDRadnoMesto = rm.ID " +
                                                 "WHERE LTRIM(RTRIM(rm.Naziv)) = 'Vođa sektora'  AND k.SifraLargo =" + sifraLargo, myConnection);
             myConnection.Open();

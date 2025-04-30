@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsFormsApplication1.ProizvodnjaUKadrovskoj
@@ -85,7 +86,7 @@ namespace WindowsFormsApplication1.ProizvodnjaUKadrovskoj
                                     "LEFT JOIN (SELECT * FROM EvidencijaRada WHERE "+uslov+" )  er ON d.deSifra = er.LargoBroj " +
                                     "LEFT JOIN TipRada tp ON tp.ID = er.TipRadaID  " +
                                     "LEFT JOIN KadroviUProizvodnji kp ON kp.LargoBroj = d.deSifra " +
-                                    "LEFT JOIN KadroviRadnihMesta krm ON krm.LargoBroj = d.deSifra " +
+                                    "LEFT JOIN KadroviRadnihMesta krm ON krm.LargoBroj = d.deSifra AND krm.Aktivan = 1 " +
                                     "LEFT JOIN RadnaMesta rm ON krm.IDRadnoMesto = rm.ID " +
                                     "LEFT JOIN Sektor s ON kp.IDSektora = s.ID " +
                             "WHERE d.deSifStat= 'A' " + uslovMain;
@@ -442,8 +443,9 @@ namespace WindowsFormsApplication1.ProizvodnjaUKadrovskoj
         }
 
   
-        private void dtDan_ValueChanged(object sender, EventArgs e)
+        private async void dtDan_ValueChanged(object sender, EventArgs e)
         {
+            await Task.Delay(100);
             dgEvidencija.CellFormatting -= dgEvidencija_CellFormatting;
             dgEvidencija.CellFormatting += dgEvidencija_CellFormatting;
             FillEvidencija();
