@@ -27,7 +27,7 @@ namespace WindowsFormsApplication1.Barcode
         {
             SqlConnection conn = new SqlConnection(connect);
 
-            var query = "select NPrStPre as Prijemnica,NPrDatPre as Datum,NPrStatus  as Status,Ucitana from NPre Where NPrStatus='PO'  order by NPrStPre desc";
+            var query = "select NPrStPre as Prijemnica,NPrDatPre as Datum,NPrStatus  as Status,Ucitana from NPre Where (NPrStatus='PO' or NPrStatus='OD') order by NPrStPre desc";
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();
             da.Fill(ds);

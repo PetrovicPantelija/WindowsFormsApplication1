@@ -33,7 +33,7 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
             InitializeComponent();
             ID = id;
         }
-        public class PocetniDatum
+        public class Danas
         {
             public int MP { get; set; }
             public string Sifra { get; set; }
@@ -41,18 +41,169 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
             public int Skladiste { get; set; }
             public decimal Potrebno { get; set; }
         }
-        public class IzabraniDatum
+        List<Danas> danasList;
+        public class PrviDan
         {
             public int MP { get; set; }
             public string Sifra { get; set; }
             public string Naziv { get; set; }
             public int Skladiste { get; set; }
             public decimal Potrebno { get; set; }
+        }
+        public class DrugiDan
+        {
+            public int MP { get; set; }
+            public string Sifra { get; set; }
+            public string Naziv { get; set; }
+            public int Skladiste { get; set; }
+            public decimal Potrebno { get; set; }
+        }
+        List<PrviDan> prviDanList;
+        List<DrugiDan> drugiDanList;
+
+        string d, d1, d2;
+        string danas = DateTime.Now.DayOfWeek.ToString();
+        private void FillListDanas()
+        {
+            danasList = new List<Danas>();
+            var query = "select PrSifMp as MP,MpStaraSif as Sifra,MpNaziv as Naziv,PrSifSklad as Skladiste,0-(Sum(PrPRevKol)-Sum(PrIzdKol)) as Potrebno " +
+                "from Promet " +
+                "inner join MaticniPodatki on Promet.PrSifMp=MaticniPodatki.MpSifra " +
+                "Where PrDatTrans<='"+d+"' and PrSifSklad in (13,14) " +
+                "Group by PrSifMp,MpStaraSif,MpNaziv,PrSifSklad " +
+                "Having (Sum(PrPRevKol)-Sum(PrIzdKol))<0 " +
+                "order by PrSifSklad asc";
+            using (SqlConnection conn = new SqlConnection(connect))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    conn.Open();
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            danasList.Add(new Danas
+                            {
+                                MP = Convert.ToInt32(dr["MP"]),
+                                Sifra = dr["Sifra"].ToString().TrimEnd(),
+                                Naziv = dr["Naziv"].ToString().TrimEnd(),
+                                Skladiste = Convert.ToInt32(dr["Skladiste"].ToString()),
+                                Potrebno = Convert.ToDecimal(dr["Potrebno"].ToString())
+                            });
+                        }
+                    }
+                    conn.Close();
+                }
+            }
+
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = danasList;
+        }
+        private void FillDanPrvi()
+        {
+            var query = "select PrSifMp as MP,MpStaraSif as Sifra,MpNaziv as Naziv,PrSifSklad as Skladiste,0-(Sum(PrPRevKol)-Sum(PrIzdKol)) as Potrebno " +
+               "from Promet " +
+               "inner join MaticniPodatki on Promet.PrSifMp=MaticniPodatki.MpSifra " +
+               "Where PrDatTrans<='" + d1 + "' and PrSifSklad in (13,14) " +
+               "Group by PrSifMp,MpStaraSif,MpNaziv,PrSifSklad " +
+               "Having (Sum(PrPRevKol)-Sum(PrIzdKol))<0 " +
+               "order by PrSifSklad asc";
+
+            prviDanList = new List<PrviDan>();
+            using (SqlConnection conn = new SqlConnection(connect))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    conn.Open();
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            prviDanList.Add(new PrviDan
+                            {
+                                MP = Convert.ToInt32(dr["MP"]),
+                                Sifra = dr["Sifra"].ToString().TrimEnd(),
+                                Naziv = dr["Naziv"].ToString().TrimEnd(),
+                                Skladiste = Convert.ToInt32(dr["Skladiste"].ToString()),
+                                Potrebno = Convert.ToDecimal(dr["Potrebno"].ToString())
+                            });
+                        }
+                    }
+                    conn.Close();
+                }
+            }
+
+            foreach (var item in danasList)
+            {
+                var matched = prviDanList.FirstOrDefault(x => x.MP == item.MP && x.Skladiste == item.Skladiste);
+                if (matched != null)
+                {
+                    matched.Potrebno -= item.Potrebno;
+                }
+            }
+
+            prviDanList = prviDanList
+                .Where(x => x.Potrebno > 0)
+                .ToList();
+
+            dataGridView2.ReadOnly = true;
+            dataGridView2.DataSource = prviDanList;
+        }
+        private void FillDrugiDan()
+        {
+            var query = "select PrSifMp as MP,MpStaraSif as Sifra,MpNaziv as Naziv,PrSifSklad as Skladiste,0-(Sum(PrPRevKol)-Sum(PrIzdKol)) as Potrebno " +
+                "from Promet " +
+                "inner join MaticniPodatki on Promet.PrSifMp=MaticniPodatki.MpSifra " +
+                "Where PrDatTrans<='" + d2 + "' and PrSifSklad in (13,14) " +
+                "Group by PrSifMp,MpStaraSif,MpNaziv,PrSifSklad " +
+                "Having (Sum(PrPRevKol)-Sum(PrIzdKol))<0 " +
+                "order by PrSifSklad asc";
+            drugiDanList = new List<DrugiDan>();
+
+            using (SqlConnection conn = new SqlConnection(connect))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    conn.Open();
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            drugiDanList.Add(new DrugiDan
+                            {
+                                MP = Convert.ToInt32(dr["MP"]),
+                                Sifra = dr["Sifra"].ToString().TrimEnd(),
+                                Naziv = dr["Naziv"].ToString().TrimEnd(),
+                                Skladiste = Convert.ToInt32(dr["Skladiste"].ToString()),
+                                Potrebno = Convert.ToDecimal(dr["Potrebno"].ToString())
+                            });
+                        }
+                    }
+                    conn.Close();
+                }
+            }
+
+
+            foreach(var item in prviDanList)
+            {
+                var matched = drugiDanList.FirstOrDefault(x => x.MP == item.MP && x.Skladiste == item.Skladiste);
+                if (matched != null)
+                {
+                    matched.Potrebno-=item.Potrebno;
+                }
+            }
+
+            drugiDanList = drugiDanList
+                .Where(x => x.Potrebno > 0)
+                .ToList();
+
+            dataGridView3.ReadOnly = true;
+            dataGridView3.DataSource = drugiDanList;
+
         }
         private void TabCtrl()
         {
-            string d, d1, d2;
-            string danas=DateTime.Now.DayOfWeek.ToString();
+
 
             if (danas == "Friday")
             {
@@ -60,116 +211,22 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
                 d1 = DateTime.Now.AddDays(1).ToString("yyyy-MM-dd");
                 d2 = DateTime.Now.AddDays(3).ToString("yyyy-MM-dd");
             }
-            else if (danas == "Saturday")
+            if (danas == "Saturday")
             {
                 d = DateTime.Now.ToString("yyyy-MM-dd");
                 d1 = DateTime.Now.AddDays(2).ToString("yyyy-MM-dd");
                 d2 = DateTime.Now.AddDays(3).ToString("yyyy-MM-dd");
             }
-            else
+            if (danas!="Saturday" || danas!="Friday")
             {
                 d = DateTime.Now.ToString("yyyy-MM-dd");
                 d1 = DateTime.Now.AddDays(1).ToString("yyyy-MM-dd");
                 d2 = DateTime.Now.AddDays(2).ToString("yyyy-MM-dd");
             }
 
-
-            var q1="select PrSifMp as MP,MpStaraSif as Sifra,MpNaziv as Naziv,PrSifSklad as Skladiste,0-(Sum(PrPRevKol)-Sum(PrIzdKol)) as Potrebno " +
-                           "from Promet " +
-                           "inner join MaticniPodatki on Promet.PrSifMp=MaticniPodatki.MpSifra " +
-                           "Where PrDatTrans<='"+d+"' and PrSifSklad in (13,14) " +
-                           "Group by PrSifMp,MpStaraSif,MpNaziv,PrSifSklad " +
-                           "Having (Sum(PrPRevKol)-Sum(PrIzdKol))<0 " +
-                           "order by PrSifSklad asc";
-
-            SqlConnection conn = new SqlConnection(connect);
-            var da = new SqlDataAdapter(q1, conn);
-            var ds = new DataSet();
-            da.Fill(ds);
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
-
-            var q2 = "select PrSifMp as MP, MpStaraSif as Sifra, MpNaziv as Naziv, PrSifSklad as Skladiste, 0-(Sum(PrPRevKol)-Sum(PrIzdKol)) as Potrebno " +
-         "from Promet " +
-         "inner join MaticniPodatki on Promet.PrSifMp=MaticniPodatki.MpSifra " +
-         "Where PrDatTrans<='" + d1 + "' and PrSifSklad in (13,14) " +
-         "Group by PrSifMp, MpStaraSif, MpNaziv, PrSifSklad " +
-         "Having (Sum(PrPRevKol)-Sum(PrIzdKol))<0 " +
-         "order by PrSifSklad asc";
-
-            var da2 = new SqlDataAdapter(q2, conn);
-            var ds2 = new DataSet();
-            da2.Fill(ds2);
-            dataGridView2.ReadOnly = true;
-            dataGridView2.DataSource = ds2.Tables[0];
-
-
-            SqlCommand cmd2 = new SqlCommand(q2, conn);
-            List<PocetniDatum> poc = new List<PocetniDatum>();
-            conn.Open();
-            using (SqlDataReader dr2 = cmd2.ExecuteReader())
-            {
-                while (dr2.Read())
-                {
-                    var pocetniDatum = new PocetniDatum
-                    {
-                        MP = Convert.ToInt32(dr2["MP"].ToString()),
-                        Sifra = dr2["Sifra"].ToString().TrimEnd(),
-                        Naziv = dr2["Naziv"].ToString().TrimEnd(),
-                        Skladiste = Convert.ToInt32(dr2["Skladiste"].ToString()),
-                        Potrebno = Convert.ToDecimal(dr2["Potrebno"].ToString())
-                    };
-                    poc.Add(pocetniDatum);
-                }
-            }
-            conn.Close();
-
-            var q3 = "select PrSifMp as MP, MpStaraSif as Sifra, MpNaziv as Naziv, PrSifSklad as Skladiste, 0-(Sum(PrPRevKol)-Sum(PrIzdKol)) as Potrebno " +
-                     "from Promet " +
-                     "inner join MaticniPodatki on Promet.PrSifMp=MaticniPodatki.MpSifra " +
-                     "Where PrDatTrans<='" + d2 + "' and PrSifSklad in (13,14) " +
-                     "Group by PrSifMp, MpStaraSif, MpNaziv, PrSifSklad " +
-                     "Having (Sum(PrPRevKol)-Sum(PrIzdKol))<0 " +
-                     "order by PrSifSklad asc";
-            SqlCommand cmd3 = new SqlCommand(q3, conn);
-            List<IzabraniDatum> izabrani = new List<IzabraniDatum>();
-            conn.Open();
-            using (SqlDataReader dr3 = cmd3.ExecuteReader())
-            {
-                while (dr3.Read())
-                {
-                    var izabraniDatum = new IzabraniDatum
-                    {
-                        MP = Convert.ToInt32(dr3["MP"].ToString()),
-                        Sifra = dr3["Sifra"].ToString().TrimEnd(),
-                        Naziv = dr3["Naziv"].ToString().TrimEnd(),
-                        Skladiste = Convert.ToInt32(dr3["Skladiste"].ToString()),
-                        Potrebno = Convert.ToDecimal(dr3["Potrebno"].ToString())
-                    };
-                    izabrani.Add(izabraniDatum);
-                }
-            }
-            conn.Close();
-
-            var pocetniDatumDic = new Dictionary<int, decimal>();
-            foreach (var pd in poc)
-            {
-                if (!pocetniDatumDic.ContainsKey(pd.MP))
-                {
-                    pocetniDatumDic[pd.MP] = pd.Potrebno;
-                }
-            }
-            foreach (var iz in izabrani)
-            {
-                if (pocetniDatumDic.TryGetValue(iz.MP, out decimal pocetniPotrebno))
-                {
-                    if (poc[0].Skladiste == iz.Skladiste)
-                    {
-                        iz.Potrebno -= pocetniPotrebno;
-                    }
-                }
-            }
-            dataGridView3.DataSource = izabrani;
+            FillListDanas();
+            FillDanPrvi();
+            FillDrugiDan();
 
             GVStyle();
         }
