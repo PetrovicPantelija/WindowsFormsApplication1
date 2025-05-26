@@ -43,9 +43,16 @@
             this.btnObrisi = new System.Windows.Forms.Button();
             this.btnDanas = new System.Windows.Forms.Button();
             this.btnKolicine = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.txtArtikal = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btnPotvrda = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -210,7 +217,7 @@
             // 
             // btnKolicine
             // 
-            this.btnKolicine.Location = new System.Drawing.Point(1476, 15);
+            this.btnKolicine.Location = new System.Drawing.Point(1490, 15);
             this.btnKolicine.Name = "btnKolicine";
             this.btnKolicine.Size = new System.Drawing.Size(91, 34);
             this.btnKolicine.TabIndex = 12;
@@ -218,12 +225,72 @@
             this.btnKolicine.UseVisualStyleBackColor = true;
             this.btnKolicine.Click += new System.EventHandler(this.btnKolicine_Click);
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.txtArtikal);
+            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.btnPotvrda);
+            this.panel1.Location = new System.Drawing.Point(1056, 73);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(631, 596);
+            this.panel1.TabIndex = 13;
+            // 
+            // txtArtikal
+            // 
+            this.txtArtikal.Location = new System.Drawing.Point(311, 31);
+            this.txtArtikal.Name = "txtArtikal";
+            this.txtArtikal.Size = new System.Drawing.Size(100, 20);
+            this.txtArtikal.TabIndex = 9;
+            // 
+            // button2
+            // 
+            this.button2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button2.Location = new System.Drawing.Point(517, 19);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(91, 40);
+            this.button2.TabIndex = 8;
+            this.button2.Text = "Nazad";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label6.Location = new System.Drawing.Point(308, 15);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(75, 13);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "Pronađi artikal";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label5.Location = new System.Drawing.Point(16, 31);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(160, 13);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "Raspored pakovanja i realizacije";
+            // 
+            // btnPotvrda
+            // 
+            this.btnPotvrda.BackColor = System.Drawing.Color.DarkOrange;
+            this.btnPotvrda.Location = new System.Drawing.Point(420, 19);
+            this.btnPotvrda.Name = "btnPotvrda";
+            this.btnPotvrda.Size = new System.Drawing.Size(91, 40);
+            this.btnPotvrda.TabIndex = 5;
+            this.btnPotvrda.Text = "Potvrdi rezervacije";
+            this.btnPotvrda.UseVisualStyleBackColor = false;
+            // 
             // NamenskoPakovanje
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.ForestGreen;
             this.ClientSize = new System.Drawing.Size(1812, 704);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnKolicine);
             this.Controls.Add(this.btnDanas);
             this.Controls.Add(this.btnObrisi);
@@ -245,6 +312,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -267,5 +336,11 @@
         private System.Windows.Forms.Button btnObrisi;
         private System.Windows.Forms.Button btnDanas;
         private System.Windows.Forms.Button btnKolicine;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox txtArtikal;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnPotvrda;
     }
 }

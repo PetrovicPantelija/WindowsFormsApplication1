@@ -36,11 +36,12 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.pravaSkladišteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.prijemniceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.prijemnicaponoviPrijemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statistikaPrijemaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.promenaLokacijeMPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.prijemnicaponoviPrijemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.trebovanjaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.refresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -92,6 +93,7 @@
             // 
             this.menuStrip1.BackColor = System.Drawing.Color.DarkOrange;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.refresToolStripMenuItem,
             this.pravaSkladišteToolStripMenuItem,
             this.prijemniceToolStripMenuItem,
             this.prijemnicaponoviPrijemToolStripMenuItem,
@@ -121,6 +123,15 @@
             this.prijemniceToolStripMenuItem.Size = new System.Drawing.Size(90, 24);
             this.prijemniceToolStripMenuItem.Text = "Prijemnice";
             // 
+            // prijemnicaponoviPrijemToolStripMenuItem
+            // 
+            this.prijemnicaponoviPrijemToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.prijemnicaponoviPrijemToolStripMenuItem.ForeColor = System.Drawing.Color.ForestGreen;
+            this.prijemnicaponoviPrijemToolStripMenuItem.Name = "prijemnicaponoviPrijemToolStripMenuItem";
+            this.prijemnicaponoviPrijemToolStripMenuItem.Size = new System.Drawing.Size(189, 24);
+            this.prijemnicaponoviPrijemToolStripMenuItem.Text = "Prijemnica-ponovi prijem";
+            this.prijemnicaponoviPrijemToolStripMenuItem.Click += new System.EventHandler(this.prijemnicaponoviPrijemToolStripMenuItem_Click);
+            // 
             // statistikaPrijemaToolStripMenuItem
             // 
             this.statistikaPrijemaToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -139,20 +150,6 @@
             this.promenaLokacijeMPToolStripMenuItem.Text = "Promena lokacije MP";
             this.promenaLokacijeMPToolStripMenuItem.Click += new System.EventHandler(this.promenaLokacijeMPToolStripMenuItem_Click);
             // 
-            // timer1
-            // 
-            this.timer1.Interval = 300000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // prijemnicaponoviPrijemToolStripMenuItem
-            // 
-            this.prijemnicaponoviPrijemToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.prijemnicaponoviPrijemToolStripMenuItem.ForeColor = System.Drawing.Color.ForestGreen;
-            this.prijemnicaponoviPrijemToolStripMenuItem.Name = "prijemnicaponoviPrijemToolStripMenuItem";
-            this.prijemnicaponoviPrijemToolStripMenuItem.Size = new System.Drawing.Size(189, 24);
-            this.prijemnicaponoviPrijemToolStripMenuItem.Text = "Prijemnica-ponovi prijem";
-            this.prijemnicaponoviPrijemToolStripMenuItem.Click += new System.EventHandler(this.prijemnicaponoviPrijemToolStripMenuItem_Click);
-            // 
             // trebovanjaToolStripMenuItem
             // 
             this.trebovanjaToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11.25F);
@@ -161,6 +158,20 @@
             this.trebovanjaToolStripMenuItem.Size = new System.Drawing.Size(94, 24);
             this.trebovanjaToolStripMenuItem.Text = "Trebovanja";
             this.trebovanjaToolStripMenuItem.Click += new System.EventHandler(this.trebovanjaToolStripMenuItem_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 300000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // refresToolStripMenuItem
+            // 
+            this.refresToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.refresToolStripMenuItem.ForeColor = System.Drawing.Color.ForestGreen;
+            this.refresToolStripMenuItem.Name = "refresToolStripMenuItem";
+            this.refresToolStripMenuItem.Size = new System.Drawing.Size(70, 24);
+            this.refresToolStripMenuItem.Text = "Refresh";
+            this.refresToolStripMenuItem.Click += new System.EventHandler(this.refresToolStripMenuItem_Click);
             // 
             // Pregled
             // 
@@ -201,5 +212,6 @@
         private System.Windows.Forms.ToolStripMenuItem promenaLokacijeMPToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem prijemnicaponoviPrijemToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem trebovanjaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem refresToolStripMenuItem;
     }
 }

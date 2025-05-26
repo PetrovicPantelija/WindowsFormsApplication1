@@ -425,7 +425,7 @@ namespace WindowsFormsApplication1.Barcode
             int PrStDok = stat.GetPrStDok();
             foreach (var i in mspList)
             {
-                stat.InsertPrometTransPos(comboBox1.SelectedValue.ToString(), DateTime.Now, PrStDok, i.RB, i.SifSkladIz, i.LokacIz, i.MP, i.Uzeto, i.Ulozeno, i.SifSkladU, i.LokacU,"MS","MSP","002");
+                stat.InsertPrometTransPos(comboBox1.SelectedValue.ToString(), DateTime.Now, PrStDok, i.RB, i.SifSkladIz, i.LokacIz, i.MP, i.Uzeto, i.Ulozeno, i.SifSkladU, i.LokacU,"MS","MSP","303");
                 stat.UpdateUzimanje(i.IDUzimanja, PrStDok);
                 stat.UpdateUlaganje(i.IDUlaganja, PrStDok);
             }

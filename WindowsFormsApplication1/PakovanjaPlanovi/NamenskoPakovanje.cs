@@ -137,11 +137,6 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
 
 
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void brnDodaj_Click(object sender, EventArgs e)
         {
             InsertPakovanja ins = new InsertPakovanja();

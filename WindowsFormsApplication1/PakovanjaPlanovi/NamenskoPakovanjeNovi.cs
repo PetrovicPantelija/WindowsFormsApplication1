@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.IO;
+using Antlr.Runtime.Misc;
 
 namespace WindowsFormsApplication1.PakovanjaPlanovi
 {
@@ -32,6 +33,7 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
         {
             InitializeComponent();
             ID = id;
+            groupBox1.Visible = false;
         }
         public class Danas
         {
@@ -506,6 +508,59 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
                     dataGridView4.Columns[7].HeaderText = "Status";
                     dataGridView4.Columns[7].Width = 50;
                     dataGridView4.Columns[8].HeaderText = "Datum";
+                }
+            }
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            groupBox1.Visible = true;
+            var query2 = "select ID,RNBroj,Artikal,Kod,KolicinaZaProizvodnju,RasporedPakovanja from StavkePlanaPakovanja Where IDPlanPakovanja=" + ID + " order by RasporedPakovanja";
+            SqlConnection conn = new SqlConnection(connect);
+            var da2 = new SqlDataAdapter(query2, conn);
+            var ds2 = new DataSet();
+            da2.Fill(ds2);
+            dataGridView6.DataSource = ds2.Tables[0];
+            dataGridView6.ForeColor = Color.Black;
+
+            dataGridView6.BorderStyle = BorderStyle.Fixed3D;
+            dataGridView6.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
+            dataGridView6.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView6.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView6.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView6.BackgroundColor = Color.FromArgb(125, 158, 192);
+            dataGridView6.RowHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.TopLeft;
+
+            dataGridView6.EnableHeadersVisualStyles = false;
+            dataGridView6.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Sunken;
+            dataGridView6.ColumnHeadersDefaultCellStyle.BackColor = Color.DarkOrange;
+            dataGridView6.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            dataGridView6.Columns[0].Width = 50;
+            dataGridView6.Columns[1].Width = 60;
+            dataGridView6.Columns[2].Width = 60;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            groupBox1.Visible = false;
+        }
+
+        private void btnPotvrda_Click(object sender, EventArgs e)
+        {
+            InsertPakovanja ins = new InsertPakovanja();
+            foreach (DataGridViewRow row in dataGridView6.Rows)
+            {
+                int id = Convert.ToInt32(row.Cells[0].Value);
+                int raspored = Convert.ToInt32(row.Cells["RasporedPakovanja"].Value);
+                if (raspored > 0)
+                {
+                    ins.UpisiRaspored(id, raspored);
+                }
+                else
+                {
+                    MessageBox.Show("Mora se upisati pozicija pakovanja!");
+                    return;
                 }
             }
         }

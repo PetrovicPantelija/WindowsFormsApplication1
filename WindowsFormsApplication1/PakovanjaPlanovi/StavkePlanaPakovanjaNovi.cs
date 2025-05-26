@@ -69,7 +69,7 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
         {
             var query = "SELECT ID,IDPlanPakovanja,RNBroj,StatusRN,VrstaRN,Artikal,Kod,Naziv,KolicinaZaProizvodnju,PlaniraniKrajnjiDatumZavrsetka,Termin,Planer,RasporedPakovanja as Raspored " +
                 "FROM StavkePlanaPakovanja " +
-                "WHERE IDPlanPakovanja=" + IdPakovanja+" order by PlaniraniKrajnjiDatumZavrsetka asc";
+                "WHERE IDPlanPakovanja=" + IdPakovanja+" order by RNBroj asc";
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();
@@ -384,8 +384,24 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
 
         private void btnRealizacija_Click(object sender, EventArgs e)
         {
-            RealizacijaPlanaPakovanja frm = new RealizacijaPlanaPakovanja(IdPakovanja);
-            frm.Show();
+            try
+            {
+                InsertPakovanja ins = new InsertPakovanja();
+                int RB = 1;
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    int id = Convert.ToInt32(row.Cells["ID"].Value);
+                    ins.UpisiRaspored(id, RB);
+                    RB++;
+                }
+                RealizacijaPlanaPakovanja frm = new RealizacijaPlanaPakovanja(IdPakovanja);
+                frm.Show();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                return;
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -439,6 +455,11 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
         {
             RedovnoPakovanjeIzvestaj frm = new RedovnoPakovanjeIzvestaj(IdPakovanja);
             frm.Show();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

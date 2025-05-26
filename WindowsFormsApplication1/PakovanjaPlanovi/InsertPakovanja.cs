@@ -88,6 +88,39 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
                 conn.Close();
             }
         }
+
+        public void ResetRezervacija(int ID)
+        {
+            using (SqlConnection conn = new SqlConnection(connect))
+            {
+                conn.Open();
+                using (SqlTransaction transaction = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        using (SqlCommand cmd = conn.CreateCommand())
+                        {
+                            cmd.Transaction = transaction;
+                            cmd.CommandText = "ResetRezervisano";
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.Add(new SqlParameter("@ID", SqlDbType.Int) { Value = ID });
+
+
+                            cmd.ExecuteNonQuery();
+                        }
+                        transaction.Commit();
+                    }
+                    catch (SqlException ex)
+                    {
+                        transaction.Rollback();
+                        MessageBox.Show("Neuspešan upis u bazu", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(ex.ToString());
+                    }
+                }
+                conn.Close();
+            }
+        }
         public void DeletePlanPakovanja(int ID)
         {
             using (SqlConnection conn = new SqlConnection(connect))

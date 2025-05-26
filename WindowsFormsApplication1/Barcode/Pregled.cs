@@ -198,5 +198,10 @@ namespace WindowsFormsApplication1.Barcode
             Trebovanja frm = new Trebovanja();
             frm.Show();
         }
+
+        private void refresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FillPrijemnice();
+        }
     }
 }

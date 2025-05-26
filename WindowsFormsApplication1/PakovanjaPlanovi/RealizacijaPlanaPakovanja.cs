@@ -109,11 +109,11 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
 
             GetChecked();
 
-            var query2 = "Select IDStavkePlanaPakovanja,RN,StatusStavke,ArtikalIzPrvogNivoaSastavnice,RTrim(MpStaraSif),(PotrebnaKolicina-RezervisanaKolicinaPoPlanu) as PotrebnaKolicina,TrenutnaKolicinaNaZalihama,PregledStavkiPlanaPakovanja.ID as ID " +
+            var query2 = "Select IDStavkePlanaPakovanja,RN,StatusStavke,ArtikalIzPrvogNivoaSastavnice,RTrim(MpStaraSif),(PotrebnaKolicina-RezervisanaKolicinaPoPlanu) as PotrebnaKolicina,TrenutnaKolicinaNaZalihama,PregledStavkiPlanaPakovanja.ID as ID,(PotrebnaKolicina-RezervisanaKolicinaPoPlanu-TrenutnaKolicinaNaZalihama) as Potrebno  " +
                 "From PregledStavkiPlanaPakovanja " +
                 "Inner join StavkePlanaPakovanja on PregledStavkiPlanaPakovanja.IDStavkePlanaPakovanja=StavkePlanaPakovanja.ID " +
                 "inner join MaticniPodatki on PregledStavkiPlanaPakovanja.ArtikalIzPrvogNivoaSastavnice=MaticniPodatki.MpSifra " +
-                "Where (TrenutnaKolicinaNaZalihama<PotrebnaKolicina and PotrebnaKolicina>RezervisanaKolicinaPoPlanu) and MaticniPodatki.MpOsnSklad in ("+pomMagacini+") And IDPlanPakovanja=" + planPakovanja+" order by PregledStavkiPlanaPakovanja.ID asc";
+                "Where (TrenutnaKolicinaNaZalihama<PotrebnaKolicina and PotrebnaKolicina>RezervisanaKolicinaPoPlanu) and MaticniPodatki.MpOsnSklad in ("+pomMagacini+") And IDPlanPakovanja=" + planPakovanja+ " order by StavkePlanaPakovanja.RasporedPakovanja asc,IDStavkePlanaPakovanja asc";
             var da2=new SqlDataAdapter(query2, conn);
             var ds2=new DataSet();
             da2.Fill(ds2);
@@ -142,11 +142,12 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
             dataGridView3.Columns[3].Width = 100;
             dataGridView3.Columns[4].HeaderText = "Kod";
             dataGridView3.Columns[4].Width = 130;
-            dataGridView3.Columns[5].HeaderText = "Potrebna kolicina";
+            dataGridView3.Columns[5].HeaderText = "Potrebna kolicina po planu";
             dataGridView3.Columns[5].Width = 80;
             dataGridView3.Columns[6].HeaderText = "Stanje";
             dataGridView3.Columns[6].Width = 80;
             dataGridView3.Columns["ID"].Visible = false;
+            dataGridView3.Columns["Potrebno"].Width = 80;
             
             List<int> stavke = new List<int>();
             foreach (DataGridViewRow row in dataGridView1.Rows)
@@ -504,7 +505,7 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
                 int id = Convert.ToInt32(row[0]);
                 int idS = Convert.ToInt32(row[1]);
                 int artikal = Convert.ToInt32(row[2]);
-
+                ins.ResetRezervacija(id);
                 ins.RezervacijaPoRasporedu(id, idS, artikal);
                 frm.IncrementProgressBar();
             }
