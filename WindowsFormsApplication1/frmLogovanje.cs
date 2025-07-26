@@ -121,6 +121,7 @@ namespace WindowsFormsApplication1
             }
                 reader.Close();
                 myConnection.Close();
+
             
         }
         private void button2_Click(object sender, EventArgs e)

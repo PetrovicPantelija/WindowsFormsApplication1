@@ -95,34 +95,34 @@ namespace WindowsFormsApplication1.Barcode
                             }
                         }
 
-                        cmd.CommandText = "select Count(ID) as Odbacena From BarcodeLog Where Oznaka=@ID and Dokument='Prijemnica-odbaci'";
+                        cmd.CommandText = "select IsNull(Count(ID),0) as Odbacena From BarcodeLog Where Oznaka=@ID and Dokument='Prijemnica-odbaci'";
                         int odbacena = (int)cmd.ExecuteScalar();
 
-                        cmd.CommandText = "select Korisnik from BarcodeLog Where Oznaka=@ID and Dokument='Prijemnica-odbaci'";
+                        cmd.CommandText = "select IsNull(Korisnik,'') from BarcodeLog Where Oznaka=@ID and Dokument='Prijemnica-odbaci'";
                         string odbacio = (string)cmd.ExecuteScalar();
 
-                        cmd.CommandText = "select Min(Datum) as Pocetak from BarcodeLog Where Oznaka=@ID and Dokument='Prijemnica'";
+                        cmd.CommandText = "select IsNull(Min(Datum),'1900-01-01') as Pocetak from BarcodeLog Where Oznaka=@ID and Dokument='Prijemnica'";
                         DateTime pocetak = (DateTime)cmd.ExecuteScalar();
 
-                        cmd.CommandText = "select MAX(Datum) as Pocetak from BarcodeLog Where Oznaka=@ID and Dokument='Prijemnica'";
+                        cmd.CommandText = "select IsNull(MAX(Datum),'1900-01-01') as Pocetak from BarcodeLog Where Oznaka=@ID and Dokument='Prijemnica'";
                         DateTime kraj = (DateTime)cmd.ExecuteScalar();
 
-                        cmd.CommandText = "SELECT CAST(DATEDIFF(MINUTE, MIN(Datum), MAX(Datum)) / 60 AS VARCHAR) + 'h ' + CAST(DATEDIFF(MINUTE, MIN(Datum), MAX(Datum)) % 60 AS VARCHAR) + 'min' FROM BarcodeLog WHERE Oznaka = @ID AND Dokument = 'Prijemnica'";
+                        cmd.CommandText = "SELECT IsNULL(CAST(DATEDIFF(MINUTE, MIN(Datum), MAX(Datum)) / 60 AS VARCHAR) + 'h ' + CAST(DATEDIFF(MINUTE, MIN(Datum), MAX(Datum)) % 60 AS VARCHAR) + 'min',0) FROM BarcodeLog WHERE Oznaka = @ID AND Dokument = 'Prijemnica'";
                         string vremePrijema = (string)cmd.ExecuteScalar();
 
-                        cmd.CommandText = "select count(Kolicina2-NprPkolPre) from NPreP Where (Kolicina2-NprPkolPre)=0 and NPrPStPre=@ID";
+                        cmd.CommandText = "select IsNULL(count(Kolicina2-NprPkolPre),'') from NPreP Where (Kolicina2-NprPkolPre)=0 and NPrPStPre=@ID";
                         int primljeno = (int)cmd.ExecuteScalar();
 
-                        cmd.CommandText = "select count(Kolicina2-NprPkolPre) from NPreP Where (Kolicina2-NprPkolPre)>0 and NPrPStPre=@ID";
+                        cmd.CommandText = "select IsNULL(count(Kolicina2-NprPkolPre),'') from NPreP Where (Kolicina2-NprPkolPre)>0 and NPrPStPre=@ID";
                         int primljenoVise = (int)cmd.ExecuteScalar();
 
-                        cmd.CommandText = "select count(Kolicina2-NprPkolPre) from NPreP Where (Kolicina2-NprPkolPre)<0 and NPrPStPre=@ID";
+                        cmd.CommandText = "select ISNull(count(Kolicina2-NprPkolPre),0) from NPreP Where (Kolicina2-NprPkolPre)<0 and NPrPStPre=@ID";
                         int primljenoManje = (int)cmd.ExecuteScalar();
 
-                        cmd.CommandText = "Select Min(Datum) from BarcodeLog Where Oznaka=@ID and Dokument='Uzimanje iz prijemnice'";
+                        cmd.CommandText = "Select ISNull(Min(Datum),'1900-01-01') from BarcodeLog Where Oznaka=@ID and Dokument='Uzimanje iz prijemnice'";
                         DateTime uzimanje= (DateTime)cmd.ExecuteScalar();
 
-                        cmd.CommandText = "Select Max(Datum) from BarcodeLog Where Oznaka=@ID and Dokument='Ulaganje iz prijemnice'";
+                        cmd.CommandText = "Select ISNull(Max(Datum),'1900-01-01') from BarcodeLog Where Oznaka=@ID and Dokument='Ulaganje iz prijemnice'";
                         DateTime ulaganje = (DateTime)cmd.ExecuteScalar();
 
                         TimeSpan vremeUzimanja = ulaganje - uzimanje;

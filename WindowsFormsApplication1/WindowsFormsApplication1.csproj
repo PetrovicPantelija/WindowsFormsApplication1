@@ -61,7 +61,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>false</Prefer32Bit>
+    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -69,10 +69,10 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
-    <PlatformTarget>ARM64</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>false</Prefer32Bit>
+    <Prefer32Bit>true</Prefer32Bit>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup>
@@ -632,6 +632,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Jela_TestDataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Jela_TestDataSet10.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Jela_TestDataSet10.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Jela_TestDataSet2.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -666,6 +671,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Jela_TestDataSet8.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Jela_TestDataSet9.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Jela_TestDataSet9.xsd</DependentUpon>
     </Compile>
     <Compile Include="Kalkulacije\frmBazaProdajnihCena.cs">
       <SubType>Form</SubType>
@@ -1099,6 +1109,12 @@
     </Compile>
     <Compile Include="PakovanjaPlanovi\MainPakovanje.Designer.cs">
       <DependentUpon>MainPakovanje.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PakovanjaPlanovi\NalogKomplet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PakovanjaPlanovi\NalogKomplet.Designer.cs">
+      <DependentUpon>NalogKomplet.cs</DependentUpon>
     </Compile>
     <Compile Include="PakovanjaPlanovi\NalogPaneliSVI.cs">
       <SubType>Form</SubType>
@@ -2015,8 +2031,12 @@
     <EmbeddedResource Include="PakovanjaPlanovi\KompletiPaket.resx">
       <DependentUpon>KompletiPaket.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PakovanjaPlanovi\KompletiranoRpt.rdlc" />
     <EmbeddedResource Include="PakovanjaPlanovi\MainPakovanje.resx">
       <DependentUpon>MainPakovanje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PakovanjaPlanovi\NalogKomplet.resx">
+      <DependentUpon>NalogKomplet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PakovanjaPlanovi\NalogPaneli.rdlc" />
     <EmbeddedResource Include="PakovanjaPlanovi\NalogPaneliSVI.resx">
@@ -2485,6 +2505,17 @@
     <None Include="Jela_TestDataSet1.xss">
       <DependentUpon>Jela_TestDataSet1.xsd</DependentUpon>
     </None>
+    <None Include="Jela_TestDataSet10.xsc">
+      <DependentUpon>Jela_TestDataSet10.xsd</DependentUpon>
+    </None>
+    <None Include="Jela_TestDataSet10.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Jela_TestDataSet10.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Jela_TestDataSet10.xss">
+      <DependentUpon>Jela_TestDataSet10.xsd</DependentUpon>
+    </None>
     <None Include="Jela_TestDataSet2.xsc">
       <DependentUpon>Jela_TestDataSet2.xsd</DependentUpon>
     </None>
@@ -2561,6 +2592,17 @@
     </None>
     <None Include="Jela_TestDataSet8.xss">
       <DependentUpon>Jela_TestDataSet8.xsd</DependentUpon>
+    </None>
+    <None Include="Jela_TestDataSet9.xsc">
+      <DependentUpon>Jela_TestDataSet9.xsd</DependentUpon>
+    </None>
+    <None Include="Jela_TestDataSet9.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Jela_TestDataSet9.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Jela_TestDataSet9.xss">
+      <DependentUpon>Jela_TestDataSet9.xsd</DependentUpon>
     </None>
     <None Include="MyDataSet.xsc">
       <DependentUpon>MyDataSet.xsd</DependentUpon>

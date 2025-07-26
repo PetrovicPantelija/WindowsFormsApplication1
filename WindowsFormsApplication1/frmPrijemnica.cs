@@ -15,6 +15,7 @@ using System.Net.Mail;
 //using ClosedXML.Excel;
 
 using Microsoft.Reporting.WinForms;
+using DocumentFormat.OpenXml.Office2010.Excel;
 
 namespace WindowsFormsApplication1
 {
@@ -122,24 +123,31 @@ namespace WindowsFormsApplication1
         }
         private void frmPrijemnica_Load(object sender, EventArgs e)
         {
-          
-        
+
+
         }
 
         private void cboPrijemnica_Leave(object sender, EventArgs e)
         {
-            
+
         }
 
         private void RefreshDataGrid1()
-            {
-           
-            var select = " select Distinct NPrPPreZap as ID, NPrPSifra as Sifra, MaticniPodatki.MpStaraSif ,NPrPEM as JM, NPrPKolPre as KOL, kolicina2, NPrPSifSkl as Skladiste, " +
+        {
+
+            /*var select = " select Distinct NPrPPreZap as ID, NPrPSifra as Sifra, MaticniPodatki.MpStaraSif ,NPrPEM as JM, NPrPKolPre as KOL, kolicina2, NPrPSifSkl as Skladiste, " +
                " NPrPLokac  as Lokacija, Lokac.LokOpis from NPreP " +
                 " inner join MAticniPodatki on MaticniPodatki.MpSifra = nprep.nPrPSifra " +
                  "    inner Join Lokac on Lokac.LokSifra = nprep. NPrPLokac " +
-               " where NPrPStPre = " + Convert.ToInt32(cboPrijemnica.SelectedValue);
-           
+               " where NPrPStPre = " + Convert.ToInt32(cboPrijemnica.SelectedValue);*/
+
+            var select = "select NPrPPreZap,NPrPStPos,NPrPSifra,NPrPNaziv,NPrPEM,NPrPkolPre,NPrPSifSkl,sklad.SkNaziv as sklad,NPrPLokac,ISNULL(Kolicina2,0) as Kolicina2 " +
+                "from NPre " +
+                "inner join NPreP on Npre.NPrStPre = NPrep.NPrPStPre " +
+                "inner join Sklad on NPrep.NPrPSifSkl = sklad.SkSifra " +
+                "Where NPrStPre=" + Convert.ToInt32(cboPrijemnica.SelectedValue);
+
+
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -154,26 +162,26 @@ namespace WindowsFormsApplication1
 
             DataGridViewColumn column = dataGridView1.Columns[0];
             dataGridView1.Columns[0].HeaderText = "ID";
-            dataGridView1.Columns[0].Width = 30;
-                
+            dataGridView1.Columns[0].Width = 50;
+
             DataGridViewColumn column1 = dataGridView1.Columns[1];
-            dataGridView1.Columns[1].HeaderText = "Sifra";
-            dataGridView1.Columns[1].Width = 30;
+            dataGridView1.Columns[1].HeaderText = "RB";
+            dataGridView1.Columns[1].Width = 50;
 
             DataGridViewColumn column2 = dataGridView1.Columns[2];
-            dataGridView1.Columns[2].HeaderText = "Kod";
-            dataGridView1.Columns[2].Width = 130;
+            dataGridView1.Columns[2].HeaderText = "MP";
+            dataGridView1.Columns[2].Width = 50;
 
             DataGridViewColumn column3 = dataGridView1.Columns[3];
-            dataGridView1.Columns[3].HeaderText = "JM";
-            dataGridView1.Columns[3].Width = 30;
+            dataGridView1.Columns[3].HeaderText = "Kod";
+            dataGridView1.Columns[3].Width = 150;
 
             DataGridViewColumn column4 = dataGridView1.Columns[4];
-            dataGridView1.Columns[4].HeaderText = "Kol";
+            dataGridView1.Columns[4].HeaderText = "JM";
             dataGridView1.Columns[4].Width = 50;
 
             DataGridViewColumn column5 = dataGridView1.Columns[5];
-            dataGridView1.Columns[5].HeaderText = "Kol uneta";
+            dataGridView1.Columns[5].HeaderText = "Kol sa dokumneta";
             dataGridView1.Columns[5].Width = 50;
 
             DataGridViewColumn column6 = dataGridView1.Columns[6];
@@ -181,57 +189,63 @@ namespace WindowsFormsApplication1
             dataGridView1.Columns[6].Width = 50;
 
             DataGridViewColumn column7 = dataGridView1.Columns[7];
-            dataGridView1.Columns[7].HeaderText = "Lokac";
+            dataGridView1.Columns[7].HeaderText = "sklad opis";
             dataGridView1.Columns[7].Width = 100;
 
             DataGridViewColumn column8 = dataGridView1.Columns[8];
-            dataGridView1.Columns[8].HeaderText = "Lokac opis";
+            dataGridView1.Columns[8].HeaderText = "Lokac";
             dataGridView1.Columns[8].Width = 100;
-            
+
+            DataGridViewColumn column9 = dataGridView1.Columns[8];
+            dataGridView1.Columns[9].HeaderText = "Kol primljena";
+            dataGridView1.Columns[9].Width = 100;
+
+
+
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
 
                 decimal pomizmerena = 0;
-                if (row.Cells[5].Value.ToString() == "")
+                if (row.Cells[9].Value.ToString() == "")
                 {
                     pomizmerena = 0;
                 }
-                else if (row.Cells[5].Value.ToString() == "null")
+                else if (row.Cells[9].Value.ToString() == "null")
                 {
-                   pomizmerena = 0; 
+                    pomizmerena = 0;
                 }
                 else
                 {
-                pomizmerena = Convert.ToDecimal(row.Cells[5].Value.ToString());
+                    pomizmerena = Convert.ToDecimal(row.Cells[9].Value.ToString());
                 }
 
-               decimal Kolicina = Convert.ToDecimal(row.Cells[4].Value.ToString());
-             //  decimal Izmerena = Convert.ToDecimal(row.Cells[5].Value.ToString());
-               decimal Razlika = Kolicina - pomizmerena;
-                if (Razlika  == 0)
+                decimal Kolicina = Convert.ToDecimal(row.Cells[5].Value.ToString());
+                //  decimal Izmerena = Convert.ToDecimal(row.Cells[5].Value.ToString());
+                decimal Razlika = Kolicina - pomizmerena;
+                if (Razlika == 0)
                 {
-                    row.DefaultCellStyle.BackColor = Color.Green;
-                    row.DefaultCellStyle.SelectionBackColor = Color.Green;
+                    row.DefaultCellStyle.BackColor = System.Drawing.Color.Green;
+                    row.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Green;
                 }
-                else if (Razlika>0)
+                else if (Razlika > 0)
                 {
-                    row.DefaultCellStyle.BackColor = Color.Red;
-                    row.DefaultCellStyle.SelectionBackColor = Color.Red;
+                    row.DefaultCellStyle.BackColor = System.Drawing.Color.Red;
+                    row.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Red;
                 }
                 else if (Razlika < 0)
                 {
-                    row.DefaultCellStyle.BackColor = Color.LightBlue;
-                    row.DefaultCellStyle.SelectionBackColor = Color.LightBlue;
+                    row.DefaultCellStyle.BackColor = System.Drawing.Color.LightBlue;
+                    row.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.LightBlue;
                 }
             }
-             
+
             dataGridView1.Refresh();
 
         }
 
         private void btnPrihvatiIzmene_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void frmPrijemnica_Load_1(object sender, EventArgs e)
@@ -255,29 +269,29 @@ namespace WindowsFormsApplication1
 
         private void cboPrijemnica_Leave_1(object sender, EventArgs e)
         {
-           // RefreshDataGrid1();
+            // RefreshDataGrid1();
         }
 
         private void btnPrihvatiIzmene_Click_1(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            using (SqlConnection conn = new SqlConnection(connect))
             {
-                if (row.Selected)
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("Update NPreP Set Kolicina2=0,RobuPrimio=@korisnik,NPrPVpisalDat=GetDate() Where NprpStpre=@id", conn))
                 {
-                    InsertPrijemnica ins = new InsertPrijemnica();
-                    ins.UpdatePrijemnicaKOlicina(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToDouble(row.Cells[5].Value.ToString()));
-
+                    cmd.Parameters.AddWithValue("@id", Convert.ToInt32(cboPrijemnica.SelectedValue));
+                    cmd.Parameters.AddWithValue("@korisnik", Kor);
+                    cmd.ExecuteNonQuery();
                 }
+                conn.Close();
             }
-
-            MessageBox.Show("Završena je izmena stavki");
         }
 
         private void cboPrijemnica_SelectedIndexChanged(object sender, EventArgs e)
         {
-           if (usao == 1)
-            { 
-            RefreshDataGrid1();
+            if (usao == 1)
+            {
+                RefreshDataGrid1();
             }
         }
 
@@ -318,7 +332,27 @@ namespace WindowsFormsApplication1
                 RefreshDataGrid1();
             }
         }
+        private string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+            using (SqlConnection conn = new SqlConnection(connect))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = "Update Npre Set Ucitana=0 WHere NPrStPre=@ID";
+                    cmd.Parameters.AddWithValue("@ID", Convert.ToInt32(cboPrijemnica.SelectedValue));
+                    cmd.ExecuteNonQuery();
+                }
+                conn.Close();
+
+            }
         }
     }
+}
 
 

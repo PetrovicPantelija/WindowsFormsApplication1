@@ -28,93 +28,8 @@ namespace WindowsFormsApplication1
         public ObradaReklamacije()
         {
             InitializeComponent();
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
         }
-        public string IdGrupe()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
-            string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader dr = cmd.ExecuteReader();
-            int count = 0;
-
-            while (dr.Read())
-            {
-                if (count == 0)
-                {
-                    niz = dr["IdGrupe"].ToString();
-                    count++;
-                }
-                else
-                {
-                    niz = niz + "," + dr["IdGrupe"].ToString();
-                    count++;
-                }
-
-            }
-            conn.Close();
-            return niz;
-        }
-        private int IdForme()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                idForme = Convert.ToInt32(dr["IdForme"].ToString());
-            }
-            conn.Close();
-            return idForme;
-        }
-
-        private void PravoPristupa()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select * From GrupaForma Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.HasRows == false)
-            {
-                MessageBox.Show("Nemate prava za pristup ovoj formi", code);
-                Pravo = false;
-            }
-            else
-            {
-                Pravo = true;
-                while (reader.Read())
-                {
-                    insert = Convert.ToBoolean(reader["Upis"]);
-                    if (insert == false)
-                    {
-                        //tsNew.Enabled = false;
-                    }
-                    update = Convert.ToBoolean(reader["Izmena"]);
-                    if (update == false)
-                    {
-                        //tsSave.Enabled = false;
-                    }
-                    delete = Convert.ToBoolean(reader["Brisanje"]);
-                    if (delete == false)
-                    {
-                        //tsDelete.Enabled = false;
-                    }
-                }
-            }
-
-            conn.Close();
-        }
+       
         private void ObradaReklamacije_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'DataSet2.ReklamacijaNalepnica' table. You can move, or remove it, as needed.
@@ -296,13 +211,14 @@ namespace WindowsFormsApplication1
                         string querystr = "UPDATE RkShippingItemRec SET Paket='" + cboPaket.Text + "' WHERE ShippingItemRecId ='" + row.Cells[0].Value.ToString() + "'";
                         SqlCommand query = new SqlCommand(querystr, connection);
                         query.ExecuteNonQuery();
+                       
 
                         string querystr2 = "UPDATE RkShippingItemRecPocetna SET Paket='" + cboPaket.Text + "' WHERE ShippingItemRecId ='" + row.Cells[0].Value.ToString() + "'";
-                        SqlCommand query2 = new SqlCommand(querystr, connection);
+                        SqlCommand query2 = new SqlCommand(querystr2, connection);
                         query2.ExecuteNonQuery();
 
                         string querystr3 = "UPDATE RkShippingItemRecZavrsna SET Paket='" + cboPaket.Text + "' WHERE ShippingItemRecId ='" + row.Cells[0].Value.ToString() + "'";
-                        SqlCommand query3 = new SqlCommand(querystr, connection);
+                        SqlCommand query3 = new SqlCommand(querystr3, connection);
                         query3.ExecuteNonQuery();
                         command.Connection.Close();
 

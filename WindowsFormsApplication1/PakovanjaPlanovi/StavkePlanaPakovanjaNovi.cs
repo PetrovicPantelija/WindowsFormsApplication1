@@ -67,7 +67,7 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
 
         private void FillGV()
         {
-            var query = "SELECT ID,IDPlanPakovanja,RNBroj,StatusRN,VrstaRN,Artikal,Kod,Naziv,KolicinaZaProizvodnju,PlaniraniKrajnjiDatumZavrsetka,Termin,Planer,RasporedPakovanja as Raspored " +
+            var query = "SELECT ID,IDPlanPakovanja,RNBroj,StatusRN,VrstaRN,Artikal,Kod,Naziv,KolicinaZaProizvodnju,PlaniraniKrajnjiDatumZavrsetka,Termin,Planer,RasporedPakovanja as Raspored,RTrim(Varijanta) as Varijanta " +
                 "FROM StavkePlanaPakovanja " +
                 "WHERE IDPlanPakovanja=" + IdPakovanja+" order by RNBroj asc";
             SqlConnection conn = new SqlConnection(connect);
@@ -220,6 +220,7 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
             public decimal KolicinaZaProizvodnju {  get; set; }
             public DateTime KrajnjiDatum { get; set; }
             public int Termin {  get; set; }
+            public string Varijanta { get; set; }
         }
         
         private void btnDodeli_Click(object sender, EventArgs e)
@@ -244,9 +245,10 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
             List<Stavke> stavke = new List<Stavke>();
             foreach(DataGridViewRow row in dataGridView1.Rows)
             {
-                stavke.Add(new Stavke { 
-                    ID = Convert.ToInt32(row.Cells[0].Value.ToString()), 
-                    RN = Convert.ToInt32(row.Cells[2].Value.ToString()), 
+                stavke.Add(new Stavke
+                {
+                    ID = Convert.ToInt32(row.Cells[0].Value.ToString()),
+                    RN = Convert.ToInt32(row.Cells[2].Value.ToString()),
                     Status = row.Cells[3].Value.ToString(),
                     Vrsta = Convert.ToInt32(row.Cells[4].Value.ToString()),
                     Artikal = Convert.ToInt32(row.Cells[5].Value.ToString()),
@@ -254,8 +256,9 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
                     Naziv = row.Cells[7].Value.ToString(),
                     KolicinaZaProizvodnju = Convert.ToDecimal(row.Cells[8].Value.ToString()),
                     KrajnjiDatum = Convert.ToDateTime(row.Cells[9].Value.ToString()),
-                    Termin =Convert.ToInt32(row.Cells[10].Value.ToString())
-                });
+                    Termin = Convert.ToInt32(row.Cells[10].Value.ToString()),
+                    Varijanta = row.Cells[13].Value.ToString()
+                }) ;
             }
 
             List<int> list = new List<int>();
@@ -281,8 +284,12 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
             {
                 if (list.Contains(Convert.ToInt32(item.ID)) == false)
                 {
+                    if (item.Varijanta == "")
+                    {
+                        item.Varijanta = "*";
+                    }
                     InsertPakovanja ins = new InsertPakovanja();
-                    ins.InsertPregledStavkiPakovanja(item.ID, item.KolicinaZaProizvodnju, item.Artikal);
+                    ins.InsertPregledStavkiPakovanja(item.ID, item.KolicinaZaProizvodnju, item.Artikal,item.Varijanta, IdPakovanja);
                 }
             }
         }

@@ -56,10 +56,8 @@
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.listMagacin = new System.Windows.Forms.Button();
             this.btnObrisi = new System.Windows.Forms.Button();
-            this.btnPaneliSvi = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.btnKompletirano = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -227,7 +225,7 @@
             this.btnNalogPanel.BackColor = System.Drawing.Color.DarkOrange;
             this.btnNalogPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNalogPanel.ForeColor = System.Drawing.Color.White;
-            this.btnNalogPanel.Location = new System.Drawing.Point(1640, 139);
+            this.btnNalogPanel.Location = new System.Drawing.Point(1640, 111);
             this.btnNalogPanel.Name = "btnNalogPanel";
             this.btnNalogPanel.Size = new System.Drawing.Size(187, 27);
             this.btnNalogPanel.TabIndex = 12;
@@ -385,54 +383,29 @@
             this.btnObrisi.UseVisualStyleBackColor = false;
             this.btnObrisi.Click += new System.EventHandler(this.btnObrisi_Click);
             // 
-            // btnPaneliSvi
+            // btnKompletirano
             // 
-            this.btnPaneliSvi.BackColor = System.Drawing.Color.DarkOrange;
-            this.btnPaneliSvi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPaneliSvi.ForeColor = System.Drawing.Color.White;
-            this.btnPaneliSvi.Location = new System.Drawing.Point(1640, 108);
-            this.btnPaneliSvi.Name = "btnPaneliSvi";
-            this.btnPaneliSvi.Size = new System.Drawing.Size(187, 25);
-            this.btnPaneliSvi.TabIndex = 12;
-            this.btnPaneliSvi.Text = "Nalog za izradu panela-sve";
-            this.btnPaneliSvi.UseVisualStyleBackColor = false;
-            this.btnPaneliSvi.Click += new System.EventHandler(this.btnPaneliSvi_Click);
+            this.btnKompletirano.BackColor = System.Drawing.Color.Yellow;
+            this.btnKompletirano.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnKompletirano.ForeColor = System.Drawing.Color.Black;
+            this.btnKompletirano.Location = new System.Drawing.Point(1640, 144);
+            this.btnKompletirano.Name = "btnKompletirano";
+            this.btnKompletirano.Size = new System.Drawing.Size(187, 25);
+            this.btnKompletirano.TabIndex = 12;
+            this.btnKompletirano.Text = "Nalog za kompletirane";
+            this.btnKompletirano.UseVisualStyleBackColor = false;
+            this.btnKompletirano.Click += new System.EventHandler(this.btnKompletirano_Click);
             // 
-            // checkBox1
+            // button1
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.checkBox1.Location = new System.Drawing.Point(366, 349);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(94, 20);
-            this.checkBox1.TabIndex = 20;
-            this.checkBox1.Text = "Varijanta - *";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.checkBox2.Location = new System.Drawing.Point(478, 349);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(122, 20);
-            this.checkBox2.TabIndex = 20;
-            this.checkBox2.Text = "Varijanta - FALC";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.checkBox3.Location = new System.Drawing.Point(617, 349);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(118, 20);
-            this.checkBox3.TabIndex = 20;
-            this.checkBox3.Text = "Varijanta - NUT";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.button1.BackColor = System.Drawing.Color.Yellow;
+            this.button1.Location = new System.Drawing.Point(1161, 30);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(53, 42);
+            this.button1.TabIndex = 20;
+            this.button1.Text = "Komplet";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // RealizacijaPlanaPakovanja
             // 
@@ -440,16 +413,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.ForestGreen;
             this.ClientSize = new System.Drawing.Size(1839, 849);
-            this.Controls.Add(this.checkBox3);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnObrisi);
             this.Controls.Add(this.listMagacin);
             this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.btnCSV);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnRezervisiZbirno);
-            this.Controls.Add(this.btnPaneliSvi);
+            this.Controls.Add(this.btnKompletirano);
             this.Controls.Add(this.btnNalogPanel);
             this.Controls.Add(this.btnNalogStiropor);
             this.Controls.Add(this.btnNalogAmbalaza);
@@ -512,9 +483,7 @@
         private System.Windows.Forms.Button btnObrisi;
         private System.Windows.Forms.TextBox txtArtikal;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button btnPaneliSvi;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.Button btnKompletirano;
+        private System.Windows.Forms.Button button1;
     }
 }

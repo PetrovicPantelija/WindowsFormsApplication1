@@ -70,6 +70,8 @@ namespace WindowsFormsApplication1.Barcode
                     var stavkeData = stat.GetPrijemnicaStavke(Prijemnica);
                     foreach (var item in stavkeData)
                     {
+                        lblMagacioner.Text = "";
+                        lblMagacioner.Text = "Magacioner:";
                         if (item.Magacioner != null && item.Magacioner.Count > 0)
                         {
                             lblMagacioner.Text += string.Join("\n", item.Magacioner) + "\n";

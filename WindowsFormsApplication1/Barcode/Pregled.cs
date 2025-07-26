@@ -34,7 +34,7 @@ namespace WindowsFormsApplication1.Barcode
 
             dataGridView1.DataSource = ds.Tables[0];
             dataGridView1.Columns[0].Width = 70;
-            dataGridView1.Columns[1].Width = 250;
+            dataGridView1.Columns[1].Width = 120;
 
             dataGridView1.BorderStyle = BorderStyle.Fixed3D;
             dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.LightGray;
@@ -62,7 +62,7 @@ namespace WindowsFormsApplication1.Barcode
             SqlConnection conn = new SqlConnection(connect);
 
             var query = "select NPrPPreZap as ID,NPrPStPos as RB,NPrPSifra as MP,RTrim(NPrPNaziv) as KOD,NPrPkolPre as Kolicina,Kolicina2 as PrimljenaKolicina," +
-                "NPrPVpisalIme as Magacioner,NPrPSifSkl as SifSklad,RTrim(sklad.SkNaziv) as Skladiste,NPrPLokac as Lokacija " +
+                "RobuPrimio as Magacioner,NPrPSifSkl as SifSklad,RTrim(sklad.SkNaziv) as Skladiste,NPrPLokac as Lokacija " +
                 "from NPreP " +
                 "inner join sklad on NPreP.NPrPSifSkl = sklad.SkSifra " +
                 "Where NPrPStPre = "+prijemnica;
@@ -169,9 +169,39 @@ namespace WindowsFormsApplication1.Barcode
             frm.Show();
         }
 
-        private void prijemnicaponoviPrijemToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void trebovanjaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            foreach(DataGridViewRow row in dataGridView1.Rows)
+            Trebovanja frm = new Trebovanja();
+            frm.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (DataGridViewRow row in dataGridView2.Rows)
+                {
+                    InsertPrijemnica ins = new InsertPrijemnica();
+                    ins.UpdatePrijemnicaKOlicina(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToDouble(row.Cells[5].Value.ToString()));
+                }
+                MessageBox.Show("Završena je izmena stavki");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+           
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            FillPrijemnice();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 if (row.Selected)
                 {
@@ -193,15 +223,9 @@ namespace WindowsFormsApplication1.Barcode
             }
         }
 
-        private void trebovanjaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void prijemniceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Trebovanja frm = new Trebovanja();
-            frm.Show();
-        }
 
-        private void refresToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FillPrijemnice();
         }
     }
 }

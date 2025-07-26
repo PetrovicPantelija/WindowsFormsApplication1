@@ -361,7 +361,7 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
                 conn.Close();
             }
         }
-        public void InsertPregledStavkiPakovanja(int ID,decimal Kolicina,int Artikal)
+        public void InsertPregledStavkiPakovanja(int ID,decimal Kolicina,int Artikal,string Varijanta,int IDPlana)
         {
             using (SqlConnection conn = new SqlConnection(connect))
             {
@@ -378,7 +378,9 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
 
                             cmd.Parameters.Add(new SqlParameter("@id_sup", SqlDbType.Int) { Value = ID });
                             cmd.Parameters.Add(new SqlParameter("@kolicina_sup", SqlDbType.Decimal) { Value = Kolicina });
-                            cmd.Parameters.Add(new SqlParameter("@ArtikalPaket",SqlDbType.Int) { Value = Artikal });
+                            cmd.Parameters.Add(new SqlParameter("@ArtikalPaket", SqlDbType.Int) { Value = Artikal });
+                            cmd.Parameters.Add(new SqlParameter("@Varijanta", SqlDbType.NVarChar) { Value= Varijanta });
+                            cmd.Parameters.Add(new SqlParameter("@IDPlana", SqlDbType.Int) { Value = IDPlana });
 
                             cmd.ExecuteNonQuery();
                         }
@@ -525,6 +527,38 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
                 conn.Close();
             }
         }
+        public void PoravnajStanja(int Artikal,int IDPlana)
+        {
+            using(SqlConnection conn=new SqlConnection(connect))
+            {
+                conn.Open();
+                using(SqlTransaction transaction = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        using(SqlCommand cmd = conn.CreateCommand())
+                        {
+                            cmd.Transaction = transaction;
+                            cmd.CommandText = "StanjeNakonRezervacije";
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.Add(new SqlParameter("@artikal", SqlDbType.Int) { Value = Artikal });
+                            cmd.Parameters.Add(new SqlParameter("@idPlana", SqlDbType.Int) { Value = IDPlana });
+
+                            cmd.ExecuteNonQuery();
+                        }
+                        transaction.Commit();
+                    }
+                    catch (SqlException ex)
+                    {
+                        transaction.Rollback();
+                        MessageBox.Show("Rezervacija preostalo error", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(ex.ToString());
+                    }
+                }
+                conn.Close();
+            }
+        }
         public void RezervacijaPreostalo(int ID,int ArtikalPrviNivo)
         {
             using (SqlConnection conn = new SqlConnection(connect))
@@ -654,6 +688,70 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
                         transaction.Commit();
                     }
                     catch (SqlException ex)
+                    {
+                        transaction.Rollback();
+                        MessageBox.Show("Neuspešan upis u bazu", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(ex.ToString());
+                    }
+                }
+                conn.Close();
+            }
+        }
+        public void InsertKompletiraniPlanovi(int IDPlana,int RN,int IDStavke,int Konacan)
+        {
+            using(SqlConnection conn=new SqlConnection(connect))
+            {
+                conn.Open();
+                using (SqlTransaction transaction = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        using(SqlCommand cmd = conn.CreateCommand())
+                        {
+                            cmd.Transaction= transaction;
+                            cmd.CommandText = "InsertKompletiraniPlanovi";
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.Add(new SqlParameter("@IDPlana", SqlDbType.Int) { Value = IDPlana });
+                            cmd.Parameters.Add(new SqlParameter("@RN", SqlDbType.Int) { Value = RN });
+                            cmd.Parameters.Add(new SqlParameter("@IDStavke", SqlDbType.Int) { Value=IDStavke });
+                            cmd.Parameters.Add(new SqlParameter("@Konacan",SqlDbType.Int) { Value= Konacan });
+
+                            cmd.ExecuteNonQuery();
+                        }
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        MessageBox.Show("Neuspešan upis u bazu", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(ex.ToString());
+                    }
+                }
+                conn.Close();
+            }
+        }
+        public void DeleteKompletiraniPlanovi(int IDPlana, int RN)
+        {
+            using (SqlConnection conn = new SqlConnection(connect))
+            {
+                conn.Open();
+                using (SqlTransaction transaction = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        using (SqlCommand cmd = conn.CreateCommand())
+                        {
+                            cmd.Transaction = transaction;
+                            cmd.CommandText = "DeleteKompletiraniPlanovi";
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.Add(new SqlParameter("@IDPlana", SqlDbType.Int) { Value = IDPlana });
+                            cmd.Parameters.Add(new SqlParameter("@RN", SqlDbType.Int) { Value = RN });
+
+                            cmd.ExecuteNonQuery();
+                        }
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
                     {
                         transaction.Rollback();
                         MessageBox.Show("Neuspešan upis u bazu", "", MessageBoxButtons.OK, MessageBoxIcon.Information);

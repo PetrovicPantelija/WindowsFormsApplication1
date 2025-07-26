@@ -214,7 +214,7 @@ namespace WindowsFormsApplication1.Barcode
             cboPrijemnica.DisplayMember = "NprStPre";
             cboPrijemnica.ValueMember = "NprStPre";
 
-            var query3 = "SELECT name FROM sys.server_principals WHERE type IN ('S')";
+            var query3 = "SELECT Name FROM sys.server_principals Where type='S' and name not like('%#%')";
             var da3 = new SqlDataAdapter(query3, conn);
             var ds3 = new DataSet();
             da3.Fill(ds3);
@@ -381,7 +381,6 @@ namespace WindowsFormsApplication1.Barcode
                                 IDUzimanja = Convert.ToInt32(row1.Cells[7].Value),
                                 IDUlaganja = Convert.ToInt32(row2.Cells[7].Value)
                             };
-
                             mspList.Add(msp);
                         }
                     }
@@ -432,6 +431,11 @@ namespace WindowsFormsApplication1.Barcode
             FillGV();
             mspList = null;
             UpdateGV3();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

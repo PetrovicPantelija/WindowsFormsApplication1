@@ -82,11 +82,12 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
         private void FillGV()
         {
             var query = "select s.ID,IDPlanPakovanja,RnBroj,StatusRn,VrstaRn,Artikal,Kod,Naziv,s.KolicinaZaProizvodnju,PlaniraniKrajnjiDatumZavrsetka,Termin," +
-                "(Count(ArtikalIzPrvogNivoaSastavnice)) as [Delova],RasporedPakovanja " +
+                "(Count(ArtikalIzPrvogNivoaSastavnice)) as [Delova],RasporedPakovanja,RTrim(DNpOznSled) as Varijanta " +
                 "from StavkePlanaPakovanja s " +
                 "inner join PregledStavkiPlanaPakovanja on s.id=PregledStavkiPlanaPakovanja.IDStavkePlanaPakovanja " +
-                "Where IDPlanPakovanja=" + planPakovanja + " " +
-                "Group by s.id,IDPlanPakovanja,RnBroj,StatusRn,VrstaRn,Artikal,Kod,Naziv,s.KolicinaZaProizvodnju,PlaniraniKrajnjiDatumZavrsetka,Termin,RasporedPakovanja order by RasporedPakovanja asc";
+                "inner join DelNalogProizvodni on s.RNBroj=DelNalogProizvodni.DNpStevilka " +
+                "Where IDPlanPakovanja=" + planPakovanja + " and RNBroj not in (SELECT RN FROM KompletiraniPlanovi) " +
+                "Group by s.id,IDPlanPakovanja,RnBroj,StatusRn,VrstaRn,Artikal,Kod,Naziv,s.KolicinaZaProizvodnju,PlaniraniKrajnjiDatumZavrsetka,Termin,RasporedPakovanja,DNpOznSled order by RasporedPakovanja asc";
             
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
@@ -106,6 +107,13 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
 
             dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(125, 158, 192);
             dataGridView1.MultiSelect = false;
+
+            dataGridView1.AutoResizeColumnHeadersHeight();
+
+            foreach (DataGridViewColumn column in dataGridView1.Columns)
+            {
+                dataGridView1.AutoResizeColumn(column.Index, DataGridViewAutoSizeColumnMode.DisplayedCells);
+            }
 
             GetChecked();
 
@@ -201,8 +209,9 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
         }
         private void Stavke()
         {
+
             var query = "Select ID,IdStavkePlanaPakovanja,RN,StatusStavke,ArtikalPaket,MaticniPodatki.MpStaraSif,KolicinaZaProizvodnju,ArtikalIzPrvogNivoaSastavnice,m1.MpStaraSif,PotrebnaKolicina," +
-                   "ISNull(TrenutnaKolicinaNaZalihama,0),RezervisanaKolicinaPoPlanu,UkucatiKolicinuZaRezervaciju " +
+                   "ISNull(TrenutnaKolicinaNaZalihama,0),RezervisanaKolicinaPoPlanu,UkucatiKolicinuZaRezervaciju,(PotrebnaKolicina-RezervisanaKolicinaPoPlanu- ISNull(TrenutnaKolicinaNaZalihama,0)) as Nedostaje " +
                    "from PregledStavkiPlanaPakovanja " +
                    "inner join MaticniPodatki on PregledStavkiPlanaPakovanja.ArtikalPaket=MaticniPodatki.MpSifra " +
                    "inner join MaticniPodatki as m1 on PregledStavkiPlanaPakovanja.ArtikalIzPrvogNivoaSastavnice=m1.MpSifra " +
@@ -232,18 +241,19 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
             dataGridView2.Columns[2].HeaderText = "Sastavnica";
             dataGridView2.Columns[2].Width = 60;
             dataGridView2.Columns[3].HeaderText = "Status";
-            dataGridView2.Columns[3].Width = 50;
+            dataGridView2.Columns[3].Width = 40;
             dataGridView2.Columns[4].Width = 70;
             dataGridView2.Columns[5].HeaderText = "Kod";
-            dataGridView2.Columns[5].Width = 170;
+            dataGridView2.Columns[5].Width = 150;
             dataGridView2.Columns[6].HeaderText = "Za proizvodnju";
             dataGridView2.Columns[6].Visible = false;
-            dataGridView2.Columns[7].HeaderText = "Artikal iz prvog nivoa";
+            dataGridView2.Columns[7].HeaderText = "Artikal iz\n prvog nivoa";
             dataGridView2.Columns[8].HeaderText = "Kod";
-            dataGridView2.Columns[8].Width = 230;
+            dataGridView2.Columns[8].Width = 220;
             dataGridView2.Columns[10].HeaderText = "Trenutna količina";
-            dataGridView2.Columns[11].HeaderText = "Rezervisana količina";
-            dataGridView2.Columns[12].HeaderText = "Kolčina za rezervaciju";
+            dataGridView2.Columns[11].HeaderText = "Rezervisana\n količina";
+            dataGridView2.Columns[12].HeaderText = "Kolčina za\n rezervaciju";
+            dataGridView2.Columns[12].Width = 80;
 
             dataGridView2.Columns[0].ReadOnly = true;
             dataGridView2.Columns[1].ReadOnly = true;
@@ -302,6 +312,11 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
                         }
                     }
                 }
+            }
+
+            foreach (DataGridViewColumn column in dataGridView2.Columns)
+            {
+                dataGridView2.AutoResizeColumn(column.Index, DataGridViewAutoSizeColumnMode.DisplayedCells);
             }
         }
         int ID,MP;
@@ -509,6 +524,11 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
                 ins.RezervacijaPoRasporedu(id, idS, artikal);
                 frm.IncrementProgressBar();
             }
+           /* foreach(DataRow row in dt.Rows)
+            {
+                int artikal = Convert.ToInt32(row[2]);
+                ins.PoravnajStanja(artikal, planPakovanja);
+            }  */  
             frm.Close();
             groupBox1.Visible = false;
 
@@ -621,6 +641,26 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
         {
             string sklad = "6,7,9";
             NalogPaneliSVI frm=new NalogPaneliSVI(planPakovanja, sklad);
+            frm.Show();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            InsertPakovanja ins = new InsertPakovanja();
+
+            foreach(DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Selected)
+                {
+                    ins.InsertKompletiraniPlanovi(planPakovanja, Convert.ToInt32(row.Cells[2].Value.ToString()), Convert.ToInt32(row.Cells[0].Value.ToString()),0);
+                }
+            }
+            FillGV();
+        }
+
+        private void btnKompletirano_Click(object sender, EventArgs e)
+        {
+            NalogKomplet frm = new NalogKomplet(planPakovanja);
             frm.Show();
         }
 
