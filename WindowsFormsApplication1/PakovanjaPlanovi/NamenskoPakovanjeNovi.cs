@@ -17,6 +17,10 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.IO;
 using Antlr.Runtime.Misc;
+using System.Windows.Controls.Primitives;
+using static WindowsFormsApplication1.PakovanjaPlanovi.StavkePlanaPakovanjaNovi;
+using Irony.Parsing;
+using Microsoft.Ajax.Utilities;
 
 namespace WindowsFormsApplication1.PakovanjaPlanovi
 {
@@ -285,7 +289,33 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
         {
             SqlConnection conn = new SqlConnection(connect);
 
-            var query2 = "Select ID,IDPlanPakovanja,RnBroj,StatusRn,VrstaRN,Artikal,Kod,Naziv,KolicinaZaProizvodnju,PlaniraniKrajnjiDatumZavrsetka,Planer from StavkePlanaPakovanja WHere IdPlanPakovanja=" + ID;
+            var query2 = @"SELECT 
+                          s.ID,
+                          s.IDPlanPakovanja,
+                          s.RnBroj,
+                          s.StatusRn,
+                          s.VrstaRN,
+                          s.Artikal,
+                          s.Kod,
+                          s.Naziv,
+                          CAST(ISNULL(p.Potrebno, 0) AS decimal(18,2)) AS Potrebno, 
+                          s.KolicinaZaProizvodnju,
+                          s.PlaniraniKrajnjiDatumZavrsetka,
+                          s.Planer,
+                          ISNULL(s.Termin,0) AS Termin,
+                          RTrim(s.Varijanta) as Varijanta 
+                        FROM StavkePlanaPakovanja s
+                        LEFT JOIN 
+                            ( SELECT  DnpStevilka, 
+                                      DnpSifMp,
+                                      SUM(DnpKolZaIzdelavo) AS Potrebno
+                              FROM DelNalogProizvodni
+                              WHERE DNpSifStat NOT IN ('ZA', 'ST')
+                              GROUP BY DnpStevilka, DnpSifMp
+                            ) p ON s.RnBroj = p.DnpStevilka AND s.Artikal = p.DnpSifMp
+                        WHERE s.IDPlanPakovanja =  " + ID + " order by RNBroj asc"; 
+           
+            //var query2 = "Select ID,IDPlanPakovanja,RnBroj,StatusRn,VrstaRN,Artikal,Kod,Naziv,d.DnpKolZaIzdelavo AS Potrebno,KolicinaZaProizvodnju,PlaniraniKrajnjiDatumZavrsetka,Planer from StavkePlanaPakovanja s left join DelNalogProizvodni d on s.RNBroj=d.DNpStevilka WHere IdPlanPakovanja=" + ID;
             var da2 = new SqlDataAdapter(query2, conn);
             var ds2 = new DataSet();
             da2.Fill(ds2);
@@ -312,6 +342,12 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
             //dataGridView2.Columns[8].HeaderText = "Količina";
             dataGridView5.Columns[8].Width = 70;
             dataGridView5.Columns[8].ReadOnly = false;
+            if (dataGridView5.Columns.Count > 1)
+                dataGridView5.Columns[1].Visible = false;
+            if (dataGridView5.Columns.Contains("Termin"))
+                dataGridView5.Columns["Termin"].Visible = false;
+            if (dataGridView5.Columns.Contains("Varijanta"))
+                dataGridView5.Columns["Varijanta"].Visible = false;
         }
         private void NamenskoPakovanjeNovi_Load(object sender, EventArgs e)
         {
@@ -562,6 +598,79 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
                     MessageBox.Show("Mora se upisati pozicija pakovanja!");
                     return;
                 }
+            }
+        }
+
+        private void btnRealizacija_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                InsertPakovanja ins = new InsertPakovanja();
+                int RB = 1;
+                foreach (DataGridViewRow row in dataGridView5.Rows)
+                {
+                    int id = Convert.ToInt32(row.Cells["ID"].Value);
+                    ins.UpisiRaspored(id, RB);
+                    RB++;
+                }
+
+                List<Stavke> stavke = new List<Stavke>();
+                foreach (DataGridViewRow row in dataGridView5.Rows)
+                {
+                    stavke.Add(new Stavke
+                    {   
+                        ID = Convert.ToInt32(row.Cells[0].Value.ToString()),
+                        RN = Convert.ToInt32(row.Cells[2].Value.ToString()),
+                        Status = row.Cells[3].Value.ToString(),
+                        Vrsta = Convert.ToInt32(row.Cells[4].Value.ToString()),
+                        Artikal = Convert.ToInt32(row.Cells[5].Value.ToString()),
+                        Kod = row.Cells[6].Value.ToString(),
+                        Naziv = row.Cells[7].Value.ToString(),
+                        KolicinaZaProizvodnju = Convert.ToDecimal(row.Cells[9].Value.ToString()),
+                        KrajnjiDatum = Convert.ToDateTime(row.Cells[10].Value.ToString()),
+                        Termin = Convert.ToInt32(row.Cells[12].Value.ToString()),
+                        Varijanta = row.Cells[13].Value.ToString()
+                    });
+                }
+
+                List<int> list = new List<int>();
+                using (SqlConnection conn = new SqlConnection(connect))
+                {
+                    conn.Open();
+                    string query = "select distinct IdStavkePlanaPakovanja from PregledStavkiPlanaPakovanja";
+                    using (SqlCommand command = new SqlCommand(query, conn))
+                    {
+                        using (SqlDataReader dr = command.ExecuteReader())
+                        {
+                            while (dr.Read())
+                            {
+                                list.Add(dr.GetInt32(0));
+                            }
+                        }
+                    }
+                    conn.Close();
+                }
+                list.ToArray();
+                ins = new InsertPakovanja();
+                foreach (var item in stavke)
+                {
+                    if (list.Contains(Convert.ToInt32(item.ID)) == false)
+                    {
+                        if (item.Varijanta == "")
+                        {
+                            item.Varijanta = "*";
+                        }
+                        ins.InsertPregledStavkiPakovanja(item.ID, item.KolicinaZaProizvodnju, item.Artikal, item.Varijanta, ID);
+                    }
+                }
+                RealizacijaPlanaPakovanja frm = new RealizacijaPlanaPakovanja(ID);
+                frm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                return;
             }
         }
 

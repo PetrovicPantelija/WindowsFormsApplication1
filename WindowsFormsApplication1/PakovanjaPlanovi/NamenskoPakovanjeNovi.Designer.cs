@@ -37,7 +37,8 @@
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
             this.dataGridView5 = new System.Windows.Forms.DataGridView();
-            this.btnKolicine = new System.Windows.Forms.Button();
+            this.btnKolicine = new System.Windows.Forms.Button(); 
+            this.btnRealizacija = new System.Windows.Forms.Button();
             this.btnIzvestaj = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -167,6 +168,20 @@
             this.dataGridView5.Name = "dataGridView5";
             this.dataGridView5.Size = new System.Drawing.Size(939, 640);
             this.dataGridView5.TabIndex = 8;
+
+            // btnRealizacija
+            // 
+            this.btnRealizacija.BackColor = System.Drawing.Color.DarkOrange;
+            this.btnRealizacija.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRealizacija.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnRealizacija.Location = new System.Drawing.Point(1307, 12);
+            this.btnRealizacija.Name = "btnRealizacija";
+            this.btnRealizacija.Size = new System.Drawing.Size(91, 34);
+            this.btnRealizacija.TabIndex = 17;
+            this.btnRealizacija.Text = "Realizacija";
+            this.btnRealizacija.UseVisualStyleBackColor = false;
+            this.btnRealizacija.Click += new System.EventHandler(this.btnRealizacija_Click);
+          
             // 
             // btnKolicine
             // 
@@ -335,6 +350,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.btnKolicine);
+            this.Controls.Add(this.btnRealizacija);
             this.Controls.Add(this.btnIzvestaj);
             this.Controls.Add(this.btnObrisi);
             this.Controls.Add(this.label2);
@@ -375,6 +391,7 @@
         private System.Windows.Forms.DataGridView dataGridView4;
         private System.Windows.Forms.DataGridView dataGridView5;
         private System.Windows.Forms.Button btnKolicine;
+        private System.Windows.Forms.Button btnRealizacija;
         private System.Windows.Forms.Button btnIzvestaj;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;
