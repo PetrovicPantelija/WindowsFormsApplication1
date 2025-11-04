@@ -1927,6 +1927,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Magacin\frmPozicije.resx">
       <DependentUpon>frmPozicije.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Magacin\frmPregledIzdavanja.resx">
       <DependentUpon>frmPregledIzdavanja.cs</DependentUpon>

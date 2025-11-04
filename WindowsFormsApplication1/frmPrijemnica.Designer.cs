@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrijemnica));
             this.cboPrijemnica = new System.Windows.Forms.ComboBox();
-            this.btnPrihvatiIzmene = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
@@ -38,6 +37,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,20 +50,6 @@
             this.cboPrijemnica.TabIndex = 39;
             this.cboPrijemnica.SelectedIndexChanged += new System.EventHandler(this.cboPrijemnica_SelectedIndexChanged);
             this.cboPrijemnica.Leave += new System.EventHandler(this.cboPrijemnica_Leave_1);
-            // 
-            // btnPrihvatiIzmene
-            // 
-            this.btnPrihvatiIzmene.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPrihvatiIzmene.BackgroundImage")));
-            this.btnPrihvatiIzmene.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPrihvatiIzmene.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.btnPrihvatiIzmene.ForeColor = System.Drawing.Color.White;
-            this.btnPrihvatiIzmene.Location = new System.Drawing.Point(614, 10);
-            this.btnPrihvatiIzmene.Name = "btnPrihvatiIzmene";
-            this.btnPrihvatiIzmene.Size = new System.Drawing.Size(253, 25);
-            this.btnPrihvatiIzmene.TabIndex = 245;
-            this.btnPrihvatiIzmene.Text = "Prihvati Izmene";
-            this.btnPrihvatiIzmene.UseVisualStyleBackColor = true;
-            this.btnPrihvatiIzmene.Click += new System.EventHandler(this.btnPrihvatiIzmene_Click_1);
             // 
             // label1
             // 
@@ -86,7 +72,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(15, 41);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1129, 527);
+            this.dataGridView1.Size = new System.Drawing.Size(1129, 594);
             this.dataGridView1.TabIndex = 247;
             // 
             // button1
@@ -95,11 +81,11 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(382, 10);
+            this.button1.Location = new System.Drawing.Point(641, 10);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(226, 25);
             this.button1.TabIndex = 248;
-            this.button1.Text = "Postavi Količinu 2 na nulu";
+            this.button1.Text = "Postavi Kol primljena na nulu";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -125,9 +111,9 @@
             this.button3.ForeColor = System.Drawing.Color.White;
             this.button3.Location = new System.Drawing.Point(313, 12);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(35, 25);
+            this.button3.Size = new System.Drawing.Size(102, 25);
             this.button3.TabIndex = 250;
-            this.button3.Text = "RS";
+            this.button3.Text = "Započeto";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -157,14 +143,29 @@
             this.button5.TabIndex = 245;
             this.button5.Text = "Ponisti prijem";
             this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.btnPrihvatiIzmene_Click_1);
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button6
+            // 
+            this.button6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button6.BackgroundImage")));
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button6.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.button6.ForeColor = System.Drawing.Color.White;
+            this.button6.Location = new System.Drawing.Point(507, 12);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(102, 25);
+            this.button6.TabIndex = 250;
+            this.button6.Text = "Refresh";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // frmPrijemnica
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(187)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(1167, 580);
+            this.ClientSize = new System.Drawing.Size(1167, 647);
+            this.Controls.Add(this.button6);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -172,7 +173,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.btnPrihvatiIzmene);
             this.Controls.Add(this.cboPrijemnica);
             this.Name = "frmPrijemnica";
             this.Text = "Prijemnica količine";
@@ -186,7 +186,6 @@
         #endregion
 
         private System.Windows.Forms.ComboBox cboPrijemnica;
-        private System.Windows.Forms.Button btnPrihvatiIzmene;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button1;
@@ -194,5 +193,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
     }
 }

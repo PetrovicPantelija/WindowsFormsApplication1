@@ -145,7 +145,7 @@ namespace WindowsFormsApplication1
                 "from NPre " +
                 "inner join NPreP on Npre.NPrStPre = NPrep.NPrPStPre " +
                 "inner join Sklad on NPrep.NPrPSifSkl = sklad.SkSifra " +
-                "Where NPrStPre=" + Convert.ToInt32(cboPrijemnica.SelectedValue);
+                "Where NPrStPre=" + Convert.ToInt32(cboPrijemnica.SelectedValue)+ " order by NPrPStPos asc";
 
 
 
@@ -274,17 +274,7 @@ namespace WindowsFormsApplication1
 
         private void btnPrihvatiIzmene_Click_1(object sender, EventArgs e)
         {
-            using (SqlConnection conn = new SqlConnection(connect))
-            {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand("Update NPreP Set Kolicina2=0,RobuPrimio=@korisnik,NPrPVpisalDat=GetDate() Where NprpStpre=@id", conn))
-                {
-                    cmd.Parameters.AddWithValue("@id", Convert.ToInt32(cboPrijemnica.SelectedValue));
-                    cmd.Parameters.AddWithValue("@korisnik", Kor);
-                    cmd.ExecuteNonQuery();
-                }
-                conn.Close();
-            }
+
         }
 
         private void cboPrijemnica_SelectedIndexChanged(object sender, EventArgs e)
@@ -297,14 +287,23 @@ namespace WindowsFormsApplication1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row2 in dataGridView1.Rows)
+            foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-                if (row2.Selected)
+                if (row.Selected)
                 {
-                    InsertPrijemnica ins = new InsertPrijemnica();
-                    ins.UpdateKolicina2Prijemnica(Convert.ToInt32(row2.Cells[0].Value.ToString()));
+                    using (SqlConnection conn = new SqlConnection(connect))
+                    {
+                        conn.Open();
+                        using (SqlCommand cmd = new SqlCommand("Update NPreP Set Kolicina2=0 Where NPrPPreZap=@id", conn))
+                        {
+                            cmd.Parameters.AddWithValue("@id", Convert.ToInt32(row.Cells[0].Value));
+                            cmd.ExecuteNonQuery();
+                        }
+                        conn.Close();
+                    }
                 }
             }
+            RefreshDataGrid1();
         }
         private void button2_Click(object sender, EventArgs e)
         {
@@ -321,23 +320,29 @@ namespace WindowsFormsApplication1
             cboPrijemnica.DataSource = ds2.Tables[0];
             cboPrijemnica.DisplayMember = "NprStPre";
             cboPrijemnica.ValueMember = "NprStPre";
-
-            usao = 1;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (usao == 1)
-            {
-                RefreshDataGrid1();
-            }
+
+            var select2 = "Select NPrStPre from NPre Where NPrStatus='OD' and Ucitana=1";
+            var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection2 = new SqlConnection(s_connection2);
+            var c2 = new SqlConnection(s_connection2);
+            var dataAdapter2 = new SqlDataAdapter(select2, c2);
+
+            var commandBuilder2 = new SqlCommandBuilder(dataAdapter2);
+            var ds2 = new DataSet();
+            dataAdapter2.Fill(ds2);
+
+            cboPrijemnica.DataSource = ds2.Tables[0];
+            cboPrijemnica.DisplayMember = "NprStPre";
+            cboPrijemnica.ValueMember = "NprStPre";
         }
         private string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
 
-
-        private void button4_Click(object sender, EventArgs e)
+        private void PonoviPrijem()
         {
-
             using (SqlConnection conn = new SqlConnection(connect))
             {
                 conn.Open();
@@ -351,6 +356,42 @@ namespace WindowsFormsApplication1
                 conn.Close();
 
             }
+        }
+        private void button4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PonoviPrijem();
+                MessageBox.Show("Prijemnica vraćena na ponovno otvaranje!");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection conn = new SqlConnection(connect))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("Update NPreP Set Kolicina2=0,RobuPrimio=@korisnik,NPrPVpisalDat=GetDate() Where NprpStpre=@id", conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", Convert.ToInt32(cboPrijemnica.SelectedValue));
+                    cmd.Parameters.AddWithValue("@korisnik", Kor);
+                    cmd.ExecuteNonQuery();
+                }
+                conn.Close();
+            }
+            PonoviPrijem();
+
+            RefreshDataGrid1();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            RefreshDataGrid1();
         }
     }
 }

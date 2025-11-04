@@ -257,7 +257,7 @@ namespace WindowsFormsApplication1
                 var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
                 SqlConnection myConnection = new SqlConnection(s_connection);
                 var c = new SqlConnection(s_connection);
-                SqlCommand command = new SqlCommand("SELECT SifraLargo FROM Korisnici where LTRIM(RTRIM(Korisnik)) = '"+ user + "' AND Password = '" + txtPassword.Text + "'", myConnection);
+                SqlCommand command = new SqlCommand("SELECT SifraLargo FROM Korisnici where LTRIM(RTRIM(Korisnik)) = '" + user + "' AND Password = '" + txtPassword.Text + "'", myConnection);
                 myConnection.Open();
 
                 SqlDataReader reader = command.ExecuteReader();
@@ -270,15 +270,28 @@ namespace WindowsFormsApplication1
                 while (reader.Read())
                 {
                     SifraLargo = reader.GetInt32(0);
-                } 
-       
+                }
+
                 reader.Close();
                 myConnection.Close();
 
                 ProizvodnjaUKadrovskoj.MainZaposleni plp = new ProizvodnjaUKadrovskoj.MainZaposleni(SifraLargo);
                 plp.Show();
+
+            }
+            else
+            {
+                MessageBox.Show("Nije ispravno uneta lozinka");
+
+            }
+
         }
-            else { MessageBox.Show("Nije ispravno uneta lozinka"); }
-}
+
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            KompletiPaket frm=new KompletiPaket();
+            frm.Show();
+        }
     }
 }

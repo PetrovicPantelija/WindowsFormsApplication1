@@ -133,7 +133,7 @@ namespace WindowsFormsApplication1.Magacin
         private void RefreshDataGRid()
         {
 
-            var select = "  select LokZapSt, LokSkSifra, sklad.SkNaziv, LokSifra, Red,Vertikala,Celija,Sirina,LokOpis,Aktivna,  MaxTezina from Lokac " +
+            var select = "  select LokZapSt, LokSkSifra, sklad.SkNaziv, LokSifra, LokOpis, Red,Vertikala,Celija,Sirina,LokOpis,Aktivna,  MaxTezina from Lokac " +
             " inner join Sklad on Sklad.SkSifra = Lokac.LokSkSifra " +
             " where sklad.SkSifra = " + Convert.ToInt32(cboSkladiste.SelectedValue);
 
@@ -200,7 +200,7 @@ namespace WindowsFormsApplication1.Magacin
 
             var select = "  select LokZapSt, LokSkSifra, sklad.SkNaziv, LokSifra, Red,Vertikala,Celija,Sirina,LokOpis,Aktivna,  MaxTezina from Lokac " +
             " inner join Sklad on Sklad.SkSifra = Lokac.LokSkSifra " +
-            " where sklad.SkSifra = " + Convert.ToInt32(cboSkladiste.SelectedValue) + " and Red = " + txtRed.Text.Trim();
+            " where sklad.SkSifra = " + Convert.ToInt32(cboSkladiste.SelectedValue) + " and Red = '" + txtRed.Text.Trim()+"'";
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -332,7 +332,7 @@ namespace WindowsFormsApplication1.Magacin
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("select LokZapSt, LokSkSifra, sklad.SkNaziv, LokSifra, Red,Vertikala,Celija,Sirina,LokOpis,Aktivna, MaxTezina, MaticniPodatak from Lokac " +
+            SqlCommand cmd = new SqlCommand("select LokZapSt, LokSkSifra, sklad.SkNaziv, LokSifra, LokOpis, Red,Vertikala,Celija,Sirina,LokOpis,Aktivna, MaxTezina, MaticniPodatak from Lokac " +
             " inner join Sklad on Sklad.SkSifra = Lokac.LokSkSifra where LokZapSt =" + txtSifra.Text, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -451,6 +451,58 @@ namespace WindowsFormsApplication1.Magacin
         private void btnOsvezi_Click(object sender, EventArgs e)
         {
             RefreshDataGRidPoRedu();
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            Barcodes.Barcode39 b = new Barcodes.Barcode39();
+            String img;
+            InsertPozicijaBarkod updpoz = new InsertPozicijaBarkod();
+            updpoz.DeletePozicijeBarkod();
+
+            try
+            {
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        b.TextFont = new Font("Calibri", 7);
+                        string barkod = b.GenerateBarcodeImage(row.Cells[3].Value.ToString());
+                        updpoz.InsPozicijeBarkod(row.Cells[3].Value.ToString(), "*" + row.Cells[3].Value.ToString().TrimEnd() + "*", row.Cells[4].Value.ToString());
+                        // txtOpis.Text = row.Cells[1].Value.ToString();
+                    }
+                }
+
+
+            }
+            catch
+            {
+                MessageBox.Show("Nije uspela generisanje pozicija");
+            }
+
+            //Ovde dodati kod
+           
+            // Insert netacan napisan za probu
+
+
+          
+           
+
+            //Štampa
+
+            Perftech_BeogradDataSetTableAdapters.PozicijaBarkodTableAdapter ta = new Perftech_BeogradDataSetTableAdapters.PozicijaBarkodTableAdapter();
+            Perftech_BeogradDataSet.PozicijaBarkodDataTable dt = new Perftech_BeogradDataSet.PozicijaBarkodDataTable();
+
+            ta.Fill(dt);
+            ReportDataSource rds = new ReportDataSource();
+            rds.Name = "DataSet1";
+            rds.Value = dt;
+
+            reportViewer1.LocalReport.DataSources.Clear();
+            reportViewer1.LocalReport.ReportPath = "rptBarkodPozicija.rdlc";
+
+            reportViewer1.LocalReport.DataSources.Add(rds);
+            reportViewer1.RefreshReport();
         }
     }
 }

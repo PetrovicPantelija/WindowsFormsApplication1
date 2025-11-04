@@ -14,6 +14,7 @@ using System.Net;
 using System.Net.Mail;
 
 using Microsoft.Reporting.WinForms;
+using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace WindowsFormsApplication1.Magacin
 {
@@ -36,6 +37,7 @@ namespace WindowsFormsApplication1.Magacin
             IdGrupe();
             IdForme();
             PravoPristupa();
+            VratiKorisnike();
         }
 
         public frmMagacinTrenutna(string Korisnik)
@@ -45,6 +47,12 @@ namespace WindowsFormsApplication1.Magacin
             IdGrupe();
             IdForme();
             PravoPristupa();
+
+            button1.Enabled = false;
+            button2.Enabled = false;
+            button3.Enabled = false;
+            button5.Enabled = false;
+            VratiKorisnike();
         }
         public string IdGrupe()
         {
@@ -146,6 +154,20 @@ namespace WindowsFormsApplication1.Magacin
             cboKorisnik.DataSource = ds2.Tables[0];
             cboKorisnik.DisplayMember = "Korisnik";
             cboKorisnik.ValueMember = "Korisnik";
+
+
+            var select3 = "select top 100 NPrStPre from NPre Where NPrStatus='OD' or NPrStatus='PO' order by NPrStPre desc";
+            var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection3 = new SqlConnection(s_connection3);
+            var c3 = new SqlConnection(s_connection3);
+            var dataAdapter3 = new SqlDataAdapter(select3, c3);
+
+            var commandBuilder3 = new SqlCommandBuilder(dataAdapter3);
+            var ds3 = new DataSet();
+            dataAdapter3.Fill(ds3);
+            comboBox1.DataSource = ds3.Tables[0];
+            comboBox1.DisplayMember = "NprStPre";
+            comboBox1.ValueMember = "NprStPre";
         }
 
         private void button2_Click(object sender, System.EventArgs e)
@@ -164,8 +186,8 @@ namespace WindowsFormsApplication1.Magacin
 
                 if (row.Cells[9].Value.ToString() != "" && row.Cells[9].Value.ToString() == "null")
                 {
-                    row.DefaultCellStyle.BackColor = Color.Green;
-                    row.DefaultCellStyle.SelectionBackColor = Color.Green;
+                    row.DefaultCellStyle.BackColor = System.Drawing.Color.Green;
+                    row.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Green;
                 }
                 else
                 {
@@ -186,8 +208,8 @@ namespace WindowsFormsApplication1.Magacin
 
                 if (row.Cells[8].Value.ToString() != "" && row.Cells[8].Value.ToString() == "null")
                 {
-                    row.DefaultCellStyle.BackColor = Color.Green;
-                    row.DefaultCellStyle.SelectionBackColor = Color.Green;
+                    row.DefaultCellStyle.BackColor = System.Drawing.Color.Green;
+                    row.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Green;
                 }
                 else
                 {
@@ -575,8 +597,6 @@ namespace WindowsFormsApplication1.Magacin
         {
 
             decimal KolicinaZaIzdavanje = 0;
-
-         
             
             InsertMedjuskladisni isporuka = new InsertMedjuskladisni();
            
@@ -640,7 +660,7 @@ namespace WindowsFormsApplication1.Magacin
         {
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-                if (Convert.ToInt32(row.Cells[8].Value) == '0')
+                if (Convert.ToInt32(row.Cells[8].Value) == 0)
                 {
                     
                     MessageBox.Show("Niste formirali dokumenta");
@@ -680,8 +700,7 @@ namespace WindowsFormsApplication1.Magacin
         
         
         }
-
-        private void button4_Click(object sender, EventArgs e)
+        private void VratiKorisnike()
         {
             var select2 = " Select distinct Rtrim(t1.Korisnik)  as Korisnik from ( " +
            " Select distinct Korisnik from aUzimanjeBarkod where Zavrsen <> 1" +
@@ -698,6 +717,126 @@ namespace WindowsFormsApplication1.Magacin
             cboKorisnik.DataSource = ds2.Tables[0];
             cboKorisnik.DisplayMember = "Korisnik";
             cboKorisnik.ValueMember = "Korisnik";
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var select = "   SELECT [Korisnik],[Artikal], MpStaraSif as Kod, " +
+             "  [Pozicija],[Kolicina],[ID], (Kolicina -  KolicinaUzeta) as Preostalo,  LokOpis as LokacijaNaziv, FormiranDokument, Broj " +
+             " FROM [dbo].[aUzimanjeBarkod] " +
+             " inner join MaticniPodatki on MaticniPodatki.MpSifra = aUzimanjeBarkod.Artikal " +
+               " inner join Lokac on Rtrim(Cast(aUzimanjeBarkod.Pozicija as char(12)))  = Rtrim(Lokac.LokSifra) " +
+               "  where   (Zavrsen <> 1) and aUzimanjeBarkod.Korisnik='" + cboKorisnik.SelectedValue.ToString().TrimEnd()+"'";
+
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            //string value = dataGridView2.Rows[0].Cells[0].Value.ToString();
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "Korisnik";
+            dataGridView1.Columns[0].Width = 50;
+
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "Artikal";
+            dataGridView1.Columns[1].Width = 50;
+
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Kod";
+            dataGridView1.Columns[2].Width = 120;
+
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "Lokacija";
+            dataGridView1.Columns[3].Width = 40;
+
+            DataGridViewColumn column5 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "Kolicina";
+            dataGridView1.Columns[4].Width = 70;
+
+            DataGridViewColumn column6 = dataGridView1.Columns[5];
+            dataGridView1.Columns[5].HeaderText = "ID";
+            dataGridView1.Columns[5].Width = 50;
+
+            DataGridViewColumn column7 = dataGridView1.Columns[6];
+            dataGridView1.Columns[6].HeaderText = "Preostalo";
+            dataGridView1.Columns[6].Width = 50;
+
+            DataGridViewColumn column8 = dataGridView1.Columns[7];
+            dataGridView1.Columns[7].HeaderText = "Lok opis";
+            dataGridView1.Columns[7].Width = 150;
+
+            DataGridViewColumn column9 = dataGridView1.Columns[8];
+            dataGridView1.Columns[8].HeaderText = "FormiranDokument";
+            dataGridView1.Columns[8].Width = 40;
+
+            DataGridViewColumn column10 = dataGridView1.Columns[9];
+            dataGridView1.Columns[9].HeaderText = "Broj";
+            dataGridView1.Columns[9].Width = 40;
+
+
+            var select2 = "   SELECT [Korisnik] " +
+" ,[Artikal],MpStaraSif as Kod,[Pozicija] ,[Kolicina] " +
+" ,[ID] ,  LokOpis as LokacijaNaziv, FormiranDokument, Broj " +
+" FROM [dbo].[aUlaganjeBarkod] inner join MaticniPodatki on MaticniPodatki.MpSifra = aUlaganjeBarkod.Artikal " +
+" inner join Lokac on Rtrim(Cast(aUlaganjeBarkod.Pozicija as char(12)))  = Rtrim(Lokac.LokSifra) " +
+"  where   (Zavrsen <> 1 or Zavrsen is null) and aUlaganjeBarkod.Korisnik='" + cboKorisnik.SelectedValue.ToString().TrimEnd()+"'";
+
+            var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection2 = new SqlConnection(s_connection2);
+            var c2 = new SqlConnection(s_connection2);
+            var dataAdapter2 = new SqlDataAdapter(select2, c2);
+
+            var commandBuilder2 = new SqlCommandBuilder(dataAdapter2);
+            var ds2 = new DataSet();
+            dataAdapter2.Fill(ds2);
+            dataGridView2.ReadOnly = true;
+            dataGridView2.DataSource = ds2.Tables[0];
+
+            DataGridViewColumn column20 = dataGridView2.Columns[0];
+            dataGridView2.Columns[0].HeaderText = "Korisnik";
+            dataGridView2.Columns[0].Width = 50;
+
+            DataGridViewColumn column21 = dataGridView2.Columns[1];
+            dataGridView2.Columns[1].HeaderText = "Artikal";
+            dataGridView2.Columns[1].Width = 50;
+
+            DataGridViewColumn column31 = dataGridView2.Columns[2];
+            dataGridView2.Columns[2].HeaderText = "Kod";
+            dataGridView2.Columns[2].Width = 120;
+
+            DataGridViewColumn column41 = dataGridView2.Columns[3];
+            dataGridView2.Columns[3].HeaderText = "Lokacija";
+            dataGridView2.Columns[3].Width = 50;
+
+            DataGridViewColumn column51 = dataGridView2.Columns[4];
+            dataGridView2.Columns[4].HeaderText = "Kolicina";
+            dataGridView2.Columns[4].Width = 70;
+
+            DataGridViewColumn column61 = dataGridView2.Columns[5];
+            dataGridView2.Columns[5].HeaderText = "ID";
+            dataGridView2.Columns[5].Width = 30;
+
+
+
+            DataGridViewColumn column81 = dataGridView2.Columns[6];
+            dataGridView2.Columns[6].HeaderText = "Lokacija naziv";
+            dataGridView2.Columns[6].Width = 150;
+
+            DataGridViewColumn column91 = dataGridView2.Columns[7];
+            dataGridView2.Columns[7].HeaderText = "FormiranDokument";
+            dataGridView2.Columns[7].Width = 40;
+
+
+            DataGridViewColumn column101 = dataGridView2.Columns[8];
+            dataGridView2.Columns[8].HeaderText = "Broj";
+            dataGridView2.Columns[8].Width = 40;
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -718,6 +857,126 @@ namespace WindowsFormsApplication1.Magacin
             RefreshDataGrid();
             RefreshDataGridColorUzimanje();
             RefreshDataGridColorUlaganje();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            var select = "   SELECT [Korisnik],[Artikal], MpStaraSif as Kod, " +
+              "  [Pozicija],[Kolicina],[ID], (Kolicina -  KolicinaUzeta) as Preostalo,  LokOpis as LokacijaNaziv, FormiranDokument, Broj " +
+              " FROM [dbo].[aUzimanjeBarkod] " +
+              " inner join MaticniPodatki on MaticniPodatki.MpSifra = aUzimanjeBarkod.Artikal " +
+                " inner join Lokac on Rtrim(Cast(aUzimanjeBarkod.Pozicija as char(12)))  = Rtrim(Lokac.LokSifra) " +
+                "  where   (Zavrsen <> 1) and Broj=" + Convert.ToInt32(comboBox1.SelectedValue);
+
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            //string value = dataGridView2.Rows[0].Cells[0].Value.ToString();
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "Korisnik";
+            dataGridView1.Columns[0].Width = 50;
+
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "Artikal";
+            dataGridView1.Columns[1].Width = 50;
+
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Kod";
+            dataGridView1.Columns[2].Width = 120;
+
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "Lokacija";
+            dataGridView1.Columns[3].Width = 40;
+
+            DataGridViewColumn column5 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "Kolicina";
+            dataGridView1.Columns[4].Width = 70;
+
+            DataGridViewColumn column6 = dataGridView1.Columns[5];
+            dataGridView1.Columns[5].HeaderText = "ID";
+            dataGridView1.Columns[5].Width = 50;
+
+            DataGridViewColumn column7 = dataGridView1.Columns[6];
+            dataGridView1.Columns[6].HeaderText = "Preostalo";
+            dataGridView1.Columns[6].Width = 50;
+
+            DataGridViewColumn column8 = dataGridView1.Columns[7];
+            dataGridView1.Columns[7].HeaderText = "Lok opis";
+            dataGridView1.Columns[7].Width = 150;
+
+            DataGridViewColumn column9 = dataGridView1.Columns[8];
+            dataGridView1.Columns[8].HeaderText = "FormiranDokument";
+            dataGridView1.Columns[8].Width = 40;
+
+            DataGridViewColumn column10 = dataGridView1.Columns[9];
+            dataGridView1.Columns[9].HeaderText = "Broj";
+            dataGridView1.Columns[9].Width = 40;
+
+
+            var select2 = "   SELECT [Korisnik] " +
+" ,[Artikal],MpStaraSif as Kod,[Pozicija] ,[Kolicina] " +
+" ,[ID] ,  LokOpis as LokacijaNaziv, FormiranDokument, Broj " +
+" FROM [dbo].[aUlaganjeBarkod] inner join MaticniPodatki on MaticniPodatki.MpSifra = aUlaganjeBarkod.Artikal " +
+" inner join Lokac on Rtrim(Cast(aUlaganjeBarkod.Pozicija as char(12)))  = Rtrim(Lokac.LokSifra) " +
+"  where   (Zavrsen <> 1 or Zavrsen is null) and Broj=" + Convert.ToInt32(comboBox1.SelectedValue);
+
+            var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection2 = new SqlConnection(s_connection2);
+            var c2 = new SqlConnection(s_connection2);
+            var dataAdapter2 = new SqlDataAdapter(select2, c2);
+
+            var commandBuilder2 = new SqlCommandBuilder(dataAdapter2);
+            var ds2 = new DataSet();
+            dataAdapter2.Fill(ds2);
+            dataGridView2.ReadOnly = true;
+            dataGridView2.DataSource = ds2.Tables[0];
+
+            DataGridViewColumn column20 = dataGridView2.Columns[0];
+            dataGridView2.Columns[0].HeaderText = "Korisnik";
+            dataGridView2.Columns[0].Width = 50;
+
+            DataGridViewColumn column21 = dataGridView2.Columns[1];
+            dataGridView2.Columns[1].HeaderText = "Artikal";
+            dataGridView2.Columns[1].Width = 50;
+
+            DataGridViewColumn column31 = dataGridView2.Columns[2];
+            dataGridView2.Columns[2].HeaderText = "Kod";
+            dataGridView2.Columns[2].Width = 120;
+
+            DataGridViewColumn column41 = dataGridView2.Columns[3];
+            dataGridView2.Columns[3].HeaderText = "Lokacija";
+            dataGridView2.Columns[3].Width = 50;
+
+            DataGridViewColumn column51 = dataGridView2.Columns[4];
+            dataGridView2.Columns[4].HeaderText = "Kolicina";
+            dataGridView2.Columns[4].Width = 70;
+
+            DataGridViewColumn column61 = dataGridView2.Columns[5];
+            dataGridView2.Columns[5].HeaderText = "ID";
+            dataGridView2.Columns[5].Width = 30;
+
+
+
+            DataGridViewColumn column81 = dataGridView2.Columns[6];
+            dataGridView2.Columns[6].HeaderText = "Lokacija naziv";
+            dataGridView2.Columns[6].Width = 150;
+
+            DataGridViewColumn column91 = dataGridView2.Columns[7];
+            dataGridView2.Columns[7].HeaderText = "FormiranDokument";
+            dataGridView2.Columns[7].Width = 40;
+
+
+            DataGridViewColumn column101 = dataGridView2.Columns[8];
+            dataGridView2.Columns[8].HeaderText = "Broj";
+            dataGridView2.Columns[8].Width = 40;
         }
     }
 }

@@ -215,7 +215,7 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
                    "from PregledStavkiPlanaPakovanja " +
                    "inner join MaticniPodatki on PregledStavkiPlanaPakovanja.ArtikalPaket=MaticniPodatki.MpSifra " +
                    "inner join MaticniPodatki as m1 on PregledStavkiPlanaPakovanja.ArtikalIzPrvogNivoaSastavnice=m1.MpSifra " +
-                   "WHERE IDStavkePlanaPakovanja=" + IDStavke;
+                   "WHERE IDStavkePlanaPakovanja=" + IDStavke + " and IdPlana=42";
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();
