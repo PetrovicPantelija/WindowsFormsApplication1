@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using FontAwesome.Sharp;
+using WindowsFormsApplication1.PakovanjaPlanovi;
 
 namespace WindowsFormsApplication1
 {
@@ -448,6 +449,12 @@ namespace WindowsFormsApplication1
                 OpenChildForm(new MenijiNabavka.frmPlan());
             }
             else { return; }
+        }
+
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            KompletiPaket frm = new KompletiPaket();
+            frm.Show();
         }
     }
 }

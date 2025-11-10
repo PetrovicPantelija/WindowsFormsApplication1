@@ -113,7 +113,9 @@ namespace WindowsFormsApplication1
                        // MessageBox.Show("Nije korisnik");
                         Main mainf = new Main(0);
                         PravoP = mainf.Pravo;
-                        if (PravoP == true) { mainf.Show(); } else { return; }
+                        if (PravoP == true) { mainf.Show(); this.WindowState = FormWindowState.Minimized;
+                        }
+                        else { return; }
                     }
                   
 
@@ -122,7 +124,7 @@ namespace WindowsFormsApplication1
                 reader.Close();
                 myConnection.Close();
 
-            
+
         }
         private void button2_Click(object sender, EventArgs e)
         {
@@ -152,7 +154,9 @@ namespace WindowsFormsApplication1
                     ReadNabavka = Convert.ToInt32(reader["ReadNabavka"].ToString());
                     MainNabavka mn = new MainNabavka(KorisnikN, ReadNabavka);
                     PravoP = mn.Pravo;
-                    if (PravoP == true) { mn.Show(); } else { return; }
+                    if (PravoP == true) { mn.Show(); this.WindowState = FormWindowState.Minimized;
+                    }
+                    else { return; }
                 }
                 else
                 {
@@ -171,7 +175,9 @@ namespace WindowsFormsApplication1
             {
                 Magacin.MainAdministracija ma = new Magacin.MainAdministracija();
                 PravoP = ma.Pravo;
-                if (PravoP == true) { ma.Show(); } else { return; }
+                if (PravoP == true) { ma.Show(); this.WindowState = FormWindowState.Minimized;
+                }
+                else { return; }
             }
         }
 
@@ -194,7 +200,9 @@ namespace WindowsFormsApplication1
             {
                 Portirnica.StatusNajave stat = new Portirnica.StatusNajave(cboKorisnik.Text);
                 PravoP = stat.Pravo;
-                if (PravoP == true) { stat.Show(); } else { return; }
+                if (PravoP == true) { stat.Show(); this.WindowState = FormWindowState.Minimized;
+                }
+                else { return; }
             }
             myConnection.Close();
         }
@@ -216,11 +224,12 @@ namespace WindowsFormsApplication1
              if(cboKorisnik.Text=="pantelija" && txtPassword.Text == "0307")
               {
                 Kalkulacije.MainKalkulacije kalk = new Kalkulacije.MainKalkulacije();
-                kalk.Show();
-              //  PravoP = kalk.Pravo;
-               // if (PravoP == true) { kalk.Show(); } else { return; }
-             }
-             else
+                kalk.Show(); this.WindowState = FormWindowState.Minimized;
+
+                //  PravoP = kalk.Pravo;
+                // if (PravoP == true) { kalk.Show(); } else { return; }
+            }
+            else
              {
                 MessageBox.Show("Nemate prava za pristup ovoj formi");
              }
@@ -233,6 +242,8 @@ namespace WindowsFormsApplication1
                 user = cboKorisnik.Text.ToString().TrimEnd();
                 Planovi_Excel.MainPlaniranje plp = new Planovi_Excel.MainPlaniranje();
                 plp.Show();
+                this.WindowState = FormWindowState.Minimized;
+
             }
             else { MessageBox.Show("Nije ispravno uneta lozinka"); }
         }
@@ -241,12 +252,16 @@ namespace WindowsFormsApplication1
         {
             MainPakovanje frm = new MainPakovanje();
             frm.Show();
+            this.WindowState = FormWindowState.Minimized;
+
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
             Barcode.Pregled frm = new Barcode.Pregled();
             frm.Show();
+            this.WindowState = FormWindowState.Minimized;
+
         }
 
         private void button9_Click(object sender, EventArgs e)
@@ -277,6 +292,8 @@ namespace WindowsFormsApplication1
 
                 ProizvodnjaUKadrovskoj.MainZaposleni plp = new ProizvodnjaUKadrovskoj.MainZaposleni(SifraLargo);
                 plp.Show();
+                this.WindowState = FormWindowState.Minimized;
+
 
             }
             else

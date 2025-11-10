@@ -11,7 +11,7 @@
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>2.22719cm</Height>
+              <Height>1.94938cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -51,11 +51,11 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>2.22719cm</Height>
+              <Height>1.94938cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Opis1">
+                    <Textbox Name="Textbox1">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
@@ -64,7 +64,7 @@
                             <TextRun>
                               <Value>=Fields!Opis.Value</Value>
                               <Style>
-                                <FontSize>48pt</FontSize>
+                                <FontSize>42pt</FontSize>
                                 <Color>White</Color>
                               </Style>
                             </TextRun>
@@ -74,17 +74,13 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Opis1</rd:DefaultName>
+                      <rd:DefaultName>Textbox1</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
                         <BackgroundColor>Black</BackgroundColor>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
                   </CellContents>
@@ -155,7 +151,7 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Height>4.45438cm</Height>
+        <Height>3.89876cm</Height>
         <Width>9.20688cm</Width>
         <Style>
           <Border>
@@ -164,7 +160,7 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>1.75369in</Height>
+    <Height>1.53494in</Height>
     <Style />
   </Body>
   <Width>3.62476in</Width>

@@ -468,11 +468,11 @@ namespace WindowsFormsApplication1.Magacin
                     {
                         b.TextFont = new Font("Calibri", 7);
                         string barkod = b.GenerateBarcodeImage(row.Cells[3].Value.ToString());
-                        updpoz.InsPozicijeBarkod(row.Cells[3].Value.ToString(), "*" + row.Cells[3].Value.ToString().TrimEnd() + "*", row.Cells[4].Value.ToString());
+                        updpoz.InsPozicijeBarkod(row.Cells[3].Value.ToString(), "*" + row.Cells[3].Value.ToString().TrimEnd() + "*", row.Cells[4].Value.ToString().Trim());
                         // txtOpis.Text = row.Cells[1].Value.ToString();
                     }
                 }
-
+                tabControl1.SelectedTab = tabPage2;
 
             }
             catch
@@ -500,6 +500,7 @@ namespace WindowsFormsApplication1.Magacin
 
             reportViewer1.LocalReport.DataSources.Clear();
             reportViewer1.LocalReport.ReportPath = "rptBarkodPozicija.rdlc";
+            reportViewer1.PrinterSettings.DefaultPageSettings.PaperSource.SourceName = "Anta";
 
             reportViewer1.LocalReport.DataSources.Add(rds);
             reportViewer1.RefreshReport();
