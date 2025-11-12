@@ -57,13 +57,10 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
             using (SqlConnection conn = new SqlConnection(connect))
             {
                 var query = @"
-select distinct 
-       pu.LargoProizvodID as ID,
-       pu.LargoProizvodNaziv
-from PomWebsUporedna pu
-inner join PomWebsExportActive ea on pu.WebsGTIN = ea.BarCode
-where ea.Active = 1
-order by pu.LargoProizvodID";
+select distinct LargoProizvodID as ID,LargoProizvodNaziv
+from PomWebsUporedna 
+inner join PomWebsExportActive on PomWebsUporedna.WebsGTIN=PomWebsExportActive.BarCode
+Where LargoProizvodID not in (Select ProizvodID From PomGotoviProizvodiNeaktivni) and PomWebsExportActive.active=1";
 
                 var da = new SqlDataAdapter(query, conn);
                 var ds = new DataSet();
@@ -495,7 +492,7 @@ order by S.LargoProizvodID, S.MP;";
             IzracunajKomplete();
             IzracunajKompleteDetaljno();
             Rekurzivno();
-
+            Update0();
 
         }
         private void exportToolStripMenuItem_Click(object sender, EventArgs e)
@@ -547,6 +544,19 @@ order by S.LargoProizvodID, S.MP;";
                         csv.WriteField(dgv.Rows[row].Cells[col].Value?.ToString() ?? "");
                     }
                     csv.NextRecord();
+                }
+            }
+        }
+
+        private void Update0()
+        {
+            foreach(DataGridViewRow row in dataGridView4.Rows)
+            {
+                if (Convert.ToInt32(row.Cells[1].Value) == 0)
+                {
+                    row.DefaultCellStyle.BackColor = Color.Yellow;
+                    row.Cells[1].Value = 3;
+
                 }
             }
         }
