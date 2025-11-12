@@ -585,7 +585,6 @@ order by S.LargoProizvodID, S.MP;";
         }
         private void Update0()
         {
-            // 1) Podaci
             var list = dataGridView4.DataSource as IList<KompletiRow>;
             if (list == null) return;
 
@@ -593,13 +592,11 @@ order by S.LargoProizvodID, S.MP;";
             string[] g5 = { "P5", "P6", "L5", "L6", "LP5", "LP6", "PK231" };
             string[] g3 = { "P7", "P8", "L7", "L8", "LP7", "LP8", "PK281" };
 
-            // 2) Zapamti koje redove treba obojiti (oni koji su ORIGINALNO imali Kompleta == 0)
             var highlightIds = new HashSet<int>(
                 list.Where(it => it.Kompleta == 0)
                     .Select(it => it.LargoProizvodID)
             );
 
-            // 3) Oboji ih odmah (pre izmene vrednosti)
             foreach (DataGridViewRow row in dataGridView4.Rows)
             {
                 if (row.IsNewRow) continue;
@@ -611,10 +608,9 @@ order by S.LargoProizvodID, S.MP;";
                 }
             }
 
-            // 4) Izračunaj nove vrednosti, MENJAJUĆI MODEL (ne ćelije)
             foreach (var item in list)
             {
-                if (item.Kompleta != 0) continue; // menjamo samo one koje su bile 0
+                if (item.Kompleta != 0) continue; 
 
                 var name = (item.Naziv ?? string.Empty).Trim().ToUpperInvariant();
 
@@ -624,12 +620,11 @@ order by S.LargoProizvodID, S.MP;";
                 else item.Kompleta = 3;
             }
 
-            // 5) Osveži grid da prikaže nove vrednosti
+
             var cm = BindingContext[dataGridView4.DataSource] as CurrencyManager;
             cm?.Refresh();
 
-            // 6) Ponovo (za svaki slučaj) primeni žutu na iste redove po ID-u,
-            //    da boja ostane i nakon redraw-a
+
             foreach (DataGridViewRow row in dataGridView4.Rows)
             {
                 if (row.IsNewRow) continue;
@@ -641,66 +636,10 @@ order by S.LargoProizvodID, S.MP;";
                 }
             }
 
-            dataGridView4.Invalidate(); // repaint
+            dataGridView4.Invalidate();
         }
 
 
-        /*private void Update0()
-        {
-            if (dataGridView4?.Columns == null) return;
-
-            // Pronađi kolone "Kompleta" i naziv (Naziv / MPStaraSif)
-            int idxKompleta = -1, idxNaziv = -1;
-            foreach (DataGridViewColumn c in dataGridView4.Columns)
-            {
-                var h = (c.HeaderText ?? string.Empty).Trim();
-                if (idxKompleta == -1 && h.Equals("Kompleta", StringComparison.OrdinalIgnoreCase))
-                    idxKompleta = c.Index;
-
-                if (idxNaziv == -1 &&
-                   (h.Equals("Naziv", StringComparison.OrdinalIgnoreCase) ||
-                    h.Equals("MPStaraSif", StringComparison.OrdinalIgnoreCase) ||
-                    h.Equals("MpStaraSif", StringComparison.OrdinalIgnoreCase)))
-                    idxNaziv = c.Index;
-            }
-            if (idxKompleta < 0 || idxNaziv < 0) return;
-
-            string[] g8 = { "P2", "P3", "P4", "L1", "L2", "L3", "L4", "LP1", "LP2", "LP3", "LP4", "PK181" };
-            string[] g5 = { "P5", "P6", "L5", "L6", "LP5", "LP6", "PK231" };
-            string[] g3 = { "P7", "P8", "L7", "L8", "LP7", "LP8", "PK281" };
-
-            foreach (DataGridViewRow row in dataGridView4.Rows)
-            {
-                if (row.IsNewRow) continue;
-
-                // čitaj trenutnu vrednost "Kompleta"
-                var valObj = row.Cells[idxKompleta].Value;
-                if (valObj == null) continue;
-                if (!int.TryParse(valObj.ToString(), out int kompleta)) continue;
-
-                // menjamo samo ako je 0
-                if (kompleta != 0) continue;
-
-                string name = row.Cells[idxNaziv].Value?.ToString() ?? string.Empty;
-                string u = name.Trim().ToUpperInvariant();
-
-                int newVal = 3; // default za ostale
-                bool matched = false;
-
-                foreach (var p in g8)
-                    if (u.StartsWith(p)) { newVal = 8; matched = true; break; }
-
-                if (!matched)
-                    foreach (var p in g5)
-                        if (u.StartsWith(p)) { newVal = 5; matched = true; break; }
-
-                if (!matched)
-                    foreach (var p in g3)
-                        if (u.StartsWith(p)) { newVal = 3; matched = true; break; }
-
-                row.Cells[idxKompleta].Value = newVal;
-            }
-        }*/
 
     }
 }
