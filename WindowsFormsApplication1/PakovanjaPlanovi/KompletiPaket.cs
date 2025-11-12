@@ -36,11 +36,11 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
         }
 
         private void KompletiPaket_Click(object sender, EventArgs e)
-        {
+        {/*
             if (!panel1.ClientRectangle.Contains(panel1.PointToClient(Cursor.Position)))
             {
                 panel1.Visible = false;
-            }
+            }*/
         }
 
         private void CenterPanel()
@@ -386,6 +386,39 @@ order by S.LargoProizvodID, S.MP;";
                 }
             }
         }
+        private Dictionary<int, string> GetNazivMap(IEnumerable<int> ids)
+        {
+            var map = new Dictionary<int, string>();
+            var list = ids?.Distinct().ToList() ?? new List<int>();
+            if (list.Count == 0) return map;
+
+            string inList = string.Join(",", list);
+            using (var conn = new SqlConnection(connect))
+            using (var cmd = new SqlCommand($@"
+                SELECT MpSifra, RTrim(MpStaraSif) as Naziv
+                FROM MaticniPodatki
+                WHERE MpSifra IN ({inList})", conn))
+            {
+                conn.Open();
+                using (var rdr = cmd.ExecuteReader())
+                {
+                    while (rdr.Read())
+                    {
+                        int id = rdr.IsDBNull(0) ? 0 : rdr.GetInt32(0);
+                        string naziv = rdr.IsDBNull(1) ? null : rdr.GetString(1);
+                        if (!map.ContainsKey(id))
+                            map[id] = naziv;
+                    }
+                }
+            }
+            return map;
+        }
+        public class KompletiRow
+        {
+            public int LargoProizvodID { get; set; }
+            public string Naziv { get; set; }
+            public int Kompleta { get; set; }
+        }
 
         private void Rekurzivno()
         {
@@ -458,10 +491,13 @@ order by S.LargoProizvodID, S.MP;";
                 }
             }
 
+            var nazivMap = GetNazivMap(kompletCountPerPackage.Keys);
+
             var dgv4List = kompletCountPerPackage
-                .Select(kv => new Kompleti
+                .Select(kv => new KompletiRow
                 {
                     LargoProizvodID = kv.Key,
+                    Naziv = nazivMap.TryGetValue(kv.Key, out var name) ? name : null,
                     Kompleta = kv.Value
                 })
                 .OrderBy(x => x.LargoProizvodID)
@@ -547,18 +583,124 @@ order by S.LargoProizvodID, S.MP;";
                 }
             }
         }
-
         private void Update0()
         {
-            foreach(DataGridViewRow row in dataGridView4.Rows)
+            // 1) Podaci
+            var list = dataGridView4.DataSource as IList<KompletiRow>;
+            if (list == null) return;
+
+            string[] g8 = { "P2", "P3", "P4", "L1", "L2", "L3", "L4", "LP1", "LP2", "LP3", "LP4", "PK181" };
+            string[] g5 = { "P5", "P6", "L5", "L6", "LP5", "LP6", "PK231" };
+            string[] g3 = { "P7", "P8", "L7", "L8", "LP7", "LP8", "PK281" };
+
+            // 2) Zapamti koje redove treba obojiti (oni koji su ORIGINALNO imali Kompleta == 0)
+            var highlightIds = new HashSet<int>(
+                list.Where(it => it.Kompleta == 0)
+                    .Select(it => it.LargoProizvodID)
+            );
+
+            // 3) Oboji ih odmah (pre izmene vrednosti)
+            foreach (DataGridViewRow row in dataGridView4.Rows)
             {
-                if (Convert.ToInt32(row.Cells[1].Value) == 0)
+                if (row.IsNewRow) continue;
+                int id = 0;
+                var idVal = row.Cells["LargoProizvodID"].Value;
+                if (idVal != null && int.TryParse(idVal.ToString(), out id) && highlightIds.Contains(id))
                 {
                     row.DefaultCellStyle.BackColor = Color.Yellow;
-                    row.Cells[1].Value = 3;
-
                 }
             }
+
+            // 4) Izračunaj nove vrednosti, MENJAJUĆI MODEL (ne ćelije)
+            foreach (var item in list)
+            {
+                if (item.Kompleta != 0) continue; // menjamo samo one koje su bile 0
+
+                var name = (item.Naziv ?? string.Empty).Trim().ToUpperInvariant();
+
+                if (g8.Any(p => name.StartsWith(p))) item.Kompleta = 8;
+                else if (g5.Any(p => name.StartsWith(p))) item.Kompleta = 5;
+                else if (g3.Any(p => name.StartsWith(p))) item.Kompleta = 3;
+                else item.Kompleta = 3;
+            }
+
+            // 5) Osveži grid da prikaže nove vrednosti
+            var cm = BindingContext[dataGridView4.DataSource] as CurrencyManager;
+            cm?.Refresh();
+
+            // 6) Ponovo (za svaki slučaj) primeni žutu na iste redove po ID-u,
+            //    da boja ostane i nakon redraw-a
+            foreach (DataGridViewRow row in dataGridView4.Rows)
+            {
+                if (row.IsNewRow) continue;
+                int id = 0;
+                var idVal = row.Cells["LargoProizvodID"].Value;
+                if (idVal != null && int.TryParse(idVal.ToString(), out id) && highlightIds.Contains(id))
+                {
+                    row.DefaultCellStyle.BackColor = Color.Yellow;
+                }
+            }
+
+            dataGridView4.Invalidate(); // repaint
         }
+
+
+        /*private void Update0()
+        {
+            if (dataGridView4?.Columns == null) return;
+
+            // Pronađi kolone "Kompleta" i naziv (Naziv / MPStaraSif)
+            int idxKompleta = -1, idxNaziv = -1;
+            foreach (DataGridViewColumn c in dataGridView4.Columns)
+            {
+                var h = (c.HeaderText ?? string.Empty).Trim();
+                if (idxKompleta == -1 && h.Equals("Kompleta", StringComparison.OrdinalIgnoreCase))
+                    idxKompleta = c.Index;
+
+                if (idxNaziv == -1 &&
+                   (h.Equals("Naziv", StringComparison.OrdinalIgnoreCase) ||
+                    h.Equals("MPStaraSif", StringComparison.OrdinalIgnoreCase) ||
+                    h.Equals("MpStaraSif", StringComparison.OrdinalIgnoreCase)))
+                    idxNaziv = c.Index;
+            }
+            if (idxKompleta < 0 || idxNaziv < 0) return;
+
+            string[] g8 = { "P2", "P3", "P4", "L1", "L2", "L3", "L4", "LP1", "LP2", "LP3", "LP4", "PK181" };
+            string[] g5 = { "P5", "P6", "L5", "L6", "LP5", "LP6", "PK231" };
+            string[] g3 = { "P7", "P8", "L7", "L8", "LP7", "LP8", "PK281" };
+
+            foreach (DataGridViewRow row in dataGridView4.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                // čitaj trenutnu vrednost "Kompleta"
+                var valObj = row.Cells[idxKompleta].Value;
+                if (valObj == null) continue;
+                if (!int.TryParse(valObj.ToString(), out int kompleta)) continue;
+
+                // menjamo samo ako je 0
+                if (kompleta != 0) continue;
+
+                string name = row.Cells[idxNaziv].Value?.ToString() ?? string.Empty;
+                string u = name.Trim().ToUpperInvariant();
+
+                int newVal = 3; // default za ostale
+                bool matched = false;
+
+                foreach (var p in g8)
+                    if (u.StartsWith(p)) { newVal = 8; matched = true; break; }
+
+                if (!matched)
+                    foreach (var p in g5)
+                        if (u.StartsWith(p)) { newVal = 5; matched = true; break; }
+
+                if (!matched)
+                    foreach (var p in g3)
+                        if (u.StartsWith(p)) { newVal = 3; matched = true; break; }
+
+                row.Cells[idxKompleta].Value = newVal;
+            }
+        }*/
+
     }
 }
