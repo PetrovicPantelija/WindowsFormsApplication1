@@ -41,6 +41,7 @@
             this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
             this.dataGridView5 = new System.Windows.Forms.DataGridView();
+            this.upišiUBazuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvWebs)).BeginInit();
             this.panel1.SuspendLayout();
@@ -133,7 +134,8 @@
             this.menuStrip1.BackColor = System.Drawing.Color.ForestGreen;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.izračunajKompleteToolStripMenuItem,
-            this.exportToolStripMenuItem});
+            this.exportToolStripMenuItem,
+            this.upišiUBazuToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1329, 29);
@@ -173,6 +175,16 @@
             this.dataGridView5.Name = "dataGridView5";
             this.dataGridView5.Size = new System.Drawing.Size(487, 471);
             this.dataGridView5.TabIndex = 9;
+            // 
+            // upišiUBazuToolStripMenuItem
+            // 
+            this.upišiUBazuToolStripMenuItem.BackColor = System.Drawing.Color.DarkOrange;
+            this.upišiUBazuToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.upišiUBazuToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.upišiUBazuToolStripMenuItem.Name = "upišiUBazuToolStripMenuItem";
+            this.upišiUBazuToolStripMenuItem.Size = new System.Drawing.Size(107, 25);
+            this.upišiUBazuToolStripMenuItem.Text = "Upiši u bazu";
+            this.upišiUBazuToolStripMenuItem.Click += new System.EventHandler(this.upišiUBazuToolStripMenuItem_Click);
             // 
             // KompletiPaket
             // 
@@ -223,5 +235,6 @@
         private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
         private System.Windows.Forms.DataGridView dataGridView4;
         private System.Windows.Forms.DataGridView dataGridView5;
+        private System.Windows.Forms.ToolStripMenuItem upišiUBazuToolStripMenuItem;
     }
 }

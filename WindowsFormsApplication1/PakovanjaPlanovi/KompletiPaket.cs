@@ -3,6 +3,7 @@ using CsvHelper.Configuration;
 using DocumentFormat.OpenXml.Office2019.Drawing.Ink;
 using DocumentFormat.OpenXml.Vml.Office;
 using Microsoft.Ajax.Utilities;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -639,7 +640,76 @@ order by S.LargoProizvodID, S.MP;";
             dataGridView4.Invalidate();
         }
 
+        private void upišiUBazuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dataGridView4 == null || dataGridView4.Rows.Count == 0)
+            {
+                MessageBox.Show("Nema podataka u dataGridView4 za upis.");
+                return;
+            }
 
+
+            string mysqlConnString =
+    ConfigurationManager.ConnectionStrings[
+        "WindowsFormsApplication1.Properties.Settings.MySqlJelaWebs"
+    ].ConnectionString;
+            try
+            {
+                using (var conn = new MySqlConnection(mysqlConnString))
+                {
+                    conn.Open();
+
+                    using (var tran = conn.BeginTransaction())
+                    using (var cmd = conn.CreateCommand())
+                    {
+                        cmd.Transaction = tran;
+
+                         cmd.CommandText = "TRUNCATE TABLE jela_lager;";
+                         cmd.ExecuteNonQuery();
+
+                        cmd.CommandText = @"
+INSERT INTO jela_lager
+    (LargoProizvodID, Naziv, Kompleta)
+VALUES
+    (@id, @naziv, @kompleta);";
+
+                        cmd.Parameters.Add("@id", MySqlDbType.Int32);
+                        cmd.Parameters.Add("@naziv", MySqlDbType.VarChar, 255);
+                        cmd.Parameters.Add("@kompleta", MySqlDbType.Int32);
+
+                        foreach (DataGridViewRow row in dataGridView4.Rows)
+                        {
+                            if (row.IsNewRow) continue;
+
+                            if (row.Cells["LargoProizvodID"].Value == null) continue;
+
+                            int id;
+                            if (!int.TryParse(row.Cells["LargoProizvodID"].Value.ToString(), out id))
+                                continue;
+
+                            string naziv = row.Cells["Naziv"].Value?.ToString() ?? string.Empty;
+
+                            int kompleta = 0;
+                            int.TryParse(row.Cells["Kompleta"].Value?.ToString() ?? "0", out kompleta);
+
+                            cmd.Parameters["@id"].Value = id;
+                            cmd.Parameters["@naziv"].Value = naziv;
+                            cmd.Parameters["@kompleta"].Value = kompleta;
+
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        tran.Commit();
+                    }
+                }
+
+                MessageBox.Show("Podaci iz dataGridView4 su uspešno upisani u MySQL (jela_lager).");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Greška pri upisu u MySQL: " + ex.Message);
+            }
+        }
 
     }
 }
