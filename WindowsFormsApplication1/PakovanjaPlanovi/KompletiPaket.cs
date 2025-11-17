@@ -1,5 +1,6 @@
 ﻿using CsvHelper;
 using CsvHelper.Configuration;
+using DocumentFormat.OpenXml.Office.Word;
 using DocumentFormat.OpenXml.Office2019.Drawing.Ink;
 using DocumentFormat.OpenXml.Vml.Office;
 using Microsoft.Ajax.Utilities;
@@ -31,34 +32,14 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
 
         private void KompletiPaket_Load(object sender, EventArgs e)
         {
-            this.Click += new EventHandler(KompletiPaket_Click);
-            panel1.Visible = false;
             FillSviPaketi();
         }
-
-        private void KompletiPaket_Click(object sender, EventArgs e)
-        {/*
-            if (!panel1.ClientRectangle.Contains(panel1.PointToClient(Cursor.Position)))
-            {
-                panel1.Visible = false;
-            }*/
-        }
-
-        private void CenterPanel()
-        {
-            int centerX = (this.ClientSize.Width - panel1.Width) / 2;
-            int centerY = (this.ClientSize.Height - panel1.Height) / 2;
-
-            panel1.Location = new Point(centerX, centerY);
-        }
-
-
         private void FillSviPaketi()
         {
             using (SqlConnection conn = new SqlConnection(connect))
             {
                 var query = @"
-select distinct LargoProizvodID as ID,LargoProizvodNaziv
+select distinct LargoProizvodID as ID,LargoProizvodNaziv,PomWebsUporedna.WebsGTIN as BarCode
 from PomWebsUporedna 
 inner join PomWebsExportActive on PomWebsUporedna.WebsGTIN=PomWebsExportActive.BarCode
 Where LargoProizvodID not in (Select ProizvodID From PomGotoviProizvodiNeaktivni) and PomWebsExportActive.active=1";
@@ -69,7 +50,7 @@ Where LargoProizvodID not in (Select ProizvodID From PomGotoviProizvodiNeaktivni
 
                 dataGridView1.DataSource = ds.Tables[0];
                 dataGridView1.Columns[0].Width = 70;
-                dataGridView1.Columns[1].Width = 250;
+                dataGridView1.Columns[1].Width = 120;
 
                 StyleGrid(dataGridView1);
             }
@@ -88,53 +69,6 @@ Where LargoProizvodID not in (Select ProizvodID From PomGotoviProizvodiNeaktivni
         }
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                if (row.Selected)
-                {
-                    SqlConnection conn = new SqlConnection(connect);
-                    var query = @"
-select 
-    KoPodSifMp as MP,
-    RTrim(MpNaziv) as Naziv,
-    KoKolPodrMp as Potrebno,
-    (SUM(PrPrevKol) - SUM(PrIzdKol)) as Zaliha
-from Kosovnica k
-inner join MaticniPodatki m on k.KoPodSifMp = m.MpSifra
-inner join Promet p on k.KoPodSifMp = p.PrSifMp
-where KoNadSifMp = @id and KoVarianta='*' 
-group by KoPodSifMp, MpNaziv, KoKolPodrMp
-order by KoPodSifMp";
-
-                    var da = new SqlDataAdapter(query, conn);
-                    da.SelectCommand.Parameters.AddWithValue("@id", Convert.ToInt32(row.Cells[0].Value));
-                    var ds = new DataSet();
-                    da.Fill(ds);
-
-                    dgvWebs.DataSource = ds.Tables[0];
-                    if (dgvWebs.Columns.Count >= 4)
-                    {
-                        dgvWebs.Columns[0].Width = 70;
-                        dgvWebs.Columns[1].Width = 150;
-                        dgvWebs.Columns[2].Width = 70;
-                        dgvWebs.Columns[3].Width = 70;
-                    }
-                    StyleGrid(dgvWebs);
-
-                    foreach (DataGridViewRow r in dgvWebs.Rows)
-                    {
-                        if (r.IsNewRow) continue;
-                        decimal potrebno = Convert.ToDecimal(r.Cells["Potrebno"].Value);
-                        decimal zaliha = Convert.ToDecimal(r.Cells["Zaliha"].Value);
-                        r.DefaultCellStyle.BackColor = (potrebno <= zaliha)
-                            ? System.Drawing.Color.LightGreen
-                            : System.Drawing.Color.Firebrick;
-                    }
-
-                    panel1.Visible = true;
-                    CenterPanel();
-                }
-            }
         }
         public class Kosovnica
         {
@@ -307,7 +241,8 @@ order by k.KoNadSifMp, k.KoPodSifMp";
             var filteredList =
                 kompletiDetaljno
                 .GroupBy(k => k.LargoProizvodID)
-                .SelectMany(g => {
+                .SelectMany(g =>
+                {
                     int maxK = g.Any() ? g.Max(x => x.Komplet) : 0;
                     return g.Where(x => x.Komplet == maxK);
                 })
@@ -416,9 +351,29 @@ order by S.LargoProizvodID, S.MP;";
         }
         public class KompletiRow
         {
+            public int RB { get; set; }
             public int LargoProizvodID { get; set; }
             public string Naziv { get; set; }
             public int Kompleta { get; set; }
+            public string Barcode { get; set; }
+        }
+        private Dictionary<int, string> GetBarcodeMapFromGrid()
+        {
+            var map = new Dictionary<int, string>();
+            foreach (DataGridViewRow r in dataGridView1.Rows)
+            {
+                if (r.IsNewRow) continue;
+                if (r.Cells["ID"].Value == null) continue;
+
+                int id;
+                if (!int.TryParse(r.Cells["ID"].Value.ToString(), out id))
+                    continue;
+
+                string bc = r.Cells["BarCode"].Value?.ToString();
+                if (!map.ContainsKey(id))
+                    map[id] = bc;
+            }
+            return map;
         }
 
         private void Rekurzivno()
@@ -434,7 +389,10 @@ order by S.LargoProizvodID, S.MP;";
                 return;
             }
 
-            var kompletCountPerPackage = paketIdsInOrder.ToDictionary(id => id, id => 0);
+            // >>> OVO JE BITNO: skloni duplikate ID-jeva pre ToDictionary <<<
+            var uniqueIdsInOrder = paketIdsInOrder.Distinct().ToList();
+
+            var kompletCountPerPackage = uniqueIdsInOrder.ToDictionary(id => id, id => 0);
 
             var detalji = new List<KompletiDetaljno>();
 
@@ -444,7 +402,7 @@ order by S.LargoProizvodID, S.MP;";
             {
                 barJedanNapravljenUProlazu = false;
 
-                foreach (var pid in paketIdsInOrder)
+                foreach (var pid in uniqueIdsInOrder)
                 {
                     if (!paketDoSastavnice.ContainsKey(pid)) continue;
 
@@ -493,31 +451,41 @@ order by S.LargoProizvodID, S.MP;";
             }
 
             var nazivMap = GetNazivMap(kompletCountPerPackage.Keys);
+            var barcodeMap = GetBarcodeMapFromGrid();
+
+            int rb = 1;
 
             var dgv4List = kompletCountPerPackage
+                .OrderBy(kv => kv.Key)
                 .Select(kv => new KompletiRow
                 {
+                    RB = rb++,
                     LargoProizvodID = kv.Key,
                     Naziv = nazivMap.TryGetValue(kv.Key, out var name) ? name : null,
-                    Kompleta = kv.Value
+                    Kompleta = kv.Value,
+                    Barcode = barcodeMap.TryGetValue(kv.Key, out var bc) ? bc : null
                 })
-                .OrderBy(x => x.LargoProizvodID)
                 .ToList();
 
             dataGridView4.DataSource = dgv4List;
             StyleGrid(dataGridView4);
 
             var finalPerPackageAndMp =
-     detalji
-     .GroupBy(d => new { d.LargoProizvodID, d.MP })
-     .Select(g =>
-     {
-         int maxKomplet = g.Max(x => x.Komplet);
-         return g.First(x => x.Komplet == maxKomplet);
-     })
-     .OrderBy(d => d.LargoProizvodID)
-     .ThenBy(d => d.MP)
-     .ToList();
+                 detalji
+                 .GroupBy(d => new { d.LargoProizvodID, d.MP })
+                 .Select(g =>
+                 {
+                     int maxKomplet = g.Max(x => x.Komplet);
+                     return g.First(x => x.Komplet == maxKomplet);
+                 })
+                 .OrderBy(d => d.LargoProizvodID)
+                 .ThenBy(d => d.MP)
+                 .ToList();
+
+            dataGridView4.Columns[0].Width = 50;
+            dataGridView4.Columns[1].Width = 70;
+            dataGridView4.Columns[2].Width = 100;
+            dataGridView4.Columns[3].Width = 70;
 
             dataGridView5.DataSource = finalPerPackageAndMp;
             StyleGrid(dataGridView5);
@@ -611,7 +579,7 @@ order by S.LargoProizvodID, S.MP;";
 
             foreach (var item in list)
             {
-                if (item.Kompleta != 0) continue; 
+                if (item.Kompleta != 0) continue;
 
                 var name = (item.Naziv ?? string.Empty).Trim().ToUpperInvariant();
 
@@ -648,11 +616,11 @@ order by S.LargoProizvodID, S.MP;";
                 return;
             }
 
-
             string mysqlConnString =
-    ConfigurationManager.ConnectionStrings[
-        "WindowsFormsApplication1.Properties.Settings.MySqlJelaWebs"
-    ].ConnectionString;
+                ConfigurationManager.ConnectionStrings[
+                    "WindowsFormsApplication1.Properties.Settings.MySqlJelaWebs"
+                ].ConnectionString;
+
             try
             {
                 using (var conn = new MySqlConnection(mysqlConnString))
@@ -664,15 +632,16 @@ order by S.LargoProizvodID, S.MP;";
                     {
                         cmd.Transaction = tran;
 
-                         cmd.CommandText = "TRUNCATE TABLE jela_lager;";
-                         cmd.ExecuteNonQuery();
+                        cmd.CommandText = "TRUNCATE TABLE jela_lager;";
+                        cmd.ExecuteNonQuery();
 
                         cmd.CommandText = @"
 INSERT INTO jela_lager
-    (LargoProizvodID, Naziv, Kompleta)
+    (ID, LargoProizvodID, Naziv, Kompleta)
 VALUES
-    (@id, @naziv, @kompleta);";
+    (@rb, @id, @naziv, @kompleta);";
 
+                        cmd.Parameters.Add("@rb", MySqlDbType.Int32);
                         cmd.Parameters.Add("@id", MySqlDbType.Int32);
                         cmd.Parameters.Add("@naziv", MySqlDbType.VarChar, 255);
                         cmd.Parameters.Add("@kompleta", MySqlDbType.Int32);
@@ -680,8 +649,11 @@ VALUES
                         foreach (DataGridViewRow row in dataGridView4.Rows)
                         {
                             if (row.IsNewRow) continue;
-
                             if (row.Cells["LargoProizvodID"].Value == null) continue;
+
+                            int rb;
+                            if (!int.TryParse(row.Cells["RB"].Value?.ToString(), out rb))
+                                continue;
 
                             int id;
                             if (!int.TryParse(row.Cells["LargoProizvodID"].Value.ToString(), out id))
@@ -692,6 +664,7 @@ VALUES
                             int kompleta = 0;
                             int.TryParse(row.Cells["Kompleta"].Value?.ToString() ?? "0", out kompleta);
 
+                            cmd.Parameters["@rb"].Value = rb;
                             cmd.Parameters["@id"].Value = id;
                             cmd.Parameters["@naziv"].Value = naziv;
                             cmd.Parameters["@kompleta"].Value = kompleta;
@@ -701,15 +674,48 @@ VALUES
 
                         tran.Commit();
                     }
+
+                    using (var tranUpdate = conn.BeginTransaction())
+                    using (var cmdUpdate = conn.CreateCommand())
+                    {
+                        cmdUpdate.Transaction = tranUpdate;
+
+                        cmdUpdate.CommandText = @"
+UPDATE webs_export_fin
+SET Kompleta = @kompleta
+WHERE Barcode = @barcode;";
+
+                        cmdUpdate.Parameters.Add("@kompleta", MySqlDbType.Int32);
+                        cmdUpdate.Parameters.Add("@barcode", MySqlDbType.VarChar, 255);
+
+                        foreach (DataGridViewRow row in dataGridView4.Rows)
+                        {
+                            if (row.IsNewRow) continue;
+                            if (row.Cells["LargoProizvodID"].Value == null) continue;
+
+                            int kompleta = 0;
+                            int.TryParse(row.Cells["Kompleta"].Value?.ToString() ?? "0", out kompleta);
+
+                            string barcode = row.Cells["Barcode"].Value?.ToString() ?? string.Empty;
+                            if (string.IsNullOrWhiteSpace(barcode))
+                                continue;
+
+                            cmdUpdate.Parameters["@kompleta"].Value = kompleta;
+                            cmdUpdate.Parameters["@barcode"].Value = barcode;
+
+                            cmdUpdate.ExecuteNonQuery();
+                        }
+
+                        tranUpdate.Commit();
+                    }
                 }
 
-                MessageBox.Show("Podaci iz dataGridView4 su uspešno upisani u MySQL (jela_lager).");
+                MessageBox.Show("Podaci su uspešno upisani u jela_lager i ažurirani u webs_export_fin.");
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Greška pri upisu u MySQL: " + ex.Message);
             }
         }
-
     }
 }
