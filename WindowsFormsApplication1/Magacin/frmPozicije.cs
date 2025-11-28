@@ -1,17 +1,17 @@
-﻿using System;
+﻿using Microsoft.Reporting.WinForms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
+using System.Data.OleDb;
+using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
-using System.Configuration;
-
-using Microsoft.Reporting.WinForms;
 
 namespace WindowsFormsApplication1.Magacin
 {
@@ -480,30 +480,91 @@ namespace WindowsFormsApplication1.Magacin
                 MessageBox.Show("Nije uspela generisanje pozicija");
             }
 
-            //Ovde dodati kod
-           
-            // Insert netacan napisan za probu
 
-
-          
-           
-
-            //Štampa
-
-            Perftech_BeogradDataSetTableAdapters.PozicijaBarkodTableAdapter ta = new Perftech_BeogradDataSetTableAdapters.PozicijaBarkodTableAdapter();
-            Perftech_BeogradDataSet.PozicijaBarkodDataTable dt = new Perftech_BeogradDataSet.PozicijaBarkodDataTable();
+            var ta = new Perftech_BeogradDataSetTableAdapters.PozicijaBarkodTableAdapter();
+            var dt = new Perftech_BeogradDataSet.PozicijaBarkodDataTable();
 
             ta.Fill(dt);
-            ReportDataSource rds = new ReportDataSource();
-            rds.Name = "DataSet1";
-            rds.Value = dt;
+
+            ReportDataSource rds = new ReportDataSource
+            {
+                Name = "DataSet1",
+                Value = dt
+            };
 
             reportViewer1.LocalReport.DataSources.Clear();
             reportViewer1.LocalReport.ReportPath = "rptBarkodPozicija.rdlc";
-            reportViewer1.PrinterSettings.DefaultPageSettings.PaperSource.SourceName = "Anta";
-
             reportViewer1.LocalReport.DataSources.Add(rds);
+
+            try
+            {
+                PrinterSettings printerSettings = new PrinterSettings();
+                PageSettings pageSettings = new PageSettings(printerSettings)
+                {
+                    Landscape = true  
+                };
+
+                PaperSize targetSize = null;
+
+                foreach (PaperSize ps in printerSettings.PaperSizes)
+                {
+                    if (ps.PaperName.Equals("Anta 100x55", StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        targetSize = ps;
+                        break;
+                    }
+                }
+
+                if (targetSize == null)
+                {
+                    foreach (PaperSize ps in printerSettings.PaperSizes)
+                    {
+                        if (ps.Kind == PaperKind.A4)
+                        {
+                            targetSize = ps;
+                            break;
+                        }
+                    }
+                }
+
+                if (targetSize == null)
+                {
+                    targetSize = new PaperSize("A4", 827, 1169);
+                }
+
+                pageSettings.PaperSize = targetSize;
+
+                pageSettings.Margins = new Margins(0, 0, 0, 0);
+
+                reportViewer1.SetPageSettings(pageSettings);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Nije uspelo podešavanje papira i orijentacije.\n" +
+                    "Biće korišćena podrazumevana podešavanja štampača.\n\n" +
+                    "Detalji: " + ex.Message);
+            }
+
             reportViewer1.RefreshReport();
+
+            /*
+
+             //Štampa
+
+             Perftech_BeogradDataSetTableAdapters.PozicijaBarkodTableAdapter ta = new Perftech_BeogradDataSetTableAdapters.PozicijaBarkodTableAdapter();
+             Perftech_BeogradDataSet.PozicijaBarkodDataTable dt = new Perftech_BeogradDataSet.PozicijaBarkodDataTable();
+
+             ta.Fill(dt);
+             ReportDataSource rds = new ReportDataSource();
+             rds.Name = "DataSet1";
+             rds.Value = dt;
+
+             reportViewer1.LocalReport.DataSources.Clear();
+             reportViewer1.LocalReport.ReportPath = "rptBarkodPozicija.rdlc";
+
+             reportViewer1.LocalReport.DataSources.Add(rds);
+             reportViewer1.RefreshReport();*/
         }
     }
 }

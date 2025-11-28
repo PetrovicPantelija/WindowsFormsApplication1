@@ -40,6 +40,7 @@ namespace WindowsFormsApplication1
         {
             InitializeComponent();
             Korisnik = KorisnikU;
+            Korisnik = Kor;
             txtIzdaje.Text = Korisnik;
             IdGrupe();
             IdForme();
@@ -543,8 +544,12 @@ namespace WindowsFormsApplication1
                     MessageBox.Show(p8.ToString());
                     */
                     //PANTA VRATIf10
-                    isporuka.InsertMedjuPostavRN(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToDouble(row.Cells[5].Value.ToString()), Convert.ToInt32(row.Cells[3].Value.ToString()), Convert.ToInt32(row.Cells[7].Value.ToString()), row.Cells[4].Value.ToString(), row.Cells[8].Value.ToString(), Convert.ToInt32(txtBrRn.Text), row.Cells[9].Value.ToString(), txtIzdaje.Text.Trim());
-                   // isporuka.InsertMedjuPostavRN(Convert.ToInt32(row.Cells[3].Value.ToString()), Convert.ToDouble(row.Cells[2].Value.ToString()), Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()), row.Cells[10].Value.ToString(), row.Cells[8].Value.ToString(), Convert.ToInt32(txtBrRn.Text), row.Cells[9].Value.ToString());
+                    isporuka.InsertMedjuPostavRN(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToDouble(row.Cells[5].Value.ToString()), Convert.ToInt32(30), Convert.ToInt32(30), "101119", "101120", Convert.ToInt32(txtBrRn.Text), row.Cells[9].Value.ToString(), txtIzdaje.Text.Trim());
+                    // isporuka.InsertMedjuPostavRN(Convert.ToInt32(row.Cells[3].Value.ToString()), Convert.ToDouble(row.Cells[2].Value.ToString()), Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()), row.Cells[10].Value.ToString(), row.Cells[8].Value.ToString(), Convert.ToInt32(txtBrRn.Text), row.Cells[9].Value.ToString());
+
+
+                    //isporuka.InsertMedjuPostavRN(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToDouble(row.Cells[5].Value.ToString()), Convert.ToInt32(row.Cells[3].Value.ToString()), Convert.ToInt32(row.Cells[7].Value.ToString()), row.Cells[4].Value.ToString(), row.Cells[8].Value.ToString(), Convert.ToInt32(txtBrRn.Text), row.Cells[9].Value.ToString(), txtIzdaje.Text.Trim());
+
                 }
             }
             VratiMSP();
@@ -622,12 +627,13 @@ namespace WindowsFormsApplication1
                                 , txtIzdaje.Text
                                 ,Convert.ToDouble(row.Cells[6].Value.ToString())
                                , row.Cells[9].Value.ToString()
-                               , b.GenerateBarcodeImage(row.Cells[10].Value.ToString()),
+                               , b.GenerateBarcodeImage(row.Cells[3].Value.ToString()),
                                b.GenerateBarcodeImage(txtBrojMSP.Text));
             }
 
             
         }
+        
 
         private void button4_Click(object sender, EventArgs e)
         {
@@ -786,6 +792,7 @@ namespace WindowsFormsApplication1
                     //Napuni grid 5
                     txtKoeficijent.Value = Convert.ToDecimal(row.Cells[8].Value.ToString());
                     txtKolicinaRN.Value = Convert.ToDecimal(row.Cells[8].Value.ToString());
+                    txtBrRn.Text = row.Cells["DNpStevilka"].Value.ToString().TrimEnd();
                     //VratiStavke(Convert.ToInt32(row.Cells[2].Value));
                 }
             }

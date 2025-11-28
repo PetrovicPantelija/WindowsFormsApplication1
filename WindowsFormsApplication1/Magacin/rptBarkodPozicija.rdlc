@@ -167,9 +167,9 @@
   <Page>
     <PageHeight>5.4cm</PageHeight>
     <PageWidth>10cm</PageWidth>
-    <LeftMargin>0cm</LeftMargin>
+    <LeftMargin>0.5cm</LeftMargin>
     <RightMargin>0cm</RightMargin>
-    <TopMargin>0cm</TopMargin>
+    <TopMargin>0.5cm</TopMargin>
     <BottomMargin>0cm</BottomMargin>
     <ColumnSpacing>0.13cm</ColumnSpacing>
     <Style />
