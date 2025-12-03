@@ -186,6 +186,42 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
                 conn.Close();
             }
         }
+
+        public void UpisiStatusPlanaPakovanja(int ID, int Stat)
+        {
+            // Stat 1 - updejtuje PoslatoNaCM
+            // Stat 2 -
+            using (SqlConnection conn = new SqlConnection(connect))
+            {
+                conn.Open();
+                using (SqlTransaction transaction = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        using (SqlCommand cmd = conn.CreateCommand())
+                        {
+                            cmd.Transaction = transaction;
+                            cmd.CommandText = "UpdateStatusPlanaPakovanja";
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.Add(new SqlParameter("@ID", SqlDbType.Int) { Value = ID });
+                            cmd.Parameters.Add(new SqlParameter("@Stat", SqlDbType.Int) { Value = Stat });
+
+
+                            cmd.ExecuteNonQuery();
+                        }
+                        transaction.Commit();
+                    }
+                    catch (SqlException ex)
+                    {
+                        transaction.Rollback();
+                        MessageBox.Show("Neuspešan upis u bazu", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(ex.ToString());
+                    }
+                }
+                conn.Close();
+            }
+        }
         public void ProgalsiPlanPakovanja(int ID)
         {
             using (SqlConnection conn = new SqlConnection(connect))

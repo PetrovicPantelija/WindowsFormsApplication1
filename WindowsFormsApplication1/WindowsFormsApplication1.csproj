@@ -1202,6 +1202,12 @@
     <Compile Include="PakovanjaPlanovi\Obavestenje.Designer.cs">
       <DependentUpon>Obavestenje.cs</DependentUpon>
     </Compile>
+    <Compile Include="PakovanjaPlanovi\PakovanjeBarkod.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PakovanjaPlanovi\PakovanjeBarkod.Designer.cs">
+      <DependentUpon>PakovanjeBarkod.cs</DependentUpon>
+    </Compile>
     <Compile Include="PakovanjaPlanovi\PakovanjeReklamacijeIzvestaj.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2101,6 +2107,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PakovanjaPlanovi\Obavestenje.resx">
       <DependentUpon>Obavestenje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PakovanjaPlanovi\PakovanjeBarkod.resx">
+      <DependentUpon>PakovanjeBarkod.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PakovanjaPlanovi\PakovanjeReklamacijeIzvestaj.resx">
       <DependentUpon>PakovanjeReklamacijeIzvestaj.cs</DependentUpon>

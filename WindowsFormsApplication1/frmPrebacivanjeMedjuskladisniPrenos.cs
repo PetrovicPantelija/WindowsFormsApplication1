@@ -144,6 +144,19 @@ namespace WindowsFormsApplication1
             cboSkladiste.DisplayMember = "SkNaziv";
             cboSkladiste.ValueMember = "SkSifra";
 
+            var select = " select LokZapSt, Rtrim(LokSifra) + '/' + Rtrim(Opis) from Lokac where LokSkSifra = " + Convert.ToInt32(cboSkladiste.SelectedValue);
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            cboPozicijaIz.DataSource = ds.Tables[0];
+            cboPozicijaIz.DisplayMember = "LokSifra";
+            cboPozicijaIz.ValueMember = "LokZapSt";
+
             usao = true;
         }
 
@@ -155,7 +168,7 @@ namespace WindowsFormsApplication1
            " PrSifMp, MpStaraSif,    MpNaziv, MpDoNaziv, " +  
            " sum(PrPrevKol - PrIzdKol) as Kolicina, " +
            " MPSifEnoteMere1    from Promet   " +
-           " join MaticniPodatki on MPSifra = PrSifMP Where PrSifSklad = " + Convert.ToInt32(cboSkladiste.SelectedValue)  + " and PrStZapisaVez = 0  group by PrSifSklad, PrLokacija" +
+           " join MaticniPodatki on MPSifra = PrSifMP Where PrLokacija = " + Convert.ToInt32(cboPozicijaIz.SelectedValue) + " PrSifSklad = " + Convert.ToInt32(cboSkladiste.SelectedValue)  + " and PrStZapisaVez = 0  group by PrSifSklad, PrLokacija" +
            "   ,PrSifMP, MpStaraSif, MpNaziv, MpDoNaziv, MPSifEnoteMere1 having sum(PrPrevKol - PrIzdKol) <> 0 ";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);

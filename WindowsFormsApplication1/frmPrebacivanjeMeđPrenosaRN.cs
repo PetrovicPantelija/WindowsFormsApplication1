@@ -19,6 +19,7 @@ namespace WindowsFormsApplication1
     {
         bool usao = false;
         string Korisnik = "";
+        int RNPrenet = 0;
 
         public static string code = "frmPrebacivanjeMedjPrenosaRN";
         public bool Pravo;
@@ -29,6 +30,8 @@ namespace WindowsFormsApplication1
         bool delete;
         string niz = "";
         string Kor = frmLogovanje.user.ToString().TrimEnd();
+
+        string MPSaRN = "";
         public frmPrebacivanjeMeđPrenosaRN()
         {
             InitializeComponent();
@@ -45,6 +48,17 @@ namespace WindowsFormsApplication1
             IdGrupe();
             IdForme();
             PravoPristupa();
+        }
+
+        public frmPrebacivanjeMeđPrenosaRN(int RN)
+        {
+            InitializeComponent();
+            Korisnik = Kor;
+            txtIzdaje.Text = Korisnik;
+            IdGrupe();
+            IdForme();
+           // PravoPristupa();
+            RNPrenet = RN;
         }
         public string IdGrupe()
         {
@@ -162,6 +176,94 @@ namespace WindowsFormsApplication1
             dataGridView1.Columns[0].HeaderText = "Šifra zapisa";
             dataGridView1.Columns[0].Width = 40;
         }
+
+        private void VratiStavkeRN(int BrojRN)
+        {
+            /*
+                 select ReSifMP as KoPodSifMp, MpNaziv +' '+ ISNULL(MpDoNaziv,'') as NazivMP, MpSifEnoteMere1, sum(ReRezKol) / 60 as KoKolMateriala,
+                    MpOsnSklad, MpOsnLokacija, max(MpHasTrackNo) as MpHasTrackNo
+               from Rezervacije, maticnipodatki
+              where ReSifVrDok = 'PDN'
+                and ReStDokumenta = 909723
+                and ReStPostavke = 0
+                and ReSifMP = MpSifra
+
+           group by ReSifMP, MpNaziv +' '+ ISNULL(MpDoNaziv,''), MPSifEnoteMere1, MpOsnSklad, MpOsnLokacija
+           order by MpHasTRackNo desc
+             */
+            double koeficijent = 1;
+            koeficijent = Convert.ToDouble(txtKoeficijent.Value);
+            double x = 100000.2333;
+            string y = string.Empty;
+            y = string.Format("{0:###0.##}", koeficijent);
+
+            double ukupnaKolicina = 0;
+            string MPRN2 = "";
+            string BRRN2 = "";
+
+           
+            // MessageBox.Show("Broj MP" + BRRN2 + " BRMP" + MPRN2);
+            double kk = koeficijent; // ukupnaKolicina;
+            string yy = string.Format("{0:###0.##}", kk);
+            yy = yy.Replace(",", ".");
+            // MessageBox.Show(yy.ToString());
+            // Cast((Cast(" + y + " as numeric(18,2))
+            /*
+              var select = "   select ReStDokumenta, ReSifMP as KoPodSifMp, MpStaraSif as NazivMP, MpSifEnoteMere1,  " +
+             "    MpOsnSklad, MpOsnLokacija, (Cast(('" + yy.ToString() + "') as numeric(18,2)) * Cast(sum(ReRezKol) as numeric(18,2)))   as KoKolMateriala " +
+            " from Rezervacije, maticnipodatki " +
+            "  where ReStDokumenta = " + BrojRN +
+            " and ReStPostavke = 0 " +
+            " and ReSifMP = MpSifra " +
+       " group by ReStDokumenta, ReSifMP, MpStaraSif, MPSifEnoteMere1, MpOsnSklad, MpOsnLokacija ";
+             * convert(numeric(22,4),
+              */
+
+            // (Cast('" + yy.ToString() + "' as numeric(18,2))))
+
+            // MessageBox.Show("Kolicina" + yy);
+
+            var select = " select " + RNPrenet + ", KoPodSifMp, MpStaraSif as KoPodSifMp,  MpSifEnoteMere1, (sum(KoKolMateriala) * (Cast('" + yy.ToString() + "' as numeric(18,2))))   as KoKolMateriala, " +
+             "  MpOsnSklad, MpOsnLokacija " +
+             " from kosovnica, maticnipodatki " +
+             "  where KoNadSifMp =  " + MPSaRN +
+             "   and KoVarianta = '*' " +
+             " and KoPodSifMp = MpSifra " +
+             " and KoSifStat = 'A' " +
+      " group by KoPodSifMP,MpStaraSif ,MpNaziv +' '+ ISNULL(MpDoNaziv,''), MPSifEnoteMere1, MpOsnSklad, MpOsnLokacija ";
+            ;
+
+
+
+            //  MessageBox.Show(select.ToString());
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView2.ReadOnly = true;
+            dataGridView2.DataSource = ds.Tables[0];
+
+            //string value = dataGridView2.Rows[0].Cells[0].Value.ToString();
+            DataGridViewColumn column = dataGridView2.Columns[0];
+            dataGridView2.Columns[0].HeaderText = "Šifra zapisa";
+            dataGridView2.Columns[0].Width = 40;
+            //Panta
+            foreach (DataGridViewRow row in dataGridView2.Rows)
+            {
+                string RowType = row.Cells[5].Value.ToString();
+                if (RowType == "30")
+                {
+                    row.DefaultCellStyle.BackColor = Color.LightGray;
+                    row.DefaultCellStyle.SelectionBackColor = Color.LightGray;
+                }
+            }
+
+        }
+
 
         private void VratiStavke(int BrojRN)
         { 
@@ -303,6 +405,48 @@ namespace WindowsFormsApplication1
             cboSkladisteU.DisplayMember = "SkNaziv";
             cboSkladisteU.ValueMember = "SkSifra";
             usao = true;
+
+            if (RNPrenet != 0)
+            {
+                txtBrRn.Text = RNPrenet.ToString();
+               // dataGridView1.Rows[0].Selected = true;
+
+                PostaviDGV1();
+                VratiVrednostRN(RNPrenet);
+                VratiStavkeRN(RNPrenet);
+              
+
+               
+            }
+        }
+
+        private void VratiVrednostRN(int RnPR)
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand(" Select  DNpStevilka, DNpSifStat,DnPSifMp,  DNpSifVrsteDN, " +
+                "  DNpKolZaIzdelavo, DNpIzdelanaKol  " +
+          "  From DelnalogProizvodni " +
+                "  where DNpStevilka =  " + RnPR , con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+
+                txtKoeficijent.Value = Convert.ToDecimal(1);
+                txtKolicinaRN.Value = Convert.ToDecimal(dr["DNpKolZaIzdelavo"].ToString());
+
+                MPSaRN = dr["DnPSifMp"].ToString();
+            }
+
+            con.Close();
+
+      
+            // txtBrRn.Text = row.Cells["DNpStevilka"].Value.ToString().TrimEnd();
+
         }
 
         private void cboSkladiste_SelectedIndexChanged(object sender, EventArgs e)
@@ -656,6 +800,33 @@ namespace WindowsFormsApplication1
            
         }
 
+        private void PostaviDGV1()
+        {
+            var select = "  Select DNpStZapisa, DNpSifVrDok, DNpStevilka,  DNpSifStat, DNpSifVrsteDN, " +
+                " DNpSifMp, DNpTeh,  DNpSifPlanerja, DNpKolZaIzdelavo, DNpIzdelanaKol,  " +
+                "  DNpIzlocenaKol, DNpPlanDatLans, DNpDejDatLans,  DNpPlanDatZac, DNpDejDatZac,  " +
+                "       DNpPlanDatZak, DNpDejDatZak, DNpOznSled, DNpSifSklad, DNpLokacija,  " +
+                "         DNpOpomba, " +
+                "              NameOper, Datum From DelnalogProizvodni " +
+                "             where DNpStevilka =  " + Convert.ToInt32(txtBrRn.Text);
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            //string value = dataGridView2.Rows[0].Cells[0].Value.ToString();
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "Šifra zapisa";
+            dataGridView1.Columns[0].Width = 40;
+
+        }
+
         private void button5_Click(object sender, EventArgs e)
         {
             /*
@@ -816,6 +987,34 @@ namespace WindowsFormsApplication1
             if (txtKoeficijent.Value > txtKolicinaRN.Value)
             {
                 MessageBox.Show("Količina za koju se traže potrebe je veća od one na Radnom nalogu");
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            VratiMSPGrid();
+
+
+
+            Barcodes.Barcode39 b = new Barcodes.Barcode39();
+
+            Magacin.InsertMSPNalepnica MspNal = new Magacin.InsertMSPNalepnica();
+            MspNal.DeleteNalepnice();
+            //Skupiti sve parametre
+            //DRUGI BARKOD JE BROJ RADNOG NALOGA
+            foreach (DataGridViewRow row in dataGridView4.Rows)
+            {
+                MspNal.InsMspNalepnica(Convert.ToInt32(txtBrojMSP.Text),
+                    Convert.ToInt32(row.Cells[2].Value.ToString())
+                    , row.Cells[4].Value.ToString()
+                    , row.Cells[7].Value.ToString()
+                   , row.Cells[0].Value.ToString()
+                   , Convert.ToInt32(row.Cells[3].Value.ToString())
+                    , txtIzdaje.Text
+                    , Convert.ToDouble(row.Cells[6].Value.ToString())
+                   , row.Cells[9].Value.ToString()
+                   , b.GenerateBarcodeImage(row.Cells[3].Value.ToString()),
+                   b.GenerateBarcodeImage(row.Cells[2].Value.ToString()));
             }
         }
     }

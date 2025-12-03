@@ -310,5 +310,11 @@ namespace WindowsFormsApplication1
             KompletiPaket frm=new KompletiPaket();
             frm.Show();
         }
+
+        private void button10_Click_1(object sender, EventArgs e)
+        {
+            PakovanjeBarkod pb = new PakovanjeBarkod();
+            pb.Show();
+        }
     }
 }
