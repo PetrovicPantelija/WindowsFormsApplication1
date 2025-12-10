@@ -1,4 +1,6 @@
 ﻿using DocumentFormat.OpenXml.Office2010.Excel;
+using DocumentFormat.OpenXml.VariantTypes;
+using Irony.Parsing;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,7 +11,10 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Security;
+using System.Windows.Controls.Primitives;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WindowsFormsApplication1.PakovanjaPlanovi
 {
@@ -106,14 +111,14 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
 
         private void FillGVCMOblak()
         {
-            var query = "SELECT ID,IDPlanPakovanja,RNBroj," +
-                 "CASE WHEN PoslatoNaCM > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as PoslatoNaCM," +
-                   "CASE WHEN StigloNaCloudCM  > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as StigloNaCloudNaCM," +
-                 "CASE WHEN StigloNaRoler1   > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as StigloNaRolere1," +
-                 "CASE WHEN StigloNaRoler2   > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as StigloNaRolere2," +
-                " StatusRN,VrstaRN,Artikal,Kod,Naziv,KolicinaZaProizvodnju,PlaniraniKrajnjiDatumZavrsetka,Termin,Planer,RasporedPakovanja as Raspored,RTrim(Varijanta) as Varijanta " +
-                "FROM StavkePlanaPakovanja " +
-                "WHERE  PoslatoNaCM = 1 and StigloNaCloudCM = 0  order by RNBroj asc";
+            var query = "   SELECT ID, IDPlanPakovanja, RNBroj, " +
+" CASE WHEN PoslatoNaCM > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as PoslatoNaCM, " +
+" CASE WHEN PotvrdaPrijemCMOblak > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as CMOblak, " +
+" CASE WHEN PotvrdaPrijemRoler1 > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Roler1, " +
+" CASE WHEN PotvrdaPrijemRoler2 > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Roler2, " +
+" StatusRN,VrstaRN,Artikal,Kod,Naziv,KolicinaZaProizvodnju,PlaniraniKrajnjiDatumZavrsetka,Termin,Planer,RasporedPakovanja as Raspored,RTrim(Varijanta) as Varijanta " +
+" FROM StavkePlanaPakovanja " +
+" WHERE PoslatoNaCM = 1 and PotvrdaPrijemCMOblak = 0 and RNBroj not in (Select BrRN from PrometTransPos where brRN is not null and PrTpSifVrDok = 'MSP')  order by RNBroj asc";
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();
@@ -148,12 +153,16 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
         {
             var query = "SELECT ID,IDPlanPakovanja,RNBroj," +
                  "CASE WHEN PoslatoNaCM > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as PoslatoNaCM," +
-                   "CASE WHEN StigloNaCloudCM  > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as StigloNaCloudNaCM," +
-                 "CASE WHEN StigloNaRoler1   > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as StigloNaRolere1," +
-                 "CASE WHEN StigloNaRoler2   > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as StigloNaRolere2," +
+                   "CASE WHEN PotvrdaPrijemCMOblak  > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as CMOblak," +
+                 "CASE WHEN PotvrdaPrijemRoler1   > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Roler1," +
+                 "CASE WHEN PotvrdaPrijemRoler2   > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Roler2," +
                 " StatusRN,VrstaRN,Artikal,Kod,Naziv,KolicinaZaProizvodnju,PlaniraniKrajnjiDatumZavrsetka,Termin,Planer,RasporedPakovanja as Raspored,RTrim(Varijanta) as Varijanta " +
                 "FROM StavkePlanaPakovanja " +
-                "WHERE  PoslatoNaCM = 1 and StigloNaCloudCM = 1 and PotvrdaPrijemCMOblak=0  order by RNBroj asc";
+                " inner join PrometTransPos on StavkePlanaPakovanja.RNBroj = PrometTransPos.BrRN " +
+               " inner join PrometTrans on PrometTrans.PrTStDok = PrometTransPos.PrTpStDokumenta " +
+                " WHERE PrTpSifVrDok = 'MSP' and PRTStatPRTrans = 'PO' and PoslatoNaCM = 1  and PotvrdaPrijemCMOblak=0  order by RNBroj asc";
+
+            //and StigloNaCloudCM = 1
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();
@@ -188,12 +197,12 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
         {
             var query = "SELECT ID,IDPlanPakovanja,RNBroj," +
                  "CASE WHEN PoslatoNaCM > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as PoslatoNaCM," +
-                   "CASE WHEN StigloNaCloudCM  > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as StigloNaCloudNaCM," +
-                 "CASE WHEN StigloNaRoler1   > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as StigloNaRolere1," +
-                 "CASE WHEN StigloNaRoler2   > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as StigloNaRolere2," +
+                  "CASE WHEN PotvrdaPrijemCMOblak  > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as CMOblak," +
+                 "CASE WHEN PotvrdaPrijemRoler1   > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Roler1," +
+                 "CASE WHEN PotvrdaPrijemRoler2   > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Roler2," +
                 " StatusRN,VrstaRN,Artikal,Kod,Naziv,KolicinaZaProizvodnju,PlaniraniKrajnjiDatumZavrsetka,Termin,Planer,RasporedPakovanja as Raspored,RTrim(Varijanta) as Varijanta " +
                 "FROM StavkePlanaPakovanja " +
-                "WHERE  PoslatoNaCM = 1 and StigloNaCloudCM = 1 and PotvrdaPrijemCMOblak=1 and StigloNaRoler1 = 0  order by RNBroj asc";
+                "WHERE  PoslatoNaCM = 1 and  PotvrdaPrijemCMOblak=1 and PotvrdaPrijemRoler1 = 0  order by RNBroj asc";
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();
@@ -259,7 +268,7 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
             var query = "select PrometTransPos.BrRN , PrometTrans.PrTStDok as MSP, StigloNaCloudCM, PotvrdaPrijemCMOblak, Artikal, Kod, KolicinaZaProizvodnju from PrometTransPos " +
 " inner join PrometTrans on PrometTrans.PrTStDok = PrometTransPos.PrTpStDokumenta " +
 " inner join StavkePlanaPakovanja on StavkePlanaPakovanja.RNBroj = PrometTransPos.BrRN " +
-" where PrTpSifVrDok = 'MSP' and PrometTrans.PrTStatPrTrans = 'OD' and StavkePlanaPakovanja.StigloNaCloudCM = 1 and StavkePlanaPakovanja.PotvrdaPrijemCMOblak = 1 and StavkePlanaPakovanja.PotvrdaPrijemRoler1 = 1 And StavkePlanaPakovanja.StigloNaRoler2 = 0";
+" where PrTpSifVrDok = 'MSP' and PrometTrans.PrTStatPrTrans = 'OD' and d StavkePlanaPakovanja.PotvrdaPrijemCMOblak = 1 and StavkePlanaPakovanja.PotvrdaPrijemRoler1 = 1 And StavkePlanaPakovanja.StigloNaRoler2 = 0";
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();
@@ -289,7 +298,7 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
             var query = "select PrometTransPos.BrRN , PrometTrans.PrTStDok as MSP, StigloNaCloudCM, PotvrdaPrijemCMOblak, Artikal, Kod, KolicinaZaProizvodnju from PrometTransPos " +
 " inner join PrometTrans on PrometTrans.PrTStDok = PrometTransPos.PrTpStDokumenta " +
 " inner join StavkePlanaPakovanja on StavkePlanaPakovanja.RNBroj = PrometTransPos.BrRN " +
-" where PrTpSifVrDok = 'MSP' and PrometTrans.PrTStatPrTrans = 'OD' and StavkePlanaPakovanja.StigloNaCloudCM = 1 and StavkePlanaPakovanja.PotvrdaPrijemCMOblak = 1 and StavkePlanaPakovanja.StigloNaRoler1 = 1 and StavkePlanaPakovanja.PotvrdaPrijemRoler1 = 1 And StavkePlanaPakovanja.PotvrdaPrijemRoler2 = 1 And StavkePlanaPakovanja.StigloNaRoler2 = 0";
+" where PrTpSifVrDok = 'MSP' and PrometTrans.PrTStatPrTrans = 'OD' and  StavkePlanaPakovanja.PotvrdaPrijemCMOblak = 1 and StavkePlanaPakovanja.StigloNaRoler1 = 1 and StavkePlanaPakovanja.PotvrdaPrijemRoler1 = 1 And StavkePlanaPakovanja.PotvrdaPrijemRoler2 = 1 And StavkePlanaPakovanja.StigloNaRoler2 = 0";
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();
@@ -533,12 +542,15 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
         {
             var query = "SELECT ID,IDPlanPakovanja,RNBroj," +
                  "CASE WHEN PoslatoNaCM > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as PoslatoNaCM," +
-                   "CASE WHEN StigloNaCloudCM  > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as StigloNaCloudNaCM," +
-                 "CASE WHEN StigloNaRoler1   > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as StigloNaRolere1," +
-                 "CASE WHEN StigloNaRoler2   > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as StigloNaRolere2," +
+                        "CASE WHEN PotvrdaPrijemCMOblak  > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as CMOblak," +
+                 "CASE WHEN PotvrdaPrijemRoler1   > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Roler1," +
+                 "CASE WHEN PotvrdaPrijemRoler2   > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Roler2," +
                 " StatusRN,VrstaRN,Artikal,Kod,Naziv,KolicinaZaProizvodnju,PlaniraniKrajnjiDatumZavrsetka,Termin,Planer,RasporedPakovanja as Raspored,RTrim(Varijanta) as Varijanta " +
                 "FROM StavkePlanaPakovanja " +
-                "WHERE  PoslatoNaCM = 1 and StigloNaCloudCM = 1 and PotvrdaPrijemCMOblak=1 and StigloNaRoler1 = 1 and PotvrdaPrijemRoler1 =1 and StigloNaRoler2 = 0 order by RNBroj asc";
+                  " inner join PrometTransPos on StavkePlanaPakovanja.RNBroj = PrometTransPos.BrRN " +
+               " inner join PrometTrans on PrometTrans.PrTStDok = PrometTransPos.PrTpStDokumenta " +
+                " WHERE  PrTpSifVrDok = 'MSP' and PRTStatPRTrans = 'PO' and " +
+                "  PoslatoNaCM = 1 and PotvrdaPrijemCMOblak=1 and  PotvrdaPrijemRoler1 =1 and PotvrdaPrijemRoler2 = 0 order by RNBroj asc";
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();
@@ -693,6 +705,11 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
         {
             frmPrebacivanjeMedjuskladisniPrenos pr = new frmPrebacivanjeMedjuskladisniPrenos();
             pr.Show();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
