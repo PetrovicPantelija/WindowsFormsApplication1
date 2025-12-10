@@ -118,7 +118,8 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
 " CASE WHEN PotvrdaPrijemRoler2 > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Roler2, " +
 " StatusRN,VrstaRN,Artikal,Kod,Naziv,KolicinaZaProizvodnju,PlaniraniKrajnjiDatumZavrsetka,Termin,Planer,RasporedPakovanja as Raspored,RTrim(Varijanta) as Varijanta " +
 " FROM StavkePlanaPakovanja " +
-" WHERE PoslatoNaCM = 1 and PotvrdaPrijemCMOblak = 0 and RNBroj not in (Select BrRN from PrometTransPos where brRN is not null and PrTpSifVrDok = 'MSP')  order by RNBroj asc";
+" WHERE PoslatoNaCM = 1 and PotvrdaPrijemCMOblak = 0 order by RNBroj asc";
+//" and  StavkePlanaPakovanja.RNBroj not in (Select Distinct BrRN from PrometTransPos where brRN is not null and PrTpSifVrDok = 'MSP')  ";
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();
@@ -127,10 +128,10 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
             dataGridView2.DataSource = ds.Tables[0];
 
             dataGridView2.Columns[0].Width = 60;
-            dataGridView2.Columns[1].Visible = false;
+            //dataGridView2.Columns[1].Visible = false;
             dataGridView2.Columns[3].Width = 80;
             dataGridView2.Columns[7].Width = 300;
-            dataGridView2.Columns[9].HeaderText = "KrajnjiDatum";
+         
 
             dataGridView2.BackgroundColor = System.Drawing.Color.FromArgb(125, 158, 192);
             dataGridView2.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.LightGray;
