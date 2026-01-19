@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Configuration;
+using Microsoft.Reporting.WinForms;
 
 namespace WindowsFormsApplication1
 {
@@ -26,12 +27,24 @@ namespace WindowsFormsApplication1
 
         string niz = "";
         string Kor = frmLogovanje.user.ToString().TrimEnd();
+        int prenSkladiste = 0;
+        int prenSkladisteU = 0;
         public frmPrebacivanjeMedjuskladisniPrenos()
         {
             InitializeComponent();
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
+          //  IdGrupe();
+           // IdForme();
+           // PravoPristupa();
+        }
+
+        public frmPrebacivanjeMedjuskladisniPrenos(int SkladistaIz, int SkladisteU)
+        {
+            InitializeComponent();
+            //  IdGrupe();
+            // IdForme();
+            // PravoPristupa();
+            prenSkladiste = SkladistaIz;
+            prenSkladisteU = SkladisteU;
         }
         public string IdGrupe()
         {
@@ -118,7 +131,7 @@ namespace WindowsFormsApplication1
         }
         private void frmPrebacivanjeMedjuskladisniPrenos_Load(object sender, EventArgs e)
         {
-            var select2 = " Select SkSifra, (Cast(SkSifra as nvarchar(3)) + '-' + SkNaziv) as SkNaziv from Sklad order by SkSifra";
+            var select2 = " Select SkSifra, (Cast(SkSifra as nvarchar(3)) + '-' + SkNaziv) as SkNaziv from Sklad where SkSifra = " + prenSkladiste + " order by SkSifra";
             var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection2 = new SqlConnection(s_connection2);
             var c2 = new SqlConnection(s_connection2);
@@ -131,7 +144,7 @@ namespace WindowsFormsApplication1
             cboSkladisteIzbor.DisplayMember = "SkNaziv";
             cboSkladisteIzbor.ValueMember = "SkSifra";
 
-            var select3 = " Select SkSifra, (Cast(SkSifra as nvarchar(3)) + '-' + SkNaziv) as SkNaziv from Sklad order by SkSifra";
+            var select3 = " Select SkSifra, (Cast(SkSifra as nvarchar(3)) + '-' + SkNaziv) as SkNaziv from Sklad where SkSifra = " + prenSkladisteU + " order by SkSifra";
             var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);
             var c3 = new SqlConnection(s_connection2);
@@ -144,7 +157,7 @@ namespace WindowsFormsApplication1
             cboSkladiste.DisplayMember = "SkNaziv";
             cboSkladiste.ValueMember = "SkSifra";
 
-            var select = " select LokZapSt, Rtrim(LokSifra) + '/' + Rtrim(Opis) from Lokac where LokSkSifra = " + Convert.ToInt32(cboSkladiste.SelectedValue);
+            var select = " select LokSifra,  Rtrim(LokOpis) as Opis from Lokac where LokSkSifra = " + prenSkladiste;
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -154,8 +167,22 @@ namespace WindowsFormsApplication1
             var ds = new DataSet();
             dataAdapter.Fill(ds);
             cboPozicijaIz.DataSource = ds.Tables[0];
-            cboPozicijaIz.DisplayMember = "LokSifra";
-            cboPozicijaIz.ValueMember = "LokZapSt";
+            cboPozicijaIz.DisplayMember = "Opis";
+            cboPozicijaIz.ValueMember = "LokSifra";
+
+
+            var select4 = " select LokSifra, Rtrim(LokOpis) as Opis from Lokac where LokSkSifra = " + prenSkladisteU;
+            var s_connectionU = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnectionU = new SqlConnection(s_connectionU);
+            var cu = new SqlConnection(s_connectionU);
+            var dataAdapterU = new SqlDataAdapter(select4, cu);
+
+            var commandBuilderU = new SqlCommandBuilder(dataAdapterU);
+            var dsU = new DataSet();
+            dataAdapterU.Fill(dsU);
+            cboPozicija.DataSource = dsU.Tables[0];
+            cboPozicija.DisplayMember = "Opis";
+            cboPozicija.ValueMember = "LokSifra";
 
             usao = true;
         }
@@ -168,7 +195,7 @@ namespace WindowsFormsApplication1
            " PrSifMp, MpStaraSif,    MpNaziv, MpDoNaziv, " +  
            " sum(PrPrevKol - PrIzdKol) as Kolicina, " +
            " MPSifEnoteMere1    from Promet   " +
-           " join MaticniPodatki on MPSifra = PrSifMP Where PrLokacija = " + Convert.ToInt32(cboPozicijaIz.SelectedValue) + " PrSifSklad = " + Convert.ToInt32(cboSkladiste.SelectedValue)  + " and PrStZapisaVez = 0  group by PrSifSklad, PrLokacija" +
+           " join MaticniPodatki on MPSifra = PrSifMP Where PrLokacija = " + Convert.ToInt32(cboPozicijaIz.SelectedValue) + "And PrSifSklad = " + Convert.ToInt32(cboSkladisteIzbor.SelectedValue)  + " and PrStZapisaVez = 0  group by PrSifSklad, PrLokacija" +
            "   ,PrSifMP, MpStaraSif, MpNaziv, MpDoNaziv, MPSifEnoteMere1 having sum(PrPrevKol - PrIzdKol) <> 0 ";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -223,11 +250,32 @@ namespace WindowsFormsApplication1
                     progressBar1.Value = progressBar1.Value + 1;
                 }
             }
+            VratiMSP();
             MessageBox.Show("Formiran je Međuskladišni prenos");
         }
 
+        private void VratiMSP()
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select MAX(PrTStDok) as PrTStDok from PrometTrans where PrTTipPrTrans = 'MS'", con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                txtBrojMSP.Text = dr["PrTStDok"].ToString();
+            }
+
+            con.Close();
+        }
+
+
         private void cboSkladiste_SelectedIndexChanged(object sender, EventArgs e)
         {
+            /*
             if (usao == true)
             {
                 var select = " select LokZapSt, Rtrim(LokSifra) + '/' + Rtrim(Opis) from Lokac where LokSkSifra = " + Convert.ToInt32(cboSkladiste.SelectedValue);
@@ -243,6 +291,116 @@ namespace WindowsFormsApplication1
                 cboPozicija.DisplayMember = "LokSifra";
                 cboPozicija.ValueMember = "LokSifra";
             }
+            */
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button6_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void VratiMSPGrid()
+        {
+            var select = "   Select PrTpSifSklad as SkladisteIz, " +
+                    " PrTpLok as LokIz, BrRN, PrTpSifMp as MP,PrTpStaraSifMp as Kod, " +
+                    " PrTpEnotaMere as JM, PrTpPrevKol as Kol, " +
+                    " PrTpSifSkladpr as SkladisteU, " +
+                    " PrTpLokpr as LokU, PrTpOpomba, PrTpStZapisa as Zapis " +
+                    " from PrometTransPos " +
+                    " where PrTpStDokumenta = " + Convert.ToInt32(txtBrojMSP.Text) + " and PrTpSifVrDok = 'MSP' ";
+
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView4.ReadOnly = true;
+            dataGridView4.DataSource = ds.Tables[0];
+
+            //string value = dataGridView2.Rows[0].Cells[0].Value.ToString();
+            DataGridViewColumn column = dataGridView4.Columns[0];
+            dataGridView4.Columns[0].HeaderText = "Sifra";
+            dataGridView4.Columns[0].Width = 40;
+
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            VratiMSPGrid();
+
+
+
+            Barcodes.Barcode39 b = new Barcodes.Barcode39();
+
+            Magacin.InsertMSPNalepnica MspNal = new Magacin.InsertMSPNalepnica();
+            MspNal.DeleteNalepnice();
+            //Skupiti sve parametre
+
+            foreach (DataGridViewRow row in dataGridView4.Rows)
+            {
+                MspNal.InsMspNalepnica(Convert.ToInt32(txtBrojMSP.Text),
+                    Convert.ToInt32(row.Cells[2].Value.ToString())
+                    , row.Cells[4].Value.ToString()
+                    , row.Cells[7].Value.ToString()
+                   , row.Cells[0].Value.ToString()
+                   , Convert.ToInt32(row.Cells[3].Value.ToString())
+                    , txtIzdaje.Text
+                    , Convert.ToDouble(row.Cells[6].Value.ToString())
+                   , row.Cells[9].Value.ToString()
+                   , b.GenerateBarcodeImage(row.Cells[3].Value.ToString()),
+                   b.GenerateBarcodeImage(txtBrojMSP.Text));
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Magacin.InsertMSPNalepnica MspNal = new Magacin.InsertMSPNalepnica();
+
+            try
+            {
+                foreach (DataGridViewRow row in dataGridView4.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        MessageBox.Show(row.Cells[3].Value.ToString());
+                        MspNal.UpdMspNalepnica(Convert.ToInt32(row.Cells[3].Value.ToString()), Convert.ToInt32(txtBN.Text));
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Nije uspela selekcija ili promena");
+            }
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            Perftech_BeogradDataSet2TableAdapters.MSPNalepniceTableAdapter ta = new Perftech_BeogradDataSet2TableAdapters.MSPNalepniceTableAdapter();
+            Perftech_BeogradDataSet2.MSPNalepniceDataTable dt = new Perftech_BeogradDataSet2.MSPNalepniceDataTable();
+            ta.Fill(dt);
+            ReportDataSource rds = new ReportDataSource();
+            rds.Name = "DataSet1";
+            rds.Value = dt;
+
+            reportViewer1.LocalReport.DataSources.Clear();
+            reportViewer1.LocalReport.ReportPath = "rptMSPNal.rdlc";
+
+            reportViewer1.LocalReport.DataSources.Add(rds);
+            reportViewer1.RefreshReport();
         }
     }
 }

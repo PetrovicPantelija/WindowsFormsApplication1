@@ -73,10 +73,9 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
         {
             var query = "SELECT ID,IDPlanPakovanja,RNBroj," +
                  "CASE WHEN PoslatoNaCM > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as PoslatoNaCM," +
-                 "CASE WHEN StigloNaCloudCM  > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as StigloNaCloudNaCM," +
-                 "CASE WHEN StigloNaRoler1   > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as StigloNaRolere1," +
-                 "CASE WHEN StigloNaRoler2   > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as StigloNaRolere2," +
-                " StatusRN,VrstaRN,Artikal,Kod,Naziv,KolicinaZaProizvodnju,PlaniraniKrajnjiDatumZavrsetka,Termin,Planer,RasporedPakovanja as Raspored,RTrim(Varijanta) as Varijanta " +
+                 "CASE WHEN StigloNaCloudCM  > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as StigloNaCloudCM," +
+                " StatusRN,VrstaRN,Artikal,Kod,KolicinaZaProizvodnju,PlaniraniKrajnjiDatumZavrsetka,Termin,Planer," +
+                " RasporedPakovanja as Raspored,RTrim(Varijanta) as Varijanta " +
                 "FROM StavkePlanaPakovanja " +
                 "WHERE IDPlanPakovanja=" + Convert.ToInt32(cboPlan.SelectedValue) + " order by RNBroj asc";
             SqlConnection conn = new SqlConnection(connect);
@@ -88,24 +87,19 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
 
             dataGridView1.Columns[0].Width = 60;
             dataGridView1.Columns[1].Visible = false;
-            dataGridView1.Columns[3].Width = 80;
-            dataGridView1.Columns[7].Width = 300;
-            dataGridView1.Columns[9].HeaderText = "KrajnjiDatum";
+            dataGridView1.Columns[2].Width = 80;
+            dataGridView1.Columns[3].Width = 60;
+            dataGridView1.Columns[4].Width = 60;
+            dataGridView1.Columns[5].Width = 60;
+            dataGridView1.Columns[6].Width = 60;
+            dataGridView1.Columns[7].Width = 80;
+            dataGridView1.Columns[8].Width = 180;
 
-            dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(125, 158, 192);
-            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.LightGray;
 
-            dataGridView1.Columns[0].ReadOnly = true;
-            dataGridView1.Columns[1].ReadOnly = true;
-            dataGridView1.Columns[2].ReadOnly = true;
-            dataGridView1.Columns[3].ReadOnly = true;
-            dataGridView1.Columns[4].ReadOnly = true;
-            dataGridView1.Columns[5].ReadOnly = true;
-            dataGridView1.Columns[6].ReadOnly = true;
-            dataGridView1.Columns[7].ReadOnly = true;
-            dataGridView1.Columns[9].ReadOnly = true;
-            dataGridView1.Columns[10].ReadOnly = true;
-            dataGridView1.Columns[11].ReadOnly = true;
+            // dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(125, 158, 192);
+            // dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.LightGray;
+
+
 
         }
 
@@ -113,57 +107,19 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
         {
             var query = "   SELECT ID, IDPlanPakovanja, RNBroj, " +
 " CASE WHEN PoslatoNaCM > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as PoslatoNaCM, " +
-" CASE WHEN PotvrdaPrijemCMOblak > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as CMOblak, " +
-" CASE WHEN PotvrdaPrijemRoler1 > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Roler1, " +
-" CASE WHEN PotvrdaPrijemRoler2 > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Roler2, " +
-" StatusRN,VrstaRN,Artikal,Kod,Naziv,KolicinaZaProizvodnju,PlaniraniKrajnjiDatumZavrsetka,Termin,Planer,RasporedPakovanja as Raspored,RTrim(Varijanta) as Varijanta " +
+" CASE WHEN StigloNaCloudCM > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as StigloNaCloudCM, " +
+" StatusRN,VrstaRN,Artikal,Kod,KolicinaZaProizvodnju,PlaniraniKrajnjiDatumZavrsetka,Termin,Planer,RasporedPakovanja as Raspored,RTrim(Varijanta) as Varijanta " +
 " FROM StavkePlanaPakovanja " +
-" WHERE PoslatoNaCM = 1 and PotvrdaPrijemCMOblak = 0 order by RNBroj asc";
-//" and  StavkePlanaPakovanja.RNBroj not in (Select Distinct BrRN from PrometTransPos where brRN is not null and PrTpSifVrDok = 'MSP')  ";
-            SqlConnection conn = new SqlConnection(connect);
-            var da = new SqlDataAdapter(query, conn);
-            var ds = new DataSet();
-            da.Fill(ds);
-            dataGridView2.ReadOnly = false;
-            dataGridView2.DataSource = ds.Tables[0];
-
-            dataGridView2.Columns[0].Width = 60;
-            //dataGridView2.Columns[1].Visible = false;
-            dataGridView2.Columns[3].Width = 80;
-            dataGridView2.Columns[7].Width = 300;
-         
-
-            dataGridView2.BackgroundColor = System.Drawing.Color.FromArgb(125, 158, 192);
-            dataGridView2.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.LightGray;
-
-            dataGridView2.Columns[0].ReadOnly = true;
-            dataGridView2.Columns[1].ReadOnly = true;
-            dataGridView2.Columns[2].ReadOnly = true;
-            dataGridView2.Columns[3].ReadOnly = true;
-            dataGridView2.Columns[4].ReadOnly = true;
-            dataGridView2.Columns[5].ReadOnly = true;
-            dataGridView2.Columns[6].ReadOnly = true;
-            dataGridView2.Columns[7].ReadOnly = true;
-            dataGridView2.Columns[9].ReadOnly = true;
-            dataGridView2.Columns[10].ReadOnly = true;
-            dataGridView2.Columns[11].ReadOnly = true;
-
-        }
-
-        private void FillGVCMNaOblaku()
-        {
-            var query = "SELECT ID,IDPlanPakovanja,RNBroj," +
-                 "CASE WHEN PoslatoNaCM > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as PoslatoNaCM," +
-                   "CASE WHEN PotvrdaPrijemCMOblak  > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as CMOblak," +
-                 "CASE WHEN PotvrdaPrijemRoler1   > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Roler1," +
-                 "CASE WHEN PotvrdaPrijemRoler2   > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Roler2," +
-                " StatusRN,VrstaRN,Artikal,Kod,Naziv,KolicinaZaProizvodnju,PlaniraniKrajnjiDatumZavrsetka,Termin,Planer,RasporedPakovanja as Raspored,RTrim(Varijanta) as Varijanta " +
-                "FROM StavkePlanaPakovanja " +
-                " inner join PrometTransPos on StavkePlanaPakovanja.RNBroj = PrometTransPos.BrRN " +
-               " inner join PrometTrans on PrometTrans.PrTStDok = PrometTransPos.PrTpStDokumenta " +
-                " WHERE PrTpSifVrDok = 'MSP' and PRTStatPRTrans = 'PO' and PoslatoNaCM = 1  and PotvrdaPrijemCMOblak=0  order by RNBroj asc";
-
-            //and StigloNaCloudCM = 1
+" WHERE PoslatoNaCM = 1 and StigloNaCloudCM = 0  order by RNBroj asc";
+            // Nema formiran MSP
+            /*
+            " CASE WHEN PotvrdaPrijemCMOblak > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as CMOblak, " +
+" CASE WHEN StigloNaRoler1 > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as StigloNaRoler1, " +
+" CASE WHEN PotvrdaPrijemRoler1 > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Roler1, " +
+" CASE WHEN StigloNaRoler2 > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as StigloNaRoler2, " +
+" CASE WHEN PotvrdaPrijemRoler2 > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Roler2, " +
+            */
+            //" and  StavkePlanaPakovanja.RNBroj not in (Select Distinct BrRN from PrometTransPos where brRN is not null and PrTpSifVrDok = 'MSP')  ";
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();
@@ -173,37 +129,119 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
 
             dataGridView2.Columns[0].Width = 60;
             dataGridView2.Columns[1].Visible = false;
-            dataGridView2.Columns[3].Width = 80;
-            dataGridView2.Columns[7].Width = 300;
-            dataGridView2.Columns[9].HeaderText = "KrajnjiDatum";
+            dataGridView2.Columns[2].Width = 80;
+            dataGridView2.Columns[3].Width = 60;
+            dataGridView2.Columns[4].Width = 60;
+            dataGridView2.Columns[5].Width = 60;
+            dataGridView2.Columns[6].Width = 60;
+            dataGridView2.Columns[7].Width = 80;
+            dataGridView2.Columns[8].Width = 180;
+            //PANTA
+            /*
+            foreach (DataGridViewRow row in dataGridView2.Rows)
+            {
+                string PostojiRN = VratiPostojiRN(row.Cells[2].Value.ToString());
+                if (PostojiRN == "0")
+                {
+                    row.DefaultCellStyle.BackColor = System.Drawing.Color.LightGray;
+                    row.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.LightGray;
+                }
+            }
+            */
+            dataGridView2.Visible = true;
+            dataGridView3.Visible = false;
+            dataGridView4.Visible = false;
 
-            dataGridView2.BackgroundColor = System.Drawing.Color.FromArgb(125, 158, 192);
-            dataGridView2.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.LightGray;
+            int totalWidth = panel2.Width;
+            int newDistance = Math.Max(0, totalWidth - 20);
+            dataGridView2.Width = newDistance;
 
-            dataGridView2.Columns[0].ReadOnly = true;
-            dataGridView2.Columns[1].ReadOnly = true;
-            dataGridView2.Columns[2].ReadOnly = true;
-            dataGridView2.Columns[3].ReadOnly = true;
-            dataGridView2.Columns[4].ReadOnly = true;
-            dataGridView2.Columns[5].ReadOnly = true;
-            dataGridView2.Columns[6].ReadOnly = true;
-            dataGridView2.Columns[7].ReadOnly = true;
-            dataGridView2.Columns[9].ReadOnly = true;
-            dataGridView2.Columns[10].ReadOnly = true;
-            dataGridView2.Columns[11].ReadOnly = true;
+
+            int totalHeight = panel2.Height;
+            int newHEight = Math.Max(0, totalHeight - 20);
+            dataGridView2.Height = newHEight;
+
+        }
+
+       string VratiPostojiRN(string BrojRN)
+        {
+            string RNPostojiMSP = "";
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select Count(*) as Broj from PrometTransPos where BrRN = " + BrojRN, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                RNPostojiMSP =  dr["Broj"].ToString();
+            }
+
+            con.Close();
+            return RNPostojiMSP;
+        }
+
+        private void FillGVCMNaOblaku()
+        {
+            var query = " SELECT Distinct ID, IDPlanPakovanja, RNBroj, " +
+" CASE WHEN PoslatoNaCM > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as PoslatoNaCM, " +
+" CASE WHEN StigloNaCloudCM > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as StigloNaCloudCM, " +
+" CASE WHEN PotvrdaPrijemCMOblak > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as PotvrdaPrijemOblak, " +
+" StatusRN,VrstaRN,Artikal,Kod,Naziv,KolicinaZaProizvodnju,PlaniraniKrajnjiDatumZavrsetka,Termin,Planer,RasporedPakovanja as Raspored,RTrim(Varijanta) as Varijanta " +
+  " from PrometTransPos " +
+" inner join PrometTrans on PrometTrans.PrTStDok = PrometTransPos.PrTpStDokumenta " +
+" inner join StavkePlanaPakovanja on StavkePlanaPakovanja.RNBroj = PrometTransPos.BrRN " +
+ " where PrTpSifVrDok = 'MSP' and PrometTrans.PrTStatPrTrans = 'PO' and  StigloNaCloudCM = 1 and PotvrdaPrijemCMOblak = 0  order by RNBroj asc";
+            /*
+            " CASE WHEN StigloNaRoler1 > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as StigloNaRoler1, " +
+" CASE WHEN PotvrdaPrijemRoler1 > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Roler1, " +
+" CASE WHEN StigloNaRoler2 > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as StigloNaRoler2, " +
+" CASE WHEN PotvrdaPrijemRoler2 > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Roler2, " +
+            */
+            SqlConnection conn = new SqlConnection(connect);
+            var da = new SqlDataAdapter(query, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView2.ReadOnly = false;
+            dataGridView2.DataSource = ds.Tables[0];
+
+            dataGridView2.Columns[0].Width = 60;
+            dataGridView2.Columns[1].Visible = false;
+            dataGridView2.Columns[2].Width = 80;
+            dataGridView2.Columns[3].Width = 60;
+            dataGridView2.Columns[4].Width = 60;
+            dataGridView2.Columns[5].Width = 60;
+            dataGridView2.Columns[6].Width = 60;
+            dataGridView2.Columns[7].Width = 80;
+            dataGridView2.Columns[8].Width = 180;
+
+            dataGridView2.Visible = true;
+            dataGridView3.Visible = false;
+            dataGridView4.Visible = false;
+
+            int totalWidth = panel2.Width;
+            int newDistance = Math.Max(0, totalWidth - 20);
+            dataGridView2.Width = newDistance;
+
+
+            int totalHeight = panel2.Height;
+            int newHEight = Math.Max(0, totalHeight - 20);
+            dataGridView2.Height = newHEight;
 
         }
 
         private void FillGVCMNaOblakuPrihvaceno()
         {
-            var query = "SELECT ID,IDPlanPakovanja,RNBroj," +
-                 "CASE WHEN PoslatoNaCM > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as PoslatoNaCM," +
-                  "CASE WHEN PotvrdaPrijemCMOblak  > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as CMOblak," +
-                 "CASE WHEN PotvrdaPrijemRoler1   > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Roler1," +
-                 "CASE WHEN PotvrdaPrijemRoler2   > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Roler2," +
-                " StatusRN,VrstaRN,Artikal,Kod,Naziv,KolicinaZaProizvodnju,PlaniraniKrajnjiDatumZavrsetka,Termin,Planer,RasporedPakovanja as Raspored,RTrim(Varijanta) as Varijanta " +
-                "FROM StavkePlanaPakovanja " +
-                "WHERE  PoslatoNaCM = 1 and  PotvrdaPrijemCMOblak=1 and PotvrdaPrijemRoler1 = 0  order by RNBroj asc";
+            var query = "SELECT ID,IDPlanPakovanja,RNBroj, PrometTransPos.Kolicina2, KolicinaPreuzeta, PrometTransPos.PrTpOpomba, " +
+                  "CASE WHEN PotvrdaPrijemCMOblak  > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as PotvrdjenoNaCMOblaku," +
+                 "CASE WHEN StigloNaRoler1   > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as StigloNaRoler1," +
+                " Artikal,Kod,Naziv,KolicinaZaProizvodnju,PlaniraniKrajnjiDatumZavrsetka,Termin,Planer,RasporedPakovanja as Raspored,RTrim(Varijanta) as Varijanta " +
+                " from PrometTransPos " +
+" inner join PrometTrans on PrometTrans.PrTStDok = PrometTransPos.PrTpStDokumenta " +
+" inner join StavkePlanaPakovanja on StavkePlanaPakovanja.RNBroj = PrometTransPos.BrRN " +
+ " where PrTpSifVrDok = 'MSP' and PrometTrans.PrTStatPrTrans = 'PO' and    PotvrdaPrijemCMOblak=1 and StigloNaRoler1 = 0  order by RNBroj desc";
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();
@@ -213,33 +251,51 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
 
             dataGridView2.Columns[0].Width = 60;
             dataGridView2.Columns[1].Visible = false;
-            dataGridView2.Columns[3].Width = 80;
-            dataGridView2.Columns[7].Width = 300;
-            dataGridView2.Columns[9].HeaderText = "KrajnjiDatum";
+            dataGridView2.Columns[2].Width = 80;
+            dataGridView2.Columns[3].Width = 60;
+            dataGridView2.Columns[4].Width = 60;
+            dataGridView2.Columns[5].Width = 160;
+            dataGridView2.Columns[6].Width = 60;
+            dataGridView2.Columns[7].Width = 60;
+            dataGridView2.Columns[8].Width = 180;
 
-            dataGridView2.BackgroundColor = System.Drawing.Color.FromArgb(125, 158, 192);
-            dataGridView2.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.LightGray;
+            dataGridView2.Visible = true;
+            dataGridView3.Visible = false;
+            dataGridView4.Visible = false;
 
-            dataGridView2.Columns[0].ReadOnly = true;
-            dataGridView2.Columns[1].ReadOnly = true;
-            dataGridView2.Columns[2].ReadOnly = true;
-            dataGridView2.Columns[3].ReadOnly = true;
-            dataGridView2.Columns[4].ReadOnly = true;
-            dataGridView2.Columns[5].ReadOnly = true;
-            dataGridView2.Columns[6].ReadOnly = true;
-            dataGridView2.Columns[7].ReadOnly = true;
-            dataGridView2.Columns[9].ReadOnly = true;
-            dataGridView2.Columns[10].ReadOnly = true;
-            dataGridView2.Columns[11].ReadOnly = true;
+            int totalWidth = panel2.Width;
+            int newDistance = Math.Max(0, totalWidth - 20);
+            dataGridView2.Width = newDistance;
+
+
+            int totalHeight = panel2.Height;
+            int newHEight = Math.Max(0, totalHeight - 20);
+            dataGridView2.Height = newHEight;
+
+
+            foreach (DataGridViewRow row in dataGridView2.Rows)
+            {
+
+                if (row.Cells[3].Value.ToString() == row.Cells[4].Value.ToString())
+                {
+                    row.DefaultCellStyle.BackColor = System.Drawing.Color.LightGreen;
+                    // row.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.LightGreen;
+                }
+                else 
+                {
+                    row.DefaultCellStyle.BackColor = System.Drawing.Color.Red;
+                }
+            }
 
         }
 
         private void MSPZACMOBLAK()
         {
-            var query = "select PrometTransPos.BrRN , PrometTrans.PrTStDok as MSP, StigloNaCloudCM, PotvrdaPrijemCMOblak, Artikal, Kod, KolicinaZaProizvodnju from PrometTransPos " +
+            var query = " select Distinct PrometTransPos.BrRN , PrometTrans.PrTStDok as MSP, StigloNaCloudCM, PotvrdaPrijemCMOblak, Artikal, Kod, KolicinaZaProizvodnju " +
+                " from PrometTransPos " +
 " inner join PrometTrans on PrometTrans.PrTStDok = PrometTransPos.PrTpStDokumenta " +
 " inner join StavkePlanaPakovanja on StavkePlanaPakovanja.RNBroj = PrometTransPos.BrRN " +
-" where PrTpSifVrDok = 'MSP' and PrometTrans.PrTStatPrTrans = 'OD' and StavkePlanaPakovanja..PoslatoNACM = 1 and StavkePlanaPakovanja.StigloNaCloudCM = 0 and StavkePlanaPakovanja.PotvrdaPrijemCMOblak = 0";
+ " where PrTpSifVrDok = 'MSP' and PrometTrans.PrTStatPrTrans = 'OD' and StavkePlanaPakovanja.StigloNaCloudCM = 1 and StavkePlanaPakovanja.PotvrdaPrijemCMOblak = 0";
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();
@@ -262,20 +318,98 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
                   dataGridView2.Columns[11].ReadOnly = true;
             */
 
+            dataGridView2.Visible = false;
+            dataGridView3.Visible = true;
+            dataGridView4.Visible = false;
+
+            int totalWidth = panel2.Width;
+            int newDistance = Math.Max(0, totalWidth - 20);
+            dataGridView3.Width = newDistance;
+
+
+            int totalHeight = panel2.Height;
+            int newHEight = Math.Max(0, totalHeight - 20);
+            dataGridView3.Height = newHEight;
+
         }
 
         private void MSPZARoler1()
         {
-            var query = "select PrometTransPos.BrRN , PrometTrans.PrTStDok as MSP, StigloNaCloudCM, PotvrdaPrijemCMOblak, Artikal, Kod, KolicinaZaProizvodnju from PrometTransPos " +
+            var query = "select Distinct PrometTransPos.BrRN , PrometTrans.PrTStDok as MSP, StigloNaCloudCM, PotvrdaPrijemCMOblak, Artikal, Kod, KolicinaZaProizvodnju " +
+               " from PrometTransPos " +
 " inner join PrometTrans on PrometTrans.PrTStDok = PrometTransPos.PrTpStDokumenta " +
 " inner join StavkePlanaPakovanja on StavkePlanaPakovanja.RNBroj = PrometTransPos.BrRN " +
-" where PrTpSifVrDok = 'MSP' and PrometTrans.PrTStatPrTrans = 'OD' and d StavkePlanaPakovanja.PotvrdaPrijemCMOblak = 1 and StavkePlanaPakovanja.PotvrdaPrijemRoler1 = 1 And StavkePlanaPakovanja.StigloNaRoler2 = 0";
+ " where PrTpSifVrDok = 'MSP' and PrometTrans.PrTStatPrTrans = 'OD' and  StavkePlanaPakovanja.PotvrdaPrijemCMOblak = 1 and StavkePlanaPakovanja.StigloNaroler1 = 0 ";
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();
             da.Fill(ds);
             dataGridView3.ReadOnly = false;
             dataGridView3.DataSource = ds.Tables[0];
+
+            dataGridView2.Visible = false;
+            dataGridView3.Visible = true;
+            dataGridView4.Visible = false;
+
+            int totalWidth = panel2.Width;
+            int newDistance = Math.Max(0, totalWidth - 20);
+            dataGridView3.Width = newDistance;
+
+
+            int totalHeight = panel2.Height;
+            int newHEight = Math.Max(0, totalHeight - 20);
+            dataGridView3.Height = newHEight;
+
+            /*
+
+                  dataGridView2.Columns[0].ReadOnly = true;
+                  dataGridView2.Columns[1].ReadOnly = true;
+                  dataGridView2.Columns[2].ReadOnly = true;
+                  dataGridView2.Columns[3].ReadOnly = true;
+                  dataGridView2.Columns[4].ReadOnly = true;
+                  dataGridView2.Columns[5].ReadOnly = true;
+                  dataGridView2.Columns[6].ReadOnly = true;
+                  dataGridView2.Columns[7].ReadOnly = true;
+                  dataGridView2.Columns[9].ReadOnly = true;
+                  dataGridView2.Columns[10].ReadOnly = true;
+                  dataGridView2.Columns[11].ReadOnly = true;
+            */
+
+        }
+
+
+        private void MSPZARolerRealizovani()
+        {
+            var query = "SELECT PrTpStDokumenta as MSP,PrTpIzdKol as Izdato, KolicinaPreuzeta as Preuzeto, PrTpSifMp as MP, PrTpStaraSifMp as Nayiv, PrTpEnotaMere as JM " +
+" FROM PrometTransPos " +
+" inner join PrometTrans on PrometTrans.PrTStDok = PrometTransPos.PrTpStDokumenta " +
+" WHERE PrTpSifVrDok = 'MSP' and PRTStatPRTrans = 'OD' and PrometTransPos.PrTpSifSklad in (301, 303, 304) ";
+            SqlConnection conn = new SqlConnection(connect);
+            var da = new SqlDataAdapter(query, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView3.ReadOnly = false;
+            dataGridView3.DataSource = ds.Tables[0];
+
+            dataGridView3.Columns[0].Width = 60;
+            dataGridView3.Columns[1].Width = 80;
+            dataGridView3.Columns[2].Width = 80;
+            dataGridView3.Columns[3].Width = 80;
+            dataGridView3.Columns[4].Width = 160;
+            dataGridView3.Columns[5].Width = 80;
+
+            dataGridView2.Visible = false;
+            dataGridView3.Visible = true;
+            dataGridView4.Visible = false;
+
+            int totalWidth = panel2.Width;
+            int newDistance = Math.Max(0, totalWidth - 20);
+            dataGridView3.Width = newDistance;
+
+
+            int totalHeight = panel2.Height;
+            int newHEight = Math.Max(0, totalHeight - 20);
+            dataGridView3.Height = newHEight;
 
             /*
 
@@ -416,7 +550,8 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
                         BrojRN = Convert.ToInt32(row.Cells[2].Value);
                     }
                 }
-                frmPrebacivanjeMeđPrenosaRN pmp = new frmPrebacivanjeMeđPrenosaRN(BrojRN);
+                //Ovde treba promeniti u Skladiste i lokacija za Cloud CM
+                frmPrebacivanjeMeđPrenosaRN pmp = new frmPrebacivanjeMeđPrenosaRN(BrojRN, 302, 110001);
                 pmp.Show();
 
             }
@@ -503,7 +638,7 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
                         BrojRN = Convert.ToInt32(row.Cells[2].Value);
                     }
                 }
-                frmPrebacivanjeMeđPrenosaRN pmp = new frmPrebacivanjeMeđPrenosaRN(BrojRN);
+                frmPrebacivanjeMeđPrenosaRN pmp = new frmPrebacivanjeMeđPrenosaRN(BrojRN, 0, 0);
                 pmp.Show();
 
             }
@@ -541,17 +676,21 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
 
         private void FillGVPrijemNaRoler1()
         {
-            var query = "SELECT ID,IDPlanPakovanja,RNBroj," +
-                 "CASE WHEN PoslatoNaCM > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as PoslatoNaCM," +
-                        "CASE WHEN PotvrdaPrijemCMOblak  > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as CMOblak," +
-                 "CASE WHEN PotvrdaPrijemRoler1   > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Roler1," +
-                 "CASE WHEN PotvrdaPrijemRoler2   > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Roler2," +
-                " StatusRN,VrstaRN,Artikal,Kod,Naziv,KolicinaZaProizvodnju,PlaniraniKrajnjiDatumZavrsetka,Termin,Planer,RasporedPakovanja as Raspored,RTrim(Varijanta) as Varijanta " +
-                "FROM StavkePlanaPakovanja " +
-                  " inner join PrometTransPos on StavkePlanaPakovanja.RNBroj = PrometTransPos.BrRN " +
-               " inner join PrometTrans on PrometTrans.PrTStDok = PrometTransPos.PrTpStDokumenta " +
-                " WHERE  PrTpSifVrDok = 'MSP' and PRTStatPRTrans = 'PO' and " +
-                "  PoslatoNaCM = 1 and PotvrdaPrijemCMOblak=1 and  PotvrdaPrijemRoler1 =1 and PotvrdaPrijemRoler2 = 0 order by RNBroj asc";
+            var query = " sELECT * fROM (SELECT ID,IDPlanPakovanja,RNBroj, " +
+" PrTpStDokumenta as MSP, " +
+" PrTpSifMp as MP, PrTpStaraSifMp as Naziv, PrTpIzdKol as KOLICINA " +
+" FROM StavkePlanaPakovanja " +
+" inner join PrometTransPos on StavkePlanaPakovanja.RNBroj = PrometTransPos.BrRN " +
+" inner join PrometTrans on PrometTrans.PrTStDok = PrometTransPos.PrTpStDokumenta " +
+" WHERE PrTpSifVrDok = 'MSP' and PRTStatPRTrans = 'PO' and PrometTransPos.PrTpSifSklad = 302 AND " +
+" PoslatoNaCM = 1 and PotvrdaPrijemCMOblak = 1 and StigloNaRoler1 = 1 and StigloNaRoler2 = 0 " +
+" union all " +
+" Select 0 as ID ,0 as IDPlanPakovanja ,0 as RNBroj, 0 as MSP, PRSifMp,RTrim(MpNaziv) as Naziv,(Sum(PrPrevKol) - Sum(PrIzdKol)) as Kolicina " +
+  "                  From Promet  inner join MaticniPodatki on Promet.PrSifMp = MaticniPodatki.MpSifra " +
+   "                 Where PrSifSklad = 305 And MaticniPodatki.MpOsnSklad in (301, 303, 304) " +
+    "                Group by PrSifMp,MaticniPodatki.MpNaziv " +
+     "               Having(SUM(PrPrevKol) - SUM(PrIzdKol)) != 0 ) AS t1 " +
+      "              ORDER BY T1.rnbROJ";
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();
@@ -561,24 +700,24 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
 
             dataGridView2.Columns[0].Width = 60;
             dataGridView2.Columns[1].Visible = false;
+            dataGridView2.Columns[2].Width = 80;
             dataGridView2.Columns[3].Width = 80;
-            dataGridView2.Columns[7].Width = 300;
-            dataGridView2.Columns[9].HeaderText = "KrajnjiDatum";
+            dataGridView2.Columns[4].Width = 160;
+            dataGridView2.Columns[5].Width = 80;
+            
 
-            dataGridView2.BackgroundColor = System.Drawing.Color.FromArgb(125, 158, 192);
-            dataGridView2.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.LightGray;
+            dataGridView4.Visible = false;
+            dataGridView3.Visible = false;
+            dataGridView2.Visible = true;
 
-            dataGridView2.Columns[0].ReadOnly = true;
-            dataGridView2.Columns[1].ReadOnly = true;
-            dataGridView2.Columns[2].ReadOnly = true;
-            dataGridView2.Columns[3].ReadOnly = true;
-            dataGridView2.Columns[4].ReadOnly = true;
-            dataGridView2.Columns[5].ReadOnly = true;
-            dataGridView2.Columns[6].ReadOnly = true;
-            dataGridView2.Columns[7].ReadOnly = true;
-            dataGridView2.Columns[9].ReadOnly = true;
-            dataGridView2.Columns[10].ReadOnly = true;
-            dataGridView2.Columns[11].ReadOnly = true;
+            int totalWidth = panel2.Width;
+            int newDistance = Math.Max(0, totalWidth - 20);
+            dataGridView2.Width = newDistance;
+
+
+            int totalHeight = panel2.Height;
+            int newHEight = Math.Max(0, totalHeight - 20);
+            dataGridView2.Height = newHEight;
 
         }
         private void button10_Click(object sender, EventArgs e)
@@ -598,7 +737,7 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
                         BrojRN = Convert.ToInt32(row.Cells[2].Value);
                     }
                 }
-                frmPrebacivanjeMeđPrenosaRN pmp = new frmPrebacivanjeMeđPrenosaRN(BrojRN);
+                frmPrebacivanjeMeđPrenosaRN pmp = new frmPrebacivanjeMeđPrenosaRN(BrojRN, 0, 0);
                 pmp.Show();
 
             }
@@ -678,22 +817,36 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
         private void FillGVProizvodnjaCloud()
         {
             // Ovde sam yakucao skladista jer jos uvek ne znam gde zavrsava Proizvodnja
-            var query = "  select    PrSifSklad, PrLokacija, " +
-           " PrSifMp, MpStaraSif,    MpNaziv, MpDoNaziv, " +
+            //Pregled skladista iz proiyvodnje za Pakovanje
+            var query = "  select    PrSifSklad as Skladiste, PrLokacija as LokSifra, LokOpis as Lokacija, " +
+           " PrSifMp as MP, MpStaraSif as Kod,    MpNaziv as Naziv,  " +
            " sum(PrPrevKol - PrIzdKol) as Kolicina, " +
-           " MPSifEnoteMere1    from Promet   " +
-           " join MaticniPodatki on MPSifra = PrSifMP Where PrLokacija = " + 1 + " PrSifSklad = " + 5 + " and PrStZapisaVez = 0  group by PrSifSklad, PrLokacija" +
-           "   ,PrSifMP, MpStaraSif, MpNaziv, MpDoNaziv, MPSifEnoteMere1 having sum(PrPrevKol - PrIzdKol) <> 0 ";
+           " MPSifEnoteMere1 as JM    from Promet   " +
+           " join MaticniPodatki on MPSifra = PrSifMP " +
+           " inner join Lokac on Lokac.LokSifra = PrLokacija" +
+           " Where  PrSifSklad In (301,302,303,304) and PrStZapisaVez = 0  group by PrSifSklad, PrLokacija" +
+           "   ,PrSifMP, MpStaraSif, MpNaziv, MpDoNaziv, MPSifEnoteMere1, LokOpis having sum(PrPrevKol - PrIzdKol) <> 0 ";
 
            
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();
             da.Fill(ds);
-            dataGridView3.ReadOnly = false;
-            dataGridView3.DataSource = ds.Tables[0];
+            dataGridView4.ReadOnly = false;
+            dataGridView4.DataSource = ds.Tables[0];
 
-            
+            dataGridView2.Visible = false;
+            dataGridView3.Visible = false;
+            dataGridView4.Visible = true;
+
+            int totalWidth = panel2.Width;
+            int newDistance = Math.Max(0, totalWidth - 20);
+            dataGridView4.Width = newDistance;
+
+
+            int totalHeight = panel2.Height;
+            int newHEight= Math.Max(0, totalHeight - 20);
+            dataGridView4.Height = newHEight;
 
         }
 
@@ -704,13 +857,327 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
 
         private void button9_Click(object sender, EventArgs e)
         {
-            frmPrebacivanjeMedjuskladisniPrenos pr = new frmPrebacivanjeMedjuskladisniPrenos();
-            pr.Show();
+            int Skladiste = 0;
+            try
+            {
+                foreach (DataGridViewRow row in dataGridView4.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        Skladiste = Convert.ToInt32(row.Cells[0].Value);
+                    }
+                }
+                //Ovde treba promeniti u Skladiste i lokacija za Cloud CM
+                frmPrebacivanjeMedjuskladisniPrenos pmp = new frmPrebacivanjeMedjuskladisniPrenos(Skladiste, 305);
+                pmp.Show();
+
+            }
+            catch
+            { }
+
+
+         
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button22_Click(object sender, EventArgs e)
+        {
+            MSPZARolerRealizovani();
+        }
+
+        private void MSPZARolerRealizovaniRoler2()
+        {
+            var query = "SELECT PrTpStDokumenta as MSP,PrTpIzdKol as Izdato, KolicinaPreuzeta as Preuzeto, PrTpSifMp as MP, PrTpStaraSifMp as Naziv, PrTpEnotaMere as JM " +
+" FROM PrometTransPos " +
+" inner join PrometTrans on PrometTrans.PrTStDok = PrometTransPos.PrTpStDokumenta " +
+" inner join StavkePlanaPakovanja on StavkePlanaPakovanja.RNBroj = PrometTransPos.BrRN " +
+" WHERE PrTpSifVrDok = 'MSP' and PRTStatPRTrans = 'OD' and PrometTransPos.PrTpSifSkladPr in (310,311,312,313) and StigloNaRoler2 = 0 ";
+
+           // PredatoNaRoler2 = 0
+            SqlConnection conn = new SqlConnection(connect);
+            var da = new SqlDataAdapter(query, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView3.ReadOnly = false;
+            dataGridView3.DataSource = ds.Tables[0];
+
+            dataGridView3.Columns[0].Width = 60;
+            dataGridView3.Columns[1].Width = 80;
+            dataGridView3.Columns[2].Width = 80;
+            dataGridView3.Columns[3].Width = 80;
+            dataGridView3.Columns[4].Width = 160;
+            dataGridView3.Columns[5].Width = 80;
+
+            dataGridView2.Visible = false;
+            dataGridView3.Visible = true;
+            dataGridView4.Visible = false;
+
+            int totalWidth = panel2.Width;
+            int newDistance = Math.Max(0, totalWidth - 20);
+            dataGridView3.Width = newDistance;
+
+
+            int totalHeight = panel2.Height;
+            int newHEight = Math.Max(0, totalHeight - 20);
+            dataGridView3.Height = newHEight;
+
+            /*
+
+                  dataGridView2.Columns[0].ReadOnly = true;
+                  dataGridView2.Columns[1].ReadOnly = true;
+                  dataGridView2.Columns[2].ReadOnly = true;
+                  dataGridView2.Columns[3].ReadOnly = true;
+                  dataGridView2.Columns[4].ReadOnly = true;
+                  dataGridView2.Columns[5].ReadOnly = true;
+                  dataGridView2.Columns[6].ReadOnly = true;
+                  dataGridView2.Columns[7].ReadOnly = true;
+                  dataGridView2.Columns[9].ReadOnly = true;
+                  dataGridView2.Columns[10].ReadOnly = true;
+                  dataGridView2.Columns[11].ReadOnly = true;
+            */
+
+        }
+
+        private void MSPZARolerRealizovaniNePotvrdjeniRoler2()
+        {
+            var query = "SELECT PrTpStDokumenta as MSP,PrTpIzdKol as Izdato, KolicinaPreuzeta as Preuzeto, PrTpSifMp as MP, PrTpStaraSifMp as Naziv, PrTpEnotaMere as JM " +
+" FROM PrometTransPos " +
+" inner join PrometTrans on PrometTrans.PrTStDok = PrometTransPos.PrTpStDokumenta " +
+" inner join StavkePlanaPakovanja on StavkePlanaPakovanja.RNBroj = PrometTransPos.BrRN " +
+" WHERE PrTpSifVrDok = 'MSP' and PRTStatPRTrans = 'OD' and PrometTransPos.PrTpSifSkladPr in (310,311,312,313) and StigloNaRoler2 = 1 and PotvrdaPrijemRoler2=0 ";
+
+            // PredatoNaRoler2 = 0
+            SqlConnection conn = new SqlConnection(connect);
+            var da = new SqlDataAdapter(query, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView3.ReadOnly = false;
+            dataGridView3.DataSource = ds.Tables[0];
+
+            dataGridView3.Columns[0].Width = 60;
+            dataGridView3.Columns[1].Width = 80;
+            dataGridView3.Columns[2].Width = 80;
+            dataGridView3.Columns[3].Width = 80;
+            dataGridView3.Columns[4].Width = 160;
+            dataGridView3.Columns[5].Width = 80;
+
+            dataGridView2.Visible = false;
+            dataGridView3.Visible = true;
+            dataGridView4.Visible = false;
+
+            int totalWidth = panel2.Width;
+            int newDistance = Math.Max(0, totalWidth - 20);
+            dataGridView3.Width = newDistance;
+
+
+            int totalHeight = panel2.Height;
+            int newHEight = Math.Max(0, totalHeight - 20);
+            dataGridView3.Height = newHEight;
+
+            /*
+
+                  dataGridView2.Columns[0].ReadOnly = true;
+                  dataGridView2.Columns[1].ReadOnly = true;
+                  dataGridView2.Columns[2].ReadOnly = true;
+                  dataGridView2.Columns[3].ReadOnly = true;
+                  dataGridView2.Columns[4].ReadOnly = true;
+                  dataGridView2.Columns[5].ReadOnly = true;
+                  dataGridView2.Columns[6].ReadOnly = true;
+                  dataGridView2.Columns[7].ReadOnly = true;
+                  dataGridView2.Columns[9].ReadOnly = true;
+                  dataGridView2.Columns[10].ReadOnly = true;
+                  dataGridView2.Columns[11].ReadOnly = true;
+            */
+
+        }
+
+        private void PripremaPakovanjeNePregledani()
+        {
+            var query = "SELECT PrTpStDokumenta as MSP,PrTpIzdKol as Izdato, KolicinaPreuzeta as Preuzeto, PrTpSifMp as MP, PrTpStaraSifMp as Naziv, PrTpEnotaMere as JM " +
+" FROM PrometTransPos " +
+" inner join PrometTrans on PrometTrans.PrTStDok = PrometTransPos.PrTpStDokumenta " +
+" inner join StavkePlanaPakovanja on StavkePlanaPakovanja.RNBroj = PrometTransPos.BrRN " +
+" WHERE PrTpSifVrDok = 'MSP' and PRTStatPRTrans = 'PO' and PrometTransPos.PrTpSifSkladPr in (310,311,312,313) and StigloNaRoler2 = 1 and PotvrdaPrijemRoler2=0 ";
+
+            // PredatoNaRoler2 = 0
+            SqlConnection conn = new SqlConnection(connect);
+            var da = new SqlDataAdapter(query, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView3.ReadOnly = false;
+            dataGridView3.DataSource = ds.Tables[0];
+
+            dataGridView3.Columns[0].Width = 60;
+            dataGridView3.Columns[1].Width = 80;
+            dataGridView3.Columns[2].Width = 80;
+            dataGridView3.Columns[3].Width = 80;
+            dataGridView3.Columns[4].Width = 160;
+            dataGridView3.Columns[5].Width = 80;
+
+            dataGridView2.Visible = false;
+            dataGridView3.Visible = true;
+            dataGridView4.Visible = false;
+
+            int totalWidth = panel2.Width;
+            int newDistance = Math.Max(0, totalWidth - 20);
+            dataGridView3.Width = newDistance;
+
+
+            int totalHeight = panel2.Height;
+            int newHEight = Math.Max(0, totalHeight - 20);
+            dataGridView3.Height = newHEight;
+
+            /*
+
+                  dataGridView2.Columns[0].ReadOnly = true;
+                  dataGridView2.Columns[1].ReadOnly = true;
+                  dataGridView2.Columns[2].ReadOnly = true;
+                  dataGridView2.Columns[3].ReadOnly = true;
+                  dataGridView2.Columns[4].ReadOnly = true;
+                  dataGridView2.Columns[5].ReadOnly = true;
+                  dataGridView2.Columns[6].ReadOnly = true;
+                  dataGridView2.Columns[7].ReadOnly = true;
+                  dataGridView2.Columns[9].ReadOnly = true;
+                  dataGridView2.Columns[10].ReadOnly = true;
+                  dataGridView2.Columns[11].ReadOnly = true;
+            */
+
+        }
+
+        private void PripremaPakovanjePregledani()
+        {
+            var query = "SELECT PrTpStDokumenta as MSP,PrTpIzdKol as Izdato, KolicinaPreuzeta as Preuzeto, PrTpSifMp as MP, PrTpStaraSifMp as Naziv, PrTpEnotaMere as JM " +
+" FROM PrometTransPos " +
+" inner join PrometTrans on PrometTrans.PrTStDok = PrometTransPos.PrTpStDokumenta " +
+" inner join StavkePlanaPakovanja on StavkePlanaPakovanja.RNBroj = PrometTransPos.BrRN " +
+" WHERE PrTpSifVrDok = 'MSP' and PRTStatPRTrans = 'PO' and PrometTransPos.PrTpSifSkladPr in (310,311,312,313) and StigloNaRoler2 = 1 and PotvrdaPrijemRoler2=1 ";
+
+            // PredatoNaRoler2 = 0
+            SqlConnection conn = new SqlConnection(connect);
+            var da = new SqlDataAdapter(query, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView3.ReadOnly = false;
+            dataGridView3.DataSource = ds.Tables[0];
+
+            dataGridView3.Columns[0].Width = 60;
+            dataGridView3.Columns[1].Width = 80;
+            dataGridView3.Columns[2].Width = 80;
+            dataGridView3.Columns[3].Width = 80;
+            dataGridView3.Columns[4].Width = 160;
+            dataGridView3.Columns[5].Width = 80;
+
+
+            dataGridView2.Visible = false;
+            dataGridView3.Visible = true;
+            dataGridView4.Visible = false;
+
+            int totalWidth = panel2.Width;
+            int newDistance = Math.Max(0, totalWidth - 20);
+            dataGridView3.Width = newDistance;
+
+
+            int totalHeight = panel2.Height;
+            int newHEight = Math.Max(0, totalHeight - 20);
+            dataGridView3.Height = newHEight;
+
+            /*
+
+                  dataGridView2.Columns[0].ReadOnly = true;
+                  dataGridView2.Columns[1].ReadOnly = true;
+                  dataGridView2.Columns[2].ReadOnly = true;
+                  dataGridView2.Columns[3].ReadOnly = true;
+                  dataGridView2.Columns[4].ReadOnly = true;
+                  dataGridView2.Columns[5].ReadOnly = true;
+                  dataGridView2.Columns[6].ReadOnly = true;
+                  dataGridView2.Columns[7].ReadOnly = true;
+                  dataGridView2.Columns[9].ReadOnly = true;
+                  dataGridView2.Columns[10].ReadOnly = true;
+                  dataGridView2.Columns[11].ReadOnly = true;
+            */
+
+        }
+
+
+        private void MSPZARolerRealizovaniRolerPotvrdjeni()
+        {
+            var query = "SELECT PrTpStDokumenta as MSP,PrTpIzdKol as Izdato, KolicinaPreuzeta as Preuzeto, PrTpSifMp as MP, PrTpStaraSifMp as Naziv, PrTpEnotaMere as JM " +
+" FROM PrometTransPos " +
+" inner join PrometTrans on PrometTrans.PrTStDok = PrometTransPos.PrTpStDokumenta " +
+" WHERE PrTpSifVrDok = 'MSP' and PRTStatPRTrans = 'OD' and PrometTransPos.PrTpSifSkladPr in (310,311,312,313,314) ";
+
+            // PredatoNaRoler2 = 1 and ProveroNaRoler2 = 0
+            SqlConnection conn = new SqlConnection(connect);
+            var da = new SqlDataAdapter(query, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView3.ReadOnly = false;
+            dataGridView3.DataSource = ds.Tables[0];
+
+            dataGridView3.Columns[0].Width = 60;
+            dataGridView3.Columns[1].Width = 80;
+            dataGridView3.Columns[2].Width = 80;
+            dataGridView3.Columns[3].Width = 80;
+            dataGridView3.Columns[4].Width = 160;
+            dataGridView3.Columns[5].Width = 80;
+
+            dataGridView2.Visible = false;
+            dataGridView3.Visible = true;
+            dataGridView4.Visible = false;
+
+            int totalWidth = panel2.Width;
+            int newDistance = Math.Max(0, totalWidth - 20);
+            dataGridView3.Width = newDistance;
+
+
+            int totalHeight = panel2.Height;
+            int newHEight = Math.Max(0, totalHeight - 20);
+            dataGridView3.Height = newHEight;
+
+            /*
+
+                  dataGridView2.Columns[0].ReadOnly = true;
+                  dataGridView2.Columns[1].ReadOnly = true;
+                  dataGridView2.Columns[2].ReadOnly = true;
+                  dataGridView2.Columns[3].ReadOnly = true;
+                  dataGridView2.Columns[4].ReadOnly = true;
+                  dataGridView2.Columns[5].ReadOnly = true;
+                  dataGridView2.Columns[6].ReadOnly = true;
+                  dataGridView2.Columns[7].ReadOnly = true;
+                  dataGridView2.Columns[9].ReadOnly = true;
+                  dataGridView2.Columns[10].ReadOnly = true;
+                  dataGridView2.Columns[11].ReadOnly = true;
+            */
+
+        }
+
+        private void button19_Click(object sender, EventArgs e)
+        {
+            MSPZARolerRealizovaniRoler2();
+        }
+
+        private void button18_Click_1(object sender, EventArgs e)
+        {
+            MSPZARolerRealizovaniNePotvrdjeniRoler2();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            PripremaPakovanjeNePregledani();
+        }
+
+        private void button23_Click(object sender, EventArgs e)
+        {
+            PripremaPakovanjePregledani();
         }
     }
 }

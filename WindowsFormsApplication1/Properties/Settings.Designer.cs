@@ -12,7 +12,7 @@ namespace WindowsFormsApplication1.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.7.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.14.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -20,6 +20,17 @@ namespace WindowsFormsApplication1.Properties {
         public static Settings Default {
             get {
                 return defaultInstance;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.1.3\\sql20082;Initial Catalog=TESTING_DATABASE;Encrypt=False;U" +
+            "ser ID=panta;Password=1234;")]
+        public string NedraConnectionString {
+            get {
+                return ((string)(this["NedraConnectionString"]));
             }
         }
         
@@ -47,22 +58,22 @@ namespace WindowsFormsApplication1.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.1.3\\sql20082;Initial Catalog=Jela_Test;User ID=panta;Password" +
-            "=1234;")]
-        public string NedraConnectionString {
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.1.3\\sql20082;Initial Catalog=TESTING_DATABASE;Encrypt=False;U" +
+            "ser ID=panta;Password=1234;")]
+        public string PerftehConnectionString {
             get {
-                return ((string)(this["NedraConnectionString"]));
+                return ((string)(this["PerftehConnectionString"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.1.3\\sql20082;Initial Catalog=Jela_Test;User ID=panta;Password" +
-            "=1234;")]
-        public string PerftehConnectionString {
+        [global::System.Configuration.DefaultSettingValueAttribute("Server=94.127.4.186;Port=3306;Database=jela_webs;Uid=jela_pantelija;Pwd=0307Jela-" +
+            ";")]
+        public string MySqlJelaWebs {
             get {
-                return ((string)(this["PerftehConnectionString"]));
+                return ((string)(this["MySqlJelaWebs"]));
             }
         }
     }

@@ -37,6 +37,8 @@
             this.btnEmp = new FontAwesome.Sharp.IconButton();
             this.panelLogo = new System.Windows.Forms.Panel();
             this.IconButton = new System.Windows.Forms.PictureBox();
+            this.iconButton1 = new FontAwesome.Sharp.IconButton();
+            this.iconButton2 = new FontAwesome.Sharp.IconButton();
             this.PanelMenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IconButton)).BeginInit();
@@ -45,6 +47,8 @@
             // PanelMenu
             // 
             this.PanelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(54)))), ((int)(((byte)(56)))));
+            this.PanelMenu.Controls.Add(this.iconButton2);
+            this.PanelMenu.Controls.Add(this.iconButton1);
             this.PanelMenu.Controls.Add(this.btnPaketi);
             this.PanelMenu.Controls.Add(this.btnReklamacije);
             this.PanelMenu.Controls.Add(this.btnNamensko);
@@ -54,7 +58,7 @@
             this.PanelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.PanelMenu.Location = new System.Drawing.Point(0, 0);
             this.PanelMenu.Name = "PanelMenu";
-            this.PanelMenu.Size = new System.Drawing.Size(590, 538);
+            this.PanelMenu.Size = new System.Drawing.Size(590, 562);
             this.PanelMenu.TabIndex = 1;
             // 
             // btnPaketi
@@ -69,10 +73,10 @@
             this.btnPaketi.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnPaketi.IconSize = 24;
             this.btnPaketi.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPaketi.Location = new System.Drawing.Point(0, 361);
+            this.btnPaketi.Location = new System.Drawing.Point(0, 332);
             this.btnPaketi.Name = "btnPaketi";
             this.btnPaketi.Padding = new System.Windows.Forms.Padding(215, 0, 16, 0);
-            this.btnPaketi.Size = new System.Drawing.Size(590, 81);
+            this.btnPaketi.Size = new System.Drawing.Size(590, 58);
             this.btnPaketi.TabIndex = 18;
             this.btnPaketi.Text = "Paketi";
             this.btnPaketi.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -92,10 +96,10 @@
             this.btnReklamacije.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnReklamacije.IconSize = 24;
             this.btnReklamacije.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReklamacije.Location = new System.Drawing.Point(0, 280);
+            this.btnReklamacije.Location = new System.Drawing.Point(0, 268);
             this.btnReklamacije.Name = "btnReklamacije";
             this.btnReklamacije.Padding = new System.Windows.Forms.Padding(215, 0, 16, 0);
-            this.btnReklamacije.Size = new System.Drawing.Size(590, 81);
+            this.btnReklamacije.Size = new System.Drawing.Size(590, 64);
             this.btnReklamacije.TabIndex = 17;
             this.btnReklamacije.Text = "Reklamacije";
             this.btnReklamacije.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -115,10 +119,10 @@
             this.btnNamensko.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnNamensko.IconSize = 24;
             this.btnNamensko.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnNamensko.Location = new System.Drawing.Point(0, 207);
+            this.btnNamensko.Location = new System.Drawing.Point(0, 201);
             this.btnNamensko.Name = "btnNamensko";
             this.btnNamensko.Padding = new System.Windows.Forms.Padding(195, 0, 16, 0);
-            this.btnNamensko.Size = new System.Drawing.Size(590, 73);
+            this.btnNamensko.Size = new System.Drawing.Size(590, 67);
             this.btnNamensko.TabIndex = 13;
             this.btnNamensko.Text = "Namensko pakovanje";
             this.btnNamensko.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -142,7 +146,7 @@
             this.btnRedovno.Location = new System.Drawing.Point(0, 140);
             this.btnRedovno.Name = "btnRedovno";
             this.btnRedovno.Padding = new System.Windows.Forms.Padding(200, 0, 16, 0);
-            this.btnRedovno.Size = new System.Drawing.Size(590, 67);
+            this.btnRedovno.Size = new System.Drawing.Size(590, 61);
             this.btnRedovno.TabIndex = 5;
             this.btnRedovno.Text = "Redovno pakovanje";
             this.btnRedovno.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -192,11 +196,57 @@
             this.IconButton.TabIndex = 1;
             this.IconButton.TabStop = false;
             // 
+            // iconButton1
+            // 
+            this.iconButton1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.iconButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gainsboro;
+            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.iconButton1.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iconButton1.ForeColor = System.Drawing.Color.White;
+            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.Pallet;
+            this.iconButton1.IconColor = System.Drawing.Color.White;
+            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton1.IconSize = 24;
+            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconButton1.Location = new System.Drawing.Point(0, 390);
+            this.iconButton1.Name = "iconButton1";
+            this.iconButton1.Padding = new System.Windows.Forms.Padding(215, 0, 16, 0);
+            this.iconButton1.Size = new System.Drawing.Size(590, 64);
+            this.iconButton1.TabIndex = 19;
+            this.iconButton1.Text = "Pakovanje barkodovi";
+            this.iconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.iconButton1.UseVisualStyleBackColor = true;
+            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
+            // 
+            // iconButton2
+            // 
+            this.iconButton2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.iconButton2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gainsboro;
+            this.iconButton2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.iconButton2.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iconButton2.ForeColor = System.Drawing.Color.White;
+            this.iconButton2.IconChar = FontAwesome.Sharp.IconChar.Pallet;
+            this.iconButton2.IconColor = System.Drawing.Color.White;
+            this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton2.IconSize = 24;
+            this.iconButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconButton2.Location = new System.Drawing.Point(0, 454);
+            this.iconButton2.Name = "iconButton2";
+            this.iconButton2.Padding = new System.Windows.Forms.Padding(215, 0, 16, 0);
+            this.iconButton2.Size = new System.Drawing.Size(590, 64);
+            this.iconButton2.TabIndex = 20;
+            this.iconButton2.Text = "Pozicije";
+            this.iconButton2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.iconButton2.UseVisualStyleBackColor = true;
+            this.iconButton2.Click += new System.EventHandler(this.iconButton2_Click);
+            // 
             // MainPakovanje
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(592, 538);
+            this.ClientSize = new System.Drawing.Size(579, 562);
             this.Controls.Add(this.PanelMenu);
             this.Name = "MainPakovanje";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -218,5 +268,7 @@
         private System.Windows.Forms.Panel panelLogo;
         private System.Windows.Forms.PictureBox IconButton;
         private FontAwesome.Sharp.IconButton btnPaketi;
+        private FontAwesome.Sharp.IconButton iconButton1;
+        private FontAwesome.Sharp.IconButton iconButton2;
     }
 }

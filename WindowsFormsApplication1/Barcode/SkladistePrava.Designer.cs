@@ -71,7 +71,7 @@
             this.checkedListBox1.FormattingEnabled = true;
             this.checkedListBox1.Location = new System.Drawing.Point(12, 79);
             this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(345, 454);
+            this.checkedListBox1.Size = new System.Drawing.Size(345, 446);
             this.checkedListBox1.TabIndex = 2;
             // 
             // button1
@@ -96,6 +96,7 @@
             this.Controls.Add(this.label1);
             this.Name = "SkladistePrava";
             this.Text = "SkladistePrava";
+            this.Load += new System.EventHandler(this.SkladistePrava_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using WindowsFormsApplication1.Barcode;
 
 namespace WindowsFormsApplication1.Magacin
 {
@@ -153,6 +154,12 @@ namespace WindowsFormsApplication1.Magacin
             Administracija___Prava_pristupa.frmDodeliPravo pravo = new Administracija___Prava_pristupa.frmDodeliPravo();
             PravoP = pravo.Pravo;
             if (PravoP == true) { pravo.Show(); } else { return; }
+        }
+
+        private void skladistaPravaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SkladistePrava sp = new SkladistePrava();
+            sp.Show();
         }
     }
 }

@@ -41,5 +41,17 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
             KompletiPaket frm = new KompletiPaket();
             frm.Show();
         }
+
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            PakovanjeBarkod pb = new PakovanjeBarkod();
+            pb.Show();
+        }
+
+        private void iconButton2_Click(object sender, EventArgs e)
+        {
+            Magacin.frmPozicije poz = new Magacin.frmPozicije();
+           poz.Show();
+        }
     }
 }

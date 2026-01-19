@@ -9,13 +9,13 @@
               <Width>2.94318cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.20234cm</Width>
+              <Width>1.80546cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.51442cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.28714cm</Width>
+              <Width>3.68402cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -96,8 +96,8 @@
                             <TextRun>
                               <Value>=Fields!BarkodMSP.Value</Value>
                               <Style>
-                                <FontFamily>free 3 of 9</FontFamily>
-                                <FontSize>24pt</FontSize>
+                                <FontFamily>Codedreineun</FontFamily>
+                                <FontSize>20pt</FontSize>
                                 <FontWeight>Normal</FontWeight>
                               </Style>
                             </TextRun>
@@ -644,7 +644,7 @@
                             <TextRun>
                               <Value>=Fields!Barkod.Value</Value>
                               <Style>
-                                <FontFamily>Free 3 of 9</FontFamily>
+                                <FontFamily>Codedreineun</FontFamily>
                                 <FontSize>24pt</FontSize>
                               </Style>
                             </TextRun>

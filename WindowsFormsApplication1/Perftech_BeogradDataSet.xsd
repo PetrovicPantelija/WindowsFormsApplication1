@@ -2,14 +2,15 @@
 <xs:schema id="Perftech_BeogradDataSet" targetNamespace="http://tempuri.org/Perftech_BeogradDataSet.xsd" xmlns:mstns="http://tempuri.org/Perftech_BeogradDataSet.xsd" xmlns="http://tempuri.org/Perftech_BeogradDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="PerftehConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="PerftehConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.WindowsFormsApplication1.Properties.Settings.GlobalReference.Default.PerftehConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="NedraConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="NedraConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.WindowsFormsApplication1.Properties.Settings.GlobalReference.Default.NedraConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="PozicijaBarkodTableAdapter" GeneratorDataComponentClassName="PozicijaBarkodTableAdapter" Name="PozicijaBarkod" UserDataComponentName="PozicijaBarkodTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="PerftehConnectionString (Settings)" DbObjectName="Perftech_Beograd.dbo.PozicijaBarkod" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="NedraConnectionString (Settings)" DbObjectName="TESTING_DATABASE.dbo.PozicijaBarkod" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>INSERT INTO [dbo].[PozicijaBarkod] ([Pozicija], [Barkod], [Opis]) VALUES (@Pozicija, @Barkod, @Opis)</CommandText>
@@ -21,7 +22,7 @@
                   </DbCommand>
                 </InsertCommand>
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT Pozicija, Barkod, Opis FROM dbo.PozicijaBarkod</CommandText>
                     <Parameters />
                   </DbCommand>
@@ -40,27 +41,27 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="Perftech_BeogradDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="Perftech_BeogradDataSet" msprop:Generator_UserDSName="Perftech_BeogradDataSet">
+  <xs:element name="Perftech_BeogradDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_UserDSName="Perftech_BeogradDataSet" msprop:Generator_DataSetName="Perftech_BeogradDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="PozicijaBarkod" msprop:Generator_TableClassName="PozicijaBarkodDataTable" msprop:Generator_TableVarName="tablePozicijaBarkod" msprop:Generator_TablePropName="PozicijaBarkod" msprop:Generator_RowDeletingName="PozicijaBarkodRowDeleting" msprop:Generator_RowChangingName="PozicijaBarkodRowChanging" msprop:Generator_RowEvHandlerName="PozicijaBarkodRowChangeEventHandler" msprop:Generator_RowDeletedName="PozicijaBarkodRowDeleted" msprop:Generator_UserTableName="PozicijaBarkod" msprop:Generator_RowChangedName="PozicijaBarkodRowChanged" msprop:Generator_RowEvArgName="PozicijaBarkodRowChangeEvent" msprop:Generator_RowClassName="PozicijaBarkodRow">
+        <xs:element name="PozicijaBarkod" msprop:Generator_RowClassName="PozicijaBarkodRow" msprop:Generator_RowEvHandlerName="PozicijaBarkodRowChangeEventHandler" msprop:Generator_RowDeletedName="PozicijaBarkodRowDeleted" msprop:Generator_RowDeletingName="PozicijaBarkodRowDeleting" msprop:Generator_RowEvArgName="PozicijaBarkodRowChangeEvent" msprop:Generator_TablePropName="PozicijaBarkod" msprop:Generator_RowChangedName="PozicijaBarkodRowChanged" msprop:Generator_RowChangingName="PozicijaBarkodRowChanging" msprop:Generator_TableClassName="PozicijaBarkodDataTable" msprop:Generator_UserTableName="PozicijaBarkod" msprop:Generator_TableVarName="tablePozicijaBarkod">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Pozicija" msprop:Generator_ColumnVarNameInTable="columnPozicija" msprop:Generator_ColumnPropNameInRow="Pozicija" msprop:Generator_ColumnPropNameInTable="PozicijaColumn" msprop:Generator_UserColumnName="Pozicija" minOccurs="0">
+              <xs:element name="Pozicija" msprop:Generator_ColumnPropNameInRow="Pozicija" msprop:Generator_ColumnPropNameInTable="PozicijaColumn" msprop:Generator_ColumnVarNameInTable="columnPozicija" msprop:Generator_UserColumnName="Pozicija" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="20" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Barkod" msprop:Generator_ColumnVarNameInTable="columnBarkod" msprop:Generator_ColumnPropNameInRow="Barkod" msprop:Generator_ColumnPropNameInTable="BarkodColumn" msprop:Generator_UserColumnName="Barkod" minOccurs="0">
+              <xs:element name="Barkod" msprop:Generator_ColumnPropNameInRow="Barkod" msprop:Generator_ColumnPropNameInTable="BarkodColumn" msprop:Generator_ColumnVarNameInTable="columnBarkod" msprop:Generator_UserColumnName="Barkod" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="30" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Opis" msprop:Generator_ColumnVarNameInTable="columnOpis" msprop:Generator_ColumnPropNameInRow="Opis" msprop:Generator_ColumnPropNameInTable="OpisColumn" msprop:Generator_UserColumnName="Opis" minOccurs="0">
+              <xs:element name="Opis" msprop:Generator_ColumnPropNameInRow="Opis" msprop:Generator_ColumnPropNameInTable="OpisColumn" msprop:Generator_ColumnVarNameInTable="columnOpis" msprop:Generator_UserColumnName="Opis" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />

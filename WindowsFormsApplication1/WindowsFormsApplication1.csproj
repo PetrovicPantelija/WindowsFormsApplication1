@@ -1269,6 +1269,9 @@
     <Compile Include="Partneri.Designer.cs">
       <DependentUpon>Partneri.cs</DependentUpon>
     </Compile>
+    <Compile Include="Perftech_BeogradDataSet.cs">
+      <DependentUpon>Perftech_BeogradDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Perftech_BeogradDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

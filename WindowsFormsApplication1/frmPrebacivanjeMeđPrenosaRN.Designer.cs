@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrebacivanjeMeđPrenosaRN));
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource3 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
             this.txtKolicinaRN = new System.Windows.Forms.NumericUpDown();
@@ -74,6 +74,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtNapomena = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.txtBN = new System.Windows.Forms.TextBox();
@@ -82,7 +83,6 @@
             this.button4 = new System.Windows.Forms.Button();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.button1 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtKolicinaRN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtKoeficijent)).BeginInit();
@@ -113,7 +113,7 @@
             this.panel1.Controls.Add(this.dataGridView1);
             this.panel1.Location = new System.Drawing.Point(6, 6);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1268, 193);
+            this.panel1.Size = new System.Drawing.Size(1335, 193);
             this.panel1.TabIndex = 0;
             // 
             // label10
@@ -245,7 +245,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(189, 3);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1066, 187);
+            this.dataGridView1.Size = new System.Drawing.Size(1133, 187);
             this.dataGridView1.TabIndex = 236;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -256,7 +256,7 @@
             this.panel2.Controls.Add(this.dataGridView2);
             this.panel2.Location = new System.Drawing.Point(9, 220);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(492, 479);
+            this.panel2.Size = new System.Drawing.Size(492, 541);
             this.panel2.TabIndex = 1;
             // 
             // dataGridView2
@@ -268,7 +268,7 @@
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(4, 3);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(485, 473);
+            this.dataGridView2.Size = new System.Drawing.Size(485, 535);
             this.dataGridView2.TabIndex = 237;
             this.dataGridView2.SelectionChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
             // 
@@ -278,9 +278,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.Controls.Add(this.dataGridView3);
-            this.panel3.Location = new System.Drawing.Point(720, 220);
+            this.panel3.Location = new System.Drawing.Point(789, 223);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(621, 479);
+            this.panel3.Size = new System.Drawing.Size(654, 538);
             this.panel3.TabIndex = 2;
             // 
             // dataGridView3
@@ -305,7 +305,7 @@
             this.LokacijaIz});
             this.dataGridView3.Location = new System.Drawing.Point(14, 9);
             this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.Size = new System.Drawing.Size(594, 467);
+            this.dataGridView3.Size = new System.Drawing.Size(627, 526);
             this.dataGridView3.TabIndex = 238;
             // 
             // MP
@@ -390,7 +390,7 @@
             this.btnUbaci.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnUbaci.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnUbaci.ForeColor = System.Drawing.Color.White;
-            this.btnUbaci.Location = new System.Drawing.Point(511, 520);
+            this.btnUbaci.Location = new System.Drawing.Point(508, 569);
             this.btnUbaci.Name = "btnUbaci";
             this.btnUbaci.Size = new System.Drawing.Size(182, 45);
             this.btnUbaci.TabIndex = 247;
@@ -402,7 +402,7 @@
             // 
             this.cboSkladisteU.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.cboSkladisteU.FormattingEnabled = true;
-            this.cboSkladisteU.Location = new System.Drawing.Point(510, 405);
+            this.cboSkladisteU.Location = new System.Drawing.Point(507, 454);
             this.cboSkladisteU.Name = "cboSkladisteU";
             this.cboSkladisteU.Size = new System.Drawing.Size(182, 24);
             this.cboSkladisteU.TabIndex = 246;
@@ -413,7 +413,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(507, 386);
+            this.label3.Location = new System.Drawing.Point(504, 435);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(81, 16);
             this.label3.TabIndex = 245;
@@ -449,7 +449,7 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(510, 571);
+            this.button3.Location = new System.Drawing.Point(507, 620);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(182, 45);
             this.button3.TabIndex = 248;
@@ -460,7 +460,7 @@
             // txtIzdaje
             // 
             this.txtIzdaje.Enabled = false;
-            this.txtIzdaje.Location = new System.Drawing.Point(517, 680);
+            this.txtIzdaje.Location = new System.Drawing.Point(514, 729);
             this.txtIzdaje.Name = "txtIzdaje";
             this.txtIzdaje.Size = new System.Drawing.Size(178, 20);
             this.txtIzdaje.TabIndex = 249;
@@ -470,7 +470,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(518, 662);
+            this.label2.Location = new System.Drawing.Point(515, 711);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(50, 16);
             this.label2.TabIndex = 250;
@@ -481,7 +481,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(518, 619);
+            this.label4.Location = new System.Drawing.Point(515, 668);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(70, 16);
             this.label4.TabIndex = 252;
@@ -489,7 +489,7 @@
             // 
             // txtBrojMSP
             // 
-            this.txtBrojMSP.Location = new System.Drawing.Point(517, 638);
+            this.txtBrojMSP.Location = new System.Drawing.Point(514, 687);
             this.txtBrojMSP.Name = "txtBrojMSP";
             this.txtBrojMSP.Size = new System.Drawing.Size(178, 20);
             this.txtBrojMSP.TabIndex = 251;
@@ -504,7 +504,7 @@
             this.tabControl1.Location = new System.Drawing.Point(3, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1355, 731);
+            this.tabControl1.Size = new System.Drawing.Size(1457, 793);
             this.tabControl1.TabIndex = 253;
             // 
             // tabPage1
@@ -531,7 +531,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1347, 705);
+            this.tabPage1.Size = new System.Drawing.Size(1449, 767);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Formiranje";
             // 
@@ -540,7 +540,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.Location = new System.Drawing.Point(507, 432);
+            this.label9.Location = new System.Drawing.Point(504, 481);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(77, 16);
             this.label9.TabIndex = 255;
@@ -550,7 +550,7 @@
             // 
             this.cboLokacijaU.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.cboLokacijaU.FormattingEnabled = true;
-            this.cboLokacijaU.Location = new System.Drawing.Point(510, 451);
+            this.cboLokacijaU.Location = new System.Drawing.Point(507, 500);
             this.cboLokacijaU.Name = "cboLokacijaU";
             this.cboLokacijaU.Size = new System.Drawing.Size(182, 24);
             this.cboLokacijaU.TabIndex = 256;
@@ -562,7 +562,7 @@
             this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView5.Location = new System.Drawing.Point(507, 223);
             this.dataGridView5.Name = "dataGridView5";
-            this.dataGridView5.Size = new System.Drawing.Size(207, 160);
+            this.dataGridView5.Size = new System.Drawing.Size(276, 199);
             this.dataGridView5.TabIndex = 238;
             this.dataGridView5.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView5_CellLeave);
             // 
@@ -571,7 +571,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(508, 477);
+            this.label5.Location = new System.Drawing.Point(505, 526);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(80, 16);
             this.label5.TabIndex = 254;
@@ -579,7 +579,7 @@
             // 
             // txtNapomena
             // 
-            this.txtNapomena.Location = new System.Drawing.Point(510, 496);
+            this.txtNapomena.Location = new System.Drawing.Point(507, 545);
             this.txtNapomena.Name = "txtNapomena";
             this.txtNapomena.Size = new System.Drawing.Size(178, 20);
             this.txtNapomena.TabIndex = 253;
@@ -598,9 +598,23 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1347, 705);
+            this.tabPage2.Size = new System.Drawing.Size(1449, 767);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Štampa nalepnica";
+            // 
+            // button7
+            // 
+            this.button7.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button7.BackgroundImage")));
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button7.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.button7.ForeColor = System.Drawing.Color.White;
+            this.button7.Location = new System.Drawing.Point(287, 6);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(254, 25);
+            this.button7.TabIndex = 260;
+            this.button7.Text = "Napravi nalepnice RN";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button6
             // 
@@ -642,7 +656,7 @@
             this.panel4.Controls.Add(this.dataGridView4);
             this.panel4.Location = new System.Drawing.Point(6, 37);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1248, 181);
+            this.panel4.Size = new System.Drawing.Size(1350, 181);
             this.panel4.TabIndex = 243;
             // 
             // dataGridView4
@@ -654,7 +668,7 @@
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView4.Location = new System.Drawing.Point(3, 3);
             this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.Size = new System.Drawing.Size(1228, 175);
+            this.dataGridView4.Size = new System.Drawing.Size(1327, 175);
             this.dataGridView4.TabIndex = 238;
             // 
             // button4
@@ -676,14 +690,14 @@
             this.reportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            reportDataSource2.Name = "DataSetReklamacija";
-            reportDataSource2.Value = null;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
+            reportDataSource3.Name = "DataSetReklamacija";
+            reportDataSource3.Value = null;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource3);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "WindowsFormsApplication1.rptReklNal.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(6, 235);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(1268, 366);
+            this.reportViewer1.Size = new System.Drawing.Size(1370, 428);
             this.reportViewer1.TabIndex = 241;
             // 
             // button1
@@ -700,26 +714,12 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button7
-            // 
-            this.button7.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button7.BackgroundImage")));
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button7.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.button7.ForeColor = System.Drawing.Color.White;
-            this.button7.Location = new System.Drawing.Point(287, 6);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(254, 25);
-            this.button7.TabIndex = 260;
-            this.button7.Text = "Napravi nalepnice RN";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
-            // 
             // frmPrebacivanjeMeđPrenosaRN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(187)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.ClientSize = new System.Drawing.Size(1472, 811);
             this.Controls.Add(this.tabControl1);
             this.Name = "frmPrebacivanjeMeđPrenosaRN";
             this.Text = "Formiranje Međuskladisnog prenosa iz RN";

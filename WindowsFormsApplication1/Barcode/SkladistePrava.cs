@@ -18,8 +18,7 @@ namespace WindowsFormsApplication1.Barcode
         public SkladistePrava()
         {
             InitializeComponent();
-            FillCombo();
-            FillChkList();
+            
         }
         private void FillCombo()
         {
@@ -34,14 +33,38 @@ namespace WindowsFormsApplication1.Barcode
         }
         private void FillChkList()
         {
-            var query = "Select SkSifra,RTrim(SkNaziv) as SkNaziv From Sklad order by SkSifra asc";
-            SqlConnection conn = new SqlConnection(connect);
-            var da=new SqlDataAdapter(query, conn);
-            var ds=new DataSet();
-            da.Fill(ds);
-            checkedListBox1.DataSource = ds.Tables[0];
-            checkedListBox1.DisplayMember = "SkNaziv";
-            checkedListBox1.ValueMember = "SkSifra";
+            var query2 = "Select SkSifra,RTrim(SkNaziv) as SkNaziv From Sklad order by SkSifra asc";
+            using (SqlConnection conn2 = new SqlConnection(connect))
+            {
+                var da2 = new SqlDataAdapter(query2, conn2);
+                var ds2 = new DataSet();
+                da2.Fill(ds2);
+
+                // If no table returned just exit
+                if (ds2 == null || ds2.Tables.Count == 0)
+                    return;
+
+                // If control not created yet, skip
+                if (checkedListBox1 == null)
+                    return;
+
+                // Ensure assignment happens on UI thread
+                if (checkedListBox1.InvokeRequired)
+                {
+                    checkedListBox1.Invoke(new Action(() =>
+                    {
+                        checkedListBox1.DataSource = ds2.Tables[0];
+                        checkedListBox1.DisplayMember = "SkNaziv";
+                        checkedListBox1.ValueMember = "SkSifra";
+                    }));
+                }
+                else
+                {
+                    checkedListBox1.DataSource = ds2.Tables[0];
+                    checkedListBox1.DisplayMember = "SkNaziv";
+                    checkedListBox1.ValueMember = "SkSifra";
+                }
+            }
         }
         private void GetChecked()
         {
@@ -126,6 +149,13 @@ namespace WindowsFormsApplication1.Barcode
 
                 MessageBox.Show("Prava dodeljena!");
             }
+        }
+
+        private void SkladistePrava_Load(object sender, EventArgs e)
+        {
+            FillChkList();
+            FillCombo();
+           
         }
     }
 }

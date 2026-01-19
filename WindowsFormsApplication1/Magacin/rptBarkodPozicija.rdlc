@@ -190,20 +190,6 @@
         <DataSourceName>Perftech_BeogradDataSet</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
-      <Fields>
-        <Field Name="Pozicija">
-          <DataField>Pozicija</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Barkod">
-          <DataField>Barkod</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="Opis">
-          <DataField>Opis</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-      </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>Perftech_BeogradDataSet</rd:DataSetName>
         <rd:SchemaPath>D:\WindowsFormsApplication1\WindowsFormsApplication1\Perftech_BeogradDataSet.xsd</rd:SchemaPath>

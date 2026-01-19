@@ -32,6 +32,9 @@ namespace WindowsFormsApplication1
         string Kor = frmLogovanje.user.ToString().TrimEnd();
 
         string MPSaRN = "";
+        int DefoultSkladisteU = 0;
+        int DefoultLokacijaU = 0;
+        string SkladistaMP = "30";
         public frmPrebacivanjeMeđPrenosaRN()
         {
             InitializeComponent();
@@ -50,7 +53,7 @@ namespace WindowsFormsApplication1
             PravoPristupa();
         }
 
-        public frmPrebacivanjeMeđPrenosaRN(int RN)
+        public frmPrebacivanjeMeđPrenosaRN(int RN,  int SkladisteU, int LokacijaU)
         {
             InitializeComponent();
             Korisnik = Kor;
@@ -59,6 +62,12 @@ namespace WindowsFormsApplication1
             IdForme();
            // PravoPristupa();
             RNPrenet = RN;
+            DefoultSkladisteU = SkladisteU;
+            DefoultLokacijaU = LokacijaU;
+            if (DefoultSkladisteU == 30)
+            {
+                SkladistaMP = "30,4,5"; //Skladista CM
+            }
         }
         public string IdGrupe()
         {
@@ -223,13 +232,14 @@ namespace WindowsFormsApplication1
 
             // MessageBox.Show("Kolicina" + yy);
 
-            var select = " select " + RNPrenet + ", KoPodSifMp, MpStaraSif as KoPodSifMp,  MpSifEnoteMere1, (sum(KoKolMateriala) * (Cast('" + yy.ToString() + "' as numeric(18,2))))   as KoKolMateriala, " +
+            var select = "";
+            select = " select " + RNPrenet + ", KoPodSifMp, MpStaraSif as KoPodSifMp,  MpSifEnoteMere1, (sum(KoKolMateriala) * (Cast('" + yy.ToString() + "' as numeric(18,2))))   as KoKolMateriala, " +
              "  MpOsnSklad, MpOsnLokacija " +
              " from kosovnica, maticnipodatki " +
              "  where KoNadSifMp =  " + MPSaRN +
              "   and KoVarianta = '*' " +
              " and KoPodSifMp = MpSifra " +
-             " and KoSifStat = 'A' " +
+             " and KoSifStat = 'A' and maticnipodatki.MpOsnSklad in ( " + SkladistaMP + " )" +
       " group by KoPodSifMP,MpStaraSif ,MpNaziv +' '+ ISNULL(MpDoNaziv,''), MPSifEnoteMere1, MpOsnSklad, MpOsnLokacija ";
             ;
 
@@ -254,15 +264,17 @@ namespace WindowsFormsApplication1
             //Panta
             foreach (DataGridViewRow row in dataGridView2.Rows)
             {
-                string RowType = row.Cells[5].Value.ToString();
+                string RowType = row.Cells[5].Value.ToString().TrimEnd();
                 if (RowType == "30")
                 {
-                    row.DefaultCellStyle.BackColor = Color.LightGray;
-                    row.DefaultCellStyle.SelectionBackColor = Color.LightGray;
+                    row.DefaultCellStyle.BackColor = System.Drawing.Color.LightGray;
+                    row.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.LightGray;
                 }
             }
 
         }
+
+        
 
 
         private void VratiStavke(int BrojRN)
@@ -414,6 +426,10 @@ namespace WindowsFormsApplication1
                 PostaviDGV1();
                 VratiVrednostRN(RNPrenet);
                 VratiStavkeRN(RNPrenet);
+               // VratiKoeficijent(RNPrenet);
+                cboSkladisteU.SelectedValue = DefoultSkladisteU;
+                NapuniLokacijuU(DefoultSkladisteU);
+                cboLokacijaU.SelectedValue = DefoultLokacijaU;
               
 
                
@@ -438,7 +454,7 @@ namespace WindowsFormsApplication1
 
                 txtKoeficijent.Value = Convert.ToDecimal(1);
                 txtKolicinaRN.Value = Convert.ToDecimal(dr["DNpKolZaIzdelavo"].ToString());
-
+                txtKoeficijent.Value = Convert.ToDecimal(dr["DNpKolZaIzdelavo"].ToString());
                 MPSaRN = dr["DnPSifMp"].ToString();
             }
 
@@ -688,11 +704,11 @@ namespace WindowsFormsApplication1
                     MessageBox.Show(p8.ToString());
                     */
                     //PANTA VRATIf10
-                    isporuka.InsertMedjuPostavRN(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToDouble(row.Cells[5].Value.ToString()), Convert.ToInt32(30), Convert.ToInt32(30), "101119", "101120", Convert.ToInt32(txtBrRn.Text), row.Cells[9].Value.ToString(), txtIzdaje.Text.Trim());
+                    //isporuka.InsertMedjuPostavRN(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToDouble(row.Cells[5].Value.ToString()), Convert.ToInt32(30), Convert.ToInt32(30), "101119", "101120", Convert.ToInt32(txtBrRn.Text), row.Cells[9].Value.ToString(), txtIzdaje.Text.Trim());
                     // isporuka.InsertMedjuPostavRN(Convert.ToInt32(row.Cells[3].Value.ToString()), Convert.ToDouble(row.Cells[2].Value.ToString()), Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()), row.Cells[10].Value.ToString(), row.Cells[8].Value.ToString(), Convert.ToInt32(txtBrRn.Text), row.Cells[9].Value.ToString());
 
 
-                    //isporuka.InsertMedjuPostavRN(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToDouble(row.Cells[5].Value.ToString()), Convert.ToInt32(row.Cells[3].Value.ToString()), Convert.ToInt32(row.Cells[7].Value.ToString()), row.Cells[4].Value.ToString(), row.Cells[8].Value.ToString(), Convert.ToInt32(txtBrRn.Text), row.Cells[9].Value.ToString(), txtIzdaje.Text.Trim());
+                   isporuka.InsertMedjuPostavRN(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToDouble(row.Cells[5].Value.ToString()), Convert.ToInt32(row.Cells[3].Value.ToString()), Convert.ToInt32(row.Cells[7].Value.ToString()), row.Cells[4].Value.ToString(), row.Cells[8].Value.ToString(), Convert.ToInt32(txtBrRn.Text), row.Cells[9].Value.ToString(), txtIzdaje.Text.Trim());
 
                 }
             }
@@ -802,8 +818,8 @@ namespace WindowsFormsApplication1
 
         private void PostaviDGV1()
         {
-            var select = "  Select DNpStZapisa, DNpSifVrDok, DNpStevilka,  DNpSifStat, DNpSifVrsteDN, " +
-                " DNpSifMp, DNpTeh,  DNpSifPlanerja, DNpKolZaIzdelavo, DNpIzdelanaKol,  " +
+            var select = "  Select DNpStZapisa as ZapisID, DNpSifVrDok, DNpStevilka,  DNpSifStat, DNpSifVrsteDN, " +
+                " DNpSifMp, DNpTeh,  DNpSifPlanerja, DNpKolZaIzdelavo , DNpIzdelanaKol,  " +
                 "  DNpIzlocenaKol, DNpPlanDatLans, DNpDejDatLans,  DNpPlanDatZac, DNpDejDatZac,  " +
                 "       DNpPlanDatZak, DNpDejDatZak, DNpOznSled, DNpSifSklad, DNpLokacija,  " +
                 "         DNpOpomba, " +
@@ -884,12 +900,14 @@ namespace WindowsFormsApplication1
 
         private void NapuniGrid5(int SifraMP)
         {
-            var select = "   select   PrSifSklad, Promet.PrLokacija, " +
+            var select = "   select   PrSifSklad, Promet.PrLokacija,  " +
               " sum(PrPrevKol - PrIzdKol) as Kolicina, " +
-              " sum(PrPrevKol - PrIzdKol) as Pocetna" +
+              " sum(PrPrevKol - PrIzdKol) as Pocetna , " +
+              " LokOpis " +
               " from Promet " +
-              " join MaticniPodatki on MPSifra = PrSifMP " +
-              " group by PrSifSklad, Promet.PrLokacija, PrSifMp  " +
+              " join MaticniPodatki on MPSifra = PrSifMP" +
+              " inner join Lokac on Lokac.LokSifra =  Promet.PrLokacija" +
+              " group by PrSifSklad, Promet.PrLokacija, PrSifMp, LokOpis  " +
               " having PrSifMp = " + SifraMP + " and sum(PrPrevKol - PrIzdKol)>0 ";
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -911,18 +929,22 @@ namespace WindowsFormsApplication1
 
             DataGridViewColumn column1 = dataGridView5.Columns[1];
             dataGridView5.Columns[1].HeaderText = "Lokac";
-            dataGridView5.Columns[1].Width = 40;
-            dataGridView5.Columns[1].ReadOnly = true;
+            dataGridView5.Columns[1].Width = 80;
+            dataGridView5.Columns[1].Visible = false;
 
 
             DataGridViewColumn column2 = dataGridView5.Columns[2];
             dataGridView5.Columns[2].HeaderText = "Kol";
-            dataGridView5.Columns[2].Width = 100;
+            dataGridView5.Columns[2].Width = 50;
 
             DataGridViewColumn column3 = dataGridView5.Columns[3];
             dataGridView5.Columns[3].HeaderText = "Poc";
             dataGridView5.Columns[3].Width = 50;
-        
+            
+            DataGridViewColumn column4 = dataGridView5.Columns[4];
+            dataGridView5.Columns[4].HeaderText = "Lokac";
+            dataGridView5.Columns[4].Width = 100;
+
         }
 
         private void dataGridView2_SelectionChanged(object sender, EventArgs e)
@@ -952,6 +974,23 @@ namespace WindowsFormsApplication1
             cboLokacijaU.DataSource = ds.Tables[0];
             cboLokacijaU.DisplayMember = "LokOpis";
             cboLokacijaU.ValueMember = "LokSifra";
+        }
+
+        private void NapuniLokacijuU(int Sklad)
+        {
+            var select = " select LokZapSt, Rtrim(LokSifra) as LokSifra, Rtrim(LokOpis) as LokOpis  from Lokac where LokSkSifra = " + Convert.ToInt32(Sklad);
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            cboLokacijaU.DataSource = ds.Tables[0];
+            cboLokacijaU.DisplayMember = "LokOpis";
+            cboLokacijaU.ValueMember = "LokSifra";
+
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
