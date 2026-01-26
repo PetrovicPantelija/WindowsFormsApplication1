@@ -37,12 +37,14 @@ namespace WindowsFormsApplication1
            // PravoPristupa();
         }
 
-        public frmPrebacivanjeMedjuskladisniPrenos(int SkladistaIz, int SkladisteU)
+        public frmPrebacivanjeMedjuskladisniPrenos(int SkladistaIz, int SkladisteU,string korisnik)
         {
             InitializeComponent();
             //  IdGrupe();
             // IdForme();
             // PravoPristupa();
+            Kor = korisnik;
+            txtIzdaje.Text = Kor;
             prenSkladiste = SkladistaIz;
             prenSkladisteU = SkladisteU;
         }

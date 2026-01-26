@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Data;
 using System.Configuration;
+using System.Linq.Expressions;
 
 namespace WindowsFormsApplication1
 {
@@ -160,7 +161,7 @@ namespace WindowsFormsApplication1
 
         }
 
-        public void InsertMedjuPostavRN(int Artikal, double Kolicina, int SkladisteIz, int SkladisteU, string LokacIz, string LokacU, int RN, string Napomena, string Korisnik)
+        public void InsertMedjuPostavRN(int PrtstDok, int Artikal, double Kolicina, int SkladisteIz, int SkladisteU, string LokacIz, string LokacU, int RN, string Napomena, string Korisnik)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -169,11 +170,18 @@ namespace WindowsFormsApplication1
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
             SqlParameter parameter = new SqlParameter();
-            parameter.ParameterName = "@Artikal";
+            parameter.ParameterName = "@PrtstDok";
             parameter.SqlDbType = SqlDbType.Int;
             parameter.Direction = ParameterDirection.Input;
-            parameter.Value = Artikal;
+            parameter.Value = PrtstDok;
             myCommand.Parameters.Add(parameter);
+
+            SqlParameter parameter1 = new SqlParameter();
+            parameter1.ParameterName = "@Artikal";
+            parameter1.SqlDbType = SqlDbType.Int;
+            parameter1.Direction = ParameterDirection.Input;
+            parameter1.Value = Artikal;
+            myCommand.Parameters.Add(parameter1);
             // PrepareCommand(myCommand);
             SqlParameter parameter2 = new SqlParameter();
             parameter2.ParameterName = "@Kolicina";
@@ -247,9 +255,9 @@ namespace WindowsFormsApplication1
                 myTransaction = myConnection.BeginTransaction();
                 myCommand.Transaction = myTransaction;
             }
-            catch (SqlException)
+            catch (Exception ex)
             {
-                throw new Exception("Neuspešan upis stavki medjuskladisnog");
+                throw new Exception("Neuspešan upis stavki medjuskladisnog"+ex.ToString());
             }
             finally
             {

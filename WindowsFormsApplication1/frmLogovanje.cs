@@ -250,7 +250,8 @@ namespace WindowsFormsApplication1
 
         private void button6_Click(object sender, EventArgs e)
         {
-            MainPakovanje frm = new MainPakovanje();
+            user = cboKorisnik.Text;
+            MainPakovanje frm = new MainPakovanje(user);
             frm.Show();
             this.WindowState = FormWindowState.Minimized;
 
@@ -258,6 +259,7 @@ namespace WindowsFormsApplication1
 
         private void button8_Click(object sender, EventArgs e)
         {
+            user= cboKorisnik.Text;
             Barcode.Pregled frm = new Barcode.Pregled();
             frm.Show();
             this.WindowState = FormWindowState.Minimized;
@@ -313,7 +315,8 @@ namespace WindowsFormsApplication1
 
         private void button10_Click_1(object sender, EventArgs e)
         {
-            PakovanjeBarkod pb = new PakovanjeBarkod();
+            user = cboKorisnik.Text;
+            PakovanjeBarkod pb = new PakovanjeBarkod(user);
             pb.Show();
         }
     }

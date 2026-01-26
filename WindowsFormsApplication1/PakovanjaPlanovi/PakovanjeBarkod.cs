@@ -21,7 +21,7 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
     public partial class PakovanjeBarkod : Form
     {
         private string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-        string Korisnik = frmLogovanje.user.ToString().TrimEnd();
+        string Korisnik;
 
         //   1 PoslatonaCM  --- PAkovanje poslalo Zahtev CM
         // 2- StigloNaCloudCM CM - postavo ma Cloud
@@ -29,9 +29,10 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
         // 3 - Potvrda da je prebaceno na StigloNaRoler1 0
         // 4 -  StigloNaRoler2 Potvrda da je Stiglo na Roler 2
 
-        public PakovanjeBarkod()
+        public PakovanjeBarkod(string korisnik)
         {
             InitializeComponent();
+            Korisnik = korisnik;
         }
 
         private bool panel1Maximized = false;
@@ -286,6 +287,49 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
                     row.DefaultCellStyle.BackColor = System.Drawing.Color.Red;
                 }
             }
+
+        }
+        private void FORMIRANMSPZACMOBLAK()
+        {
+            var query = " select Distinct PrometTransPos.BrRN , PrometTrans.PrTStDok as MSP, StigloNaCloudCM, PotvrdaPrijemCMOblak, Artikal, Kod, KolicinaZaProizvodnju " +
+                " from PrometTransPos " +
+" inner join PrometTrans on PrometTrans.PrTStDok = PrometTransPos.PrTpStDokumenta " +
+" inner join StavkePlanaPakovanja on StavkePlanaPakovanja.RNBroj = PrometTransPos.BrRN " +
+ " where PrTpSifVrDok = 'MSP' and PrometTrans.PrTStatPrTrans = 'OD' and StavkePlanaPakovanja.PoslatonaCM = 1 and StavkePlanaPakovanja.StigloNaCloudCM = 0";
+            SqlConnection conn = new SqlConnection(connect);
+            var da = new SqlDataAdapter(query, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView3.ReadOnly = false;
+            dataGridView3.DataSource = ds.Tables[0];
+
+            /*
+
+                  dataGridView2.Columns[0].ReadOnly = true;
+                  dataGridView2.Columns[1].ReadOnly = true;
+                  dataGridView2.Columns[2].ReadOnly = true;
+                  dataGridView2.Columns[3].ReadOnly = true;
+                  dataGridView2.Columns[4].ReadOnly = true;
+                  dataGridView2.Columns[5].ReadOnly = true;
+                  dataGridView2.Columns[6].ReadOnly = true;
+                  dataGridView2.Columns[7].ReadOnly = true;
+                  dataGridView2.Columns[9].ReadOnly = true;
+                  dataGridView2.Columns[10].ReadOnly = true;
+                  dataGridView2.Columns[11].ReadOnly = true;
+            */
+
+            dataGridView2.Visible = false;
+            dataGridView3.Visible = true;
+            dataGridView4.Visible = false;
+
+            int totalWidth = panel2.Width;
+            int newDistance = Math.Max(0, totalWidth - 20);
+            dataGridView3.Width = newDistance;
+
+
+            int totalHeight = panel2.Height;
+            int newHEight = Math.Max(0, totalHeight - 20);
+            dataGridView3.Height = newHEight;
 
         }
 
@@ -551,7 +595,7 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
                     }
                 }
                 //Ovde treba promeniti u Skladiste i lokacija za Cloud CM
-                frmPrebacivanjeMeđPrenosaRN pmp = new frmPrebacivanjeMeđPrenosaRN(BrojRN, 302, 110001);
+                frmPrebacivanjeMeđPrenosaRN pmp = new frmPrebacivanjeMeđPrenosaRN(BrojRN, 302, 110001,Korisnik);
                 pmp.Show();
 
             }
@@ -638,7 +682,7 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
                         BrojRN = Convert.ToInt32(row.Cells[2].Value);
                     }
                 }
-                frmPrebacivanjeMeđPrenosaRN pmp = new frmPrebacivanjeMeđPrenosaRN(BrojRN, 0, 0);
+                frmPrebacivanjeMeđPrenosaRN pmp = new frmPrebacivanjeMeđPrenosaRN(BrojRN, 0, 0,Korisnik);
                 pmp.Show();
 
             }
@@ -737,7 +781,7 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
                         BrojRN = Convert.ToInt32(row.Cells[2].Value);
                     }
                 }
-                frmPrebacivanjeMeđPrenosaRN pmp = new frmPrebacivanjeMeđPrenosaRN(BrojRN, 0, 0);
+                frmPrebacivanjeMeđPrenosaRN pmp = new frmPrebacivanjeMeđPrenosaRN(BrojRN, 0, 0,Korisnik);
                 pmp.Show();
 
             }
@@ -824,7 +868,7 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
            " MPSifEnoteMere1 as JM    from Promet   " +
            " join MaticniPodatki on MPSifra = PrSifMP " +
            " inner join Lokac on Lokac.LokSifra = PrLokacija" +
-           " Where  PrSifSklad In (301,302,303,304) and PrStZapisaVez = 0  group by PrSifSklad, PrLokacija" +
+           " Where  PrSifSklad In (301,303,304) and PrStZapisaVez = 0  group by PrSifSklad, PrLokacija" +
            "   ,PrSifMP, MpStaraSif, MpNaziv, MpDoNaziv, MPSifEnoteMere1, LokOpis having sum(PrPrevKol - PrIzdKol) <> 0 ";
 
            
@@ -867,16 +911,12 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
                         Skladiste = Convert.ToInt32(row.Cells[0].Value);
                     }
                 }
-                //Ovde treba promeniti u Skladiste i lokacija za Cloud CM
-                frmPrebacivanjeMedjuskladisniPrenos pmp = new frmPrebacivanjeMedjuskladisniPrenos(Skladiste, 305);
+                frmPrebacivanjeMedjuskladisniPrenos pmp = new frmPrebacivanjeMedjuskladisniPrenos(Skladiste, 305,Korisnik);
                 pmp.Show();
 
             }
             catch
             { }
-
-
-         
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -1178,6 +1218,11 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
         private void button23_Click(object sender, EventArgs e)
         {
             PripremaPakovanjePregledani();
+        }
+
+        private void button24_Click(object sender, EventArgs e)
+        {
+            FORMIRANMSPZACMOBLAK();
         }
     }
 }

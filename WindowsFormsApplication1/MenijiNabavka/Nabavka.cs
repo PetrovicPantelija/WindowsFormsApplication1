@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApplication1.PakovanjaPlanovi;
 
 namespace WindowsFormsApplication1.MenijiNabavka
 {
@@ -177,6 +178,12 @@ namespace WindowsFormsApplication1.MenijiNabavka
             Magacin.frmMagacinTrenutnaTrebovanje fMt = new Magacin.frmMagacinTrenutnaTrebovanje();
             PravoP = fMt.Pravo;
             if (PravoP == true) { fMt.Show(); } else { return; }
+        }
+
+        private void iconButton2_Click(object sender, EventArgs e)
+        {
+            PakovanjeBarkod pb = new PakovanjeBarkod(Kor);
+            pb.Show();
         }
     }
 }

@@ -13,9 +13,11 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
     public partial class MainPakovanje : Form
     {
         string tip;
-        public MainPakovanje()
+        string Korisnik;
+        public MainPakovanje(string korisnik)
         {
             InitializeComponent();
+            Korisnik = korisnik;
         }
         private void btnRedovno_Click(object sender, EventArgs e)
         {
@@ -44,7 +46,7 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
 
         private void iconButton1_Click(object sender, EventArgs e)
         {
-            PakovanjeBarkod pb = new PakovanjeBarkod();
+            PakovanjeBarkod pb = new PakovanjeBarkod(Korisnik);
             pb.Show();
         }
 

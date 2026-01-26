@@ -38,11 +38,16 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
         {
             using (SqlConnection conn = new SqlConnection(connect))
             {
-                var query = @"
-select distinct LargoProizvodID as ID,LargoProizvodNaziv,PomWebsUporedna.WebsGTIN as BarCode
-from PomWebsUporedna 
-inner join PomWebsExportActive on PomWebsUporedna.WebsGTIN=PomWebsExportActive.BarCode
-Where LargoProizvodID not in (Select ProizvodID From PomGotoviProizvodiNeaktivni) and PomWebsExportActive.active=1";
+                /* var query = @"
+ select distinct LargoProizvodID as ID,LargoProizvodNaziv,PomWebsUporedna.WebsGTIN as BarCode
+ from PomWebsUporedna 
+ inner join PomWebsExportActive on PomWebsUporedna.WebsGTIN=PomWebsExportActive.BarCode
+ Where LargoProizvodID not in (Select ProizvodID From PomGotoviProizvodiNeaktivni) and PomWebsExportActive.active=1";
+                Stari RADI*/
+                var query = @"select distinct LargoProizvodID as ID,LargoProizvodNaziv,RkShippingLinkWebsLargo.WebsGTIN as BarCode
+from RkShippingLinkWebsLargo 
+inner join PomWebsExportActive on RkShippingLinkWebsLargo.WebsGTIN=PomWebsExportActive.BarCode
+Where  PomWebsExportActive.active=1";
 
                 var da = new SqlDataAdapter(query, conn);
                 var ds = new DataSet();

@@ -38,9 +38,7 @@ namespace WindowsFormsApplication1
         public frmPrebacivanjeMeđPrenosaRN()
         {
             InitializeComponent();
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
+
         }
         public frmPrebacivanjeMeđPrenosaRN(string KorisnikU)
         {
@@ -48,18 +46,15 @@ namespace WindowsFormsApplication1
             Korisnik = KorisnikU;
             Korisnik = Kor;
             txtIzdaje.Text = Korisnik;
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
+
         }
 
-        public frmPrebacivanjeMeđPrenosaRN(int RN,  int SkladisteU, int LokacijaU)
+        public frmPrebacivanjeMeđPrenosaRN(int RN,  int SkladisteU, int LokacijaU,string korisnik)
         {
             InitializeComponent();
-            Korisnik = Kor;
+            Korisnik = korisnik;
             txtIzdaje.Text = Korisnik;
-            IdGrupe();
-            IdForme();
+
            // PravoPristupa();
             RNPrenet = RN;
             DefoultSkladisteU = SkladisteU;
@@ -69,7 +64,7 @@ namespace WindowsFormsApplication1
                 SkladistaMP = "30,4,5"; //Skladista CM
             }
         }
-        public string IdGrupe()
+        /*public string IdGrupe()
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
@@ -151,7 +146,7 @@ namespace WindowsFormsApplication1
             }
 
             conn.Close();
-        }
+        }*/
         private void btnOsvezi_Click(object sender, EventArgs e)
         {
             /*
@@ -236,10 +231,7 @@ namespace WindowsFormsApplication1
             select = " select " + RNPrenet + ", KoPodSifMp, MpStaraSif as KoPodSifMp,  MpSifEnoteMere1, (sum(KoKolMateriala) * (Cast('" + yy.ToString() + "' as numeric(18,2))))   as KoKolMateriala, " +
              "  MpOsnSklad, MpOsnLokacija " +
              " from kosovnica, maticnipodatki " +
-             "  where KoNadSifMp =  " + MPSaRN +
-             "   and KoVarianta = '*' " +
-             " and KoPodSifMp = MpSifra " +
-             " and KoSifStat = 'A' and maticnipodatki.MpOsnSklad in ( " + SkladistaMP + " )" +
+             "  where KoNadSifMp =  " + MPSaRN +" and KoVarianta = '*' " +" and KoPodSifMp = MpSifra"+" and KoSifStat = 'A' and maticnipodatki.MpOsnSklad in ( " + SkladistaMP + " )" +
       " group by KoPodSifMP,MpStaraSif ,MpNaziv +' '+ ISNULL(MpDoNaziv,''), MPSifEnoteMere1, MpOsnSklad, MpOsnLokacija ";
             ;
 
@@ -661,12 +653,21 @@ namespace WindowsFormsApplication1
             
             }
         }
-
+        int PrtstDok;
         private void button3_Click(object sender, EventArgs e)
         {
             InsertMedjuskladisni isporuka = new InsertMedjuskladisni();
             isporuka.InsertMedju(txtNapomena.Text, txtIzdaje.Text);
-       
+            var connectionString = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection conn = new SqlConnection(connectionString);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("Select MAx(PrTStDok)  from PrometTrans", conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                PrtstDok = Convert.ToInt32(dr[0].ToString());
+            }
+            conn.Close();
             foreach (DataGridViewRow row in dataGridView3.Rows)
             {
                 if (row != null && row.Cells[0].Value != null)
@@ -708,7 +709,7 @@ namespace WindowsFormsApplication1
                     // isporuka.InsertMedjuPostavRN(Convert.ToInt32(row.Cells[3].Value.ToString()), Convert.ToDouble(row.Cells[2].Value.ToString()), Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()), row.Cells[10].Value.ToString(), row.Cells[8].Value.ToString(), Convert.ToInt32(txtBrRn.Text), row.Cells[9].Value.ToString());
 
 
-                   isporuka.InsertMedjuPostavRN(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToDouble(row.Cells[5].Value.ToString()), Convert.ToInt32(row.Cells[3].Value.ToString()), Convert.ToInt32(row.Cells[7].Value.ToString()), row.Cells[4].Value.ToString(), row.Cells[8].Value.ToString(), Convert.ToInt32(txtBrRn.Text), row.Cells[9].Value.ToString(), txtIzdaje.Text.Trim());
+                   isporuka.InsertMedjuPostavRN(PrtstDok,Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToDouble(row.Cells[5].Value.ToString()), Convert.ToInt32(row.Cells[3].Value.ToString()), Convert.ToInt32(row.Cells[7].Value.ToString()), row.Cells[4].Value.ToString(), row.Cells[8].Value.ToString(), Convert.ToInt32(txtBrRn.Text), row.Cells[9].Value.ToString(), txtIzdaje.Text.Trim());
 
                 }
             }
