@@ -58,7 +58,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             InsertPlanovi ins = new InsertPlanovi();
             try
             {
-                foreach(DataGridViewRow row in dataGridView2.Rows)
+                foreach (DataGridViewRow row in dataGridView2.Rows)
                 {
                     if (row.Selected)
                     {
@@ -72,7 +72,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
         string Naziv = "";
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-            foreach(DataGridViewRow row in dataGridView1.Rows)
+            foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 if (row.Selected)
                 {
@@ -111,7 +111,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             };
             SqlConnection conn = new SqlConnection(connect);
             conn.Open();
-            var query = "Select '' as a,'' as b,'' as c,PlanArhivStavke.MpSifra,RTrim(MaticniPodatki.MpStaraSif) as MpStaraSif,'','',UsvojenaOdluka from PlanArhivStavke Inner join MaticniPodatki on PlanArhivStavke.MpSifra=MaticniPodatki.MpSifra Where IDPlana="+Convert.ToInt32(textBox1.Text)+" order by PlanArhivStavke.ID";
+            var query = "Select '' as a,'' as b,'' as c,PlanArhivStavke.MpSifra,RTrim(MaticniPodatki.MpStaraSif) as MpStaraSif,'','',UsvojenaOdluka from PlanArhivStavke Inner join MaticniPodatki on PlanArhivStavke.MpSifra=MaticniPodatki.MpSifra Where IDPlana=" + Convert.ToInt32(textBox1.Text) + " order by PlanArhivStavke.ID";
             SqlCommand cmd = new SqlCommand(query, conn);
             string file = folder + Naziv + ".csv";
             try
@@ -135,6 +135,56 @@ namespace WindowsFormsApplication1.Planovi_Excel
                         }
                     }
                 }
+                MessageBox.Show("Kreiran dokument", "CSV");
+            }
+            catch (Exception ex) { MessageBox.Show(ex.ToString(), "CSV"); }
+            conn.Close();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            string[] path = { Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Plan-RN-" };
+            string folder = Path.Combine(path);
+
+            var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+            {
+                ShouldQuote = (field) => false,
+                Delimiter = ";"
+            };
+            SqlConnection conn = new SqlConnection(connect);
+            conn.Open();
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                MessageBox.Show("Nije odabran plan", "CSV");
+                return;
+            }
+            var query = "Select '' as a,'' as b,'' as c,PlanArhivStavke.MpSifra,RTrim(MaticniPodatki.MpStaraSif) as MpStaraSif,'','',UsvojenaOdluka from PlanArhivStavke Inner join MaticniPodatki on PlanArhivStavke.MpSifra=MaticniPodatki.MpSifra Where IDPlana=" + Convert.ToInt32(textBox1.Text) + " order by PlanArhivStavke.ID";
+            SqlCommand cmd = new SqlCommand(query, conn);
+            string file = folder + Naziv + ".csv";
+            try
+            {
+                using (var textWriter = File.CreateText(file))
+                {
+                    using (CsvWriter csv = new CsvWriter(textWriter, config))
+                    {
+                        DataTable dt = new DataTable();
+                        dt.Load(cmd.ExecuteReader());
+                        int count = Convert.ToInt32(textBox1.Text);
+
+                        foreach (DataRow row in dt.Rows)
+                        {
+
+                            csv.WriteField(count);
+                            for (var i = 0; i < dt.Columns.Count; i++)
+                            {
+                                csv.WriteField(row[i]);
+                            }
+                            csv.NextRecord();
+                        }
+                    }
+
+                }
+
                 MessageBox.Show("Kreiran dokument", "CSV");
             }
             catch (Exception ex) { MessageBox.Show(ex.ToString(), "CSV"); }
