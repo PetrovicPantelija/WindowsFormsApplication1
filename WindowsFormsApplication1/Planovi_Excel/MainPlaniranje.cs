@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using WindowsFormsApplication1.Neto_potrebe;
 
 namespace WindowsFormsApplication1.Planovi_Excel
 {
@@ -83,6 +84,12 @@ namespace WindowsFormsApplication1.Planovi_Excel
         {
             Planovi_Excel.PlanVeza pv = new PlanVeza();
             pv.Show();
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+            Neto_potrebe.NetoPotrebe pa = new Neto_potrebe.NetoPotrebe();
+            pa.Show();
         }
     }
 }
