@@ -15,7 +15,7 @@ namespace WindowsFormsApplication1.Neto_potrebe
     public partial class MpMDF : Form
     {
         private string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-
+        //komentar1
         public MpMDF()
         {
             InitializeComponent();
