@@ -216,5 +216,23 @@ where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + 
                 FillGV();
            
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            InsertVeza MspNal = new InsertVeza();
+          
+            //Skupiti sve parametre
+
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Selected == true)
+                { 
+                 MspNal.PromeniKolicinu(Convert.ToInt32(row.Cells[0].Value.ToString()),
+                    Convert.ToDouble(txtNovaKolicina.Text));
+                }    
+               
+            }
+           // FillGV();
+        }
     }
 }
