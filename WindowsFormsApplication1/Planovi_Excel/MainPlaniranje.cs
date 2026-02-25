@@ -91,5 +91,42 @@ namespace WindowsFormsApplication1.Planovi_Excel
             Neto_potrebe.NetoPotrebe pa = new Neto_potrebe.NetoPotrebe();
             pa.Show();
         }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+            Neto_potrebe.MdfGrupe pa = new Neto_potrebe.MdfGrupe();
+            pa.Show();
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+            Neto_potrebe.MdfPodgrupe pa = new Neto_potrebe.MdfPodgrupe();
+            pa.Show();
+        }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+            Neto_potrebe.MpMDF pa = new Neto_potrebe.MpMDF();
+            pa.Show();
+        }
+
+        private void label20_Click(object sender, EventArgs e)
+        {
+            Neto_potrebe.NetoPotrebe pa = new Neto_potrebe.NetoPotrebe();
+            pa.Show();
+        }
+
+        private void label19_Click(object sender, EventArgs e)
+        {
+            PoveziRN2 frm = new PoveziRN2();
+            frm.Show();
+        }
+
+        private void label18_Click(object sender, EventArgs e)
+        {
+            Magacin.frmPozicije poz = new Magacin.frmPozicije();
+            PravoP = poz.Pravo;
+            if (PravoP == true) { poz.Show(); } else { return; }
+        }
     }
 }

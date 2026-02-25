@@ -319,5 +319,10 @@ namespace WindowsFormsApplication1
             PakovanjeBarkod pb = new PakovanjeBarkod(user);
             pb.Show();
         }
+
+        private void button10_Click_2(object sender, EventArgs e)
+        {
+
+        }
     }
 }

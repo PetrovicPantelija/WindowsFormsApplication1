@@ -190,5 +190,22 @@ namespace WindowsFormsApplication1.Planovi_Excel
             catch (Exception ex) { MessageBox.Show(ex.ToString(), "CSV"); }
             conn.Close();
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            InsertPlanovi ins = new InsertPlanovi();
+           
+            ins.InsertNetoPotrebeIgor(Convert.ToInt32(textBox1.Text));
+
+            MessageBox.Show("Završene Neto potrebe");
+               
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Neto_potrebe.NetoPotrebe np = new Neto_potrebe.NetoPotrebe();
+            np.Show();
+        }
     }
-}
+    }
+

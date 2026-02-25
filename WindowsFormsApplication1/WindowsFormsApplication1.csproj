@@ -1105,6 +1105,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NedraDataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Neto potrebe\InsertVeza.cs" />
     <Compile Include="Neto potrebe\MdfGrupe.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1418,6 +1419,12 @@
     </Compile>
     <Compile Include="Planovi_Excel\PoveziRN.Designer.cs">
       <DependentUpon>PoveziRN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Planovi_Excel\PoveziRN2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Planovi_Excel\PoveziRN2.Designer.cs">
+      <DependentUpon>PoveziRN2.cs</DependentUpon>
     </Compile>
     <Compile Include="Planovi_Excel\PripadnostKP.cs">
       <SubType>Form</SubType>
@@ -2220,12 +2227,16 @@
     <EmbeddedResource Include="Planovi_Excel\PoveziRN.resx">
       <DependentUpon>PoveziRN.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Planovi_Excel\PoveziRN2.resx">
+      <DependentUpon>PoveziRN2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Planovi_Excel\PripadnostKP.resx">
       <DependentUpon>PripadnostKP.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Planovi_Excel\RNPlanIzvestaj.resx">
       <DependentUpon>RNPlanIzvestaj.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Planovi_Excel\rptLogisticar.rdlc" />
     <EmbeddedResource Include="Planovi_Excel\rptNeisporuceni.rdlc" />
     <EmbeddedResource Include="ProizvodnjaUKadrovskoj\frmEvidencijaRada.resx">
       <DependentUpon>frmEvidencijaRada.cs</DependentUpon>
