@@ -34,6 +34,12 @@
             this.cboGrupa = new System.Windows.Forms.ComboBox();
             this.cboPodgrupa = new System.Windows.Forms.ComboBox();
             this.btnDodeli = new System.Windows.Forms.Button();
+            this.chkGrupa = new System.Windows.Forms.CheckBox();
+            this.textBoxSearch = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBoxSearch2 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,9 +68,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(338, 12);
+            this.dataGridView1.Location = new System.Drawing.Point(324, 61);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(757, 546);
+            this.dataGridView1.Size = new System.Drawing.Size(771, 497);
             this.dataGridView1.TabIndex = 1;
             // 
             // cboGrupa
@@ -87,18 +93,81 @@
             // 
             // btnDodeli
             // 
-            this.btnDodeli.Location = new System.Drawing.Point(12, 163);
+            this.btnDodeli.Location = new System.Drawing.Point(15, 155);
             this.btnDodeli.Name = "btnDodeli";
-            this.btnDodeli.Size = new System.Drawing.Size(98, 39);
+            this.btnDodeli.Size = new System.Drawing.Size(148, 39);
             this.btnDodeli.TabIndex = 3;
             this.btnDodeli.Text = "Dodeli";
             this.btnDodeli.UseVisualStyleBackColor = true;
+            this.btnDodeli.Click += new System.EventHandler(this.btnDodeli_Click);
+            // 
+            // chkGrupa
+            // 
+            this.chkGrupa.AutoSize = true;
+            this.chkGrupa.Location = new System.Drawing.Point(872, 19);
+            this.chkGrupa.Name = "chkGrupa";
+            this.chkGrupa.Size = new System.Drawing.Size(73, 17);
+            this.chkGrupa.TabIndex = 4;
+            this.chkGrupa.Text = "Ima grupu";
+            this.chkGrupa.UseVisualStyleBackColor = true;
+            // 
+            // textBoxSearch
+            // 
+            this.textBoxSearch.Location = new System.Drawing.Point(404, 17);
+            this.textBoxSearch.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxSearch.Name = "textBoxSearch";
+            this.textBoxSearch.Size = new System.Drawing.Size(173, 20);
+            this.textBoxSearch.TabIndex = 77;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(335, 22);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(45, 13);
+            this.label3.TabIndex = 78;
+            this.label3.Text = "Kod like";
+            // 
+            // textBoxSearch2
+            // 
+            this.textBoxSearch2.Location = new System.Drawing.Point(590, 17);
+            this.textBoxSearch2.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxSearch2.Name = "textBoxSearch2";
+            this.textBoxSearch2.Size = new System.Drawing.Size(172, 20);
+            this.textBoxSearch2.TabIndex = 79;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(775, 14);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 24);
+            this.button1.TabIndex = 80;
+            this.button1.Text = "Search";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(15, 215);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(148, 39);
+            this.button2.TabIndex = 81;
+            this.button2.Text = "Refresh";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // MpMDF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1107, 570);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.textBoxSearch2);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.textBoxSearch);
+            this.Controls.Add(this.chkGrupa);
             this.Controls.Add(this.btnDodeli);
             this.Controls.Add(this.cboPodgrupa);
             this.Controls.Add(this.cboGrupa);
@@ -122,5 +191,11 @@
         private System.Windows.Forms.ComboBox cboGrupa;
         private System.Windows.Forms.ComboBox cboPodgrupa;
         private System.Windows.Forms.Button btnDodeli;
+        private System.Windows.Forms.CheckBox chkGrupa;
+        private System.Windows.Forms.TextBox textBoxSearch;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBoxSearch2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

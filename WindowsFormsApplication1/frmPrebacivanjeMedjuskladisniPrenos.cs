@@ -404,5 +404,10 @@ namespace WindowsFormsApplication1
             reportViewer1.LocalReport.DataSources.Add(rds);
             reportViewer1.RefreshReport();
         }
+
+        private void button7_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

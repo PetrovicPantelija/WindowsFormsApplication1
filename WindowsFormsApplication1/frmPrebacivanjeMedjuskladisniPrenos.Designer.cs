@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrebacivanjeMedjuskladisniPrenos));
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource3 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.cboSkladisteIzbor = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -58,17 +58,17 @@
             this.label6 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtIzdaje = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.dataGridView4 = new System.Windows.Forms.DataGridView();
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.txtBN = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.dataGridView4 = new System.Windows.Forms.DataGridView();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.txtIzdaje = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -400,6 +400,26 @@
             this.tabPage1.Text = "Formiranje";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.Black;
+            this.label7.Location = new System.Drawing.Point(1234, 12);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(57, 17);
+            this.label7.TabIndex = 294;
+            this.label7.Text = "Korisnik:";
+            // 
+            // txtIzdaje
+            // 
+            this.txtIzdaje.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.txtIzdaje.Location = new System.Drawing.Point(1237, 32);
+            this.txtIzdaje.Name = "txtIzdaje";
+            this.txtIzdaje.Size = new System.Drawing.Size(106, 22);
+            this.txtIzdaje.TabIndex = 293;
+            this.txtIzdaje.Text = " ";
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.reportViewer1);
@@ -418,6 +438,33 @@
             this.tabPage2.Text = "Štampanje";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // reportViewer1
+            // 
+            this.reportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            reportDataSource1.Name = "DataSetReklamacija";
+            reportDataSource1.Value = null;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "WindowsFormsApplication1.rptReklNal.rdlc";
+            this.reportViewer1.Location = new System.Drawing.Point(9, 288);
+            this.reportViewer1.Name = "reportViewer1";
+            this.reportViewer1.ServerReport.BearerToken = null;
+            this.reportViewer1.Size = new System.Drawing.Size(1327, 394);
+            this.reportViewer1.TabIndex = 268;
+            // 
+            // dataGridView4
+            // 
+            this.dataGridView4.AllowUserToAddRows = false;
+            this.dataGridView4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.dataGridView4.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView4.Location = new System.Drawing.Point(9, 59);
+            this.dataGridView4.Name = "dataGridView4";
+            this.dataGridView4.Size = new System.Drawing.Size(1327, 239);
+            this.dataGridView4.TabIndex = 267;
+            // 
             // button7
             // 
             this.button7.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button7.BackgroundImage")));
@@ -430,6 +477,7 @@
             this.button7.TabIndex = 266;
             this.button7.Text = "Napravi nalepnice RN";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click_1);
             // 
             // button6
             // 
@@ -491,53 +539,6 @@
             this.button2.Text = "Napravi nalepnice ARTIKAL";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // dataGridView4
-            // 
-            this.dataGridView4.AllowUserToAddRows = false;
-            this.dataGridView4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.dataGridView4.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Location = new System.Drawing.Point(9, 59);
-            this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.Size = new System.Drawing.Size(1327, 239);
-            this.dataGridView4.TabIndex = 267;
-            // 
-            // reportViewer1
-            // 
-            this.reportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            reportDataSource3.Name = "DataSetReklamacija";
-            reportDataSource3.Value = null;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource3);
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "WindowsFormsApplication1.rptReklNal.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(9, 288);
-            this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(1327, 394);
-            this.reportViewer1.TabIndex = 268;
-            // 
-            // txtIzdaje
-            // 
-            this.txtIzdaje.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtIzdaje.Location = new System.Drawing.Point(1237, 32);
-            this.txtIzdaje.Name = "txtIzdaje";
-            this.txtIzdaje.Size = new System.Drawing.Size(106, 22);
-            this.txtIzdaje.TabIndex = 293;
-            this.txtIzdaje.Text = " ";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(1234, 12);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(57, 17);
-            this.label7.TabIndex = 294;
-            this.label7.Text = "Korisnik:";
             // 
             // frmPrebacivanjeMedjuskladisniPrenos
             // 

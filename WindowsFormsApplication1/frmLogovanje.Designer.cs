@@ -274,7 +274,7 @@
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(295, 41);
             this.button7.TabIndex = 150;
-            this.button7.Text = "Planiranje";
+            this.button7.Text = "Planiranje i proizvodnja";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
