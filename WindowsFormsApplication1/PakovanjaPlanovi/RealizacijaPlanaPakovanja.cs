@@ -209,13 +209,12 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
         }
         private void Stavke()
         {
-
             var query = "Select ID,IdStavkePlanaPakovanja,RN,StatusStavke,ArtikalPaket,MaticniPodatki.MpStaraSif,KolicinaZaProizvodnju,ArtikalIzPrvogNivoaSastavnice,m1.MpStaraSif,PotrebnaKolicina," +
                    "ISNull(TrenutnaKolicinaNaZalihama,0),RezervisanaKolicinaPoPlanu,UkucatiKolicinuZaRezervaciju,(PotrebnaKolicina-RezervisanaKolicinaPoPlanu- ISNull(TrenutnaKolicinaNaZalihama,0)) as Nedostaje " +
                    "from PregledStavkiPlanaPakovanja " +
                    "inner join MaticniPodatki on PregledStavkiPlanaPakovanja.ArtikalPaket=MaticniPodatki.MpSifra " +
                    "inner join MaticniPodatki as m1 on PregledStavkiPlanaPakovanja.ArtikalIzPrvogNivoaSastavnice=m1.MpSifra " +
-                   "WHERE IDStavkePlanaPakovanja=" + IDStavke + " and IdPlana=42";
+                   "WHERE IDStavkePlanaPakovanja=" + IDStavke + " and IdPlana="+planPakovanja;
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();
