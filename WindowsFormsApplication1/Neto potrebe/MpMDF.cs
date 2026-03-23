@@ -49,7 +49,7 @@ namespace WindowsFormsApplication1.Neto_potrebe
 
 
             var query = " Select  MpSifra as Sifra, MpStaraSif as Kod, MpNaziv as NAziv, MpSifEnoteMere1 as JM, MpOsnSklad, MpOsnLokacija, MpStatus,  " +
-                " MdfGrupe.Naziv as MDFGrupa,  MDFPodgrupe.Naziv as Podgrupa  from MaticniPodatki  Left join MDFGrupe on MdfGrupe.ID = MaticniPodatki.MDFGrupa " +
+                " MdfGrupe.Naziv as MDFGrupa,  MDFPodgrupe.Naziv as Podgrupa, MAticniPodatki.Materijal1, MaticniPodatki.Materijal2, MaticniPodatki.Debljina, MaticniPodatki.Tehnologija1, MaticniPodatki.Tehnologija2  from MaticniPodatki  Left join MDFGrupe on MdfGrupe.ID = MaticniPodatki.MDFGrupa " +
                 " Left join MdfPodgrupe on MAticniPodatki.MDFPodgrupa = MDFPodgrupe.ID where MpStatus = 0 ";
             query = query + PrviAnd + DrugiAnd + TreciEnd;
             SqlConnection conn = new SqlConnection(connect);
@@ -134,7 +134,7 @@ namespace WindowsFormsApplication1.Neto_potrebe
 
                     SifraMp = row.Cells[0].Value.ToString();
                     InsertVeza program = new InsertVeza();
-                    program.InsProgram(SifraMp, Convert.ToInt32(cboGrupa.SelectedValue), Convert.ToInt32(cboPodgrupa.SelectedValue));
+                    program.InsProgram(SifraMp, Convert.ToInt32(cboGrupa.SelectedValue), Convert.ToInt32(cboPodgrupa.SelectedValue), txtMaterijal1.Text, txtMaterijal2.Text, txtDebljina.Text, txtTehnologija1.Text, txtTehnologija2.Text);
 
                 }
             }

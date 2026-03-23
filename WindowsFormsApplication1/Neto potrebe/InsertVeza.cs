@@ -14,7 +14,7 @@ namespace WindowsFormsApplication1.Neto_potrebe
     internal class InsertVeza
     {
         string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-        public void InsProgram(string MpSifra, int Grupa, int Podgrupa)
+        public void InsProgram(string MpSifra, int Grupa, int Podgrupa, string Materijal1, string Materijal2, string Debljina, string Tehnologija1, String Tehnologija2)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -44,6 +44,50 @@ namespace WindowsFormsApplication1.Neto_potrebe
             podgrupa.Direction = ParameterDirection.Input;
             podgrupa.Value = Podgrupa;
             cmd.Parameters.Add(podgrupa);
+
+
+            SqlParameter materijal1 = new SqlParameter();
+            materijal1.ParameterName = "@Materijal1";
+            materijal1.SqlDbType = SqlDbType.NVarChar;
+            materijal1.Size = 30;
+            materijal1.Direction = ParameterDirection.Input;
+            materijal1.Value = Materijal1;
+            cmd.Parameters.Add(materijal1);
+
+            SqlParameter materijal2 = new SqlParameter();
+            materijal2.ParameterName = "@Materijal2";
+            materijal2.SqlDbType = SqlDbType.NVarChar;
+            materijal2.Size = 30;
+            materijal2.Direction = ParameterDirection.Input;
+            materijal2.Value = Materijal2;
+            cmd.Parameters.Add(materijal2);
+
+
+            SqlParameter debljina = new SqlParameter();
+            debljina.ParameterName = "@Debljina";
+            debljina.SqlDbType = SqlDbType.NVarChar;
+            debljina.Size = 30;
+            debljina.Direction = ParameterDirection.Input;
+            debljina.Value = Debljina;
+            cmd.Parameters.Add(debljina);
+
+            SqlParameter tehnologija1 = new SqlParameter();
+            tehnologija1.ParameterName = "@Tehnologija1";
+            tehnologija1.SqlDbType = SqlDbType.NVarChar;
+            tehnologija1.Size = 30;
+            tehnologija1.Direction = ParameterDirection.Input;
+            tehnologija1.Value = Tehnologija1;
+            cmd.Parameters.Add(tehnologija1);
+
+            SqlParameter tehnologija2 = new SqlParameter();
+            tehnologija2.ParameterName = "@Tehnologija2";
+            tehnologija2.SqlDbType = SqlDbType.NVarChar;
+            tehnologija2.Size = 30;
+            tehnologija2.Direction = ParameterDirection.Input;
+            tehnologija2.Value = Tehnologija2;
+            cmd.Parameters.Add(tehnologija2);
+
+
 
             conn.Open();
             SqlTransaction tran = conn.BeginTransaction();

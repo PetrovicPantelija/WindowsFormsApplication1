@@ -1714,6 +1714,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "CursorNetoP";
             cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandTimeout = 2000;
 
             SqlParameter rn = new SqlParameter();
             rn.ParameterName = "@IDPlana";
@@ -1735,7 +1736,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.ToString());
-                throw new Exception("Neuspešan upis NHM brojeva");
+                throw new Exception("Connection timeout");
             }
             finally
             {
