@@ -35,15 +35,23 @@ namespace WindowsFormsApplication1.Neto_potrebe
         }
         private void FillGV()
         {
+
+            string wheredodatak = "";
+
+            if (chkRazvrstani.Checked == true)
+            {
+                wheredodatak += " and NetoPotrebeIgor.PodPlan <> '" + "" + "'";
+            }
+
             var query = @"select NetoPotrebeIgor.ID,NetoPotrebeIgor.Datum as Datum,NetoPotrebeIgor.IDNadredjena,NetoPotrebeIgor.IDZapisa,Mp,MpStaraSif,Sklad,skNaziv as Skladiste,Lokac,LokOpis,Kolicina,
-MdfGrupe.Naziv as MDFGrupa,  MDFPodgrupe.Naziv as Podgrupa, MaticniPodatki.Materijal1,MaticniPodatki.Materijal2,MaticniPodatki.Debljina,MaticniPodatki.Tehnologija1,MaticniPodatki.Tehnologija2 
+MdfGrupe.Naziv as MDFGrupa,  MDFPodgrupe.Naziv as Podgrupa, MaticniPodatki.Materijal1,MaticniPodatki.Materijal2,MaticniPodatki.Debljina,MaticniPodatki.Tehnologija1,MaticniPodatki.Tehnologija2, Podplan 
 From NetoPotrebeIgor
 inner join MaticniPodatki on NetoPotrebeIgor.MP=MaticniPodatki.MpSifra
 inner join sklad on NetoPotrebeIGor.Sklad=sklad.SkSifra
 inner join Lokac on NetoPotrebeIgor.Lokac=Lokac.LokSifra 
 left join MDFGrupe on MdfGrupe.ID = MaticniPodatki.MDFGrupa 
 left join MdfPodgrupe on MAticniPodatki.MDFPodgrupa = MDFPodgrupe.ID
-where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue)+ " order by NetoPotrebeIgor.id asc";
+where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + wheredodatak +  " order by NetoPotrebeIgor.id asc";
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();
@@ -79,7 +87,7 @@ where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue)+ "
 
         private void FillGVGrupa()
         {
-            var query = @"select NetoPotrebeIgor.ID,NetoPotrebeIgor.Datum as Datum,NetoPotrebeIgor.IDNadredjena,IDZapisa,Mp,MpStaraSif,Sklad,skNaziv,Lokac,LokOpis,Kolicina, MdfGrupe.Naziv as MDFGrupa,  MDFPodgrupe.Naziv as Podgrupa, MaticniPodatki.Materijal1,MaticniPodatki.Materijal2,MaticniPodatki.Debljina,MaticniPodatki.Tehnologija1,MaticniPodatki.Tehnologija2
+            var query = @"select NetoPotrebeIgor.ID,NetoPotrebeIgor.Datum as Datum,NetoPotrebeIgor.IDNadredjena,IDZapisa,Mp,MpStaraSif,Sklad,skNaziv,Lokac,LokOpis,Kolicina, MdfGrupe.Naziv as MDFGrupa,  MDFPodgrupe.Naziv as Podgrupa, MaticniPodatki.Materijal1,MaticniPodatki.Materijal2,MaticniPodatki.Debljina,MaticniPodatki.Tehnologija1,MaticniPodatki.Tehnologija2, Podplan
 From NetoPotrebeIgor
 inner join MaticniPodatki on NetoPotrebeIgor.MP=MaticniPodatki.MpSifra
 inner join sklad on NetoPotrebeIGor.Sklad=sklad.SkSifra
@@ -150,7 +158,7 @@ where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + 
 
             var query = "select NetoPotrebeIgor.ID,NetoPotrebeIgor.Datum as Datum,NetoPotrebeIgor.IDNadredjena,IDZapisa,Mp,MpStaraSif,Sklad,skNaziv,Lokac,LokOpis,Kolicina, " +
 " MdfGrupe.Naziv as MDFGrupa,  MDFPodgrupe.Naziv as Podgrupa, MaticniPodatki.Materijal1, " +
-" MaticniPodatki.Materijal2,MaticniPodatki.Debljina,MaticniPodatki.Tehnologija1,MaticniPodatki.Tehnologija2 " +
+" MaticniPodatki.Materijal2,MaticniPodatki.Debljina,MaticniPodatki.Tehnologija1,MaticniPodatki.Tehnologija2, PodPlan " +
 " From NetoPotrebeIgor " +
 " inner join MaticniPodatki on NetoPotrebeIgor.MP=MaticniPodatki.MpSifra " +
 " inner join sklad on NetoPotrebeIGor.Sklad=sklad.SkSifra " +
@@ -195,7 +203,7 @@ where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + 
         {
             var query = @"select ID,NetoPotrebeIgor.Datum as Datum,IDNadredjena,IDZapisa,Mp,MpStaraSif,Sklad,skNaziv,Lokac,LokOpis,Kolicina,
  MdfGrupe.Naziv as MDFGrupa,  MDFPodgrupe.Naziv as Podgrupa, MaticniPodatki.Materijal1, 
-MaticniPodatki.Materijal2,MaticniPodatki.Debljina,MaticniPodatki.Tehnologija1,MaticniPodatki.Tehnologija2 
+MaticniPodatki.Materijal2,MaticniPodatki.Debljina,MaticniPodatki.Tehnologija1,MaticniPodatki.Tehnologija2, podplan 
 From NetoPotrebeIgor
 inner join MaticniPodatki on NetoPotrebeIgor.MP=MaticniPodatki.MpSifra
 inner join sklad on NetoPotrebeIGor.Sklad=sklad.SkSifra
@@ -381,6 +389,32 @@ where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + 
         private void button6_Click(object sender, EventArgs e)
         {
             FillGVOsobina();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            InsertVeza MspNal = new InsertVeza();
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Selected == true)
+                {
+                    MspNal.DefinisiPodplan(Convert.ToInt32(row.Cells[0].Value.ToString()),txtPodPlan.Text);
+                      // Convert.ToDouble(txtNovaKolicina.Text));
+                }
+
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            KrojnaLista kl = new KrojnaLista(Convert.ToInt32(cboPlan.SelectedValue), txtPodPlan.Text);
+            kl.Show();
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            PregledPodPlan pp = new PregledPodPlan(Convert.ToInt32(cboPlan.SelectedValue), txtPodPlan.Text);
+            pp.Show();
         }
     }
 }

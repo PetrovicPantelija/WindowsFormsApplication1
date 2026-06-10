@@ -1105,7 +1105,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NedraDataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Neto potrebe\InsertKrojnaLista.cs" />
     <Compile Include="Neto potrebe\InsertVeza.cs" />
+    <Compile Include="Neto potrebe\KrojnaLista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Neto potrebe\KrojnaLista.Designer.cs">
+      <DependentUpon>KrojnaLista.cs</DependentUpon>
+    </Compile>
     <Compile Include="Neto potrebe\MdfGrupe.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1129,6 +1136,12 @@
     </Compile>
     <Compile Include="Neto potrebe\NetoPotrebe.Designer.cs">
       <DependentUpon>NetoPotrebe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Neto potrebe\PregledPodPlan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Neto potrebe\PregledPodPlan.Designer.cs">
+      <DependentUpon>PregledPodPlan.cs</DependentUpon>
     </Compile>
     <Compile Include="ObradaIsporuke.cs">
       <SubType>Form</SubType>
@@ -2089,6 +2102,9 @@
     <EmbeddedResource Include="Meniji\frmWEBSPodaci.resx">
       <DependentUpon>frmWEBSPodaci.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Neto potrebe\KrojnaLista.resx">
+      <DependentUpon>KrojnaLista.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Neto potrebe\MdfGrupe.resx">
       <DependentUpon>MdfGrupe.cs</DependentUpon>
     </EmbeddedResource>
@@ -2100,6 +2116,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Neto potrebe\NetoPotrebe.resx">
       <DependentUpon>NetoPotrebe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Neto potrebe\PregledPodPlan.resx">
+      <DependentUpon>PregledPodPlan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ObradaIsporuke.resx">
       <DependentUpon>ObradaIsporuke.cs</DependentUpon>

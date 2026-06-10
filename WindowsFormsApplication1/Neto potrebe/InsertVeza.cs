@@ -217,6 +217,62 @@ namespace WindowsFormsApplication1.Neto_potrebe
                 }
             }
         }
-    
+
+
+        public void DefinisiPodplan(int ZapisID, string Podplan)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "NetoPotrebeIgorDefinisiPodplan";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+
+            SqlParameter grupa = new SqlParameter();
+            grupa.ParameterName = "@ZapisID";
+            grupa.SqlDbType = SqlDbType.Int;
+            grupa.Direction = ParameterDirection.Input;
+            grupa.Value = ZapisID;
+            cmd.Parameters.Add(grupa);
+
+
+            SqlParameter grupa2 = new SqlParameter();
+            grupa2.ParameterName = "@Podplan";
+            grupa2.SqlDbType = SqlDbType.NVarChar;
+            grupa2.Size = 100;
+            grupa2.Direction = ParameterDirection.Input;
+            grupa2.Value = Podplan;
+            cmd.Parameters.Add(grupa2);
+
+
+            conn.Open();
+            SqlTransaction tran = conn.BeginTransaction();
+            cmd.Transaction = tran;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                tran.Commit();
+                tran = conn.BeginTransaction();
+                cmd.Transaction = tran;
+            }
+            catch (SqlException)
+            {
+                throw new Exception("Neuspesano brisanje");
+            }
+            finally
+            {
+                if (!error)
+                {
+                    tran.Commit();
+                    MessageBox.Show(" Brisanje nije uspelo ", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                conn.Close();
+                if (error)
+                {
+
+                }
+            }
+        }
+
     }
 }
