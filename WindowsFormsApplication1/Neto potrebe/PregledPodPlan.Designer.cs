@@ -40,6 +40,7 @@
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
+            this.btnRefresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -102,28 +103,32 @@
             // 
             // dataGridView1
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(29, 278);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 171);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1528, 312);
+            this.dataGridView1.Size = new System.Drawing.Size(1155, 419);
             this.dataGridView1.TabIndex = 305;
+            this.dataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // dataGridView2
             // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(344, 35);
+            this.dataGridView2.Location = new System.Drawing.Point(1176, 19);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(462, 216);
+            this.dataGridView2.Size = new System.Drawing.Size(426, 263);
             this.dataGridView2.TabIndex = 306;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(341, 19);
+            this.label2.Location = new System.Drawing.Point(1173, 3);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(111, 13);
             this.label2.TabIndex = 307;
@@ -132,7 +137,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(834, 19);
+            this.label3.Location = new System.Drawing.Point(1173, 285);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(136, 13);
             this.label3.TabIndex = 309;
@@ -140,34 +145,49 @@
             // 
             // dataGridView3
             // 
+            this.dataGridView3.AllowUserToAddRows = false;
+            this.dataGridView3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(837, 35);
+            this.dataGridView3.Location = new System.Drawing.Point(1176, 301);
             this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.Size = new System.Drawing.Size(487, 216);
+            this.dataGridView3.Size = new System.Drawing.Size(426, 289);
             this.dataGridView3.TabIndex = 308;
             // 
             // dataGridView4
             // 
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Location = new System.Drawing.Point(1357, 35);
+            this.dataGridView4.Location = new System.Drawing.Point(324, 35);
             this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.Size = new System.Drawing.Size(200, 216);
+            this.dataGridView4.Size = new System.Drawing.Size(843, 130);
             this.dataGridView4.TabIndex = 310;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(1354, 19);
+            this.label4.Location = new System.Drawing.Point(354, 9);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(129, 13);
             this.label4.TabIndex = 311;
             this.label4.Text = "Rezervacije po planovima";
             // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Location = new System.Drawing.Point(12, 129);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(115, 36);
+            this.btnRefresh.TabIndex = 312;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
             // PregledPodPlan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1569, 602);
+            this.ClientSize = new System.Drawing.Size(1614, 602);
+            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.dataGridView4);
             this.Controls.Add(this.label3);
@@ -182,6 +202,7 @@
             this.Controls.Add(this.label1);
             this.Name = "PregledPodPlan";
             this.Text = "PregledPodPlan";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.PregledPodPlan_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
@@ -206,5 +227,6 @@
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.DataGridView dataGridView4;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }

@@ -40,14 +40,9 @@
             this.txtKrojna = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IDPlana = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PodPlan = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IDNadredjena = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IDZapisa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StaraSIf = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Kolicina = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cboKrojnaLista = new System.Windows.Forms.ComboBox();
+            this.btnNovaKL = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -133,6 +128,7 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -148,15 +144,6 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ID,
-            this.IDPlana,
-            this.PodPlan,
-            this.IDNadredjena,
-            this.IDZapisa,
-            this.MP,
-            this.StaraSIf,
-            this.Kolicina});
             this.dataGridView2.Location = new System.Drawing.Point(657, 69);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(898, 489);
@@ -199,52 +186,43 @@
             this.iconButton1.UseVisualStyleBackColor = false;
             this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
             // 
-            // ID
+            // label3
             // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(665, 17);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(102, 13);
+            this.label3.TabIndex = 298;
+            this.label3.Text = "Krojna liste po planu";
             // 
-            // IDPlana
+            // cboKrojnaLista
             // 
-            this.IDPlana.HeaderText = "IDPlana";
-            this.IDPlana.Name = "IDPlana";
+            this.cboKrojnaLista.FormattingEnabled = true;
+            this.cboKrojnaLista.Location = new System.Drawing.Point(773, 14);
+            this.cboKrojnaLista.Name = "cboKrojnaLista";
+            this.cboKrojnaLista.Size = new System.Drawing.Size(124, 21);
+            this.cboKrojnaLista.TabIndex = 300;
+            this.cboKrojnaLista.SelectedValueChanged += new System.EventHandler(this.cboKrojnaLista_SelectedValueChanged);
             // 
-            // PodPlan
+            // btnNovaKL
             // 
-            this.PodPlan.HeaderText = "PodPlan";
-            this.PodPlan.Name = "PodPlan";
-            // 
-            // IDNadredjena
-            // 
-            this.IDNadredjena.HeaderText = "IDNAdredjena";
-            this.IDNadredjena.Name = "IDNadredjena";
-            // 
-            // IDZapisa
-            // 
-            this.IDZapisa.HeaderText = "IDZapisa";
-            this.IDZapisa.Name = "IDZapisa";
-            // 
-            // MP
-            // 
-            this.MP.HeaderText = "MP";
-            this.MP.Name = "MP";
-            // 
-            // StaraSIf
-            // 
-            this.StaraSIf.HeaderText = "StaraSif";
-            this.StaraSIf.Name = "StaraSIf";
-            // 
-            // Kolicina
-            // 
-            this.Kolicina.HeaderText = "Kolicina";
-            this.Kolicina.Name = "Kolicina";
+            this.btnNovaKL.Location = new System.Drawing.Point(912, 12);
+            this.btnNovaKL.Name = "btnNovaKL";
+            this.btnNovaKL.Size = new System.Drawing.Size(136, 25);
+            this.btnNovaKL.TabIndex = 301;
+            this.btnNovaKL.Text = "Kreiraj novu";
+            this.btnNovaKL.UseVisualStyleBackColor = true;
+            this.btnNovaKL.Click += new System.EventHandler(this.btnNovaKL_Click);
             // 
             // KrojnaLista
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1579, 597);
+            this.Controls.Add(this.btnNovaKL);
+            this.Controls.Add(this.cboKrojnaLista);
             this.Controls.Add(this.iconButton1);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtKrojna);
             this.Controls.Add(this.dataGridView2);
@@ -280,13 +258,8 @@
         private System.Windows.Forms.TextBox txtKrojna;
         private System.Windows.Forms.Label label2;
         private FontAwesome.Sharp.IconButton iconButton1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IDPlana;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PodPlan;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IDNadredjena;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IDZapisa;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StaraSIf;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Kolicina;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cboKrojnaLista;
+        private System.Windows.Forms.Button btnNovaKL;
     }
 }

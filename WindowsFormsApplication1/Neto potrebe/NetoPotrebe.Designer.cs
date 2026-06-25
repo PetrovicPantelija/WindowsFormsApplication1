@@ -65,6 +65,9 @@
             this.chkRazvrstani = new System.Windows.Forms.CheckBox();
             this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
+            this.chkNerazvrstani = new System.Windows.Forms.CheckBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -87,6 +90,7 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -95,6 +99,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(1299, 349);
             this.dataGridView1.TabIndex = 2;
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // label2
             // 
@@ -360,7 +365,7 @@
             // 
             // txtPodPlan
             // 
-            this.txtPodPlan.Location = new System.Drawing.Point(931, 119);
+            this.txtPodPlan.Location = new System.Drawing.Point(931, 116);
             this.txtPodPlan.Name = "txtPodPlan";
             this.txtPodPlan.Size = new System.Drawing.Size(173, 20);
             this.txtPodPlan.TabIndex = 31;
@@ -388,12 +393,13 @@
             // chkRazvrstani
             // 
             this.chkRazvrstani.AutoSize = true;
-            this.chkRazvrstani.Location = new System.Drawing.Point(931, 162);
+            this.chkRazvrstani.Location = new System.Drawing.Point(931, 185);
             this.chkRazvrstani.Name = "chkRazvrstani";
             this.chkRazvrstani.Size = new System.Drawing.Size(76, 17);
             this.chkRazvrstani.TabIndex = 34;
             this.chkRazvrstani.Text = "Razvrstani";
             this.chkRazvrstani.UseVisualStyleBackColor = true;
+            this.chkRazvrstani.CheckStateChanged += new System.EventHandler(this.chkRazvrstani_CheckStateChanged);
             // 
             // button8
             // 
@@ -417,15 +423,47 @@
             this.button9.UseVisualStyleBackColor = true;
             this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
+            // chkNerazvrstani
+            // 
+            this.chkNerazvrstani.AutoSize = true;
+            this.chkNerazvrstani.Location = new System.Drawing.Point(931, 208);
+            this.chkNerazvrstani.Name = "chkNerazvrstani";
+            this.chkNerazvrstani.Size = new System.Drawing.Size(85, 17);
+            this.chkNerazvrstani.TabIndex = 34;
+            this.chkNerazvrstani.Text = "Nerazvrstani";
+            this.chkNerazvrstani.UseVisualStyleBackColor = true;
+            this.chkNerazvrstani.CheckStateChanged += new System.EventHandler(this.chkNerazvrstani_CheckStateChanged);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(931, 158);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(173, 21);
+            this.comboBox1.TabIndex = 37;
+            this.comboBox1.SelectionChangeCommitted += new System.EventHandler(this.comboBox1_SelectionChangeCommitted);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(928, 142);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(77, 13);
+            this.label11.TabIndex = 32;
+            this.label11.Text = "Svi podplanovi";
+            // 
             // NetoPotrebe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1323, 591);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.button8);
+            this.Controls.Add(this.chkNerazvrstani);
             this.Controls.Add(this.chkRazvrstani);
             this.Controls.Add(this.button7);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.txtPodPlan);
             this.Controls.Add(this.button6);
@@ -461,6 +499,7 @@
             this.Controls.Add(this.label1);
             this.Name = "NetoPotrebe";
             this.Text = "NetoPotrebe";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.NetoPotrebe_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -507,5 +546,8 @@
         private System.Windows.Forms.CheckBox chkRazvrstani;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.CheckBox chkNerazvrstani;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label11;
     }
 }

@@ -32,6 +32,7 @@ namespace WindowsFormsApplication1.Neto_potrebe
             FillTehnologija1();
             FillTehnologija2();
             FillPlanovi();
+            
         }
         private void FillGV()
         {
@@ -44,7 +45,8 @@ namespace WindowsFormsApplication1.Neto_potrebe
             }
 
             var query = @"select NetoPotrebeIgor.ID,NetoPotrebeIgor.Datum as Datum,NetoPotrebeIgor.IDNadredjena,NetoPotrebeIgor.IDZapisa,Mp,MpStaraSif,Sklad,skNaziv as Skladiste,Lokac,LokOpis,Kolicina,
-MdfGrupe.Naziv as MDFGrupa,  MDFPodgrupe.Naziv as Podgrupa, MaticniPodatki.Materijal1,MaticniPodatki.Materijal2,MaticniPodatki.Debljina,MaticniPodatki.Tehnologija1,MaticniPodatki.Tehnologija2, Podplan 
+MdfGrupe.Naziv as MDFGrupa,  MDFPodgrupe.Naziv as Podgrupa, MaticniPodatki.Materijal1,MaticniPodatki.Materijal2,MaticniPodatki.Debljina,MaticniPodatki.Tehnologija1,MaticniPodatki.Tehnologija2, Podplan,
+MaticniPodatki.MdfGrupa as GrupaID,MaticniPodatki.MdfPodgrupa as PodgrupaID 
 From NetoPotrebeIgor
 inner join MaticniPodatki on NetoPotrebeIgor.MP=MaticniPodatki.MpSifra
 inner join sklad on NetoPotrebeIGor.Sklad=sklad.SkSifra
@@ -58,6 +60,9 @@ where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + 
             da.Fill(ds);
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
+
+            dataGridView1.Columns["GrupaID"].Visible = false;
+            dataGridView1.Columns["PodgrupaID"].Visible = false;
 
             DataGridViewColumn column = dataGridView1.Columns[0];
             dataGridView1.Columns[0].HeaderText = "ID";
@@ -85,6 +90,7 @@ where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + 
 
         }
 
+        int filterGrupa = 0;
         private void FillGVGrupa()
         {
             var query = @"select NetoPotrebeIgor.ID,NetoPotrebeIgor.Datum as Datum,NetoPotrebeIgor.IDNadredjena,IDZapisa,Mp,MpStaraSif,Sklad,skNaziv,Lokac,LokOpis,Kolicina, MdfGrupe.Naziv as MDFGrupa,  MDFPodgrupe.Naziv as Podgrupa, MaticniPodatki.Materijal1,MaticniPodatki.Materijal2,MaticniPodatki.Debljina,MaticniPodatki.Tehnologija1,MaticniPodatki.Tehnologija2, Podplan
@@ -93,8 +99,22 @@ inner join MaticniPodatki on NetoPotrebeIgor.MP=MaticniPodatki.MpSifra
 inner join sklad on NetoPotrebeIGor.Sklad=sklad.SkSifra
 inner join Lokac on NetoPotrebeIgor.Lokac=Lokac.LokSifra 
 left join mdfgrupe on mdfgrupe.ID = MaticniPodatki.mdfgrupa
-left join mdfpodgrupe on mdfpodgrupe.ID = MaticniPodatki.mdfpodgrupa 
-where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + " and MaticniPodatki.MdfGrupa = " + Convert.ToInt32(cboGrupa.SelectedValue) + " order by MpStaraSif asc";
+left join mdfpodgrupe on mdfpodgrupe.ID = MaticniPodatki.mdfpodgrupa";
+
+var where = " where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + " and MaticniPodatki.MdfGrupa = " + Convert.ToInt32(cboGrupa.SelectedValue) + " order by MpStaraSif asc";
+
+            if (chkRazvrstani.Checked == true)
+            {
+                where = " where NetoPotrebeIgor.Podplan is not null and LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + " and MaticniPodatki.MdfGrupa = " + Convert.ToInt32(cboGrupa.SelectedValue) + " order by MpStaraSif asc";
+                query = query + where;
+                MessageBox.Show(query.ToString());
+            }
+            else
+            {
+                query = query + where;
+                MessageBox.Show(query.ToString());
+
+            }
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();
@@ -255,7 +275,6 @@ where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + 
 
 
         }
-
         private void FillMAterijal1()
         {
             var query = "Select distinct Materijal1 From MaticniPodatki order by Materijal1 asc";
@@ -338,6 +357,17 @@ where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + 
             cboPodgrupa.DisplayMember = "Naziv";
             cboPodgrupa.ValueMember = "ID";
         }
+        private void FillComboPodplan()
+        {
+            var query = "select distinct Podplan From NetoPotrebeIgor where PodPlan is not null and IDPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + " order by Podplan asc";
+            SqlConnection conn = new SqlConnection(connect);
+            var da = new SqlDataAdapter(query, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            comboBox1.DataSource = ds.Tables[0];
+            comboBox1.DisplayMember = "Podplan";
+            comboBox1.ValueMember = "Podplan";
+        }
 
         private void cboGrupa_SelectionChangeCommitted(object sender, EventArgs e)
         {
@@ -346,11 +376,14 @@ where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + 
 
         private void button2_Click(object sender, EventArgs e)
         {
+            filterGrupa = 0;
             FillGV();
+            FillComboPodplan();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            filterGrupa = 1;
             FillGVGrupa();
         }
 
@@ -403,6 +436,8 @@ where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + 
                 }
 
             }
+            FillGV();
+            FillComboPodplan();
         }
 
         private void button8_Click(object sender, EventArgs e)
@@ -415,6 +450,165 @@ where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + 
         {
             PregledPodPlan pp = new PregledPodPlan(Convert.ToInt32(cboPlan.SelectedValue), txtPodPlan.Text);
             pp.Show();
+        }
+
+        private void chkRazvrstani_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (filterGrupa == 0)
+            {
+                FillGV();
+            }
+            if (filterGrupa == 1)
+            {
+                FillGVGrupa();
+            }
+        }
+        private int? DgvValue(object value)
+        {
+            if (value == null || value == DBNull.Value)
+                return null;
+
+            if (int.TryParse(value.ToString(), out int result))
+                return result;
+
+            return null;
+        }
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 1)
+            {
+                var row = dataGridView1.SelectedRows[0];
+
+                if (filterGrupa == 0)
+                {
+                    var m1 = DgvValue(row.Cells["Materijal1"].Value);
+                    var m2 = DgvValue(row.Cells["Materijal2"].Value);
+                    var d = DgvValue(row.Cells["Debljina"].Value);
+                    var t1 = DgvValue(row.Cells["Tehnologija1"].Value);
+                    var t2 = DgvValue(row.Cells["Tehnologija2"].Value);
+                    var g = DgvValue(row.Cells["GrupaID"].Value);
+                    var pg = DgvValue(row.Cells["PodGrupaID"].Value);
+
+                    if (m1.HasValue) cboMaterijal1.SelectedValue = m1.Value;
+                    if (m2.HasValue) cboMaterijal2.SelectedValue = m2.Value;
+                    if (d.HasValue) cboDebljina.SelectedValue = d.Value;
+                    if (t1.HasValue) cboTehnologija1.SelectedValue = t1.Value;
+                    if (t2.HasValue) cboTehnologija2.SelectedValue = t2.Value;
+                    if (g.HasValue)
+                    {
+                        cboGrupa.SelectedValue = g.Value;
+                        FillPodgrupe();
+
+                        if (pg.HasValue) cboPodgrupa.SelectedValue = pg.Value;
+                    }
+
+                    txtPodPlan.Text = row.Cells["Podplan"].Value?.ToString() ?? "";
+                }
+
+            }
+        }
+
+        private void chkNerazvrstani_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (chkNerazvrstani.Checked == false)
+            {
+                FillGV();
+            }
+            else
+            {
+                var query = @"select NetoPotrebeIgor.ID,NetoPotrebeIgor.Datum as Datum,NetoPotrebeIgor.IDNadredjena,NetoPotrebeIgor.IDZapisa,Mp,MpStaraSif,Sklad,skNaziv as Skladiste,Lokac,LokOpis,Kolicina,
+MdfGrupe.Naziv as MDFGrupa,  MDFPodgrupe.Naziv as Podgrupa, MaticniPodatki.Materijal1,MaticniPodatki.Materijal2,MaticniPodatki.Debljina,MaticniPodatki.Tehnologija1,MaticniPodatki.Tehnologija2, Podplan,
+MaticniPodatki.MdfGrupa as GrupaID,MaticniPodatki.MdfPodgrupa as PodgrupaID 
+From NetoPotrebeIgor
+inner join MaticniPodatki on NetoPotrebeIgor.MP=MaticniPodatki.MpSifra
+inner join sklad on NetoPotrebeIGor.Sklad=sklad.SkSifra
+inner join Lokac on NetoPotrebeIgor.Lokac=Lokac.LokSifra 
+left join MDFGrupe on MdfGrupe.ID = MaticniPodatki.MDFGrupa 
+left join MdfPodgrupe on MAticniPodatki.MDFPodgrupa = MDFPodgrupe.ID
+where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + " and Podplan='' order by NetoPotrebeIgor.id asc";
+                SqlConnection conn = new SqlConnection(connect);
+                var da = new SqlDataAdapter(query, conn);
+                var ds = new DataSet();
+                da.Fill(ds);
+                dataGridView1.ReadOnly = true;
+                dataGridView1.DataSource = ds.Tables[0];
+
+                dataGridView1.Columns["GrupaID"].Visible = false;
+                dataGridView1.Columns["PodgrupaID"].Visible = false;
+
+                DataGridViewColumn column = dataGridView1.Columns[0];
+                dataGridView1.Columns[0].HeaderText = "ID";
+                dataGridView1.Columns[0].Width = 50;
+
+                DataGridViewColumn column2 = dataGridView1.Columns[1];
+                dataGridView1.Columns[1].HeaderText = "Datum";
+                dataGridView1.Columns[1].Width = 60;
+
+                DataGridViewColumn column3 = dataGridView1.Columns[2];
+                dataGridView1.Columns[2].HeaderText = "Nadredjeni";
+                dataGridView1.Columns[2].Width = 60;
+
+                DataGridViewColumn column4 = dataGridView1.Columns[3];
+                dataGridView1.Columns[3].HeaderText = "Zapis";
+                dataGridView1.Columns[3].Width = 60;
+
+                DataGridViewColumn column5 = dataGridView1.Columns[4];
+                dataGridView1.Columns[4].HeaderText = "MP";
+                dataGridView1.Columns[4].Width = 80;
+
+                DataGridViewColumn column6 = dataGridView1.Columns[5];
+                dataGridView1.Columns[5].HeaderText = "Kod";
+                dataGridView1.Columns[5].Width = 180;
+            }
+        }
+
+        private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            txtPodPlan.Text = comboBox1.SelectedValue.ToString();
+
+            var query = @"select NetoPotrebeIgor.ID,NetoPotrebeIgor.Datum as Datum,NetoPotrebeIgor.IDNadredjena,NetoPotrebeIgor.IDZapisa,Mp,MpStaraSif,Sklad,skNaziv as Skladiste,Lokac,LokOpis,Kolicina,
+MdfGrupe.Naziv as MDFGrupa,  MDFPodgrupe.Naziv as Podgrupa, MaticniPodatki.Materijal1,MaticniPodatki.Materijal2,MaticniPodatki.Debljina,MaticniPodatki.Tehnologija1,MaticniPodatki.Tehnologija2, Podplan,
+MaticniPodatki.MdfGrupa as GrupaID,MaticniPodatki.MdfPodgrupa as PodgrupaID 
+From NetoPotrebeIgor
+inner join MaticniPodatki on NetoPotrebeIgor.MP=MaticniPodatki.MpSifra
+inner join sklad on NetoPotrebeIGor.Sklad=sklad.SkSifra
+inner join Lokac on NetoPotrebeIgor.Lokac=Lokac.LokSifra 
+left join MDFGrupe on MdfGrupe.ID = MaticniPodatki.MDFGrupa 
+left join MdfPodgrupe on MAticniPodatki.MDFPodgrupa = MDFPodgrupe.ID
+where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + " and Podplan='"+txtPodPlan.Text+"' order by NetoPotrebeIgor.id asc";
+            SqlConnection conn = new SqlConnection(connect);
+            var da = new SqlDataAdapter(query, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            dataGridView1.Columns["GrupaID"].Visible = false;
+            dataGridView1.Columns["PodgrupaID"].Visible = false;
+
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "ID";
+            dataGridView1.Columns[0].Width = 50;
+
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "Datum";
+            dataGridView1.Columns[1].Width = 60;
+
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Nadredjeni";
+            dataGridView1.Columns[2].Width = 60;
+
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "Zapis";
+            dataGridView1.Columns[3].Width = 60;
+
+            DataGridViewColumn column5 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "MP";
+            dataGridView1.Columns[4].Width = 80;
+
+            DataGridViewColumn column6 = dataGridView1.Columns[5];
+            dataGridView1.Columns[5].HeaderText = "Kod";
+            dataGridView1.Columns[5].Width = 180;
         }
     }
 }

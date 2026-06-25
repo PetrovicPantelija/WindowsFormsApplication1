@@ -28,6 +28,14 @@ namespace WindowsFormsApplication1.Neto_potrebe
             tmpPlanID = PlanID;
             tmpPodPlan = PodPlan;
         }
+        private void KrojnaLista_Load(object sender, EventArgs e)
+        {
+            FillPlanovi();
+            txtPodPlan.Text = tmpPodPlan;
+            cboPlan.SelectedValue = tmpPlanID;
+            FillGV();
+            VratiKrojneListe();
+        }
         private void FillPlanovi()
         {
             var query = "Select ID,Naziv From PlanArhiv order by ID asc";
@@ -39,7 +47,87 @@ namespace WindowsFormsApplication1.Neto_potrebe
             cboPlan.DisplayMember = "Naziv";
             cboPlan.ValueMember = "ID";
         }
+        private void VratiKrojneListe()
+        {
+            var query = "select distinct KrojnaLista From KrojnaLista Where PlanID="+tmpPlanID;
+            SqlConnection conn = new SqlConnection(connect);
+            var da = new SqlDataAdapter(query, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            cboKrojnaLista.DataSource = ds.Tables[0];
+            cboKrojnaLista.DisplayMember = "KrojnaLista";
+            cboKrojnaLista.ValueMember = "KrojnaLIsta";
+        }
+     //stavke plana i podplana kojima nije dodeljena krojna lista
+     private void FillGV()
+        {
+            var query = @"SELECT 
+    n.ID,
+    n.IDPlana,
+    n.Podplan,
+    n.IDNadredjena,
+    n.IDZapisa,
+    n.Mp,
+    m.MpStaraSif,
+    n.Kolicina - ISNULL(SUM(k.Kolicina), 0) AS Kolicina
+FROM NetoPotrebeIgor n
+INNER JOIN MaticniPodatki m 
+    ON n.MP = m.MpSifra
+INNER JOIN Sklad s 
+    ON n.Sklad = s.SkSifra
+INNER JOIN Lokac l 
+    ON n.Lokac = l.LokSifra
+LEFT JOIN KrojnaLista k 
+    ON k.ZapisNP = n.IDZapisa
+   AND k.PlanID = n.IDPlana
+WHERE 
+    l.LokSkSifra = s.SkSifra and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + " and n.PodPlan  Like ('%" + txtPodPlan.Text + "%') " +
+    "GROUP BY n.ID, n.IDPlana, n.Podplan, n.IDNadredjena,n.IDZapisa, n.Mp, m.MpStaraSif, n.Kolicina " +
+    "HAVING n.Kolicina - ISNULL(SUM(k.Kolicina), 0) > 0 " +
+    "ORDER BY n.ID ASC;";
 
+
+            SqlConnection conn = new SqlConnection(connect);
+            var da = new SqlDataAdapter(query, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "ID";
+            dataGridView1.Columns[0].Width = 50;
+
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "IDPlana";
+            dataGridView1.Columns[1].Width = 60;
+
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Podplan";
+            dataGridView1.Columns[2].Width = 60;
+
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "IDNadredjena";
+            dataGridView1.Columns[3].Width = 60;
+
+            DataGridViewColumn column5 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "IDZapisa";
+            dataGridView1.Columns[4].Width = 80;
+
+            DataGridViewColumn column6 = dataGridView1.Columns[5];
+            dataGridView1.Columns[5].HeaderText = "MP";
+            dataGridView1.Columns[5].Width = 180;
+
+            DataGridViewColumn column7 = dataGridView1.Columns[6];
+            dataGridView1.Columns[6].HeaderText = "Stara sif";
+            dataGridView1.Columns[6].Width = 180;
+
+            DataGridViewColumn column8 = dataGridView1.Columns[7];
+            dataGridView1.Columns[7].HeaderText = "Kolicina";
+            dataGridView1.Columns[7].Width = 100;
+        }
+
+     /*
         private void FillGV()
         {
             var query = @"select NetoPotrebeIgor.ID, NetoPotrebeIGor.IDPlana, Podplan, NetoPotrebeIgor.IDNadredjena,NetoPotrebeIgor.IDZapisa,Mp,MpStaraSif,Kolicina
@@ -90,16 +178,19 @@ where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + 
             DataGridViewColumn column8 = dataGridView1.Columns[7];
             dataGridView1.Columns[7].HeaderText = "Kolicina";
             dataGridView1.Columns[7].Width = 100;
+        }*/
 
-        }
-        private void KrojnaLista_Load(object sender, EventArgs e)
+        public class StavkeKrojneListe
         {
-            FillPlanovi();
-            txtPodPlan.Text = tmpPodPlan;
-            cboPlan.SelectedValue = tmpPlanID;
-            FillGV();
+            public int ID { get; set; }
+            public int IDPlana { get; set; }
+            public string Podplan { get; set; }
+            public int IDNadredjena { get; set; }
+            public int IDZapisa { get; set; }
+            public int MP { get; set; }
+            public string MPStaraSifra { get; set; }
+            public decimal Kolicina { get; set; }
         }
-
         private void iconButton1_Click(object sender, EventArgs e)
         {
 
@@ -107,6 +198,27 @@ where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + 
 
         private void btnUbaci_Click(object sender, EventArgs e)
         {
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Selected)
+                {
+                    var stavka = new StavkeKrojneListe
+                    {
+                        ID = Convert.ToInt32(row.Cells[0].Value),
+                        IDPlana = Convert.ToInt32(row.Cells[1].Value),
+                        Podplan = row.Cells[2].Value.ToString(),
+                        IDNadredjena = Convert.ToInt32(row.Cells[3].Value),
+                        IDZapisa = Convert.ToInt32(row.Cells[4].Value),
+                        MP = Convert.ToInt32(row.Cells[5].Value),
+                        MPStaraSifra = row.Cells[6].Value.ToString(),
+                        Kolicina = Convert.ToDecimal(row.Cells[7].Value)
+                    };
+                    list.Add(stavka);
+                }
+            }
+            dataGridView2.DataSource = null;
+            dataGridView2.DataSource = list.ToList();
+           /*
             for (int i = 0; i < dataGridView1.SelectedRows.Count; i++)
             {
                 int index = dataGridView2.Rows.Add();
@@ -120,7 +232,7 @@ where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + 
                 dataGridView2.Rows[index].Cells[7].Value = dataGridView1.SelectedRows[i].Cells[7].Value.ToString();
                 // NetoPotrebeIgor.ID,Podplan, NetoPotrebeIgor.IDNadredjena,NetoPotrebeIgor.IDZapisa,Mp,MpStaraSif,Kolicina, Sklad,skNaziv as Skladiste,Lokac,LokOpis,
                 //MdfGrupe.Naziv as MDFGrupa,  MDFPodgrupe.Naziv as Podgrupa, MaticniPodatki.Materijal1,MaticniPodatki.Materijal2,MaticniPodatki.Debljina,MaticniPodatki.Tehnologija1,MaticniPodatki.Tehnologija2
-            }
+            }*/
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -138,6 +250,62 @@ where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + 
             }
            
             MessageBox.Show("Formirana je krojna lista");
+            FillGV();
+            VratiKrojneListe();
+        }
+        private List<StavkeKrojneListe> list = new List<StavkeKrojneListe>();
+        private void VratiStavkeKrojneListe()
+        {
+            list.Clear();
+            using (SqlConnection conn = new SqlConnection(connect))
+            {
+                conn.Open();
+                string query = @"select NetoPotrebeIgor.ID, NetoPotrebeIGor.IDPlana, Podplan, NetoPotrebeIgor.IDNadredjena,NetoPotrebeIgor.IDZapisa,NetoPotrebeIgor.MP,MpStaraSif,KrojnaLista.Kolicina
+From NetoPotrebeIgor
+inner join MaticniPodatki on NetoPotrebeIgor.MP=MaticniPodatki.MpSifra
+inner join sklad on NetoPotrebeIGor.Sklad=sklad.SkSifra
+inner join Lokac on NetoPotrebeIgor.Lokac=Lokac.LokSifra 
+left join MDFGrupe on MdfGrupe.ID = MaticniPodatki.MDFGrupa 
+left join MdfPodgrupe on MAticniPodatki.MDFPodgrupa = MDFPodgrupe.ID
+inner join KrojnaLista on NetopotrebeIgor.IDZapisa=KrojnaLista.ZapisNP
+where LokSkSifra=Sklad and IdPlana=" + tmpPlanID + " and NetoPotrebeIgor.PodPlan  Like ('" + tmpPodPlan + "') and KrojnaLista.KrojnaLista='" + cboKrojnaLista.SelectedValue + "' " +
+"order by NetoPotrebeIgor.id asc";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    using(SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            var stavka = new StavkeKrojneListe
+                            {
+                                ID = Convert.ToInt32(dr[0]),
+                                IDPlana = Convert.ToInt32(dr[1]),
+                                Podplan = dr[2].ToString(),
+                                IDNadredjena = Convert.ToInt32(dr[3]),
+                                IDZapisa = Convert.ToInt32(dr[4]),
+                                MP = Convert.ToInt32(dr[5]),
+                                MPStaraSifra = dr[6].ToString(),
+                                Kolicina = Convert.ToDecimal(dr[7])
+                            };
+                            list.Add(stavka);
+                        }
+                    }
+                }
+            }
+            dataGridView2.DataSource = null;
+            dataGridView2.DataSource = list.ToList();
+        }
+        private void cboKrojnaLista_SelectedValueChanged(object sender, EventArgs e)
+        {
+            txtKrojna.Text = cboKrojnaLista.SelectedValue.ToString();
+            VratiStavkeKrojneListe();
+        }
+
+        private void btnNovaKL_Click(object sender, EventArgs e)
+        {
+            txtKrojna.Text = "";
+            list.Clear();
+            dataGridView2.DataSource = null;
         }
     }
 }

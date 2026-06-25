@@ -46,6 +46,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.btnExcel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -232,11 +233,24 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.label5.TabIndex = 9;
             this.label5.Text = "Minimalna količina";
             // 
+            // btnExcel
+            // 
+            this.btnExcel.BackColor = System.Drawing.Color.Green;
+            this.btnExcel.ForeColor = System.Drawing.Color.White;
+            this.btnExcel.Location = new System.Drawing.Point(1115, 126);
+            this.btnExcel.Name = "btnExcel";
+            this.btnExcel.Size = new System.Drawing.Size(124, 33);
+            this.btnExcel.TabIndex = 24;
+            this.btnExcel.Text = "Učitaj Excel";
+            this.btnExcel.UseVisualStyleBackColor = false;
+            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
+            // 
             // PripadnostKP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1258, 682);
+            this.Controls.Add(this.btnExcel);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button3);
@@ -284,5 +298,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnExcel;
     }
 }
