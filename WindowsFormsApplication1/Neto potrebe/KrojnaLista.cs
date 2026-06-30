@@ -20,6 +20,7 @@ namespace WindowsFormsApplication1.Neto_potrebe
         public KrojnaLista()
         {
             InitializeComponent();
+            panel2.Visible = false;
         }
 
         public KrojnaLista(int PlanID, string PodPlan)
@@ -27,15 +28,25 @@ namespace WindowsFormsApplication1.Neto_potrebe
             InitializeComponent();
             tmpPlanID = PlanID;
             tmpPodPlan = PodPlan;
+            panel2.Visible = false;
         }
         private void KrojnaLista_Load(object sender, EventArgs e)
         {
-            FillPlanovi();
-            txtPodPlan.Text = tmpPodPlan;
-            cboPlan.SelectedValue = tmpPlanID;
-            FillGV();
-            VratiKrojneListe();
+            if(tmpPlanID!=0 && tmpPodPlan != "")
+            {
+                FillPlanovi();
+                txtPodPlan.Text = tmpPodPlan;
+                cboPlan.SelectedValue = tmpPlanID;
+                FillGV();
+                VratiKrojneListe();
+            }
+            else
+            {
+                FillPlanovi();
+            }
+
         }
+
         private void FillPlanovi()
         {
             var query = "Select ID,Naziv From PlanArhiv order by ID asc";
@@ -49,14 +60,29 @@ namespace WindowsFormsApplication1.Neto_potrebe
         }
         private void VratiKrojneListe()
         {
-            var query = "select distinct KrojnaLista From KrojnaLista Where PlanID="+tmpPlanID;
-            SqlConnection conn = new SqlConnection(connect);
-            var da = new SqlDataAdapter(query, conn);
-            var ds = new DataSet();
-            da.Fill(ds);
-            cboKrojnaLista.DataSource = ds.Tables[0];
-            cboKrojnaLista.DisplayMember = "KrojnaLista";
-            cboKrojnaLista.ValueMember = "KrojnaLIsta";
+            if (tmpPlanID == 0)
+            {
+                var query = "select distinct KrojnaLista From KrojnaLista Where PlanID=" + Convert.ToInt32(cboPlan.SelectedValue);
+                SqlConnection conn = new SqlConnection(connect);
+                var da = new SqlDataAdapter(query, conn);
+                var ds = new DataSet();
+                da.Fill(ds);
+                cboKrojnaLista.DataSource = ds.Tables[0];
+                cboKrojnaLista.DisplayMember = "KrojnaLista";
+                cboKrojnaLista.ValueMember = "KrojnaLIsta";
+            }
+            else
+            {
+                var query = "select distinct KrojnaLista From KrojnaLista Where PlanID=" + tmpPlanID;
+                SqlConnection conn = new SqlConnection(connect);
+                var da = new SqlDataAdapter(query, conn);
+                var ds = new DataSet();
+                da.Fill(ds);
+                cboKrojnaLista.DataSource = ds.Tables[0];
+                cboKrojnaLista.DisplayMember = "KrojnaLista";
+                cboKrojnaLista.ValueMember = "KrojnaLIsta";
+            }
+            
         }
      //stavke plana i podplana kojima nije dodeljena krojna lista
      private void FillGV()
@@ -193,7 +219,20 @@ where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + 
         }
         private void iconButton1_Click(object sender, EventArgs e)
         {
+            panel2.Visible = true;
+            FillPodplanovi();
 
+        }
+        private void FillPodplanovi()
+        {
+            var query = @"select distinct Podplan from NetopotrebeIgor Where IDPlana="+Convert.ToInt32(cboPlan.SelectedValue)+" and PodPlan<>''";
+
+            SqlConnection conn = new SqlConnection(connect);
+            var da = new SqlDataAdapter(query, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView3.ReadOnly = true;
+            dataGridView3.DataSource = ds.Tables[0];
         }
 
         private void btnUbaci_Click(object sender, EventArgs e)
@@ -295,7 +334,7 @@ where LokSkSifra=Sklad and IdPlana=" + tmpPlanID + " and NetoPotrebeIgor.PodPlan
             dataGridView2.DataSource = null;
             dataGridView2.DataSource = list.ToList();
         }
-        private void cboKrojnaLista_SelectedValueChanged(object sender, EventArgs e)
+        private async void cboKrojnaLista_SelectedValueChanged(object sender, EventArgs e)
         {
             txtKrojna.Text = cboKrojnaLista.SelectedValue.ToString();
             VratiStavkeKrojneListe();
@@ -306,6 +345,22 @@ where LokSkSifra=Sklad and IdPlana=" + tmpPlanID + " and NetoPotrebeIgor.PodPlan
             txtKrojna.Text = "";
             list.Clear();
             dataGridView2.DataSource = null;
+        }
+
+        private void dataGridView3_SelectionChanged(object sender, EventArgs e)
+        {
+            foreach(DataGridViewRow row in dataGridView3.Rows)
+            {
+                if (row.Selected)
+                {
+                    txtPodPlan.Text = row.Cells[0].Value.ToString();
+                    panel2.Visible = false;
+
+                    FillGV();
+                    VratiKrojneListe();
+                }
+            }
+            
         }
     }
 }

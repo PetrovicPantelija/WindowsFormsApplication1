@@ -43,12 +43,18 @@
             this.label3 = new System.Windows.Forms.Label();
             this.cboKrojnaLista = new System.Windows.Forms.ComboBox();
             this.btnNovaKL = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.Location = new System.Drawing.Point(12, 55);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(550, 503);
@@ -73,6 +79,8 @@
             // 
             // btnUbaci
             // 
+            this.btnUbaci.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnUbaci.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
             this.btnUbaci.FlatAppearance.BorderSize = 0;
             this.btnUbaci.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -140,8 +148,7 @@
             // 
             // dataGridView2
             // 
-            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(657, 69);
@@ -214,11 +221,31 @@
             this.btnNovaKL.UseVisualStyleBackColor = true;
             this.btnNovaKL.Click += new System.EventHandler(this.btnNovaKL_Click);
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.dataGridView3);
+            this.panel2.Location = new System.Drawing.Point(556, 39);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(367, 234);
+            this.panel2.TabIndex = 302;
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.AllowUserToAddRows = false;
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Location = new System.Drawing.Point(5, 3);
+            this.dataGridView3.MultiSelect = false;
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.Size = new System.Drawing.Size(359, 228);
+            this.dataGridView3.TabIndex = 0;
+            this.dataGridView3.SelectionChanged += new System.EventHandler(this.dataGridView3_SelectionChanged);
+            // 
             // KrojnaLista
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1579, 597);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.btnNovaKL);
             this.Controls.Add(this.cboKrojnaLista);
             this.Controls.Add(this.iconButton1);
@@ -239,6 +266,8 @@
             this.Load += new System.EventHandler(this.KrojnaLista_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -261,5 +290,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cboKrojnaLista;
         private System.Windows.Forms.Button btnNovaKL;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.DataGridView dataGridView3;
     }
 }

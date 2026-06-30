@@ -128,5 +128,23 @@ namespace WindowsFormsApplication1.Planovi_Excel
             PravoP = poz.Pravo;
             if (PravoP == true) { poz.Show(); } else { return; }
         }
+
+        private void label16_Click(object sender, EventArgs e)
+        {
+            NetoPotrebe frm = new NetoPotrebe();
+            frm.Show();
+        }
+
+        private void label15_Click(object sender, EventArgs e)
+        {
+            KrojnaLista frm = new KrojnaLista();
+            frm.Show();
+        }
+
+        private void label14_Click(object sender, EventArgs e)
+        {
+            PregledPodPlan frm = new PregledPodPlan();
+            frm.Show();
+        }
     }
 }
