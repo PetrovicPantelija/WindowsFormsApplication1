@@ -13,7 +13,7 @@ namespace WindowsFormsApplication1.Neto_potrebe
 {
     public class InsertKrojnaLista
     {
-        public void InsertKrojna(int MP, int IDZapisa, int PlanID, double Kolicina, string NazivKrojneListe)
+        public void InsertKrojna(int MP, int IDZapisa, int PlanID, double Kolicina, string NazivKrojneListe, int Prioritet)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -59,6 +59,13 @@ namespace WindowsFormsApplication1.Neto_potrebe
             parameter6.Direction = ParameterDirection.Input;
             parameter6.Value = PlanID;
             myCommand.Parameters.Add(parameter6);
+
+            SqlParameter parameter61 = new SqlParameter();
+            parameter61.ParameterName = "@Prioritet";
+            parameter61.SqlDbType = SqlDbType.Int;
+            parameter61.Direction = ParameterDirection.Input;
+            parameter61.Value = Prioritet;
+            myCommand.Parameters.Add(parameter61);
 
 
             myConnection.Open();

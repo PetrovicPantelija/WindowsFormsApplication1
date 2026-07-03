@@ -216,6 +216,8 @@ where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + 
             public int MP { get; set; }
             public string MPStaraSifra { get; set; }
             public decimal Kolicina { get; set; }
+
+            public int Prioritet { get; set; }
         }
         private void iconButton1_Click(object sender, EventArgs e)
         {
@@ -250,7 +252,8 @@ where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + 
                         IDZapisa = Convert.ToInt32(row.Cells[4].Value),
                         MP = Convert.ToInt32(row.Cells[5].Value),
                         MPStaraSifra = row.Cells[6].Value.ToString(),
-                        Kolicina = Convert.ToDecimal(row.Cells[7].Value)
+                        Kolicina = Convert.ToDecimal(row.Cells[7].Value),
+                        Prioritet = Convert.ToInt32(0)
                     };
                     list.Add(stavka);
                 }
@@ -283,7 +286,7 @@ where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + 
             {
                 if (row != null && row.Cells[0].Value != null)
                 {
-                    isporuka.InsertKrojna(Convert.ToInt32(row.Cells[5].Value.ToString()),Convert.ToInt32(row.Cells[4].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()), Convert.ToDouble(row.Cells[7].Value.ToString()), txtKrojna.Text);
+                    isporuka.InsertKrojna(Convert.ToInt32(row.Cells[5].Value.ToString()),Convert.ToInt32(row.Cells[4].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()), Convert.ToDouble(row.Cells[7].Value.ToString()), txtKrojna.Text, Convert.ToInt32(row.Cells[5].Value.ToString()));
                    
                 }
             }
@@ -361,6 +364,54 @@ where LokSkSifra=Sklad and IdPlana=" + tmpPlanID + " and NetoPotrebeIgor.PodPlan
                 }
             }
             
+        }
+
+        private int GetIntValue(object value)
+        {
+            if (value == null || value == DBNull.Value)
+                return 0;
+
+            int result;
+            if (int.TryParse(value.ToString(), out result))
+                return result;
+
+            return 0;
+        }
+
+   
+
+        private void iconButton2_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow dvr in dataGridView2.SelectedRows)
+            {
+                if (dvr != null)
+                {
+                    list.RemoveAt(dvr.Index);
+                  
+                }
+            }
+            dataGridView2.DataSource = list.ToList();
+
+        }
+
+        private void iconButton3_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow dvr in dataGridView2.SelectedRows)
+            {
+                if (dvr != null)
+                {
+                    list[dvr.Index].Prioritet = 1;
+                  
+                }
+            }
+            list = list.OrderByDescending(x => x.Prioritet).ToList();
+    
+
+            dataGridView2.DataSource = list.ToList();
+
+           
+            //dataGridView2.Sort(dataGridView2.Columns["Prioritet"], ListSortDirection.Ascending);
+
         }
     }
 }

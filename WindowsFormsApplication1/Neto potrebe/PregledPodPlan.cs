@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Office.Word;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -70,9 +71,20 @@ namespace WindowsFormsApplication1.Neto_potrebe
 
                 cmd.CommandText = @"
 SELECT N.ID,N.IdPlana,N.PodPlan,N.MP,M.MpStaraSif,N.Kolicina,N.PlaniranaKolicina,
-ISNULL(RN.RNKol,0) AS RNKol,(N.Kolicina - ISNULL(RN.RNKol,0)) AS Preostala,
-(select SUM(ReRezKOl) From Rezervacije inner join DelNalogProizvodni on rezervacije.ReStDokumenta=DelNalogProizvodni.DNpStevilka  Where ReSifMp=N.Mp and DNpStvProjekt=N.IDPlana) as Rezervisano,
+ISNULL(RN.RNKol,0) AS RNKol,
+(select Sum(DNpKolZaIzdelavo - DNpIzdelanaKol) as UkupnoNaRN from DelNalogProizvodni where DnPSifStat in ('PL', 'LA') and  DnpSifMp = N.MP) as RNsvi,
+(N.Kolicina - ISNULL(RN.RNKol,0)) AS Preostala,
+ (SELECT SUM(ReKolDvig)
+      FROM Rezervacije
+     WHERE ReSifMp = N.MP
+       AND ReBrisati = 0) as RezSve, 
+(select SUM(ReRezKOl) From Rezervacije inner join DelNalogProizvodni on rezervacije.ReStDokumenta=DelNalogProizvodni.DNpStevilka  Where ReSifMp=N.Mp and DNpStvProjekt=N.IDPlana) as RezervisanoPlan,
 ISNULL(ST.Stanje,0) AS StanjeNaMag,
+((select Sum(DNpKolZaIzdelavo - DNpIzdelanaKol) as UkupnoNaRN from DelNalogProizvodni where DnPSifStat in ('PL', 'LA') and  DnpSifMp = N.MP)  +  ISNULL(ST.Stanje,0)
+	  - (SELECT SUM(ReKolDvig)
+     FROM Rezervacije
+    WHERE ReSifMp = N.MP
+      AND ReBrisati = 0)) as ZalihaLargo,
 RTrim(DP.DpKrNaziv) AS Operacija,
 DP.DPInfZapSt AS OpID,
 ISNULL(EU.EUKolDobrih,0) AS Odradjeno
@@ -108,7 +120,72 @@ WHERE N.IdPlana = @Plan AND N.PodPlan LIKE @PodPlan ORDER BY N.ID, DP.DPInfZapSt
                 FillSvi(pivot);
 
                 FillStanjeZaIzabraniRed();
+
+                FillRezervisanoZaIzabraniRed();
             }
+        }
+
+        private void FillRezervisanoZaIzabraniRed()
+        {
+            if (dataGridView1.Rows.Count == 0 || !dataGridView1.Columns.Contains("MP"))
+            {
+                dataGridView4.DataSource = null;
+                return;
+            }
+
+            DataGridViewRow row = null;
+
+            if (dataGridView1.CurrentRow != null && !dataGridView1.CurrentRow.IsNewRow)
+            {
+                row = dataGridView1.CurrentRow;
+            }
+            else if (dataGridView1.SelectedRows.Count > 0 && !dataGridView1.SelectedRows[0].IsNewRow)
+            {
+                row = dataGridView1.SelectedRows[0];
+            }
+
+            if (row == null || row.Cells["MP"].Value == null || row.Cells["MP"].Value == DBNull.Value)
+            {
+                dataGridView4.DataSource = null;
+                return;
+            }
+
+            int mp = GetIntValue(row.Cells["MP"].Value);
+
+            if (mp == 0)
+            {
+                dataGridView4.DataSource = null;
+                return;
+            }
+
+            string query = " select DnpStvProjekt as PlanID, SUM(ReRezKOl) as kolinina  From Rezervacije inner join DelNalogProizvodni on rezervacije.ReStDokumenta=DelNalogProizvodni.DNpStevilka " +
+" Where ReSifMp= " + mp +
+" group by DnpStvProjekt order by DnpStvProjekt desc";
+
+
+            using (SqlConnection conn = new SqlConnection(connect))
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                cmd.CommandTimeout = 120;
+                cmd.Parameters.AddWithValue("@MP", mp);
+
+                DataTable dtStanje = new DataTable();
+
+                using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                {
+                    da.Fill(dtStanje);
+                }
+
+                dataGridView4.ReadOnly = true;
+                dataGridView4.AllowUserToAddRows = false;
+                dataGridView4.DataSource = dtStanje;
+
+                FormatSvi(dataGridView4);
+            }
+
+
+
+
         }
 
         private bool IsOperacijaColumn(string columnName)
@@ -181,9 +258,12 @@ WHERE N.IdPlana = @Plan AND N.PodPlan LIKE @PodPlan ORDER BY N.ID, DP.DPInfZapSt
             result.Columns.Add("Kolicina", typeof(decimal));
             result.Columns.Add("PlaniranaKolicina", typeof(decimal));
             result.Columns.Add("RNKol", typeof(decimal));
+            result.Columns.Add("RNSvi", typeof(decimal));
             result.Columns.Add("Preostala", typeof(decimal));
-            result.Columns.Add("Rezervisano", typeof(decimal));
+            result.Columns.Add("RezSve", typeof(decimal));
+            result.Columns.Add("RezervisanoPlan", typeof(decimal));
             result.Columns.Add("StanjeNaMag", typeof(decimal));
+            result.Columns.Add("ZalihaLargo", typeof(decimal));
 
             if (dt == null || dt.Rows.Count == 0)
                 return result;
@@ -220,9 +300,12 @@ WHERE N.IdPlana = @Plan AND N.PodPlan LIKE @PodPlan ORDER BY N.ID, DP.DPInfZapSt
                 row["Kolicina"] = GetDecimalValue(first["Kolicina"]);
                 row["PlaniranaKolicina"] = GetDecimalValue(first["PlaniranaKolicina"]);
                 row["RNKol"] = GetDecimalValue(first["RNKol"]);
+                row["RNSvi"] = GetDecimalValue(first["RNSvi"]);
                 row["Preostala"] = GetDecimalValue(first["Preostala"]);
-                row["Rezervisano"] = GetDecimalValue(first["Rezervisano"]);
+                row["RezSve"] = GetDecimalValue(first["RezSve"]);
+                row["RezervisanoPlan"] = GetDecimalValue(first["RezervisanoPlan"]);
                 row["StanjeNaMag"] = GetDecimalValue(first["StanjeNaMag"]);
+                row["ZalihaLargo"] = GetDecimalValue(first["ZalihaLargo"]);
 
                 var operacije = g
                     .Where(r => r["OpID"] != DBNull.Value &&
@@ -287,9 +370,12 @@ WHERE N.IdPlana = @Plan AND N.PodPlan LIKE @PodPlan ORDER BY N.ID, DP.DPInfZapSt
             SetColumnWidthIfExists("Kolicina", 90);
             SetColumnWidthIfExists("PlaniranaKolicina", 120);
             SetColumnWidthIfExists("RNKol", 90);
+            SetColumnWidthIfExists("RNSvi", 90);
             SetColumnWidthIfExists("Preostala", 90);
-            SetColumnWidthIfExists("Rezervisano", 100);
+            SetColumnWidthIfExists("RezSve", 100);
+            SetColumnWidthIfExists("RezervisanoPlan", 100);
             SetColumnWidthIfExists("StanjeNaMag", 100);
+            SetColumnWidthIfExists("ZalihaLargo", 90);
 
             foreach (DataGridViewColumn col in dataGridView1.Columns)
             {
@@ -436,6 +522,8 @@ CREATE CLUSTERED INDEX IX_Artikli_MP ON #Artikli(MP);
                 cmd.CommandTimeout = 120;
 
                 DataTable dt = new DataTable();
+                cmd.Parameters.AddWithValue("@Plan", Convert.ToInt32(cboPlan.SelectedValue));
+                cmd.Parameters.AddWithValue("@PodPlan", txtPodPlan.Text );
 
                 using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                 {
@@ -464,21 +552,29 @@ CREATE CLUSTERED INDEX IX_Artikli_MP ON #Artikli(MP);
                 CreateAndFillTempArtikli(conn, artikli);
 
                 string queryPotrebneKolicine = @"
-SELECT  K.KoPodSifMp AS KoPodSifMp,RTrim(M.MpNaziv) + ' ' + ISNULL(RTrim(M.MpDoNaziv), '') AS NazivMP,CONVERT(NUMERIC(22,4),SUM(((K.KoKolMateriala * 30 * (1 + (K.KoIzmet / 100.0))) / 30) * A.Kolicina)) AS KoKolMateriala,
-    M.MpSifEnoteMere1 AS JM,ISNULL(M.MpOsnSklad, 0) AS MpOsnSklad,ISNULL(M.MpOsnLokacija, '') AS MpOsnLokacija 
+SELECT
+    K.KoPodSifMp AS KoPodSifMp,
+    RTrim(M.MpStaraSif) + ' / ' + ISNULL(RTrim(M.MpNaziv), '') AS NazivMP,
+    CONVERT(NUMERIC(22,4),SUM(((K.KoKolMateriala * 30 * (1 + (K.KoIzmet / 100.0))) / 30) * A.Kolicina)) AS KoKolMateriala,
+ ISNULL((SELECT SUM(ISNULL(Pr.PrIzdKol,0)) FROM Promet Pr WHERE Pr.PrSifMp = K.KoPodSifMp and PrStDokumenta in (Select DnPStevilka from DelNalogProizvodni where DnpStvProjekt =   @Plan  and CONVERT(nvarchar,dnpNote) =  @PodPlan)), 0) AS Potroseno,
+    M.MpSifEnoteMere1 AS JM,
+    ISNULL(M.MpOsnSklad, 0) AS MpOsnSklad,
+    ISNULL(M.MpOsnLokacija, '') AS MpOsnLokacija
+    -- Potroseno: ukupno izdato/utrošeno iz promena (Promet) za dati MP
 FROM #Artikli A
 INNER JOIN Kosovnica K ON K.KoNadSifMp = A.MP
 INNER JOIN MaticniPodatki M ON M.MpSifra = K.KoPodSifMp
 WHERE K.KoVarianta = '*' AND K.KoSifStat = 'A'
 GROUP BY
     K.KoPodSifMp,
-    RTrim(M.MpNaziv) + ' ' + ISNULL(RTrim(M.MpDoNaziv), ''),
+    RTrim(M.MpStaraSif) + ' / ' + ISNULL(RTrim(M.MpNaziv), ''),
     M.MpSifEnoteMere1,
     ISNULL(M.MpOsnSklad, 0),
     ISNULL(M.MpOsnLokacija, '')
 ORDER BY
     K.KoPodSifMp;
 ";
+               
 
                 DataTable dtKolicine = ExecuteDataTable(conn, queryPotrebneKolicine);
 
@@ -599,6 +695,7 @@ ORDER BY
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             FillStanjeZaIzabraniRed();
+            FillRezervisanoZaIzabraniRed();
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -617,6 +714,28 @@ ORDER BY
                     FillGV();
                 }
             }
+        }
+
+        private void iconButton2_Click(object sender, EventArgs e)
+        {
+            InsertStampaNP inp = new InsertStampaNP();
+            inp.DeleteAll();
+            foreach (DataGridViewRow row in dataGridView3.Rows)
+            {
+                if (row != null && row.Cells[0].Value != null)
+                {
+                    inp.InsertNP(Convert.ToInt32(row.Cells[0].Value.ToString()), row.Cells[1].Value.ToString(), Convert.ToDouble(row.Cells[2].Value.ToString()), Convert.ToDouble(row.Cells[3].Value.ToString()), row.Cells[4].Value.ToString(), cboPlan.Text, txtPodPlan.Text);
+            
+                }
+            }
+            StampaNP staNP = new StampaNP(Convert.ToInt32(cboPlan.SelectedValue), txtPodPlan.Text);
+            staNP.Show();
+        }
+
+        private void iconButton3_Click(object sender, EventArgs e)
+        {
+            StampaPodPlana sp = new StampaPodPlana(Convert.ToInt32(cboPlan.SelectedValue), txtPodPlan.Text);
+            sp.Show();
         }
     }
 }

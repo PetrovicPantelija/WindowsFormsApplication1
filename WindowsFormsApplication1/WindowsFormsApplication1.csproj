@@ -1110,6 +1110,7 @@
       <DependentUpon>NedraDataSet1.xsd</DependentUpon>
     </Compile>
     <Compile Include="Neto potrebe\InsertKrojnaLista.cs" />
+    <Compile Include="Neto potrebe\InsertStampaNP.cs" />
     <Compile Include="Neto potrebe\InsertVeza.cs" />
     <Compile Include="Neto potrebe\KrojnaLista.cs">
       <SubType>Form</SubType>
@@ -1146,6 +1147,18 @@
     </Compile>
     <Compile Include="Neto potrebe\PregledPodPlan.Designer.cs">
       <DependentUpon>PregledPodPlan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Neto potrebe\StampaNP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Neto potrebe\StampaNP.Designer.cs">
+      <DependentUpon>StampaNP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Neto potrebe\StampaPodPlana.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Neto potrebe\StampaPodPlana.Designer.cs">
+      <DependentUpon>StampaPodPlana.cs</DependentUpon>
     </Compile>
     <Compile Include="ObradaIsporuke.cs">
       <SubType>Form</SubType>
@@ -1656,6 +1669,11 @@
     <Compile Include="StampajNeisporucene.Designer.cs">
       <DependentUpon>StampajNeisporucene.cs</DependentUpon>
     </Compile>
+    <Compile Include="StampajNPDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StampajNPDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="StampajPal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1691,6 +1709,11 @@
     </Compile>
     <Compile Include="StampajPalZavrseno.Designer.cs">
       <DependentUpon>StampajPalZavrseno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StampajPodPlanDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StampajPodPlanDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="StampajReklamacijePZavrseno.cs">
       <SubType>Form</SubType>
@@ -2123,6 +2146,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Neto potrebe\PregledPodPlan.resx">
       <DependentUpon>PregledPodPlan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Neto potrebe\rptStampaNP.rdlc" />
+    <EmbeddedResource Include="Neto potrebe\StampajPodPlan.rdlc" />
+    <EmbeddedResource Include="Neto potrebe\StampaNP.resx">
+      <DependentUpon>StampaNP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Neto potrebe\StampaPodPlana.resx">
+      <DependentUpon>StampaPodPlana.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ObradaIsporuke.resx">
       <DependentUpon>ObradaIsporuke.cs</DependentUpon>
@@ -2882,6 +2913,28 @@
     </None>
     <None Include="SDKDataSet2.xss">
       <DependentUpon>SDKDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="StampajNPDataSet.xsc">
+      <DependentUpon>StampajNPDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="StampajNPDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StampajNPDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="StampajNPDataSet.xss">
+      <DependentUpon>StampajNPDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="StampajPodPlanDataSet.xsc">
+      <DependentUpon>StampajPodPlanDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="StampajPodPlanDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StampajPodPlanDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="StampajPodPlanDataSet.xss">
+      <DependentUpon>StampajPodPlanDataSet.xsd</DependentUpon>
     </None>
     <None Include="StampaPakerista.xsc">
       <DependentUpon>StampaPakerista.xsd</DependentUpon>
