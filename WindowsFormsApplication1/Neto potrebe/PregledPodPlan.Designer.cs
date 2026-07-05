@@ -59,7 +59,7 @@
             this.iconButton1.FlatAppearance.BorderSize = 0;
             this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.iconButton1.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.ExchangeAlt;
+            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.Fill;
             this.iconButton1.IconColor = System.Drawing.Color.Black;
             this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.iconButton1.IconSize = 22;
@@ -68,7 +68,7 @@
             this.iconButton1.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.iconButton1.Size = new System.Drawing.Size(110, 25);
             this.iconButton1.TabIndex = 304;
-            this.iconButton1.Text = "N";
+            this.iconButton1.Text = "R";
             this.iconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconButton1.UseVisualStyleBackColor = false;
@@ -77,9 +77,10 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(26, 73);
+            this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label10.Location = new System.Drawing.Point(32, 66);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(46, 13);
+            this.label10.Size = new System.Drawing.Size(60, 19);
             this.label10.TabIndex = 303;
             this.label10.Text = "Podplan";
             // 
@@ -101,11 +102,12 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(29, 19);
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label1.Location = new System.Drawing.Point(29, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(28, 13);
+            this.label1.Size = new System.Drawing.Size(47, 19);
             this.label1.TabIndex = 300;
-            this.label1.Text = "Plan";
+            this.label1.Text = "PLAN:";
             // 
             // dataGridView1
             // 
@@ -126,26 +128,28 @@
             this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(1176, 19);
+            this.dataGridView2.Location = new System.Drawing.Point(1176, 25);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(473, 263);
+            this.dataGridView2.Size = new System.Drawing.Size(473, 257);
             this.dataGridView2.TabIndex = 306;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.label2.Location = new System.Drawing.Point(1173, 3);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(111, 13);
+            this.label2.Size = new System.Drawing.Size(148, 19);
             this.label2.TabIndex = 307;
             this.label2.Text = "Stanje po magacinima";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.label3.Location = new System.Drawing.Point(1173, 285);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(136, 13);
+            this.label3.Size = new System.Drawing.Size(184, 19);
             this.label3.TabIndex = 309;
             this.label3.Text = "Potrebne kolicine materijala";
             // 
@@ -156,15 +160,15 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(1176, 301);
+            this.dataGridView3.Location = new System.Drawing.Point(1176, 307);
             this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.Size = new System.Drawing.Size(473, 289);
+            this.dataGridView3.Size = new System.Drawing.Size(473, 283);
             this.dataGridView3.TabIndex = 308;
             // 
             // dataGridView4
             // 
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Location = new System.Drawing.Point(601, 3);
+            this.dataGridView4.Location = new System.Drawing.Point(628, 3);
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.Size = new System.Drawing.Size(398, 130);
             this.dataGridView4.TabIndex = 310;
@@ -213,14 +217,14 @@
             this.iconButton2.FlatAppearance.BorderSize = 0;
             this.iconButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.iconButton2.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.iconButton2.IconChar = FontAwesome.Sharp.IconChar.ExchangeAlt;
+            this.iconButton2.IconChar = FontAwesome.Sharp.IconChar.Print;
             this.iconButton2.IconColor = System.Drawing.Color.Black;
             this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.iconButton2.IconSize = 22;
-            this.iconButton2.Location = new System.Drawing.Point(1046, 66);
+            this.iconButton2.Location = new System.Drawing.Point(1032, 66);
             this.iconButton2.Name = "iconButton2";
             this.iconButton2.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.iconButton2.Size = new System.Drawing.Size(121, 25);
+            this.iconButton2.Size = new System.Drawing.Size(135, 25);
             this.iconButton2.TabIndex = 314;
             this.iconButton2.Text = "NP";
             this.iconButton2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -234,14 +238,14 @@
             this.iconButton3.FlatAppearance.BorderSize = 0;
             this.iconButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.iconButton3.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.iconButton3.IconChar = FontAwesome.Sharp.IconChar.ExchangeAlt;
+            this.iconButton3.IconChar = FontAwesome.Sharp.IconChar.Print;
             this.iconButton3.IconColor = System.Drawing.Color.Black;
             this.iconButton3.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.iconButton3.IconSize = 22;
-            this.iconButton3.Location = new System.Drawing.Point(1046, 97);
+            this.iconButton3.Location = new System.Drawing.Point(1032, 97);
             this.iconButton3.Name = "iconButton3";
             this.iconButton3.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.iconButton3.Size = new System.Drawing.Size(121, 25);
+            this.iconButton3.Size = new System.Drawing.Size(135, 25);
             this.iconButton3.TabIndex = 315;
             this.iconButton3.Text = "PODPLAN";
             this.iconButton3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -253,6 +257,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1661, 602);
             this.Controls.Add(this.iconButton3);
             this.Controls.Add(this.iconButton2);

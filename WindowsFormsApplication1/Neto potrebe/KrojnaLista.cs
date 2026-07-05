@@ -130,27 +130,29 @@ WHERE
 
             DataGridViewColumn column3 = dataGridView1.Columns[2];
             dataGridView1.Columns[2].HeaderText = "Podplan";
-            dataGridView1.Columns[2].Width = 60;
+            dataGridView1.Columns[2].Width = 100;
 
             DataGridViewColumn column4 = dataGridView1.Columns[3];
             dataGridView1.Columns[3].HeaderText = "IDNadredjena";
             dataGridView1.Columns[3].Width = 60;
+            dataGridView1.Columns[3].Visible = false;
 
             DataGridViewColumn column5 = dataGridView1.Columns[4];
             dataGridView1.Columns[4].HeaderText = "IDZapisa";
             dataGridView1.Columns[4].Width = 80;
+            dataGridView1.Columns[4].Visible = false;
 
             DataGridViewColumn column6 = dataGridView1.Columns[5];
             dataGridView1.Columns[5].HeaderText = "MP";
-            dataGridView1.Columns[5].Width = 180;
+            dataGridView1.Columns[5].Width = 80;
 
             DataGridViewColumn column7 = dataGridView1.Columns[6];
             dataGridView1.Columns[6].HeaderText = "Stara sif";
-            dataGridView1.Columns[6].Width = 180;
+            dataGridView1.Columns[6].Width = 160;
 
             DataGridViewColumn column8 = dataGridView1.Columns[7];
             dataGridView1.Columns[7].HeaderText = "Kolicina";
-            dataGridView1.Columns[7].Width = 100;
+            dataGridView1.Columns[7].Width = 60;
         }
 
      /*

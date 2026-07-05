@@ -74,9 +74,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(28, 13);
+            this.label1.Size = new System.Drawing.Size(30, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "Plan";
             // 
@@ -104,9 +105,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(365, 9);
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            this.label2.Location = new System.Drawing.Point(365, 7);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(36, 13);
+            this.label2.Size = new System.Drawing.Size(39, 15);
             this.label2.TabIndex = 3;
             this.label2.Text = "Grupa";
             // 
@@ -130,54 +132,63 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.label3.Location = new System.Drawing.Point(767, 9);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 13);
+            this.label3.Size = new System.Drawing.Size(59, 15);
             this.label3.TabIndex = 3;
             this.label3.Text = "Podgrupa";
             // 
             // button2
             // 
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
+            this.button2.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.button2.Location = new System.Drawing.Point(11, 57);
             this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(106, 33);
             this.button2.TabIndex = 6;
-            this.button2.Text = "Ceo plan";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Text = "Prikaži plan";
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
+            this.button1.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.button1.Location = new System.Drawing.Point(532, 57);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(117, 33);
             this.button1.TabIndex = 7;
             this.button1.Text = "Plan + Grupa";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(890, 57);
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
+            this.button3.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.button3.Location = new System.Drawing.Point(837, 57);
             this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(139, 33);
+            this.button3.Size = new System.Drawing.Size(192, 33);
             this.button3.TabIndex = 8;
             this.button3.Text = "Plan + Grupa + Podgrupa";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
+            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
+            this.button4.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.button4.Location = new System.Drawing.Point(184, 57);
             this.button4.Margin = new System.Windows.Forms.Padding(2);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(106, 33);
             this.button4.TabIndex = 9;
             this.button4.Text = "Obriši NP";
-            this.button4.UseVisualStyleBackColor = true;
+            this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // txtNovaKolicina
@@ -190,21 +201,24 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(1171, 9);
+            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            this.label4.Location = new System.Drawing.Point(1132, 9);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(72, 13);
+            this.label4.Size = new System.Drawing.Size(79, 15);
             this.label4.TabIndex = 11;
             this.label4.Text = "Nova kolicina";
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(1143, 57);
+            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
+            this.button5.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.button5.Location = new System.Drawing.Point(1133, 57);
             this.button5.Margin = new System.Windows.Forms.Padding(2);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(139, 33);
             this.button5.TabIndex = 12;
             this.button5.Text = "Promeni kolicinu";
-            this.button5.UseVisualStyleBackColor = true;
+            this.button5.UseVisualStyleBackColor = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // cboMaterijal1
@@ -218,9 +232,10 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(14, 119);
+            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            this.label5.Location = new System.Drawing.Point(14, 115);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(55, 13);
+            this.label5.Size = new System.Drawing.Size(61, 15);
             this.label5.TabIndex = 13;
             this.label5.Text = "Materijal 1";
             // 
@@ -235,18 +250,20 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(154, 119);
+            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            this.label6.Location = new System.Drawing.Point(154, 117);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(55, 13);
+            this.label6.Size = new System.Drawing.Size(63, 15);
             this.label6.TabIndex = 15;
             this.label6.Text = "Materijal 2";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(293, 119);
+            this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            this.label7.Location = new System.Drawing.Point(293, 116);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(45, 13);
+            this.label7.Size = new System.Drawing.Size(51, 15);
             this.label7.TabIndex = 18;
             this.label7.Text = "Debljina";
             // 
@@ -269,9 +286,10 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(434, 119);
+            this.label8.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            this.label8.Location = new System.Drawing.Point(434, 116);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(71, 13);
+            this.label8.Size = new System.Drawing.Size(77, 15);
             this.label8.TabIndex = 20;
             this.label8.Text = "Tehnologija 1";
             // 
@@ -286,18 +304,20 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(574, 119);
+            this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            this.label9.Location = new System.Drawing.Point(574, 117);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(71, 13);
+            this.label9.Size = new System.Drawing.Size(79, 15);
             this.label9.TabIndex = 22;
             this.label9.Text = "Tehnologija 2";
             // 
             // chkGrupa
             // 
             this.chkGrupa.AutoSize = true;
+            this.chkGrupa.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.chkGrupa.Location = new System.Drawing.Point(656, 27);
             this.chkGrupa.Name = "chkGrupa";
-            this.chkGrupa.Size = new System.Drawing.Size(58, 17);
+            this.chkGrupa.Size = new System.Drawing.Size(62, 19);
             this.chkGrupa.TabIndex = 24;
             this.chkGrupa.Text = "Ukljuci";
             this.chkGrupa.UseVisualStyleBackColor = true;
@@ -305,9 +325,10 @@
             // chkMaterijal1
             // 
             this.chkMaterijal1.AutoSize = true;
+            this.chkMaterijal1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.chkMaterijal1.Location = new System.Drawing.Point(78, 162);
             this.chkMaterijal1.Name = "chkMaterijal1";
-            this.chkMaterijal1.Size = new System.Drawing.Size(58, 17);
+            this.chkMaterijal1.Size = new System.Drawing.Size(62, 19);
             this.chkMaterijal1.TabIndex = 25;
             this.chkMaterijal1.Text = "Ukljuci";
             this.chkMaterijal1.UseVisualStyleBackColor = true;
@@ -315,9 +336,10 @@
             // chkMaterijal2
             // 
             this.chkMaterijal2.AutoSize = true;
+            this.chkMaterijal2.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.chkMaterijal2.Location = new System.Drawing.Point(218, 162);
             this.chkMaterijal2.Name = "chkMaterijal2";
-            this.chkMaterijal2.Size = new System.Drawing.Size(58, 17);
+            this.chkMaterijal2.Size = new System.Drawing.Size(62, 19);
             this.chkMaterijal2.TabIndex = 26;
             this.chkMaterijal2.Text = "Ukljuci";
             this.chkMaterijal2.UseVisualStyleBackColor = true;
@@ -325,9 +347,10 @@
             // chkDebljina
             // 
             this.chkDebljina.AutoSize = true;
+            this.chkDebljina.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.chkDebljina.Location = new System.Drawing.Point(357, 162);
             this.chkDebljina.Name = "chkDebljina";
-            this.chkDebljina.Size = new System.Drawing.Size(58, 17);
+            this.chkDebljina.Size = new System.Drawing.Size(62, 19);
             this.chkDebljina.TabIndex = 27;
             this.chkDebljina.Text = "Ukljuci";
             this.chkDebljina.UseVisualStyleBackColor = true;
@@ -335,9 +358,10 @@
             // chkTehnologija1
             // 
             this.chkTehnologija1.AutoSize = true;
+            this.chkTehnologija1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.chkTehnologija1.Location = new System.Drawing.Point(498, 162);
             this.chkTehnologija1.Name = "chkTehnologija1";
-            this.chkTehnologija1.Size = new System.Drawing.Size(58, 17);
+            this.chkTehnologija1.Size = new System.Drawing.Size(62, 19);
             this.chkTehnologija1.TabIndex = 28;
             this.chkTehnologija1.Text = "Ukljuci";
             this.chkTehnologija1.UseVisualStyleBackColor = true;
@@ -345,22 +369,25 @@
             // chkTehnologija2
             // 
             this.chkTehnologija2.AutoSize = true;
+            this.chkTehnologija2.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.chkTehnologija2.Location = new System.Drawing.Point(638, 162);
             this.chkTehnologija2.Name = "chkTehnologija2";
-            this.chkTehnologija2.Size = new System.Drawing.Size(58, 17);
+            this.chkTehnologija2.Size = new System.Drawing.Size(62, 19);
             this.chkTehnologija2.TabIndex = 29;
             this.chkTehnologija2.Text = "Ukljuci";
             this.chkTehnologija2.UseVisualStyleBackColor = true;
             // 
             // button6
             // 
+            this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
+            this.button6.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.button6.Location = new System.Drawing.Point(713, 128);
             this.button6.Margin = new System.Windows.Forms.Padding(2);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(163, 33);
+            this.button6.Size = new System.Drawing.Size(170, 33);
             this.button6.TabIndex = 30;
             this.button6.Text = "Pretraga po osobinama";
-            this.button6.UseVisualStyleBackColor = true;
+            this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // txtPodPlan
@@ -373,29 +400,33 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(928, 103);
+            this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            this.label10.Location = new System.Drawing.Point(928, 97);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(82, 13);
+            this.label10.Size = new System.Drawing.Size(93, 15);
             this.label10.TabIndex = 32;
             this.label10.Text = "Podplan - grupa";
             // 
             // button7
             // 
+            this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
+            this.button7.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.button7.Location = new System.Drawing.Point(1109, 115);
             this.button7.Margin = new System.Windows.Forms.Padding(2);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(163, 33);
             this.button7.TabIndex = 33;
             this.button7.Text = "Primeni podplan";
-            this.button7.UseVisualStyleBackColor = true;
+            this.button7.UseVisualStyleBackColor = false;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // chkRazvrstani
             // 
             this.chkRazvrstani.AutoSize = true;
+            this.chkRazvrstani.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.chkRazvrstani.Location = new System.Drawing.Point(931, 185);
             this.chkRazvrstani.Name = "chkRazvrstani";
-            this.chkRazvrstani.Size = new System.Drawing.Size(76, 17);
+            this.chkRazvrstani.Size = new System.Drawing.Size(80, 19);
             this.chkRazvrstani.TabIndex = 34;
             this.chkRazvrstani.Text = "Razvrstani";
             this.chkRazvrstani.UseVisualStyleBackColor = true;
@@ -403,32 +434,37 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(1109, 192);
+            this.button8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
+            this.button8.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.button8.Location = new System.Drawing.Point(1111, 192);
             this.button8.Margin = new System.Windows.Forms.Padding(2);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(163, 33);
+            this.button8.Size = new System.Drawing.Size(161, 33);
             this.button8.TabIndex = 35;
             this.button8.Text = "Formiraj krojnu listu";
-            this.button8.UseVisualStyleBackColor = true;
+            this.button8.UseVisualStyleBackColor = false;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // button9
             // 
+            this.button9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
+            this.button9.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.button9.Location = new System.Drawing.Point(1111, 152);
             this.button9.Margin = new System.Windows.Forms.Padding(2);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(163, 33);
             this.button9.TabIndex = 36;
             this.button9.Text = "Pregled podplan";
-            this.button9.UseVisualStyleBackColor = true;
+            this.button9.UseVisualStyleBackColor = false;
             this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // chkNerazvrstani
             // 
             this.chkNerazvrstani.AutoSize = true;
+            this.chkNerazvrstani.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
             this.chkNerazvrstani.Location = new System.Drawing.Point(931, 208);
             this.chkNerazvrstani.Name = "chkNerazvrstani";
-            this.chkNerazvrstani.Size = new System.Drawing.Size(85, 17);
+            this.chkNerazvrstani.Size = new System.Drawing.Size(92, 19);
             this.chkNerazvrstani.TabIndex = 34;
             this.chkNerazvrstani.Text = "Nerazvrstani";
             this.chkNerazvrstani.UseVisualStyleBackColor = true;
@@ -446,9 +482,10 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(928, 142);
+            this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            this.label11.Location = new System.Drawing.Point(928, 139);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(77, 13);
+            this.label11.Size = new System.Drawing.Size(86, 15);
             this.label11.TabIndex = 32;
             this.label11.Text = "Svi podplanovi";
             // 
@@ -456,6 +493,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1323, 591);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button9);
