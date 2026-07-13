@@ -68,6 +68,7 @@
             this.chkNerazvrstani = new System.Windows.Forms.CheckBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.button10 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -489,12 +490,26 @@
             this.label11.TabIndex = 32;
             this.label11.Text = "Svi podplanovi";
             // 
+            // button10
+            // 
+            this.button10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
+            this.button10.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.button10.Location = new System.Drawing.Point(15, 192);
+            this.button10.Margin = new System.Windows.Forms.Padding(2);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(106, 33);
+            this.button10.TabIndex = 38;
+            this.button10.Text = "PoveziRN";
+            this.button10.UseVisualStyleBackColor = false;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
             // NetoPotrebe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1323, 591);
+            this.Controls.Add(this.button10);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.button8);
@@ -587,5 +602,6 @@
         private System.Windows.Forms.CheckBox chkNerazvrstani;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button button10;
     }
 }

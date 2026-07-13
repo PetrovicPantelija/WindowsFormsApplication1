@@ -1110,6 +1110,7 @@
       <DependentUpon>NedraDataSet1.xsd</DependentUpon>
     </Compile>
     <Compile Include="Neto potrebe\InsertKrojnaLista.cs" />
+    <Compile Include="Neto potrebe\InsertRazloziZaustavljanja.cs" />
     <Compile Include="Neto potrebe\InsertStampaNP.cs" />
     <Compile Include="Neto potrebe\InsertVeza.cs" />
     <Compile Include="Neto potrebe\KrojnaLista.cs">
@@ -1147,6 +1148,12 @@
     </Compile>
     <Compile Include="Neto potrebe\PregledPodPlan.Designer.cs">
       <DependentUpon>PregledPodPlan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Neto potrebe\RazloziZaustavljanja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Neto potrebe\RazloziZaustavljanja.Designer.cs">
+      <DependentUpon>RazloziZaustavljanja.cs</DependentUpon>
     </Compile>
     <Compile Include="Neto potrebe\StampaNP.cs">
       <SubType>Form</SubType>
@@ -1461,6 +1468,12 @@
     </Compile>
     <Compile Include="Planovi_Excel\PripadnostKP.Designer.cs">
       <DependentUpon>PripadnostKP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Planovi_Excel\RadniCentarLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Planovi_Excel\RadniCentarLog.Designer.cs">
+      <DependentUpon>RadniCentarLog.cs</DependentUpon>
     </Compile>
     <Compile Include="Planovi_Excel\RNPlanIzvestaj.cs">
       <SubType>Form</SubType>
@@ -2147,6 +2160,9 @@
     <EmbeddedResource Include="Neto potrebe\PregledPodPlan.resx">
       <DependentUpon>PregledPodPlan.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Neto potrebe\RazloziZaustavljanja.resx">
+      <DependentUpon>RazloziZaustavljanja.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Neto potrebe\rptStampaNP.rdlc" />
     <EmbeddedResource Include="Neto potrebe\StampajPodPlan.rdlc" />
     <EmbeddedResource Include="Neto potrebe\StampaNP.resx">
@@ -2286,6 +2302,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Planovi_Excel\PripadnostKP.resx">
       <DependentUpon>PripadnostKP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Planovi_Excel\RadniCentarLog.resx">
+      <DependentUpon>RadniCentarLog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Planovi_Excel\RNPlanIzvestaj.resx">
       <DependentUpon>RNPlanIzvestaj.cs</DependentUpon>

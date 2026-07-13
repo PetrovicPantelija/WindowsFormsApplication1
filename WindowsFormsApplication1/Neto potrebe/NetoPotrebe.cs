@@ -610,5 +610,11 @@ where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + 
             dataGridView1.Columns[5].HeaderText = "Kod";
             dataGridView1.Columns[5].Width = 180;
         }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            Planovi_Excel.PoveziRN prn = new Planovi_Excel.PoveziRN();
+            prn.Show();
+        }
     }
 }

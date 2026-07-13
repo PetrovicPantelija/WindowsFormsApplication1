@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.cboPlan = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnUbaci = new FontAwesome.Sharp.IconButton();
             this.button1 = new FontAwesome.Sharp.IconButton();
             this.label10 = new System.Windows.Forms.Label();
             this.txtPodPlan = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.txtKrojna = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
@@ -48,6 +48,7 @@
             this.iconButton3 = new FontAwesome.Sharp.IconButton();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.iconButton4 = new FontAwesome.Sharp.IconButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -65,16 +66,29 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.Controls.Add(this.dataGridView1);
             this.panel1.Location = new System.Drawing.Point(16, 85);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(921, 680);
+            this.panel1.Size = new System.Drawing.Size(670, 680);
             this.panel1.TabIndex = 0;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(19, 18);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(632, 645);
+            this.dataGridView1.TabIndex = 3;
             // 
             // cboPlan
             // 
             this.cboPlan.FormattingEnabled = true;
             this.cboPlan.Location = new System.Drawing.Point(16, 33);
-            this.cboPlan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboPlan.Margin = new System.Windows.Forms.Padding(4);
             this.cboPlan.Name = "cboPlan";
             this.cboPlan.Size = new System.Drawing.Size(369, 25);
             this.cboPlan.TabIndex = 3;
@@ -103,8 +117,8 @@
             this.btnUbaci.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.btnUbaci.IconSize = 40;
             this.btnUbaci.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnUbaci.Location = new System.Drawing.Point(-16, 4);
-            this.btnUbaci.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUbaci.Location = new System.Drawing.Point(-31, 4);
+            this.btnUbaci.Margin = new System.Windows.Forms.Padding(4);
             this.btnUbaci.Name = "btnUbaci";
             this.btnUbaci.Size = new System.Drawing.Size(80, 371);
             this.btnUbaci.TabIndex = 289;
@@ -124,13 +138,13 @@
             this.button1.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.button1.IconSize = 22;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(1576, 26);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Location = new System.Drawing.Point(1170, 47);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
-            this.button1.Size = new System.Drawing.Size(235, 38);
+            this.button1.Size = new System.Drawing.Size(181, 30);
             this.button1.TabIndex = 292;
-            this.button1.Text = "Formiraj krojnu listu";
+            this.button1.Text = "Formiraj KL";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.button1.UseVisualStyleBackColor = false;
@@ -150,30 +164,17 @@
             // txtPodPlan
             // 
             this.txtPodPlan.Location = new System.Drawing.Point(395, 33);
-            this.txtPodPlan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPodPlan.Margin = new System.Windows.Forms.Padding(4);
             this.txtPodPlan.Name = "txtPodPlan";
             this.txtPodPlan.Size = new System.Drawing.Size(229, 25);
             this.txtPodPlan.TabIndex = 293;
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(19, 18);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(887, 645);
-            this.dataGridView1.TabIndex = 3;
-            // 
             // txtKrojna
             // 
             this.txtKrojna.Location = new System.Drawing.Point(920, 51);
-            this.txtKrojna.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtKrojna.Margin = new System.Windows.Forms.Padding(4);
             this.txtKrojna.Name = "txtKrojna";
-            this.txtKrojna.Size = new System.Drawing.Size(387, 25);
+            this.txtKrojna.Size = new System.Drawing.Size(242, 25);
             this.txtKrojna.TabIndex = 297;
             // 
             // label2
@@ -198,7 +199,7 @@
             this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.iconButton1.IconSize = 20;
             this.iconButton1.Location = new System.Drawing.Point(633, 26);
-            this.iconButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.iconButton1.Margin = new System.Windows.Forms.Padding(4);
             this.iconButton1.Name = "iconButton1";
             this.iconButton1.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
             this.iconButton1.Size = new System.Drawing.Size(69, 33);
@@ -223,7 +224,7 @@
             // 
             this.cboKrojnaLista.FormattingEnabled = true;
             this.cboKrojnaLista.Location = new System.Drawing.Point(920, 8);
-            this.cboKrojnaLista.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboKrojnaLista.Margin = new System.Windows.Forms.Padding(4);
             this.cboKrojnaLista.Name = "cboKrojnaLista";
             this.cboKrojnaLista.Size = new System.Drawing.Size(205, 25);
             this.cboKrojnaLista.TabIndex = 300;
@@ -234,10 +235,10 @@
             this.btnNovaKL.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
             this.btnNovaKL.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNovaKL.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.btnNovaKL.Location = new System.Drawing.Point(1336, 26);
-            this.btnNovaKL.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNovaKL.Location = new System.Drawing.Point(1170, 12);
+            this.btnNovaKL.Margin = new System.Windows.Forms.Padding(4);
             this.btnNovaKL.Name = "btnNovaKL";
-            this.btnNovaKL.Size = new System.Drawing.Size(232, 38);
+            this.btnNovaKL.Size = new System.Drawing.Size(181, 31);
             this.btnNovaKL.TabIndex = 301;
             this.btnNovaKL.Text = "Kreiraj novu";
             this.btnNovaKL.UseVisualStyleBackColor = false;
@@ -247,7 +248,7 @@
             // 
             this.panel2.Controls.Add(this.dataGridView3);
             this.panel2.Location = new System.Drawing.Point(221, 67);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(469, 262);
             this.panel2.TabIndex = 302;
@@ -257,7 +258,7 @@
             this.dataGridView3.AllowUserToAddRows = false;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Location = new System.Drawing.Point(7, 4);
-            this.dataGridView3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView3.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView3.MultiSelect = false;
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.Size = new System.Drawing.Size(459, 254);
@@ -275,8 +276,8 @@
             this.iconButton2.IconColor = System.Drawing.Color.Black;
             this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.iconButton2.IconSize = 40;
-            this.iconButton2.Location = new System.Drawing.Point(-16, 383);
-            this.iconButton2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.iconButton2.Location = new System.Drawing.Point(-31, 383);
+            this.iconButton2.Margin = new System.Windows.Forms.Padding(4);
             this.iconButton2.Name = "iconButton2";
             this.iconButton2.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
             this.iconButton2.Size = new System.Drawing.Size(80, 293);
@@ -296,11 +297,11 @@
             this.iconButton3.IconColor = System.Drawing.Color.Black;
             this.iconButton3.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.iconButton3.IconSize = 22;
-            this.iconButton3.Location = new System.Drawing.Point(1819, 26);
-            this.iconButton3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.iconButton3.Location = new System.Drawing.Point(1359, 10);
+            this.iconButton3.Margin = new System.Windows.Forms.Padding(4);
             this.iconButton3.Name = "iconButton3";
             this.iconButton3.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
-            this.iconButton3.Size = new System.Drawing.Size(199, 39);
+            this.iconButton3.Size = new System.Drawing.Size(192, 29);
             this.iconButton3.TabIndex = 304;
             this.iconButton3.Text = "Prioritet";
             this.iconButton3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -316,9 +317,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(17, 18);
-            this.dataGridView2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView2.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(982, 645);
+            this.dataGridView2.Size = new System.Drawing.Size(767, 645);
             this.dataGridView2.TabIndex = 305;
             // 
             // splitContainer1
@@ -326,8 +327,8 @@
             this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(945, 85);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainer1.Location = new System.Drawing.Point(698, 84);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -338,17 +339,42 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dataGridView2);
-            this.splitContainer1.Size = new System.Drawing.Size(1091, 680);
-            this.splitContainer1.SplitterDistance = 68;
+            this.splitContainer1.Size = new System.Drawing.Size(862, 680);
+            this.splitContainer1.SplitterDistance = 53;
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 306;
+            // 
+            // iconButton4
+            // 
+            this.iconButton4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
+            this.iconButton4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.iconButton4.FlatAppearance.BorderSize = 0;
+            this.iconButton4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconButton4.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.iconButton4.IconChar = FontAwesome.Sharp.IconChar._500Px;
+            this.iconButton4.IconColor = System.Drawing.Color.Black;
+            this.iconButton4.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.iconButton4.IconSize = 22;
+            this.iconButton4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconButton4.Location = new System.Drawing.Point(1359, 47);
+            this.iconButton4.Margin = new System.Windows.Forms.Padding(4);
+            this.iconButton4.Name = "iconButton4";
+            this.iconButton4.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
+            this.iconButton4.Size = new System.Drawing.Size(192, 30);
+            this.iconButton4.TabIndex = 307;
+            this.iconButton4.Text = "Promeni vrednosti KL";
+            this.iconButton4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.iconButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.iconButton4.UseVisualStyleBackColor = false;
+            this.iconButton4.Click += new System.EventHandler(this.iconButton4_Click);
             // 
             // KrojnaLista
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(1924, 781);
+            this.ClientSize = new System.Drawing.Size(1584, 781);
+            this.Controls.Add(this.iconButton4);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.iconButton3);
@@ -365,7 +391,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "KrojnaLista";
             this.Text = "KrojnaLista";
             this.Load += new System.EventHandler(this.KrojnaLista_Load);
@@ -405,5 +431,6 @@
         private FontAwesome.Sharp.IconButton iconButton3;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private FontAwesome.Sharp.IconButton iconButton4;
     }
 }

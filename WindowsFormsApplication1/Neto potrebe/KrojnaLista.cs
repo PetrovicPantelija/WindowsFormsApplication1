@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Office2013.Drawing.ChartStyle;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -21,6 +22,7 @@ namespace WindowsFormsApplication1.Neto_potrebe
         {
             InitializeComponent();
             panel2.Visible = false;
+            dataGridView2.CellEndEdit += dataGridView2_CellEndEdit;
         }
 
         public KrojnaLista(int PlanID, string PodPlan)
@@ -29,6 +31,7 @@ namespace WindowsFormsApplication1.Neto_potrebe
             tmpPlanID = PlanID;
             tmpPodPlan = PodPlan;
             panel2.Visible = false;
+            dataGridView2.CellEndEdit += dataGridView2_CellEndEdit;
         }
         private void KrojnaLista_Load(object sender, EventArgs e)
         {
@@ -130,7 +133,7 @@ WHERE
 
             DataGridViewColumn column3 = dataGridView1.Columns[2];
             dataGridView1.Columns[2].HeaderText = "Podplan";
-            dataGridView1.Columns[2].Width = 100;
+            dataGridView1.Columns[2].Width = 140;
 
             DataGridViewColumn column4 = dataGridView1.Columns[3];
             dataGridView1.Columns[3].HeaderText = "IDNadredjena";
@@ -260,23 +263,58 @@ where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + 
                     list.Add(stavka);
                 }
             }
-            dataGridView2.DataSource = null;
-            dataGridView2.DataSource = list.ToList();
-           /*
-            for (int i = 0; i < dataGridView1.SelectedRows.Count; i++)
-            {
-                int index = dataGridView2.Rows.Add();
-                dataGridView2.Rows[index].Cells[0].Value = dataGridView1.SelectedRows[i].Cells[0].Value.ToString();
-                dataGridView2.Rows[index].Cells[1].Value = dataGridView1.SelectedRows[i].Cells[1].Value.ToString();
-                dataGridView2.Rows[index].Cells[2].Value = dataGridView1.SelectedRows[i].Cells[2].Value.ToString();
-                dataGridView2.Rows[index].Cells[3].Value = dataGridView1.SelectedRows[i].Cells[3].Value.ToString();
-                dataGridView2.Rows[index].Cells[4].Value = dataGridView1.SelectedRows[i].Cells[4].Value.ToString();
-                dataGridView2.Rows[index].Cells[5].Value = dataGridView1.SelectedRows[i].Cells[5].Value.ToString();
-                dataGridView2.Rows[index].Cells[6].Value = dataGridView1.SelectedRows[i].Cells[6].Value.ToString();
-                dataGridView2.Rows[index].Cells[7].Value = dataGridView1.SelectedRows[i].Cells[7].Value.ToString();
-                // NetoPotrebeIgor.ID,Podplan, NetoPotrebeIgor.IDNadredjena,NetoPotrebeIgor.IDZapisa,Mp,MpStaraSif,Kolicina, Sklad,skNaziv as Skladiste,Lokac,LokOpis,
-                //MdfGrupe.Naziv as MDFGrupa,  MDFPodgrupe.Naziv as Podgrupa, MaticniPodatki.Materijal1,MaticniPodatki.Materijal2,MaticniPodatki.Debljina,MaticniPodatki.Tehnologija1,MaticniPodatki.Tehnologija2
-            }*/
+            // bind directly to the BindingList so edits propagate
+            list = new BindingList<StavkeKrojneListe>(list.OrderByDescending(x => x.Prioritet).ToList());
+            dataGridView2.DataSource = list;
+
+            DataGridViewColumn column = dataGridView2.Columns[0];
+            dataGridView2.Columns[0].HeaderText = "ID";
+            dataGridView2.Columns[0].Width = 50;
+
+            DataGridViewColumn column2 = dataGridView2.Columns[1];
+            dataGridView2.Columns[1].HeaderText = "Plan ID";
+            dataGridView2.Columns[1].Width = 60;
+
+            DataGridViewColumn column3 = dataGridView2.Columns[2];
+            dataGridView2.Columns[2].HeaderText = "Podplan";
+            dataGridView2.Columns[2].Width = 140;
+
+            DataGridViewColumn column4 = dataGridView2.Columns[3];
+            dataGridView2.Columns[3].HeaderText = "IDNadredjena";
+            dataGridView2.Columns[3].Width = 60;
+            dataGridView2.Columns[3].Visible = false;
+
+            DataGridViewColumn column5 = dataGridView2.Columns[4];
+            dataGridView2.Columns[4].HeaderText = "IDZapisa";
+            dataGridView2.Columns[4].Width = 80;
+            dataGridView2.Columns[4].Visible = false;
+
+            DataGridViewColumn column6 = dataGridView2.Columns[5];
+            dataGridView2.Columns[5].HeaderText = "MP";
+            dataGridView2.Columns[5].Width = 80;
+
+            DataGridViewColumn column7 = dataGridView2.Columns[6];
+            dataGridView2.Columns[6].HeaderText = "Stara sif";
+            dataGridView2.Columns[6].Width = 160;
+
+            DataGridViewColumn column8 = dataGridView2.Columns[7];
+            dataGridView2.Columns[7].HeaderText = "Kol";
+            dataGridView2.Columns[7].Width = 50;
+            /*
+             for (int i = 0; i < dataGridView1.SelectedRows.Count; i++)
+             {
+                 int index = dataGridView2.Rows.Add();
+                 dataGridView2.Rows[index].Cells[0].Value = dataGridView1.SelectedRows[i].Cells[0].Value.ToString();
+                 dataGridView2.Rows[index].Cells[1].Value = dataGridView1.SelectedRows[i].Cells[1].Value.ToString();
+                 dataGridView2.Rows[index].Cells[2].Value = dataGridView1.SelectedRows[i].Cells[2].Value.ToString();
+                 dataGridView2.Rows[index].Cells[3].Value = dataGridView1.SelectedRows[i].Cells[3].Value.ToString();
+                 dataGridView2.Rows[index].Cells[4].Value = dataGridView1.SelectedRows[i].Cells[4].Value.ToString();
+                 dataGridView2.Rows[index].Cells[5].Value = dataGridView1.SelectedRows[i].Cells[5].Value.ToString();
+                 dataGridView2.Rows[index].Cells[6].Value = dataGridView1.SelectedRows[i].Cells[6].Value.ToString();
+                 dataGridView2.Rows[index].Cells[7].Value = dataGridView1.SelectedRows[i].Cells[7].Value.ToString();
+                 // NetoPotrebeIgor.ID,Podplan, NetoPotrebeIgor.IDNadredjena,NetoPotrebeIgor.IDZapisa,Mp,MpStaraSif,Kolicina, Sklad,skNaziv as Skladiste,Lokac,LokOpis,
+                 //MdfGrupe.Naziv as MDFGrupa,  MDFPodgrupe.Naziv as Podgrupa, MaticniPodatki.Materijal1,MaticniPodatki.Materijal2,MaticniPodatki.Debljina,MaticniPodatki.Tehnologija1,MaticniPodatki.Tehnologija2
+             }*/
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -288,7 +326,7 @@ where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + 
             {
                 if (row != null && row.Cells[0].Value != null)
                 {
-                    isporuka.InsertKrojna(Convert.ToInt32(row.Cells[5].Value.ToString()),Convert.ToInt32(row.Cells[4].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()), Convert.ToDouble(row.Cells[7].Value.ToString()), txtKrojna.Text, Convert.ToInt32(row.Cells[5].Value.ToString()));
+                    isporuka.InsertKrojna(Convert.ToInt32(row.Cells[5].Value.ToString()),Convert.ToInt32(row.Cells[4].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()), Convert.ToDouble(row.Cells[7].Value.ToString()), txtKrojna.Text, Convert.ToInt32(row.Cells[8].Value.ToString()));
                    
                 }
             }
@@ -297,14 +335,14 @@ where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + 
             FillGV();
             VratiKrojneListe();
         }
-        private List<StavkeKrojneListe> list = new List<StavkeKrojneListe>();
+        private BindingList<StavkeKrojneListe> list = new BindingList<StavkeKrojneListe>();
         private void VratiStavkeKrojneListe()
         {
             list.Clear();
             using (SqlConnection conn = new SqlConnection(connect))
             {
                 conn.Open();
-                string query = @"select NetoPotrebeIgor.ID, NetoPotrebeIGor.IDPlana, Podplan, NetoPotrebeIgor.IDNadredjena,NetoPotrebeIgor.IDZapisa,NetoPotrebeIgor.MP,MpStaraSif,KrojnaLista.Kolicina
+                string query = @"select NetoPotrebeIgor.ID, NetoPotrebeIGor.IDPlana, Podplan, NetoPotrebeIgor.IDNadredjena,NetoPotrebeIgor.IDZapisa,NetoPotrebeIgor.MP,MpStaraSif,KrojnaLista.Kolicina, KrojnaLista.Prioritet
 From NetoPotrebeIgor
 inner join MaticniPodatki on NetoPotrebeIgor.MP=MaticniPodatki.MpSifra
 inner join sklad on NetoPotrebeIGor.Sklad=sklad.SkSifra
@@ -312,8 +350,10 @@ inner join Lokac on NetoPotrebeIgor.Lokac=Lokac.LokSifra
 left join MDFGrupe on MdfGrupe.ID = MaticniPodatki.MDFGrupa 
 left join MdfPodgrupe on MAticniPodatki.MDFPodgrupa = MDFPodgrupe.ID
 inner join KrojnaLista on NetopotrebeIgor.IDZapisa=KrojnaLista.ZapisNP
-where LokSkSifra=Sklad and IdPlana=" + tmpPlanID + " and NetoPotrebeIgor.PodPlan  Like ('" + tmpPodPlan + "') and KrojnaLista.KrojnaLista='" + cboKrojnaLista.SelectedValue + "' " +
+where LokSkSifra=Sklad and IdPlana=" + cboPlan.SelectedValue + " and NetoPotrebeIgor.PodPlan  Like ('" + txtPodPlan.Text + "') and KrojnaLista.KrojnaLista='" + cboKrojnaLista.SelectedValue + "' " +
 "order by NetoPotrebeIgor.id asc";
+
+                
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     using(SqlDataReader dr = cmd.ExecuteReader())
@@ -329,7 +369,8 @@ where LokSkSifra=Sklad and IdPlana=" + tmpPlanID + " and NetoPotrebeIgor.PodPlan
                                 IDZapisa = Convert.ToInt32(dr[4]),
                                 MP = Convert.ToInt32(dr[5]),
                                 MPStaraSifra = dr[6].ToString(),
-                                Kolicina = Convert.ToDecimal(dr[7])
+                                Kolicina = Convert.ToDecimal(dr[7]),
+                                Prioritet = Convert.ToInt32(dr[8])
                             };
                             list.Add(stavka);
                         }
@@ -337,12 +378,107 @@ where LokSkSifra=Sklad and IdPlana=" + tmpPlanID + " and NetoPotrebeIgor.PodPlan
                 }
             }
             dataGridView2.DataSource = null;
-            dataGridView2.DataSource = list.ToList();
+            list = new BindingList<StavkeKrojneListe>(list.OrderByDescending(x => x.Prioritet).ToList());
+            dataGridView2.DataSource = list;
+
+            DataGridViewColumn column = dataGridView2.Columns[0];
+            dataGridView2.Columns[0].HeaderText = "ID";
+            dataGridView2.Columns[0].Width = 50;
+
+            DataGridViewColumn column2 = dataGridView2.Columns[1];
+            dataGridView2.Columns[1].HeaderText = "Plan ID";
+            dataGridView2.Columns[1].Width = 60;
+
+            DataGridViewColumn column3 = dataGridView2.Columns[2];
+            dataGridView2.Columns[2].HeaderText = "Podplan";
+            dataGridView2.Columns[2].Width = 140;
+
+            DataGridViewColumn column4 = dataGridView2.Columns[3];
+            dataGridView2.Columns[3].HeaderText = "IDNadredjena";
+            dataGridView2.Columns[3].Width = 60;
+            dataGridView2.Columns[3].Visible = false;
+
+            DataGridViewColumn column5 = dataGridView2.Columns[4];
+            dataGridView2.Columns[4].HeaderText = "IDZapisa";
+            dataGridView2.Columns[4].Width = 80;
+            dataGridView2.Columns[4].Visible = false;
+
+            DataGridViewColumn column6 = dataGridView2.Columns[5];
+            dataGridView2.Columns[5].HeaderText = "MP";
+            dataGridView2.Columns[5].Width = 80;
+
+            DataGridViewColumn column7 = dataGridView2.Columns[6];
+            dataGridView2.Columns[6].HeaderText = "Stara sif";
+            dataGridView2.Columns[6].Width = 160;
+
+            DataGridViewColumn column8 = dataGridView2.Columns[7];
+            dataGridView2.Columns[7].HeaderText = "Kol";
+            dataGridView2.Columns[7].Width = 50;
+            // Allow editing of the quantity column if present
+            if (dataGridView2.Columns.Count > 0 && dataGridView2.Columns.Contains("Kolicina"))
+            {
+                dataGridView2.Columns["Kolicina"].ReadOnly = false;
+            }
+        }
+
+        private void dataGridView2_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+                return;
+
+            var colName = dataGridView2.Columns[e.ColumnIndex].Name;
+            if (colName != "Kolicina")
+                return;
+
+            var cell = dataGridView2.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            decimal newVal;
+            if (cell.Value == null || !decimal.TryParse(cell.Value.ToString(), out newVal))
+            {
+                MessageBox.Show("Neispravna vrednost za količinu.");
+                // restore previous value from the bound list
+                dataGridView2.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = list[e.RowIndex].Kolicina;
+                return;
+            }
+
+            // Update the underlying bound object
+            list[e.RowIndex].Kolicina = newVal;
+/*
+            // Persist change to database: update existing KrojnaLista row or insert if missing
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connect))
+                {
+                    conn.Open();
+                    string updateSql = "UPDATE KrojnaLista SET Kolicina = @Kolicina WHERE ZapisNP = @ZapisNP AND PlanID = @PlanID AND KrojnaLista = @KrojnaLista";
+                    using (SqlCommand cmd = new SqlCommand(updateSql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Kolicina", newVal);
+                        cmd.Parameters.AddWithValue("@ZapisNP", list[e.RowIndex].IDZapisa);
+                        cmd.Parameters.AddWithValue("@PlanID", list[e.RowIndex].IDPlana);
+                        cmd.Parameters.AddWithValue("@KrojnaLista", txtKrojna.Text);
+
+                        int rows = cmd.ExecuteNonQuery();
+                        if (rows == 0)
+                        {
+                            // No existing row updated - insert new record
+                            InsertKrojnaLista inserter = new InsertKrojnaLista();
+                            inserter.InsertKrojna(list[e.RowIndex].MP, list[e.RowIndex].IDZapisa, list[e.RowIndex].IDPlana, Convert.ToDouble(newVal), txtKrojna.Text, list[e.RowIndex].Prioritet);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Greška pri čuvanju količine: " + ex.Message);
+            }
+*/
         }
         private async void cboKrojnaLista_SelectedValueChanged(object sender, EventArgs e)
-        {
+        { if (cboKrojnaLista.SelectedValue != null)
+            { 
             txtKrojna.Text = cboKrojnaLista.SelectedValue.ToString();
             VratiStavkeKrojneListe();
+            }
         }
 
         private void btnNovaKL_Click(object sender, EventArgs e)
@@ -392,7 +528,41 @@ where LokSkSifra=Sklad and IdPlana=" + tmpPlanID + " and NetoPotrebeIgor.PodPlan
                   
                 }
             }
-            dataGridView2.DataSource = list.ToList();
+            list = new BindingList<StavkeKrojneListe>(list.OrderByDescending(x => x.Prioritet).ToList());
+            dataGridView2.DataSource = list;
+            DataGridViewColumn column = dataGridView2.Columns[0];
+            dataGridView2.Columns[0].HeaderText = "ID";
+            dataGridView2.Columns[0].Width = 50;
+
+            DataGridViewColumn column2 = dataGridView2.Columns[1];
+            dataGridView2.Columns[1].HeaderText = "Plan ID";
+            dataGridView2.Columns[1].Width = 60;
+
+            DataGridViewColumn column3 = dataGridView2.Columns[2];
+            dataGridView2.Columns[2].HeaderText = "Podplan";
+            dataGridView2.Columns[2].Width = 140;
+
+            DataGridViewColumn column4 = dataGridView2.Columns[3];
+            dataGridView2.Columns[3].HeaderText = "IDNadredjena";
+            dataGridView2.Columns[3].Width = 60;
+            dataGridView2.Columns[3].Visible = false;
+
+            DataGridViewColumn column5 = dataGridView2.Columns[4];
+            dataGridView2.Columns[4].HeaderText = "IDZapisa";
+            dataGridView2.Columns[4].Width = 80;
+            dataGridView2.Columns[4].Visible = false;
+
+            DataGridViewColumn column6 = dataGridView2.Columns[5];
+            dataGridView2.Columns[5].HeaderText = "MP";
+            dataGridView2.Columns[5].Width = 80;
+
+            DataGridViewColumn column7 = dataGridView2.Columns[6];
+            dataGridView2.Columns[6].HeaderText = "Stara sif";
+            dataGridView2.Columns[6].Width = 160;
+
+            DataGridViewColumn column8 = dataGridView2.Columns[7];
+            dataGridView2.Columns[7].HeaderText = "Kol";
+            dataGridView2.Columns[7].Width = 50;
 
         }
 
@@ -406,14 +576,67 @@ where LokSkSifra=Sklad and IdPlana=" + tmpPlanID + " and NetoPotrebeIgor.PodPlan
                   
                 }
             }
-            list = list.OrderByDescending(x => x.Prioritet).ToList();
-    
+            list = new BindingList<StavkeKrojneListe>(list.OrderByDescending(x => x.Prioritet).ToList());
 
-            dataGridView2.DataSource = list.ToList();
 
-           
+            dataGridView2.DataSource = list;
+            DataGridViewColumn column = dataGridView2.Columns[0];
+            dataGridView2.Columns[0].HeaderText = "ID";
+            dataGridView2.Columns[0].Width = 50;
+
+            DataGridViewColumn column2 = dataGridView2.Columns[1];
+            dataGridView2.Columns[1].HeaderText = "Plan ID";
+            dataGridView2.Columns[1].Width = 60;
+
+            DataGridViewColumn column3 = dataGridView2.Columns[2];
+            dataGridView2.Columns[2].HeaderText = "Podplan";
+            dataGridView2.Columns[2].Width = 140;
+
+            DataGridViewColumn column4 = dataGridView2.Columns[3];
+            dataGridView2.Columns[3].HeaderText = "IDNadredjena";
+            dataGridView2.Columns[3].Width = 60;
+            dataGridView2.Columns[3].Visible = false;
+
+            DataGridViewColumn column5 = dataGridView2.Columns[4];
+            dataGridView2.Columns[4].HeaderText = "IDZapisa";
+            dataGridView2.Columns[4].Width = 80;
+            dataGridView2.Columns[4].Visible = false;
+
+            DataGridViewColumn column6 = dataGridView2.Columns[5];
+            dataGridView2.Columns[5].HeaderText = "MP";
+            dataGridView2.Columns[5].Width = 80;
+
+            DataGridViewColumn column7 = dataGridView2.Columns[6];
+            dataGridView2.Columns[6].HeaderText = "Stara sif";
+            dataGridView2.Columns[6].Width = 160;
+
+            DataGridViewColumn column8 = dataGridView2.Columns[7];
+            dataGridView2.Columns[7].HeaderText = "Kol";
+            dataGridView2.Columns[7].Width = 50;
+
+
             //dataGridView2.Sort(dataGridView2.Columns["Prioritet"], ListSortDirection.Ascending);
 
+        }
+
+        private void iconButton4_Click(object sender, EventArgs e)
+        {
+            InsertKrojnaLista isporuka = new InsertKrojnaLista();
+
+
+            foreach (DataGridViewRow row in dataGridView2.Rows)
+            {
+                if (row != null && row.Cells[0].Value != null)
+                {
+                    isporuka.UpdateKrojna(Convert.ToInt32(row.Cells[5].Value.ToString()), Convert.ToInt32(row.Cells[4].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()), Convert.ToDouble(row.Cells[7].Value.ToString()), txtKrojna.Text, Convert.ToInt32(row.Cells[8].Value.ToString()));
+
+                }
+            }
+
+            MessageBox.Show("Promenjene su vrednosti krojne liste");
+           // FillGV();
+            //VratiKrojneListe();
+            VratiStavkeKrojneListe();
         }
     }
 }

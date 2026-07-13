@@ -41,13 +41,13 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.label2 = new System.Windows.Forms.Label();
             this.btnSifarnici = new FontAwesome.Sharp.IconButton();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btn_Kalkulator = new FontAwesome.Sharp.IconButton();
             this.label1 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
@@ -58,6 +58,8 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.label15 = new System.Windows.Forms.Label();
             this.iconButton2 = new FontAwesome.Sharp.IconButton();
             this.label16 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IconButton)).BeginInit();
             this.panel1.SuspendLayout();
@@ -215,45 +217,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.panel3.Size = new System.Drawing.Size(236, 280);
             this.panel3.TabIndex = 6;
             // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold);
-            this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(13, 190);
-            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(88, 19);
-            this.label13.TabIndex = 26;
-            this.label13.Text = "• Dodela MP";
-            this.label13.Click += new System.EventHandler(this.label13_Click);
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold);
-            this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(13, 161);
-            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(79, 19);
-            this.label12.TabIndex = 25;
-            this.label12.Text = "• Podgrupa";
-            this.label12.Click += new System.EventHandler(this.label12_Click);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold);
-            this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(13, 130);
-            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(57, 19);
-            this.label11.TabIndex = 24;
-            this.label11.Text = "• Grupa";
-            this.label11.Click += new System.EventHandler(this.label11_Click);
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -315,9 +278,49 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.label1.Text = "• Plan aktiviranje";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold);
+            this.label13.ForeColor = System.Drawing.Color.White;
+            this.label13.Location = new System.Drawing.Point(13, 190);
+            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(88, 19);
+            this.label13.TabIndex = 26;
+            this.label13.Text = "• Dodela MP";
+            this.label13.Click += new System.EventHandler(this.label13_Click);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold);
+            this.label12.ForeColor = System.Drawing.Color.White;
+            this.label12.Location = new System.Drawing.Point(13, 161);
+            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(79, 19);
+            this.label12.TabIndex = 25;
+            this.label12.Text = "• Podgrupa";
+            this.label12.Click += new System.EventHandler(this.label12_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold);
+            this.label11.ForeColor = System.Drawing.Color.White;
+            this.label11.Location = new System.Drawing.Point(13, 130);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(57, 19);
+            this.label11.TabIndex = 24;
+            this.label11.Text = "• Grupa";
+            this.label11.Click += new System.EventHandler(this.label11_Click);
+            // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(83)))), ((int)(((byte)(87)))));
+            this.panel4.Controls.Add(this.label17);
             this.panel4.Controls.Add(this.label13);
             this.panel4.Controls.Add(this.label18);
             this.panel4.Controls.Add(this.label12);
@@ -395,6 +398,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(83)))), ((int)(((byte)(87)))));
+            this.panel5.Controls.Add(this.label10);
             this.panel5.Controls.Add(this.label14);
             this.panel5.Controls.Add(this.label15);
             this.panel5.Controls.Add(this.iconButton2);
@@ -466,6 +470,32 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.label16.Text = "• Formiranje plana";
             this.label16.Click += new System.EventHandler(this.label16_Click);
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold);
+            this.label10.ForeColor = System.Drawing.Color.White;
+            this.label10.Location = new System.Drawing.Point(12, 151);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(122, 19);
+            this.label10.TabIndex = 23;
+            this.label10.Text = "• Radni centar log";
+            this.label10.Click += new System.EventHandler(this.label10_Click_1);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold);
+            this.label17.ForeColor = System.Drawing.Color.White;
+            this.label17.Location = new System.Drawing.Point(13, 219);
+            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(61, 19);
+            this.label17.TabIndex = 27;
+            this.label17.Text = "• Zastoji";
+            this.label17.Click += new System.EventHandler(this.label17_Click);
+            // 
             // MainPlaniranje
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -523,5 +553,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
         private System.Windows.Forms.Label label15;
         private FontAwesome.Sharp.IconButton iconButton2;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label17;
     }
 }

@@ -146,5 +146,17 @@ namespace WindowsFormsApplication1.Planovi_Excel
             PregledPodPlan frm = new PregledPodPlan();
             frm.Show();
         }
+
+        private void label10_Click_1(object sender, EventArgs e)
+        {
+            RadniCentarLog rcl = new RadniCentarLog();
+            rcl.Show();
+        }
+
+        private void label17_Click(object sender, EventArgs e)
+        {
+            RazloziZaustavljanja rz = new RazloziZaustavljanja();
+            rz.Show();
+        }
     }
 }
