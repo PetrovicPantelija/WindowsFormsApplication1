@@ -85,6 +85,10 @@
           <DataField>Odradjeno</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="Rb">
+          <DataField>Rb</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>StampajPodPlanDataSet</rd:DataSetName>
@@ -389,7 +393,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Preostala</Value>
+                                  <Value>Proizvodnja</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -507,25 +511,26 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Preostala">
+                        <Textbox Name="ZalihaLargo">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Preostala.Value</Value>
+                                  <Value>=Fields!ZalihaLargo.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Preostala</rd:DefaultName>
+                          <rd:DefaultName>ZalihaLargo</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>

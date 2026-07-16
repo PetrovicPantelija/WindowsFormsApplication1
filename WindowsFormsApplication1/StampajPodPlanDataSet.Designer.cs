@@ -313,6 +313,8 @@ namespace WindowsFormsApplication1 {
             
             private global::System.Data.DataColumn columnOdradjeno;
             
+            private global::System.Data.DataColumn columnRb;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public StampajPodPlanDataTable() {
@@ -484,6 +486,14 @@ namespace WindowsFormsApplication1 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn RbColumn {
+                get {
+                    return this.columnRb;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -535,7 +545,8 @@ namespace WindowsFormsApplication1 {
                         decimal ZalihaLargo, 
                         string Operacija, 
                         int OpID, 
-                        double Odradjeno) {
+                        double Odradjeno, 
+                        int Rb) {
                 StampajPodPlanRow rowStampajPodPlanRow = ((StampajPodPlanRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -554,7 +565,8 @@ namespace WindowsFormsApplication1 {
                         ZalihaLargo,
                         Operacija,
                         OpID,
-                        Odradjeno};
+                        Odradjeno,
+                        Rb};
                 rowStampajPodPlanRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowStampajPodPlanRow);
                 return rowStampajPodPlanRow;
@@ -594,6 +606,7 @@ namespace WindowsFormsApplication1 {
                 this.columnOperacija = base.Columns["Operacija"];
                 this.columnOpID = base.Columns["OpID"];
                 this.columnOdradjeno = base.Columns["Odradjeno"];
+                this.columnRb = base.Columns["Rb"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -633,6 +646,8 @@ namespace WindowsFormsApplication1 {
                 base.Columns.Add(this.columnOpID);
                 this.columnOdradjeno = new global::System.Data.DataColumn("Odradjeno", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOdradjeno);
+                this.columnRb = new global::System.Data.DataColumn("Rb", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRb);
                 this.columnID.AutoIncrement = true;
                 this.columnID.AllowDBNull = false;
                 this.columnID.ReadOnly = true;
@@ -1057,6 +1072,22 @@ namespace WindowsFormsApplication1 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int Rb {
+                get {
+                    try {
+                        return ((int)(this[this.tableStampajPodPlan.RbColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Rb\' in table \'StampajPodPlan\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableStampajPodPlan.RbColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsIdPlanaNull() {
                 return this.IsNull(this.tableStampajPodPlan.IdPlanaColumn);
             }
@@ -1246,6 +1277,18 @@ namespace WindowsFormsApplication1 {
             public void SetOdradjenoNull() {
                 this[this.tableStampajPodPlan.OdradjenoColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsRbNull() {
+                return this.IsNull(this.tableStampajPodPlan.RbColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetRbNull() {
+                this[this.tableStampajPodPlan.RbColumn] = global::System.Convert.DBNull;
+            }
         }
         
         /// <summary>
@@ -1424,6 +1467,7 @@ namespace WindowsFormsApplication1.StampajPodPlanDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("Operacija", "Operacija");
             tableMapping.ColumnMappings.Add("OpID", "OpID");
             tableMapping.ColumnMappings.Add("Odradjeno", "Odradjeno");
+            tableMapping.ColumnMappings.Add("Rb", "Rb");
             this._adapter.TableMappings.Add(tableMapping);
         }
         

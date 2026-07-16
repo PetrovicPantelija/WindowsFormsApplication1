@@ -49,6 +49,7 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.iconButton4 = new FontAwesome.Sharp.IconButton();
+            this.iconButton5 = new FontAwesome.Sharp.IconButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -117,7 +118,7 @@
             this.btnUbaci.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.btnUbaci.IconSize = 40;
             this.btnUbaci.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnUbaci.Location = new System.Drawing.Point(-31, 4);
+            this.btnUbaci.Location = new System.Drawing.Point(-32, 4);
             this.btnUbaci.Margin = new System.Windows.Forms.Padding(4);
             this.btnUbaci.Name = "btnUbaci";
             this.btnUbaci.Size = new System.Drawing.Size(80, 371);
@@ -138,11 +139,11 @@
             this.button1.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.button1.IconSize = 22;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(1170, 47);
+            this.button1.Location = new System.Drawing.Point(1119, 46);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
-            this.button1.Size = new System.Drawing.Size(181, 30);
+            this.button1.Size = new System.Drawing.Size(150, 30);
             this.button1.TabIndex = 292;
             this.button1.Text = "Formiraj KL";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -171,10 +172,10 @@
             // 
             // txtKrojna
             // 
-            this.txtKrojna.Location = new System.Drawing.Point(920, 51);
+            this.txtKrojna.Location = new System.Drawing.Point(893, 51);
             this.txtKrojna.Margin = new System.Windows.Forms.Padding(4);
             this.txtKrojna.Name = "txtKrojna";
-            this.txtKrojna.Size = new System.Drawing.Size(242, 25);
+            this.txtKrojna.Size = new System.Drawing.Size(218, 25);
             this.txtKrojna.TabIndex = 297;
             // 
             // label2
@@ -223,7 +224,7 @@
             // cboKrojnaLista
             // 
             this.cboKrojnaLista.FormattingEnabled = true;
-            this.cboKrojnaLista.Location = new System.Drawing.Point(920, 8);
+            this.cboKrojnaLista.Location = new System.Drawing.Point(906, 11);
             this.cboKrojnaLista.Margin = new System.Windows.Forms.Padding(4);
             this.cboKrojnaLista.Name = "cboKrojnaLista";
             this.cboKrojnaLista.Size = new System.Drawing.Size(205, 25);
@@ -235,10 +236,10 @@
             this.btnNovaKL.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
             this.btnNovaKL.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNovaKL.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.btnNovaKL.Location = new System.Drawing.Point(1170, 12);
+            this.btnNovaKL.Location = new System.Drawing.Point(1119, 11);
             this.btnNovaKL.Margin = new System.Windows.Forms.Padding(4);
             this.btnNovaKL.Name = "btnNovaKL";
-            this.btnNovaKL.Size = new System.Drawing.Size(181, 31);
+            this.btnNovaKL.Size = new System.Drawing.Size(150, 31);
             this.btnNovaKL.TabIndex = 301;
             this.btnNovaKL.Text = "Kreiraj novu";
             this.btnNovaKL.UseVisualStyleBackColor = false;
@@ -276,7 +277,7 @@
             this.iconButton2.IconColor = System.Drawing.Color.Black;
             this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.iconButton2.IconSize = 40;
-            this.iconButton2.Location = new System.Drawing.Point(-31, 383);
+            this.iconButton2.Location = new System.Drawing.Point(-32, 383);
             this.iconButton2.Margin = new System.Windows.Forms.Padding(4);
             this.iconButton2.Name = "iconButton2";
             this.iconButton2.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
@@ -296,12 +297,12 @@
             this.iconButton3.IconChar = FontAwesome.Sharp.IconChar.AccessibleIcon;
             this.iconButton3.IconColor = System.Drawing.Color.Black;
             this.iconButton3.IconFont = FontAwesome.Sharp.IconFont.Solid;
-            this.iconButton3.IconSize = 22;
-            this.iconButton3.Location = new System.Drawing.Point(1359, 10);
+            this.iconButton3.IconSize = 1;
+            this.iconButton3.Location = new System.Drawing.Point(1277, 9);
             this.iconButton3.Margin = new System.Windows.Forms.Padding(4);
             this.iconButton3.Name = "iconButton3";
             this.iconButton3.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
-            this.iconButton3.Size = new System.Drawing.Size(192, 29);
+            this.iconButton3.Size = new System.Drawing.Size(112, 29);
             this.iconButton3.TabIndex = 304;
             this.iconButton3.Text = "Prioritet";
             this.iconButton3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -340,7 +341,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dataGridView2);
             this.splitContainer1.Size = new System.Drawing.Size(862, 680);
-            this.splitContainer1.SplitterDistance = 53;
+            this.splitContainer1.SplitterDistance = 52;
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 306;
             // 
@@ -350,17 +351,17 @@
             this.iconButton4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.iconButton4.FlatAppearance.BorderSize = 0;
             this.iconButton4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton4.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.iconButton4.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.iconButton4.IconChar = FontAwesome.Sharp.IconChar._500Px;
             this.iconButton4.IconColor = System.Drawing.Color.Black;
             this.iconButton4.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.iconButton4.IconSize = 22;
             this.iconButton4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton4.Location = new System.Drawing.Point(1359, 47);
+            this.iconButton4.Location = new System.Drawing.Point(1277, 45);
             this.iconButton4.Margin = new System.Windows.Forms.Padding(4);
             this.iconButton4.Name = "iconButton4";
             this.iconButton4.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
-            this.iconButton4.Size = new System.Drawing.Size(192, 30);
+            this.iconButton4.Size = new System.Drawing.Size(179, 30);
             this.iconButton4.TabIndex = 307;
             this.iconButton4.Text = "Promeni vrednosti KL";
             this.iconButton4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -368,12 +369,35 @@
             this.iconButton4.UseVisualStyleBackColor = false;
             this.iconButton4.Click += new System.EventHandler(this.iconButton4_Click);
             // 
+            // iconButton5
+            // 
+            this.iconButton5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
+            this.iconButton5.FlatAppearance.BorderSize = 0;
+            this.iconButton5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconButton5.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.iconButton5.IconChar = FontAwesome.Sharp.IconChar.AccessibleIcon;
+            this.iconButton5.IconColor = System.Drawing.Color.Black;
+            this.iconButton5.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.iconButton5.IconSize = 1;
+            this.iconButton5.Location = new System.Drawing.Point(1397, 7);
+            this.iconButton5.Margin = new System.Windows.Forms.Padding(4);
+            this.iconButton5.Name = "iconButton5";
+            this.iconButton5.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
+            this.iconButton5.Size = new System.Drawing.Size(112, 29);
+            this.iconButton5.TabIndex = 308;
+            this.iconButton5.Text = "Obrisi KL";
+            this.iconButton5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.iconButton5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.iconButton5.UseVisualStyleBackColor = false;
+            this.iconButton5.Click += new System.EventHandler(this.iconButton5_Click);
+            // 
             // KrojnaLista
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1584, 781);
+            this.Controls.Add(this.iconButton5);
             this.Controls.Add(this.iconButton4);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.panel2);
@@ -432,5 +456,6 @@
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private FontAwesome.Sharp.IconButton iconButton4;
+        private FontAwesome.Sharp.IconButton iconButton5;
     }
 }

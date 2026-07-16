@@ -431,6 +431,7 @@
             this.chkRazvrstani.TabIndex = 34;
             this.chkRazvrstani.Text = "Razvrstani";
             this.chkRazvrstani.UseVisualStyleBackColor = true;
+            this.chkRazvrstani.CheckedChanged += new System.EventHandler(this.chkRazvrstani_CheckedChanged);
             this.chkRazvrstani.CheckStateChanged += new System.EventHandler(this.chkRazvrstani_CheckStateChanged);
             // 
             // button8
@@ -469,6 +470,7 @@
             this.chkNerazvrstani.TabIndex = 34;
             this.chkNerazvrstani.Text = "Nerazvrstani";
             this.chkNerazvrstani.UseVisualStyleBackColor = true;
+            this.chkNerazvrstani.CheckedChanged += new System.EventHandler(this.chkNerazvrstani_CheckedChanged);
             this.chkNerazvrstani.CheckStateChanged += new System.EventHandler(this.chkNerazvrstani_CheckStateChanged);
             // 
             // comboBox1

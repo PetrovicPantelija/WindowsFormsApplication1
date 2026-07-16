@@ -70,7 +70,11 @@ namespace WindowsFormsApplication1.Neto_potrebe
                 cmd.Connection = conn;
 
                 cmd.CommandText = @"
-SELECT N.ID,N.IdPlana,N.PodPlan,N.MP,M.MpStaraSif,N.Kolicina,N.PlaniranaKolicina,
+SELECT N.ID,N.IdPlana,N.PodPlan,N.MP,M.MpStaraSif, ((select isnull(Sum(DNpKolZaIzdelavo - DNpIzdelanaKol),0) as UkupnoNaRN from DelNalogProizvodni where DnPSifStat in ('PL', 'LA') and  DnpSifMp = N.MP)  +  ISNULL(ST.Stanje,0)
+	  - (SELECT SUM(ReKolDvig)
+     FROM Rezervacije
+    WHERE ReSifMp = N.MP
+      AND ReBrisati = 0))as Proizvodnja,N.PlaniranaKolicina,
 ISNULL(RN.RNKol,0) AS RNKol,
 (select Sum(DNpKolZaIzdelavo - DNpIzdelanaKol) as UkupnoNaRN from DelNalogProizvodni where DnPSifStat in ('PL', 'LA') and  DnpSifMp = N.MP) as RNsvi,
 (N.Kolicina - ISNULL(RN.RNKol,0)) AS Preostala,
@@ -80,22 +84,18 @@ ISNULL(RN.RNKol,0) AS RNKol,
        AND ReBrisati = 0) as RezSve, 
 (select SUM(ReRezKOl) From Rezervacije inner join DelNalogProizvodni on rezervacije.ReStDokumenta=DelNalogProizvodni.DNpStevilka  Where ReSifMp=N.Mp and DNpStvProjekt=N.IDPlana) as RezervisanoPlan,
 ISNULL(ST.Stanje,0) AS StanjeNaMag,
-((select Sum(DNpKolZaIzdelavo - DNpIzdelanaKol) as UkupnoNaRN from DelNalogProizvodni where DnPSifStat in ('PL', 'LA') and  DnpSifMp = N.MP)  +  ISNULL(ST.Stanje,0)
-	  - (SELECT SUM(ReKolDvig)
-     FROM Rezervacije
-    WHERE ReSifMp = N.MP
-      AND ReBrisati = 0)) as ZalihaLargo,
+N.Kolicina as Kol,
 RTrim(DP.DpKrNaziv) AS Operacija,
 DP.DPInfZapSt AS OpID,
 ISNULL(EU.EUKolDobrih,0) AS Odradjeno
 FROM NetoPotrebeIgor N 
 INNER JOIN MaticniPodatki M ON N.MP = M.MpSifra
 LEFT JOIN (SELECT DnPSifMp, SUM(DNpKolZaIzdelavo) AS RNKol FROM DelNalogProizvodni WHERE DNpStvProjekt = @Plan GROUP BY DnPSifMp) RN ON RN.DnPSifMp = N.MP
-LEFT JOIN (SELECT PrSifMp, SUM(PrPrevKol - PrIzdKol) AS Stanje FROM Promet GROUP BY PrSifMp) ST ON ST.PrSifMp = N.MP
+LEFT JOIN (SELECT PrSifMp, SUM(PrPrevKol - PrIzdKol) AS Stanje FROM Promet where PrSifSklad <> 101 GROUP BY PrSifMp) ST ON ST.PrSifMp = N.MP
 LEFT JOIN DelPostopek DP ON DP.DpSifMp = N.MP
 LEFT JOIN DelNalogProizvodni DNP ON DNP.DnPSifMp = N.MP AND DNP.DNpStvProjekt = @Plan
 LEFT JOIN EvidencaUr EU ON EU.EuStDelNaloga = DNP.DNpStevilka AND EU.EuStZapOperacije = DP.DPInfZapSt
-WHERE N.IdPlana = @Plan AND N.PodPlan LIKE @PodPlan ORDER BY N.ID, DP.DPInfZapSt;";
+WHERE N.IdPlana = @Plan AND N.PodPlan LIKE @PodPlan ORDER BY N.RB, N.ID, DP.DPInfZapSt;";
 
                 cmd.Parameters.AddWithValue("@Plan", Convert.ToInt32(cboPlan.SelectedValue));
                 cmd.Parameters.AddWithValue("@PodPlan", "%" + txtPodPlan.Text + "%");
@@ -158,9 +158,10 @@ WHERE N.IdPlana = @Plan AND N.PodPlan LIKE @PodPlan ORDER BY N.ID, DP.DPInfZapSt
                 return;
             }
 
-            string query = " select DnpStvProjekt as PlanID, SUM(ReRezKOl) as kolinina  From Rezervacije inner join DelNalogProizvodni on rezervacije.ReStDokumenta=DelNalogProizvodni.DNpStevilka " +
-" Where ReSifMp= " + mp +
-" group by DnpStvProjekt order by DnpStvProjekt desc";
+            string query = " select DnpStvProjekt as PlanID, PlanArhiv.Naziv as [Plan], SUM(ReRezKOl) as kolicina  From Rezervacije inner join" +
+                " DelNalogProizvodni on rezervacije.ReStDokumenta=DelNalogProizvodni.DNpStevilka " +
+                " inner join PlanArhiv on DnpStvProjekt = PlanArhiv.ID Where DnPSifStat in ('PL', 'LA') and ReSifMp= " + mp +
+" group by DnpStvProjekt, PlanArhiv.Naziv order by DnpStvProjekt desc";
 
 
             using (SqlConnection conn = new SqlConnection(connect))
@@ -255,7 +256,7 @@ WHERE N.IdPlana = @Plan AND N.PodPlan LIKE @PodPlan ORDER BY N.ID, DP.DPInfZapSt
             result.Columns.Add("PodPlan", typeof(string));
             result.Columns.Add("MP", typeof(int));
             result.Columns.Add("MpStaraSif", typeof(string));
-            result.Columns.Add("Kolicina", typeof(decimal));
+            result.Columns.Add("Proizvodnja", typeof(decimal));
             result.Columns.Add("PlaniranaKolicina", typeof(decimal));
             result.Columns.Add("RNKol", typeof(decimal));
             result.Columns.Add("RNSvi", typeof(decimal));
@@ -263,7 +264,7 @@ WHERE N.IdPlana = @Plan AND N.PodPlan LIKE @PodPlan ORDER BY N.ID, DP.DPInfZapSt
             result.Columns.Add("RezSve", typeof(decimal));
             result.Columns.Add("RezervisanoPlan", typeof(decimal));
             result.Columns.Add("StanjeNaMag", typeof(decimal));
-            result.Columns.Add("ZalihaLargo", typeof(decimal));
+            result.Columns.Add("Kol", typeof(decimal));
 
             if (dt == null || dt.Rows.Count == 0)
                 return result;
@@ -297,7 +298,7 @@ WHERE N.IdPlana = @Plan AND N.PodPlan LIKE @PodPlan ORDER BY N.ID, DP.DPInfZapSt
                 row["PodPlan"] = CleanText(first["PodPlan"]);
                 row["MP"] = GetIntValue(first["MP"]);
                 row["MpStaraSif"] = CleanText(first["MpStaraSif"]);
-                row["Kolicina"] = GetDecimalValue(first["Kolicina"]);
+                row["Proizvodnja"] = GetDecimalValue(first["Proizvodnja"]);
                 row["PlaniranaKolicina"] = GetDecimalValue(first["PlaniranaKolicina"]);
                 row["RNKol"] = GetDecimalValue(first["RNKol"]);
                 row["RNSvi"] = GetDecimalValue(first["RNSvi"]);
@@ -305,7 +306,7 @@ WHERE N.IdPlana = @Plan AND N.PodPlan LIKE @PodPlan ORDER BY N.ID, DP.DPInfZapSt
                 row["RezSve"] = GetDecimalValue(first["RezSve"]);
                 row["RezervisanoPlan"] = GetDecimalValue(first["RezervisanoPlan"]);
                 row["StanjeNaMag"] = GetDecimalValue(first["StanjeNaMag"]);
-                row["ZalihaLargo"] = GetDecimalValue(first["ZalihaLargo"]);
+                row["Kol"] = GetDecimalValue(first["Kol"]);
 
                 var operacije = g
                     .Where(r => r["OpID"] != DBNull.Value &&
@@ -465,10 +466,10 @@ WHERE N.IdPlana = @Plan AND N.PodPlan LIKE @PodPlan ORDER BY N.ID, DP.DPInfZapSt
 
                     foreach (DataRow r in g)
                     {
-                        if (r["Kolicina"] != DBNull.Value)
+                        if (r["Proizvodnja"] != DBNull.Value)
                         {
                             decimal tmp;
-                            if (decimal.TryParse(r["Kolicina"].ToString(), out tmp))
+                            if (decimal.TryParse(r["Proizvodnja"].ToString(), out tmp))
                                 ukupnaKolicina += tmp;
                         }
                     }

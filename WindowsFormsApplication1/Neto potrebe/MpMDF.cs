@@ -48,9 +48,12 @@ namespace WindowsFormsApplication1.Neto_potrebe
 
 
 
-            var query = " Select  MpSifra as Sifra, MpStaraSif as Kod, MpNaziv as NAziv, MpSifEnoteMere1 as JM, MpOsnSklad, MpOsnLokacija, MpStatus,  " +
-                " MdfGrupe.Naziv as MDFGrupa,  MDFPodgrupe.Naziv as Podgrupa, MAticniPodatki.Materijal1, MaticniPodatki.Materijal2, MaticniPodatki.Debljina, MaticniPodatki.Tehnologija1, MaticniPodatki.Tehnologija2  from MaticniPodatki  Left join MDFGrupe on MdfGrupe.ID = MaticniPodatki.MDFGrupa " +
-                " Left join MdfPodgrupe on MAticniPodatki.MDFPodgrupa = MDFPodgrupe.ID where MpStatus = 0 ";
+            var query = " Select  MAticniPodatki.MpSifra as Sifra, MpStaraSif as Kod, MpNaziv as NAziv, MpSifEnoteMere1 as JM, MpOsnSklad, MpOsnLokacija, MpStatus,  " +
+                " MdfGrupe.Naziv as MDFGrupa,  MDFPodgrupe.Naziv as Podgrupa, MAticniPodatkiIgor.Materijal1, MAticniPodatkiIgor.Materijal2, MAticniPodatkiIgor.Debljina," +
+                " MAticniPodatkiIgor.Tehnologija1, MAticniPodatkiIgor.Tehnologija2  from MaticniPodatki  " +
+                " left join MaticniPodatkiIgor on MaticniPodatkiIgor.MpSifra = MaticniPOdatki.MpSifra " +
+                " Left join MDFGrupe on MdfGrupe.ID = MaticniPodatkiIgor.MDFGrupa " +
+                " Left join MdfPodgrupe on MAticniPodatkiIgor.MDFPodgrupa = MDFPodgrupe.ID where MpStatus = 0 ";
             query = query + PrviAnd + DrugiAnd + TreciEnd;
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);

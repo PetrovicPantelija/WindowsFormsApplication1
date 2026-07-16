@@ -188,5 +188,65 @@ namespace WindowsFormsApplication1.Neto_potrebe
                 }
             }
         }
+
+        public void DeleteKrojna(int PlanID, string NazivKrojneListe)
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            SqlCommand myCommand = myConnection.CreateCommand();
+            myCommand.CommandText = "DeleteKrojnaLista";
+            myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+
+            SqlParameter parameter8 = new SqlParameter();
+            parameter8.ParameterName = "@KrojnaLista";
+            parameter8.SqlDbType = SqlDbType.NVarChar;
+            parameter8.Size = 50;
+            parameter8.Direction = ParameterDirection.Input;
+            parameter8.Value = NazivKrojneListe;
+            myCommand.Parameters.Add(parameter8);
+
+            SqlParameter parameter6 = new SqlParameter();
+            parameter6.ParameterName = "@PlanID";
+            parameter6.SqlDbType = SqlDbType.Int;
+            parameter6.Direction = ParameterDirection.Input;
+            parameter6.Value = PlanID;
+            myCommand.Parameters.Add(parameter6);
+
+            
+
+
+            myConnection.Open();
+            SqlTransaction myTransaction = myConnection.BeginTransaction();
+            myCommand.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                myCommand.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = myConnection.BeginTransaction();
+                myCommand.Transaction = myTransaction;
+            }
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis ");
+            }
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos kombinacije je uspesno zavrsen", "Rezultat generisanja",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                myConnection.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
     }
 }

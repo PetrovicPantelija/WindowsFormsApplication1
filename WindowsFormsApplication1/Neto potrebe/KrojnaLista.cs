@@ -111,9 +111,9 @@ LEFT JOIN KrojnaLista k
    AND k.PlanID = n.IDPlana
 WHERE 
     l.LokSkSifra = s.SkSifra and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + " and n.PodPlan  Like ('%" + txtPodPlan.Text + "%') " +
-    "GROUP BY n.ID, n.IDPlana, n.Podplan, n.IDNadredjena,n.IDZapisa, n.Mp, m.MpStaraSif, n.Kolicina " +
+    "GROUP BY n.Rb, n.ID, n.IDPlana, n.Podplan, n.IDNadredjena,n.IDZapisa, n.Mp, m.MpStaraSif, n.Kolicina " +
     "HAVING n.Kolicina - ISNULL(SUM(k.Kolicina), 0) > 0 " +
-    "ORDER BY n.ID ASC;";
+    "ORDER BY n.Rb,n.ID ASC;";
 
 
             SqlConnection conn = new SqlConnection(connect);
@@ -342,16 +342,18 @@ where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + 
             using (SqlConnection conn = new SqlConnection(connect))
             {
                 conn.Open();
-                string query = @"select NetoPotrebeIgor.ID, NetoPotrebeIGor.IDPlana, Podplan, NetoPotrebeIgor.IDNadredjena,NetoPotrebeIgor.IDZapisa,NetoPotrebeIgor.MP,MpStaraSif,KrojnaLista.Kolicina, KrojnaLista.Prioritet
+                string query = @"select NetoPotrebeIgor.ID, NetoPotrebeIGor.IDPlana, Podplan, NetoPotrebeIgor.IDNadredjena,NetoPotrebeIgor.IDZapisa,NetoPotrebeIgor.MP,MpStaraSif,KrojnaLista.Kolicina,
+  KrojnaLista.Prioritet
 From NetoPotrebeIgor
 inner join MaticniPodatki on NetoPotrebeIgor.MP=MaticniPodatki.MpSifra
+left join MaticniPodatkiIgor on MAticniPodatkiIgor.MPSifra=MaticniPodatki.MpSifra
 inner join sklad on NetoPotrebeIGor.Sklad=sklad.SkSifra
 inner join Lokac on NetoPotrebeIgor.Lokac=Lokac.LokSifra 
-left join MDFGrupe on MdfGrupe.ID = MaticniPodatki.MDFGrupa 
-left join MdfPodgrupe on MAticniPodatki.MDFPodgrupa = MDFPodgrupe.ID
+left join MDFGrupe on MdfGrupe.ID = MaticniPodatkiIgor.MDFGrupa 
+left join MdfPodgrupe on MAticniPodatkiIgor.MDFPodgrupa = MDFPodgrupe.ID
 inner join KrojnaLista on NetopotrebeIgor.IDZapisa=KrojnaLista.ZapisNP
 where LokSkSifra=Sklad and IdPlana=" + cboPlan.SelectedValue + " and NetoPotrebeIgor.PodPlan  Like ('" + txtPodPlan.Text + "') and KrojnaLista.KrojnaLista='" + cboKrojnaLista.SelectedValue + "' " +
-"order by NetoPotrebeIgor.id asc";
+" order by NetoPotrebeIgor.id asc";
 
                 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -637,6 +639,14 @@ where LokSkSifra=Sklad and IdPlana=" + cboPlan.SelectedValue + " and NetoPotrebe
            // FillGV();
             //VratiKrojneListe();
             VratiStavkeKrojneListe();
+        }
+
+        private void iconButton5_Click(object sender, EventArgs e)
+        {
+            InsertKrojnaLista isporuka = new InsertKrojnaLista();
+            isporuka.DeleteKrojna(Convert.ToInt32(cboPlan.SelectedValue), cboKrojnaLista.Text);
+            MessageBox.Show("Izbrisana je cela krojna lista " + cboKrojnaLista.Text);
+            VratiKrojneListe();
         }
     }
 }
