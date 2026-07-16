@@ -45,16 +45,21 @@ namespace WindowsFormsApplication1.Neto_potrebe
             {
                 TreciEnd = " and mdfGrupa <> ''  order by MpStaraSif asc";
             }
+            string MpAnd = "";
+            if (textBoxSearchMP.Text != "")
+            {
+                MpAnd = " and MaticniPodatki.MpSifra =" + Convert.ToInt32(textBoxSearchMP.Text);
+            }
 
 
 
             var query = " Select  MAticniPodatki.MpSifra as Sifra, MpStaraSif as Kod, MpNaziv as NAziv, MpSifEnoteMere1 as JM, MpOsnSklad, MpOsnLokacija, MpStatus,  " +
                 " MdfGrupe.Naziv as MDFGrupa,  MDFPodgrupe.Naziv as Podgrupa, MAticniPodatkiIgor.Materijal1, MAticniPodatkiIgor.Materijal2, MAticniPodatkiIgor.Debljina," +
-                " MAticniPodatkiIgor.Tehnologija1, MAticniPodatkiIgor.Tehnologija2  from MaticniPodatki  " +
+                " MAticniPodatkiIgor.Tehnologija1, MAticniPodatkiIgor.Tehnologija2,ISNull(MdfGrupe.ID,0) as GrupaID,ISNull(MdfPodgrupe.ID,0) as PodgrupaID  from MaticniPodatki " +
                 " left join MaticniPodatkiIgor on MaticniPodatkiIgor.MpSifra = MaticniPOdatki.MpSifra " +
                 " Left join MDFGrupe on MdfGrupe.ID = MaticniPodatkiIgor.MDFGrupa " +
                 " Left join MdfPodgrupe on MAticniPodatkiIgor.MDFPodgrupa = MDFPodgrupe.ID where MpStatus = 0 ";
-            query = query + PrviAnd + DrugiAnd + TreciEnd;
+            query = query + MpAnd+ PrviAnd + DrugiAnd + TreciEnd;
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();
@@ -86,6 +91,9 @@ namespace WindowsFormsApplication1.Neto_potrebe
             DataGridViewColumn column6 = dataGridView1.Columns[5];
             dataGridView1.Columns[5].HeaderText = "Lokac";
             dataGridView1.Columns[5].Width = 80;
+
+            dataGridView1.Columns["GrupaID"].Visible = false;
+            dataGridView1.Columns["PodgrupaID"].Visible = false;
         }
         private void FillGrupe()
         {
@@ -127,20 +135,24 @@ namespace WindowsFormsApplication1.Neto_potrebe
 
         private void btnDodeli_Click(object sender, EventArgs e)
         {
-            string SifraMp = "";
+            int SifraMp;
+            int grupa;
+            int podgrupa;
             
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 if (row.Selected)
                 {
-                    //
 
-                    SifraMp = row.Cells[0].Value.ToString();
+                    SifraMp = Convert.ToInt32(row.Cells[0].Value.ToString());
+                    grupa = Convert.ToInt32(row.Cells["GrupaID"].Value.ToString());
+                    podgrupa = Convert.ToInt32(row.Cells["PodgrupaID"].Value.ToString());
+                    
                     InsertVeza program = new InsertVeza();
-                    program.InsProgram(SifraMp, Convert.ToInt32(cboGrupa.SelectedValue), Convert.ToInt32(cboPodgrupa.SelectedValue), txtMaterijal1.Text, txtMaterijal2.Text, txtDebljina.Text, txtTehnologija1.Text, txtTehnologija2.Text);
-
+                    program.DelProgram(Convert.ToInt32(SifraMp), grupa, podgrupa);
                 }
             }
+            FillGV();
         }
 
         private void button2_Click(object sender, EventArgs e)

@@ -50,6 +50,9 @@
             this.txtDebljina = new System.Windows.Forms.TextBox();
             this.txtTehnologija1 = new System.Windows.Forms.TextBox();
             this.txtTehnologija2 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBoxSearchMP = new System.Windows.Forms.TextBox();
+            this.btnObrisi = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -114,7 +117,7 @@
             // chkGrupa
             // 
             this.chkGrupa.AutoSize = true;
-            this.chkGrupa.Location = new System.Drawing.Point(872, 19);
+            this.chkGrupa.Location = new System.Drawing.Point(1087, 20);
             this.chkGrupa.Name = "chkGrupa";
             this.chkGrupa.Size = new System.Drawing.Size(73, 17);
             this.chkGrupa.TabIndex = 4;
@@ -123,7 +126,7 @@
             // 
             // textBoxSearch
             // 
-            this.textBoxSearch.Location = new System.Drawing.Point(404, 17);
+            this.textBoxSearch.Location = new System.Drawing.Point(635, 16);
             this.textBoxSearch.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxSearch.Name = "textBoxSearch";
             this.textBoxSearch.Size = new System.Drawing.Size(173, 20);
@@ -132,7 +135,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(335, 22);
+            this.label3.Location = new System.Drawing.Point(566, 21);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(45, 13);
             this.label3.TabIndex = 78;
@@ -140,7 +143,7 @@
             // 
             // textBoxSearch2
             // 
-            this.textBoxSearch2.Location = new System.Drawing.Point(590, 17);
+            this.textBoxSearch2.Location = new System.Drawing.Point(821, 16);
             this.textBoxSearch2.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxSearch2.Name = "textBoxSearch2";
             this.textBoxSearch2.Size = new System.Drawing.Size(172, 20);
@@ -148,7 +151,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(775, 14);
+            this.button1.Location = new System.Drawing.Point(998, 13);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 24);
@@ -159,7 +162,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(11, 447);
+            this.button2.Location = new System.Drawing.Point(11, 507);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(174, 39);
             this.button2.TabIndex = 81;
@@ -252,6 +255,33 @@
             this.txtTehnologija2.Size = new System.Drawing.Size(173, 20);
             this.txtTehnologija2.TabIndex = 97;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(333, 21);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(45, 13);
+            this.label4.TabIndex = 78;
+            this.label4.Text = "Kod like";
+            // 
+            // textBoxSearchMP
+            // 
+            this.textBoxSearchMP.Location = new System.Drawing.Point(383, 18);
+            this.textBoxSearchMP.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxSearchMP.Name = "textBoxSearchMP";
+            this.textBoxSearchMP.Size = new System.Drawing.Size(172, 20);
+            this.textBoxSearchMP.TabIndex = 79;
+            // 
+            // btnObrisi
+            // 
+            this.btnObrisi.Location = new System.Drawing.Point(10, 447);
+            this.btnObrisi.Name = "btnObrisi";
+            this.btnObrisi.Size = new System.Drawing.Size(175, 39);
+            this.btnObrisi.TabIndex = 3;
+            this.btnObrisi.Text = "Obriši";
+            this.btnObrisi.UseVisualStyleBackColor = true;
+            this.btnObrisi.Click += new System.EventHandler(this.btnDodeli_Click);
+            // 
             // MpMDF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -269,10 +299,13 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.textBoxSearchMP);
             this.Controls.Add(this.textBoxSearch2);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBoxSearch);
             this.Controls.Add(this.chkGrupa);
+            this.Controls.Add(this.btnObrisi);
             this.Controls.Add(this.btnDodeli);
             this.Controls.Add(this.cboPodgrupa);
             this.Controls.Add(this.cboGrupa);
@@ -312,5 +345,8 @@
         private System.Windows.Forms.TextBox txtDebljina;
         private System.Windows.Forms.TextBox txtTehnologija1;
         private System.Windows.Forms.TextBox txtTehnologija2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBoxSearchMP;
+        private System.Windows.Forms.Button btnObrisi;
     }
 }

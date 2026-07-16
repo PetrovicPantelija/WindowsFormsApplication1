@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,10 +22,24 @@ namespace WindowsFormsApplication1.Neto_potrebe
         int tmpPlanID = 0;
         string tmpPodPlan = "";
 
+        private readonly Dictionary<string, HashSet<string>> _hiddenColumnsByGrid =
+            new Dictionary<string, HashSet<string>>();
+
+        private readonly string _columnSettingsFile = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+            "WindowsFormsApplication1",
+            "PregledPodPlan_Kolone.txt"
+        );
+
+        private ContextMenuStrip _columnMenu;
+        private DataGridView _activeColumnMenuGrid;
+        private string _activeColumnMenuGridKey;
+
         public PregledPodPlan()
         {
             InitializeComponent();
             panel1.Visible = false;
+            InitColumnVisibilityMenu();
         }
 
         public PregledPodPlan(int PlanID, string PodPlan)
@@ -33,6 +48,7 @@ namespace WindowsFormsApplication1.Neto_potrebe
             tmpPlanID = PlanID;
             tmpPodPlan = PodPlan;
             panel1.Visible = false;
+            InitColumnVisibilityMenu();
         }
 
         private void FillPlanovi()
@@ -60,6 +76,276 @@ namespace WindowsFormsApplication1.Neto_potrebe
             {
                 FillPlanovi();
             }
+        }
+
+        private void InitColumnVisibilityMenu()
+        {
+            LoadColumnVisibilitySettings();
+
+            _columnMenu = new ContextMenuStrip();
+
+            RegisterColumnMenu(dataGridView1, "dataGridView1");
+            RegisterColumnMenu(dataGridView2, "dataGridView2");
+            RegisterColumnMenu(dataGridView3, "dataGridView3");
+            RegisterColumnMenu(dataGridView4, "dataGridView4");
+            RegisterColumnMenu(dataGridView5, "dataGridView5");
+        }
+
+        private void RegisterColumnMenu(DataGridView dgv, string gridKey)
+        {
+            if (dgv == null)
+                return;
+
+            dgv.Tag = gridKey;
+
+            dgv.ColumnHeaderMouseClick -= Grid_ColumnHeaderMouseClick;
+            dgv.ColumnHeaderMouseClick += Grid_ColumnHeaderMouseClick;
+        }
+
+        private void Grid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Right)
+                return;
+
+            DataGridView dgv = sender as DataGridView;
+
+            if (dgv == null)
+                return;
+
+            string gridKey = dgv.Tag == null ? dgv.Name : dgv.Tag.ToString();
+
+            ShowColumnMenu(dgv, gridKey);
+        }
+
+        private void ShowColumnMenu(DataGridView dgv, string gridKey)
+        {
+            _activeColumnMenuGrid = dgv;
+            _activeColumnMenuGridKey = gridKey;
+
+            _columnMenu.Items.Clear();
+
+            ToolStripMenuItem title = new ToolStripMenuItem("Kolone");
+            title.Enabled = false;
+            _columnMenu.Items.Add(title);
+
+            _columnMenu.Items.Add(new ToolStripSeparator());
+
+            foreach (DataGridViewColumn col in dgv.Columns)
+            {
+                ToolStripMenuItem item = new ToolStripMenuItem();
+
+                string header = string.IsNullOrWhiteSpace(col.HeaderText)
+                    ? col.Name
+                    : col.HeaderText;
+
+                item.Text = header;
+                item.Tag = col.Name;
+                item.Checked = col.Visible;
+                item.CheckOnClick = true;
+                item.Click += ColumnMenuItem_Click;
+
+                _columnMenu.Items.Add(item);
+            }
+
+            _columnMenu.Items.Add(new ToolStripSeparator());
+
+            ToolStripMenuItem showAll = new ToolStripMenuItem("Prikaži sve kolone");
+            showAll.Click += ShowAllColumns_Click;
+            _columnMenu.Items.Add(showAll);
+
+            ToolStripMenuItem hideAllOperations = new ToolStripMenuItem("Sakrij operacije");
+            hideAllOperations.Click += HideOperationColumns_Click;
+            _columnMenu.Items.Add(hideAllOperations);
+
+            ToolStripMenuItem showAllOperations = new ToolStripMenuItem("Prikaži operacije");
+            showAllOperations.Click += ShowOperationColumns_Click;
+            _columnMenu.Items.Add(showAllOperations);
+
+            _columnMenu.Show(Cursor.Position);
+        }
+
+        private void ColumnMenuItem_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem item = sender as ToolStripMenuItem;
+
+            if (item == null || _activeColumnMenuGrid == null)
+                return;
+
+            string columnName = item.Tag == null ? "" : item.Tag.ToString();
+
+            if (string.IsNullOrWhiteSpace(columnName))
+                return;
+
+            if (!_activeColumnMenuGrid.Columns.Contains(columnName))
+                return;
+
+            if (!item.Checked && CountVisibleColumns(_activeColumnMenuGrid) <= 1)
+            {
+                item.Checked = true;
+                MessageBox.Show("Mora ostati prikazana bar jedna kolona.", "Kolone",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            _activeColumnMenuGrid.Columns[columnName].Visible = item.Checked;
+
+            SetColumnHidden(_activeColumnMenuGridKey, columnName, !item.Checked);
+            SaveColumnVisibilitySettings();
+        }
+
+        private int CountVisibleColumns(DataGridView dgv)
+        {
+            int count = 0;
+
+            foreach (DataGridViewColumn col in dgv.Columns)
+            {
+                if (col.Visible)
+                    count++;
+            }
+
+            return count;
+        }
+
+        private void ShowAllColumns_Click(object sender, EventArgs e)
+        {
+            if (_activeColumnMenuGrid == null)
+                return;
+
+            foreach (DataGridViewColumn col in _activeColumnMenuGrid.Columns)
+            {
+                col.Visible = true;
+            }
+
+            if (_hiddenColumnsByGrid.ContainsKey(_activeColumnMenuGridKey))
+                _hiddenColumnsByGrid[_activeColumnMenuGridKey].Clear();
+
+            SaveColumnVisibilitySettings();
+        }
+
+        private void HideOperationColumns_Click(object sender, EventArgs e)
+        {
+            if (_activeColumnMenuGrid == null)
+                return;
+
+            foreach (DataGridViewColumn col in _activeColumnMenuGrid.Columns)
+            {
+                if (IsOperacijaColumn(col.Name))
+                {
+                    col.Visible = false;
+                    SetColumnHidden(_activeColumnMenuGridKey, col.Name, true);
+                }
+            }
+
+            SaveColumnVisibilitySettings();
+        }
+
+        private void ShowOperationColumns_Click(object sender, EventArgs e)
+        {
+            if (_activeColumnMenuGrid == null)
+                return;
+
+            foreach (DataGridViewColumn col in _activeColumnMenuGrid.Columns)
+            {
+                if (IsOperacijaColumn(col.Name))
+                {
+                    col.Visible = true;
+                    SetColumnHidden(_activeColumnMenuGridKey, col.Name, false);
+                }
+            }
+
+            SaveColumnVisibilitySettings();
+        }
+
+        private void SetColumnHidden(string gridKey, string columnName, bool hidden)
+        {
+            if (string.IsNullOrWhiteSpace(gridKey) || string.IsNullOrWhiteSpace(columnName))
+                return;
+
+            if (!_hiddenColumnsByGrid.ContainsKey(gridKey))
+                _hiddenColumnsByGrid[gridKey] = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+            if (hidden)
+                _hiddenColumnsByGrid[gridKey].Add(columnName);
+            else
+                _hiddenColumnsByGrid[gridKey].Remove(columnName);
+        }
+
+        private void ApplyColumnVisibility(DataGridView dgv, string gridKey)
+        {
+            if (dgv == null || string.IsNullOrWhiteSpace(gridKey))
+                return;
+
+            if (!_hiddenColumnsByGrid.ContainsKey(gridKey))
+                return;
+
+            HashSet<string> hiddenColumns = _hiddenColumnsByGrid[gridKey];
+
+            foreach (DataGridViewColumn col in dgv.Columns)
+            {
+                col.Visible = !hiddenColumns.Contains(col.Name);
+            }
+
+            if (CountVisibleColumns(dgv) == 0)
+            {
+                foreach (DataGridViewColumn col in dgv.Columns)
+                    col.Visible = true;
+
+                hiddenColumns.Clear();
+                SaveColumnVisibilitySettings();
+            }
+        }
+
+        private void LoadColumnVisibilitySettings()
+        {
+            _hiddenColumnsByGrid.Clear();
+
+            if (!File.Exists(_columnSettingsFile))
+                return;
+
+            string[] lines = File.ReadAllLines(_columnSettingsFile, Encoding.UTF8);
+
+            foreach (string line in lines)
+            {
+                if (string.IsNullOrWhiteSpace(line))
+                    continue;
+
+                string[] parts = line.Split('|');
+
+                if (parts.Length != 2)
+                    continue;
+
+                string gridKey = parts[0].Trim();
+                string columnName = parts[1].Trim();
+
+                if (string.IsNullOrWhiteSpace(gridKey) || string.IsNullOrWhiteSpace(columnName))
+                    continue;
+
+                if (!_hiddenColumnsByGrid.ContainsKey(gridKey))
+                    _hiddenColumnsByGrid[gridKey] = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+                _hiddenColumnsByGrid[gridKey].Add(columnName);
+            }
+        }
+
+        private void SaveColumnVisibilitySettings()
+        {
+            string folder = Path.GetDirectoryName(_columnSettingsFile);
+
+            if (!Directory.Exists(folder))
+                Directory.CreateDirectory(folder);
+
+            List<string> lines = new List<string>();
+
+            foreach (var grid in _hiddenColumnsByGrid)
+            {
+                foreach (string columnName in grid.Value)
+                {
+                    if (!string.IsNullOrWhiteSpace(columnName))
+                        lines.Add(grid.Key + "|" + columnName);
+                }
+            }
+
+            File.WriteAllLines(_columnSettingsFile, lines.ToArray(), Encoding.UTF8);
         }
 
         private void FillGV()
@@ -113,9 +399,16 @@ WHERE N.IdPlana = @Plan AND N.PodPlan LIKE @PodPlan ORDER BY N.RB, N.ID, DP.DPIn
 
                 dataGridView1.DataSource = pivot;
 
-                dataGridView1.Columns["IDPlana"].Visible = false;
-
                 FormatGrid();
+
+                if (!_hiddenColumnsByGrid.ContainsKey("dataGridView1") && dataGridView1.Columns.Contains("IDPlana"))
+                {
+                    dataGridView1.Columns["IDPlana"].Visible = false;
+                    SetColumnHidden("dataGridView1", "IDPlana", true);
+                    SaveColumnVisibilitySettings();
+                }
+
+                ApplyColumnVisibility(dataGridView1, "dataGridView1");
 
                 FillSvi(pivot);
 
@@ -158,11 +451,24 @@ WHERE N.IdPlana = @Plan AND N.PodPlan LIKE @PodPlan ORDER BY N.RB, N.ID, DP.DPIn
                 return;
             }
 
-            string query = " select DnpStvProjekt as PlanID, PlanArhiv.Naziv as [Plan], SUM(ReRezKOl) as kolicina  From Rezervacije inner join" +
-                " DelNalogProizvodni on rezervacije.ReStDokumenta=DelNalogProizvodni.DNpStevilka " +
-                " inner join PlanArhiv on DnpStvProjekt = PlanArhiv.ID Where DnPSifStat in ('PL', 'LA') and ReSifMp= " + mp +
-" group by DnpStvProjekt, PlanArhiv.Naziv order by DnpStvProjekt desc";
-
+            string query = @"
+SELECT 
+    DnpStvProjekt AS PlanID,
+    PlanArhiv.Naziv AS [Plan],
+    SUM(ReRezKOl) AS kolicina
+FROM Rezervacije
+INNER JOIN DelNalogProizvodni 
+    ON Rezervacije.ReStDokumenta = DelNalogProizvodni.DNpStevilka
+INNER JOIN PlanArhiv 
+    ON DnpStvProjekt = PlanArhiv.ID
+WHERE 
+    DnPSifStat IN ('PL', 'LA')
+    AND ReSifMp = @MP
+GROUP BY 
+    DnpStvProjekt,
+    PlanArhiv.Naziv
+ORDER BY 
+    DnpStvProjekt DESC;";
 
             using (SqlConnection conn = new SqlConnection(connect))
             using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -182,11 +488,8 @@ WHERE N.IdPlana = @Plan AND N.PodPlan LIKE @PodPlan ORDER BY N.RB, N.ID, DP.DPIn
                 dataGridView4.DataSource = dtStanje;
 
                 FormatSvi(dataGridView4);
+                ApplyColumnVisibility(dataGridView4, "dataGridView4");
             }
-
-
-
-
         }
 
         private bool IsOperacijaColumn(string columnName)
@@ -466,10 +769,10 @@ WHERE N.IdPlana = @Plan AND N.PodPlan LIKE @PodPlan ORDER BY N.RB, N.ID, DP.DPIn
 
                     foreach (DataRow r in g)
                     {
-                        if (r["Proizvodnja"] != DBNull.Value)
+                        if (r["PlaniranaKolicina"] != DBNull.Value)
                         {
                             decimal tmp;
-                            if (decimal.TryParse(r["Proizvodnja"].ToString(), out tmp))
+                            if (decimal.TryParse(r["PlaniranaKolicina"].ToString(), out tmp))
                                 ukupnaKolicina += tmp;
                         }
                     }
@@ -524,7 +827,7 @@ CREATE CLUSTERED INDEX IX_Artikli_MP ON #Artikli(MP);
 
                 DataTable dt = new DataTable();
                 cmd.Parameters.AddWithValue("@Plan", Convert.ToInt32(cboPlan.SelectedValue));
-                cmd.Parameters.AddWithValue("@PodPlan", txtPodPlan.Text );
+                cmd.Parameters.AddWithValue("@PodPlan", txtPodPlan.Text);
 
                 using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                 {
@@ -553,29 +856,72 @@ CREATE CLUSTERED INDEX IX_Artikli_MP ON #Artikli(MP);
                 CreateAndFillTempArtikli(conn, artikli);
 
                 string queryPotrebneKolicine = @"
+;WITH Osnova AS
+(
+    SELECT
+        K.KoPodSifMp AS KoPodSifMp,
+
+        RTrim(M.MpStaraSif) + ' / ' + ISNULL(RTrim(M.MpNaziv), '') AS NazivMP,
+
+        CONVERT(NUMERIC(22,4),
+            SUM(
+                (
+                    (K.KoKolMateriala * 30 * (1 + (K.KoIzmet / 100.0))) / 30
+                ) * A.Kolicina
+            )
+        ) AS KoKolMateriala,
+
+        ISNULL(
+            (
+                SELECT SUM(ISNULL(Pr.PrIzdKol, 0))
+                FROM Promet Pr
+                WHERE 
+                    Pr.PrSifMp = K.KoPodSifMp
+                    AND Pr.PrStDokumenta IN
+                    (
+                        SELECT DnPStevilka
+                        FROM DelNalogProizvodni
+                        WHERE 
+                            DnpStvProjekt = @Plan
+                            AND CONVERT(nvarchar, dnpNote) = @PodPlan
+                    )
+            ), 0
+        ) AS Potroseno,
+
+        M.MpSifEnoteMere1 AS JM,
+
+        ISNULL(M.MpOsnSklad, 0) AS MpOsnSklad,
+
+        ISNULL(M.MpOsnLokacija, '') AS MpOsnLokacija
+
+    FROM #Artikli A
+    INNER JOIN Kosovnica K 
+        ON K.KoNadSifMp = A.MP
+    INNER JOIN MaticniPodatki M 
+        ON M.MpSifra = K.KoPodSifMp
+    WHERE 
+        K.KoVarianta = '*'
+        AND K.KoSifStat = 'A'
+    GROUP BY
+        K.KoPodSifMp,
+        RTrim(M.MpStaraSif) + ' / ' + ISNULL(RTrim(M.MpNaziv), ''),
+        M.MpSifEnoteMere1,
+        ISNULL(M.MpOsnSklad, 0),
+        ISNULL(M.MpOsnLokacija, '')
+)
 SELECT
-    K.KoPodSifMp AS KoPodSifMp,
-    RTrim(M.MpStaraSif) + ' / ' + ISNULL(RTrim(M.MpNaziv), '') AS NazivMP,
-    CONVERT(NUMERIC(22,4),SUM(((K.KoKolMateriala * 30 * (1 + (K.KoIzmet / 100.0))) / 30) * A.Kolicina)) AS KoKolMateriala,
- ISNULL((SELECT SUM(ISNULL(Pr.PrIzdKol,0)) FROM Promet Pr WHERE Pr.PrSifMp = K.KoPodSifMp and PrStDokumenta in (Select DnPStevilka from DelNalogProizvodni where DnpStvProjekt =   @Plan  and CONVERT(nvarchar,dnpNote) =  @PodPlan)), 0) AS Potroseno,
-    M.MpSifEnoteMere1 AS JM,
-    ISNULL(M.MpOsnSklad, 0) AS MpOsnSklad,
-    ISNULL(M.MpOsnLokacija, '') AS MpOsnLokacija
-    -- Potroseno: ukupno izdato/utrošeno iz promena (Promet) za dati MP
-FROM #Artikli A
-INNER JOIN Kosovnica K ON K.KoNadSifMp = A.MP
-INNER JOIN MaticniPodatki M ON M.MpSifra = K.KoPodSifMp
-WHERE K.KoVarianta = '*' AND K.KoSifStat = 'A'
-GROUP BY
-    K.KoPodSifMp,
-    RTrim(M.MpStaraSif) + ' / ' + ISNULL(RTrim(M.MpNaziv), ''),
-    M.MpSifEnoteMere1,
-    ISNULL(M.MpOsnSklad, 0),
-    ISNULL(M.MpOsnLokacija, '')
+    KoPodSifMp,
+    NazivMP,
+    KoKolMateriala,
+    Potroseno,
+    CONVERT(NUMERIC(22,4), KoKolMateriala - Potroseno) AS Potrebno,
+    JM,
+    MpOsnSklad,
+    MpOsnLokacija
+FROM Osnova
 ORDER BY
-    K.KoPodSifMp;
+    KoPodSifMp;
 ";
-               
 
                 DataTable dtKolicine = ExecuteDataTable(conn, queryPotrebneKolicine);
 
@@ -584,6 +930,7 @@ ORDER BY
                 dataGridView3.DataSource = dtKolicine;
 
                 FormatSvi(dataGridView3);
+                ApplyColumnVisibility(dataGridView3, "dataGridView3");
             }
         }
 
@@ -639,7 +986,7 @@ GROUP BY
     M.MpStaraSif,
     M.MpNaziv,
     M.MPSifEnoteMere1
-	HAVING SUM(ISNULL(P.PrPrevKol, 0) - ISNULL(P.PrIzdKol, 0))<>0
+HAVING SUM(ISNULL(P.PrPrevKol, 0) - ISNULL(P.PrIzdKol, 0)) <> 0
 ORDER BY
     P.PrSifSklad;
 ";
@@ -662,6 +1009,7 @@ ORDER BY
                 dataGridView2.DataSource = dtStanje;
 
                 FormatSvi(dataGridView2);
+                ApplyColumnVisibility(dataGridView2, "dataGridView2");
             }
         }
 
@@ -691,6 +1039,9 @@ ORDER BY
             da.Fill(ds);
             dataGridView5.ReadOnly = true;
             dataGridView5.DataSource = ds.Tables[0];
+
+            FormatSvi(dataGridView5);
+            ApplyColumnVisibility(dataGridView5, "dataGridView5");
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
@@ -721,14 +1072,26 @@ ORDER BY
         {
             InsertStampaNP inp = new InsertStampaNP();
             inp.DeleteAll();
+
             foreach (DataGridViewRow row in dataGridView3.Rows)
             {
-                if (row != null && row.Cells[0].Value != null)
-                {
-                    inp.InsertNP(Convert.ToInt32(row.Cells[0].Value.ToString()), row.Cells[1].Value.ToString(), Convert.ToDouble(row.Cells[2].Value.ToString()), Convert.ToDouble(row.Cells[3].Value.ToString()), row.Cells[4].Value.ToString(), cboPlan.Text, txtPodPlan.Text);
-            
-                }
+                if (row == null || row.IsNewRow)
+                    continue;
+
+                if (row.Cells["KoPodSifMp"].Value == null || row.Cells["KoPodSifMp"].Value == DBNull.Value)
+                    continue;
+
+                inp.InsertNP(
+                    Convert.ToInt32(row.Cells["KoPodSifMp"].Value.ToString()),
+                    row.Cells["NazivMP"].Value == null ? "" : row.Cells["NazivMP"].Value.ToString(),
+                    Convert.ToDouble(row.Cells["KoKolMateriala"].Value.ToString()),
+                    Convert.ToDouble(row.Cells["Potroseno"].Value.ToString()),
+                    row.Cells["JM"].Value == null ? "" : row.Cells["JM"].Value.ToString(),
+                    cboPlan.Text,
+                    txtPodPlan.Text
+                );
             }
+
             StampaNP staNP = new StampaNP(Convert.ToInt32(cboPlan.SelectedValue), txtPodPlan.Text);
             staNP.Show();
         }
