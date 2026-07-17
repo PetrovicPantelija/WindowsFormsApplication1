@@ -149,7 +149,7 @@ namespace WindowsFormsApplication1.Neto_potrebe
                     podgrupa = Convert.ToInt32(row.Cells["PodgrupaID"].Value.ToString());
                     
                     InsertVeza program = new InsertVeza();
-                    program.DelProgram(Convert.ToInt32(SifraMp), grupa, podgrupa);
+                    program.InsProgram(Convert.ToInt32(SifraMp), Convert.ToInt32(cboGrupa.SelectedValue), Convert.ToInt32(cboPodgrupa.SelectedValue), txtMaterijal1.Text, txtMaterijal2.Text, txtDebljina.Text, txtTehnologija1.Text, txtTehnologija2.Text);
                 }
             }
             FillGV();
@@ -157,6 +157,50 @@ namespace WindowsFormsApplication1.Neto_potrebe
 
         private void button2_Click(object sender, EventArgs e)
         {
+            FillGV();
+        }
+
+        private void btnObrisi_Click(object sender, EventArgs e)
+        {
+            int SifraMp;
+            int grupa;
+            int podgrupa;
+
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Selected)
+                {
+
+                    SifraMp = Convert.ToInt32(row.Cells[0].Value.ToString());
+                    grupa = Convert.ToInt32(row.Cells["GrupaID"].Value.ToString());
+                    podgrupa = Convert.ToInt32(row.Cells["PodgrupaID"].Value.ToString());
+
+                    InsertVeza program = new InsertVeza();
+                    program.DelProgram(Convert.ToInt32(SifraMp));
+                }
+            }
+            FillGV();
+        }
+
+        private void btnPromeni_Click(object sender, EventArgs e)
+        {
+            int SifraMp;
+            int grupa;
+            int podgrupa;
+
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Selected)
+                {
+
+                    SifraMp = Convert.ToInt32(row.Cells[0].Value.ToString());
+                    grupa = Convert.ToInt32(row.Cells["GrupaID"].Value.ToString());
+                    podgrupa = Convert.ToInt32(row.Cells["PodgrupaID"].Value.ToString());
+
+                    InsertVeza program = new InsertVeza();
+                    program.UpdProgram(Convert.ToInt32(SifraMp), Convert.ToInt32(cboGrupa.SelectedValue), Convert.ToInt32(cboPodgrupa.SelectedValue), txtMaterijal1.Text, txtMaterijal2.Text, txtDebljina.Text, txtTehnologija1.Text, txtTehnologija2.Text);
+                }
+            }
             FillGV();
         }
     }
