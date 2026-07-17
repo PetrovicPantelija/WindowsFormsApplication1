@@ -381,10 +381,10 @@ LEFT JOIN (SELECT PrSifMp, SUM(PrPrevKol - PrIzdKol) AS Stanje FROM Promet where
 LEFT JOIN DelPostopek DP ON DP.DpSifMp = N.MP
 LEFT JOIN DelNalogProizvodni DNP ON DNP.DnPSifMp = N.MP AND DNP.DNpStvProjekt = @Plan
 LEFT JOIN EvidencaUr EU ON EU.EuStDelNaloga = DNP.DNpStevilka AND EU.EuStZapOperacije = DP.DPInfZapSt
-WHERE N.IdPlana = @Plan AND N.PodPlan LIKE @PodPlan ORDER BY N.RB, N.ID, DP.DPInfZapSt;";
+WHERE N.IdPlana = @Plan AND N.PodPlan = RTRIM(@PodPlan) ORDER BY N.RB, N.ID, DP.DPInfZapSt;";
 
                 cmd.Parameters.AddWithValue("@Plan", Convert.ToInt32(cboPlan.SelectedValue));
-                cmd.Parameters.AddWithValue("@PodPlan", "%" + txtPodPlan.Text + "%");
+                cmd.Parameters.AddWithValue("@PodPlan",  txtPodPlan.Text );
 
                 DataTable dt = new DataTable();
                 new SqlDataAdapter(cmd).Fill(dt);
@@ -1031,7 +1031,7 @@ ORDER BY
 
         private void FillPodplanovi()
         {
-            var query = @"select distinct Podplan from NetopotrebeIgor Where IDPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + " and PodPlan<>''";
+            var query = @"select distinct Podplan from NetopotrebeIgor Where IDPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + " and PodPlan<>'' order by Podplan";
 
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
@@ -1040,7 +1040,12 @@ ORDER BY
             dataGridView5.ReadOnly = true;
             dataGridView5.DataSource = ds.Tables[0];
 
-            FormatSvi(dataGridView5);
+
+            DataGridViewColumn column2 = dataGridView5.Columns[0];
+            dataGridView5.Columns[0].HeaderText = "PodPlan";
+            dataGridView5.Columns[0].Width = 260;
+
+            //FormatSvi(dataGridView5);
             ApplyColumnVisibility(dataGridView5, "dataGridView5");
         }
 
