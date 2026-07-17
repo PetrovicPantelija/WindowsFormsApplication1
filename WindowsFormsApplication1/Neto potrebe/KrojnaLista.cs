@@ -240,6 +240,10 @@ where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + 
             da.Fill(ds);
             dataGridView3.ReadOnly = true;
             dataGridView3.DataSource = ds.Tables[0];
+
+            DataGridViewColumn column = dataGridView3.Columns[0];
+            dataGridView3.Columns[0].HeaderText = "PodPlan";
+            dataGridView3.Columns[0].Width = 250;
         }
 
         private void btnUbaci_Click(object sender, EventArgs e)
