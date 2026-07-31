@@ -291,7 +291,7 @@ namespace WindowsFormsApplication1
                 {
                    //PantaE
                   //  OleDbCommand cmd = new OleDbCommand("SELECT Distinct(TrVozila.RegistarskiBroj) as RegistarskiBroj FROM RkShipping INNER JOIN TrVozila ON RkShipping.VoziloIDz = TrVozila.VoziloID where ExportLargo = false and DatumIstovara = CDate('" + cboDatumUtovara.Text + "')", conn);
-                OleDbCommand cmd = new OleDbCommand("SELECT Distinct(TrVozila.RegistarskiBroj) as RegistarskiBroj FROM RkShipping INNER JOIN TrVozila ON RkShipping.VoziloIDz = TrVozila.VoziloID where ExportLargo = false and DatumIstovara = CDate('" + cboDatumUtovara.Text + "')", conn);
+                OleDbCommand cmd = new OleDbCommand("SELECT Distinct(TrVozila.RegistarskiBroj) as RegistarskiBroj FROM RkShipping INNER JOIN TrVozila ON RkShipping.VoziloIDz = TrVozila.VoziloID where ExportLargo = false and DatumUtovara = CDate('" + cboDatumUtovara.Text + "')", conn);
 
                 conn.Open();
 

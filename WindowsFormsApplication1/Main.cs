@@ -646,10 +646,10 @@ namespace WindowsFormsApplication1
 
             if (trebaazurirati == 0)
             {
-                RefreshReferencna();
-                RefreshKlijenti();
-                RefreshSaloni();
-                RefreshVozila();
+              //  RefreshReferencna();
+              //  RefreshKlijenti();
+              //  RefreshSaloni();
+             //   RefreshVozila();
                 ////RefreshVozaci();
 
                 MessageBox.Show("Ažuriranje podataka je obavljeno možete nastaviti sa daljim radom");

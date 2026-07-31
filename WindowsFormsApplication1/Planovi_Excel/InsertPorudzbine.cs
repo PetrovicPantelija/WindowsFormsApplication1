@@ -9,7 +9,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
     class InsertPorudzbine
     {
         private string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-        public void InsertRKStavkePOrudzbine(int ID, int LargoProizvodID, string LargoProizvodNaziv, int LargoPaketID, string LargoPaketNaziv, int Kolicina, string Relacija, string RelacijaNaziv, string RelacijaDatum)
+        public void InsertRKStavkePOrudzbine(int ID, int LargoProizvodID, string LargoProizvodNaziv, int LargoPaketID, string LargoPaketNaziv, decimal Kolicina, string Relacija, string RelacijaNaziv, string RelacijaDatum)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -70,7 +70,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
 
             SqlParameter kolicina = new SqlParameter();
             kolicina.ParameterName = "@Kolicina";
-            kolicina.SqlDbType = SqlDbType.Int;
+            kolicina.SqlDbType = SqlDbType.Decimal;
             kolicina.Direction = ParameterDirection.Input;
             kolicina.Value = Kolicina;
             cmd.Parameters.Add(kolicina);

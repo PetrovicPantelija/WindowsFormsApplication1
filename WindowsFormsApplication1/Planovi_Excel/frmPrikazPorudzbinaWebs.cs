@@ -127,7 +127,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
                         rPom3 = row.Cells[8].Value.ToString();
                     }
 
-                    ins.InsertRKStavkePOrudzbine(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()), row.Cells[2].Value.ToString(), Convert.ToInt32(row.Cells[3].Value.ToString()), row.Cells[4].Value.ToString(), Convert.ToInt32(row.Cells[5].Value.ToString()), rPom, rPom2, rPom3);
+                    ins.InsertRKStavkePOrudzbine(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()), row.Cells[2].Value.ToString(), Convert.ToInt32(row.Cells[3].Value.ToString()), row.Cells[4].Value.ToString(), Convert.ToDecimal(row.Cells[5].Value.ToString()), rPom, rPom2, rPom3);
 
                 }
             }
@@ -137,31 +137,103 @@ namespace WindowsFormsApplication1.Planovi_Excel
             }
 
         }
+
+        int VratiPostojiPorudzbina()
+        {
+            int Najveci = 0;
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select count(*) as Broj from Narocilo where NaVpisalDat = cAST(gETdATE() as Date)", con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                Najveci = Convert.ToInt32(dr["Broj"].ToString());
+             
+                return Najveci;
+            }
+            return 0;
+        }
         private void iconButton1_Click(object sender, EventArgs e)
         {
+            if (VratiPostojiPorudzbina() > 0)
+            {
+                DialogResult dialogResult = MessageBox.Show("Vec postoji porudzbina sa danasnjim datumom, da li zelite da je izbrisete pa ucitate ponovo?", "Novi podaci", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    WindowsFormsApplication1.Planovi_Excel.InsertPorudzbine ins = new WindowsFormsApplication1.Planovi_Excel.InsertPorudzbine();
+                   try
+                    {
+                        UbaciRkShiipingPorudzbina();
+                        MessageBox.Show("1");
+                    } 
+                    catch {  }
 
+                    try { UnesiPorudzbinu(); }
+                    catch { }
+                   
+
+                    // ins.DeleteRkStavkePorudzbine();
+                    // UnesiPorudzbinu();
+                }
+              
+            }
+            else
+            {
+                UnesiPorudzbinu();
+            }
+
+            var query = "select distinct RelacijaNaziv from RkShippingExportPorudzbine order by RelacijaNaziv asc";
+            var da = new SqlDataAdapter(query, conn2);
+            var ds = new DataSet();
+            da.Fill(ds);
+            cboRelacija.DataSource = ds.Tables[0];
+            cboRelacija.DisplayMember = "RelacijaNaziv";
+            cboRelacija.ValueMember = "RelacijaNaziv";
+
+            var select = "select distinct rk.*,CAST(SUM((MaticniPodatki.MpBrutoTeza*rk.Kolicina))as decimal(18,2))as Tezina " +
+                  "From RkShippingExportPorudzbine rk " +
+                  "inner join MaticniPodatki on rk.LargoPaketID = MaticniPodatki.MpSifra " +
+                  "group by ID,LargoProizvodID,LargoProizvodNaziv,LargoPaketID,LargoPaketNaziv,rk.Kolicina,Relacija,RelacijaNaziv,RelacijaDatum " +
+                  "order by ID asc";
+            SqlConnection conn2 = new SqlConnection(connect);
+            var da2 = new SqlDataAdapter(select, conn2);
+            var ds2 = new DataSet();
+            da2.Fill(ds2);
+            dataGridView2.ReadOnly = true;
+            dataGridView2.DataSource = ds2.Tables[0];
+
+           
+
+
+
+        }
+        private void UnesiPorudzbinu()
+        {
             dtpVremeOd.Value = DateTime.Now;
 
-                InsertPorudzbina porudzbina = new InsertPorudzbina();
+            InsertPorudzbina porudzbina = new InsertPorudzbina();
 
             porudzbina.InsertPor(dtpVremeOd.Text);
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-                porudzbina.InsertPorudzbinaPostav(Convert.ToInt32(row.Cells[3].Value.ToString()), Convert.ToInt32(row.Cells[5].Value.ToString()));
-               
+                porudzbina.InsertPorudzbinaPostav(Convert.ToInt32(row.Cells[3].Value.ToString()), Convert.ToDecimal(row.Cells[5].Value.ToString()));
+
             }
             MessageBox.Show("Zavrsen uvoz porudzbine");
 
-          
+
             string NazivBeleske = DateTime.Now.ToString() + '-' + "Porudzbina";
             MessageBox.Show(NazivBeleske);
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 porudzbina.InsertBeleskaPostav(NazivBeleske, Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()), row.Cells[2].Value.ToString(), Convert.ToInt32(row.Cells[3].Value.ToString()), row.Cells[4].Value.ToString(), Convert.ToDouble(row.Cells[5].Value.ToString()));
-               
+
             }
             MessageBox.Show("Zavrsen uvoz porudzbine");
-
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
