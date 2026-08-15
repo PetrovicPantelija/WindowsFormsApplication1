@@ -185,7 +185,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             {
                 UnesiPorudzbinu();
             }
-
+            SqlConnection conn2 = new SqlConnection(connect);
             var query = "select distinct RelacijaNaziv from RkShippingExportPorudzbine order by RelacijaNaziv asc";
             var da = new SqlDataAdapter(query, conn2);
             var ds = new DataSet();
@@ -199,7 +199,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
                   "inner join MaticniPodatki on rk.LargoPaketID = MaticniPodatki.MpSifra " +
                   "group by ID,LargoProizvodID,LargoProizvodNaziv,LargoPaketID,LargoPaketNaziv,rk.Kolicina,Relacija,RelacijaNaziv,RelacijaDatum " +
                   "order by ID asc";
-            SqlConnection conn2 = new SqlConnection(connect);
+           
             var da2 = new SqlDataAdapter(select, conn2);
             var ds2 = new DataSet();
             da2.Fill(ds2);
