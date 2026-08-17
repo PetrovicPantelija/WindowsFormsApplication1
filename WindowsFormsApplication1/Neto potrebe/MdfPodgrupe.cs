@@ -58,6 +58,7 @@ order by MdfPodgrupe.ID";
             if (txtNaziv.Text != null)
             {
                 InsertPodgrupa(Convert.ToInt32(cboGrupa.SelectedValue.ToString()), txtNaziv.Text.ToString().TrimEnd());
+                FillGV();
             }
             else
             {
@@ -71,6 +72,7 @@ order by MdfPodgrupe.ID";
             if (txtID.Text != null)
             {
                 UpdatePodgrupa(Convert.ToInt32(txtID.Text), Convert.ToInt32(cboGrupa.SelectedValue.ToString()), txtNaziv.Text.ToString().TrimEnd());
+                FillGV();
             }
             else
             {
@@ -83,7 +85,8 @@ order by MdfPodgrupe.ID";
         {
             if(txtID.Text != null) 
             { 
-                DeletePodgrupa(Convert.ToInt32(txtID.Text)); 
+                DeletePodgrupa(Convert.ToInt32(txtID.Text));
+                FillGV();
             } 
             else 
             { 

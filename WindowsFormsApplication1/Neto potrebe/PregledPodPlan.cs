@@ -356,7 +356,7 @@ namespace WindowsFormsApplication1.Neto_potrebe
                 cmd.Connection = conn;
 
                 cmd.CommandText = @"
-SELECT N.ID,N.IdPlana,N.PodPlan,N.MP,M.MpStaraSif, ((select isnull(Sum(DNpKolZaIzdelavo - DNpIzdelanaKol),0) as UkupnoNaRN from DelNalogProizvodni where DnPSifStat in ('PL', 'LA') and  DnpSifMp = N.MP)  +  ISNULL(ST.Stanje,0)
+SELECT N.ID,N.IdPlana,N.PodPlan,N.MP,M.MpStaraSif, ((select isnull(Sum(DNpKolZaIzdelavo - DNpIzdelanaKol),0) as UkupnoNaRN from DelNalogProizvodni where DnPSifStat in ('PL', 'LA','OD') and  DnpSifMp = N.MP)  +  ISNULL(ST.Stanje,0)
 	  - (SELECT SUM(ReKolDvig)
      FROM Rezervacije
     WHERE ReSifMp = N.MP
@@ -464,7 +464,7 @@ INNER JOIN DelNalogProizvodni
 INNER JOIN PlanArhiv 
     ON DnpStvProjekt = PlanArhiv.ID
 WHERE 
-    DnPSifStat IN ('PL', 'LA')
+    DnPSifStat IN ('PL', 'LA','OD')
     AND ReSifMp = @MP
 GROUP BY 
     DnpStvProjekt,

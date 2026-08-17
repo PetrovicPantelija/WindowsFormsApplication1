@@ -34,7 +34,7 @@ namespace WindowsFormsApplication1.Neto_potrebe
             FillTehnologija1();
             FillTehnologija2();
             FillPlanovi();
-            
+            FillSkladiste();
         }
         private void FillGV()
         {
@@ -185,6 +185,10 @@ var where = " where Rtrim(NetoPotrebeIgor.Podplan) = '' and LokSkSifra=Sklad and
             {
                 wheredodatak += " and MaticniPodatkiIgor.MdfGrupa = " + Convert.ToInt32(cboGrupa.SelectedValue);
             }
+            if (chkSkladiste.Checked == true)
+            {
+                wheredodatak += " and NetoPotrebeIGor.Sklad= " + Convert.ToInt32(cboSkladiste.SelectedValue);
+            }
             if (chkRazvrstani.Checked == true)
             {
                 wheredodatak += " and NetoPotrebeIgor.PodPlan <> '" + "" + "'";
@@ -292,6 +296,20 @@ where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + 
             cboGrupa.DataSource = ds.Tables[0];
             cboGrupa.DisplayMember = "Naziv";
             cboGrupa.ValueMember = "ID";
+
+
+        }
+
+        private void FillSkladiste()
+        {
+            var query = "Select SkSifra,RTrim(SkNaziv) as SkNaziv From Sklad order by SkSifra asc";
+            SqlConnection conn = new SqlConnection(connect);
+            var da = new SqlDataAdapter(query, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            cboSkladiste.DataSource = ds.Tables[0];
+            cboSkladiste.DisplayMember = "SkNaziv";
+            cboSkladiste.ValueMember = "SkSifra";
 
 
         }
@@ -415,10 +433,25 @@ where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + 
 
         private void button4_Click(object sender, EventArgs e)
         {
-            InsertVeza iv = new InsertVeza();
-           
+            DialogResult potvrda = MessageBox.Show(
+               "Da li ste sigurni da želite da obrišete NP?",
+                "Brisanje NP",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (potvrda != DialogResult.Yes)
+            {
+                return;
+
+            }
+            else
+            {
+
+                InsertVeza iv = new InsertVeza();
+
                 iv.ObrisiNetoPotrebe(Convert.ToInt32(cboPlan.SelectedValue));
                 FillGV();
+            }
            
         }
 
