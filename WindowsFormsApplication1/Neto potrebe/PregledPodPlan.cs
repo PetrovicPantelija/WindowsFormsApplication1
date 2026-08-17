@@ -362,7 +362,7 @@ SELECT N.ID,N.IdPlana,N.PodPlan,N.MP,M.MpStaraSif, ((select isnull(Sum(DNpKolZaI
     WHERE ReSifMp = N.MP
       AND ReBrisati = 0))as Proizvodnja,N.PlaniranaKolicina,
 ISNULL(RN.RNKol,0) AS RNKol,
-(select Sum(DNpKolZaIzdelavo - DNpIzdelanaKol) as UkupnoNaRN from DelNalogProizvodni where DnPSifStat in ('PL', 'LA') and  DnpSifMp = N.MP) as RNsvi,
+(select Sum(DNpKolZaIzdelavo - DNpIzdelanaKol) as UkupnoNaRN from DelNalogProizvodni where DnPSifStat in ('PL', 'LA','OD') and  DnpSifMp = N.MP) as RNsvi,
 (N.Kolicina - ISNULL(RN.RNKol,0)) AS Preostala,
  (SELECT SUM(ReKolDvig)
       FROM Rezervacije
