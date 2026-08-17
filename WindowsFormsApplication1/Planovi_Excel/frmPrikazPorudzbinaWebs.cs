@@ -1,9 +1,14 @@
-﻿using DocumentFormat.OpenXml.Wordprocessing;
+﻿using ClosedXML.Excel;
+using CsvHelper;
+using CsvHelper.Configuration;
+using DocumentFormat.OpenXml.Wordprocessing;
 using System;
 using System.Configuration;
 using System.Data;
 using System.Data.OleDb;
 using System.Data.SqlClient;
+using System.Globalization;
+using System.IO;
 using System.Windows.Forms;
 
 namespace WindowsFormsApplication1.Planovi_Excel
@@ -302,6 +307,104 @@ namespace WindowsFormsApplication1.Planovi_Excel
         private void frmPrikazPorudzbinaWebs_Load(object sender, EventArgs e)
         {
             
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+                string file = Path.Combine(
+                    desktop,
+                    "Porudzbine Webs-" + DateTime.Now.ToString("dd-MM-yyyy-HH-mm") + ".xlsx"
+                );
+
+                using (var workbook = new XLWorkbook())
+                {
+                    var sheet1 = workbook.Worksheets.Add("Sheet1");
+                    ExportDataGridViewToSheet(dataGridView1, sheet1);
+
+                    var sheet2 = workbook.Worksheets.Add("Sheet2");
+                    ExportDataGridViewToSheet(dataGridView2, sheet2);
+
+                    workbook.SaveAs(file);
+                }
+
+                MessageBox.Show(
+                    "Kreiran dokument:\n" + file,
+                    "Export",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    ex.ToString(),
+                    "Export",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
+        }
+
+        private void ExportDataGridViewToSheet(
+            DataGridView dgv,
+            IXLWorksheet sheet)
+        {
+            int excelColumn = 1;
+
+            foreach (DataGridViewColumn column in dgv.Columns)
+            {
+                if (!column.Visible)
+                    continue;
+
+                sheet.Cell(1, excelColumn).Value = column.HeaderText;
+                excelColumn++;
+            }
+
+            int excelRow = 2;
+
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                if (row.IsNewRow)
+                    continue;
+
+                excelColumn = 1;
+
+                foreach (DataGridViewColumn column in dgv.Columns)
+                {
+                    if (!column.Visible)
+                        continue;
+
+                    object value = row.Cells[column.Index].Value;
+
+                    if (value != null && value != DBNull.Value)
+                    {
+                        sheet.Cell(excelRow, excelColumn).Value =
+                            value.ToString();
+                    }
+
+                    excelColumn++;
+                }
+
+                excelRow++;
+            }
+
+            if (excelRow > 2 && excelColumn > 1)
+            {
+                var range = sheet.Range(
+                    1,
+                    1,
+                    excelRow - 1,
+                    excelColumn - 1
+                );
+
+                range.CreateTable();
+            }
+
+            sheet.Columns().AdjustToContents();
         }
     }
 }

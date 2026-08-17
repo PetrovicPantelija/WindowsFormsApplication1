@@ -44,6 +44,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.btnIzvestaj = new System.Windows.Forms.Button();
+            this.btnExport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -236,11 +237,23 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.btnIzvestaj.UseVisualStyleBackColor = true;
             this.btnIzvestaj.Click += new System.EventHandler(this.btnIzvestaj_Click);
             // 
+            // btnExport
+            // 
+            this.btnExport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnExport.Location = new System.Drawing.Point(1536, 13);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(129, 34);
+            this.btnExport.TabIndex = 172;
+            this.btnExport.Text = "Export csv";
+            this.btnExport.UseVisualStyleBackColor = false;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
             // frmPrikazPorudzbinaWebs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1677, 673);
+            this.Controls.Add(this.btnExport);
             this.Controls.Add(this.btnIzvestaj);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.dataGridView2);
@@ -283,5 +296,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button btnIzvestaj;
+        private System.Windows.Forms.Button btnExport;
     }
 }
