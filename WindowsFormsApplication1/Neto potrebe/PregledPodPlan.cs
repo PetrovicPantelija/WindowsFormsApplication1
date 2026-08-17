@@ -383,6 +383,8 @@ LEFT JOIN DelNalogProizvodni DNP ON DNP.DnPSifMp = N.MP AND DNP.DNpStvProjekt = 
 LEFT JOIN EvidencaUr EU ON EU.EuStDelNaloga = DNP.DNpStevilka AND EU.EuStZapOperacije = DP.DPInfZapSt
 WHERE N.IdPlana = @Plan AND N.PodPlan = RTRIM(@PodPlan) ORDER BY N.RB, N.ID, DP.DPInfZapSt;";
 
+
+                //OD dodat na PodPlan
                 cmd.Parameters.AddWithValue("@Plan", Convert.ToInt32(cboPlan.SelectedValue));
                 cmd.Parameters.AddWithValue("@PodPlan",  txtPodPlan.Text );
 
