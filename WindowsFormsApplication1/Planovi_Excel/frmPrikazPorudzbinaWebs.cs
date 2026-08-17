@@ -350,8 +350,8 @@ namespace WindowsFormsApplication1.Planovi_Excel
         }
 
         private void ExportDataGridViewToSheet(
-            DataGridView dgv,
-            IXLWorksheet sheet)
+    DataGridView dgv,
+    IXLWorksheet sheet)
         {
             int excelColumn = 1;
 
@@ -360,7 +360,11 @@ namespace WindowsFormsApplication1.Planovi_Excel
                 if (!column.Visible)
                     continue;
 
-                sheet.Cell(1, excelColumn).Value = column.HeaderText;
+                var cell = sheet.Cell(1, excelColumn);
+                cell.Value = column.HeaderText;
+
+                cell.Style.Font.Bold = true;
+
                 excelColumn++;
             }
 
@@ -382,26 +386,42 @@ namespace WindowsFormsApplication1.Planovi_Excel
 
                     if (value != null && value != DBNull.Value)
                     {
-                        sheet.Cell(excelRow, excelColumn).Value =
-                            value.ToString();
+                        if (column.HeaderText.Trim()
+                            .Equals("Kolicina", StringComparison.OrdinalIgnoreCase))
+                        {
+                            decimal decimalValue;
+
+                            if (value is decimal dec)
+                            {
+                                decimalValue = dec;
+                            }
+                            else if (decimal.TryParse(
+                                value.ToString(),
+                                out decimalValue))
+                            {
+                            }
+                            else
+                            {
+                                decimalValue = 0;
+                            }
+
+
+                            sheet.Cell(excelRow, excelColumn).Value = decimalValue;
+
+                            sheet.Cell(excelRow, excelColumn)
+                                .Style.NumberFormat.Format = "0.0000";
+                        }
+                        else
+                        {
+                            sheet.Cell(excelRow, excelColumn).Value =
+                                value.ToString();
+                        }
                     }
 
                     excelColumn++;
                 }
 
                 excelRow++;
-            }
-
-            if (excelRow > 2 && excelColumn > 1)
-            {
-                var range = sheet.Range(
-                    1,
-                    1,
-                    excelRow - 1,
-                    excelColumn - 1
-                );
-
-                range.CreateTable();
             }
 
             sheet.Columns().AdjustToContents();
