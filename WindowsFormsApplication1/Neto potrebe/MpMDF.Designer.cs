@@ -54,6 +54,7 @@
             this.textBoxSearchMP = new System.Windows.Forms.TextBox();
             this.btnObrisi = new System.Windows.Forms.Button();
             this.btnPromeni = new System.Windows.Forms.Button();
+            this.btnExcel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -293,6 +294,18 @@
             this.btnPromeni.UseVisualStyleBackColor = true;
             this.btnPromeni.Click += new System.EventHandler(this.btnPromeni_Click);
             // 
+            // btnExcel
+            // 
+            this.btnExcel.BackColor = System.Drawing.Color.ForestGreen;
+            this.btnExcel.ForeColor = System.Drawing.Color.White;
+            this.btnExcel.Location = new System.Drawing.Point(189, 370);
+            this.btnExcel.Name = "btnExcel";
+            this.btnExcel.Size = new System.Drawing.Size(123, 39);
+            this.btnExcel.TabIndex = 3;
+            this.btnExcel.Text = "Učitaj excel";
+            this.btnExcel.UseVisualStyleBackColor = false;
+            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
+            // 
             // MpMDF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -318,6 +331,7 @@
             this.Controls.Add(this.textBoxSearch);
             this.Controls.Add(this.chkGrupa);
             this.Controls.Add(this.btnObrisi);
+            this.Controls.Add(this.btnExcel);
             this.Controls.Add(this.btnDodeli);
             this.Controls.Add(this.cboPodgrupa);
             this.Controls.Add(this.cboGrupa);
@@ -361,5 +375,6 @@
         private System.Windows.Forms.TextBox textBoxSearchMP;
         private System.Windows.Forms.Button btnObrisi;
         private System.Windows.Forms.Button btnPromeni;
+        private System.Windows.Forms.Button btnExcel;
     }
 }

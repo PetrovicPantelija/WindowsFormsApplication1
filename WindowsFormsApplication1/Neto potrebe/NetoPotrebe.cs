@@ -302,7 +302,7 @@ where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + 
 
         private void FillSkladiste()
         {
-            var query = "Select SkSifra,RTrim(SkNaziv) as SkNaziv From Sklad order by SkSifra asc";
+            var query = "Select SkSifra,(Cast(SkSifra as nvarchar(20)) +' - '+ RTrim(SkNaziv)) as SkNaziv From Sklad order by SkSifra asc";
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();

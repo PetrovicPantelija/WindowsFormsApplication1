@@ -14,7 +14,7 @@ namespace WindowsFormsApplication1.Neto_potrebe
     internal class InsertVeza
     {
         string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-        public void InsProgram(int MpSifra, int Grupa, int Podgrupa, string Materijal1, string Materijal2, string Debljina, string Tehnologija1, String Tehnologija2)
+        public void InsProgram(int MpSifra, int Grupa, int Podgrupa, string Materijal1, string Materijal2, string Debljina, string Tehnologija1, string Tehnologija2)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();

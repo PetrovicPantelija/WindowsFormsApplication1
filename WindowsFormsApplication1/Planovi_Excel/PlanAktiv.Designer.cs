@@ -51,6 +51,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.button1 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.btnGrupisi = new System.Windows.Forms.Button();
+            this.btnExcel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -98,7 +99,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             // txtNaziv
             // 
             this.txtNaziv.Location = new System.Drawing.Point(63, 44);
-            this.txtNaziv.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtNaziv.Margin = new System.Windows.Forms.Padding(2);
             this.txtNaziv.Name = "txtNaziv";
             this.txtNaziv.Size = new System.Drawing.Size(150, 20);
             this.txtNaziv.TabIndex = 1;
@@ -106,7 +107,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             // txtNapomena
             // 
             this.txtNapomena.Location = new System.Drawing.Point(520, 28);
-            this.txtNapomena.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtNapomena.Margin = new System.Windows.Forms.Padding(2);
             this.txtNapomena.Multiline = true;
             this.txtNapomena.Name = "txtNapomena";
             this.txtNapomena.Size = new System.Drawing.Size(206, 45);
@@ -117,7 +118,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.dateTimePicker1.CustomFormat = "dd.MM.yyyy";
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker1.Location = new System.Drawing.Point(302, 30);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(151, 20);
             this.dateTimePicker1.TabIndex = 2;
@@ -127,7 +128,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.dateTimePicker2.CustomFormat = "dd.MM.yyyy";
             this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker2.Location = new System.Drawing.Point(302, 54);
-            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(151, 20);
             this.dateTimePicker2.TabIndex = 2;
@@ -139,7 +140,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(9, 124);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
@@ -160,7 +161,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(374, 84);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(95, 33);
             this.button2.TabIndex = 5;
@@ -233,7 +234,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.txtID.BackColor = System.Drawing.Color.Bisque;
             this.txtID.Enabled = false;
             this.txtID.Location = new System.Drawing.Point(11, 44);
-            this.txtID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtID.Margin = new System.Windows.Forms.Padding(2);
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(38, 20);
             this.txtID.TabIndex = 1;
@@ -242,7 +243,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(673, 79);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(71, 42);
             this.button1.TabIndex = 202;
@@ -253,7 +254,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(473, 84);
-            this.button3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(95, 33);
             this.button3.TabIndex = 203;
@@ -271,11 +272,24 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.btnGrupisi.UseVisualStyleBackColor = true;
             this.btnGrupisi.Click += new System.EventHandler(this.btnGrupisi_Click);
             // 
+            // btnExcel
+            // 
+            this.btnExcel.BackColor = System.Drawing.Color.ForestGreen;
+            this.btnExcel.ForeColor = System.Drawing.Color.White;
+            this.btnExcel.Location = new System.Drawing.Point(245, 84);
+            this.btnExcel.Name = "btnExcel";
+            this.btnExcel.Size = new System.Drawing.Size(113, 33);
+            this.btnExcel.TabIndex = 205;
+            this.btnExcel.Text = "Učitaj excel";
+            this.btnExcel.UseVisualStyleBackColor = false;
+            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
+            // 
             // PlanAktiv
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(753, 511);
+            this.Controls.Add(this.btnExcel);
             this.Controls.Add(this.btnGrupisi);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button1);
@@ -293,7 +307,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "PlanAktiv";
             this.Text = "PlanAktiv";
             this.Load += new System.EventHandler(this.PlanAktiv_Load);
@@ -328,5 +342,6 @@ namespace WindowsFormsApplication1.Planovi_Excel
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button btnGrupisi;
+        private System.Windows.Forms.Button btnExcel;
     }
 }
