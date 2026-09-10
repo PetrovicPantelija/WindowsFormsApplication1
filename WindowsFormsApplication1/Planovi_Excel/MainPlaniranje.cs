@@ -158,5 +158,29 @@ namespace WindowsFormsApplication1.Planovi_Excel
             RazloziZaustavljanja rz = new RazloziZaustavljanja();
             rz.Show();
         }
+
+        private void label21_Click(object sender, EventArgs e)
+        {
+            frmMaterijali1 materijali1 = new frmMaterijali1();
+            materijali1.Show();
+        }
+
+        private void label22_Click(object sender, EventArgs e)
+        {
+            frmMaterijali2 materijali2 = new frmMaterijali2();
+            materijali2.Show();
+        }
+
+        private void label23_Click(object sender, EventArgs e)
+        {
+            frmTehnologija1 tehnologija1 = new frmTehnologija1();
+            tehnologija1.Show();
+        }
+
+        private void label24_Click(object sender, EventArgs e)
+        {
+            frmTehnologija2 tehnologija2 = new frmTehnologija2();
+            tehnologija2.Show();
+        }
     }
 }

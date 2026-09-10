@@ -315,26 +315,26 @@ where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + 
         }
         private void FillMAterijal1()
         {
-            var query = "Select distinct Materijal1 From MaticniPodatkiIgor order by Materijal1 asc";
+            var query = "Select distinct Materijali1 From MdfMAterijal1 order by Materijali1 asc";
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();
             da.Fill(ds);
             cboMaterijal1.DataSource = ds.Tables[0];
-            cboMaterijal1.DisplayMember = "Materijal1";
-            cboMaterijal1.ValueMember = "Materijal1";
+            cboMaterijal1.DisplayMember = "Materijali1";
+            cboMaterijal1.ValueMember = "Materijali1";
         }
 
         private void FillMAterijal2()
         {
-            var query = "Select distinct Materijal2 From MaticniPodatkiIgor order by Materijal2 asc";
+            var query = "Select distinct Materijali2 From MdfMAterijal2 order by Materijali2 asc";
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();
             da.Fill(ds);
             cboMaterijal2.DataSource = ds.Tables[0];
-            cboMaterijal2.DisplayMember = "Materijal2";
-            cboMaterijal2.ValueMember = "Materijal2";
+            cboMaterijal2.DisplayMember = "Materijali2";
+            cboMaterijal2.ValueMember = "Materijali2";
         }
 
         private void FillDebljina()
@@ -351,7 +351,7 @@ where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + 
 
         private void FillTehnologija1()
         {
-            var query = "Select distinct Tehnologija1 From MaticniPodatkiIgor order by Tehnologija1 asc";
+            var query = "Select distinct Tehnologija1 From MdfTehnologija1 order by Tehnologija1 asc";
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();
@@ -363,7 +363,7 @@ where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + 
 
         private void FillTehnologija2()
         {
-            var query = "Select distinct Tehnologija2 From MaticniPodatkiIgor order by Tehnologija2 asc";
+            var query = "Select distinct Tehnologija2 From MdfTehnologija2 order by Tehnologija2 asc";
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();
@@ -384,6 +384,7 @@ where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + 
             cboPlan.DisplayMember = "Naziv";
             cboPlan.ValueMember = "ID";
         }
+
         private void FillPodgrupe()
         {
             var query = "Select ID,Naziv From MDFPodgrupe Where IDNadredjena=" + Convert.ToInt32(cboGrupa.SelectedValue) + " order by ID asc";
@@ -395,6 +396,7 @@ where LokSkSifra=Sklad and IdPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + 
             cboPodgrupa.DisplayMember = "Naziv";
             cboPodgrupa.ValueMember = "ID";
         }
+
         private void FillComboPodplan()
         {
             var query = "select distinct Podplan From NetoPotrebeIgor where PodPlan is not null and IDPlana=" + Convert.ToInt32(cboPlan.SelectedValue) + " order by Podplan asc";

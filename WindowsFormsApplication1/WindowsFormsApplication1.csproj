@@ -1109,6 +1109,30 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NedraDataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Neto potrebe\frmMaterijali1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Neto potrebe\frmMaterijali1.Designer.cs">
+      <DependentUpon>frmMaterijali1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Neto potrebe\frmMaterijali2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Neto potrebe\frmMaterijali2.Designer.cs">
+      <DependentUpon>frmMaterijali2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Neto potrebe\frmTehnologija1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Neto potrebe\frmTehnologija1.Designer.cs">
+      <DependentUpon>frmTehnologija1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Neto potrebe\frmTehnologija2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Neto potrebe\frmTehnologija2.Designer.cs">
+      <DependentUpon>frmTehnologija2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Neto potrebe\InsertKrojnaLista.cs" />
     <Compile Include="Neto potrebe\InsertRazloziZaustavljanja.cs" />
     <Compile Include="Neto potrebe\InsertStampaNP.cs" />
@@ -2141,6 +2165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Meniji\frmWEBSPodaci.resx">
       <DependentUpon>frmWEBSPodaci.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Neto potrebe\frmMaterijali1.resx">
+      <DependentUpon>frmMaterijali1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Neto potrebe\KrojnaLista.resx">
       <DependentUpon>KrojnaLista.cs</DependentUpon>
