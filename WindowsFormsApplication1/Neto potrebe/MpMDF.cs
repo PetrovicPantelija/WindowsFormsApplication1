@@ -33,7 +33,62 @@ namespace WindowsFormsApplication1.Neto_potrebe
         {
             FillGV();
             FillGrupe();
+            FillMAterijal1();
+            FillMAterijal2();
+            FillTehnologija1();
+            FillTehnologija2();
         }
+
+        private void FillMAterijal1()
+        {
+            var query = "Select distinct Materijali1 From MdfMAterijal1 order by Materijali1 asc";
+            SqlConnection conn = new SqlConnection(connect);
+            var da = new SqlDataAdapter(query, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            txtMaterijal1.DataSource = ds.Tables[0];
+            txtMaterijal1.DisplayMember = "Materijali1";
+            txtMaterijal1.ValueMember = "Materijali1";
+        }
+
+        private void FillMAterijal2()
+        {
+            var query = "Select distinct Materijali2 From MdfMAterijal2 order by Materijali2 asc";
+            SqlConnection conn = new SqlConnection(connect);
+            var da = new SqlDataAdapter(query, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            txtMaterijal2.DataSource = ds.Tables[0];
+            txtMaterijal2.DisplayMember = "Materijali2";
+            txtMaterijal2.ValueMember = "Materijali2";
+        }
+
+  
+
+        private void FillTehnologija1()
+        {
+            var query = "Select distinct Tehnologija1 From MdfTehnologija1 order by Tehnologija1 asc";
+            SqlConnection conn = new SqlConnection(connect);
+            var da = new SqlDataAdapter(query, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            txtTehnologija1.DataSource = ds.Tables[0];
+            txtTehnologija1.DisplayMember = "Tehnologija1";
+            txtTehnologija1.ValueMember = "Tehnologija1";
+        }
+
+        private void FillTehnologija2()
+        {
+            var query = "Select distinct Tehnologija2 From MdfTehnologija2 order by Tehnologija2 asc";
+            SqlConnection conn = new SqlConnection(connect);
+            var da = new SqlDataAdapter(query, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            txtTehnologija2.DataSource = ds.Tables[0];
+            txtTehnologija2.DisplayMember = "Tehnologija2";
+            txtTehnologija2.ValueMember = "Tehnologija2";
+        }
+
         private void FillGV()
         {
             string PrviAnd = "";

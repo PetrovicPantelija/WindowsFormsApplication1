@@ -45,16 +45,16 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtMaterijal1 = new System.Windows.Forms.TextBox();
-            this.txtMaterijal2 = new System.Windows.Forms.TextBox();
             this.txtDebljina = new System.Windows.Forms.TextBox();
-            this.txtTehnologija1 = new System.Windows.Forms.TextBox();
-            this.txtTehnologija2 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.textBoxSearchMP = new System.Windows.Forms.TextBox();
             this.btnObrisi = new System.Windows.Forms.Button();
             this.btnPromeni = new System.Windows.Forms.Button();
             this.btnExcel = new System.Windows.Forms.Button();
+            this.txtMaterijal1 = new System.Windows.Forms.ComboBox();
+            this.txtMaterijal2 = new System.Windows.Forms.ComboBox();
+            this.txtTehnologija1 = new System.Windows.Forms.ComboBox();
+            this.txtTehnologija2 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -217,45 +217,13 @@
             this.label5.TabIndex = 83;
             this.label5.Text = "Materijal 1";
             // 
-            // txtMaterijal1
-            // 
-            this.txtMaterijal1.Location = new System.Drawing.Point(11, 143);
-            this.txtMaterijal1.Margin = new System.Windows.Forms.Padding(2);
-            this.txtMaterijal1.Name = "txtMaterijal1";
-            this.txtMaterijal1.Size = new System.Drawing.Size(173, 20);
-            this.txtMaterijal1.TabIndex = 93;
-            // 
-            // txtMaterijal2
-            // 
-            this.txtMaterijal2.Location = new System.Drawing.Point(12, 191);
-            this.txtMaterijal2.Margin = new System.Windows.Forms.Padding(2);
-            this.txtMaterijal2.Name = "txtMaterijal2";
-            this.txtMaterijal2.Size = new System.Drawing.Size(173, 20);
-            this.txtMaterijal2.TabIndex = 94;
-            // 
             // txtDebljina
             // 
-            this.txtDebljina.Location = new System.Drawing.Point(11, 240);
+            this.txtDebljina.Location = new System.Drawing.Point(12, 236);
             this.txtDebljina.Margin = new System.Windows.Forms.Padding(2);
             this.txtDebljina.Name = "txtDebljina";
             this.txtDebljina.Size = new System.Drawing.Size(173, 20);
             this.txtDebljina.TabIndex = 95;
-            // 
-            // txtTehnologija1
-            // 
-            this.txtTehnologija1.Location = new System.Drawing.Point(11, 288);
-            this.txtTehnologija1.Margin = new System.Windows.Forms.Padding(2);
-            this.txtTehnologija1.Name = "txtTehnologija1";
-            this.txtTehnologija1.Size = new System.Drawing.Size(173, 20);
-            this.txtTehnologija1.TabIndex = 96;
-            // 
-            // txtTehnologija2
-            // 
-            this.txtTehnologija2.Location = new System.Drawing.Point(11, 336);
-            this.txtTehnologija2.Margin = new System.Windows.Forms.Padding(2);
-            this.txtTehnologija2.Name = "txtTehnologija2";
-            this.txtTehnologija2.Size = new System.Drawing.Size(173, 20);
-            this.txtTehnologija2.TabIndex = 97;
             // 
             // label4
             // 
@@ -306,17 +274,49 @@
             this.btnExcel.UseVisualStyleBackColor = false;
             this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
             // 
+            // txtMaterijal1
+            // 
+            this.txtMaterijal1.FormattingEnabled = true;
+            this.txtMaterijal1.Location = new System.Drawing.Point(12, 141);
+            this.txtMaterijal1.Name = "txtMaterijal1";
+            this.txtMaterijal1.Size = new System.Drawing.Size(265, 21);
+            this.txtMaterijal1.TabIndex = 99;
+            // 
+            // txtMaterijal2
+            // 
+            this.txtMaterijal2.FormattingEnabled = true;
+            this.txtMaterijal2.Location = new System.Drawing.Point(12, 189);
+            this.txtMaterijal2.Name = "txtMaterijal2";
+            this.txtMaterijal2.Size = new System.Drawing.Size(265, 21);
+            this.txtMaterijal2.TabIndex = 100;
+            // 
+            // txtTehnologija1
+            // 
+            this.txtTehnologija1.FormattingEnabled = true;
+            this.txtTehnologija1.Location = new System.Drawing.Point(12, 285);
+            this.txtTehnologija1.Name = "txtTehnologija1";
+            this.txtTehnologija1.Size = new System.Drawing.Size(265, 21);
+            this.txtTehnologija1.TabIndex = 101;
+            // 
+            // txtTehnologija2
+            // 
+            this.txtTehnologija2.FormattingEnabled = true;
+            this.txtTehnologija2.Location = new System.Drawing.Point(12, 333);
+            this.txtTehnologija2.Name = "txtTehnologija2";
+            this.txtTehnologija2.Size = new System.Drawing.Size(265, 21);
+            this.txtTehnologija2.TabIndex = 102;
+            // 
             // MpMDF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1345, 570);
-            this.Controls.Add(this.btnPromeni);
             this.Controls.Add(this.txtTehnologija2);
             this.Controls.Add(this.txtTehnologija1);
-            this.Controls.Add(this.txtDebljina);
             this.Controls.Add(this.txtMaterijal2);
             this.Controls.Add(this.txtMaterijal1);
+            this.Controls.Add(this.btnPromeni);
+            this.Controls.Add(this.txtDebljina);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -366,15 +366,15 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtMaterijal1;
-        private System.Windows.Forms.TextBox txtMaterijal2;
         private System.Windows.Forms.TextBox txtDebljina;
-        private System.Windows.Forms.TextBox txtTehnologija1;
-        private System.Windows.Forms.TextBox txtTehnologija2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBoxSearchMP;
         private System.Windows.Forms.Button btnObrisi;
         private System.Windows.Forms.Button btnPromeni;
         private System.Windows.Forms.Button btnExcel;
+        private System.Windows.Forms.ComboBox txtMaterijal1;
+        private System.Windows.Forms.ComboBox txtMaterijal2;
+        private System.Windows.Forms.ComboBox txtTehnologija1;
+        private System.Windows.Forms.ComboBox txtTehnologija2;
     }
 }
