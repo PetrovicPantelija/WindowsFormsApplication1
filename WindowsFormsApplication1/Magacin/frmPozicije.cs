@@ -30,9 +30,7 @@ namespace WindowsFormsApplication1.Magacin
         public frmPozicije()
         {
             InitializeComponent();
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
+         
         }
         public string IdGrupe()
         {
@@ -262,7 +260,17 @@ namespace WindowsFormsApplication1.Magacin
 
         private void frmPozicije_Load(object sender, EventArgs e)
         {
-             //Skladista
+            IdGrupe();
+            IdForme();
+            PravoPristupa();
+            if (Pravo == false)
+            {
+                this.Close();
+                return;
+            }
+
+
+            //Skladista
             var select3 = " select SkSifra , (Cast(SkSifra as nvarchar(6))  + '-' + SkNaziv) as Naziv from Sklad order by SkSifra";
             var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);

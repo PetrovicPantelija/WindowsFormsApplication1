@@ -46,16 +46,16 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(259, 9);
+            this.dataGridView1.Location = new System.Drawing.Point(222, 12);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(275, 476);
+            this.dataGridView1.Size = new System.Drawing.Size(389, 442);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(12, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(18, 13);
             this.label1.TabIndex = 1;
@@ -64,7 +64,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 70);
+            this.label2.Location = new System.Drawing.Point(12, 85);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(34, 13);
             this.label2.TabIndex = 2;
@@ -74,21 +74,21 @@
             // 
             this.txtID.BackColor = System.Drawing.SystemColors.Info;
             this.txtID.Enabled = false;
-            this.txtID.Location = new System.Drawing.Point(12, 25);
+            this.txtID.Location = new System.Drawing.Point(12, 40);
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(63, 20);
             this.txtID.TabIndex = 3;
             // 
             // txtNaziv
             // 
-            this.txtNaziv.Location = new System.Drawing.Point(12, 86);
+            this.txtNaziv.Location = new System.Drawing.Point(12, 101);
             this.txtNaziv.Name = "txtNaziv";
             this.txtNaziv.Size = new System.Drawing.Size(173, 20);
             this.txtNaziv.TabIndex = 3;
             // 
             // btnDodaj
             // 
-            this.btnDodaj.Location = new System.Drawing.Point(24, 129);
+            this.btnDodaj.Location = new System.Drawing.Point(24, 144);
             this.btnDodaj.Name = "btnDodaj";
             this.btnDodaj.Size = new System.Drawing.Size(150, 37);
             this.btnDodaj.TabIndex = 4;
@@ -98,7 +98,7 @@
             // 
             // btnIzmeni
             // 
-            this.btnIzmeni.Location = new System.Drawing.Point(24, 183);
+            this.btnIzmeni.Location = new System.Drawing.Point(24, 198);
             this.btnIzmeni.Name = "btnIzmeni";
             this.btnIzmeni.Size = new System.Drawing.Size(150, 37);
             this.btnIzmeni.TabIndex = 4;
@@ -108,7 +108,7 @@
             // 
             // btnObrisi
             // 
-            this.btnObrisi.Location = new System.Drawing.Point(24, 239);
+            this.btnObrisi.Location = new System.Drawing.Point(24, 254);
             this.btnObrisi.Name = "btnObrisi";
             this.btnObrisi.Size = new System.Drawing.Size(150, 37);
             this.btnObrisi.TabIndex = 4;
@@ -120,7 +120,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(546, 500);
+            this.ClientSize = new System.Drawing.Size(623, 466);
             this.Controls.Add(this.btnObrisi);
             this.Controls.Add(this.btnIzmeni);
             this.Controls.Add(this.btnDodaj);

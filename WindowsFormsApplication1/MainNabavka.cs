@@ -456,5 +456,11 @@ namespace WindowsFormsApplication1
             KompletiPaket frm = new KompletiPaket();
             frm.Show();
         }
+
+        private void iconButton2_Click(object sender, EventArgs e)
+        {
+            PakovanjaPlanovi.PakovanjeBarkodNabavka pakovanjeBarkodNabavka = new PakovanjaPlanovi.PakovanjeBarkodNabavka(KorisnikM);
+            pakovanjeBarkodNabavka.Show();
+        }
     }
 }

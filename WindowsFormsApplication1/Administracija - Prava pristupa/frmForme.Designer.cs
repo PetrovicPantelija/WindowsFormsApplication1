@@ -60,7 +60,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             this.toolStripSeparator1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(988, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(741, 27);
             this.toolStrip1.TabIndex = 202;
             this.toolStrip1.Text = "Osveži";
             // 
@@ -70,7 +70,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
             this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(29, 24);
+            this.tsNew.Size = new System.Drawing.Size(24, 24);
             this.tsNew.Text = "Novi";
             this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
             // 
@@ -80,7 +80,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(29, 24);
+            this.tsSave.Size = new System.Drawing.Size(24, 24);
             this.tsSave.Text = "tsSave";
             this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
             // 
@@ -90,7 +90,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
             this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsDelete.Name = "tsDelete";
-            this.tsDelete.Size = new System.Drawing.Size(29, 24);
+            this.tsDelete.Size = new System.Drawing.Size(24, 24);
             this.tsDelete.Text = "toolStripButton1";
             this.tsDelete.Click += new System.EventHandler(this.tsDelete_Click);
             // 
@@ -101,16 +101,18 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             // 
             // txt_IDForme
             // 
-            this.txt_IDForme.Location = new System.Drawing.Point(184, 73);
+            this.txt_IDForme.Location = new System.Drawing.Point(138, 59);
+            this.txt_IDForme.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_IDForme.Name = "txt_IDForme";
-            this.txt_IDForme.Size = new System.Drawing.Size(100, 22);
+            this.txt_IDForme.Size = new System.Drawing.Size(76, 20);
             this.txt_IDForme.TabIndex = 206;
             // 
             // txt_ID
             // 
-            this.txt_ID.Location = new System.Drawing.Point(12, 73);
+            this.txt_ID.Location = new System.Drawing.Point(9, 59);
+            this.txt_ID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_ID.Name = "txt_ID";
-            this.txt_ID.Size = new System.Drawing.Size(100, 22);
+            this.txt_ID.Size = new System.Drawing.Size(76, 20);
             this.txt_ID.TabIndex = 207;
             // 
             // label2
@@ -118,9 +120,10 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(180, 45);
+            this.label2.Location = new System.Drawing.Point(135, 37);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(109, 25);
+            this.label2.Size = new System.Drawing.Size(73, 17);
             this.label2.TabIndex = 204;
             this.label2.Text = "ID Forme";
             // 
@@ -129,18 +132,20 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(12, 45);
+            this.label1.Location = new System.Drawing.Point(9, 37);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(28, 20);
+            this.label1.Size = new System.Drawing.Size(23, 17);
             this.label1.TabIndex = 205;
             this.label1.Text = "ID";
             // 
             // txt_Naziv
             // 
             this.txt_Naziv.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_Naziv.Location = new System.Drawing.Point(12, 149);
+            this.txt_Naziv.Location = new System.Drawing.Point(9, 121);
+            this.txt_Naziv.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_Naziv.Name = "txt_Naziv";
-            this.txt_Naziv.Size = new System.Drawing.Size(272, 24);
+            this.txt_Naziv.Size = new System.Drawing.Size(205, 21);
             this.txt_Naziv.TabIndex = 209;
             // 
             // label3
@@ -148,18 +153,20 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(12, 116);
+            this.label3.Location = new System.Drawing.Point(9, 94);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 20);
+            this.label3.Size = new System.Drawing.Size(48, 17);
             this.label3.TabIndex = 208;
             this.label3.Text = "Naziv";
             // 
             // txt_Code
             // 
             this.txt_Code.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_Code.Location = new System.Drawing.Point(12, 227);
+            this.txt_Code.Location = new System.Drawing.Point(9, 184);
+            this.txt_Code.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_Code.Name = "txt_Code";
-            this.txt_Code.Size = new System.Drawing.Size(272, 24);
+            this.txt_Code.Size = new System.Drawing.Size(205, 21);
             this.txt_Code.TabIndex = 211;
             // 
             // label4
@@ -167,40 +174,41 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(12, 195);
+            this.label4.Location = new System.Drawing.Point(9, 158);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(65, 25);
+            this.label4.Size = new System.Drawing.Size(45, 17);
             this.label4.TabIndex = 210;
             this.label4.Text = "Code";
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(348, 45);
+            this.dataGridView1.Location = new System.Drawing.Point(261, 37);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(628, 524);
+            this.dataGridView1.Size = new System.Drawing.Size(471, 426);
             this.dataGridView1.TabIndex = 212;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // IconButton
             // 
             this.IconButton.Image = ((System.Drawing.Image)(resources.GetObject("IconButton.Image")));
-            this.IconButton.Location = new System.Drawing.Point(63, 359);
-            this.IconButton.Margin = new System.Windows.Forms.Padding(4);
+            this.IconButton.Location = new System.Drawing.Point(12, 423);
             this.IconButton.Name = "IconButton";
-            this.IconButton.Size = new System.Drawing.Size(152, 45);
+            this.IconButton.Size = new System.Drawing.Size(114, 37);
             this.IconButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.IconButton.TabIndex = 213;
             this.IconButton.TabStop = false;
             // 
             // frmForme
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(83)))), ((int)(((byte)(87)))));
-            this.ClientSize = new System.Drawing.Size(988, 581);
+            this.ClientSize = new System.Drawing.Size(741, 472);
             this.Controls.Add(this.IconButton);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.txt_Code);
@@ -212,8 +220,9 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.toolStrip1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmForme";
-            this.Text = "frmForme";
+            this.Text = "Forme";
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

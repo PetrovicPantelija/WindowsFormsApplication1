@@ -42,6 +42,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
         {
             FillCombo();
             FillGV();
+            FillGVFormer();
         }
         public string IdGrupe()
         {
@@ -166,6 +167,20 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             dataGridView1.Columns[7].Width = 70;
         }
 
+        private void FillGVFormer()
+        {
+            var query = "Select * from Forme";
+            SqlConnection conn = new SqlConnection(connect);
+            SqlDataAdapter da = new SqlDataAdapter(query, conn);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            dataGridView2.ReadOnly = true;
+            dataGridView2.DataSource = ds.Tables[0];
+           
+        }
+
+
+
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             try
@@ -228,6 +243,26 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             Administracija___Prava_pristupa.InsertGrupaForma grupa = new InsertGrupaForma();
             grupa.DelGrupaForma(Convert.ToInt32(txt_ID.Text));
             FillGV();
+        }
+
+        private void btnDodaj_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Administracija___Prava_pristupa.InsertGrupaForma grupa = new InsertGrupaForma();
+                MessageBox.Show("Funkcija za sve selektovane forme, dodeljuje obelezenoj grupi");
+                foreach (DataGridViewRow row in dataGridView2.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        if (cb_Upis.Checked == true) { upis = true; }
+                        if (cb_Izmena.Checked == true) { izmena = true; }
+                        if (cb_Brisanje.Checked == true) { brisanje = true; }
+                        grupa.InsGrupaForma(Convert.ToInt32(combo_Grupa.SelectedValue), Convert.ToInt32(row.Cells[1].Value.ToString()), upis, izmena, brisanje);
+                    }
+                }
+            }
+            catch { }
         }
     }
 }

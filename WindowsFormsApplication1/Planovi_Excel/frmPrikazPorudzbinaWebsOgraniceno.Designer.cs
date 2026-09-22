@@ -161,6 +161,7 @@
             this.Controls.Add(this.label4);
             this.Name = "frmPrikazPorudzbinaWebsOgraniceno";
             this.Text = "frmPrikazPorudzbinaWebsOgraniceno";
+            this.Load += new System.EventHandler(this.frmPrikazPorudzbinaWebsOgraniceno_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

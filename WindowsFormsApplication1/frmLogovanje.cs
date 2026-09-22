@@ -174,10 +174,14 @@ namespace WindowsFormsApplication1
             if (txtPassword.Text == "9145")
             {
                 Magacin.MainAdministracija ma = new Magacin.MainAdministracija();
+                ma.Show();
+              /*
                 PravoP = ma.Pravo;
-                if (PravoP == true) { ma.Show(); this.WindowState = FormWindowState.Minimized;
+                if (PravoP == true) { ma.Show(); 
+                this.WindowState = FormWindowState.Minimized;
                 }
                 else { return; }
+              */
             }
         }
 
@@ -237,6 +241,33 @@ namespace WindowsFormsApplication1
 
         private void button7_Click(object sender, EventArgs e)
         {
+            user = cboKorisnik.Text.ToString();
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            SqlCommand command = new SqlCommand("SELECT Korisnik FROM Korisnici where Password = '" + txtPassword.Text + "'", myConnection);
+            myConnection.Open();
+
+            SqlDataReader reader = command.ExecuteReader();
+            if (reader.HasRows == false)
+            {
+                MessageBox.Show("Nije ispravno uneta lozinka");
+                return;
+            }
+            else
+            {
+                Planovi_Excel.MainPlaniranje plp = new Planovi_Excel.MainPlaniranje();
+                PravoP = plp.Pravo;
+                if (PravoP == true)
+                {
+                    this.WindowState = FormWindowState.Minimized;
+                    plp.Show();
+                }
+                else { return; }
+            }
+            myConnection.Close();
+
+            /*
             if (txtPassword.Text != "")
             {
                 user = cboKorisnik.Text.ToString().TrimEnd();
@@ -246,14 +277,42 @@ namespace WindowsFormsApplication1
 
             }
             else { MessageBox.Show("Nije ispravno uneta lozinka"); }
+            */
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
+            user = cboKorisnik.Text.ToString();
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            SqlCommand command = new SqlCommand("SELECT Korisnik FROM Korisnici where Password = '" + txtPassword.Text + "'", myConnection);
+            myConnection.Open();
+
+            SqlDataReader reader = command.ExecuteReader();
+            if (reader.HasRows == false)
+            {
+                MessageBox.Show("Nije ispravno uneta lozinka");
+                return;
+            }
+            else
+            {
+                MainPakovanje frm = new MainPakovanje(user);
+                PravoP = frm.Pravo;
+                if (PravoP == true)
+                {
+                    frm.Show(); this.WindowState = FormWindowState.Minimized;
+                }
+                else { return; }
+            }
+            myConnection.Close();
+
+            /*
             user = cboKorisnik.Text;
             MainPakovanje frm = new MainPakovanje(user);
             frm.Show();
             this.WindowState = FormWindowState.Minimized;
+            */
 
         }
 

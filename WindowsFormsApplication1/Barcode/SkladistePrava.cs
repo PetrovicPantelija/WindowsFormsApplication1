@@ -60,9 +60,9 @@ namespace WindowsFormsApplication1.Barcode
                 }
                 else
                 {
-                    checkedListBox1.DataSource = ds2.Tables[0];
-                    checkedListBox1.DisplayMember = "SkNaziv";
-                    checkedListBox1.ValueMember = "SkSifra";
+                    // checkedListBox1.DataSource = ds2.Tables[0];
+                    // checkedListBox1.DisplayMember = "SkNaziv";
+                    // checkedListBox1.ValueMember = "SkSifra";
                 }
             }
         }

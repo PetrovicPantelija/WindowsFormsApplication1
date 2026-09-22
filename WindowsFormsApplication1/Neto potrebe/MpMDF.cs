@@ -24,19 +24,122 @@ namespace WindowsFormsApplication1.Neto_potrebe
     {
         private string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
         //komentar1
+        public static string code = "MpMDF";
+        public bool Pravo;
+        int idGrupe;
+        int idForme;
+        bool insert;
+        bool update;
+        bool delete;
+        string Kor = frmLogovanje.user.ToString().TrimEnd();
+        string niz = "";
+
         public MpMDF()
         {
             InitializeComponent();
+          
         }
 
         private void MpMDF_Load(object sender, EventArgs e)
         {
+            IdGrupe();
+            IdForme();
+            PravoPristupa();
+            if (Pravo == false)
+            {
+                this.Close();
+                return;
+            }
             FillGV();
             FillGrupe();
             FillMAterijal1();
             FillMAterijal2();
             FillTehnologija1();
             FillTehnologija2();
+        }
+
+        public string IdGrupe()
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
+            string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
+            SqlConnection conn = new SqlConnection(s_connection);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            int count = 0;
+
+            while (dr.Read())
+            {
+                if (count == 0)
+                {
+                    niz = dr["IdGrupe"].ToString();
+                    count++;
+                }
+                else
+                {
+                    niz = niz + "," + dr["IdGrupe"].ToString();
+                    count++;
+                }
+
+            }
+            conn.Close();
+            return niz;
+        }
+        private int IdForme()
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
+            SqlConnection conn = new SqlConnection(s_connection);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                idForme = Convert.ToInt32(dr["IdForme"].ToString());
+            }
+            conn.Close();
+            return idForme;
+        }
+
+        private void PravoPristupa()
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            string query = "Select * From GrupaForma Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
+            SqlConnection conn = new SqlConnection(s_connection);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader reader = cmd.ExecuteReader();
+            if (reader.HasRows == false)
+            {
+                MessageBox.Show("Nemate prava za pristup ovoj formi", code);
+                Pravo = false;
+            }
+            else
+            {
+                Pravo = true;
+                while (reader.Read())
+                {
+                    insert = Convert.ToBoolean(reader["Upis"]);
+                    if (insert == false)
+                    {
+                        //tsNew.Enabled = false;
+                    }
+                    update = Convert.ToBoolean(reader["Izmena"]);
+                    if (update == false)
+                    {
+                        //tsSave.Enabled = false;
+                    }
+                    delete = Convert.ToBoolean(reader["Brisanje"]);
+                    if (delete == false)
+                    {
+                        //tsDelete.Enabled = false;
+                    }
+                }
+            }
+
+            conn.Close();
         }
 
         private void FillMAterijal1()
@@ -276,6 +379,63 @@ namespace WindowsFormsApplication1.Neto_potrebe
             public string Tehnologija2 { get; set; }
         }
 
+        int VratiIDMDFGrupe(string nazivGrupe)
+        {
+            if (string.IsNullOrWhiteSpace(nazivGrupe))
+                return 0;
+
+            int id = 0;
+
+            using (SqlConnection conn = new SqlConnection(connect))
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        SELECT TOP 1 ID
+                        FROM MdfGrupe
+                        WHERE UPPER(LTRIM(RTRIM(Naziv))) = UPPER(LTRIM(RTRIM(@Naziv)))";
+                    cmd.Parameters.Add("@Naziv", SqlDbType.NVarChar, 200).Value = nazivGrupe.Trim();
+
+                    object result = cmd.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        int.TryParse(result.ToString(), out id);
+                    }
+                }
+            }
+
+            return id;
+        }
+        int VratiIDMDFPodGrupe(string nazivPodgrupe)
+        {
+            if (string.IsNullOrWhiteSpace(nazivPodgrupe))
+                return 0;
+
+            int id = 0;
+
+            using (SqlConnection conn = new SqlConnection(connect))
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        SELECT TOP 1 ID
+                        FROM MDFPodgrupe
+                        WHERE UPPER(LTRIM(RTRIM(Naziv))) = UPPER(LTRIM(RTRIM(@Naziv)))";
+                    cmd.Parameters.Add("@Naziv", SqlDbType.NVarChar, 200).Value = nazivPodgrupe.Trim();
+
+                    object result = cmd.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        int.TryParse(result.ToString(), out id);
+                    }
+                }
+            }
+
+            return id;
+        }
+
         private List<MaticniPodatak> list = new List<MaticniPodatak>();
 
 
@@ -377,11 +537,14 @@ namespace WindowsFormsApplication1.Neto_potrebe
                     object mpSifraObj =
                         worksheet.Cell(row, 1).Value;
 
-                    object grupaObj =
-                        worksheet.Cell(row, 2).Value;
+                    XLCellValue vrd = worksheet.Cell(row, 2).Value;
+                    object grupaObj = VratiIDMDFGrupe(vrd.ToString());
+                    // worksheet.Cell(row, 2).Value;
 
-                    object podgrupaObj =
-                        worksheet.Cell(row, 3).Value;
+                    XLCellValue vrdpod = worksheet.Cell(row,3).Value;
+                    object podgrupaObj = VratiIDMDFPodGrupe(vrdpod.ToString());
+
+             
 
                     object materijal1Obj =
                         worksheet.Cell(row, 4).Value;

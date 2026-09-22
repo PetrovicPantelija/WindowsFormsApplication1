@@ -180,5 +180,17 @@ namespace WindowsFormsApplication1.Kalkulacije
             }
             catch { }
         }
+
+        private void frmProgram_Load(object sender, EventArgs e)
+        {
+            IdGrupe();
+            IdForme();
+            PravoPristupa();
+            if (Pravo == false)
+            {
+                this.Close();
+                return; 
+            }
+        }
     }
 }

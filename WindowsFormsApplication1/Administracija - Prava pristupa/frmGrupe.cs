@@ -120,6 +120,8 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
 
             conn.Close();
         }
+
+
         private void frmGrupe_Load(object sender, EventArgs e)
         {
             FillGV();

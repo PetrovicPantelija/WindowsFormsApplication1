@@ -1215,7 +1215,14 @@
     <Compile Include="ObradaReklamacije.Designer.cs">
       <DependentUpon>ObradaReklamacije.cs</DependentUpon>
     </Compile>
+    <Compile Include="PakovanjaPlanovi\frmRedosledPakovanja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PakovanjaPlanovi\frmRedosledPakovanja.Designer.cs">
+      <DependentUpon>frmRedosledPakovanja.cs</DependentUpon>
+    </Compile>
     <Compile Include="PakovanjaPlanovi\InsertPakovanja.cs" />
+    <Compile Include="PakovanjaPlanovi\InsertRedosledPlaniranja.cs" />
     <Compile Include="PakovanjaPlanovi\KompletiPaket.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1294,6 +1301,12 @@
     <Compile Include="PakovanjaPlanovi\PakovanjeBarkod.Designer.cs">
       <DependentUpon>PakovanjeBarkod.cs</DependentUpon>
     </Compile>
+    <Compile Include="PakovanjaPlanovi\PakovanjeBarkodNabavka.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PakovanjaPlanovi\PakovanjeBarkodNabavka.Designer.cs">
+      <DependentUpon>PakovanjeBarkodNabavka.cs</DependentUpon>
+    </Compile>
     <Compile Include="PakovanjaPlanovi\PakovanjeReklamacijeIzvestaj.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1341,6 +1354,12 @@
     </Compile>
     <Compile Include="Pakovanja\PregledStavkiPlanaPakovanja\PackingPlanItemOverviewDAO.cs" />
     <Compile Include="Pakovanja\PregledStavkiPlanaPakovanja\PackingPlanItemOverviewModel.cs" />
+    <Compile Include="Pakovanja\ReklamacijePakovanja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pakovanja\ReklamacijePakovanja.Designer.cs">
+      <DependentUpon>ReklamacijePakovanja.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pakovanja\StavkePlanaPakovanja\frmStavkePlanaPakovanja.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1404,6 +1423,12 @@
     </Compile>
     <Compile Include="Planovi_Excel\frmPrikazPorudzbinaWebsOgraniceno.Designer.cs">
       <DependentUpon>frmPrikazPorudzbinaWebsOgraniceno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Planovi_Excel\frmSifarniciPlaniranje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Planovi_Excel\frmSifarniciPlaniranje.Designer.cs">
+      <DependentUpon>frmSifarniciPlaniranje.cs</DependentUpon>
     </Compile>
     <Compile Include="Planovi_Excel\InsertPlanovi.cs" />
     <Compile Include="Planovi_Excel\InsertPorudzbine.cs" />
@@ -2169,6 +2194,15 @@
     <EmbeddedResource Include="Neto potrebe\frmMaterijali1.resx">
       <DependentUpon>frmMaterijali1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Neto potrebe\frmMaterijali2.resx">
+      <DependentUpon>frmMaterijali2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Neto potrebe\frmTehnologija1.resx">
+      <DependentUpon>frmTehnologija1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Neto potrebe\frmTehnologija2.resx">
+      <DependentUpon>frmTehnologija2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Neto potrebe\KrojnaLista.resx">
       <DependentUpon>KrojnaLista.cs</DependentUpon>
     </EmbeddedResource>
@@ -2209,6 +2243,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ObradaReklamacije.resx">
       <DependentUpon>ObradaReklamacije.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PakovanjaPlanovi\frmRedosledPakovanja.resx">
+      <DependentUpon>frmRedosledPakovanja.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PakovanjaPlanovi\KompletiPaket.resx">
       <DependentUpon>KompletiPaket.cs</DependentUpon>
@@ -2254,6 +2291,9 @@
     <EmbeddedResource Include="PakovanjaPlanovi\PakovanjeBarkod.resx">
       <DependentUpon>PakovanjeBarkod.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PakovanjaPlanovi\PakovanjeBarkodNabavka.resx">
+      <DependentUpon>PakovanjeBarkodNabavka.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PakovanjaPlanovi\PakovanjeReklamacijeIzvestaj.resx">
       <DependentUpon>PakovanjeReklamacijeIzvestaj.cs</DependentUpon>
     </EmbeddedResource>
@@ -2278,6 +2318,9 @@
     <EmbeddedResource Include="Pakovanja\PregledStavkiPlanaPakovanja\frmPregledStavkiPlanaPakovanja.resx">
       <DependentUpon>frmPregledStavkiPlanaPakovanja.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pakovanja\ReklamacijePakovanja.resx">
+      <DependentUpon>ReklamacijePakovanja.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pakovanja\StavkePlanaPakovanja\frmStavkePlanaPakovanja.resx">
       <DependentUpon>frmStavkePlanaPakovanja.cs</DependentUpon>
     </EmbeddedResource>
@@ -2289,6 +2332,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Planovi_Excel\frmPrikazPorudzbinaWebsOgraniceno.resx">
       <DependentUpon>frmPrikazPorudzbinaWebsOgraniceno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Planovi_Excel\frmSifarniciPlaniranje.resx">
+      <DependentUpon>frmSifarniciPlaniranje.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Planovi_Excel\Izlaznost.resx">
       <DependentUpon>Izlaznost.cs</DependentUpon>

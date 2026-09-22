@@ -43,15 +43,16 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.wEBSPodaciToolStripMenuItem,
             this.pravaPristupaToolStripMenuItem,
             this.skladistaPravaToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Location = new System.Drawing.Point(0, 455);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(699, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1056, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -63,6 +64,7 @@
             this.wEBSPodaciToolStripMenuItem.Name = "wEBSPodaciToolStripMenuItem";
             this.wEBSPodaciToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.wEBSPodaciToolStripMenuItem.Text = "Šifarnici";
+            this.wEBSPodaciToolStripMenuItem.Click += new System.EventHandler(this.wEBSPodaciToolStripMenuItem_Click);
             // 
             // rkShippingToolStripMenuItem
             // 
@@ -92,28 +94,28 @@
             // grupeToolStripMenuItem
             // 
             this.grupeToolStripMenuItem.Name = "grupeToolStripMenuItem";
-            this.grupeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.grupeToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.grupeToolStripMenuItem.Text = "Grupe";
             this.grupeToolStripMenuItem.Click += new System.EventHandler(this.grupeToolStripMenuItem_Click);
             // 
             // formeToolStripMenuItem
             // 
             this.formeToolStripMenuItem.Name = "formeToolStripMenuItem";
-            this.formeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.formeToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.formeToolStripMenuItem.Text = "Forme";
             this.formeToolStripMenuItem.Click += new System.EventHandler(this.formeToolStripMenuItem_Click);
             // 
             // dodeliGrupuToolStripMenuItem
             // 
             this.dodeliGrupuToolStripMenuItem.Name = "dodeliGrupuToolStripMenuItem";
-            this.dodeliGrupuToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dodeliGrupuToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.dodeliGrupuToolStripMenuItem.Text = "Dodeli Grupu";
             this.dodeliGrupuToolStripMenuItem.Click += new System.EventHandler(this.dodeliGrupuToolStripMenuItem_Click);
             // 
             // dodeliFormuToolStripMenuItem
             // 
             this.dodeliFormuToolStripMenuItem.Name = "dodeliFormuToolStripMenuItem";
-            this.dodeliFormuToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dodeliFormuToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.dodeliFormuToolStripMenuItem.Text = "Dodeli Pravo";
             this.dodeliFormuToolStripMenuItem.Click += new System.EventHandler(this.dodeliFormuToolStripMenuItem_Click);
             // 
@@ -128,11 +130,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(187)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(699, 261);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(1056, 479);
             this.Controls.Add(this.menuStrip1);
             this.Name = "MainAdministracija";
             this.Text = "main";
+            this.Load += new System.EventHandler(this.MainAdministracija_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

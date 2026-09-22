@@ -28,17 +28,9 @@ namespace WindowsFormsApplication1.Kalkulacije
         public frmKolekcije()
         {
             InitializeComponent();
-            FillGV();
-            FillCombo();
-            txt_ID.Enabled = false;
             IdGrupe();
             IdForme();
             PravoPristupa();
-            if (Kor.Trim() == "stanojevic.ivan" || Kor.Trim() == "stanojlovic.djordje" || Kor.Trim() == "hasanovic.igor" || Kor.Trim() == "pantelija")
-            {
-                toolStrip1.Visible = true;
-            }
-            else { toolStrip1.Visible = false; }
         }
         public string IdGrupe()
         {
@@ -194,6 +186,18 @@ namespace WindowsFormsApplication1.Kalkulacije
         }
 
         private void frmKolekcije_Load(object sender, EventArgs e)
+        {
+            IdGrupe();
+            IdForme();
+            PravoPristupa();
+            if (Pravo == false)
+            {
+                this.Close();
+                return;
+            }
+        }
+
+        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
         }

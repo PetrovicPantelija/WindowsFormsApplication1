@@ -53,7 +53,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(20, 119);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(578, 391);
+            this.dataGridView1.Size = new System.Drawing.Size(576, 401);
             this.dataGridView1.TabIndex = 226;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -102,7 +102,7 @@
             this.toolStripSeparator1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(625, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(608, 25);
             this.toolStrip1.TabIndex = 227;
             this.toolStrip1.Text = "Osveži";
             // 
@@ -145,7 +145,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(625, 544);
+            this.ClientSize = new System.Drawing.Size(608, 544);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label2);
@@ -153,7 +153,7 @@
             this.Controls.Add(this.txtSifra);
             this.Controls.Add(this.label1);
             this.Name = "RazloziZaustavljanja";
-            this.Text = "RazloziZaustavljanja";
+            this.Text = "Razlozi Zaustavljanja";
             this.Load += new System.EventHandler(this.RazloziZaustavljanja_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.toolStrip1.ResumeLayout(false);
