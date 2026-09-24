@@ -171,6 +171,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
 
         private void label9_Click(object sender, EventArgs e)
         {
+            //grupe
             Planovi_Excel.PlanVeza pv = new PlanVeza();
             pv.Show();
         }
@@ -214,8 +215,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
         private void label18_Click(object sender, EventArgs e)
         {
             Magacin.frmPozicije poz = new Magacin.frmPozicije();
-            PravoP = poz.Pravo;
-            if (PravoP == true) { poz.Show(); } else { return; }
+        poz.Show();
         }
 
         private void label16_Click(object sender, EventArgs e)

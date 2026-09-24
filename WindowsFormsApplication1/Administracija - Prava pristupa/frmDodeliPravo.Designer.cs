@@ -119,12 +119,12 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(9, 36);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(23, 17);
+            this.label1.Size = new System.Drawing.Size(21, 17);
             this.label1.TabIndex = 208;
             this.label1.Text = "ID";
             // 
@@ -140,24 +140,24 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(121, 36);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 17);
+            this.label3.Size = new System.Drawing.Size(48, 17);
             this.label3.TabIndex = 210;
             this.label3.Text = "Grupa";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(316, 36);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 17);
+            this.label2.Size = new System.Drawing.Size(48, 17);
             this.label2.TabIndex = 210;
             this.label2.Text = "Forma";
             // 
@@ -173,12 +173,12 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             // cb_Upis
             // 
             this.cb_Upis.AutoSize = true;
-            this.cb_Upis.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cb_Upis.ForeColor = System.Drawing.Color.White;
+            this.cb_Upis.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_Upis.ForeColor = System.Drawing.Color.Black;
             this.cb_Upis.Location = new System.Drawing.Point(580, 58);
             this.cb_Upis.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cb_Upis.Name = "cb_Upis";
-            this.cb_Upis.Size = new System.Drawing.Size(59, 21);
+            this.cb_Upis.Size = new System.Drawing.Size(55, 21);
             this.cb_Upis.TabIndex = 212;
             this.cb_Upis.Text = "Upis";
             this.cb_Upis.UseVisualStyleBackColor = true;
@@ -186,12 +186,12 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             // cb_Izmena
             // 
             this.cb_Izmena.AutoSize = true;
-            this.cb_Izmena.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cb_Izmena.ForeColor = System.Drawing.Color.White;
+            this.cb_Izmena.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_Izmena.ForeColor = System.Drawing.Color.Black;
             this.cb_Izmena.Location = new System.Drawing.Point(674, 58);
             this.cb_Izmena.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cb_Izmena.Name = "cb_Izmena";
-            this.cb_Izmena.Size = new System.Drawing.Size(78, 21);
+            this.cb_Izmena.Size = new System.Drawing.Size(72, 21);
             this.cb_Izmena.TabIndex = 212;
             this.cb_Izmena.Text = "Izmena";
             this.cb_Izmena.UseVisualStyleBackColor = true;
@@ -199,12 +199,12 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             // cb_Brisanje
             // 
             this.cb_Brisanje.AutoSize = true;
-            this.cb_Brisanje.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cb_Brisanje.ForeColor = System.Drawing.Color.White;
+            this.cb_Brisanje.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_Brisanje.ForeColor = System.Drawing.Color.Black;
             this.cb_Brisanje.Location = new System.Drawing.Point(770, 58);
             this.cb_Brisanje.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cb_Brisanje.Name = "cb_Brisanje";
-            this.cb_Brisanje.Size = new System.Drawing.Size(86, 21);
+            this.cb_Brisanje.Size = new System.Drawing.Size(78, 21);
             this.cb_Brisanje.TabIndex = 212;
             this.cb_Brisanje.Text = "Brisanje";
             this.cb_Brisanje.UseVisualStyleBackColor = true;
@@ -220,7 +220,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(541, 435);
+            this.dataGridView1.Size = new System.Drawing.Size(578, 461);
             this.dataGridView1.TabIndex = 213;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -235,26 +235,26 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(458, 435);
+            this.dataGridView2.Size = new System.Drawing.Size(489, 461);
             this.dataGridView2.TabIndex = 214;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(8, 5);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(81, 17);
+            this.label4.Size = new System.Drawing.Size(72, 17);
             this.label4.TabIndex = 215;
             this.label4.Text = "Sve forme";
             // 
             // btnDodaj
             // 
-            this.btnDodaj.Location = new System.Drawing.Point(346, 5);
+            this.btnDodaj.Location = new System.Drawing.Point(305, 5);
             this.btnDodaj.Name = "btnDodaj";
-            this.btnDodaj.Size = new System.Drawing.Size(114, 32);
+            this.btnDodaj.Size = new System.Drawing.Size(155, 32);
             this.btnDodaj.TabIndex = 216;
             this.btnDodaj.Text = "Dodeli forme grupi";
             this.btnDodaj.UseVisualStyleBackColor = true;
@@ -263,12 +263,12 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Black;
             this.label5.Location = new System.Drawing.Point(10, 12);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(199, 17);
+            this.label5.Size = new System.Drawing.Size(174, 17);
             this.label5.TabIndex = 217;
             this.label5.Text = "Sve forme dodeljene grupi";
             // 
@@ -289,15 +289,15 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             this.splitContainer1.Panel2.Controls.Add(this.dataGridView2);
             this.splitContainer1.Panel2.Controls.Add(this.label4);
             this.splitContainer1.Panel2.Controls.Add(this.btnDodaj);
-            this.splitContainer1.Size = new System.Drawing.Size(1052, 493);
-            this.splitContainer1.SplitterDistance = 568;
+            this.splitContainer1.Size = new System.Drawing.Size(1120, 519);
+            this.splitContainer1.SplitterDistance = 605;
             this.splitContainer1.TabIndex = 218;
             // 
             // frmDodeliPravo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(83)))), ((int)(((byte)(87)))));
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1156, 639);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.cb_Brisanje);

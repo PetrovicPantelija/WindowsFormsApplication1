@@ -32,14 +32,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             InitializeComponent();
             FillGV();
             txt_ID.Enabled = false;
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
-            if (Kor.Trim() == "stanojevic.ivan" || Kor.Trim() == "stanojlovic.djordje" || Kor.Trim() == "hasanovic.igor" || Kor.Trim() == "pantelija")
-            {
-                toolStrip1.Visible = true;
-            }
-            else { toolStrip1.Visible = false; }
+           
         }
         public string IdGrupe()
         {
@@ -89,7 +82,7 @@ namespace WindowsFormsApplication1.Kalkulacije
         private void PravoPristupa()
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select * From GrupaForma Where IdGrupe in ('" + niz + "') and IdForme=" + idForme;
+            string query = "Select * From GrupaForma Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
             SqlConnection conn = new SqlConnection(s_connection);
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
@@ -186,6 +179,12 @@ namespace WindowsFormsApplication1.Kalkulacije
             IdGrupe();
             IdForme();
             PravoPristupa();
+        
+            if (Kor.Trim() == "stanojevic.ivan" || Kor.Trim() == "stanojlovic.djordje" || Kor.Trim() == "hasanovic.igor" || Kor.Trim() == "pantelija")
+            {
+                toolStrip1.Visible = true;
+            }
+            else { toolStrip1.Visible = false; }
             if (Pravo == false)
             {
                 this.Close();

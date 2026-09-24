@@ -50,17 +50,16 @@ namespace WindowsFormsApplication1.Neto_potrebe
             // 
             // txtNaziv
             // 
-            this.txtNaziv.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtNaziv.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNaziv.Location = new System.Drawing.Point(55, 14);
+            this.txtNaziv.Location = new System.Drawing.Point(55, 23);
             this.txtNaziv.Name = "txtNaziv";
             this.txtNaziv.Size = new System.Drawing.Size(314, 20);
             this.txtNaziv.TabIndex = 2;
             // 
             // btnDodaj
             // 
-            this.btnDodaj.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDodaj.Location = new System.Drawing.Point(15, 59);
+            this.btnDodaj.Location = new System.Drawing.Point(15, 68);
             this.btnDodaj.Name = "btnDodaj";
             this.btnDodaj.Size = new System.Drawing.Size(70, 23);
             this.btnDodaj.TabIndex = 3;
@@ -70,8 +69,7 @@ namespace WindowsFormsApplication1.Neto_potrebe
             // 
             // btnObrisi
             // 
-            this.btnObrisi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnObrisi.Location = new System.Drawing.Point(155, 59);
+            this.btnObrisi.Location = new System.Drawing.Point(155, 68);
             this.btnObrisi.Name = "btnObrisi";
             this.btnObrisi.Size = new System.Drawing.Size(70, 23);
             this.btnObrisi.TabIndex = 4;
@@ -81,9 +79,8 @@ namespace WindowsFormsApplication1.Neto_potrebe
             // 
             // lblNaziv
             // 
-            this.lblNaziv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblNaziv.AutoSize = true;
-            this.lblNaziv.Location = new System.Drawing.Point(12, 17);
+            this.lblNaziv.Location = new System.Drawing.Point(12, 26);
             this.lblNaziv.Name = "lblNaziv";
             this.lblNaziv.Size = new System.Drawing.Size(37, 13);
             this.lblNaziv.TabIndex = 1;

@@ -56,8 +56,6 @@ namespace WindowsFormsApplication1.Neto_potrebe
             // 
             // txtNaziv
             // 
-            this.txtNaziv.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNaziv.Location = new System.Drawing.Point(55, 23);
             this.txtNaziv.Name = "txtNaziv";
             this.txtNaziv.Size = new System.Drawing.Size(363, 20);
@@ -65,7 +63,6 @@ namespace WindowsFormsApplication1.Neto_potrebe
             // 
             // btnDodaj
             // 
-            this.btnDodaj.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDodaj.Location = new System.Drawing.Point(15, 69);
             this.btnDodaj.Name = "btnDodaj";
             this.btnDodaj.Size = new System.Drawing.Size(70, 23);
@@ -76,7 +73,6 @@ namespace WindowsFormsApplication1.Neto_potrebe
             // 
             // btnObrisi
             // 
-            this.btnObrisi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnObrisi.Location = new System.Drawing.Point(121, 69);
             this.btnObrisi.Name = "btnObrisi";
             this.btnObrisi.Size = new System.Drawing.Size(70, 23);
@@ -87,7 +83,6 @@ namespace WindowsFormsApplication1.Neto_potrebe
             // 
             // lblNaziv
             // 
-            this.lblNaziv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblNaziv.AutoSize = true;
             this.lblNaziv.Location = new System.Drawing.Point(12, 26);
             this.lblNaziv.Name = "lblNaziv";
