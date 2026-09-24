@@ -77,7 +77,27 @@ namespace WindowsFormsApplication1.Planovi_Excel
             btnClose.FlatAppearance.BorderSize = 0;
             btnClose.Click += (s, e) => Application.Exit();
             pnlHeader.Controls.Add(btnClose);
-            pnlHeader.SizeChanged += (s, e) => btnClose.Location = new Point(pnlHeader.Width - 50, 7);
+
+            // Dugme za minimizovanje (Custom -)
+            Button btnMinimize = new Button
+            {
+                Text = "–",
+                Size = new Size(45, 45),
+                Location = new Point(pnlHeader.Width - 95, 7),
+                FlatStyle = FlatStyle.Flat,
+                Font = new Font("Segoe UI", 12F, FontStyle.Bold),
+                ForeColor = Color.Gray,
+                Cursor = Cursors.Hand
+            };
+            btnMinimize.FlatAppearance.BorderSize = 0;
+            btnMinimize.Click += (s, e) => this.WindowState = FormWindowState.Minimized;
+            pnlHeader.Controls.Add(btnMinimize);
+
+            pnlHeader.SizeChanged += (s, e) =>
+            {
+                btnClose.Location = new Point(pnlHeader.Width - 50, 7);
+                btnMinimize.Location = new Point(pnlHeader.Width - 95, 7);
+            };
 
             // 3. Levi Bočni Meni (Sidebar Panel)
             Panel pnlSidebar = new Panel
