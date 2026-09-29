@@ -51,7 +51,6 @@
             this.btnObrisi = new System.Windows.Forms.Button();
             this.btnPromeni = new System.Windows.Forms.Button();
             this.btnExcel = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.txtMaterijal1 = new System.Windows.Forms.ComboBox();
             this.txtMaterijal2 = new System.Windows.Forms.ComboBox();
             this.txtTehnologija1 = new System.Windows.Forms.ComboBox();
@@ -276,18 +275,6 @@
             this.btnExcel.UseVisualStyleBackColor = false;
             this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
             //
-            // button3
-            //
-            this.button3.BackColor = System.Drawing.Color.SteelBlue;
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(9, 415);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(303, 39);
-            this.button3.TabIndex = 103;
-            this.button3.Text = "Učitaj excel (Grupa/Podgrupa po nazivu)";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            //
             // txtMaterijal1
             // 
             this.txtMaterijal1.FormattingEnabled = true;
@@ -330,6 +317,7 @@
             this.button3.TabIndex = 103;
             this.button3.Text = "Učitaj excel - Naziv";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // MpMDF
             // 
@@ -358,7 +346,6 @@
             this.Controls.Add(this.chkGrupa);
             this.Controls.Add(this.btnObrisi);
             this.Controls.Add(this.btnExcel);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.btnDodeli);
             this.Controls.Add(this.cboPodgrupa);
             this.Controls.Add(this.cboGrupa);
@@ -399,7 +386,6 @@
         private System.Windows.Forms.Button btnObrisi;
         private System.Windows.Forms.Button btnPromeni;
         private System.Windows.Forms.Button btnExcel;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.ComboBox txtMaterijal1;
         private System.Windows.Forms.ComboBox txtMaterijal2;
         private System.Windows.Forms.ComboBox txtTehnologija1;
