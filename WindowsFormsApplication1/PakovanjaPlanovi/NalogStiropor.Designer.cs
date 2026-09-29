@@ -49,6 +49,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(823, 815);
             this.Controls.Add(this.reportViewer1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "NalogStiropor";
             this.Text = "NalogStiropor";
             this.Load += new System.EventHandler(this.NalogStiropor_Load);

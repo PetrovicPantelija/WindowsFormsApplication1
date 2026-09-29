@@ -182,6 +182,7 @@
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label2);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "frmPregledTrebovanja";
             this.Text = "Trebovanja";
             this.Load += new System.EventHandler(this.frmPregledTrebovanja_Load);

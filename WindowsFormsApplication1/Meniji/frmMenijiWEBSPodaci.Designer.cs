@@ -177,6 +177,7 @@ namespace WindowsFormsApplication1.Meniji
             this.Controls.Add(this.iconButton3);
             this.Controls.Add(this.iconButton2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "frmMenijiWEBSPodaci";
             this.Text = "frmMenijiWEBSPodaci";
             this.ResumeLayout(false);

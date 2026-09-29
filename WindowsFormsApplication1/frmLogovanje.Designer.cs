@@ -332,7 +332,7 @@
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.cboKorisnik);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmLogovanje";
             this.Text = "Ulazak u aplikaciju";

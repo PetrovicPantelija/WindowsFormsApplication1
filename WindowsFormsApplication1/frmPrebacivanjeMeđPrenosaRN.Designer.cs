@@ -721,6 +721,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(187)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(1472, 811);
             this.Controls.Add(this.tabControl1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "frmPrebacivanjeMeđPrenosaRN";
             this.Text = "Formiranje Međuskladisnog prenosa iz RN";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

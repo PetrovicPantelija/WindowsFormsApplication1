@@ -583,6 +583,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(187)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(1637, 701);
             this.Controls.Add(this.splitContainer1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "PakovanjeBarkod";
             this.Text = "PAKOVANJE";
             this.Load += new System.EventHandler(this.PakovanjeBarkod_Load);

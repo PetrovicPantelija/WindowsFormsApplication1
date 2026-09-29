@@ -194,6 +194,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.toolStrip1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "frmPrimenaTroskovnogCenovnika";
             this.Text = "frmPrimenaTroskovnogCenovnika";
             this.toolStrip1.ResumeLayout(false);

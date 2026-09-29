@@ -86,6 +86,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "v123v";
             this.Text = "v123v";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

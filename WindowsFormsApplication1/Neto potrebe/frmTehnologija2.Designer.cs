@@ -94,6 +94,7 @@ namespace WindowsFormsApplication1.Neto_potrebe
             this.Controls.Add(this.txtNaziv);
             this.Controls.Add(this.lblNaziv);
             this.Controls.Add(this.dataGridView1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "frmTehnologija2";
             this.Text = "Tehnologija2";
             this.Load += new System.EventHandler(this.frmTehnologija2_Load);

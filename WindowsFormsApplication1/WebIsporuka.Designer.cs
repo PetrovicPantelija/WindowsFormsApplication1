@@ -181,7 +181,7 @@
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.dataGridView1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "WebIsporuka";
             this.Text = "Učitavanje isporuke preko Barkoda Naloga za utovar";

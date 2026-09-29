@@ -464,6 +464,7 @@
             this.Controls.Add(this.btnImeFajla);
             this.Controls.Add(this.txtPutanja);
             this.Controls.Add(this.label1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "frmPlanImportNeto";
             this.Text = "Terminiranje plana";
             this.Load += new System.EventHandler(this.frmPlanImportNeto_Load);

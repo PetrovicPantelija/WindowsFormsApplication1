@@ -95,6 +95,7 @@
             this.Controls.Add(this.txtNaziv);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dataGridView1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "frmMaterijali1";
             this.Text = "Materijali 1";
             this.Load += new System.EventHandler(this.frmMaterijali1_Load);

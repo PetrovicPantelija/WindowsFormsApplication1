@@ -130,6 +130,7 @@
             this.Controls.Add(this.btnPoslatoCM);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button2);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "PakovanjeBarkodNabavka";
             this.Text = "PakovanjeBarkodNabavka";
             this.Load += new System.EventHandler(this.PakovanjeBarkodNabavka_Load);

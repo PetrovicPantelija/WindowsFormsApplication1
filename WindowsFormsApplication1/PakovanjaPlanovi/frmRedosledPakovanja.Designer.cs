@@ -224,6 +224,7 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
             this.Controls.Add(this.lblMpSifra);
             this.Controls.Add(this.txtRedosled);
             this.Controls.Add(this.lblRedosled);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "frmRedosledPakovanja";
             this.Text = "Redosled pakovanja";
             this.Load += new System.EventHandler(this.frmRedosledPakovanja_Load);

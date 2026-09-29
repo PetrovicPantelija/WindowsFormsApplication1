@@ -300,6 +300,7 @@
             this.Controls.Add(this.btnPrikazi);
             this.Controls.Add(this.dtDan);
             this.Controls.Add(this.dgEvidencija);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "frmPodaciSaKoeficijentima";
             this.Text = "frmPodaciSaKoeficijentima";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

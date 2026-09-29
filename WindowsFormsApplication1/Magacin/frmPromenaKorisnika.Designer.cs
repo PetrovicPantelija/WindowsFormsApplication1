@@ -103,6 +103,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cboKorisnik);
             this.Controls.Add(this.label1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "frmPromenaKorisnika";
             this.Text = "Promena korisnika Uzimanje/Ulaganje";
             this.Load += new System.EventHandler(this.frmPromenaKorisnika_Load);

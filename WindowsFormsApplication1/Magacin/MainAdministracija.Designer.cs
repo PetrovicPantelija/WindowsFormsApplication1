@@ -133,6 +133,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1056, 479);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "MainAdministracija";
             this.Text = "main";
             this.Load += new System.EventHandler(this.MainAdministracija_Load);

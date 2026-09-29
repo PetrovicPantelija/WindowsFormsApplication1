@@ -242,6 +242,7 @@
             this.Controls.Add(this.panelDesktop);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.PanelMenu);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "MainNabavka";
             this.Text = "Centralni magacin";
             this.PanelMenu.ResumeLayout(false);

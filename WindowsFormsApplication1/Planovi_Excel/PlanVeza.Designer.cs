@@ -124,6 +124,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "PlanVeza";
             this.Text = "PlanVeza";
             this.Load += new System.EventHandler(this.PlanVeza_Load);

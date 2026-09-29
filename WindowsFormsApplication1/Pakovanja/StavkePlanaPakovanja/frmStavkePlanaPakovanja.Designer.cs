@@ -652,6 +652,7 @@ namespace WindowsFormsApplication1.Pakovanja.StavkePlanaPakovanja
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.dataGrid);
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "frmStavkePlanaPakovanja";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Stavke Plana Pakovanja";

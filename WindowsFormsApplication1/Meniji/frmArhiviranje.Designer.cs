@@ -110,6 +110,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "frmArhiviranje";
             this.Text = "frmArhiviranje";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

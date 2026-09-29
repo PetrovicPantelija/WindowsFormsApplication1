@@ -204,6 +204,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "PoveziRN2";
             this.Text = "PoveziRN2";
             this.Load += new System.EventHandler(this.PoveziRN2_Load);

@@ -63,6 +63,7 @@
             this.ClientSize = new System.Drawing.Size(1404, 472);
             this.Controls.Add(this.btnPrenos);
             this.Controls.Add(this.dataGridView1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "Partneri";
             this.Text = "Partneri";
             this.Load += new System.EventHandler(this.Partneri_Load);

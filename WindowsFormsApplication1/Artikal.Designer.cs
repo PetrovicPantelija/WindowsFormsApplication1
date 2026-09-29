@@ -231,7 +231,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtBarkod);
             this.Controls.Add(this.btnParsiraj);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Artikal";
             this.Text = "Artikal";

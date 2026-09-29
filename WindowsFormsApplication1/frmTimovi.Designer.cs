@@ -249,6 +249,7 @@
             this.Controls.Add(this.txtSifra);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.toolStrip1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "frmTimovi";
             this.Text = "Timovi i pripadnost timu";
             this.Load += new System.EventHandler(this.frmTimovi_Load);

@@ -306,6 +306,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView3);
             this.Controls.Add(this.dataGridView1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "NamenskoPakovanje";
             this.Text = "NamenskoPakovanje";
             this.Load += new System.EventHandler(this.NamenskoPakovanje_Load);

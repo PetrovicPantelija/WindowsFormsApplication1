@@ -100,6 +100,7 @@ namespace WindowsFormsApplication1.Neto_potrebe
             this.Controls.Add(this.txtNaziv);
             this.Controls.Add(this.lblNaziv);
             this.Controls.Add(this.dataGridView1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "frmMaterijali2";
             this.Text = "Materijali2";
             this.Load += new System.EventHandler(this.frmMaterijali2_Load);

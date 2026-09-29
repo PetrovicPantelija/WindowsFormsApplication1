@@ -69,7 +69,7 @@
             this.ClientSize = new System.Drawing.Size(1028, 609);
             this.Controls.Add(this.btnInsertRefTabela);
             this.Controls.Add(this.dataGridView1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "WebsPakovanja";
             this.Text = "WebsPakovanja";

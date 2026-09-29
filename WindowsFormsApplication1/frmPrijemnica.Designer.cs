@@ -174,6 +174,7 @@
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.cboPrijemnica);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "frmPrijemnica";
             this.Text = "Prijemnica količine";
             this.Load += new System.EventHandler(this.frmPrijemnica_Load_1);

@@ -52,6 +52,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(781, 261);
             this.Controls.Add(this.dataGridView1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "frmEkran2";
             this.Text = "Ekran 2 - Tomovi";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

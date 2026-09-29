@@ -128,6 +128,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtDatumIsporuke);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "Reklamacije";
             this.Text = "Reklamacije";
             this.Load += new System.EventHandler(this.Reklamacije_Load);

@@ -303,6 +303,7 @@
             this.Controls.Add(this.btnOtvori);
             this.Controls.Add(this.btnIzmeni);
             this.Controls.Add(this.btnNew);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "NoviPlanPakovanja";
             this.Text = "NoviPlanPakovanja";
             this.Load += new System.EventHandler(this.NoviPlanPakovanja_Load);

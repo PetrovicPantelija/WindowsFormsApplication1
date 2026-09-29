@@ -159,7 +159,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "ŠtampajReklamacijeP";
             this.Text = "Štampaj reklamacije";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

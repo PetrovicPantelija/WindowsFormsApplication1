@@ -60,6 +60,7 @@
             this.ClientSize = new System.Drawing.Size(263, 88);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.textBox1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "Obavestenje";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -165,6 +165,7 @@ namespace WindowsFormsApplication1
             this.Controls.Add(this.reportViewer1);
             this.Controls.Add(this.label3);
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "StampajReklamacijePZavrseno";
             this.Text = "Štampaj reklamacije iz Završenog";
             this.Load += new System.EventHandler(this.StampajReklamacijePZavrseno_Load);

@@ -2563,6 +2563,7 @@
     <EmbeddedResource Include="ŠtampajReklamacijeP.resx">
       <DependentUpon>ŠtampajReklamacijeP.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Resources\JelaIkona.ico" />
     <Content Include="Content\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\fonts\fontawesome-webfont.woff" />

@@ -150,6 +150,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "MdfPodgrupe";
             this.Text = "MdfPodgrupe";
             this.Load += new System.EventHandler(this.MdfPodgrupe_Load);

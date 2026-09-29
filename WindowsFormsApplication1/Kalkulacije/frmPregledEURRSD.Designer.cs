@@ -278,6 +278,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.Controls.Add(this.dataGridView3);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.dataGridView1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "frmPregledEURRSD";
             this.Text = "Pregled proračuna";
             this.Load += new System.EventHandler(this.frmPregledEURRSD_Load);

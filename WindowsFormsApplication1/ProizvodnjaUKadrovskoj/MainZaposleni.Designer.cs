@@ -224,6 +224,7 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "MainZaposleni";
             this.Text = "MainZaposleni";
             this.panel3.ResumeLayout(false);

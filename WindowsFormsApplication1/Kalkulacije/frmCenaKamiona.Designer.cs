@@ -372,6 +372,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.Controls.Add(this.label1);
             this.Controls.Add(this.toolStrip1);
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "frmCenaKamiona";
             this.Text = "frmCenaKamiona";
             this.Load += new System.EventHandler(this.frmCenaKamiona_Load);

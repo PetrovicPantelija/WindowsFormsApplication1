@@ -172,6 +172,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "Podesavanje";
             this.Text = "Podesavanje";
             this.ResumeLayout(false);

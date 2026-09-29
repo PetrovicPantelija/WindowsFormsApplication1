@@ -174,6 +174,7 @@ namespace WindowsFormsApplication1.Magacin
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "frmMagacinTrenutnaTrebovanje";
             this.Text = "Magacin trebovanje";
             this.panel1.ResumeLayout(false);

@@ -274,6 +274,7 @@
             this.Controls.Add(this.txtPodPlan);
             this.Controls.Add(this.cboPlan);
             this.Controls.Add(this.label1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "PregledPodPlan";
             this.Text = "PregledPodPlan";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

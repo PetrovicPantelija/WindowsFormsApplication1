@@ -403,6 +403,7 @@
             this.Controls.Add(this.pictureBox2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "frmIsporuke";
             this.Text = "frmIsporuke";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

@@ -160,7 +160,7 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.dataGridView1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "StampajNeisporucene";
             this.Text = "Štampa neisporučenih paketa";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

@@ -156,6 +156,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.toolStrip1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "frmRadnoMesto";
             this.Text = "frmRadnoMesto";
             this.Load += new System.EventHandler(this.frmRadnoMesto_Load);

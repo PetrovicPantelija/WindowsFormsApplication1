@@ -269,6 +269,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "PripadnostKP";
             this.Text = "PripadnostKP";
             this.Load += new System.EventHandler(this.PripadnostKP_Load);

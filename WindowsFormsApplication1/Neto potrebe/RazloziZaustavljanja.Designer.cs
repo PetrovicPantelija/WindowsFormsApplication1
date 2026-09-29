@@ -152,6 +152,7 @@
             this.Controls.Add(this.txtNaziv);
             this.Controls.Add(this.txtSifra);
             this.Controls.Add(this.label1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "RazloziZaustavljanja";
             this.Text = "Razlozi Zaustavljanja";
             this.Load += new System.EventHandler(this.RazloziZaustavljanja_Load);

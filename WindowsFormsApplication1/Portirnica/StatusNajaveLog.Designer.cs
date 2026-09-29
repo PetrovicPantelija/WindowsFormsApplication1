@@ -50,6 +50,7 @@ namespace WindowsFormsApplication1.Portirnica
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.dataGridView1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "StatusNajaveLog";
             this.Text = "StatusNajaveLog";
             this.Load += new System.EventHandler(this.StatusNajaveLog_Load);

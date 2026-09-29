@@ -352,6 +352,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "MpMDF";
             this.Text = "Maticni podaci MDF";
             this.Load += new System.EventHandler(this.MpMDF_Load);

@@ -753,6 +753,7 @@
             this.Controls.Add(this.cboVarijanta);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cboMaticni);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "ReklmacijaKalkulator";
             this.Text = "Kalkulator reklamacije";
             this.Load += new System.EventHandler(this.ReklmacijaKalkulator_Load);

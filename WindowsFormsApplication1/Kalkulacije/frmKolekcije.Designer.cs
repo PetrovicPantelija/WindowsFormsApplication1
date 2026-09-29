@@ -180,6 +180,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.Controls.Add(this.label1);
             this.Controls.Add(this.toolStrip1);
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "frmKolekcije";
             this.Text = "Kolekcije";
             this.Load += new System.EventHandler(this.frmKolekcije_Load);

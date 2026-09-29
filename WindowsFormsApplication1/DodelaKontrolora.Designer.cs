@@ -79,6 +79,7 @@
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtDatumIsporuke);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "DodelaKontrolora";
             this.Text = "DodelaKontrolora";
             this.ResumeLayout(false);

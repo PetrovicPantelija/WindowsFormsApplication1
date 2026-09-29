@@ -961,6 +961,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.Controls.Add(this.checkBox8);
             this.Controls.Add(this.cbNoviPredlog);
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "PlanDetaljno";
             this.Text = "PlanDetaljno";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

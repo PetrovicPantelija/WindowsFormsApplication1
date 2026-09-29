@@ -277,6 +277,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cboSkladiste);
             this.Controls.Add(this.label4);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "frmPregledZaliha";
             this.Text = "Pregled zaliha po skladištu lokaciji";
             this.Load += new System.EventHandler(this.frmPrikazSkladista_Load);

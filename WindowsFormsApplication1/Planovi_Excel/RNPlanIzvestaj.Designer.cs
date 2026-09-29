@@ -51,6 +51,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1077, 967);
             this.Controls.Add(this.reportViewer1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "RNPlanIzvestaj";
             this.Text = "RNPlanIzvestaj";
             this.Load += new System.EventHandler(this.RNPlanIzvestaj_Load);

@@ -300,6 +300,7 @@ namespace WindowsFormsApplication1.ProizvodnjaUKadrovskoj
             this.Controls.Add(this.txtBrojSatiRada);
             this.Controls.Add(this.lblZaposleni);
             this.Controls.Add(this.lblDatum);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "frmEvidencijaRada";
             this.Text = "frmEvidencijaRada";
             this.Load += new System.EventHandler(this.frmEvidencijaRada_Load);

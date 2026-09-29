@@ -146,6 +146,7 @@
             this.Controls.Add(this.btnKorisnik);
             this.Controls.Add(this.cboKorisnik);
             this.Controls.Add(this.label1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "Trebovanja";
             this.Text = "Trebovanja";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

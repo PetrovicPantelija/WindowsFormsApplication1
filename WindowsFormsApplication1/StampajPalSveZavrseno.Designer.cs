@@ -192,6 +192,7 @@ namespace WindowsFormsApplication1
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "StampajPalSveZavrseno";
             this.Text = "Štampaj palete sve iz završenog";
             this.Load += new System.EventHandler(this.StampajPalSveZavrseno_Load);

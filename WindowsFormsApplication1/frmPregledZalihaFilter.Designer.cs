@@ -198,6 +198,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.cboSkladiste);
             this.Controls.Add(this.label4);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "frmPregledZalihaFilter";
             this.Text = "Pregled zaliha po filterima";
             this.Load += new System.EventHandler(this.frmPregledZalihaFilter_Load);

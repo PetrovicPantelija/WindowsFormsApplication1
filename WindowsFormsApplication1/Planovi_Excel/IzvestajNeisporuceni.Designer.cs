@@ -52,6 +52,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(813, 743);
             this.Controls.Add(this.reportViewer1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "IzvestajNeisporuceni";
             this.Text = "IzvestajNeisporuceni";
             this.Load += new System.EventHandler(this.IzvestajNeisporuceni_Load);

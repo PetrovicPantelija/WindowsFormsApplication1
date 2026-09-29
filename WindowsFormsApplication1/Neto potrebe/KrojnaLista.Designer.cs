@@ -416,6 +416,7 @@
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "KrojnaLista";
             this.Text = "KrojnaLista";
             this.Load += new System.EventHandler(this.KrojnaLista_Load);

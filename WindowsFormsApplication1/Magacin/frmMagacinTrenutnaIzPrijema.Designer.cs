@@ -358,6 +358,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.cboKorisnik);
             this.Controls.Add(this.label1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "frmMagacinTrenutnaIzPrijema";
             this.Text = "MSP Prijem";
             this.Load += new System.EventHandler(this.frmMagacinTrenutnaIzPrijema_Load);

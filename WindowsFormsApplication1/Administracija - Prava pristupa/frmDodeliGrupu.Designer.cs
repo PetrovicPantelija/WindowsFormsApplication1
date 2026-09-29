@@ -170,6 +170,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             this.Controls.Add(this.combo_Korisnik);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "frmDodeliGrupu";
             this.Text = "frmDodeliGrupu";
             this.Load += new System.EventHandler(this.frmDodeliGrupu_Load);

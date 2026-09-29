@@ -106,6 +106,7 @@ namespace WindowsFormsApplication1
             this.Controls.Add(this.button2);
             this.Controls.Add(this.cboVozila);
             this.Controls.Add(this.label1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "frmPorudzbinaImportPregled";
             this.Text = "Pregled Beleški ";
             this.Load += new System.EventHandler(this.frmPorudzbinaImportPregled_Load);

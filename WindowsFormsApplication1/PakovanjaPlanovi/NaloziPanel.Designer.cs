@@ -52,6 +52,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(809, 816);
             this.Controls.Add(this.reportViewer1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "NaloziPanel";
             this.Text = "NaloziPanel";
             this.Load += new System.EventHandler(this.NaloziPanel_Load);

@@ -582,6 +582,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "MainPlaniranje";
             this.Text = "MainPlaniranje";
             this.Load += new System.EventHandler(this.MainPlaniranje_Load);

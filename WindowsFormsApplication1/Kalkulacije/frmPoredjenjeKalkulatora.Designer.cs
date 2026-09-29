@@ -156,6 +156,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.combo_Zaglavlje);
             this.Controls.Add(this.label3);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "frmPoredjenjeKalkulatora";
             this.Text = "Poredjenje kalkulacije";
             this.Load += new System.EventHandler(this.frmPoredjenjeKalkulatora_Load);

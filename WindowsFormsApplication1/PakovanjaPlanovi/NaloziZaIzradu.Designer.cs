@@ -49,6 +49,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(808, 786);
             this.Controls.Add(this.reportViewer1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "NaloziZaIzradu";
             this.Text = "NaloziZaIzradu";
             this.Load += new System.EventHandler(this.NaloziZaIzradu_Load);

@@ -300,6 +300,7 @@ namespace WindowsFormsApplication1.Pakovanja.PlanPakovanja
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.dataGrid);
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "frmPlanPakovanja";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Plan Pakovanja";

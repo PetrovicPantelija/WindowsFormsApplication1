@@ -587,6 +587,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.cboPlan);
             this.Controls.Add(this.label1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "NetoPotrebe";
             this.Text = "NetoPotrebe";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

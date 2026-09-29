@@ -68,6 +68,7 @@
             this.ClientSize = new System.Drawing.Size(963, 583);
             this.Controls.Add(this.button10);
             this.Controls.Add(this.dataGridView1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "RadniCentarLog";
             this.Text = "RadniCentarLog";
             this.Load += new System.EventHandler(this.RadniCentarLog_Load);

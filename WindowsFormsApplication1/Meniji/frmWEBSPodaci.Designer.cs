@@ -273,6 +273,7 @@ namespace WindowsFormsApplication1.Meniji
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "frmWEBSPodaci";
             this.Text = "frmWEBSPodaci";
             this.Load += new System.EventHandler(this.frmWEBSPodaci_Load);

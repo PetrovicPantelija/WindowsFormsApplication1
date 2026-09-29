@@ -153,6 +153,7 @@
             this.Controls.Add(this.txtSifra);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.toolStrip1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "frmOrganizacionaJedinica";
             this.Text = "Organizaciona jedinica";
             this.Load += new System.EventHandler(this.frmOrganizacionaJedinica_Load);

@@ -208,6 +208,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtDatumIsporuke);
             this.Controls.Add(this.dataGridView1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "Form1";
             this.Text = "Nalozi za utovar";
             this.Load += new System.EventHandler(this.Form1_Load);

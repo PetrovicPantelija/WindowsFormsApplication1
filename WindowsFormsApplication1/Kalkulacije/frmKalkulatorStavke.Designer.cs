@@ -1206,6 +1206,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.Controls.Add(this.txt_ID);
             this.Controls.Add(this.toolStrip1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "frmKalkulatorStavke";
             this.Text = "Kalkulacije stavki";
             this.Load += new System.EventHandler(this.frmKalkulatorStavke_Load);

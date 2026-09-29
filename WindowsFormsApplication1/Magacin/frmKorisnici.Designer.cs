@@ -250,6 +250,7 @@
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtSifraLargo);
             this.Controls.Add(this.toolStrip1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "frmKorisnici";
             this.Text = "Korisnici";
             this.Load += new System.EventHandler(this.frmKorisnici_Load);

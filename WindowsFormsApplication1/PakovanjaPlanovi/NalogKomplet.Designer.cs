@@ -136,6 +136,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.reportViewer1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "NalogKomplet";
             this.Text = "NalogKomplet";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

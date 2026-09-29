@@ -776,6 +776,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(187)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(1130, 633);
             this.Controls.Add(this.tabControl1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "frmPregledReklamacijaSonja";
             this.Text = "Pregled relkamacija";
             this.Load += new System.EventHandler(this.frmPregledReklamacijaSonja_Load);

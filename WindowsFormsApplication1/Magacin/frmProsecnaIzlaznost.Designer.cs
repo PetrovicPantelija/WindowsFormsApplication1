@@ -252,6 +252,7 @@
             this.Controls.Add(this.btnOsvezi);
             this.Controls.Add(this.cboSkladisteIzbor);
             this.Controls.Add(this.label5);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "frmProsecnaIzlaznost";
             this.Text = "Prosečna izlaznost";
             this.ResumeLayout(false);

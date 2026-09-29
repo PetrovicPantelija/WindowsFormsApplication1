@@ -177,6 +177,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "KompletiPaket";
             this.Text = "KompletiPaket";
             this.Load += new System.EventHandler(this.KompletiPaket_Load);

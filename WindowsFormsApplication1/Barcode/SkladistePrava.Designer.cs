@@ -94,6 +94,7 @@
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "SkladistePrava";
             this.Text = "SkladistePrava";
             this.Load += new System.EventHandler(this.SkladistePrava_Load);

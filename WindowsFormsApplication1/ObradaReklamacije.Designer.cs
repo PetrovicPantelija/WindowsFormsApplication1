@@ -566,6 +566,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "ObradaReklamacije";
             this.Text = "Obrada nalepnica reklamacije";
             this.Load += new System.EventHandler(this.ObradaReklamacije_Load);

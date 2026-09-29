@@ -661,6 +661,7 @@
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnNazad);
             this.Controls.Add(this.dataGridView1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "StavkePlanaPakovanjaNovi";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "StavkePlanaPakovanjaNovi";

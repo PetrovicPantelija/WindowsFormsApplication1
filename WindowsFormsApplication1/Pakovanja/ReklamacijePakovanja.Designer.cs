@@ -99,6 +99,7 @@
             this.Controls.Add(this.dataGridView3);
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.dataGridView1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "ReklamacijePakovanja";
             this.Text = "ReklamacijePakovanja";
             this.Load += new System.EventHandler(this.ReklamacijePakovanja_Load);

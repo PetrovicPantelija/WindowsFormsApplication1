@@ -210,6 +210,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             this.Controls.Add(this.label1);
             this.Controls.Add(this.toolStrip1);
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "frmGrupe";
             this.Text = "Grupe";
             this.Load += new System.EventHandler(this.frmGrupe_Load);

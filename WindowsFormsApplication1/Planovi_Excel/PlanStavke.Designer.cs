@@ -171,6 +171,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.Controls.Add(this.txtIdPlana);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "PlanStavke";
             this.Text = "PlanStavke";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

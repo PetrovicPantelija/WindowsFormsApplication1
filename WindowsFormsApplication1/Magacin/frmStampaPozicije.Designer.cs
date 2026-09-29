@@ -195,6 +195,7 @@
             this.Controls.Add(this.txtPozicija);
             this.Controls.Add(this.txtBarkodPozicije);
             this.Controls.Add(this.button1);
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "frmStampaPozicije";
             this.Text = "Štampa barkoda pozicije";
             this.Load += new System.EventHandler(this.frmStampaPozicije_Load);

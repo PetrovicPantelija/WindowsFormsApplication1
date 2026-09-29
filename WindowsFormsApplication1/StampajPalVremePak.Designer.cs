@@ -267,7 +267,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "StampajPalVremePak";
             this.Text = "Štampaj paletu po vremenu pakovanja";
             this.Load += new System.EventHandler(this.StampajPalVremePak_Load);
