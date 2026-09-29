@@ -435,6 +435,39 @@ namespace WindowsFormsApplication1.Neto_potrebe
             return id;
         }
 
+        // Podgrupa se traži isključivo unutar nadjene grupe (IDNadredjena = idGrupe),
+        // jer isti naziv podgrupe može postojati pod više različitih grupa.
+        int VratiIDMDFPodGrupePoGrupi(int idGrupe, string nazivPodgrupe)
+        {
+            if (idGrupe == 0 || string.IsNullOrWhiteSpace(nazivPodgrupe))
+                return 0;
+
+            int id = 0;
+
+            using (SqlConnection conn = new SqlConnection(connect))
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        SELECT TOP 1 ID
+                        FROM MDFPodgrupe
+                        WHERE IDNadredjena = @IDNadredjena
+                          AND UPPER(LTRIM(RTRIM(Naziv))) = UPPER(LTRIM(RTRIM(@Naziv)))";
+                    cmd.Parameters.Add("@IDNadredjena", SqlDbType.Int).Value = idGrupe;
+                    cmd.Parameters.Add("@Naziv", SqlDbType.NVarChar, 200).Value = nazivPodgrupe.Trim();
+
+                    object result = cmd.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        int.TryParse(result.ToString(), out id);
+                    }
+                }
+            }
+
+            return id;
+        }
+
         private List<MaticniPodatak> list = new List<MaticniPodatak>();
 
 
@@ -480,6 +513,310 @@ namespace WindowsFormsApplication1.Neto_potrebe
                     "Greška",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
+            }
+        }
+
+
+        // ============================================================
+        // IMPORT EXCEL / ODS - GRUPA I PODGRUPA SE UVOZE PO NAZIVU
+        // (isto kao btnExcel, samo se kolone Grupa/Podgrupa iz fajla
+        // sadrže Naziv umesto ID-a, pa se ovde konvertuju u ID)
+        // ============================================================
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+
+            ofd.Title = "Izaberite excel fajl";
+            ofd.Filter = "Excel fajlovi (*.xlsx;*.xls;*.ods)|*.xlsx;*.xls;*.ods";
+            ofd.Multiselect = false;
+
+            if (ofd.ShowDialog() != DialogResult.OK)
+                return;
+
+            list.Clear();
+
+            try
+            {
+                UcitajExcelFajlNazivi(ofd.FileName);
+
+                if (list.Count == 0)
+                {
+                    MessageBox.Show(
+                        "U izabranom fajlu nije pronađena nijedna stavka za import.",
+                        "Import",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+
+                    return;
+                }
+
+                ObradiImportovanuListu();
+                FillGV();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Greška pri importu:\n\n" + ex.Message,
+                    "Greška",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        private void UcitajExcelFajlNazivi(string fileName)
+        {
+            string ext = Path.GetExtension(fileName).ToLowerInvariant();
+
+            if (ext == ".xlsx")
+            {
+                UcitajXlsxClosedXmlNazivi(fileName);
+                return;
+            }
+
+            if (ext == ".xls")
+            {
+                UcitajXlsExcelDataReaderNazivi(fileName);
+                return;
+            }
+
+            if (ext == ".ods")
+            {
+                UcitajOdsBezLibreOfficeNazivi(fileName);
+                return;
+            }
+
+            throw new Exception(
+                "Dozvoljeni su samo .xlsx, .xls i .ods fajlovi.");
+        }
+
+        private void UcitajXlsxClosedXmlNazivi(string fileName)
+        {
+            using (var workbook = new XLWorkbook(fileName))
+            {
+                var worksheet = workbook.Worksheet(1);
+
+                int rowCount =
+                    worksheet.LastRowUsed() == null
+                        ? 0
+                        : worksheet.LastRowUsed().RowNumber();
+
+                // Prvi red je zaglavlje
+                for (int row = 2; row <= rowCount; row++)
+                {
+                    object mpSifraObj =
+                        worksheet.Cell(row, 1).Value;
+
+                    string nazivGrupe = worksheet.Cell(row, 2).Value.ToString();
+                    int idGrupe = VratiIDMDFGrupe(nazivGrupe);
+
+                    string nazivPodgrupe = worksheet.Cell(row, 3).Value.ToString();
+                    int idPodgrupe = VratiIDMDFPodGrupePoGrupi(idGrupe, nazivPodgrupe);
+
+                    object materijal1Obj =
+                        worksheet.Cell(row, 4).Value;
+
+                    object materijal2Obj =
+                        worksheet.Cell(row, 5).Value;
+
+                    object debljinaObj =
+                        worksheet.Cell(row, 6).Value;
+
+                    object tehnologija1Obj =
+                        worksheet.Cell(row, 7).Value;
+
+                    object tehnologija2Obj =
+                        worksheet.Cell(row, 8).Value;
+
+                    DodajMaticniPodatakIzReda(
+                        row,
+                        mpSifraObj,
+                        idGrupe,
+                        idPodgrupe,
+                        materijal1Obj,
+                        materijal2Obj,
+                        debljinaObj,
+                        tehnologija1Obj,
+                        tehnologija2Obj);
+                }
+            }
+        }
+
+        private void UcitajXlsExcelDataReaderNazivi(string fileName)
+        {
+            using (FileStream stream =
+                File.Open(
+                    fileName,
+                    FileMode.Open,
+                    FileAccess.Read,
+                    FileShare.ReadWrite))
+            using (IExcelDataReader reader =
+                ExcelReaderFactory.CreateReader(stream))
+            {
+                int row = 0;
+
+                while (reader.Read())
+                {
+                    row++;
+
+                    // Prvi red je zaglavlje
+                    if (row == 1)
+                        continue;
+
+                    object mpSifraObj =
+                        reader.FieldCount > 0
+                            ? reader.GetValue(0)
+                            : null;
+
+                    string nazivGrupe =
+                        reader.FieldCount > 1
+                            ? ToStringExcel(reader.GetValue(1))
+                            : "";
+                    int idGrupe = VratiIDMDFGrupe(nazivGrupe);
+
+                    string nazivPodgrupe =
+                        reader.FieldCount > 2
+                            ? ToStringExcel(reader.GetValue(2))
+                            : "";
+                    int idPodgrupe = VratiIDMDFPodGrupePoGrupi(idGrupe, nazivPodgrupe);
+
+                    object materijal1Obj =
+                        reader.FieldCount > 3
+                            ? reader.GetValue(3)
+                            : null;
+
+                    object materijal2Obj =
+                        reader.FieldCount > 4
+                            ? reader.GetValue(4)
+                            : null;
+
+                    object debljinaObj =
+                        reader.FieldCount > 5
+                            ? reader.GetValue(5)
+                            : null;
+
+                    object tehnologija1Obj =
+                        reader.FieldCount > 6
+                            ? reader.GetValue(6)
+                            : null;
+
+                    object tehnologija2Obj =
+                        reader.FieldCount > 7
+                            ? reader.GetValue(7)
+                            : null;
+
+                    DodajMaticniPodatakIzReda(
+                        row,
+                        mpSifraObj,
+                        idGrupe,
+                        idPodgrupe,
+                        materijal1Obj,
+                        materijal2Obj,
+                        debljinaObj,
+                        tehnologija1Obj,
+                        tehnologija2Obj);
+                }
+            }
+        }
+
+        private void UcitajOdsBezLibreOfficeNazivi(string fileName)
+        {
+            XNamespace officeNs =
+                "urn:oasis:names:tc:opendocument:xmlns:office:1.0";
+
+            XNamespace tableNs =
+                "urn:oasis:names:tc:opendocument:xmlns:table:1.0";
+
+            XNamespace textNs =
+                "urn:oasis:names:tc:opendocument:xmlns:text:1.0";
+
+            using (FileStream fs =
+                File.Open(
+                    fileName,
+                    FileMode.Open,
+                    FileAccess.Read,
+                    FileShare.ReadWrite))
+            using (ZipArchive archive =
+                new ZipArchive(fs, ZipArchiveMode.Read))
+            {
+                ZipArchiveEntry contentEntry =
+                    archive.GetEntry("content.xml");
+
+                if (contentEntry == null)
+                {
+                    throw new Exception(
+                        "ODS fajl nema content.xml i ne može biti pročitan.");
+                }
+
+                XDocument doc;
+
+                using (Stream contentStream = contentEntry.Open())
+                {
+                    doc = XDocument.Load(contentStream);
+                }
+
+                XElement firstTable =
+                    doc.Descendants(tableNs + "table")
+                       .FirstOrDefault();
+
+                if (firstTable == null)
+                {
+                    throw new Exception(
+                        "ODS fajl nema tabelu za čitanje.");
+                }
+
+                int logicalRow = 0;
+
+                foreach (XElement rowElement in
+                         firstTable.Elements(tableNs + "table-row"))
+                {
+                    int repeatedRows =
+                        GetRepeatedCount(
+                            rowElement.Attribute(
+                                tableNs + "number-rows-repeated"),
+                            1);
+
+                    List<string> cells =
+                        ProcitajOdsCelijeIzReda(
+                            rowElement,
+                            tableNs,
+                            textNs,
+                            officeNs,
+                            8);
+
+                    bool prazanRed =
+                        cells.All(x =>
+                            string.IsNullOrWhiteSpace(x));
+
+                    if (prazanRed)
+                    {
+                        logicalRow += repeatedRows;
+                        continue;
+                    }
+
+                    for (int i = 0; i < repeatedRows; i++)
+                    {
+                        logicalRow++;
+
+                        // Prvi red je zaglavlje
+                        if (logicalRow == 1)
+                            continue;
+
+                        int idGrupe = VratiIDMDFGrupe(cells[1]);
+                        int idPodgrupe = VratiIDMDFPodGrupePoGrupi(idGrupe, cells[2]);
+
+                        DodajMaticniPodatakIzReda(
+                            logicalRow,
+                            cells[0],
+                            idGrupe,
+                            idPodgrupe,
+                            cells[3],
+                            cells[4],
+                            cells[5],
+                            cells[6],
+                            cells[7]);
+                    }
+                }
             }
         }
 
