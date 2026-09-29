@@ -55,6 +55,7 @@
             this.txtMaterijal2 = new System.Windows.Forms.ComboBox();
             this.txtTehnologija1 = new System.Windows.Forms.ComboBox();
             this.txtTehnologija2 = new System.Windows.Forms.ComboBox();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -306,11 +307,23 @@
             this.txtTehnologija2.Size = new System.Drawing.Size(265, 21);
             this.txtTehnologija2.TabIndex = 102;
             // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.ForestGreen;
+            this.button3.ForeColor = System.Drawing.Color.White;
+            this.button3.Location = new System.Drawing.Point(189, 415);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(123, 39);
+            this.button3.TabIndex = 103;
+            this.button3.Text = "Učitaj excel - Naziv";
+            this.button3.UseVisualStyleBackColor = false;
+            // 
             // MpMDF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1345, 570);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.txtTehnologija2);
             this.Controls.Add(this.txtTehnologija1);
             this.Controls.Add(this.txtMaterijal2);
@@ -376,5 +389,6 @@
         private System.Windows.Forms.ComboBox txtMaterijal2;
         private System.Windows.Forms.ComboBox txtTehnologija1;
         private System.Windows.Forms.ComboBox txtTehnologija2;
+        private System.Windows.Forms.Button button3;
     }
 }

@@ -167,7 +167,6 @@ namespace WindowsFormsApplication1.Neto_potrebe
         }
 
   
-
         private void FillTehnologija1()
         {
             var query = "Select distinct Tehnologija1 From MdfTehnologija1 order by Tehnologija1 asc";
