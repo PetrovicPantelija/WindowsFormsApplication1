@@ -34,8 +34,10 @@
             this.button2 = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button24
@@ -90,9 +92,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(27, 90);
+            this.dataGridView2.Location = new System.Drawing.Point(3, 3);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(941, 22);
+            this.dataGridView2.Size = new System.Drawing.Size(902, 43);
             this.dataGridView2.TabIndex = 41;
             // 
             // dataGridView3
@@ -101,18 +103,29 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(27, 118);
+            this.dataGridView3.Location = new System.Drawing.Point(3, 52);
             this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.Size = new System.Drawing.Size(941, 23);
+            this.dataGridView3.Size = new System.Drawing.Size(902, 43);
             this.dataGridView3.TabIndex = 42;
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.dataGridView2);
+            this.panel1.Controls.Add(this.dataGridView3);
+            this.panel1.Location = new System.Drawing.Point(40, 94);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(916, 461);
+            this.panel1.TabIndex = 43;
             // 
             // PakovanjeBarkodNabavka
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(980, 571);
-            this.Controls.Add(this.dataGridView3);
-            this.Controls.Add(this.dataGridView2);
+            this.ClientSize = new System.Drawing.Size(980, 567);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.button24);
             this.Controls.Add(this.btnPoslatoCM);
             this.Controls.Add(this.button1);
@@ -122,6 +135,7 @@
             this.Load += new System.EventHandler(this.PakovanjeBarkodNabavka_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -134,5 +148,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.Panel panel1;
     }
 }

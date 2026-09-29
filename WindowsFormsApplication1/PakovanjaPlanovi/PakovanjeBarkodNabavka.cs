@@ -78,8 +78,16 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
             */
             dataGridView2.Visible = true;
             dataGridView3.Visible = false;
-          
 
+
+            int totalWidth = panel1.Width;
+            int newDistance = Math.Max(0, totalWidth - 20);
+            dataGridView2.Width = newDistance;
+
+
+            int totalHeight = panel1.Height;
+            int newHEight = Math.Max(0, totalHeight - 20);
+            dataGridView2.Height = newHEight;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -139,9 +147,16 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
 
             dataGridView2.Visible = false;
             dataGridView3.Visible = true;
-         
 
-         
+            int totalWidth = panel1.Width;
+            int newDistance = Math.Max(0, totalWidth - 20);
+            dataGridView3.Width = newDistance;
+
+
+            int totalHeight = panel1.Height;
+            int newHEight = Math.Max(0, totalHeight - 20);
+            dataGridView3.Height = newHEight;
+
 
         }
 

@@ -112,6 +112,9 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
 " StatusRN,VrstaRN,Artikal,Kod,KolicinaZaProizvodnju,PlaniraniKrajnjiDatumZavrsetka,Termin,Planer,RasporedPakovanja as Raspored,RTrim(Varijanta) as Varijanta " +
 " FROM StavkePlanaPakovanja " +
 " WHERE PoslatoNaCM = 1 and StigloNaCloudCM = 0  order by RNBroj asc";
+
+
+
             // Nema formiran MSP
             /*
             " CASE WHEN PotvrdaPrijemCMOblak > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as CMOblak, " +
