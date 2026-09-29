@@ -274,7 +274,7 @@
             this.btnExcel.Text = "Učitaj excel";
             this.btnExcel.UseVisualStyleBackColor = false;
             this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
-            //
+            // 
             // txtMaterijal1
             // 
             this.txtMaterijal1.FormattingEnabled = true;
@@ -353,7 +353,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "MpMDF";
-            this.Text = "MpMDF";
+            this.Text = "Maticni podaci MDF";
             this.Load += new System.EventHandler(this.MpMDF_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
