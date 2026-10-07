@@ -24,51 +24,77 @@ namespace WindowsFormsApplication1.Pakovanja
 
         }
 
+        private const string SelectPocetna = @"
+SELECT 'Pocetna' as Isporuka,RkShippingItemRecPocetna.ShippingItemRecID , RkShippingItemRecPocetna.Zapisnik AS Zapisnik,
+RkShippingItemRecPocetna.SifraReklamacije as SifLargo , RkShippingItemRECPocetna.NazivReklamacije,
+RkShippingItemRECPocetna.Opis,KolicinaOrg,  Kolicina,   0 as Paletirano, Paletar as Paletar,
+VremePakovanja as VremePaletiranja, RkShippingItemRecPocetna.IsporucenoKupcu as Kontrolisano, Kontrolor as KOntrolor ,
+RkShippingItemRecPocetna.VremeKontrole,  Paleta, RkShippingPocetna.BrojIstovara as BrojUtovara, RkShippingPocetna.BrojUtovara as BrojIsporuke ,
+MestoIsporuke FROM [dbo].RkShippingItemRecPocetna inner join RkShippingPocetna
+on [dbo].RkShippingItemRecPocetna.ShipingIDz = RkShippingPocetna.[ShippingID]
+inner join Saloni on RkShippingPocetna.SalonIDz = Saloni.SifraKomintentaMestoIsporuke";
+
+        private const string SelectObradjena = @"
+SELECT 'Obradjena' as Isporuka,RkShippingItemRec.ShippingItemRecID , RkShippingItemRec.Zapisnik AS Zapisnik,
+RkShippingItemRec.SifraReklamacije as SifLargo , RkShippingItemREC.NazivReklamacije,
+RkShippingItemREC.Opis,KolicinaOrg,  Kolicina,   0 as Paletirano, Paletar as Paletar,
+VremePakovanja as VremePaletiranja, RkShippingItemRec.IsporucenoKupcu as Kontrolisano, Kontrolor as KOntrolor ,
+RkShippingItemRec.VremeKontrole , Paleta, RkShipping.BrojIstovara as BrojUtovara, RkShipping.BrojUtovara as BrojIsporuke ,
+MestoIsporuke  FROM [dbo].RkShippingItemRec inner join RkShipping
+on [dbo].RkShippingItemRec.ShipingIDz = RkShipping.[ShippingID]
+inner join Saloni on RkShipping.SalonIDz = Saloni.SifraKomintentaMestoIsporuke";
+
+        private const string SelectIsporuka = @"
+SELECT 'Isporuka' as Isporuka,  RkShippingItemRecZavrseno.ShippingItemRecID , RkShippingItemRecZavrseno.Zapisnik AS Zapisnik,
+RkShippingItemRecZavrseno.SifraReklamacije as SifLargo , RkShippingItemRECZavrseno.NazivReklamacije,
+RkShippingItemRECZavrseno.Opis,KolicinaOrg,  Kolicina,   0 as Paletirano, Paletar as Paletar,
+VremePakovanja as VremePaletiranja, RkShippingItemRecZavrseno.IsporucenoKupcu as Kontrolisano, Kontrolor as KOntrolor ,
+RkShippingItemRecZavrseno.VremeKontrole , Paleta, RkShippingZavrseno.BrojIstovara as BrojUtovara, RkShippingZavrseno.BrojUtovara as BrojIsporuke ,
+MestoIsporuke FROM [dbo].RkShippingItemRecZavrseno inner join RkShippingZavrseno
+on [dbo].RkShippingItemRecZavrseno.ShipingIDz = RkShippingZavrseno.[ShippingID]
+inner join Saloni on RkShippingZavrseno.SalonIDz = Saloni.SifraKomintentaMestoIsporuke";
+
+        // Stavka koja nije u RkShippingRecPakovanje ili ima ZaPakovanje = 0 ostaje vidljiva.
+        private const string NijeZaPakovanje = @"
+NOT EXISTS (
+    SELECT 1
+    FROM RkShippingRecPakovanje t2
+    WHERE t2.RkShippingItemRecID = t1.ShippingItemRecID
+      AND t2.ZaPakovanje = 1)";
+
+        private string Konekcija()
+        {
+            return ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        }
+
         private void btnLoad_Click(object sender, EventArgs e)
         {
-            string query = @"
-Select * from (SELECT 'Pocetna' as Isporuka,RkShippingItemRecPocetna.ShippingItemRecID , RkShippingItemRecPocetna.Zapisnik AS Zapisnik, 
-RkShippingItemRecPocetna.SifraReklamacije as SifLargo , RkShippingItemRECPocetna.NazivReklamacije,  
-RkShippingItemRECPocetna.Opis,KolicinaOrg,  Kolicina,   0 as Paletirano, Paletar as Paletar, 
-VremePakovanja as VremePaletiranja, RkShippingItemRecPocetna.IsporucenoKupcu as Kontrolisano, Kontrolor as KOntrolor ,  
-RkShippingItemRecPocetna.VremeKontrole,  Paleta, RkShippingPocetna.BrojIstovara as BrojUtovara, RkShippingPocetna.BrojUtovara as BrojIsporuke , 
-MestoIsporuke FROM [dbo].RkShippingItemRecPocetna inner join RkShippingPocetna 
-on [dbo].RkShippingItemRecPocetna.ShipingIDz = RkShippingPocetna.[ShippingID] 
-inner join Saloni on RkShippingPocetna.SalonIDz = Saloni.SifraKomintentaMestoIsporuke) as t1
-WHERE NOT EXISTS (
-    SELECT 1
-    FROM RkShippingRecPakovanje t2
-    WHERE t2.RkShippingItemRecID = t1.ShippingItemRecID)
-union
-Select * from (SELECT 'Obradjena' as Isporuka,RkShippingItemRec.ShippingItemRecID , RkShippingItemRec.Zapisnik AS Zapisnik, 
-RkShippingItemRec.SifraReklamacije as SifLargo , RkShippingItemREC.NazivReklamacije,  
-RkShippingItemREC.Opis,KolicinaOrg,  Kolicina,   0 as Paletirano, Paletar as Paletar, 
-VremePakovanja as VremePaletiranja, RkShippingItemRec.IsporucenoKupcu as Kontrolisano, Kontrolor as KOntrolor ,  
-RkShippingItemRec.VremeKontrole , Paleta, RkShipping.BrojIstovara as BrojUtovara, RkShipping.BrojUtovara as BrojIsporuke , 
-MestoIsporuke  FROM [dbo].RkShippingItemRec inner join RkShipping 
-on [dbo].RkShippingItemRec.ShipingIDz = RkShipping.[ShippingID] 
-inner join Saloni on RkShipping.SalonIDz = Saloni.SifraKomintentaMestoIsporuke) as t1
-WHERE NOT EXISTS (
-    SELECT 1
-    FROM RkShippingRecPakovanje t2
-    WHERE t2.RkShippingItemRecID = t1.ShippingItemRecID)
-union
-Select * from (SELECT 'Isporuka' as Isporuka,  RkShippingItemRecZavrseno.ShippingItemRecID , RkShippingItemRecZavrseno.Zapisnik AS Zapisnik, 
-RkShippingItemRecZavrseno.SifraReklamacije as SifLargo , RkShippingItemRECZavrseno.NazivReklamacije,  
-RkShippingItemRECZavrseno.Opis,KolicinaOrg,  Kolicina,   0 as Paletirano, Paletar as Paletar, 
-VremePakovanja as VremePaletiranja, RkShippingItemRecZavrseno.IsporucenoKupcu as Kontrolisano, Kontrolor as KOntrolor ,  
-RkShippingItemRecZavrseno.VremeKontrole , Paleta, RkShippingZavrseno.BrojIstovara as BrojUtovara, RkShippingZavrseno.BrojUtovara as BrojIsporuke , 
-MestoIsporuke FROM [dbo].RkShippingItemRecZavrseno inner join RkShippingZavrseno 
-on [dbo].RkShippingItemRecZavrseno.ShipingIDz = RkShippingZavrseno.[ShippingID] 
-inner join Saloni on RkShippingZavrseno.SalonIDz = Saloni.SifraKomintentaMestoIsporuke
-where RkShippingItemRecZavrseno.IsporucenoKupcu = 0) as t1
-WHERE NOT EXISTS (
-    SELECT 1
-    FROM RkShippingRecPakovanje t2
-    WHERE t2.RkShippingItemRecID = t1.ShippingItemRecID)";
+            UcitajReklamacije();
+            UcitajPakovanje();
+        }
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            using (SqlConnection conn = new SqlConnection(s_connection))
+        private void UcitajReklamacije()
+        {
+            var delovi = new List<string>();
+
+            if (chkPocetna.Checked)
+                delovi.Add("Select * from (" + SelectPocetna + ") as t1 WHERE " + NijeZaPakovanje);
+
+            if (chkObradjena.Checked)
+                delovi.Add("Select * from (" + SelectObradjena + ") as t1 WHERE " + NijeZaPakovanje);
+
+            if (chkIsporuka.Checked)
+                delovi.Add("Select * from (" + SelectIsporuka + ") as t1 WHERE t1.Kontrolisano = 0 AND " + NijeZaPakovanje);
+
+            if (delovi.Count == 0)
+            {
+                MessageBox.Show("Čekirajte bar jedno od: Pocetna, Obradjena, Isporuka.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            string query = string.Join("\nunion\n", delovi);
+
+            using (SqlConnection conn = new SqlConnection(Konekcija()))
             {
                 try
                 {
@@ -83,6 +109,55 @@ WHERE NOT EXISTS (
                     MessageBox.Show("Greška pri učitavanju podataka: " + ex.Message);
                 }
             }
+        }
+
+        private void UcitajPakovanje()
+        {
+            // Ista stavka može biti u više tabela; uzima se ona najdalje u procesu (Isporuka > Obradjena > Pocetna).
+            string query = @"
+WITH Stavke AS (
+    SELECT 1 AS Prioritet, * FROM (" + SelectPocetna + @") a
+    UNION ALL
+    SELECT 2 AS Prioritet, * FROM (" + SelectObradjena + @") b
+    UNION ALL
+    SELECT 3 AS Prioritet, * FROM (" + SelectIsporuka + @") c
+)
+SELECT p.RkShippingItemRecID, p.ZaPakovanje, p.Spakovano,
+       d.Isporuka, d.Zapisnik, d.SifLargo, d.NazivReklamacije, d.Opis, d.KolicinaOrg, d.Kolicina,
+       d.Paletar, d.VremePaletiranja, d.Kontrolisano, d.KOntrolor, d.VremeKontrole, d.Paleta,
+       d.BrojUtovara, d.BrojIsporuke, d.MestoIsporuke
+FROM RkShippingRecPakovanje p
+OUTER APPLY (
+    SELECT TOP 1 *
+    FROM Stavke s
+    WHERE s.ShippingItemRecID = p.RkShippingItemRecID
+    ORDER BY s.Prioritet DESC
+) d
+WHERE p.ZaPakovanje = @ZaPakovanje
+  AND p.Spakovano = @Spakovano";
+
+            using (SqlConnection conn = new SqlConnection(Konekcija()))
+            {
+                try
+                {
+                    var da = new SqlDataAdapter(query, conn);
+                    da.SelectCommand.Parameters.Add("@ZaPakovanje", SqlDbType.Bit).Value = chkZaPakovanje.Checked;
+                    da.SelectCommand.Parameters.Add("@Spakovano", SqlDbType.Bit).Value = chkSpakovano.Checked;
+                    var ds = new DataSet();
+                    da.Fill(ds);
+                    dataGridView3.ReadOnly = true;
+                    dataGridView3.DataSource = ds.Tables[0];
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Greška pri učitavanju podataka: " + ex.Message);
+                }
+            }
+        }
+
+        private void chkPakovanjeFilter_CheckedChanged(object sender, EventArgs e)
+        {
+            UcitajPakovanje();
         }
 
         private void btnSpakovano_Click(object sender, EventArgs e)
@@ -137,21 +212,10 @@ WHERE NOT EXISTS (
                     }
                 }
 
-                // Refresh dataGridView3 to show updated rows
-                try
-                {
-                    var da = new SqlDataAdapter("SELECT * FROM RkShippingRecPakovanje", conn);
-                    var ds = new DataSet();
-                    da.Fill(ds);
-                    dataGridView3.ReadOnly = true;
-                    dataGridView3.DataSource = ds.Tables[0];
-                    MessageBox.Show($"Uspešno označeno {ids.Count} zapisa kao spakovano.", "Uspelo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Greška pri učitavanju podataka: " + ex.Message);
-                }
             }
+
+            UcitajPakovanje();
+            MessageBox.Show($"Uspešno označeno {ids.Count} zapisa kao spakovano.", "Uspelo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnZaPakovanje_Click(object sender, EventArgs e)
@@ -196,20 +260,10 @@ WHERE NOT EXISTS (
                     }
                 }
 
-                // Refresh dataGridView2 to show inserted rows
-                try
-                {
-                    var da = new SqlDataAdapter("SELECT * FROM RkShippingRecPakovanje", conn);
-                    var ds = new DataSet();
-                    da.Fill(ds);
-                    dataGridView3.ReadOnly = true;
-                    dataGridView3.DataSource = ds.Tables[0];
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Greška pri učitavanju podataka: " + ex.Message);
-                }
             }
+
+            UcitajReklamacije();
+            UcitajPakovanje();
         }
     }
 }

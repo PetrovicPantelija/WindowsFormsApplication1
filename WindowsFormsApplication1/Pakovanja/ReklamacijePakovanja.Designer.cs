@@ -34,6 +34,11 @@
             this.btnPrebaci = new System.Windows.Forms.Button();
             this.btnSpakovano = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.chkPocetna = new System.Windows.Forms.CheckBox();
+            this.chkObradjena = new System.Windows.Forms.CheckBox();
+            this.chkIsporuka = new System.Windows.Forms.CheckBox();
+            this.chkZaPakovanje = new System.Windows.Forms.CheckBox();
+            this.chkSpakovano = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -112,12 +117,75 @@
             this.splitContainer1.Size = new System.Drawing.Size(1164, 513);
             this.splitContainer1.SplitterDistance = 613;
             this.splitContainer1.TabIndex = 5;
-            // 
+            //
+            // chkPocetna
+            //
+            this.chkPocetna.AutoSize = true;
+            this.chkPocetna.Checked = true;
+            this.chkPocetna.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkPocetna.Location = new System.Drawing.Point(180, 19);
+            this.chkPocetna.Name = "chkPocetna";
+            this.chkPocetna.Size = new System.Drawing.Size(64, 17);
+            this.chkPocetna.TabIndex = 6;
+            this.chkPocetna.Text = "Pocetna";
+            this.chkPocetna.UseVisualStyleBackColor = true;
+            //
+            // chkObradjena
+            //
+            this.chkObradjena.AutoSize = true;
+            this.chkObradjena.Checked = true;
+            this.chkObradjena.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkObradjena.Location = new System.Drawing.Point(255, 19);
+            this.chkObradjena.Name = "chkObradjena";
+            this.chkObradjena.Size = new System.Drawing.Size(74, 17);
+            this.chkObradjena.TabIndex = 7;
+            this.chkObradjena.Text = "Obradjena";
+            this.chkObradjena.UseVisualStyleBackColor = true;
+            //
+            // chkIsporuka
+            //
+            this.chkIsporuka.AutoSize = true;
+            this.chkIsporuka.Location = new System.Drawing.Point(340, 19);
+            this.chkIsporuka.Name = "chkIsporuka";
+            this.chkIsporuka.Size = new System.Drawing.Size(66, 17);
+            this.chkIsporuka.TabIndex = 8;
+            this.chkIsporuka.Text = "Isporuka";
+            this.chkIsporuka.UseVisualStyleBackColor = true;
+            //
+            // chkZaPakovanje
+            //
+            this.chkZaPakovanje.AutoSize = true;
+            this.chkZaPakovanje.Checked = true;
+            this.chkZaPakovanje.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkZaPakovanje.Location = new System.Drawing.Point(810, 19);
+            this.chkZaPakovanje.Name = "chkZaPakovanje";
+            this.chkZaPakovanje.Size = new System.Drawing.Size(88, 17);
+            this.chkZaPakovanje.TabIndex = 9;
+            this.chkZaPakovanje.Text = "Za pakovanje";
+            this.chkZaPakovanje.UseVisualStyleBackColor = true;
+            this.chkZaPakovanje.CheckedChanged += new System.EventHandler(this.chkPakovanjeFilter_CheckedChanged);
+            //
+            // chkSpakovano
+            //
+            this.chkSpakovano.AutoSize = true;
+            this.chkSpakovano.Location = new System.Drawing.Point(910, 19);
+            this.chkSpakovano.Name = "chkSpakovano";
+            this.chkSpakovano.Size = new System.Drawing.Size(78, 17);
+            this.chkSpakovano.TabIndex = 10;
+            this.chkSpakovano.Text = "Spakovano";
+            this.chkSpakovano.UseVisualStyleBackColor = true;
+            this.chkSpakovano.CheckedChanged += new System.EventHandler(this.chkPakovanjeFilter_CheckedChanged);
+            //
             // ReklamacijePakovanja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1196, 588);
+            this.Controls.Add(this.chkSpakovano);
+            this.Controls.Add(this.chkZaPakovanje);
+            this.Controls.Add(this.chkIsporuka);
+            this.Controls.Add(this.chkObradjena);
+            this.Controls.Add(this.chkPocetna);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.btnSpakovano);
             this.Controls.Add(this.btnPrebaci);
@@ -133,6 +201,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -145,5 +214,10 @@
         private System.Windows.Forms.Button btnPrebaci;
         private System.Windows.Forms.Button btnSpakovano;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.CheckBox chkPocetna;
+        private System.Windows.Forms.CheckBox chkObradjena;
+        private System.Windows.Forms.CheckBox chkIsporuka;
+        private System.Windows.Forms.CheckBox chkZaPakovanje;
+        private System.Windows.Forms.CheckBox chkSpakovano;
     }
 }
