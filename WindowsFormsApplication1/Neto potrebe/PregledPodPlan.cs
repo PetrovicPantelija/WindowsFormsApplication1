@@ -1188,6 +1188,11 @@ ORDER BY
             }
         }
 
+        private void btnRefreshPP_Click(object sender, EventArgs e)
+        {
+            FillGV();
+        }
+
         private void iconButton2_Click(object sender, EventArgs e)
         {
             InsertStampaNP inp = new InsertStampaNP();

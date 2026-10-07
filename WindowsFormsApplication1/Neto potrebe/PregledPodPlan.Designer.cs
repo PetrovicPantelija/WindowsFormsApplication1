@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
+            this.btnRefreshPP = new FontAwesome.Sharp.IconButton();
             this.label10 = new System.Windows.Forms.Label();
             this.txtPodPlan = new System.Windows.Forms.TextBox();
             this.cboPlan = new System.Windows.Forms.ComboBox();
@@ -73,6 +74,27 @@
             this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconButton1.UseVisualStyleBackColor = false;
             this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
+            //
+            // btnRefreshPP
+            //
+            this.btnRefreshPP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
+            this.btnRefreshPP.FlatAppearance.BorderSize = 0;
+            this.btnRefreshPP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRefreshPP.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.btnRefreshPP.IconChar = FontAwesome.Sharp.IconChar.SyncAlt;
+            this.btnRefreshPP.IconColor = System.Drawing.Color.Black;
+            this.btnRefreshPP.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.btnRefreshPP.IconSize = 18;
+            this.btnRefreshPP.Location = new System.Drawing.Point(208, 111);
+            this.btnRefreshPP.Name = "btnRefreshPP";
+            this.btnRefreshPP.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
+            this.btnRefreshPP.Size = new System.Drawing.Size(110, 25);
+            this.btnRefreshPP.TabIndex = 305;
+            this.btnRefreshPP.Text = "Refresh PP";
+            this.btnRefreshPP.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRefreshPP.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRefreshPP.UseVisualStyleBackColor = false;
+            this.btnRefreshPP.Click += new System.EventHandler(this.btnRefreshPP_Click);
             // 
             // label10
             // 
@@ -270,6 +292,7 @@
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.iconButton1);
+            this.Controls.Add(this.btnRefreshPP);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.txtPodPlan);
             this.Controls.Add(this.cboPlan);
@@ -293,6 +316,7 @@
         #endregion
 
         private FontAwesome.Sharp.IconButton iconButton1;
+        private FontAwesome.Sharp.IconButton btnRefreshPP;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtPodPlan;
         private System.Windows.Forms.ComboBox cboPlan;
