@@ -23,7 +23,7 @@ namespace WindowsFormsApplication1.Neto_potrebe
         bool status = false;
         // existing connect stays; keep single definition
         public bool PravoP;
-        public static string code = "PregledPodPlan";
+        public static string code = "KrojnaLista";
         public bool Pravo;
         int idGrupe;
         int idForme;

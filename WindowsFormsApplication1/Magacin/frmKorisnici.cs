@@ -30,9 +30,7 @@ namespace WindowsFormsApplication1.Magacin
         public frmKorisnici()
         {
             InitializeComponent();
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
+           
         }
         public string IdGrupe()
         {
@@ -162,21 +160,24 @@ namespace WindowsFormsApplication1.Magacin
             if (status == true)
             {
                 InsertAdministracija ins = new InsertAdministracija();
-                ins.InsKorisnik(cboKorisnik.SelectedValue.ToString(), txtPassword.Text, Convert.ToInt32(txtSifraLargo.Text), Convert.ToInt32(cboOrganizacionaJedinica.SelectedValue), txtMagacini.Text);
+                ins.InsKorisnik(cboKorisnik.Text.ToString().Trim(), txtPassword.Text, Convert.ToInt32(txtSifraLargo.Text), Convert.ToInt32(cboOrganizacionaJedinica.SelectedValue), txtMagacini.Text);
                 MessageBox.Show("Insert");
                 status = false;
             }
             else
             {
                 InsertAdministracija upd = new InsertAdministracija();
-                upd.UpdKorisnik(cboKorisnik.SelectedValue.ToString(), txtPassword.Text, Convert.ToInt32(txtSifraLargo.Text), Convert.ToInt32(cboOrganizacionaJedinica.SelectedValue), txtMagacini.Text);
+                upd.UpdKorisnik(cboKorisnik.SelectedValue.ToString().Trim(), txtPassword.Text, Convert.ToInt32(txtSifraLargo.Text), Convert.ToInt32(cboOrganizacionaJedinica.SelectedValue), txtMagacini.Text);
             }
             RefreshDataGRid();
         }
 
         private void frmKorisnici_Load(object sender, EventArgs e)
         {
-            var select2 = " Select Korisnik from Korisnici ";
+            IdGrupe();
+            IdForme();
+            PravoPristupa();
+            var select2 = " Select RTrim(Korisnik) as Korisnik from Korisnici ";
 
             var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection2 = new SqlConnection(s_connection2);
@@ -210,7 +211,7 @@ namespace WindowsFormsApplication1.Magacin
         private void tsDelete_Click(object sender, EventArgs e)
         {
             InsertAdministracija ins = new InsertAdministracija();
-            ins.DeleteKorisnik(cboKorisnik.SelectedValue.ToString());
+            ins.DeleteKorisnik(cboKorisnik.SelectedValue.ToString().Trim());
             status = false;
             RefreshDataGRid();
         }
@@ -222,7 +223,7 @@ namespace WindowsFormsApplication1.Magacin
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("SELECT [Korisnik]      ,[Password] " +
+            SqlCommand cmd = new SqlCommand("SELECT RTRIM([Korisnik]) as Korisnik      ,[Password] " +
           " ,[SifraLargo]      ,[OrganizacionaJedinica]      ,[Magacini]  FROM [Jela_test].[dbo].[Korisnici] " +
             "  where Rtrim(Korisnik) ='" + ID.Trim() + "'", con);
             SqlDataReader dr = cmd.ExecuteReader();
@@ -233,7 +234,13 @@ namespace WindowsFormsApplication1.Magacin
                 cboKorisnik.SelectedValue = dr["Korisnik"].ToString().Trim();
                 txtPassword.Text = dr["Password"].ToString().Trim();
                 txtSifraLargo.Text = dr["SifraLargo"].ToString();
-                cboOrganizacionaJedinica.SelectedValue = Convert.ToInt32(dr["OrganizacionaJedinica"].ToString());
+                if (dr["OrganizacionaJedinica"].ToString()  == "")
+                {
+                    MessageBox.Show("Nije uneta Org jed za korisnika");
+                    cboOrganizacionaJedinica.SelectedValue = 0;
+                }
+                else { cboOrganizacionaJedinica.SelectedValue = Convert.ToInt32(dr["OrganizacionaJedinica"].ToString()); }
+                   
                 txtMagacini.Text = dr["Magacini"].ToString();
             }
 
@@ -254,6 +261,7 @@ namespace WindowsFormsApplication1.Magacin
                     if (row.Selected)
                     {
                         cboKorisnik.SelectedValue = row.Cells[0].Value.ToString().Trim();
+
                         VratiPodatke(cboKorisnik.SelectedValue.ToString().Trim());
                         // txtOpis.Text = row.Cells[1].Value.ToString();
                     }
