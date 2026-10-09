@@ -1,13 +1,15 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "winapp",
+            "name": "Pokreni (Debug)",
+            "type": "clr",
             "request": "launch",
-            "name": "WinApp: Launch and Attach"
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}\\WindowsFormsApplication1\\bin\\Debug\\WindowsFormsApplication1.exe",
+            "cwd": "${workspaceFolder}\\WindowsFormsApplication1\\bin\\Debug",
+            "console": "internalConsole",
+            "stopAtEntry": false
         }
     ]
 }
