@@ -30,6 +30,9 @@ namespace WindowsFormsApplication1.Nabavka
         {
             this.panelFilter = new System.Windows.Forms.Panel();
             this.lblInfo = new System.Windows.Forms.Label();
+            this.lblFaktor = new System.Windows.Forms.Label();
+            this.txtFaktor = new System.Windows.Forms.TextBox();
+            this.btnUmanji = new FontAwesome.Sharp.IconButton();
             this.btnPdf = new FontAwesome.Sharp.IconButton();
             this.btnCsv = new FontAwesome.Sharp.IconButton();
             this.btnExcel = new FontAwesome.Sharp.IconButton();
@@ -45,6 +48,9 @@ namespace WindowsFormsApplication1.Nabavka
             //
             // panelFilter
             //
+            this.panelFilter.Controls.Add(this.btnUmanji);
+            this.panelFilter.Controls.Add(this.txtFaktor);
+            this.panelFilter.Controls.Add(this.lblFaktor);
             this.panelFilter.Controls.Add(this.lblInfo);
             this.panelFilter.Controls.Add(this.btnPdf);
             this.panelFilter.Controls.Add(this.btnCsv);
@@ -68,6 +74,44 @@ namespace WindowsFormsApplication1.Nabavka
             this.lblInfo.Name = "lblInfo";
             this.lblInfo.Size = new System.Drawing.Size(0, 15);
             this.lblInfo.TabIndex = 8;
+            //
+            // lblFaktor
+            //
+            this.lblFaktor.AutoSize = true;
+            this.lblFaktor.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            this.lblFaktor.Location = new System.Drawing.Point(797, 62);
+            this.lblFaktor.Name = "lblFaktor";
+            this.lblFaktor.Size = new System.Drawing.Size(140, 15);
+            this.lblFaktor.TabIndex = 9;
+            this.lblFaktor.Text = "Faktor umanjenja tabli";
+            //
+            // txtFaktor
+            //
+            this.txtFaktor.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtFaktor.Location = new System.Drawing.Point(800, 80);
+            this.txtFaktor.Name = "txtFaktor";
+            this.txtFaktor.Size = new System.Drawing.Size(90, 25);
+            this.txtFaktor.TabIndex = 10;
+            this.txtFaktor.Text = "5,796";
+            this.txtFaktor.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            //
+            // btnUmanji
+            //
+            this.btnUmanji.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.btnUmanji.IconChar = FontAwesome.Sharp.IconChar.Divide;
+            this.btnUmanji.IconColor = System.Drawing.Color.DarkOrange;
+            this.btnUmanji.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnUmanji.IconSize = 20;
+            this.btnUmanji.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUmanji.Location = new System.Drawing.Point(898, 76);
+            this.btnUmanji.Name = "btnUmanji";
+            this.btnUmanji.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnUmanji.Size = new System.Drawing.Size(200, 32);
+            this.btnUmanji.TabIndex = 11;
+            this.btnUmanji.Text = "Umanji količine table";
+            this.btnUmanji.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnUmanji.UseVisualStyleBackColor = true;
+            this.btnUmanji.Click += new System.EventHandler(this.btnUmanji_Click);
             //
             // btnPdf
             //
@@ -229,6 +273,9 @@ namespace WindowsFormsApplication1.Nabavka
         private FontAwesome.Sharp.IconButton btnCsv;
         private FontAwesome.Sharp.IconButton btnPdf;
         private System.Windows.Forms.Label lblInfo;
+        private System.Windows.Forms.Label lblFaktor;
+        private System.Windows.Forms.TextBox txtFaktor;
+        private FontAwesome.Sharp.IconButton btnUmanji;
         private Syncfusion.WinForms.DataGrid.SfDataGrid sfGrid;
     }
 }

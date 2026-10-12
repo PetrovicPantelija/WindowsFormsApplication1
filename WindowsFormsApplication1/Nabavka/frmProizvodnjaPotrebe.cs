@@ -38,6 +38,11 @@ namespace WindowsFormsApplication1.Nabavka
         // sprecava rekurziju kada se u ItemCheck menja stanje drugih stavki
         private bool _menjamPodPlanove;
 
+        // podaci iz baze (pre umanjenja tabli) i tabela prikazana u gridu
+        private DataTable _dtOriginal;
+        private DataTable _dtPrikaz;
+        private string _osnovniInfo = "";
+
         private class PlanStavka
         {
             public int ID;
@@ -52,6 +57,13 @@ namespace WindowsFormsApplication1.Nabavka
             IdGrupe();
             IdForme();
             PravoPristupa();
+
+            // Boje Jela dekora (Evergreen mat i Soft bež), kao MainNabavka
+            this.BackColor = Color.FromArgb(248, 247, 244);
+            panelFilter.BackColor = Color.FromArgb(248, 247, 244);
+            sfGrid.Style.HeaderStyle.BackColor = Color.FromArgb(58, 77, 57);
+            sfGrid.Style.HeaderStyle.TextColor = Color.White;
+            sfGrid.Style.HeaderStyle.Font.Bold = true;
         }
 
         public string IdGrupe()
@@ -408,12 +420,89 @@ ORDER BY
                     Cursor = Cursors.Default;
                 }
 
+                _dtOriginal = dt.Copy();
+                _dtPrikaz = dt;
                 sfGrid.DataSource = dt;
 
-                lblInfo.Text = "Planova: " + planovi.Count +
+                _osnovniInfo = "Planova: " + planovi.Count +
                                "   Podplanova: " + (svi ? "svi" : podPlanovi.Count.ToString()) +
                                "   Stavki: " + dt.Rows.Count;
+                lblInfo.Text = _osnovniInfo;
             }
+        }
+
+        // Kolicine table (JM1 = M2, JM2 = TAB, MpOzBlagSkup = 1) se dele faktorom umanjenja.
+        // Uvek se racuna od originalnih vrednosti, pa ponovni klik (i promena faktora) ne deli dva puta.
+        private void btnUmanji_Click(object sender, EventArgs e)
+        {
+            if (_dtPrikaz == null || _dtOriginal == null || _dtPrikaz.Rows.Count == 0)
+            {
+                MessageBox.Show("Nema podataka. Kliknite Refresh.", "Umanjenje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            decimal faktor;
+            if (!decimal.TryParse(txtFaktor.Text.Trim().Replace(',', '.'), NumberStyles.Float, CultureInfo.InvariantCulture, out faktor) || faktor <= 0)
+            {
+                MessageBox.Show("Faktor umanjenja mora biti broj veći od 0 (npr. 5,796).", "Umanjenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtFaktor.Focus();
+                return;
+            }
+
+            List<int> artikli = _dtOriginal.AsEnumerable()
+                .Where(r => r["KoPodSifMp"] != DBNull.Value)
+                .Select(r => Convert.ToInt32(r["KoPodSifMp"]))
+                .Distinct()
+                .ToList();
+
+            HashSet<int> table = new HashSet<int>();
+
+            string query = @"
+Select MpSifra
+From MaticniPodatki
+Where MpSifra in (" + string.Join(",", artikli) + @")
+  and MpSifEnoteMere1 = 'M2'
+  and MpSifEnoteMere2 = 'TAB'
+  and MpOzBlagSkup = 1";
+
+            using (SqlConnection conn = new SqlConnection(connect))
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                cmd.CommandTimeout = 120;
+                conn.Open();
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                        table.Add(Convert.ToInt32(dr["MpSifra"]));
+                }
+            }
+
+            if (table.Count == 0)
+            {
+                MessageBox.Show("U gridu nema artikala koji su table (M2 / TAB).", "Umanjenje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            string[] kolicine = { "KoKolMateriala", "Potroseno", "Potrebno" };
+            int umanjeno = 0;
+
+            for (int i = 0; i < _dtPrikaz.Rows.Count; i++)
+            {
+                System.Data.DataRow original = _dtOriginal.Rows[i];
+                if (original["KoPodSifMp"] == DBNull.Value || !table.Contains(Convert.ToInt32(original["KoPodSifMp"])))
+                    continue;
+
+                System.Data.DataRow red = _dtPrikaz.Rows[i];
+                foreach (string kol in kolicine)
+                {
+                    if (original[kol] != DBNull.Value)
+                        red[kol] = Math.Round(Convert.ToDecimal(original[kol]) / faktor, 4);
+                }
+                red["JM"] = "TAB";
+                umanjeno++;
+            }
+
+            lblInfo.Text = _osnovniInfo + "   Umanjeno tabli: " + umanjeno + " (faktor " + faktor.ToString(CultureInfo.CurrentCulture) + ")";
         }
 
         private void sfGrid_AutoGeneratingColumn(object sender, AutoGeneratingColumnArgs e)

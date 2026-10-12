@@ -48,7 +48,6 @@ namespace WindowsFormsApplication1
             this.ControlBox = false;
             this.DoubleBuffered = true;
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
-            PrimeniDizajn();
         }
         public string IdGrupe()
         {
@@ -140,7 +139,6 @@ namespace WindowsFormsApplication1
         private static readonly Color BojaPozadine = Color.FromArgb(248, 247, 244);
         private static readonly Color BojaAkcenta = Color.FromArgb(190, 150, 110);
 
-        private Button btnMaximize;
         private bool isDragging = false;
         private Point dragKursor;
         private Point dragForma;
@@ -158,81 +156,25 @@ namespace WindowsFormsApplication1
             public static Color color8 = BojaAkcenta;
         }
 
-        private void PrimeniDizajn()
+        private void btnClose_Click(object sender, EventArgs e)
         {
-            this.BackColor = BojaPozadine;
-            panelDesktop.BackColor = BojaPozadine;
-            PanelMenu.BackColor = BojaMenija;
-            panelLogo.BackColor = BojaMenijaTamna;
-
-            foreach (Control c in PanelMenu.Controls)
-            {
-                IconButton btn = c as IconButton;
-                if (btn == null)
-                    continue;
-                btn.BackColor = BojaMenija;
-                btn.FlatAppearance.MouseOverBackColor = BojaAkcenta;
-            }
-
-            // Header: naslov + Minimize / Maximize / Close (forma nema naslovnu liniju)
-            panel3.BackColor = Color.White;
-            panel3.MouseDown += Header_MouseDown;
-            panel3.MouseMove += Header_MouseMove;
-            panel3.MouseUp += Header_MouseUp;
-            panel3.DoubleClick += (s, e) => PromeniMaksimizaciju();
-
-            Label lblNaslov = new Label
-            {
-                Text = "JELA Jagodina | Centralni magacin",
-                Font = new Font("Segoe UI", 12F, FontStyle.Bold),
-                ForeColor = BojaMenija,
-                AutoSize = true,
-                Location = new Point(15, 14)
-            };
-            lblNaslov.MouseDown += Header_MouseDown;
-            lblNaslov.MouseMove += Header_MouseMove;
-            lblNaslov.MouseUp += Header_MouseUp;
-            lblNaslov.DoubleClick += (s, e) => PromeniMaksimizaciju();
-            panel3.Controls.Add(lblNaslov);
-
-            Button btnClose = NapraviHeaderDugme("✕");
-            btnClose.FlatAppearance.MouseOverBackColor = Color.FromArgb(232, 17, 35);
-            btnClose.Click += (s, e) => this.Close();
-
-            btnMaximize = NapraviHeaderDugme("□");
-            btnMaximize.Click += (s, e) => PromeniMaksimizaciju();
-
-            Button btnMinimize = NapraviHeaderDugme("–");
-            btnMinimize.Click += (s, e) => this.WindowState = FormWindowState.Minimized;
-
-            Action rasporedi = () =>
-            {
-                btnClose.Location = new Point(panel3.Width - 50, 2);
-                btnMaximize.Location = new Point(panel3.Width - 95, 2);
-                btnMinimize.Location = new Point(panel3.Width - 140, 2);
-            };
-            panel3.Controls.Add(btnClose);
-            panel3.Controls.Add(btnMaximize);
-            panel3.Controls.Add(btnMinimize);
-            rasporedi();
-            panel3.SizeChanged += (s, e) => rasporedi();
+            // Close, ne Application.Exit: frmLogovanje ostaje otvoren (minimizovan).
+            this.Close();
         }
 
-        private Button NapraviHeaderDugme(string tekst)
+        private void btnMaximize_Click(object sender, EventArgs e)
         {
-            Button btn = new Button
-            {
-                Text = tekst,
-                Size = new Size(45, 45),
-                FlatStyle = FlatStyle.Flat,
-                Font = new Font("Segoe UI", 12F, FontStyle.Bold),
-                ForeColor = Color.Gray,
-                Cursor = Cursors.Hand,
-                TabStop = false
-            };
-            btn.FlatAppearance.BorderSize = 0;
-            btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(235, 232, 225);
-            return btn;
+            PromeniMaksimizaciju();
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void Header_DoubleClick(object sender, EventArgs e)
+        {
+            PromeniMaksimizaciju();
         }
 
         private void PromeniMaksimizaciju()
@@ -351,7 +293,6 @@ namespace WindowsFormsApplication1
             this.ControlBox = false;
             this.DoubleBuffered = true;
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
-            PrimeniDizajn();
         }
 
         private void međuskladišniPrenosToolStripMenuItem_Click(object sender, EventArgs e)
