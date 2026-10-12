@@ -190,6 +190,7 @@ namespace WindowsFormsApplication1.Nabavka
             this.sfGrid.AccessibleName = "Table";
             this.sfGrid.AllowEditing = false;
             this.sfGrid.AllowFiltering = true;
+            this.sfGrid.AllowResizingColumns = true;
             this.sfGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sfGrid.Location = new System.Drawing.Point(0, 200);
             this.sfGrid.Name = "sfGrid";
