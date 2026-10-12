@@ -48,6 +48,7 @@ namespace WindowsFormsApplication1
             this.ControlBox = false;
             this.DoubleBuffered = true;
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
+            PrimeniDizajn();
         }
         public string IdGrupe()
         {
@@ -132,17 +133,146 @@ namespace WindowsFormsApplication1
 
             conn.Close();
         }
+        // Boje inspirisane Jela dekorima (Evergreen mat i Soft bež) - kao frmSifarniciPlaniranje
+        private static readonly Color BojaMenija = Color.FromArgb(58, 77, 57);
+        private static readonly Color BojaMenijaTamna = Color.FromArgb(46, 62, 45);
+        private static readonly Color BojaAktivnog = Color.FromArgb(78, 100, 76);
+        private static readonly Color BojaPozadine = Color.FromArgb(248, 247, 244);
+        private static readonly Color BojaAkcenta = Color.FromArgb(190, 150, 110);
+
+        private Button btnMaximize;
+        private bool isDragging = false;
+        private Point dragKursor;
+        private Point dragForma;
+
         //Struktura za boje
         private struct RGBColors
         {
-            public static Color color1 = Color.FromArgb(250, 166, 27);
-            public static Color color2 = Color.FromArgb(250, 166, 27);
-            public static Color color3 = Color.FromArgb(250, 166, 27);
-            public static Color color4 = Color.FromArgb(250, 166, 27);
-            public static Color color5 = Color.FromArgb(250, 166, 27);
-            public static Color color6 = Color.FromArgb(250, 166, 27);
-            public static Color color7 = Color.FromArgb(250, 166, 27);
-            public static Color color8 = Color.FromArgb(250, 166, 27);
+            public static Color color1 = BojaAkcenta;
+            public static Color color2 = BojaAkcenta;
+            public static Color color3 = BojaAkcenta;
+            public static Color color4 = BojaAkcenta;
+            public static Color color5 = BojaAkcenta;
+            public static Color color6 = BojaAkcenta;
+            public static Color color7 = BojaAkcenta;
+            public static Color color8 = BojaAkcenta;
+        }
+
+        private void PrimeniDizajn()
+        {
+            this.BackColor = BojaPozadine;
+            panelDesktop.BackColor = BojaPozadine;
+            PanelMenu.BackColor = BojaMenija;
+            panelLogo.BackColor = BojaMenijaTamna;
+
+            foreach (Control c in PanelMenu.Controls)
+            {
+                IconButton btn = c as IconButton;
+                if (btn == null)
+                    continue;
+                btn.BackColor = BojaMenija;
+                btn.FlatAppearance.MouseOverBackColor = BojaAkcenta;
+            }
+
+            // Header: naslov + Minimize / Maximize / Close (forma nema naslovnu liniju)
+            panel3.BackColor = Color.White;
+            panel3.MouseDown += Header_MouseDown;
+            panel3.MouseMove += Header_MouseMove;
+            panel3.MouseUp += Header_MouseUp;
+            panel3.DoubleClick += (s, e) => PromeniMaksimizaciju();
+
+            Label lblNaslov = new Label
+            {
+                Text = "JELA Jagodina | Centralni magacin",
+                Font = new Font("Segoe UI", 12F, FontStyle.Bold),
+                ForeColor = BojaMenija,
+                AutoSize = true,
+                Location = new Point(15, 14)
+            };
+            lblNaslov.MouseDown += Header_MouseDown;
+            lblNaslov.MouseMove += Header_MouseMove;
+            lblNaslov.MouseUp += Header_MouseUp;
+            lblNaslov.DoubleClick += (s, e) => PromeniMaksimizaciju();
+            panel3.Controls.Add(lblNaslov);
+
+            Button btnClose = NapraviHeaderDugme("✕");
+            btnClose.FlatAppearance.MouseOverBackColor = Color.FromArgb(232, 17, 35);
+            btnClose.Click += (s, e) => this.Close();
+
+            btnMaximize = NapraviHeaderDugme("□");
+            btnMaximize.Click += (s, e) => PromeniMaksimizaciju();
+
+            Button btnMinimize = NapraviHeaderDugme("–");
+            btnMinimize.Click += (s, e) => this.WindowState = FormWindowState.Minimized;
+
+            Action rasporedi = () =>
+            {
+                btnClose.Location = new Point(panel3.Width - 50, 2);
+                btnMaximize.Location = new Point(panel3.Width - 95, 2);
+                btnMinimize.Location = new Point(panel3.Width - 140, 2);
+            };
+            panel3.Controls.Add(btnClose);
+            panel3.Controls.Add(btnMaximize);
+            panel3.Controls.Add(btnMinimize);
+            rasporedi();
+            panel3.SizeChanged += (s, e) => rasporedi();
+        }
+
+        private Button NapraviHeaderDugme(string tekst)
+        {
+            Button btn = new Button
+            {
+                Text = tekst,
+                Size = new Size(45, 45),
+                FlatStyle = FlatStyle.Flat,
+                Font = new Font("Segoe UI", 12F, FontStyle.Bold),
+                ForeColor = Color.Gray,
+                Cursor = Cursors.Hand,
+                TabStop = false
+            };
+            btn.FlatAppearance.BorderSize = 0;
+            btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(235, 232, 225);
+            return btn;
+        }
+
+        private void PromeniMaksimizaciju()
+        {
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Normal;
+                btnMaximize.Text = "□";
+            }
+            else
+            {
+                // Forma bez naslovne linije bi se inače maksimizovala preko taskbara.
+                this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
+                this.WindowState = FormWindowState.Maximized;
+                btnMaximize.Text = "❐";
+            }
+        }
+
+        private void Header_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left && e.Clicks == 1 && this.WindowState != FormWindowState.Maximized)
+            {
+                isDragging = true;
+                dragKursor = Cursor.Position;
+                dragForma = this.Location;
+            }
+        }
+
+        private void Header_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isDragging)
+            {
+                Point p = Cursor.Position;
+                this.Location = new Point(dragForma.X + p.X - dragKursor.X, dragForma.Y + p.Y - dragKursor.Y);
+            }
+        }
+
+        private void Header_MouseUp(object sender, MouseEventArgs e)
+        {
+            isDragging = false;
         }
 
         //metoda
@@ -153,7 +283,7 @@ namespace WindowsFormsApplication1
                 DisableButton();
                 //button
                 curentBtn = (IconButton)senderBtn;
-                curentBtn.BackColor = Color.FromArgb(82, 108, 120);
+                curentBtn.BackColor = BojaAktivnog;
                 curentBtn.ForeColor = color;
                 curentBtn.TextAlign = ContentAlignment.MiddleCenter;
                 curentBtn.IconColor = color;
@@ -174,7 +304,7 @@ namespace WindowsFormsApplication1
         {
             if (curentBtn != null)
             {
-                curentBtn.BackColor = Color.FromArgb(69, 90, 100);
+                curentBtn.BackColor = BojaMenija;
                 curentBtn.ForeColor = Color.White;
                 curentBtn.TextAlign = ContentAlignment.MiddleLeft;
                 curentBtn.IconColor = Color.White;
@@ -221,6 +351,7 @@ namespace WindowsFormsApplication1
             this.ControlBox = false;
             this.DoubleBuffered = true;
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
+            PrimeniDizajn();
         }
 
         private void međuskladišniPrenosToolStripMenuItem_Click(object sender, EventArgs e)

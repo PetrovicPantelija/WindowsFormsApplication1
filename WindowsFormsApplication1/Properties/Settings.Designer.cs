@@ -26,17 +26,6 @@ namespace WindowsFormsApplication1.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.1.3\\sql20082;Initial Catalog=TESTING_DATABASE;Encrypt=False;U" +
-            "ser ID=panta;Password=1234;")]
-        public string NedraConnectionString {
-            get {
-                return ((string)(this["NedraConnectionString"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\\webs_baza16.mdb")]
         public string webs_baza16ConnectionString {
             get {
@@ -58,22 +47,33 @@ namespace WindowsFormsApplication1.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.1.3\\sql20082;Initial Catalog=TESTING_DATABASE;Encrypt=False;U" +
-            "ser ID=panta;Password=1234;")]
-        public string PerftehConnectionString {
+        [global::System.Configuration.DefaultSettingValueAttribute("Server=94.127.4.186;Port=3306;Database=jela_webs;Uid=jela_pantelija;Pwd=0307Jela-" +
+            ";")]
+        public string MySqlJelaWebs {
             get {
-                return ((string)(this["PerftehConnectionString"]));
+                return ((string)(this["MySqlJelaWebs"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Server=94.127.4.186;Port=3306;Database=jela_webs;Uid=jela_pantelija;Pwd=0307Jela-" +
-            ";")]
-        public string MySqlJelaWebs {
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.1.3\\sql20082;Initial Catalog=Jela_Test;Encrypt=False;User ID=" +
+            "panta;Password=1234;")]
+        public string NedraConnectionString {
             get {
-                return ((string)(this["MySqlJelaWebs"]));
+                return ((string)(this["NedraConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.1.3\\sql20082;Initial Catalog=Jela_Test;Encrypt=False;User ID=" +
+            "panta;Password=1234;")]
+        public string PerftehConnectionString {
+            get {
+                return ((string)(this["PerftehConnectionString"]));
             }
         }
     }
