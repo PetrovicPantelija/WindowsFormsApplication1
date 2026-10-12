@@ -40,6 +40,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panelDesktop = new System.Windows.Forms.Panel();
             this.iconButton2 = new FontAwesome.Sharp.IconButton();
+            this.btnProizvodnja = new FontAwesome.Sharp.IconButton();
             this.PanelMenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IconButton)).BeginInit();
@@ -48,6 +49,7 @@
             // PanelMenu
             // 
             this.PanelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(54)))), ((int)(((byte)(56)))));
+            this.PanelMenu.Controls.Add(this.btnProizvodnja);
             this.PanelMenu.Controls.Add(this.iconButton2);
             this.PanelMenu.Controls.Add(this.iconButton1);
             this.PanelMenu.Controls.Add(this.btnPlan);
@@ -232,7 +234,30 @@
             this.iconButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconButton2.UseVisualStyleBackColor = true;
             this.iconButton2.Click += new System.EventHandler(this.iconButton2_Click);
-            // 
+            //
+            // btnProizvodnja
+            //
+            this.btnProizvodnja.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnProizvodnja.FlatAppearance.BorderSize = 0;
+            this.btnProizvodnja.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProizvodnja.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProizvodnja.ForeColor = System.Drawing.Color.White;
+            this.btnProizvodnja.IconChar = FontAwesome.Sharp.IconChar.Industry;
+            this.btnProizvodnja.IconColor = System.Drawing.Color.White;
+            this.btnProizvodnja.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnProizvodnja.IconSize = 24;
+            this.btnProizvodnja.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnProizvodnja.Location = new System.Drawing.Point(0, 325);
+            this.btnProizvodnja.Name = "btnProizvodnja";
+            this.btnProizvodnja.Padding = new System.Windows.Forms.Padding(15, 0, 16, 0);
+            this.btnProizvodnja.Size = new System.Drawing.Size(180, 50);
+            this.btnProizvodnja.TabIndex = 21;
+            this.btnProizvodnja.Text = "Proizvodnja";
+            this.btnProizvodnja.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnProizvodnja.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnProizvodnja.UseVisualStyleBackColor = true;
+            this.btnProizvodnja.Click += new System.EventHandler(this.btnProizvodnja_Click);
+            //
             // MainNabavka
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -265,5 +290,6 @@
         private System.Windows.Forms.Panel panelDesktop;
         private FontAwesome.Sharp.IconButton iconButton1;
         private FontAwesome.Sharp.IconButton iconButton2;
+        private FontAwesome.Sharp.IconButton btnProizvodnja;
     }
 }

@@ -462,5 +462,17 @@ namespace WindowsFormsApplication1
             PakovanjaPlanovi.PakovanjeBarkodNabavka pakovanjeBarkodNabavka = new PakovanjaPlanovi.PakovanjeBarkodNabavka(KorisnikM);
             pakovanjeBarkodNabavka.Show();
         }
+
+        private void btnProizvodnja_Click(object sender, EventArgs e)
+        {
+            Nabavka.frmProizvodnjaPotrebe frm = new Nabavka.frmProizvodnjaPotrebe();
+            PravoP = frm.Pravo;
+            if (PravoP == true)
+            {
+                ActivateButton(sender, RGBColors.color1);
+                OpenChildForm(frm);
+            }
+            else { frm.Dispose(); return; }
+        }
     }
 }
