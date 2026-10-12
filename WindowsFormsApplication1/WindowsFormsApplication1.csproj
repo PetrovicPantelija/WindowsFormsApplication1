@@ -189,6 +189,21 @@
     <Reference Include="Syncfusion.Grouping.Base, Version=35.1462.39.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <HintPath>..\packages\Syncfusion.Grouping.Base.35.1.39\lib\net462\Syncfusion.Grouping.Base.dll</HintPath>
     </Reference>
+    <Reference Include="Syncfusion.Compression.Base, Version=35.1462.39.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Compression.Base.35.1.39\lib\net462\Syncfusion.Compression.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfDataGridConverter.WinForms, Version=35.1462.39.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.DataGridExport.WinForms.35.1.39\lib\net462\Syncfusion.SfDataGridConverter.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Markdown, Version=35.1462.39.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Markdown.35.1.39\lib\net462\Syncfusion.Markdown.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Pdf.Base, Version=35.1462.39.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Pdf.WinForms.35.1.39\lib\net462\Syncfusion.Pdf.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.XlsIO.Base, Version=35.1462.39.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.XlsIO.WinForms.35.1.39\lib\net462\Syncfusion.XlsIO.Base.dll</HintPath>
+    </Reference>
     <Reference Include="Syncfusion.Core.WinForms, Version=35.1462.39.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <HintPath>..\packages\Syncfusion.Core.WinForms.35.1.39\lib\net462\Syncfusion.Core.WinForms.dll</HintPath>
     </Reference>
@@ -1048,6 +1063,12 @@
     </Compile>
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Nabavka\frmProizvodnjaPotrebe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Nabavka\frmProizvodnjaPotrebe.Designer.cs">
+      <DependentUpon>frmProizvodnjaPotrebe.cs</DependentUpon>
     </Compile>
     <Compile Include="MainNabavka.cs">
       <SubType>Form</SubType>
@@ -3170,7 +3191,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Nabavka\" />
     <Folder Include="SqlServerTypes\x64\" />
     <Folder Include="SqlServerTypes\x86\" />
   </ItemGroup>
