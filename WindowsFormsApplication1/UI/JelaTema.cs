@@ -127,9 +127,32 @@ namespace WindowsFormsApplication1
             g.RowHeadersDefaultCellStyle.BackColor = ZaglavljeGrida;
             g.RowHeadersDefaultCellStyle.SelectionBackColor = Selekcija;
 
-            g.AlternatingRowsDefaultCellStyle.BackColor = RedAlt;
+            // Boje zadate u dizajneru (plava selekcija, beli tekst na svetloj pozadini...) ne smeju da pokvare izgled.
+            g.DefaultCellStyle.BackColor = Color.White;
+            if (Svetla(g.DefaultCellStyle.ForeColor) || g.DefaultCellStyle.ForeColor.IsEmpty) g.DefaultCellStyle.ForeColor = Tekst;
             g.DefaultCellStyle.SelectionBackColor = Selekcija;
             g.DefaultCellStyle.SelectionForeColor = Tekst;
+
+            OcistiStil(g.RowsDefaultCellStyle);
+            OcistiStil(g.AlternatingRowsDefaultCellStyle);
+            if (g.RowTemplate != null) OcistiStil(g.RowTemplate.DefaultCellStyle);
+            g.AlternatingRowsDefaultCellStyle.BackColor = RedAlt;
+        }
+
+        private static bool Svetla(Color c)
+        {
+            return !c.IsEmpty && c.A != 0 && c.GetBrightness() > 0.6f;
+        }
+
+        // Skida boje iz dizajnera sa stila redova: selekcija -> G, svetao tekst -> tamni, svetla pozadina -> nasledjuje.
+        private static void OcistiStil(DataGridViewCellStyle s)
+        {
+            if (s == null) return;
+            s.Font = null;
+            if (!s.SelectionBackColor.IsEmpty) s.SelectionBackColor = Selekcija;
+            if (!s.SelectionForeColor.IsEmpty) s.SelectionForeColor = Tekst;
+            if (Svetla(s.ForeColor)) s.ForeColor = Tekst;
+            if (!s.BackColor.IsEmpty && s.BackColor.GetBrightness() > 0.8f) s.BackColor = Color.Empty;
         }
 
         private static void StilDugme(Button b)

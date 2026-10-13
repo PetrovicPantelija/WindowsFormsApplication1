@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Syncfusion.WinForms.DataGrid;
+using Syncfusion.WinForms.DataGrid.Enums;
 using Syncfusion.WinForms.DataGrid.Events;
 
 namespace WindowsFormsApplication1
@@ -28,7 +30,30 @@ namespace WindowsFormsApplication1
         public bool Selected;
         public int Index;
         public SfCelije Cells { get { return new SfCelije(Stavka); } }
+        public SfDataGrid Grid;
+        /// <summary>Kao DataGridViewRow.DefaultCellStyle - boja reda (BackColor/ForeColor) se primenjuje preko QueryRowStyle.</summary>
+        public SfStil DefaultCellStyle
+        {
+            get
+            {
+                SfStil st = SfGridPomocnik.Stilovi.GetValue(Stavka, delegate (DataRowView k) { return new SfStil(); });
+                st.Grid = Grid;
+                return st;
+            }
+        }
         public object DataBoundItem { get { return Stavka; } }
+    }
+
+    public class SfStil
+    {
+        public SfDataGrid Grid;
+        private Color _back = Color.Empty, _fore = Color.Empty;
+        public Color BackColor { get { return _back; } set { _back = value; Osvezi(); } }
+        public Color ForeColor { get { return _fore; } set { _fore = value; Osvezi(); } }
+        // Boja selekcije se ne menja posebno (grid koristi svoj stil selekcije) - svojstva postoje radi kompatibilnosti.
+        public Color SelectionBackColor { get; set; }
+        public Color SelectionForeColor { get; set; }
+        private void Osvezi() { if (Grid != null) Grid.Invalidate(); }
     }
 
     public class SfCelije
@@ -57,9 +82,27 @@ namespace WindowsFormsApplication1
     public static class SfGridPomocnik
     {
         /// <summary>Jednom po gridu, odmah posle InitializeComponent(): stil u duhu "G - Svetli minimal" + Excel filter.</summary>
+        internal static readonly ConditionalWeakTable<DataRowView, SfStil> Stilovi = new ConditionalWeakTable<DataRowView, SfStil>();
+
+        private static void BojaReda(object sender, QueryRowStyleEventArgs e)
+        {
+            try
+            {
+                if (e.RowType != RowType.DefaultRow) return;
+                DataRowView v = e.RowData as DataRowView;
+                if (v == null) return;
+                SfStil st;
+                if (!Stilovi.TryGetValue(v, out st)) return;
+                if (st.BackColor != Color.Empty) e.Style.BackColor = st.BackColor;
+                if (st.ForeColor != Color.Empty) e.Style.TextColor = st.ForeColor;
+            }
+            catch (Exception) { }
+        }
+
         public static void Stilizuj(SfDataGrid g)
         {
             if (g == null) return;
+            try { g.QueryRowStyle += BojaReda; } catch (Exception) { }
             try
             {
                 g.AllowEditing = false;
@@ -131,7 +174,7 @@ namespace WindowsFormsApplication1
                 DataRowView v = zapis.Data as DataRowView;
                 if (v == null) continue;
                 SfRed r = new SfRed();
-                r.Stavka = v; r.Index = i++; r.Selected = izabrani.Contains(v);
+                r.Stavka = v; r.Grid = g; r.Index = i++; r.Selected = izabrani.Contains(v);
                 lista.Add(r);
             }
             return lista;

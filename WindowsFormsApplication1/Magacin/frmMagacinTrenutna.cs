@@ -35,6 +35,9 @@ namespace WindowsFormsApplication1.Magacin
         {
             InitializeComponent();
             JelaTema.Primeni(this);
+            SfGridPomocnik.Stilizuj(dataGridView1);
+            SfGridPomocnik.Stilizuj(dataGridView2);
+            dataGridView1.SelectionMode = Syncfusion.WinForms.DataGrid.Enums.GridSelectionMode.Extended;
             IdGrupe();
             IdForme();
             PravoPristupa();
@@ -45,6 +48,9 @@ namespace WindowsFormsApplication1.Magacin
         {
             InitializeComponent();
             JelaTema.Primeni(this);
+            SfGridPomocnik.Stilizuj(dataGridView1);
+            SfGridPomocnik.Stilizuj(dataGridView2);
+            dataGridView1.SelectionMode = Syncfusion.WinForms.DataGrid.Enums.GridSelectionMode.Extended;
             KorisnikForme = Korisnik;
             IdGrupe();
             IdForme();
@@ -182,7 +188,7 @@ namespace WindowsFormsApplication1.Magacin
         private void RefreshDataGridColorUzimanje()
         {
 
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            foreach (SfRed row in SfGridPomocnik.Redovi(dataGridView1))
             {
 
 
@@ -204,7 +210,7 @@ namespace WindowsFormsApplication1.Magacin
         private void RefreshDataGridColorUlaganje()
         {
 
-            foreach (DataGridViewRow row in dataGridView2.Rows)
+            foreach (SfRed row in SfGridPomocnik.Redovi(dataGridView2))
             {
 
 
@@ -242,49 +248,17 @@ namespace WindowsFormsApplication1.Magacin
                 var commandBuilder = new SqlCommandBuilder(dataAdapter);
                 var ds = new DataSet();
                 dataAdapter.Fill(ds);
-                dataGridView1.ReadOnly = true;
-                dataGridView1.DataSource = ds.Tables[0];
-
-                //string value = dataGridView2.Rows[0].Cells[0].Value.ToString();
-                DataGridViewColumn column = dataGridView1.Columns[0];
-                dataGridView1.Columns[0].HeaderText = "Korisnik";
-                dataGridView1.Columns[0].Width = 50;
-
-                DataGridViewColumn column2 = dataGridView1.Columns[1];
-                dataGridView1.Columns[1].HeaderText = "Artikal";
-                dataGridView1.Columns[1].Width = 50;
-
-                DataGridViewColumn column3 = dataGridView1.Columns[2];
-                dataGridView1.Columns[2].HeaderText = "Kod";
-                dataGridView1.Columns[2].Width = 120;
-
-                DataGridViewColumn column4 = dataGridView1.Columns[3];
-                dataGridView1.Columns[3].HeaderText = "Lokacija";
-                dataGridView1.Columns[3].Width = 40;
-
-                DataGridViewColumn column5 = dataGridView1.Columns[4];
-                dataGridView1.Columns[4].HeaderText = "Kolicina";
-                dataGridView1.Columns[4].Width = 70;
-
-                DataGridViewColumn column6 = dataGridView1.Columns[5];
-                dataGridView1.Columns[5].HeaderText = "ID";
-                dataGridView1.Columns[5].Width = 50;
-
-                DataGridViewColumn column7 = dataGridView1.Columns[6];
-                dataGridView1.Columns[6].HeaderText = "Preostalo";
-                dataGridView1.Columns[6].Width = 50;
-
-                DataGridViewColumn column8 = dataGridView1.Columns[7];
-                dataGridView1.Columns[7].HeaderText = "Lok opis";
-                dataGridView1.Columns[7].Width = 150;
-
-                DataGridViewColumn column9 = dataGridView1.Columns[8];
-                dataGridView1.Columns[8].HeaderText = "FormiranDokument";
-                dataGridView1.Columns[8].Width = 40;
-
-                DataGridViewColumn column10 = dataGridView1.Columns[9];
-                dataGridView1.Columns[9].HeaderText = "Broj";
-                dataGridView1.Columns[9].Width = 40;
+                SfGridPomocnik.PopuniK(dataGridView1, ds.Tables[0],
+                    new Kol(0, "Korisnik", 50, -1),
+                    new Kol(1, "Artikal", 50, -1),
+                    new Kol(2, "Kod", 120, -1),
+                    new Kol(3, "Lokacija", 40, -1),
+                    new Kol(4, "Kolicina", 70, -1),
+                    new Kol(5, "ID", 50, -1),
+                    new Kol(6, "Preostalo", 50, -1),
+                    new Kol(7, "Lok opis", 150, -1),
+                    new Kol(8, "FormiranDokument", 40, -1),
+                    new Kol(9, "Broj", 40, -1));
             }
             else
             {
@@ -304,49 +278,17 @@ namespace WindowsFormsApplication1.Magacin
                 var commandBuilder = new SqlCommandBuilder(dataAdapter);
                 var ds = new DataSet();
                 dataAdapter.Fill(ds);
-                dataGridView1.ReadOnly = true;
-                dataGridView1.DataSource = ds.Tables[0];
-
-                //string value = dataGridView2.Rows[0].Cells[0].Value.ToString();
-                DataGridViewColumn column = dataGridView1.Columns[0];
-                dataGridView1.Columns[0].HeaderText = "Korisnik";
-                dataGridView1.Columns[0].Width = 50;
-
-                DataGridViewColumn column2 = dataGridView1.Columns[1];
-                dataGridView1.Columns[1].HeaderText = "Artikal";
-                dataGridView1.Columns[1].Width = 50;
-
-                DataGridViewColumn column3 = dataGridView1.Columns[2];
-                dataGridView1.Columns[2].HeaderText = "Kod";
-                dataGridView1.Columns[2].Width = 120;
-
-                DataGridViewColumn column4 = dataGridView1.Columns[3];
-                dataGridView1.Columns[3].HeaderText = "Lokacija";
-                dataGridView1.Columns[3].Width = 40;
-
-                DataGridViewColumn column5 = dataGridView1.Columns[4];
-                dataGridView1.Columns[4].HeaderText = "Kolicina";
-                dataGridView1.Columns[4].Width = 70;
-
-                DataGridViewColumn column6 = dataGridView1.Columns[5];
-                dataGridView1.Columns[5].HeaderText = "ID";
-                dataGridView1.Columns[5].Width = 50;
-
-                DataGridViewColumn column7 = dataGridView1.Columns[6];
-                dataGridView1.Columns[6].HeaderText = "Preostalo";
-                dataGridView1.Columns[6].Width = 50;
-
-                DataGridViewColumn column8 = dataGridView1.Columns[7];
-                dataGridView1.Columns[7].HeaderText = "Lok opis";
-                dataGridView1.Columns[7].Width = 150;
-
-                DataGridViewColumn column9 = dataGridView1.Columns[8];
-                dataGridView1.Columns[8].HeaderText = "FormiranDokument";
-                dataGridView1.Columns[8].Width = 40;
-
-                DataGridViewColumn column10 = dataGridView1.Columns[9];
-                dataGridView1.Columns[9].HeaderText = "Broj";
-                dataGridView1.Columns[9].Width = 40;
+                SfGridPomocnik.PopuniK(dataGridView1, ds.Tables[0],
+                    new Kol(0, "Korisnik", 50, -1),
+                    new Kol(1, "Artikal", 50, -1),
+                    new Kol(2, "Kod", 120, -1),
+                    new Kol(3, "Lokacija", 40, -1),
+                    new Kol(4, "Kolicina", 70, -1),
+                    new Kol(5, "ID", 50, -1),
+                    new Kol(6, "Preostalo", 50, -1),
+                    new Kol(7, "Lok opis", 150, -1),
+                    new Kol(8, "FormiranDokument", 40, -1),
+                    new Kol(9, "Broj", 40, -1));
             }
 
             var select2 = "   SELECT [Korisnik] " +
@@ -364,47 +306,16 @@ namespace WindowsFormsApplication1.Magacin
             var commandBuilder2 = new SqlCommandBuilder(dataAdapter2);
             var ds2 = new DataSet();
             dataAdapter2.Fill(ds2);
-            dataGridView2.ReadOnly = true;
-            dataGridView2.DataSource = ds2.Tables[0];
-
-            DataGridViewColumn column20 = dataGridView2.Columns[0];
-            dataGridView2.Columns[0].HeaderText = "Korisnik";
-            dataGridView2.Columns[0].Width = 50;
-
-            DataGridViewColumn column21 = dataGridView2.Columns[1];
-            dataGridView2.Columns[1].HeaderText = "Artikal";
-            dataGridView2.Columns[1].Width = 50;
-
-            DataGridViewColumn column31 = dataGridView2.Columns[2];
-            dataGridView2.Columns[2].HeaderText = "Kod";
-            dataGridView2.Columns[2].Width = 120;
-
-            DataGridViewColumn column41 = dataGridView2.Columns[3];
-            dataGridView2.Columns[3].HeaderText = "Lokacija";
-            dataGridView2.Columns[3].Width = 50;
-
-            DataGridViewColumn column51 = dataGridView2.Columns[4];
-            dataGridView2.Columns[4].HeaderText = "Kolicina";
-            dataGridView2.Columns[4].Width = 70;
-
-            DataGridViewColumn column61 = dataGridView2.Columns[5];
-            dataGridView2.Columns[5].HeaderText = "ID";
-            dataGridView2.Columns[5].Width = 30;
-
-            
-
-            DataGridViewColumn column81 = dataGridView2.Columns[6];
-            dataGridView2.Columns[6].HeaderText = "Lokacija naziv";
-            dataGridView2.Columns[6].Width = 150;
-
-            DataGridViewColumn column91 = dataGridView2.Columns[7];
-            dataGridView2.Columns[7].HeaderText = "FormiranDokument";
-            dataGridView2.Columns[7].Width = 40;
-
-
-            DataGridViewColumn column101 = dataGridView2.Columns[8];
-            dataGridView2.Columns[8].HeaderText = "Broj";
-            dataGridView2.Columns[8].Width = 40;
+            SfGridPomocnik.PopuniK(dataGridView2, ds2.Tables[0],
+                new Kol(0, "Korisnik", 50, -1),
+                new Kol(1, "Artikal", 50, -1),
+                new Kol(2, "Kod", 120, -1),
+                new Kol(3, "Lokacija", 50, -1),
+                new Kol(4, "Kolicina", 70, -1),
+                new Kol(5, "ID", 30, -1),
+                new Kol(6, "Lokacija naziv", 150, -1),
+                new Kol(7, "FormiranDokument", 40, -1),
+                new Kol(8, "Broj", 40, -1));
         
         }
 
@@ -427,49 +338,17 @@ namespace WindowsFormsApplication1.Magacin
                 var commandBuilder = new SqlCommandBuilder(dataAdapter);
                 var ds = new DataSet();
                 dataAdapter.Fill(ds);
-                dataGridView1.ReadOnly = true;
-                dataGridView1.DataSource = ds.Tables[0];
-
-                //string value = dataGridView2.Rows[0].Cells[0].Value.ToString();
-                DataGridViewColumn column = dataGridView1.Columns[0];
-                dataGridView1.Columns[0].HeaderText = "Korisnik";
-                dataGridView1.Columns[0].Width = 50;
-
-                DataGridViewColumn column2 = dataGridView1.Columns[1];
-                dataGridView1.Columns[1].HeaderText = "Artikal";
-                dataGridView1.Columns[1].Width = 50;
-
-                DataGridViewColumn column3 = dataGridView1.Columns[2];
-                dataGridView1.Columns[2].HeaderText = "Kod";
-                dataGridView1.Columns[2].Width = 120;
-
-                DataGridViewColumn column4 = dataGridView1.Columns[3];
-                dataGridView1.Columns[3].HeaderText = "Lokacija";
-                dataGridView1.Columns[3].Width = 40;
-
-                DataGridViewColumn column5 = dataGridView1.Columns[4];
-                dataGridView1.Columns[4].HeaderText = "Kolicina";
-                dataGridView1.Columns[4].Width = 70;
-
-                DataGridViewColumn column6 = dataGridView1.Columns[5];
-                dataGridView1.Columns[5].HeaderText = "ID";
-                dataGridView1.Columns[5].Width = 50;
-
-                DataGridViewColumn column7 = dataGridView1.Columns[6];
-                dataGridView1.Columns[6].HeaderText = "Preostalo";
-                dataGridView1.Columns[6].Width = 50;
-
-                DataGridViewColumn column8 = dataGridView1.Columns[7];
-                dataGridView1.Columns[7].HeaderText = "Lok opis";
-                dataGridView1.Columns[7].Width = 150;
-
-                DataGridViewColumn column9 = dataGridView1.Columns[8];
-                dataGridView1.Columns[8].HeaderText = "FormiranDokument";
-                dataGridView1.Columns[8].Width = 40;
-
-                DataGridViewColumn column10 = dataGridView1.Columns[9];
-                dataGridView1.Columns[9].HeaderText = "Broj";
-                dataGridView1.Columns[9].Width = 40;
+                SfGridPomocnik.PopuniK(dataGridView1, ds.Tables[0],
+                    new Kol(0, "Korisnik", 50, -1),
+                    new Kol(1, "Artikal", 50, -1),
+                    new Kol(2, "Kod", 120, -1),
+                    new Kol(3, "Lokacija", 40, -1),
+                    new Kol(4, "Kolicina", 70, -1),
+                    new Kol(5, "ID", 50, -1),
+                    new Kol(6, "Preostalo", 50, -1),
+                    new Kol(7, "Lok opis", 150, -1),
+                    new Kol(8, "FormiranDokument", 40, -1),
+                    new Kol(9, "Broj", 40, -1));
             }
             else
             {
@@ -489,49 +368,17 @@ namespace WindowsFormsApplication1.Magacin
                 var commandBuilder = new SqlCommandBuilder(dataAdapter);
                 var ds = new DataSet();
                 dataAdapter.Fill(ds);
-                dataGridView1.ReadOnly = true;
-                dataGridView1.DataSource = ds.Tables[0];
-
-                //string value = dataGridView2.Rows[0].Cells[0].Value.ToString();
-                DataGridViewColumn column = dataGridView1.Columns[0];
-                dataGridView1.Columns[0].HeaderText = "Korisnik";
-                dataGridView1.Columns[0].Width = 50;
-
-                DataGridViewColumn column2 = dataGridView1.Columns[1];
-                dataGridView1.Columns[1].HeaderText = "Artikal";
-                dataGridView1.Columns[1].Width = 50;
-
-                DataGridViewColumn column3 = dataGridView1.Columns[2];
-                dataGridView1.Columns[2].HeaderText = "Kod";
-                dataGridView1.Columns[2].Width = 120;
-
-                DataGridViewColumn column4 = dataGridView1.Columns[3];
-                dataGridView1.Columns[3].HeaderText = "Lokacija";
-                dataGridView1.Columns[3].Width = 40;
-
-                DataGridViewColumn column5 = dataGridView1.Columns[4];
-                dataGridView1.Columns[4].HeaderText = "Kolicina";
-                dataGridView1.Columns[4].Width = 70;
-
-                DataGridViewColumn column6 = dataGridView1.Columns[5];
-                dataGridView1.Columns[5].HeaderText = "ID";
-                dataGridView1.Columns[5].Width = 50;
-
-                DataGridViewColumn column7 = dataGridView1.Columns[6];
-                dataGridView1.Columns[6].HeaderText = "Preostalo";
-                dataGridView1.Columns[6].Width = 50;
-
-                DataGridViewColumn column8 = dataGridView1.Columns[7];
-                dataGridView1.Columns[7].HeaderText = "Lok opis";
-                dataGridView1.Columns[7].Width = 150;
-
-                DataGridViewColumn column9 = dataGridView1.Columns[8];
-                dataGridView1.Columns[8].HeaderText = "FormiranDokument";
-                dataGridView1.Columns[8].Width = 40;
-
-                DataGridViewColumn column10 = dataGridView1.Columns[9];
-                dataGridView1.Columns[9].HeaderText = "Broj";
-                dataGridView1.Columns[9].Width = 40;
+                SfGridPomocnik.PopuniK(dataGridView1, ds.Tables[0],
+                    new Kol(0, "Korisnik", 50, -1),
+                    new Kol(1, "Artikal", 50, -1),
+                    new Kol(2, "Kod", 120, -1),
+                    new Kol(3, "Lokacija", 40, -1),
+                    new Kol(4, "Kolicina", 70, -1),
+                    new Kol(5, "ID", 50, -1),
+                    new Kol(6, "Preostalo", 50, -1),
+                    new Kol(7, "Lok opis", 150, -1),
+                    new Kol(8, "FormiranDokument", 40, -1),
+                    new Kol(9, "Broj", 40, -1));
             }
 
             var select2 = "   SELECT [Korisnik] " +
@@ -549,48 +396,16 @@ namespace WindowsFormsApplication1.Magacin
             var commandBuilder2 = new SqlCommandBuilder(dataAdapter2);
             var ds2 = new DataSet();
             dataAdapter2.Fill(ds2);
-            dataGridView2.ReadOnly = true;
-            dataGridView2.DataSource = ds2.Tables[0];
-
-            DataGridViewColumn column20 = dataGridView2.Columns[0];
-            dataGridView2.Columns[0].HeaderText = "Korisnik";
-            dataGridView2.Columns[0].Width = 50;
-
-            DataGridViewColumn column21 = dataGridView2.Columns[1];
-            dataGridView2.Columns[1].HeaderText = "Artikal";
-            dataGridView2.Columns[1].Width = 50;
-
-            DataGridViewColumn column31 = dataGridView2.Columns[2];
-            dataGridView2.Columns[2].HeaderText = "Kod";
-            dataGridView2.Columns[2].Width = 120;
-
-            DataGridViewColumn column41 = dataGridView2.Columns[3];
-            dataGridView2.Columns[3].HeaderText = "Lokacija";
-            dataGridView2.Columns[3].Width = 50;
-
-            DataGridViewColumn column51 = dataGridView2.Columns[4];
-            dataGridView2.Columns[4].HeaderText = "Kolicina";
-            dataGridView2.Columns[4].Width = 70;
-
-            DataGridViewColumn column61 = dataGridView1.Columns[5];
-            dataGridView1.Columns[5].HeaderText = "ID";
-            dataGridView1.Columns[5].Width = 30;
-
-            DataGridViewColumn column71 = dataGridView1.Columns[6];
-            dataGridView1.Columns[6].HeaderText = "Preostalo";
-            dataGridView1.Columns[6].Width = 80;
-
-            DataGridViewColumn column81 = dataGridView1.Columns[7];
-            dataGridView1.Columns[7].HeaderText = "Lokacija naziv";
-            dataGridView1.Columns[7].Width = 150;
-
-            DataGridViewColumn column91 = dataGridView1.Columns[8];
-            dataGridView1.Columns[8].HeaderText = "FormiranDokument";
-            dataGridView1.Columns[8].Width = 40;
-
-            DataGridViewColumn column101 = dataGridView1.Columns[9];
-            dataGridView1.Columns[9].HeaderText = "Broj";
-            dataGridView1.Columns[9].Width = 40;
+            SfGridPomocnik.PopuniK(dataGridView2, ds2.Tables[0],
+                new Kol(0, "Korisnik", 50, -1),
+                new Kol(1, "Artikal", 50, -1),
+                new Kol(2, "Kod", 120, -1),
+                new Kol(3, "Lokacija", 50, -1),
+                new Kol(4, "Kolicina", 70, -1),
+                new Kol(5, "ID", 30, -1),
+                new Kol(6, "Lokacija naziv", 150, -1),
+                new Kol(7, "FormiranDokument", 40, -1),
+                new Kol(8, "Broj", 40, -1));
 
         }
 
@@ -604,7 +419,7 @@ namespace WindowsFormsApplication1.Magacin
            
             isporuka.InsertIZDTrenutna(cboKorisnik.Text.Trim());
           
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            foreach (SfRed row in SfGridPomocnik.Redovi(dataGridView1))
             {
                 if (row != null && row.Cells[0].Value != null)
                 {
@@ -628,7 +443,7 @@ namespace WindowsFormsApplication1.Magacin
 
             isporuka2.InsertPRETrenutno(cboKorisnik.Text);
 
-            foreach (DataGridViewRow row in dataGridView2.Rows)
+            foreach (SfRed row in SfGridPomocnik.Redovi(dataGridView2))
             {
                 if (row != null && row.Cells[0].Value != null)
                 {
@@ -647,7 +462,7 @@ namespace WindowsFormsApplication1.Magacin
 
             isporuka.InsertPRETrenutno(cboKorisnik.Text.Trim());
 
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            foreach (SfRed row in SfGridPomocnik.Redovi(dataGridView1))
             {
                 if (row != null && row.Cells[0].Value != null)
                 {
@@ -660,7 +475,7 @@ namespace WindowsFormsApplication1.Magacin
 
         private void button3_Click_1(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            foreach (SfRed row in SfGridPomocnik.Redovi(dataGridView1))
             {
                 if (Convert.ToInt32(row.Cells[8].Value) == 0)
                 {
@@ -738,49 +553,17 @@ namespace WindowsFormsApplication1.Magacin
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
             dataAdapter.Fill(ds);
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
-
-            //string value = dataGridView2.Rows[0].Cells[0].Value.ToString();
-            DataGridViewColumn column = dataGridView1.Columns[0];
-            dataGridView1.Columns[0].HeaderText = "Korisnik";
-            dataGridView1.Columns[0].Width = 50;
-
-            DataGridViewColumn column2 = dataGridView1.Columns[1];
-            dataGridView1.Columns[1].HeaderText = "Artikal";
-            dataGridView1.Columns[1].Width = 50;
-
-            DataGridViewColumn column3 = dataGridView1.Columns[2];
-            dataGridView1.Columns[2].HeaderText = "Kod";
-            dataGridView1.Columns[2].Width = 120;
-
-            DataGridViewColumn column4 = dataGridView1.Columns[3];
-            dataGridView1.Columns[3].HeaderText = "Lokacija";
-            dataGridView1.Columns[3].Width = 40;
-
-            DataGridViewColumn column5 = dataGridView1.Columns[4];
-            dataGridView1.Columns[4].HeaderText = "Kolicina";
-            dataGridView1.Columns[4].Width = 70;
-
-            DataGridViewColumn column6 = dataGridView1.Columns[5];
-            dataGridView1.Columns[5].HeaderText = "ID";
-            dataGridView1.Columns[5].Width = 50;
-
-            DataGridViewColumn column7 = dataGridView1.Columns[6];
-            dataGridView1.Columns[6].HeaderText = "Preostalo";
-            dataGridView1.Columns[6].Width = 50;
-
-            DataGridViewColumn column8 = dataGridView1.Columns[7];
-            dataGridView1.Columns[7].HeaderText = "Lok opis";
-            dataGridView1.Columns[7].Width = 150;
-
-            DataGridViewColumn column9 = dataGridView1.Columns[8];
-            dataGridView1.Columns[8].HeaderText = "FormiranDokument";
-            dataGridView1.Columns[8].Width = 40;
-
-            DataGridViewColumn column10 = dataGridView1.Columns[9];
-            dataGridView1.Columns[9].HeaderText = "Broj";
-            dataGridView1.Columns[9].Width = 40;
+            SfGridPomocnik.PopuniK(dataGridView1, ds.Tables[0],
+                new Kol(0, "Korisnik", 50, -1),
+                new Kol(1, "Artikal", 50, -1),
+                new Kol(2, "Kod", 120, -1),
+                new Kol(3, "Lokacija", 40, -1),
+                new Kol(4, "Kolicina", 70, -1),
+                new Kol(5, "ID", 50, -1),
+                new Kol(6, "Preostalo", 50, -1),
+                new Kol(7, "Lok opis", 150, -1),
+                new Kol(8, "FormiranDokument", 40, -1),
+                new Kol(9, "Broj", 40, -1));
 
 
             var select2 = "   SELECT [Korisnik] " +
@@ -798,47 +581,16 @@ namespace WindowsFormsApplication1.Magacin
             var commandBuilder2 = new SqlCommandBuilder(dataAdapter2);
             var ds2 = new DataSet();
             dataAdapter2.Fill(ds2);
-            dataGridView2.ReadOnly = true;
-            dataGridView2.DataSource = ds2.Tables[0];
-
-            DataGridViewColumn column20 = dataGridView2.Columns[0];
-            dataGridView2.Columns[0].HeaderText = "Korisnik";
-            dataGridView2.Columns[0].Width = 50;
-
-            DataGridViewColumn column21 = dataGridView2.Columns[1];
-            dataGridView2.Columns[1].HeaderText = "Artikal";
-            dataGridView2.Columns[1].Width = 50;
-
-            DataGridViewColumn column31 = dataGridView2.Columns[2];
-            dataGridView2.Columns[2].HeaderText = "Kod";
-            dataGridView2.Columns[2].Width = 120;
-
-            DataGridViewColumn column41 = dataGridView2.Columns[3];
-            dataGridView2.Columns[3].HeaderText = "Lokacija";
-            dataGridView2.Columns[3].Width = 50;
-
-            DataGridViewColumn column51 = dataGridView2.Columns[4];
-            dataGridView2.Columns[4].HeaderText = "Kolicina";
-            dataGridView2.Columns[4].Width = 70;
-
-            DataGridViewColumn column61 = dataGridView2.Columns[5];
-            dataGridView2.Columns[5].HeaderText = "ID";
-            dataGridView2.Columns[5].Width = 30;
-
-
-
-            DataGridViewColumn column81 = dataGridView2.Columns[6];
-            dataGridView2.Columns[6].HeaderText = "Lokacija naziv";
-            dataGridView2.Columns[6].Width = 150;
-
-            DataGridViewColumn column91 = dataGridView2.Columns[7];
-            dataGridView2.Columns[7].HeaderText = "FormiranDokument";
-            dataGridView2.Columns[7].Width = 40;
-
-
-            DataGridViewColumn column101 = dataGridView2.Columns[8];
-            dataGridView2.Columns[8].HeaderText = "Broj";
-            dataGridView2.Columns[8].Width = 40;
+            SfGridPomocnik.PopuniK(dataGridView2, ds2.Tables[0],
+                new Kol(0, "Korisnik", 50, -1),
+                new Kol(1, "Artikal", 50, -1),
+                new Kol(2, "Kod", 120, -1),
+                new Kol(3, "Lokacija", 50, -1),
+                new Kol(4, "Kolicina", 70, -1),
+                new Kol(5, "ID", 30, -1),
+                new Kol(6, "Lokacija naziv", 150, -1),
+                new Kol(7, "FormiranDokument", 40, -1),
+                new Kol(8, "Broj", 40, -1));
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -847,7 +599,7 @@ namespace WindowsFormsApplication1.Magacin
 
           
 
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            foreach (SfRed row in SfGridPomocnik.Redovi(dataGridView1))
             {
                 if (row.Selected == true)
                 {
@@ -878,49 +630,17 @@ namespace WindowsFormsApplication1.Magacin
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
             dataAdapter.Fill(ds);
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
-
-            //string value = dataGridView2.Rows[0].Cells[0].Value.ToString();
-            DataGridViewColumn column = dataGridView1.Columns[0];
-            dataGridView1.Columns[0].HeaderText = "Korisnik";
-            dataGridView1.Columns[0].Width = 50;
-
-            DataGridViewColumn column2 = dataGridView1.Columns[1];
-            dataGridView1.Columns[1].HeaderText = "Artikal";
-            dataGridView1.Columns[1].Width = 50;
-
-            DataGridViewColumn column3 = dataGridView1.Columns[2];
-            dataGridView1.Columns[2].HeaderText = "Kod";
-            dataGridView1.Columns[2].Width = 120;
-
-            DataGridViewColumn column4 = dataGridView1.Columns[3];
-            dataGridView1.Columns[3].HeaderText = "Lokacija";
-            dataGridView1.Columns[3].Width = 40;
-
-            DataGridViewColumn column5 = dataGridView1.Columns[4];
-            dataGridView1.Columns[4].HeaderText = "Kolicina";
-            dataGridView1.Columns[4].Width = 70;
-
-            DataGridViewColumn column6 = dataGridView1.Columns[5];
-            dataGridView1.Columns[5].HeaderText = "ID";
-            dataGridView1.Columns[5].Width = 50;
-
-            DataGridViewColumn column7 = dataGridView1.Columns[6];
-            dataGridView1.Columns[6].HeaderText = "Preostalo";
-            dataGridView1.Columns[6].Width = 50;
-
-            DataGridViewColumn column8 = dataGridView1.Columns[7];
-            dataGridView1.Columns[7].HeaderText = "Lok opis";
-            dataGridView1.Columns[7].Width = 150;
-
-            DataGridViewColumn column9 = dataGridView1.Columns[8];
-            dataGridView1.Columns[8].HeaderText = "FormiranDokument";
-            dataGridView1.Columns[8].Width = 40;
-
-            DataGridViewColumn column10 = dataGridView1.Columns[9];
-            dataGridView1.Columns[9].HeaderText = "Broj";
-            dataGridView1.Columns[9].Width = 40;
+            SfGridPomocnik.PopuniK(dataGridView1, ds.Tables[0],
+                new Kol(0, "Korisnik", 50, -1),
+                new Kol(1, "Artikal", 50, -1),
+                new Kol(2, "Kod", 120, -1),
+                new Kol(3, "Lokacija", 40, -1),
+                new Kol(4, "Kolicina", 70, -1),
+                new Kol(5, "ID", 50, -1),
+                new Kol(6, "Preostalo", 50, -1),
+                new Kol(7, "Lok opis", 150, -1),
+                new Kol(8, "FormiranDokument", 40, -1),
+                new Kol(9, "Broj", 40, -1));
 
 
             var select2 = "   SELECT [Korisnik] " +
@@ -938,47 +658,16 @@ namespace WindowsFormsApplication1.Magacin
             var commandBuilder2 = new SqlCommandBuilder(dataAdapter2);
             var ds2 = new DataSet();
             dataAdapter2.Fill(ds2);
-            dataGridView2.ReadOnly = true;
-            dataGridView2.DataSource = ds2.Tables[0];
-
-            DataGridViewColumn column20 = dataGridView2.Columns[0];
-            dataGridView2.Columns[0].HeaderText = "Korisnik";
-            dataGridView2.Columns[0].Width = 50;
-
-            DataGridViewColumn column21 = dataGridView2.Columns[1];
-            dataGridView2.Columns[1].HeaderText = "Artikal";
-            dataGridView2.Columns[1].Width = 50;
-
-            DataGridViewColumn column31 = dataGridView2.Columns[2];
-            dataGridView2.Columns[2].HeaderText = "Kod";
-            dataGridView2.Columns[2].Width = 120;
-
-            DataGridViewColumn column41 = dataGridView2.Columns[3];
-            dataGridView2.Columns[3].HeaderText = "Lokacija";
-            dataGridView2.Columns[3].Width = 50;
-
-            DataGridViewColumn column51 = dataGridView2.Columns[4];
-            dataGridView2.Columns[4].HeaderText = "Kolicina";
-            dataGridView2.Columns[4].Width = 70;
-
-            DataGridViewColumn column61 = dataGridView2.Columns[5];
-            dataGridView2.Columns[5].HeaderText = "ID";
-            dataGridView2.Columns[5].Width = 30;
-
-
-
-            DataGridViewColumn column81 = dataGridView2.Columns[6];
-            dataGridView2.Columns[6].HeaderText = "Lokacija naziv";
-            dataGridView2.Columns[6].Width = 150;
-
-            DataGridViewColumn column91 = dataGridView2.Columns[7];
-            dataGridView2.Columns[7].HeaderText = "FormiranDokument";
-            dataGridView2.Columns[7].Width = 40;
-
-
-            DataGridViewColumn column101 = dataGridView2.Columns[8];
-            dataGridView2.Columns[8].HeaderText = "Broj";
-            dataGridView2.Columns[8].Width = 40;
+            SfGridPomocnik.PopuniK(dataGridView2, ds2.Tables[0],
+                new Kol(0, "Korisnik", 50, -1),
+                new Kol(1, "Artikal", 50, -1),
+                new Kol(2, "Kod", 120, -1),
+                new Kol(3, "Lokacija", 50, -1),
+                new Kol(4, "Kolicina", 70, -1),
+                new Kol(5, "ID", 30, -1),
+                new Kol(6, "Lokacija naziv", 150, -1),
+                new Kol(7, "FormiranDokument", 40, -1),
+                new Kol(8, "Broj", 40, -1));
         }
     }
 }

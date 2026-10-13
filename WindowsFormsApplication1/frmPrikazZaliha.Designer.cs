@@ -28,38 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.dataGridView4 = new Syncfusion.WinForms.DataGrid.SfDataGrid();
             this.txtLokacija4 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.cboSkladiste4 = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.dataGridView3 = new Syncfusion.WinForms.DataGrid.SfDataGrid();
             this.txtLokacija3 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cboSkladiste3 = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dataGridView2 = new Syncfusion.WinForms.DataGrid.SfDataGrid();
             this.txtLokacija2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.cboSkladiste2 = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridView1 = new Syncfusion.WinForms.DataGrid.SfDataGrid();
             this.txtLokacija = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cboSkladiste = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView4
             // 
-            this.dataGridView4.AllowUserToAddRows = false;
+            this.dataGridView4.AccessibleName = "Table";
+            this.dataGridView4.AllowFiltering = true;
             this.dataGridView4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView4.Location = new System.Drawing.Point(974, 69);
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.Size = new System.Drawing.Size(306, 546);
@@ -105,10 +101,10 @@
             // 
             // dataGridView3
             // 
-            this.dataGridView3.AllowUserToAddRows = false;
+            this.dataGridView3.AccessibleName = "Table";
+            this.dataGridView3.AllowFiltering = true;
             this.dataGridView3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Location = new System.Drawing.Point(652, 69);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.Size = new System.Drawing.Size(306, 546);
@@ -154,10 +150,10 @@
             // 
             // dataGridView2
             // 
-            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AccessibleName = "Table";
+            this.dataGridView2.AllowFiltering = true;
             this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(330, 69);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(306, 546);
@@ -203,10 +199,10 @@
             // 
             // dataGridView1
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AccessibleName = "Table";
+            this.dataGridView1.AllowFiltering = true;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(8, 69);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(306, 546);
@@ -281,10 +277,6 @@
             this.Name = "frmPregledZaliha";
             this.Text = "Pregled zaliha po skladištu lokaciji";
             this.Load += new System.EventHandler(this.frmPrikazSkladista_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -292,22 +284,22 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView4;
+        private Syncfusion.WinForms.DataGrid.SfDataGrid dataGridView4;
         private System.Windows.Forms.TextBox txtLokacija4;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cboSkladiste4;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.DataGridView dataGridView3;
+        private Syncfusion.WinForms.DataGrid.SfDataGrid dataGridView3;
         private System.Windows.Forms.TextBox txtLokacija3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cboSkladiste3;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private Syncfusion.WinForms.DataGrid.SfDataGrid dataGridView2;
         private System.Windows.Forms.TextBox txtLokacija2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cboSkladiste2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private Syncfusion.WinForms.DataGrid.SfDataGrid dataGridView1;
         private System.Windows.Forms.TextBox txtLokacija;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cboSkladiste;

@@ -31,6 +31,8 @@ namespace WindowsFormsApplication1.Magacin
         {
             InitializeComponent();
             JelaTema.Primeni(this);
+            SfGridPomocnik.Stilizuj(dataGridView1);
+            dataGridView1.SelectionMode = Syncfusion.WinForms.DataGrid.Enums.GridSelectionMode.Extended;
          
         }
         public string IdGrupe()
@@ -144,53 +146,18 @@ namespace WindowsFormsApplication1.Magacin
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
             dataAdapter.Fill(ds);
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
-
-            DataGridViewColumn column = dataGridView1.Columns[0];
-            dataGridView1.Columns[0].HeaderText = "Zapis";
-            dataGridView1.Columns[0].Width = 50;
-
-            DataGridViewColumn column2 = dataGridView1.Columns[1];
-            dataGridView1.Columns[1].HeaderText = "Skladište sifra";
-            dataGridView1.Columns[1].Width = 50;
-
-            DataGridViewColumn column3 = dataGridView1.Columns[2];
-            dataGridView1.Columns[2].HeaderText = "Skladište naziv";
-            dataGridView1.Columns[2].Width = 150;
-
-
-            DataGridViewColumn column4 = dataGridView1.Columns[3];
-            dataGridView1.Columns[3].HeaderText = "Šifra lokacije";
-            dataGridView1.Columns[3].Width = 50;
-
-            DataGridViewColumn column5 = dataGridView1.Columns[4];
-            dataGridView1.Columns[4].HeaderText = "Red";
-            dataGridView1.Columns[4].Width = 50;
-
-            DataGridViewColumn column6 = dataGridView1.Columns[5];
-            dataGridView1.Columns[5].HeaderText = "Vertikala";
-            dataGridView1.Columns[5].Width = 50;
-
-            DataGridViewColumn column7 = dataGridView1.Columns[6];
-            dataGridView1.Columns[6].HeaderText = "Ćelija";
-            dataGridView1.Columns[6].Width = 50;
-
-            DataGridViewColumn column8 = dataGridView1.Columns[7];
-            dataGridView1.Columns[7].HeaderText = "Širina";
-            dataGridView1.Columns[7].Width = 50;
-
-            DataGridViewColumn column9 = dataGridView1.Columns[8];
-            dataGridView1.Columns[8].HeaderText = "Opis";
-            dataGridView1.Columns[8].Width = 100;
-
-            DataGridViewColumn column10 = dataGridView1.Columns[9];
-            dataGridView1.Columns[9].HeaderText = "Aktivna";
-            dataGridView1.Columns[9].Width = 50;
-
-            DataGridViewColumn column11 = dataGridView1.Columns[10];
-            dataGridView1.Columns[10].HeaderText = "Max Težina";
-            dataGridView1.Columns[10].Width = 50;
+            SfGridPomocnik.PopuniK(dataGridView1, ds.Tables[0],
+                new Kol(0, "Zapis", 50, -1),
+                new Kol(1, "Skladište sifra", 50, -1),
+                new Kol(2, "Skladište naziv", 150, -1),
+                new Kol(3, "Šifra lokacije", 50, -1),
+                new Kol(4, "Red", 50, -1),
+                new Kol(5, "Vertikala", 50, -1),
+                new Kol(6, "Ćelija", 50, -1),
+                new Kol(7, "Širina", 50, -1),
+                new Kol(8, "Opis", 100, -1),
+                new Kol(9, "Aktivna", 50, -1),
+                new Kol(10, "Max Težina", 50, -1));
 
         }
 
@@ -209,53 +176,18 @@ namespace WindowsFormsApplication1.Magacin
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
             dataAdapter.Fill(ds);
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
-
-            DataGridViewColumn column = dataGridView1.Columns[0];
-            dataGridView1.Columns[0].HeaderText = "Zapis";
-            dataGridView1.Columns[0].Width = 50;
-
-            DataGridViewColumn column2 = dataGridView1.Columns[1];
-            dataGridView1.Columns[1].HeaderText = "Skladište sifra";
-            dataGridView1.Columns[1].Width = 50;
-
-            DataGridViewColumn column3 = dataGridView1.Columns[2];
-            dataGridView1.Columns[2].HeaderText = "Skladište naziv";
-            dataGridView1.Columns[2].Width = 150;
-
-
-            DataGridViewColumn column4 = dataGridView1.Columns[3];
-            dataGridView1.Columns[3].HeaderText = "Šifra lokacije";
-            dataGridView1.Columns[3].Width = 50;
-
-            DataGridViewColumn column5 = dataGridView1.Columns[4];
-            dataGridView1.Columns[4].HeaderText = "Red";
-            dataGridView1.Columns[4].Width = 50;
-
-            DataGridViewColumn column6 = dataGridView1.Columns[5];
-            dataGridView1.Columns[5].HeaderText = "Vertikala";
-            dataGridView1.Columns[5].Width = 50;
-
-            DataGridViewColumn column7 = dataGridView1.Columns[6];
-            dataGridView1.Columns[6].HeaderText = "Ćelija";
-            dataGridView1.Columns[6].Width = 50;
-
-            DataGridViewColumn column8 = dataGridView1.Columns[7];
-            dataGridView1.Columns[7].HeaderText = "Širina";
-            dataGridView1.Columns[7].Width = 50;
-
-            DataGridViewColumn column9 = dataGridView1.Columns[8];
-            dataGridView1.Columns[8].HeaderText = "Opis";
-            dataGridView1.Columns[8].Width = 100;
-
-            DataGridViewColumn column10 = dataGridView1.Columns[9];
-            dataGridView1.Columns[9].HeaderText = "Aktivna";
-            dataGridView1.Columns[9].Width = 50;
-
-            DataGridViewColumn column11 = dataGridView1.Columns[10];
-            dataGridView1.Columns[10].HeaderText = "Max Težina";
-            dataGridView1.Columns[10].Width = 50;
+            SfGridPomocnik.PopuniK(dataGridView1, ds.Tables[0],
+                new Kol(0, "Zapis", 50, -1),
+                new Kol(1, "Skladište sifra", 50, -1),
+                new Kol(2, "Skladište naziv", 150, -1),
+                new Kol(3, "Šifra lokacije", 50, -1),
+                new Kol(4, "Red", 50, -1),
+                new Kol(5, "Vertikala", 50, -1),
+                new Kol(6, "Ćelija", 50, -1),
+                new Kol(7, "Širina", 50, -1),
+                new Kol(8, "Opis", 100, -1),
+                new Kol(9, "Aktivna", 50, -1),
+                new Kol(10, "Max Težina", 50, -1));
 
         }
 
@@ -370,11 +302,11 @@ namespace WindowsFormsApplication1.Magacin
             con.Close();
         }
 
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        private void dataGridView1_SelectionChanged(object sender, Syncfusion.WinForms.DataGrid.Events.SelectionChangedEventArgs e)
         {
             try
             {
-                foreach (DataGridViewRow row in dataGridView1.Rows)
+                foreach (SfRed row in SfGridPomocnik.Redovi(dataGridView1))
                 {
                     if (row.Selected)
                     {
@@ -416,7 +348,7 @@ namespace WindowsFormsApplication1.Magacin
         {
             try
             {
-                foreach (DataGridViewRow row in dataGridView1.Rows)
+                foreach (SfRed row in SfGridPomocnik.Redovi(dataGridView1))
                 {
                     if (row.Selected)
                     {
@@ -438,7 +370,7 @@ namespace WindowsFormsApplication1.Magacin
         {
              try
             {
-                foreach (DataGridViewRow row in dataGridView1.Rows)
+                foreach (SfRed row in SfGridPomocnik.Redovi(dataGridView1))
                 {
                     if (row.Selected)
                     {
@@ -471,7 +403,7 @@ namespace WindowsFormsApplication1.Magacin
 
             try
             {
-                foreach (DataGridViewRow row in dataGridView1.Rows)
+                foreach (SfRed row in SfGridPomocnik.Redovi(dataGridView1))
                 {
                     if (row.Selected)
                     {

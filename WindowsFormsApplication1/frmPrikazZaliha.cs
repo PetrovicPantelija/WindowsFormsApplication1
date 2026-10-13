@@ -28,6 +28,10 @@ namespace WindowsFormsApplication1
         {
             InitializeComponent();
             JelaTema.Primeni(this);
+            SfGridPomocnik.Stilizuj(dataGridView1);
+            SfGridPomocnik.Stilizuj(dataGridView2);
+            SfGridPomocnik.Stilizuj(dataGridView3);
+            SfGridPomocnik.Stilizuj(dataGridView4);
             IdGrupe();
             IdForme();
             PravoPristupa();
@@ -133,24 +137,11 @@ namespace WindowsFormsApplication1
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
             dataAdapter.Fill(ds);
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
-
-            DataGridViewColumn column = dataGridView1.Columns[0];
-            dataGridView1.Columns[0].HeaderText = "Lokacija";
-            dataGridView1.Columns[0].Width = 30;
-
-            DataGridViewColumn column2 = dataGridView1.Columns[1];
-            dataGridView1.Columns[1].HeaderText = "Artikal";
-            dataGridView1.Columns[1].Width = 30;
-
-            DataGridViewColumn column3 = dataGridView1.Columns[2];
-            dataGridView1.Columns[2].HeaderText = "Kod";
-            dataGridView1.Columns[2].Width = 130;
-
-            DataGridViewColumn column4 = dataGridView1.Columns[3];
-            dataGridView1.Columns[3].HeaderText = "Količina";
-            dataGridView1.Columns[3].Width = 50;
+            SfGridPomocnik.PopuniK(dataGridView1, ds.Tables[0],
+                new Kol(0, "Lokacija", 30, -1),
+                new Kol(1, "Artikal", 30, -1),
+                new Kol(2, "Kod", 130, -1),
+                new Kol(3, "Količina", 50, -1));
         }
 
         private void RefreshDataGrid2()
@@ -166,24 +157,11 @@ namespace WindowsFormsApplication1
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
             dataAdapter.Fill(ds);
-            dataGridView2.ReadOnly = true;
-            dataGridView2.DataSource = ds.Tables[0];
-
-            DataGridViewColumn column = dataGridView1.Columns[0];
-            dataGridView2.Columns[0].HeaderText = "Lokacija";
-            dataGridView2.Columns[0].Width = 30;
-
-            DataGridViewColumn column2 = dataGridView1.Columns[1];
-            dataGridView2.Columns[1].HeaderText = "Artikal";
-            dataGridView2.Columns[1].Width = 30;
-
-            DataGridViewColumn column3 = dataGridView1.Columns[2];
-            dataGridView2.Columns[2].HeaderText = "Kod";
-            dataGridView2.Columns[2].Width = 130;
-
-            DataGridViewColumn column4 = dataGridView1.Columns[3];
-            dataGridView2.Columns[3].HeaderText = "Količina";
-            dataGridView2.Columns[3].Width = 50;
+            SfGridPomocnik.PopuniK(dataGridView2, ds.Tables[0],
+                new Kol(0, "Lokacija", 30, -1),
+                new Kol(1, "Artikal", 30, -1),
+                new Kol(2, "Kod", 130, -1),
+                new Kol(3, "Količina", 50, -1));
 
         }
 
@@ -200,24 +178,11 @@ namespace WindowsFormsApplication1
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
             dataAdapter.Fill(ds);
-            dataGridView3.ReadOnly = true;
-            dataGridView3.DataSource = ds.Tables[0];
-
-            DataGridViewColumn column = dataGridView1.Columns[0];
-            dataGridView3.Columns[0].HeaderText = "Lokacija";
-            dataGridView3.Columns[0].Width = 30;
-
-            DataGridViewColumn column2 = dataGridView1.Columns[1];
-            dataGridView3.Columns[1].HeaderText = "Artikal";
-            dataGridView3.Columns[1].Width = 30;
-
-            DataGridViewColumn column3 = dataGridView1.Columns[2];
-            dataGridView3.Columns[2].HeaderText = "Kod";
-            dataGridView3.Columns[2].Width = 130;
-
-            DataGridViewColumn column4 = dataGridView1.Columns[3];
-            dataGridView3.Columns[3].HeaderText = "Količina";
-            dataGridView3.Columns[3].Width = 50;
+            SfGridPomocnik.PopuniK(dataGridView3, ds.Tables[0],
+                new Kol(0, "Lokacija", 30, -1),
+                new Kol(1, "Artikal", 30, -1),
+                new Kol(2, "Kod", 130, -1),
+                new Kol(3, "Količina", 50, -1));
 
         }
 
@@ -234,24 +199,11 @@ namespace WindowsFormsApplication1
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
             dataAdapter.Fill(ds);
-            dataGridView4.ReadOnly = true;
-            dataGridView4.DataSource = ds.Tables[0];
-
-            DataGridViewColumn column = dataGridView1.Columns[0];
-            dataGridView4.Columns[0].HeaderText = "Lokacija";
-            dataGridView4.Columns[0].Width = 30;
-
-            DataGridViewColumn column2 = dataGridView1.Columns[1];
-            dataGridView4.Columns[1].HeaderText = "Artikal";
-            dataGridView4.Columns[1].Width = 30;
-
-            DataGridViewColumn column3 = dataGridView1.Columns[2];
-            dataGridView4.Columns[2].HeaderText = "Kod";
-            dataGridView4.Columns[2].Width = 130;
-
-            DataGridViewColumn column4 = dataGridView1.Columns[3];
-            dataGridView4.Columns[3].HeaderText = "Količina";
-            dataGridView4.Columns[3].Width = 50;
+            SfGridPomocnik.PopuniK(dataGridView4, ds.Tables[0],
+                new Kol(0, "Lokacija", 30, -1),
+                new Kol(1, "Artikal", 30, -1),
+                new Kol(2, "Kod", 130, -1),
+                new Kol(3, "Količina", 50, -1));
 
         }
 
