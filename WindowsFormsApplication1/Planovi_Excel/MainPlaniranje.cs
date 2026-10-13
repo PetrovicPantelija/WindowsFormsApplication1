@@ -169,6 +169,12 @@ namespace WindowsFormsApplication1.Planovi_Excel
             pa.Show();
         }
 
+        private void lblPoveziRN_Click(object sender, EventArgs e)
+        {
+            PoveziRN frm = new PoveziRN();
+            frm.Show();
+        }
+
         private void label9_Click(object sender, EventArgs e)
         {
             //grupe

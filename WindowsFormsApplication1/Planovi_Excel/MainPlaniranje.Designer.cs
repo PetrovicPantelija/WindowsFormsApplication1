@@ -42,6 +42,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.btnSifarnici = new FontAwesome.Sharp.IconButton();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
+            this.lblPoveziRN = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btn_Kalkulator = new FontAwesome.Sharp.IconButton();
             this.label1 = new System.Windows.Forms.Label();
@@ -212,6 +213,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(83)))), ((int)(((byte)(87)))));
+            this.panel3.Controls.Add(this.lblPoveziRN);
             this.panel3.Controls.Add(this.label7);
             this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.btn_Kalkulator);
@@ -234,7 +236,20 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.label7.TabIndex = 22;
             this.label7.Text = "• Plan arhivirano";
             this.label7.Click += new System.EventHandler(this.label7_Click);
-            // 
+            //
+            // lblPoveziRN
+            //
+            this.lblPoveziRN.AutoSize = true;
+            this.lblPoveziRN.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold);
+            this.lblPoveziRN.ForeColor = System.Drawing.Color.White;
+            this.lblPoveziRN.Location = new System.Drawing.Point(12, 130);
+            this.lblPoveziRN.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPoveziRN.Name = "lblPoveziRN";
+            this.lblPoveziRN.Size = new System.Drawing.Size(84, 19);
+            this.lblPoveziRN.TabIndex = 23;
+            this.lblPoveziRN.Text = "• Poveži RN";
+            this.lblPoveziRN.Click += new System.EventHandler(this.lblPoveziRN_Click);
+            //
             // label3
             // 
             this.label3.AutoSize = true;
@@ -615,6 +630,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblPoveziRN;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label12;
