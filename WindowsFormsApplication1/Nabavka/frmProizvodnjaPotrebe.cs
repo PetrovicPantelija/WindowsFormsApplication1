@@ -53,6 +53,7 @@ namespace WindowsFormsApplication1.Nabavka
         public frmProizvodnjaPotrebe()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
 
             IdGrupe();
             IdForme();

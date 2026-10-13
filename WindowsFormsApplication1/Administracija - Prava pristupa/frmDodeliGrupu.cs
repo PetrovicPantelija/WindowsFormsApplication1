@@ -30,6 +30,8 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
         public frmDodeliGrupu()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
+            SfGridPomocnik.Stilizuj(dataGridView1);
             txt_ID.Enabled = false;
             IdGrupe();
             IdForme();
@@ -154,12 +156,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             SqlDataAdapter da = new SqlDataAdapter(query, conn);
             DataSet ds = new DataSet();
             da.Fill(ds);
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
-            dataGridView1.Columns[0].Width = 60;
-            dataGridView1.Columns[1].Width = 160;
-            dataGridView1.Columns[2].Width = 60;
-            dataGridView1.Columns[3].Width = 160;
+            SfGridPomocnik.Popuni(dataGridView1, ds.Tables[0], 60, 160, 60, 160);
 
         }
 
@@ -172,8 +169,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             SqlDataAdapter da = new SqlDataAdapter(query, conn);
             DataSet ds = new DataSet();
             da.Fill(ds);
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
+            SfGridPomocnik.Popuni(dataGridView1, ds.Tables[0]);
 
         }
         private void button1_Click(object sender, EventArgs e)
@@ -190,20 +186,18 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             FillGV();
         }
 
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        private void dataGridView1_SelectionChanged(object sender, Syncfusion.WinForms.DataGrid.Events.SelectionChangedEventArgs e)
         {
             try
             {
-                foreach (DataGridViewRow row in dataGridView1.Rows)
+                object[] red = SfGridPomocnik.Red(dataGridView1);
+                if (red != null)
                 {
-                    if (row.Selected)
-                    {
-                        txt_ID.Text = row.Cells[0].Value.ToString();
-                        combo_Grupa.Text = row.Cells[4].Value.ToString();
-                        combo_Korisnik.Text = row.Cells[1].Value.ToString();
+                        txt_ID.Text = red[0].ToString();
+                        combo_Grupa.Text = red[4].ToString();
+                        combo_Korisnik.Text = red[1].ToString();
                         
                     }
-                }
             }
             catch { }
         }

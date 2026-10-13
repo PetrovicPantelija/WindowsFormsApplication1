@@ -33,6 +33,7 @@ namespace WindowsFormsApplication1.Neto_potrebe
         public frmMaterijali2()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
           
         }
 

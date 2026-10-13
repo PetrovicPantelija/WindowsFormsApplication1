@@ -42,10 +42,15 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             this.txt_ID = new System.Windows.Forms.TextBox();
             this.txt_IDGrupe = new System.Windows.Forms.TextBox();
             this.txt_Naziv = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridView1 = new Syncfusion.WinForms.DataGrid.SfDataGrid();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.IconButton = new System.Windows.Forms.PictureBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IconButton)).BeginInit();
             this.SuspendLayout();
             // 
@@ -114,7 +119,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(9, 46);
+            this.label1.Location = new System.Drawing.Point(9, 19);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(23, 17);
@@ -126,7 +131,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(135, 46);
+            this.label2.Location = new System.Drawing.Point(135, 19);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(73, 17);
@@ -138,7 +143,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(9, 110);
+            this.label3.Location = new System.Drawing.Point(9, 83);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(48, 17);
@@ -147,7 +152,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             // 
             // txt_ID
             // 
-            this.txt_ID.Location = new System.Drawing.Point(9, 69);
+            this.txt_ID.Location = new System.Drawing.Point(9, 42);
             this.txt_ID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_ID.Name = "txt_ID";
             this.txt_ID.Size = new System.Drawing.Size(76, 20);
@@ -155,7 +160,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             // 
             // txt_IDGrupe
             // 
-            this.txt_IDGrupe.Location = new System.Drawing.Point(138, 69);
+            this.txt_IDGrupe.Location = new System.Drawing.Point(138, 42);
             this.txt_IDGrupe.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_IDGrupe.Name = "txt_IDGrupe";
             this.txt_IDGrupe.Size = new System.Drawing.Size(76, 20);
@@ -164,7 +169,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             // txt_Naziv
             // 
             this.txt_Naziv.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_Naziv.Location = new System.Drawing.Point(9, 136);
+            this.txt_Naziv.Location = new System.Drawing.Point(9, 109);
             this.txt_Naziv.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_Naziv.Name = "txt_Naziv";
             this.txt_Naziv.Size = new System.Drawing.Size(205, 21);
@@ -172,27 +177,42 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             // 
             // dataGridView1
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(242, 46);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.AccessibleName = "Table";
+            this.dataGridView1.AllowFiltering = true;
+            this.dataGridView1.AllowEditing = false;
+            this.dataGridView1.AllowResizingColumns = true;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(384, 425);
             this.dataGridView1.TabIndex = 204;
-            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            this.dataGridView1.SelectionChanged += new Syncfusion.WinForms.DataGrid.Events.SelectionChangedEventHandler(this.dataGridView1_SelectionChanged);
             // 
             // IconButton
             // 
             this.IconButton.Image = ((System.Drawing.Image)(resources.GetObject("IconButton.Image")));
-            this.IconButton.Location = new System.Drawing.Point(12, 430);
+            this.IconButton.Location = new System.Drawing.Point(12, 403);
+            this.IconButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.IconButton.Name = "IconButton";
             this.IconButton.Size = new System.Drawing.Size(114, 37);
             this.IconButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.IconButton.TabIndex = 205;
             this.IconButton.TabStop = false;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 27);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Panel1.Controls.Add(this.label1);
+            this.splitContainer1.Panel1.Controls.Add(this.label2);
+            this.splitContainer1.Panel1.Controls.Add(this.label3);
+            this.splitContainer1.Panel1.Controls.Add(this.txt_ID);
+            this.splitContainer1.Panel1.Controls.Add(this.txt_IDGrupe);
+            this.splitContainer1.Panel1.Controls.Add(this.txt_Naziv);
+            this.splitContainer1.Panel1.Controls.Add(this.IconButton);
+            this.splitContainer1.Panel2.Controls.Add(this.dataGridView1);
+            this.splitContainer1.Size = new System.Drawing.Size(641, 452);
+            this.splitContainer1.SplitterDistance = 232;
+            this.splitContainer1.TabIndex = 300;
             // 
             // frmGrupe
             // 
@@ -200,14 +220,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(83)))), ((int)(((byte)(87)))));
             this.ClientSize = new System.Drawing.Size(641, 479);
-            this.Controls.Add(this.IconButton);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.txt_Naziv);
-            this.Controls.Add(this.txt_IDGrupe);
-            this.Controls.Add(this.txt_ID);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.toolStrip1);
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
@@ -218,6 +231,11 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.IconButton)).EndInit();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -225,6 +243,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
 
         #endregion
 
+        private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton tsNew;
         private System.Windows.Forms.ToolStripButton tsSave;
@@ -236,7 +255,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
         private System.Windows.Forms.TextBox txt_ID;
         private System.Windows.Forms.TextBox txt_IDGrupe;
         private System.Windows.Forms.TextBox txt_Naziv;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private Syncfusion.WinForms.DataGrid.SfDataGrid dataGridView1;
         private System.Windows.Forms.PictureBox IconButton;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
     }

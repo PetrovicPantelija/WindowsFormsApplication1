@@ -14,6 +14,7 @@ namespace WindowsFormsApplication1.Magacin
         public frmPregledRN()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
     }
 }

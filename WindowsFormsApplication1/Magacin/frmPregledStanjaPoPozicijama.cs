@@ -31,6 +31,7 @@ namespace WindowsFormsApplication1.Magacin
         public frmPregledStanjaPoPozicijama()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             IdGrupe();
             IdForme();
             PravoPristupa();

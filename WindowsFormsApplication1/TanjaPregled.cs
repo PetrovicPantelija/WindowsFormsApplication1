@@ -27,6 +27,7 @@ namespace WindowsFormsApplication1
         public TanjaPregled()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             IdGrupe();
             IdForme();
             PravoPristupa();

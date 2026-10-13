@@ -28,6 +28,8 @@ namespace WindowsFormsApplication1
         public frmPregledZalihaFilter()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
+            SfGridPomocnik.Stilizuj(dataGridView1);
             IdGrupe();
             IdForme();
             PravoPristupa();
@@ -165,24 +167,7 @@ namespace WindowsFormsApplication1
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
             dataAdapter.Fill(ds);
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
-
-            DataGridViewColumn column = dataGridView1.Columns[0];
-            dataGridView1.Columns[0].HeaderText = "Regal";
-            dataGridView1.Columns[0].Width = 150;
-
-            DataGridViewColumn column2 = dataGridView1.Columns[1];
-            dataGridView1.Columns[1].HeaderText = "Artikal";
-            dataGridView1.Columns[1].Width = 70;
-
-            DataGridViewColumn column3 = dataGridView1.Columns[2];
-            dataGridView1.Columns[2].HeaderText = "Kod";
-            dataGridView1.Columns[2].Width = 130;
-
-            DataGridViewColumn column4 = dataGridView1.Columns[3];
-            dataGridView1.Columns[3].HeaderText = "Količina";
-            dataGridView1.Columns[3].Width = 50;
+            SfGridPomocnik.PopuniK(dataGridView1, ds.Tables[0], new Kol(0, "Regal", 150, -1), new Kol(1, "Artikal", 70, -1), new Kol(2, "Kod", 130, -1), new Kol(3, "Količina", 50, -1));
         }
 
         private void RefreshDataGrid2()
@@ -201,24 +186,7 @@ namespace WindowsFormsApplication1
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
             dataAdapter.Fill(ds);
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
-
-            DataGridViewColumn column = dataGridView1.Columns[0];
-            dataGridView1.Columns[0].HeaderText = "Regal";
-            dataGridView1.Columns[0].Width = 150;
-
-            DataGridViewColumn column2 = dataGridView1.Columns[1];
-            dataGridView1.Columns[1].HeaderText = "Artikal";
-            dataGridView1.Columns[1].Width = 70;
-
-            DataGridViewColumn column3 = dataGridView1.Columns[2];
-            dataGridView1.Columns[2].HeaderText = "Kod";
-            dataGridView1.Columns[2].Width = 130;
-
-            DataGridViewColumn column4 = dataGridView1.Columns[3];
-            dataGridView1.Columns[3].HeaderText = "Količina";
-            dataGridView1.Columns[3].Width = 50;
+            SfGridPomocnik.PopuniK(dataGridView1, ds.Tables[0], new Kol(0, "Regal", 150, -1), new Kol(1, "Artikal", 70, -1), new Kol(2, "Kod", 130, -1), new Kol(3, "Količina", 50, -1));
         }
 
         private void RefreshDataGrid3()
@@ -237,24 +205,7 @@ namespace WindowsFormsApplication1
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
             dataAdapter.Fill(ds);
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
-
-            DataGridViewColumn column = dataGridView1.Columns[0];
-            dataGridView1.Columns[0].HeaderText = "Regal";
-            dataGridView1.Columns[0].Width = 150;
-
-            DataGridViewColumn column2 = dataGridView1.Columns[1];
-            dataGridView1.Columns[1].HeaderText = "Artikal";
-            dataGridView1.Columns[1].Width = 70;
-
-            DataGridViewColumn column3 = dataGridView1.Columns[2];
-            dataGridView1.Columns[2].HeaderText = "Kod";
-            dataGridView1.Columns[2].Width = 130;
-
-            DataGridViewColumn column4 = dataGridView1.Columns[3];
-            dataGridView1.Columns[3].HeaderText = "Količina";
-            dataGridView1.Columns[3].Width = 50;
+            SfGridPomocnik.PopuniK(dataGridView1, ds.Tables[0], new Kol(0, "Regal", 150, -1), new Kol(1, "Artikal", 70, -1), new Kol(2, "Kod", 130, -1), new Kol(3, "Količina", 50, -1));
         }
 
         private void RefreshDataGrid4()
@@ -273,24 +224,7 @@ namespace WindowsFormsApplication1
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
             dataAdapter.Fill(ds);
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
-
-            DataGridViewColumn column = dataGridView1.Columns[0];
-            dataGridView1.Columns[0].HeaderText = "Regal";
-            dataGridView1.Columns[0].Width = 150;
-
-            DataGridViewColumn column2 = dataGridView1.Columns[1];
-            dataGridView1.Columns[1].HeaderText = "Artikal";
-            dataGridView1.Columns[1].Width = 70;
-
-            DataGridViewColumn column3 = dataGridView1.Columns[2];
-            dataGridView1.Columns[2].HeaderText = "Kod";
-            dataGridView1.Columns[2].Width = 130;
-
-            DataGridViewColumn column4 = dataGridView1.Columns[3];
-            dataGridView1.Columns[3].HeaderText = "Količina";
-            dataGridView1.Columns[3].Width = 50;
+            SfGridPomocnik.PopuniK(dataGridView1, ds.Tables[0], new Kol(0, "Regal", 150, -1), new Kol(1, "Artikal", 70, -1), new Kol(2, "Kod", 130, -1), new Kol(3, "Količina", 50, -1));
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -303,11 +237,11 @@ namespace WindowsFormsApplication1
             RefreshDataGrid3();
         }
 
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        private void dataGridView1_SelectionChanged(object sender, Syncfusion.WinForms.DataGrid.Events.SelectionChangedEventArgs e)
         {
             Tezina.Text = "0";
 
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            foreach (SfRed row in SfGridPomocnik.Redovi(dataGridView1))
             {
 
                 if (row.Selected)

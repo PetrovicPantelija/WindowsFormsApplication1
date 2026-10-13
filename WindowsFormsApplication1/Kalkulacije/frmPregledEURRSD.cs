@@ -20,6 +20,7 @@ namespace WindowsFormsApplication1.Kalkulacije
         public frmPregledEURRSD(int idK)
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             kalkulator = idK;
         }
 

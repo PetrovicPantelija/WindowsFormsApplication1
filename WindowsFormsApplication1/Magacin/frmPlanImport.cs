@@ -39,11 +39,13 @@ namespace WindowsFormsApplication1.Magacin
         public frmPlanImport()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
 
         public frmPlanImport(string Korisnik, int ReadNabavka)
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             KorisnikM = Korisnik;
             ReadNabavkaM = ReadNabavka;
             IdGrupe();

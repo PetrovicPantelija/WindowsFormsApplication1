@@ -22,6 +22,7 @@ namespace WindowsFormsApplication1.Pakovanja.PregledStavkiPlanaPakovanja
         public frmPregledStavkiPlanaPakovanja(int id, int id_s)
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             setStyle();
             id_sup = id;
             id_sup_sup = id_s;

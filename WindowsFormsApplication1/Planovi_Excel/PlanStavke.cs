@@ -20,11 +20,13 @@ namespace WindowsFormsApplication1.Planovi_Excel
         public PlanStavke()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
 
         }
         public PlanStavke(int id)
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             txtIdPlana.Text = id.ToString();
 
             //InitializeComponent();

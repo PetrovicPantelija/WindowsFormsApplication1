@@ -20,6 +20,7 @@ namespace WindowsFormsApplication1.ProizvodnjaUKadrovskoj
         public frmPodaciSaKoeficijentima()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
 
         private void frmPodaciSaKoeficijentima_Load(object sender, EventArgs e)

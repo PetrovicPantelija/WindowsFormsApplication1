@@ -33,6 +33,7 @@ namespace WindowsFormsApplication1
         public frmExcelImportPorudzbina()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             txtPutanja.Text = ConfigurationManager.AppSettings["UPDoExcellFajlaInstruktori"];
             IdGrupe();
             IdForme();

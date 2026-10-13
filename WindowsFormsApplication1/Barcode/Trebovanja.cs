@@ -19,6 +19,7 @@ namespace WindowsFormsApplication1.Barcode
         public Trebovanja()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             FillGV();
             FillCombo();
         }

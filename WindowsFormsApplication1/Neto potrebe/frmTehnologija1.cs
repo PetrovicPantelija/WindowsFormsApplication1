@@ -33,6 +33,7 @@ namespace WindowsFormsApplication1.Neto_potrebe
         public frmTehnologija1()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             IdGrupe(); IdForme(); PravoPristupa();
         }
 

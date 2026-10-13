@@ -26,6 +26,7 @@ namespace WindowsFormsApplication1
         public Pregled2018()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             IdGrupe();
             IdForme();
             PravoPristupa();

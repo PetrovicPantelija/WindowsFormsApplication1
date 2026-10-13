@@ -11,6 +11,7 @@ using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Globalization;
+using System.Runtime.InteropServices;
 using WindowsFormsApplication1.PakovanjaPlanovi;
 
 namespace WindowsFormsApplication1
@@ -24,6 +25,21 @@ namespace WindowsFormsApplication1
         public frmLogovanje()
         {
             InitializeComponent();
+        }
+
+        // Pomeranje forme prevlacenjem naslovne trake (forma nema standardni okvir)
+        [DllImport("user32.dll")]
+        private static extern bool ReleaseCapture();
+        [DllImport("user32.dll")]
+        private static extern IntPtr SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+
+        private void TitleBar_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(this.Handle, 0xA1, 0x2, 0); // WM_NCLBUTTONDOWN, HTCAPTION
+            }
         }
 
         private void frmLogovanje_Load(object sender, EventArgs e)

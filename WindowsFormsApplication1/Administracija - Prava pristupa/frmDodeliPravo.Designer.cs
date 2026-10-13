@@ -44,8 +44,8 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             this.cb_Upis = new System.Windows.Forms.CheckBox();
             this.cb_Izmena = new System.Windows.Forms.CheckBox();
             this.cb_Brisanje = new System.Windows.Forms.CheckBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dataGridView1 = new Syncfusion.WinForms.DataGrid.SfDataGrid();
+            this.dataGridView2 = new Syncfusion.WinForms.DataGrid.SfDataGrid();
             this.label4 = new System.Windows.Forms.Label();
             this.btnDodaj = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -211,31 +211,32 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AccessibleName = "Table";
+            this.dataGridView1.AllowFiltering = true;
+            this.dataGridView1.AllowEditing = false;
+            this.dataGridView1.AllowResizingColumns = true;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(13, 42);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(578, 461);
+            this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.TabIndex = 213;
-            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            this.dataGridView1.SelectionChanged += new Syncfusion.WinForms.DataGrid.Events.SelectionChangedEventHandler(this.dataGridView1_SelectionChanged);
             // 
             // dataGridView2
             // 
+            this.dataGridView2.AccessibleName = "Table";
+            this.dataGridView2.AllowFiltering = true;
+            this.dataGridView2.AllowEditing = false;
+            this.dataGridView2.AllowResizingColumns = true;
             this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(11, 42);
-            this.dataGridView2.Margin = new System.Windows.Forms.Padding(2);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.RowTemplate.Height = 24;
             this.dataGridView2.Size = new System.Drawing.Size(489, 461);
+            this.dataGridView2.SelectionMode = Syncfusion.WinForms.DataGrid.Enums.GridSelectionMode.Extended;
+            this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.TabIndex = 214;
             // 
             // label4
@@ -274,7 +275,8 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.Location = new System.Drawing.Point(14, 108);
             this.splitContainer1.Name = "splitContainer1";
@@ -346,8 +348,8 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
         private System.Windows.Forms.CheckBox cb_Upis;
         private System.Windows.Forms.CheckBox cb_Izmena;
         private System.Windows.Forms.CheckBox cb_Brisanje;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private Syncfusion.WinForms.DataGrid.SfDataGrid dataGridView1;
+        private Syncfusion.WinForms.DataGrid.SfDataGrid dataGridView2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnDodaj;
         private System.Windows.Forms.Label label5;

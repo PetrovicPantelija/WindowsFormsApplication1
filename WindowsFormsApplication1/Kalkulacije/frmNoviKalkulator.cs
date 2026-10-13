@@ -33,6 +33,7 @@ namespace WindowsFormsApplication1.Kalkulacije
         public frmNoviKalkulator()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             IdGrupe();
             IdForme();
             PravoPristupa();
@@ -41,6 +42,7 @@ namespace WindowsFormsApplication1.Kalkulacije
         public frmNoviKalkulator(int noviK,string naziv, string sKurs)
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             kalk = noviK;
             naz = naziv;
             Kurs = Convert.ToDecimal(sKurs);

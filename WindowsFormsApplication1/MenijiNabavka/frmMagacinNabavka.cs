@@ -30,6 +30,7 @@ namespace WindowsFormsApplication1.MenijiNabavka
         public frmMagacinNabavka()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             IdGrupe();
             IdForme();
             PravoPristupa();

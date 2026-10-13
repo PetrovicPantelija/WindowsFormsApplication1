@@ -27,6 +27,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
         public PripadnostKP()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
 
          
 

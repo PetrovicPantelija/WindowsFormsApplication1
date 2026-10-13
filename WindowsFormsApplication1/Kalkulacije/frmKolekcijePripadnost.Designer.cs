@@ -42,9 +42,14 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.button1 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.combo_Kolekcija = new System.Windows.Forms.ComboBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridView1 = new Syncfusion.WinForms.DataGrid.SfDataGrid();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -98,7 +103,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             // txt_ID
             // 
-            this.txt_ID.Location = new System.Drawing.Point(9, 48);
+            this.txt_ID.Location = new System.Drawing.Point(9, 21);
             this.txt_ID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_ID.Name = "txt_ID";
             this.txt_ID.Size = new System.Drawing.Size(89, 20);
@@ -108,7 +113,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(9, 29);
+            this.label1.Location = new System.Drawing.Point(9, 2);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(21, 17);
@@ -119,7 +124,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(9, 81);
+            this.label2.Location = new System.Drawing.Point(9, 54);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(66, 17);
@@ -128,7 +133,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             // txt_MpSifra
             // 
-            this.txt_MpSifra.Location = new System.Drawing.Point(9, 100);
+            this.txt_MpSifra.Location = new System.Drawing.Point(9, 73);
             this.txt_MpSifra.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_MpSifra.Name = "txt_MpSifra";
             this.txt_MpSifra.Size = new System.Drawing.Size(89, 20);
@@ -136,7 +141,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(9, 123);
+            this.button1.Location = new System.Drawing.Point(9, 96);
             this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(69, 22);
@@ -149,7 +154,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(9, 162);
+            this.label3.Location = new System.Drawing.Point(9, 135);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(64, 17);
@@ -159,7 +164,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // combo_Kolekcija
             // 
             this.combo_Kolekcija.FormattingEnabled = true;
-            this.combo_Kolekcija.Location = new System.Drawing.Point(9, 181);
+            this.combo_Kolekcija.Location = new System.Drawing.Point(9, 154);
             this.combo_Kolekcija.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.combo_Kolekcija.Name = "combo_Kolekcija";
             this.combo_Kolekcija.Size = new System.Drawing.Size(158, 21);
@@ -168,29 +173,38 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             // dataGridView1
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(177, 29);
+            this.dataGridView1.AccessibleName = "Table";
+            this.dataGridView1.AllowFiltering = true;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(590, 270);
             this.dataGridView1.TabIndex = 206;
-            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            this.dataGridView1.SelectionChanged += new Syncfusion.WinForms.DataGrid.Events.SelectionChangedEventHandler(this.dataGridView1_SelectionChanged);
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 27);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Panel1.Controls.Add(this.combo_Kolekcija);
+            this.splitContainer1.Panel1.Controls.Add(this.button1);
+            this.splitContainer1.Panel1.Controls.Add(this.txt_MpSifra);
+            this.splitContainer1.Panel1.Controls.Add(this.txt_ID);
+            this.splitContainer1.Panel1.Controls.Add(this.label3);
+            this.splitContainer1.Panel1.Controls.Add(this.label2);
+            this.splitContainer1.Panel1.Controls.Add(this.label1);
+            this.splitContainer1.Panel2.Controls.Add(this.dataGridView1);
+            this.splitContainer1.Size = new System.Drawing.Size(776, 282);
+            this.splitContainer1.SplitterDistance = 171;
+            this.splitContainer1.TabIndex = 300;
             // 
             // frmKolekcijePripadnost
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(776, 309);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.combo_Kolekcija);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.txt_MpSifra);
-            this.Controls.Add(this.txt_ID);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.toolStrip1);
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
@@ -200,6 +214,11 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -219,6 +238,7 @@ namespace WindowsFormsApplication1.Kalkulacije
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox combo_Kolekcija;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private Syncfusion.WinForms.DataGrid.SfDataGrid dataGridView1;
     }
 }

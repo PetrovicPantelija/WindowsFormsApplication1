@@ -32,6 +32,7 @@ namespace WindowsFormsApplication1
         public Form2()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             IdGrupe();
             IdForme();
             PravoPristupa();

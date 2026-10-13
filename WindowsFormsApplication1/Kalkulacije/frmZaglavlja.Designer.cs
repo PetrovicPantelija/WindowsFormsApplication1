@@ -45,12 +45,17 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.txt_Kurs = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.combo_VP = new System.Windows.Forms.ComboBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridView1 = new Syncfusion.WinForms.DataGrid.SfDataGrid();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.button1 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.txtKalkulatorStari = new System.Windows.Forms.TextBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -106,7 +111,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(27, 47);
+            this.label1.Location = new System.Drawing.Point(27, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(26, 20);
             this.label1.TabIndex = 4;
@@ -114,7 +119,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             // txt_ID
             // 
-            this.txt_ID.Location = new System.Drawing.Point(31, 78);
+            this.txt_ID.Location = new System.Drawing.Point(31, 51);
             this.txt_ID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txt_ID.Name = "txt_ID";
             this.txt_ID.Size = new System.Drawing.Size(107, 22);
@@ -124,7 +129,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(175, 47);
+            this.label2.Location = new System.Drawing.Point(175, 20);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(121, 20);
             this.label2.TabIndex = 4;
@@ -135,7 +140,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.dateTimePicker1.CustomFormat = "dd.MM.yyyy";
             this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(179, 80);
+            this.dateTimePicker1.Location = new System.Drawing.Point(179, 53);
             this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(167, 22);
@@ -145,7 +150,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(379, 47);
+            this.label3.Location = new System.Drawing.Point(379, 20);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(51, 20);
             this.label3.TabIndex = 4;
@@ -154,7 +159,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // txt_Naziv
             // 
             this.txt_Naziv.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_Naziv.Location = new System.Drawing.Point(383, 78);
+            this.txt_Naziv.Location = new System.Drawing.Point(383, 51);
             this.txt_Naziv.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txt_Naziv.Name = "txt_Naziv";
             this.txt_Naziv.Size = new System.Drawing.Size(369, 24);
@@ -164,7 +169,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(775, 47);
+            this.label4.Location = new System.Drawing.Point(775, 20);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(44, 20);
             this.label4.TabIndex = 4;
@@ -173,7 +178,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // txt_Kurs
             // 
             this.txt_Kurs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_Kurs.Location = new System.Drawing.Point(779, 76);
+            this.txt_Kurs.Location = new System.Drawing.Point(779, 49);
             this.txt_Kurs.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txt_Kurs.Name = "txt_Kurs";
             this.txt_Kurs.Size = new System.Drawing.Size(143, 24);
@@ -183,7 +188,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(961, 47);
+            this.label5.Location = new System.Drawing.Point(961, 20);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(104, 20);
             this.label5.TabIndex = 4;
@@ -193,7 +198,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             this.combo_VP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combo_VP.FormattingEnabled = true;
-            this.combo_VP.Location = new System.Drawing.Point(965, 73);
+            this.combo_VP.Location = new System.Drawing.Point(965, 46);
             this.combo_VP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.combo_VP.Name = "combo_VP";
             this.combo_VP.Size = new System.Drawing.Size(319, 28);
@@ -202,19 +207,17 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             // dataGridView1
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(31, 113);
+            this.dataGridView1.AccessibleName = "Table";
+            this.dataGridView1.AllowFiltering = true;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1609, 507);
             this.dataGridView1.TabIndex = 201;
-            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            this.dataGridView1.SelectionChanged += new Syncfusion.WinForms.DataGrid.Events.SelectionChangedEventHandler(this.dataGridView1_SelectionChanged);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1316, 68);
+            this.button1.Location = new System.Drawing.Point(1316, 41);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(165, 41);
@@ -227,7 +230,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(1429, 33);
+            this.label6.Location = new System.Drawing.Point(1429, 6);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(208, 20);
             this.label6.TabIndex = 203;
@@ -235,32 +238,44 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             // txtKalkulatorStari
             // 
-            this.txtKalkulatorStari.Location = new System.Drawing.Point(1532, 57);
+            this.txtKalkulatorStari.Location = new System.Drawing.Point(1532, 30);
             this.txtKalkulatorStari.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtKalkulatorStari.Name = "txtKalkulatorStari";
             this.txtKalkulatorStari.Size = new System.Drawing.Size(107, 22);
             this.txtKalkulatorStari.TabIndex = 204;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 27);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Panel1.Controls.Add(this.label6);
+            this.splitContainer1.Panel1.Controls.Add(this.txtKalkulatorStari);
+            this.splitContainer1.Panel1.Controls.Add(this.button1);
+            this.splitContainer1.Panel1.Controls.Add(this.combo_VP);
+            this.splitContainer1.Panel1.Controls.Add(this.label5);
+            this.splitContainer1.Panel1.Controls.Add(this.txt_Kurs);
+            this.splitContainer1.Panel1.Controls.Add(this.dateTimePicker1);
+            this.splitContainer1.Panel1.Controls.Add(this.txt_Naziv);
+            this.splitContainer1.Panel1.Controls.Add(this.label4);
+            this.splitContainer1.Panel1.Controls.Add(this.label1);
+            this.splitContainer1.Panel1.Controls.Add(this.txt_ID);
+            this.splitContainer1.Panel1.Controls.Add(this.label2);
+            this.splitContainer1.Panel1.Controls.Add(this.label3);
+            this.splitContainer1.Panel2.Controls.Add(this.dataGridView1);
+            this.splitContainer1.Size = new System.Drawing.Size(1655, 615);
+            this.splitContainer1.SplitterDistance = 82;
+            this.splitContainer1.TabIndex = 300;
             // 
             // frmZaglavlja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1655, 642);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.txtKalkulatorStari);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.combo_VP);
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.txt_Kurs);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.txt_Naziv);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.txt_ID);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label3);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
             this.Name = "frmZaglavlja";
@@ -268,6 +283,11 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -290,7 +310,8 @@ namespace WindowsFormsApplication1.Kalkulacije
         private System.Windows.Forms.TextBox txt_Kurs;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox combo_VP;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private Syncfusion.WinForms.DataGrid.SfDataGrid dataGridView1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtKalkulatorStari;

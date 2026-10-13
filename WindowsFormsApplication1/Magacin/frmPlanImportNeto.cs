@@ -31,6 +31,7 @@ namespace WindowsFormsApplication1.Magacin
         public frmPlanImportNeto()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             IdGrupe();
             IdForme();
             PravoPristupa();
@@ -42,6 +43,7 @@ namespace WindowsFormsApplication1.Magacin
             IdForme();
             PravoPristupa();
             InitializeComponent();
+            JelaTema.Primeni(this);
             KorisnikM = Korisnik;
             ReadNabavkaM = ReadNabavka;
             if (ReadNabavkaM == 1)

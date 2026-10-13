@@ -27,6 +27,7 @@ namespace WindowsFormsApplication1.Kalkulacije
         public frmCenaKamiona()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             FillCombo();
             FillGV();
             FillKalk();

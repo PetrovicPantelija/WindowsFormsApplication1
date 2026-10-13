@@ -27,6 +27,8 @@ namespace WindowsFormsApplication1.Magacin
         public frmPregledRadnihNaloga()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
+            SfGridPomocnik.Stilizuj(dataGridView1);
             IdGrupe();
             IdForme();
             PravoPristupa();
@@ -125,25 +127,7 @@ namespace WindowsFormsApplication1.Magacin
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
             dataAdapter.Fill(ds);
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
-
-            //string value = dataGridView2.Rows[0].Cells[0].Value.ToString();
-            DataGridViewColumn column = dataGridView1.Columns[0];
-            dataGridView1.Columns[0].HeaderText = "Barkod";
-            dataGridView1.Columns[0].Width = 180;
-
-            DataGridViewColumn column1 = dataGridView1.Columns[1];
-            dataGridView1.Columns[1].HeaderText = "Kolicina";
-            dataGridView1.Columns[1].Width = 100;
-
-            DataGridViewColumn column2 = dataGridView1.Columns[2];
-            dataGridView1.Columns[2].HeaderText = "Vreme";
-            dataGridView1.Columns[2].Width = 100;
-
-            DataGridViewColumn column3 = dataGridView1.Columns[3];
-            dataGridView1.Columns[3].HeaderText = "Korisnik";
-            dataGridView1.Columns[3].Width = 150;
+            SfGridPomocnik.PopuniK(dataGridView1, ds.Tables[0], new Kol(0, "Barkod", 180, -1), new Kol(1, "Kolicina", 100, -1), new Kol(2, "Vreme", 100, -1), new Kol(3, "Korisnik", 150, -1));
 
            
         }
@@ -152,7 +136,7 @@ namespace WindowsFormsApplication1.Magacin
         {
             try
             {
-                foreach (DataGridViewRow row in dataGridView1.Rows)
+                foreach (SfRed row in SfGridPomocnik.Redovi(dataGridView1))
                 {
                     if (row.Selected)
                     {

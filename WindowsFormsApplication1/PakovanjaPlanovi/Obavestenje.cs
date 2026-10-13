@@ -19,10 +19,12 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
         public Obavestenje()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
         public Obavestenje(string Obavestenje)
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             this.ControlBox = false;
            obavestenje = Obavestenje;
         }

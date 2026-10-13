@@ -19,6 +19,7 @@ namespace WindowsFormsApplication1.Kalkulacije
         public frmPoredjenjeKalkulatora()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
 
         private void PrikaziProgrameIKolekcije()

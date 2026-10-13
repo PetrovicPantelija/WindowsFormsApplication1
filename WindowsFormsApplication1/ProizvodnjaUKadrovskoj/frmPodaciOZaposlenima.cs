@@ -16,6 +16,7 @@ namespace WindowsFormsApplication1.ProizvodnjaUKadrovskoj
         public frmPodaciOZaposlenima()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
 
         private void frmPodaciOZaposlenima_Load(object sender, EventArgs e)

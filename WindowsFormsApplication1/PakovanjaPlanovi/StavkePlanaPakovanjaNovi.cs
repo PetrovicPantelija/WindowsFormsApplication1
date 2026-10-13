@@ -29,10 +29,12 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
         public StavkePlanaPakovanjaNovi()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
         public StavkePlanaPakovanjaNovi(int ID)
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             IdPakovanja= ID;
         }
         private void StavkePlanaPakovanjaNovi_Load(object sender, EventArgs e)

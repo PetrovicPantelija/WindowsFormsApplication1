@@ -23,6 +23,7 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
         public NalogKomplet(int IDPlana)
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             plan=IDPlana;
             kompletirano = 0;
             FillCkList();

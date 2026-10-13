@@ -29,6 +29,7 @@ namespace WindowsFormsApplication1
         public StampajNeisporucene()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             IdGrupe();
             IdForme();
             PravoPristupa();

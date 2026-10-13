@@ -26,12 +26,14 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
         public NoviPlanPakovanja()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             FillGV();
         }
         public NoviPlanPakovanja(string tip)
         {
             Tip = tip;
             InitializeComponent();
+            JelaTema.Primeni(this);
             FillGV();
         }
         private void FillGV()

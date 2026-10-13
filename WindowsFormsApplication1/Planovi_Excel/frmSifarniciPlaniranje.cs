@@ -25,6 +25,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
         public frmSifarniciPlaniranje()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             InicijalizujUniverzalniDizajn();
         }
 

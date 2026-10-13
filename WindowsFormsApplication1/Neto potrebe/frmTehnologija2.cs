@@ -122,6 +122,7 @@ namespace WindowsFormsApplication1.Neto_potrebe
         public frmTehnologija2()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
 
         private void frmTehnologija2_Load(object sender, EventArgs e)

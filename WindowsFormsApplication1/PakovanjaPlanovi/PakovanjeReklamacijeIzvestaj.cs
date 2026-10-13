@@ -16,12 +16,14 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
         public PakovanjeReklamacijeIzvestaj()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
         }   
         int ID;
         public PakovanjeReklamacijeIzvestaj(int id)
         {
             ID = id;
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
 
         private void PakovanjeReklamacijeIzvestaj_Load(object sender, EventArgs e)

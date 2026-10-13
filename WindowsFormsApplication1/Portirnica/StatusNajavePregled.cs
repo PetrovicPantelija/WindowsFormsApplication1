@@ -30,6 +30,7 @@ namespace WindowsFormsApplication1.Portirnica
         public StatusNajavePregled()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             IdGrupe();
             IdForme();
             PravoPristupa();

@@ -20,6 +20,7 @@ namespace WindowsFormsApplication1.Barcode
         public Pregled()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             FillPrijemnice();
             timer1.Start();
         }

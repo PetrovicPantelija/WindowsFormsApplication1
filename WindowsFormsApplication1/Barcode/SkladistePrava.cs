@@ -18,6 +18,7 @@ namespace WindowsFormsApplication1.Barcode
         public SkladistePrava()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             
         }
         private void FillCombo()

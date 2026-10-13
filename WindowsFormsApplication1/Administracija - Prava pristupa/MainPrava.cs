@@ -16,6 +16,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
         public MainPrava()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
         private void MainPrava_Load(object sender, EventArgs e)
         {

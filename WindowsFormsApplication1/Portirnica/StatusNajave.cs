@@ -33,11 +33,13 @@ namespace WindowsFormsApplication1.Portirnica
         public StatusNajave()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
 
         public StatusNajave(string Korisnik)
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             UlogovaniKorisnik = Korisnik;
             IdGrupe();
             IdForme();

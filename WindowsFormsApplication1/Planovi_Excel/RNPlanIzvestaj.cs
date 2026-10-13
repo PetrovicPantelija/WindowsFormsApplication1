@@ -17,10 +17,12 @@ namespace WindowsFormsApplication1.Planovi_Excel
         public RNPlanIzvestaj()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
         public RNPlanIzvestaj(int ID)
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             id = ID;
         }
 

@@ -31,6 +31,7 @@ namespace WindowsFormsApplication1
         public WebIsporukaVoziloPocetna()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             IdGrupe();
             IdForme();
             PravoPristupa();

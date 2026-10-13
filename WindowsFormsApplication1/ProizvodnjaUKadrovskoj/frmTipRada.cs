@@ -14,6 +14,7 @@ namespace WindowsFormsApplication1.ProizvodnjaUKadrovskoj
         public frmTipRada()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             txt_ID.Enabled = false;
         }
 

@@ -19,6 +19,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
         public frmPrikazPorudzbinaWebsOgraniceno()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             FillGV();
         }
         public static string code = "frmPrikazPorudzbinaWebsOgraniceno";

@@ -19,11 +19,13 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
         public Reklamacije()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
         public Reklamacije(int id)
         {
             ID = id;
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
         DateTime datum;
         DateTime datum2;

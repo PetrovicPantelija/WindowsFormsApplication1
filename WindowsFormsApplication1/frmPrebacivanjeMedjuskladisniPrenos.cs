@@ -32,6 +32,7 @@ namespace WindowsFormsApplication1
         public frmPrebacivanjeMedjuskladisniPrenos()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
           //  IdGrupe();
            // IdForme();
            // PravoPristupa();
@@ -40,6 +41,7 @@ namespace WindowsFormsApplication1
         public frmPrebacivanjeMedjuskladisniPrenos(int SkladistaIz, int SkladisteU,string korisnik)
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             //  IdGrupe();
             // IdForme();
             // PravoPristupa();

@@ -17,6 +17,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
         public IzvestajNeisporuceni()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
 
         private void IzvestajNeisporuceni_Load(object sender, EventArgs e)

@@ -32,6 +32,7 @@ namespace WindowsFormsApplication1.Magacin
         public frmPregledIzdavanja()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             IdGrupe();
             IdForme();
             PravoPristupa();

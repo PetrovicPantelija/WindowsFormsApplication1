@@ -32,10 +32,12 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
         public NamenskoPakovanjeNovi()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
         public NamenskoPakovanjeNovi(int id)
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             ID = id;
             groupBox1.Visible = false;
         }

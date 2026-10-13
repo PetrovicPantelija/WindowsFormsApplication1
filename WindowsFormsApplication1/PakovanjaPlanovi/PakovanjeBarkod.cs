@@ -32,6 +32,7 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
         public PakovanjeBarkod(string korisnik)
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             Korisnik = korisnik;
         }
 

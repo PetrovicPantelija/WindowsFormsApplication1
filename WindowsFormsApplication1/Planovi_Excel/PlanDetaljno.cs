@@ -23,11 +23,13 @@ namespace WindowsFormsApplication1.Planovi_Excel
         public PlanDetaljno()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
 
         public PlanDetaljno(int id)
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             ID = id;
             textBox1.Text = ID.ToString();
             FillPanel();

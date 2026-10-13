@@ -17,6 +17,9 @@ namespace WindowsFormsApplication1.Pakovanja
         public ReklamacijePakovanja()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
+            SfGridPomocnik.Stilizuj(dataGridView1);
+            SfGridPomocnik.Stilizuj(dataGridView3);
         }
 
         private void ReklamacijePakovanja_Load(object sender, EventArgs e)
@@ -101,8 +104,7 @@ NOT EXISTS (
                     var da = new SqlDataAdapter(query, conn);
                     var ds = new DataSet();
                     da.Fill(ds);
-                    dataGridView1.ReadOnly = true;
-                    dataGridView1.DataSource = ds.Tables[0];
+                    SfGridPomocnik.Popuni(dataGridView1, ds.Tables[0]);
                 }
                 catch (Exception ex)
                 {
@@ -145,8 +147,7 @@ WHERE p.ZaPakovanje = @ZaPakovanje
                     da.SelectCommand.Parameters.Add("@Spakovano", SqlDbType.Bit).Value = chkSpakovano.Checked;
                     var ds = new DataSet();
                     da.Fill(ds);
-                    dataGridView3.ReadOnly = true;
-                    dataGridView3.DataSource = ds.Tables[0];
+                    SfGridPomocnik.Popuni(dataGridView3, ds.Tables[0]);
                 }
                 catch (Exception ex)
                 {
@@ -164,7 +165,7 @@ WHERE p.ZaPakovanje = @ZaPakovanje
         {
             // Collect selected IDs
             var ids = new List<int>();
-            foreach (DataGridViewRow row in dataGridView3.SelectedRows)
+            foreach (SfRed row in SfGridPomocnik.Izabrani(dataGridView3))
             {
                 if (row.Cells[0].Value != null)
                 {
@@ -230,7 +231,7 @@ WHERE p.ZaPakovanje = @ZaPakovanje
                     cmd.Transaction = tran;
                     try
                     {
-                        foreach (DataGridViewRow row in dataGridView1.Rows)
+                        foreach (SfRed row in SfGridPomocnik.Redovi(dataGridView1))
                         {
                             if (row.Selected && row.Cells[1].Value != null)
                             {

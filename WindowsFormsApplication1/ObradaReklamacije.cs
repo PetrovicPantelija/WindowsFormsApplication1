@@ -28,6 +28,7 @@ namespace WindowsFormsApplication1
         public ObradaReklamacije()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
        
         private void ObradaReklamacije_Load(object sender, EventArgs e)

@@ -42,6 +42,7 @@ namespace WindowsFormsApplication1.Neto_potrebe
         public MdfGrupe()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
           //  InicijalizujUniverzalniDizajn();
            
         }

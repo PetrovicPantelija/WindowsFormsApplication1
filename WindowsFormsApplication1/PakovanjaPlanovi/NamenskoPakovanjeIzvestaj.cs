@@ -18,10 +18,12 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
         public NamenskoPakovanjeIzvestaj()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
         public NamenskoPakovanjeIzvestaj(int Id)
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             plan = Id;
         }
 

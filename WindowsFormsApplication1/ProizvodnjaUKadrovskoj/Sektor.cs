@@ -16,6 +16,7 @@ namespace WindowsFormsApplication1.ProizvodnjaUKadrovskoj
         public Sektor()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             txt_ID.Enabled = false;
         }
 

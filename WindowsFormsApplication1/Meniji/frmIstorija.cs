@@ -27,6 +27,7 @@ namespace WindowsFormsApplication1.Meniji
         public frmIstorija()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             IdGrupe();
             IdForme();
             PravoPristupa();

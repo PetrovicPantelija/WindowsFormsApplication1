@@ -27,6 +27,7 @@ namespace WindowsFormsApplication1
         public frmPregledZaliha()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             IdGrupe();
             IdForme();
             PravoPristupa();

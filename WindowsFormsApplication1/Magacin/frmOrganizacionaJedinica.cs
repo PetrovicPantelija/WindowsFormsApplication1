@@ -31,6 +31,8 @@ namespace WindowsFormsApplication1.Magacin
         {
             
             InitializeComponent();
+            JelaTema.Primeni(this);
+            SfGridPomocnik.Stilizuj(dataGridView1);
 
         }
 
@@ -38,6 +40,8 @@ namespace WindowsFormsApplication1.Magacin
         {
 
             InitializeComponent();
+            JelaTema.Primeni(this);
+            SfGridPomocnik.Stilizuj(dataGridView1);
             IdGrupe();
             IdForme();
             PravoPristupa();
@@ -148,16 +152,7 @@ namespace WindowsFormsApplication1.Magacin
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
             dataAdapter.Fill(ds);
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
-
-            DataGridViewColumn column = dataGridView1.Columns[0];
-            dataGridView1.Columns[0].HeaderText = "ID";
-            dataGridView1.Columns[0].Width = 50;
-
-            DataGridViewColumn column2 = dataGridView1.Columns[1];
-            dataGridView1.Columns[1].HeaderText = "Naziv";
-            dataGridView1.Columns[1].Width = 100;
+            SfGridPomocnik.PopuniK(dataGridView1, ds.Tables[0], new Kol(0, "ID", 50, -1), new Kol(1, "Naziv", 100, -1));
 
             
 
@@ -214,11 +209,11 @@ namespace WindowsFormsApplication1.Magacin
             con.Close();
         }
 
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        private void dataGridView1_SelectionChanged(object sender, Syncfusion.WinForms.DataGrid.Events.SelectionChangedEventArgs e)
         {
             try
             {
-                foreach (DataGridViewRow row in dataGridView1.Rows)
+                foreach (SfRed row in SfGridPomocnik.Redovi(dataGridView1))
                 {
                     if (row.Selected)
                     {

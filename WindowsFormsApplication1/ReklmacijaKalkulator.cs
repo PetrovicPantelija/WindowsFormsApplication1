@@ -28,7 +28,7 @@ namespace WindowsFormsApplication1
         string niz = "";
         public ReklmacijaKalkulator()
         {
-            InitializeComponent(); IdGrupe();
+            InitializeComponent(); JelaTema.Primeni(this); IdGrupe();
             IdForme();
             PravoPristupa();
         }

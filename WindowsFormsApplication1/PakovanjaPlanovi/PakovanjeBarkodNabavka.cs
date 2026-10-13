@@ -19,11 +19,13 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
         public PakovanjeBarkodNabavka()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
 
         public PakovanjeBarkodNabavka(string korisnik)
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             Korisnik = korisnik;
         }
         private void btnPoslatoCM_Click(object sender, EventArgs e)

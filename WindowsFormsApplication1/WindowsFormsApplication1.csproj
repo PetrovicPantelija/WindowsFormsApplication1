@@ -857,6 +857,8 @@
     <Compile Include="Kalkulacije\frmTroskoviIzracun.Designer.cs">
       <DependentUpon>frmTroskoviIzracun.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\JelaTema.cs" />
+    <Compile Include="UI\SfGridPomocnik.cs" />
     <Compile Include="Kalkulacije\frmZaglavlja.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -26,6 +26,8 @@ namespace WindowsFormsApplication1.Kalkulacije
         public frmTroskoviIzracun()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
+            SfGridPomocnik.Stilizuj(dataGridView1);
         }
 
         private void frmTroskoviIzracun_Load(object sender, EventArgs e)
@@ -659,8 +661,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();
             da.Fill(ds);
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
+            SfGridPomocnik.Popuni(dataGridView1, ds.Tables[0]);
         }
         private void button1_Click(object sender, EventArgs e)
         {

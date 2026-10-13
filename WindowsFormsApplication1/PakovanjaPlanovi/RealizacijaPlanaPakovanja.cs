@@ -22,11 +22,13 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
         public RealizacijaPlanaPakovanja()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
         public RealizacijaPlanaPakovanja(int IDPlanapakovanja)
         {
             planPakovanja = IDPlanapakovanja;
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
         private void FillCombo()
         {

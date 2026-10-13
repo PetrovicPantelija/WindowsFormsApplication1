@@ -26,6 +26,7 @@ namespace WindowsFormsApplication1
         public PregledKontrolorIstorija()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             IdGrupe();
             IdForme();
             PravoPristupa();

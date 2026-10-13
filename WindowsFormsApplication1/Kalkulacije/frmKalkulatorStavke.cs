@@ -37,6 +37,7 @@ namespace WindowsFormsApplication1.Kalkulacije
         public frmKalkulatorStavke()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
          //   IdGrupe();
          //   IdForme();
          //   PravoPristupa();
@@ -45,6 +46,7 @@ namespace WindowsFormsApplication1.Kalkulacije
         public frmKalkulatorStavke(int Nesto)
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             //   IdGrupe();
             //   IdForme();
             //   PravoPristupa();
@@ -137,6 +139,7 @@ namespace WindowsFormsApplication1.Kalkulacije
         {
 
             InitializeComponent();
+            JelaTema.Primeni(this);
             kalkulator = idK;
             zaglavlje = zag;
             txtKurs.Text = Kurs;

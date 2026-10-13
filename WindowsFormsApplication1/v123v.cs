@@ -28,6 +28,7 @@ namespace WindowsFormsApplication1
         public v123v()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             IdGrupe();
             IdForme();
             PravoPristupa();

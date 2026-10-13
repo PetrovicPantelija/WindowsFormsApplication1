@@ -15,6 +15,7 @@ namespace WindowsFormsApplication1
         public WebsPakovanja()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
 
         private void btnInsertRefTabela_Click(object sender, EventArgs e)

@@ -15,11 +15,13 @@ namespace WindowsFormsApplication1.Planovi_Excel
         public PlanArhivDetaljno()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
 
         public PlanArhivDetaljno(int id)
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             ID = id;
         }
 

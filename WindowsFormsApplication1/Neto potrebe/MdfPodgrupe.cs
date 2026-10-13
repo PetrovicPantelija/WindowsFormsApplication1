@@ -29,6 +29,7 @@ namespace WindowsFormsApplication1.Neto_potrebe
         public MdfPodgrupe()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
           
         }
 

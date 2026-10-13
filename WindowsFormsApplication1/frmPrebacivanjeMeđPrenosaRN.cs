@@ -38,11 +38,13 @@ namespace WindowsFormsApplication1
         public frmPrebacivanjeMeđPrenosaRN()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
 
         }
         public frmPrebacivanjeMeđPrenosaRN(string KorisnikU)
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             Korisnik = KorisnikU;
             Korisnik = Kor;
             txtIzdaje.Text = Korisnik;
@@ -52,6 +54,7 @@ namespace WindowsFormsApplication1
         public frmPrebacivanjeMeđPrenosaRN(int RN,  int SkladisteU, int LokacijaU,string korisnik)
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             Korisnik = korisnik;
             txtIzdaje.Text = Korisnik;
 

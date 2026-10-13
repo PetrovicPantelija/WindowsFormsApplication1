@@ -25,6 +25,7 @@ namespace WindowsFormsApplication1
         public frmOtpremnicaPregled()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             IdGrupe();
             IdForme();
             PravoPristupa();

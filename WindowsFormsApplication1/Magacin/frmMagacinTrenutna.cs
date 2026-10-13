@@ -34,6 +34,7 @@ namespace WindowsFormsApplication1.Magacin
         public frmMagacinTrenutna()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             IdGrupe();
             IdForme();
             PravoPristupa();
@@ -43,6 +44,7 @@ namespace WindowsFormsApplication1.Magacin
         public frmMagacinTrenutna(string Korisnik)
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             KorisnikForme = Korisnik;
             IdGrupe();
             IdForme();

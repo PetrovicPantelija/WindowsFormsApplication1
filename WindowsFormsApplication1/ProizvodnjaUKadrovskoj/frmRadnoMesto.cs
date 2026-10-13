@@ -20,6 +20,7 @@ namespace WindowsFormsApplication1.ProizvodnjaUKadrovskoj
         public frmRadnoMesto()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             txt_ID.Enabled = false;
         }
         private void FillGV()

@@ -33,6 +33,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
         public PlanAktiv()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
          
             if (Kor.Trim() == "stanojevic.ivan" || Kor.Trim() == "stanojlovic.djordje" || Kor.Trim() == "hasanovic.igor" || Kor.Trim() == "pantelija")
             {

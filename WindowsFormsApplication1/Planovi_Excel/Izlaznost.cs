@@ -23,6 +23,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
         public Izlaznost()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
            
         }
 

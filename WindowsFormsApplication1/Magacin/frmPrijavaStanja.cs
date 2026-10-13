@@ -27,6 +27,8 @@ namespace WindowsFormsApplication1.Magacin
         public frmPrijavaStanja()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
+            SfGridPomocnik.Stilizuj(dataGridView1);
             IdGrupe();
             IdForme();
             PravoPristupa();
@@ -145,29 +147,7 @@ namespace WindowsFormsApplication1.Magacin
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
             dataAdapter.Fill(ds);
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
-
-            //string value = dataGridView2.Rows[0].Cells[0].Value.ToString();
-            DataGridViewColumn column = dataGridView1.Columns[0];
-            dataGridView1.Columns[0].HeaderText = "Šifra skladista";
-            dataGridView1.Columns[0].Width = 80;
-
-            DataGridViewColumn column1 = dataGridView1.Columns[1];
-            dataGridView1.Columns[1].HeaderText = "Naziv skladista";
-            dataGridView1.Columns[1].Width = 180;
-
-            DataGridViewColumn column2 = dataGridView1.Columns[2];
-            dataGridView1.Columns[2].HeaderText = "Pozicija";
-            dataGridView1.Columns[2].Width = 80;
-
-            DataGridViewColumn column3 = dataGridView1.Columns[3];
-            dataGridView1.Columns[3].HeaderText = "Pozicija naziv";
-            dataGridView1.Columns[3].Width = 180;
-
-            DataGridViewColumn column4 = dataGridView1.Columns[4];
-            dataGridView1.Columns[4].HeaderText = "Količina";
-            dataGridView1.Columns[4].Width = 80;
+            SfGridPomocnik.PopuniK(dataGridView1, ds.Tables[0], new Kol(0, "Šifra skladista", 80, -1), new Kol(1, "Naziv skladista", 180, -1), new Kol(2, "Pozicija", 80, -1), new Kol(3, "Pozicija naziv", 180, -1), new Kol(4, "Količina", 80, -1));
         }
     }
 }

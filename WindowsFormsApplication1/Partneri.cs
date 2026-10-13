@@ -27,6 +27,7 @@ namespace WindowsFormsApplication1
         public Partneri()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             IdGrupe();
             IdForme();
             PravoPristupa();

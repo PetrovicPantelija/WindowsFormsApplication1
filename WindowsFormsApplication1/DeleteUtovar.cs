@@ -15,6 +15,7 @@ namespace WindowsFormsApplication1
         public DeleteUtovar()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
     }
 }

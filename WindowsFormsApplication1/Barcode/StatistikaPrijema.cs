@@ -21,6 +21,7 @@ namespace WindowsFormsApplication1.Barcode
         public StatistikaPrijema()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             FillPrijemnice();
             panel1.Visible = false;
         }

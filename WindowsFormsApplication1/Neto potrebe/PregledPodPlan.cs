@@ -53,6 +53,7 @@ namespace WindowsFormsApplication1.Neto_potrebe
         public PregledPodPlan()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             
 
             panel1.Visible = false;
@@ -149,6 +150,7 @@ namespace WindowsFormsApplication1.Neto_potrebe
         public PregledPodPlan(int PlanID, string PodPlan)
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             tmpPlanID = PlanID;
             tmpPodPlan = PodPlan;
             panel1.Visible = false;

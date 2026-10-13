@@ -15,6 +15,7 @@ namespace WindowsFormsApplication1
         public frmEkran2()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
     }
 }

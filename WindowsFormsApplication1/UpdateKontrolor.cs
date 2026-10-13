@@ -26,6 +26,7 @@ namespace WindowsFormsApplication1
         public UpdateKontrolor()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             IdGrupe();
             IdForme();
             PravoPristupa();

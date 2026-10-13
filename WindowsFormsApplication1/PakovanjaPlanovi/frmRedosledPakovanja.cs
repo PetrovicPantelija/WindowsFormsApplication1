@@ -25,6 +25,7 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
         public frmRedosledPakovanja()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
 
         private void frmRedosledPakovanja_Load(object sender, EventArgs e)

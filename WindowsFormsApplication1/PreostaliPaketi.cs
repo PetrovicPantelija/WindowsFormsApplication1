@@ -26,6 +26,7 @@ namespace WindowsFormsApplication1
         public PreostaliPaketi()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             timer1 = new Timer();
             IdGrupe();
             IdForme();

@@ -49,7 +49,8 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txt_Cena = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridView1 = new Syncfusion.WinForms.DataGrid.SfDataGrid();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.txt_Slika = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
@@ -75,6 +76,10 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.label16 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -160,7 +165,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(432, 92);
+            this.label1.Location = new System.Drawing.Point(432, 65);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
@@ -169,7 +174,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             // txt_ID
             // 
-            this.txt_ID.Location = new System.Drawing.Point(12, 60);
+            this.txt_ID.Location = new System.Drawing.Point(12, 33);
             this.txt_ID.Margin = new System.Windows.Forms.Padding(2);
             this.txt_ID.Name = "txt_ID";
             this.txt_ID.Size = new System.Drawing.Size(72, 20);
@@ -178,7 +183,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(324, 45);
+            this.label2.Location = new System.Drawing.Point(324, 18);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(47, 13);
@@ -187,7 +192,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             // txt_mpSifra
             // 
-            this.txt_mpSifra.Location = new System.Drawing.Point(327, 60);
+            this.txt_mpSifra.Location = new System.Drawing.Point(327, 33);
             this.txt_mpSifra.Margin = new System.Windows.Forms.Padding(2);
             this.txt_mpSifra.Name = "txt_mpSifra";
             this.txt_mpSifra.Size = new System.Drawing.Size(72, 20);
@@ -195,7 +200,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(405, 57);
+            this.button1.Location = new System.Drawing.Point(405, 30);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(62, 24);
@@ -207,7 +212,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(472, 45);
+            this.label3.Location = new System.Drawing.Point(472, 18);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 13);
@@ -218,7 +223,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             this.txt_mpNaziv.BackColor = System.Drawing.Color.Yellow;
             this.txt_mpNaziv.Enabled = false;
-            this.txt_mpNaziv.Location = new System.Drawing.Point(475, 60);
+            this.txt_mpNaziv.Location = new System.Drawing.Point(475, 33);
             this.txt_mpNaziv.Margin = new System.Windows.Forms.Padding(2);
             this.txt_mpNaziv.Name = "txt_mpNaziv";
             this.txt_mpNaziv.Size = new System.Drawing.Size(129, 20);
@@ -227,7 +232,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(109, 59);
+            this.comboBox1.Location = new System.Drawing.Point(109, 32);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(204, 21);
@@ -236,7 +241,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(106, 45);
+            this.label4.Location = new System.Drawing.Point(106, 18);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(95, 13);
@@ -246,7 +251,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(765, 115);
+            this.label5.Location = new System.Drawing.Point(765, 88);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(32, 13);
@@ -257,7 +262,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             this.txt_Cena.BackColor = System.Drawing.Color.Yellow;
             this.txt_Cena.Enabled = false;
-            this.txt_Cena.Location = new System.Drawing.Point(768, 133);
+            this.txt_Cena.Location = new System.Drawing.Point(768, 106);
             this.txt_Cena.Margin = new System.Windows.Forms.Padding(2);
             this.txt_Cena.Name = "txt_Cena";
             this.txt_Cena.Size = new System.Drawing.Size(94, 20);
@@ -265,19 +270,17 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             // dataGridView1
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 164);
+            this.dataGridView1.AccessibleName = "Table";
+            this.dataGridView1.AllowFiltering = true;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1005, 353);
             this.dataGridView1.TabIndex = 209;
-            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            this.dataGridView1.SelectionChanged += new Syncfusion.WinForms.DataGrid.Events.SelectionChangedEventHandler(this.dataGridView1_SelectionChanged);
             // 
             // txt_Slika
             // 
-            this.txt_Slika.Location = new System.Drawing.Point(623, 59);
+            this.txt_Slika.Location = new System.Drawing.Point(623, 32);
             this.txt_Slika.Margin = new System.Windows.Forms.Padding(2);
             this.txt_Slika.Name = "txt_Slika";
             this.txt_Slika.Size = new System.Drawing.Size(217, 20);
@@ -286,7 +289,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(620, 45);
+            this.label6.Location = new System.Drawing.Point(620, 18);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(30, 13);
@@ -295,7 +298,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(844, 56);
+            this.button2.Location = new System.Drawing.Point(844, 29);
             this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(62, 24);
@@ -306,7 +309,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(11, 86);
+            this.label7.Location = new System.Drawing.Point(11, 59);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(26, 13);
@@ -315,7 +318,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             // txt_Kod
             // 
-            this.txt_Kod.Location = new System.Drawing.Point(11, 101);
+            this.txt_Kod.Location = new System.Drawing.Point(11, 74);
             this.txt_Kod.Margin = new System.Windows.Forms.Padding(2);
             this.txt_Kod.Name = "txt_Kod";
             this.txt_Kod.Size = new System.Drawing.Size(72, 20);
@@ -324,7 +327,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(106, 83);
+            this.label8.Location = new System.Drawing.Point(106, 56);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(85, 13);
@@ -333,7 +336,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             // txt_Opis
             // 
-            this.txt_Opis.Location = new System.Drawing.Point(109, 99);
+            this.txt_Opis.Location = new System.Drawing.Point(109, 72);
             this.txt_Opis.Margin = new System.Windows.Forms.Padding(2);
             this.txt_Opis.Multiline = true;
             this.txt_Opis.Name = "txt_Opis";
@@ -343,7 +346,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(269, 83);
+            this.label9.Location = new System.Drawing.Point(269, 56);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(79, 13);
@@ -352,7 +355,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             // txt_Vrste
             // 
-            this.txt_Vrste.Location = new System.Drawing.Point(272, 99);
+            this.txt_Vrste.Location = new System.Drawing.Point(272, 72);
             this.txt_Vrste.Margin = new System.Windows.Forms.Padding(2);
             this.txt_Vrste.Multiline = true;
             this.txt_Vrste.Name = "txt_Vrste";
@@ -361,7 +364,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             // txt_Visina
             // 
-            this.txt_Visina.Location = new System.Drawing.Point(471, 92);
+            this.txt_Visina.Location = new System.Drawing.Point(471, 65);
             this.txt_Visina.Margin = new System.Windows.Forms.Padding(2);
             this.txt_Visina.Name = "txt_Visina";
             this.txt_Visina.Size = new System.Drawing.Size(94, 20);
@@ -370,7 +373,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(427, 140);
+            this.label10.Location = new System.Drawing.Point(427, 113);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(40, 13);
@@ -379,7 +382,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             // txt_Duzina
             // 
-            this.txt_Duzina.Location = new System.Drawing.Point(471, 140);
+            this.txt_Duzina.Location = new System.Drawing.Point(471, 113);
             this.txt_Duzina.Margin = new System.Windows.Forms.Padding(2);
             this.txt_Duzina.Name = "txt_Duzina";
             this.txt_Duzina.Size = new System.Drawing.Size(94, 20);
@@ -388,7 +391,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(434, 115);
+            this.label11.Location = new System.Drawing.Point(434, 88);
             this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(33, 13);
@@ -397,7 +400,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             // txt_Sirina
             // 
-            this.txt_Sirina.Location = new System.Drawing.Point(471, 116);
+            this.txt_Sirina.Location = new System.Drawing.Point(471, 89);
             this.txt_Sirina.Margin = new System.Windows.Forms.Padding(2);
             this.txt_Sirina.Name = "txt_Sirina";
             this.txt_Sirina.Size = new System.Drawing.Size(94, 20);
@@ -406,7 +409,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(582, 92);
+            this.label12.Location = new System.Drawing.Point(582, 65);
             this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(22, 13);
@@ -415,7 +418,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             // txt_Kg
             // 
-            this.txt_Kg.Location = new System.Drawing.Point(623, 92);
+            this.txt_Kg.Location = new System.Drawing.Point(623, 65);
             this.txt_Kg.Margin = new System.Windows.Forms.Padding(2);
             this.txt_Kg.Name = "txt_Kg";
             this.txt_Kg.Size = new System.Drawing.Size(94, 20);
@@ -424,7 +427,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(582, 116);
+            this.label13.Location = new System.Drawing.Point(582, 89);
             this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(37, 13);
@@ -433,7 +436,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             // txt_Koleto
             // 
-            this.txt_Koleto.Location = new System.Drawing.Point(623, 116);
+            this.txt_Koleto.Location = new System.Drawing.Point(623, 89);
             this.txt_Koleto.Margin = new System.Windows.Forms.Padding(2);
             this.txt_Koleto.Name = "txt_Koleto";
             this.txt_Koleto.Size = new System.Drawing.Size(94, 20);
@@ -442,7 +445,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(582, 140);
+            this.label14.Location = new System.Drawing.Point(582, 113);
             this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(22, 13);
@@ -451,7 +454,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             // txt_M3
             // 
-            this.txt_M3.Location = new System.Drawing.Point(623, 140);
+            this.txt_M3.Location = new System.Drawing.Point(623, 113);
             this.txt_M3.Margin = new System.Windows.Forms.Padding(2);
             this.txt_M3.Name = "txt_M3";
             this.txt_M3.Size = new System.Drawing.Size(94, 20);
@@ -460,7 +463,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(11, 45);
+            this.label15.Location = new System.Drawing.Point(11, 18);
             this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(53, 13);
@@ -470,7 +473,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // txtKalkulator
             // 
             this.txtKalkulator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.txtKalkulator.Location = new System.Drawing.Point(918, 130);
+            this.txtKalkulator.Location = new System.Drawing.Point(918, 103);
             this.txtKalkulator.Margin = new System.Windows.Forms.Padding(2);
             this.txtKalkulator.Name = "txtKalkulator";
             this.txtKalkulator.Size = new System.Drawing.Size(99, 20);
@@ -479,53 +482,65 @@ namespace WindowsFormsApplication1.Kalkulacije
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(915, 115);
+            this.label16.Location = new System.Drawing.Point(915, 88);
             this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(102, 13);
             this.label16.TabIndex = 210;
             this.label16.Text = "Kalkulator azuriranja";
             // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 27);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Panel1.Controls.Add(this.txtKalkulator);
+            this.splitContainer1.Panel1.Controls.Add(this.label16);
+            this.splitContainer1.Panel1.Controls.Add(this.comboBox1);
+            this.splitContainer1.Panel1.Controls.Add(this.txt_Cena);
+            this.splitContainer1.Panel1.Controls.Add(this.label5);
+            this.splitContainer1.Panel1.Controls.Add(this.txt_mpNaziv);
+            this.splitContainer1.Panel1.Controls.Add(this.label3);
+            this.splitContainer1.Panel1.Controls.Add(this.button2);
+            this.splitContainer1.Panel1.Controls.Add(this.button1);
+            this.splitContainer1.Panel1.Controls.Add(this.txt_Kod);
+            this.splitContainer1.Panel1.Controls.Add(this.label7);
+            this.splitContainer1.Panel1.Controls.Add(this.txt_mpSifra);
+            this.splitContainer1.Panel1.Controls.Add(this.label2);
+            this.splitContainer1.Panel1.Controls.Add(this.txt_Vrste);
+            this.splitContainer1.Panel1.Controls.Add(this.txt_Opis);
+            this.splitContainer1.Panel1.Controls.Add(this.txt_Slika);
+            this.splitContainer1.Panel1.Controls.Add(this.label9);
+            this.splitContainer1.Panel1.Controls.Add(this.txt_M3);
+            this.splitContainer1.Panel1.Controls.Add(this.txt_Koleto);
+            this.splitContainer1.Panel1.Controls.Add(this.txt_Kg);
+            this.splitContainer1.Panel1.Controls.Add(this.txt_Duzina);
+            this.splitContainer1.Panel1.Controls.Add(this.txt_Sirina);
+            this.splitContainer1.Panel1.Controls.Add(this.txt_Visina);
+            this.splitContainer1.Panel1.Controls.Add(this.label14);
+            this.splitContainer1.Panel1.Controls.Add(this.txt_ID);
+            this.splitContainer1.Panel1.Controls.Add(this.label13);
+            this.splitContainer1.Panel1.Controls.Add(this.label8);
+            this.splitContainer1.Panel1.Controls.Add(this.label12);
+            this.splitContainer1.Panel1.Controls.Add(this.label4);
+            this.splitContainer1.Panel1.Controls.Add(this.label10);
+            this.splitContainer1.Panel1.Controls.Add(this.label11);
+            this.splitContainer1.Panel1.Controls.Add(this.label15);
+            this.splitContainer1.Panel1.Controls.Add(this.label6);
+            this.splitContainer1.Panel1.Controls.Add(this.label1);
+            this.splitContainer1.Panel2.Controls.Add(this.dataGridView1);
+            this.splitContainer1.Size = new System.Drawing.Size(1028, 499);
+            this.splitContainer1.SplitterDistance = 133;
+            this.splitContainer1.TabIndex = 300;
+            // 
             // frmBazaProdajnihCena
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1028, 526);
-            this.Controls.Add(this.txtKalkulator);
-            this.Controls.Add(this.label16);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.txt_Cena);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.txt_mpNaziv);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.txt_Kod);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.txt_mpSifra);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.txt_Vrste);
-            this.Controls.Add(this.txt_Opis);
-            this.Controls.Add(this.txt_Slika);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.txt_M3);
-            this.Controls.Add(this.txt_Koleto);
-            this.Controls.Add(this.txt_Kg);
-            this.Controls.Add(this.txt_Duzina);
-            this.Controls.Add(this.txt_Sirina);
-            this.Controls.Add(this.txt_Visina);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.txt_ID);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.label15);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.toolStrip1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
@@ -534,6 +549,11 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -557,7 +577,8 @@ namespace WindowsFormsApplication1.Kalkulacije
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txt_Cena;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private Syncfusion.WinForms.DataGrid.SfDataGrid dataGridView1;
         private System.Windows.Forms.TextBox txt_Slika;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button2;

@@ -27,6 +27,7 @@ namespace WindowsFormsApplication1.Magacin
         public frmOtpremnicaUvozPocetna()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             IdGrupe();
             IdForme();
             PravoPristupa();

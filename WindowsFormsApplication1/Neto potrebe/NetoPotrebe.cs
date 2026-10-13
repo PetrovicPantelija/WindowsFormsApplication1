@@ -32,6 +32,7 @@ namespace WindowsFormsApplication1.Neto_potrebe
         public NetoPotrebe()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
         
         }
 

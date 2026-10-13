@@ -33,6 +33,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
         public PoveziRN()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
         private void PoveziRN_Load(object sender, EventArgs e)
         {

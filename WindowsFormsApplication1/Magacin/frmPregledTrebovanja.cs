@@ -32,11 +32,15 @@ namespace WindowsFormsApplication1.Magacin
         public frmPregledTrebovanja()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
+            SfGridPomocnik.Stilizuj(dataGridView1);
         }
 
         public frmPregledTrebovanja(string Korisnik)
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
+            SfGridPomocnik.Stilizuj(dataGridView1);
             KorisnikForme = Korisnik;
             IdGrupe();
             IdForme();
@@ -163,49 +167,7 @@ namespace WindowsFormsApplication1.Magacin
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
             dataAdapter.Fill(ds);
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
-
-            //string value = dataGridView2.Rows[0].Cells[0].Value.ToString();
-            DataGridViewColumn column = dataGridView1.Columns[0];
-            dataGridView1.Columns[0].HeaderText = "Korisnik";
-            dataGridView1.Columns[0].Width = 50;
-
-            DataGridViewColumn column2 = dataGridView1.Columns[1];
-            dataGridView1.Columns[1].HeaderText = "Artikal";
-            dataGridView1.Columns[1].Width = 50;
-
-            DataGridViewColumn column3 = dataGridView1.Columns[2];
-            dataGridView1.Columns[2].HeaderText = "Kod";
-            dataGridView1.Columns[2].Width = 120;
-
-            DataGridViewColumn column4 = dataGridView1.Columns[3];
-            dataGridView1.Columns[3].HeaderText = "Lokacija";
-            dataGridView1.Columns[3].Width = 40;
-
-            DataGridViewColumn column5 = dataGridView1.Columns[4];
-            dataGridView1.Columns[4].HeaderText = "Kolicina";
-            dataGridView1.Columns[4].Width = 70;
-
-            DataGridViewColumn column6 = dataGridView1.Columns[5];
-            dataGridView1.Columns[5].HeaderText = "ID";
-            dataGridView1.Columns[5].Width = 50;
-
-            DataGridViewColumn column7 = dataGridView1.Columns[6];
-            dataGridView1.Columns[6].HeaderText = "Preostalo";
-            dataGridView1.Columns[6].Width = 50;
-
-            DataGridViewColumn column8 = dataGridView1.Columns[7];
-            dataGridView1.Columns[7].HeaderText = "Lok opis";
-            dataGridView1.Columns[7].Width = 150;
-
-            DataGridViewColumn column9 = dataGridView1.Columns[8];
-            dataGridView1.Columns[8].HeaderText = "FormiranDokument";
-            dataGridView1.Columns[8].Width = 40;
-
-            DataGridViewColumn column10 = dataGridView1.Columns[9];
-            dataGridView1.Columns[9].HeaderText = "Broj";
-            dataGridView1.Columns[9].Width = 40;
+            SfGridPomocnik.PopuniK(dataGridView1, ds.Tables[0], new Kol(0, "Korisnik", 50, -1), new Kol(1, "Artikal", 50, -1), new Kol(2, "Kod", 120, -1), new Kol(3, "Lokacija", 40, -1), new Kol(4, "Kolicina", 70, -1), new Kol(5, "ID", 50, -1), new Kol(6, "Preostalo", 50, -1), new Kol(7, "Lok opis", 150, -1), new Kol(8, "FormiranDokument", 40, -1), new Kol(9, "Broj", 40, -1));
         
         
         }
@@ -220,7 +182,7 @@ namespace WindowsFormsApplication1.Magacin
 
             isporuka.InsertIZDTrenutna(cboKorisnik.Text.Trim());
 
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            foreach (SfRed row in SfGridPomocnik.Redovi(dataGridView1))
             {
                 if (row != null && row.Cells[0].Value != null)
                 {
@@ -246,7 +208,7 @@ namespace WindowsFormsApplication1.Magacin
         {
 
             InsertMedjuskladisni uzimanje = new InsertMedjuskladisni();
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            foreach (SfRed row in SfGridPomocnik.Redovi(dataGridView1))
             {
                 if (row.Selected == true)
                 {
@@ -262,7 +224,7 @@ namespace WindowsFormsApplication1.Magacin
 
         private void button3_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            foreach (SfRed row in SfGridPomocnik.Redovi(dataGridView1))
             {
                 if (Convert.ToInt32(row.Cells[8].Value) == '0')
                 {

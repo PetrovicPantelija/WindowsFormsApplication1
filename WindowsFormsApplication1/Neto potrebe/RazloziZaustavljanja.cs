@@ -34,6 +34,7 @@ namespace WindowsFormsApplication1.Neto_potrebe
         public RazloziZaustavljanja()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
 
         public string IdGrupe()

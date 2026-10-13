@@ -30,6 +30,7 @@ namespace WindowsFormsApplication1.Pakovanja.StavkePlanaPakovanja
         public frmStavkePlanaPakovanja(int id)
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             setStyle();
             id_sup = id;
         }

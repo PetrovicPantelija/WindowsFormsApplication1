@@ -15,6 +15,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
         public Podesavanje()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
     }
 }

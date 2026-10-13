@@ -21,6 +21,7 @@ namespace WindowsFormsApplication1.Pakovanja.PlanPakovanja
         public frmPlanPakovanja()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             setStyle();
         }
         private void frmPlanPakovanja_Load(object sender, EventArgs e)

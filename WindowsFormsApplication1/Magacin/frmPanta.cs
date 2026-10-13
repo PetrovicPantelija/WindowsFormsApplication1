@@ -21,6 +21,7 @@ namespace WindowsFormsApplication1.Magacin
         public frmPanta()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
     }
 }

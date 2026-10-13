@@ -30,6 +30,7 @@ namespace WindowsFormsApplication1.Magacin
         public frmKorisnici()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
            
         }
         public string IdGrupe()

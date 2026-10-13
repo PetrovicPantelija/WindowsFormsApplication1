@@ -28,6 +28,7 @@ namespace WindowsFormsApplication1
         public WebIsporuka()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             IdGrupe();
             IdForme();
             PravoPristupa();

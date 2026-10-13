@@ -30,7 +30,7 @@ namespace WindowsFormsApplication1
         string niz = "";
         public WebIsporukaVozilo()
         {
-            InitializeComponent(); IdGrupe();
+            InitializeComponent(); JelaTema.Primeni(this); IdGrupe();
             IdForme();
             PravoPristupa();
         }

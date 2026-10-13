@@ -30,6 +30,7 @@ namespace WindowsFormsApplication1
         public WebReklamacijeVoziloPocetna()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             IdGrupe();
             IdForme();
             PravoPristupa();

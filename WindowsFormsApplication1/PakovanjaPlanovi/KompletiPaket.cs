@@ -28,6 +28,7 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
         public KompletiPaket()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
 
         private void KompletiPaket_Load(object sender, EventArgs e)

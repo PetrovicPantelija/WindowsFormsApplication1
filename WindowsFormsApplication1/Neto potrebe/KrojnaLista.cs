@@ -35,6 +35,7 @@ namespace WindowsFormsApplication1.Neto_potrebe
         public KrojnaLista()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
        
             panel2.Visible = false;
             dataGridView2.CellEndEdit += dataGridView2_CellEndEdit;
@@ -43,6 +44,7 @@ namespace WindowsFormsApplication1.Neto_potrebe
         public KrojnaLista(int PlanID, string PodPlan)
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
          
             tmpPlanID = PlanID;
             tmpPodPlan = PodPlan;

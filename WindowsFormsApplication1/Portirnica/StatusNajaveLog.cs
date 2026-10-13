@@ -31,11 +31,13 @@ namespace WindowsFormsApplication1.Portirnica
         public StatusNajaveLog()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
 
         public StatusNajaveLog(int ID)
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             tmpSifra = ID;
             IdGrupe();
             IdForme();

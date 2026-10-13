@@ -32,6 +32,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
         public RadniCentarLog()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
            
         }
 

@@ -44,11 +44,16 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.btnImeFajla = new FontAwesome.Sharp.IconButton();
             this.ofd1 = new System.Windows.Forms.OpenFileDialog();
             this.fbd = new System.Windows.Forms.FolderBrowserDialog();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridView1 = new Syncfusion.WinForms.DataGrid.SfDataGrid();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -118,7 +123,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.button1.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.button1.IconSize = 23;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(547, 68);
+            this.button1.Location = new System.Drawing.Point(547, 41);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(102, 25);
             this.button1.TabIndex = 209;
@@ -131,7 +136,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(729, 28);
+            this.pictureBox2.Location = new System.Drawing.Point(729, 1);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(137, 34);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -144,14 +149,14 @@ namespace WindowsFormsApplication1.Kalkulacije
             | System.Windows.Forms.AnchorStyles.Right)));
             this.progressBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(247)))), ((int)(((byte)(246)))));
             this.progressBar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(142)))), ((int)(((byte)(4)))));
-            this.progressBar.Location = new System.Drawing.Point(13, 107);
+            this.progressBar.Location = new System.Drawing.Point(13, 80);
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(816, 23);
             this.progressBar.TabIndex = 204;
             // 
             // txtPutanja
             // 
-            this.txtPutanja.Location = new System.Drawing.Point(10, 70);
+            this.txtPutanja.Location = new System.Drawing.Point(10, 43);
             this.txtPutanja.Name = "txtPutanja";
             this.txtPutanja.Size = new System.Drawing.Size(419, 20);
             this.txtPutanja.TabIndex = 203;
@@ -160,7 +165,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(10, 50);
+            this.label1.Location = new System.Drawing.Point(10, 23);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(215, 19);
             this.label1.TabIndex = 202;
@@ -177,7 +182,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.btnImeFajla.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.btnImeFajla.IconSize = 23;
             this.btnImeFajla.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnImeFajla.Location = new System.Drawing.Point(439, 68);
+            this.btnImeFajla.Location = new System.Drawing.Point(439, 41);
             this.btnImeFajla.Name = "btnImeFajla";
             this.btnImeFajla.Size = new System.Drawing.Size(102, 25);
             this.btnImeFajla.TabIndex = 208;
@@ -192,17 +197,11 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             // dataGridView1
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(9, 145);
+            this.dataGridView1.AccessibleName = "Table";
+            this.dataGridView1.AllowFiltering = true;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(827, 410);
             this.dataGridView1.TabIndex = 210;
             // 
             // iconButton1
@@ -216,7 +215,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.iconButton1.IconSize = 23;
             this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.Location = new System.Drawing.Point(655, 68);
+            this.iconButton1.Location = new System.Drawing.Point(655, 41);
             this.iconButton1.Name = "iconButton1";
             this.iconButton1.Size = new System.Drawing.Size(133, 25);
             this.iconButton1.TabIndex = 211;
@@ -225,20 +224,32 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.iconButton1.UseVisualStyleBackColor = false;
             this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
             // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 27);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Panel1.Controls.Add(this.iconButton1);
+            this.splitContainer1.Panel1.Controls.Add(this.button1);
+            this.splitContainer1.Panel1.Controls.Add(this.pictureBox2);
+            this.splitContainer1.Panel1.Controls.Add(this.progressBar);
+            this.splitContainer1.Panel1.Controls.Add(this.txtPutanja);
+            this.splitContainer1.Panel1.Controls.Add(this.label1);
+            this.splitContainer1.Panel1.Controls.Add(this.btnImeFajla);
+            this.splitContainer1.Panel2.Controls.Add(this.dataGridView1);
+            this.splitContainer1.Size = new System.Drawing.Size(866, 538);
+            this.splitContainer1.SplitterDistance = 114;
+            this.splitContainer1.TabIndex = 300;
+            // 
             // frmTroskoviIzracun
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(187)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(866, 565);
-            this.Controls.Add(this.iconButton1);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.progressBar);
-            this.Controls.Add(this.txtPutanja);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnImeFajla);
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.toolStrip1);
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
@@ -249,6 +260,11 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -270,7 +286,8 @@ namespace WindowsFormsApplication1.Kalkulacije
         private FontAwesome.Sharp.IconButton btnImeFajla;
         private System.Windows.Forms.OpenFileDialog ofd1;
         private System.Windows.Forms.FolderBrowserDialog fbd;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private Syncfusion.WinForms.DataGrid.SfDataGrid dataGridView1;
         private FontAwesome.Sharp.IconButton iconButton1;
     }
 }

@@ -34,6 +34,8 @@ namespace WindowsFormsApplication1
         public frmPrijemnica()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
+            SfGridPomocnik.Stilizuj(dataGridView1);
             IdGrupe();
             IdForme();
             PravoPristupa();
@@ -157,52 +159,11 @@ namespace WindowsFormsApplication1
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
             dataAdapter.Fill(ds);
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
-
-            DataGridViewColumn column = dataGridView1.Columns[0];
-            dataGridView1.Columns[0].HeaderText = "ID";
-            dataGridView1.Columns[0].Width = 50;
-
-            DataGridViewColumn column1 = dataGridView1.Columns[1];
-            dataGridView1.Columns[1].HeaderText = "RB";
-            dataGridView1.Columns[1].Width = 50;
-
-            DataGridViewColumn column2 = dataGridView1.Columns[2];
-            dataGridView1.Columns[2].HeaderText = "MP";
-            dataGridView1.Columns[2].Width = 50;
-
-            DataGridViewColumn column3 = dataGridView1.Columns[3];
-            dataGridView1.Columns[3].HeaderText = "Kod";
-            dataGridView1.Columns[3].Width = 150;
-
-            DataGridViewColumn column4 = dataGridView1.Columns[4];
-            dataGridView1.Columns[4].HeaderText = "JM";
-            dataGridView1.Columns[4].Width = 50;
-
-            DataGridViewColumn column5 = dataGridView1.Columns[5];
-            dataGridView1.Columns[5].HeaderText = "Kol sa dokumneta";
-            dataGridView1.Columns[5].Width = 50;
-
-            DataGridViewColumn column6 = dataGridView1.Columns[6];
-            dataGridView1.Columns[6].HeaderText = "Sklad";
-            dataGridView1.Columns[6].Width = 50;
-
-            DataGridViewColumn column7 = dataGridView1.Columns[7];
-            dataGridView1.Columns[7].HeaderText = "sklad opis";
-            dataGridView1.Columns[7].Width = 100;
-
-            DataGridViewColumn column8 = dataGridView1.Columns[8];
-            dataGridView1.Columns[8].HeaderText = "Lokac";
-            dataGridView1.Columns[8].Width = 100;
-
-            DataGridViewColumn column9 = dataGridView1.Columns[8];
-            dataGridView1.Columns[9].HeaderText = "Kol primljena";
-            dataGridView1.Columns[9].Width = 100;
+            SfGridPomocnik.PopuniK(dataGridView1, ds.Tables[0], new Kol(0, "ID", 50, -1), new Kol(1, "RB", 50, -1), new Kol(2, "MP", 50, -1), new Kol(3, "Kod", 150, -1), new Kol(4, "JM", 50, -1), new Kol(5, "Kol sa dokumneta", 50, -1), new Kol(6, "Sklad", 50, -1), new Kol(7, "sklad opis", 100, -1), new Kol(8, "Lokac", 100, -1), new Kol(9, "Kol primljena", 100, -1));
 
 
 
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            foreach (SfRed row in SfGridPomocnik.Redovi(dataGridView1))
             {
 
                 decimal pomizmerena = 0;
@@ -287,7 +248,7 @@ namespace WindowsFormsApplication1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            foreach (SfRed row in SfGridPomocnik.Redovi(dataGridView1))
             {
                 if (row.Selected)
                 {

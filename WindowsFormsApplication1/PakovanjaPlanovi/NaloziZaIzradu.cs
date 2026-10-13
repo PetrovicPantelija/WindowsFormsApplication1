@@ -11,10 +11,12 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
         public NaloziZaIzradu()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
         public NaloziZaIzradu(int IDPlanaPakovanja,string Skladista,string Materijal)
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
 
             plan=IDPlanaPakovanja;
             skladiste=Skladista;

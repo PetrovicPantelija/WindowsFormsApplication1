@@ -37,6 +37,7 @@ namespace WindowsFormsApplication1.Neto_potrebe
         public MpMDF()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
           
         }
 

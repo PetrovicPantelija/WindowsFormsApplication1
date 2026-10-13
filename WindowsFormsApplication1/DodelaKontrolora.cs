@@ -15,6 +15,7 @@ namespace WindowsFormsApplication1
         public DodelaKontrolora()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
     }
 }

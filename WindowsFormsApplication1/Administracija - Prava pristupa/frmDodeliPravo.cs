@@ -32,6 +32,10 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
         public frmDodeliPravo()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
+            SfGridPomocnik.Stilizuj(dataGridView1);
+            SfGridPomocnik.Stilizuj(dataGridView2);
+            dataGridView2.SelectionMode = Syncfusion.WinForms.DataGrid.Enums.GridSelectionMode.Extended;
             txt_ID.Enabled = false;
             IdGrupe();
             IdForme();
@@ -155,16 +159,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             SqlDataAdapter da = new SqlDataAdapter(query, conn);
             DataSet ds = new DataSet();
             da.Fill(ds);
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
-            dataGridView1.Columns[0].Width = 60;
-            dataGridView1.Columns[1].Width = 60;
-            dataGridView1.Columns[2].Width = 150;
-            dataGridView1.Columns[3].Width = 60;
-            dataGridView1.Columns[4].Width = 200;
-            dataGridView1.Columns[5].Width = 70;
-            dataGridView1.Columns[6].Width = 70;
-            dataGridView1.Columns[7].Width = 70;
+            SfGridPomocnik.Popuni(dataGridView1, ds.Tables[0], 60, 60, 150, 60, 200, 70, 70, 70);
         }
 
         private void FillGVFormer()
@@ -174,34 +169,31 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             SqlDataAdapter da = new SqlDataAdapter(query, conn);
             DataSet ds = new DataSet();
             da.Fill(ds);
-            dataGridView2.ReadOnly = true;
-            dataGridView2.DataSource = ds.Tables[0];
+            SfGridPomocnik.Popuni(dataGridView2, ds.Tables[0]);
            
         }
 
 
 
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        private void dataGridView1_SelectionChanged(object sender, Syncfusion.WinForms.DataGrid.Events.SelectionChangedEventArgs e)
         {
             try
             {
-                foreach (DataGridViewRow row in dataGridView1.Rows)
+                object[] red = SfGridPomocnik.Red(dataGridView1);
+                if (red != null)
                 {
-                    if (row.Selected)
-                    {
-                        txt_ID.Text = row.Cells[0].Value.ToString();
-                        combo_Grupa.Text = row.Cells[2].Value.ToString();
-                        combo_Forma.Text = row.Cells[4].Value.ToString();
-                        if (Convert.ToInt32(row.Cells[5].Value) == 1)
+                        txt_ID.Text = red[0].ToString();
+                        combo_Grupa.Text = red[2].ToString();
+                        combo_Forma.Text = red[4].ToString();
+                        if (Convert.ToInt32(red[5]) == 1)
                         { cb_Upis.Checked = true;}else { cb_Upis.Checked = false; }
-                        if (Convert.ToInt32(row.Cells[6].Value) == 1)
+                        if (Convert.ToInt32(red[6]) == 1)
                         { cb_Izmena.Checked = true; }
                         else { cb_Izmena.Checked = false; }
-                        if (Convert.ToInt32(row.Cells[7].Value) == 1)
+                        if (Convert.ToInt32(red[7]) == 1)
                         { cb_Brisanje.Checked = true; }
                         else { cb_Brisanje.Checked = false; }
                     }
-                }
             }
             catch { }
         }
@@ -251,14 +243,15 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             {
                 Administracija___Prava_pristupa.InsertGrupaForma grupa = new InsertGrupaForma();
                 MessageBox.Show("Funkcija za sve selektovane forme, dodeljuje obelezenoj grupi");
-                foreach (DataGridViewRow row in dataGridView2.Rows)
+                foreach (object o in dataGridView2.SelectedItems)
                 {
-                    if (row.Selected)
+                    System.Data.DataRowView drv = o as System.Data.DataRowView;
+                    if (drv != null)
                     {
                         if (cb_Upis.Checked == true) { upis = true; }
                         if (cb_Izmena.Checked == true) { izmena = true; }
                         if (cb_Brisanje.Checked == true) { brisanje = true; }
-                        grupa.InsGrupaForma(Convert.ToInt32(combo_Grupa.SelectedValue), Convert.ToInt32(row.Cells[1].Value.ToString()), upis, izmena, brisanje);
+                        grupa.InsGrupaForma(Convert.ToInt32(combo_Grupa.SelectedValue), Convert.ToInt32(drv.Row.ItemArray[1].ToString()), upis, izmena, brisanje);
                     }
                 }
             }

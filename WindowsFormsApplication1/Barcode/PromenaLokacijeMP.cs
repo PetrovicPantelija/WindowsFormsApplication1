@@ -18,6 +18,7 @@ namespace WindowsFormsApplication1.Barcode
         public PromenaLokacijeMP()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             FillGV();
             FillCombo();
         }

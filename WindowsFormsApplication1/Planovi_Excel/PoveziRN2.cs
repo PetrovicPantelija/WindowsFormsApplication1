@@ -33,6 +33,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
         public PoveziRN2()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
     
         }
         public string IdGrupe()

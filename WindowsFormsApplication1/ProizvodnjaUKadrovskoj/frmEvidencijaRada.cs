@@ -20,6 +20,7 @@ namespace WindowsFormsApplication1.ProizvodnjaUKadrovskoj
         {
             this.sifraLargo = sifraLargo;
             InitializeComponent();
+            JelaTema.Primeni(this);
             GetSektor();
             dtDan.Value = DateTime.Now;
         }

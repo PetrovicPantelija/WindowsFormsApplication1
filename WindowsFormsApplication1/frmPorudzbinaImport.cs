@@ -29,6 +29,7 @@ namespace WindowsFormsApplication1
         public frmPorudzbinaImport()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             dtpVremeOd.Value = DateTime.Now;
             IdGrupe();
             IdForme();

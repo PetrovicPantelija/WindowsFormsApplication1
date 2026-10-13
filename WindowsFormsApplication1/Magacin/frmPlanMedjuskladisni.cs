@@ -33,6 +33,7 @@ namespace WindowsFormsApplication1.Magacin
         public frmPlanMedjuskladisni()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             IdGrupe();
             IdForme();
             PravoPristupa();

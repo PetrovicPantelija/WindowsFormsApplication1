@@ -29,6 +29,8 @@ namespace WindowsFormsApplication1.Kalkulacije
         public frmPrimenaTroskovnogCenovnika()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
+            SfGridPomocnik.Stilizuj(dataGridView1);
             txt_ID.Enabled = false;
             FillGV();
             IdGrupe();
@@ -128,8 +130,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();
             da.Fill(ds);
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
+            SfGridPomocnik.Popuni(dataGridView1, ds.Tables[0]);
         }
 
         private void btn_mp_Click(object sender, EventArgs e)
@@ -231,11 +232,11 @@ namespace WindowsFormsApplication1.Kalkulacije
             FillGV();
         }
 
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        private void dataGridView1_SelectionChanged(object sender, Syncfusion.WinForms.DataGrid.Events.SelectionChangedEventArgs e)
         {
             try
             {
-                foreach (DataGridViewRow row in dataGridView1.Rows)
+                foreach (SfRed row in SfGridPomocnik.Redovi(dataGridView1))
                 {
                     if (row.Selected)
                     {

@@ -43,10 +43,15 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             this.label3 = new System.Windows.Forms.Label();
             this.txt_Code = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridView1 = new Syncfusion.WinForms.DataGrid.SfDataGrid();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.IconButton = new System.Windows.Forms.PictureBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IconButton)).BeginInit();
             this.SuspendLayout();
             // 
@@ -101,7 +106,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             // 
             // txt_IDForme
             // 
-            this.txt_IDForme.Location = new System.Drawing.Point(138, 59);
+            this.txt_IDForme.Location = new System.Drawing.Point(138, 32);
             this.txt_IDForme.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_IDForme.Name = "txt_IDForme";
             this.txt_IDForme.Size = new System.Drawing.Size(76, 20);
@@ -109,7 +114,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             // 
             // txt_ID
             // 
-            this.txt_ID.Location = new System.Drawing.Point(9, 59);
+            this.txt_ID.Location = new System.Drawing.Point(9, 32);
             this.txt_ID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_ID.Name = "txt_ID";
             this.txt_ID.Size = new System.Drawing.Size(76, 20);
@@ -120,7 +125,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(135, 37);
+            this.label2.Location = new System.Drawing.Point(135, 10);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(73, 17);
@@ -132,7 +137,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(9, 37);
+            this.label1.Location = new System.Drawing.Point(9, 10);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(23, 17);
@@ -142,7 +147,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             // txt_Naziv
             // 
             this.txt_Naziv.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_Naziv.Location = new System.Drawing.Point(9, 121);
+            this.txt_Naziv.Location = new System.Drawing.Point(9, 94);
             this.txt_Naziv.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_Naziv.Name = "txt_Naziv";
             this.txt_Naziv.Size = new System.Drawing.Size(205, 21);
@@ -153,7 +158,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(9, 94);
+            this.label3.Location = new System.Drawing.Point(9, 67);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(48, 17);
@@ -163,7 +168,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             // txt_Code
             // 
             this.txt_Code.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_Code.Location = new System.Drawing.Point(9, 184);
+            this.txt_Code.Location = new System.Drawing.Point(9, 157);
             this.txt_Code.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_Code.Name = "txt_Code";
             this.txt_Code.Size = new System.Drawing.Size(205, 21);
@@ -174,7 +179,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(9, 158);
+            this.label4.Location = new System.Drawing.Point(9, 131);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(45, 17);
@@ -183,25 +188,44 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             // 
             // dataGridView1
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(261, 37);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.AccessibleName = "Table";
+            this.dataGridView1.AllowFiltering = true;
+            this.dataGridView1.AllowEditing = false;
+            this.dataGridView1.AllowResizingColumns = true;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(471, 426);
             this.dataGridView1.TabIndex = 212;
-            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            this.dataGridView1.SelectionChanged += new Syncfusion.WinForms.DataGrid.Events.SelectionChangedEventHandler(this.dataGridView1_SelectionChanged);
             // 
             // IconButton
             // 
             this.IconButton.Image = ((System.Drawing.Image)(resources.GetObject("IconButton.Image")));
-            this.IconButton.Location = new System.Drawing.Point(12, 423);
+            this.IconButton.Location = new System.Drawing.Point(12, 396);
+            this.IconButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.IconButton.Name = "IconButton";
             this.IconButton.Size = new System.Drawing.Size(114, 37);
             this.IconButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.IconButton.TabIndex = 213;
             this.IconButton.TabStop = false;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 27);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Panel1.Controls.Add(this.txt_IDForme);
+            this.splitContainer1.Panel1.Controls.Add(this.txt_ID);
+            this.splitContainer1.Panel1.Controls.Add(this.label2);
+            this.splitContainer1.Panel1.Controls.Add(this.label1);
+            this.splitContainer1.Panel1.Controls.Add(this.txt_Naziv);
+            this.splitContainer1.Panel1.Controls.Add(this.label3);
+            this.splitContainer1.Panel1.Controls.Add(this.txt_Code);
+            this.splitContainer1.Panel1.Controls.Add(this.label4);
+            this.splitContainer1.Panel1.Controls.Add(this.IconButton);
+            this.splitContainer1.Panel2.Controls.Add(this.dataGridView1);
+            this.splitContainer1.Size = new System.Drawing.Size(741, 445);
+            this.splitContainer1.SplitterDistance = 255;
+            this.splitContainer1.TabIndex = 300;
             // 
             // frmForme
             // 
@@ -209,16 +233,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(83)))), ((int)(((byte)(87)))));
             this.ClientSize = new System.Drawing.Size(741, 472);
-            this.Controls.Add(this.IconButton);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.txt_Code);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.txt_Naziv);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.txt_IDForme);
-            this.Controls.Add(this.txt_ID);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.toolStrip1);
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Icon = global::WindowsFormsApplication1.Properties.Resources.JelaIkona;
@@ -228,6 +243,11 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.IconButton)).EndInit();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -235,6 +255,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
 
         #endregion
 
+        private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton tsNew;
         private System.Windows.Forms.ToolStripButton tsSave;
@@ -248,7 +269,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txt_Code;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private Syncfusion.WinForms.DataGrid.SfDataGrid dataGridView1;
         private System.Windows.Forms.PictureBox IconButton;
     }
 }

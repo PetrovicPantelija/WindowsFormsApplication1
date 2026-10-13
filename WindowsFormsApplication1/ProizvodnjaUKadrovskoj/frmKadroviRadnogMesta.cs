@@ -19,6 +19,7 @@ namespace WindowsFormsApplication1.ProizvodnjaUKadrovskoj
         public frmKadroviRadnogMesta()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
         private void FillGVZaposleni()
         {

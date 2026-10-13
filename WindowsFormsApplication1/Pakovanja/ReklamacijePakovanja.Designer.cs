@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.btnLoad = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.dataGridView1 = new Syncfusion.WinForms.DataGrid.SfDataGrid();
+            this.dataGridView3 = new Syncfusion.WinForms.DataGrid.SfDataGrid();
             this.btnPrebaci = new System.Windows.Forms.Button();
             this.btnSpakovano = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -59,24 +59,26 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AccessibleName = "Table";
+            this.dataGridView1.AllowFiltering = true;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(607, 507);
+            this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.TabIndex = 1;
             // 
             // dataGridView3
             // 
+            this.dataGridView3.AccessibleName = "Table";
+            this.dataGridView3.AllowFiltering = true;
             this.dataGridView3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView3.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.ReadOnly = true;
             this.dataGridView3.Size = new System.Drawing.Size(541, 507);
+            this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.TabIndex = 2;
             // 
             // btnPrebaci
@@ -208,9 +210,9 @@
         #endregion
         private System.Windows.Forms.Button btnLoad;
         private System.Windows.Forms.Button btnZaPakovanje;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private Syncfusion.WinForms.DataGrid.SfDataGrid dataGridView1;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridView dataGridView3;
+        private Syncfusion.WinForms.DataGrid.SfDataGrid dataGridView3;
         private System.Windows.Forms.Button btnPrebaci;
         private System.Windows.Forms.Button btnSpakovano;
         private System.Windows.Forms.SplitContainer splitContainer1;

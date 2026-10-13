@@ -28,6 +28,7 @@ namespace WindowsFormsApplication1.Meniji
         public frmAnalizeMagacin()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             IdGrupe();
             IdForme();
             PravoPristupa();

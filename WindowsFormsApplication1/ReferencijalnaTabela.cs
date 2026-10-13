@@ -28,6 +28,7 @@ namespace WindowsFormsApplication1
         public ReferencijalnaTabela()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             IdGrupe();
             IdForme();
             PravoPristupa();
@@ -36,6 +37,7 @@ namespace WindowsFormsApplication1
         public ReferencijalnaTabela(string DolazecaForma)
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             /// ReferencijalnaTabela.Text = "" + "/" + DolazecaForma;
             IdGrupe();
             IdForme();

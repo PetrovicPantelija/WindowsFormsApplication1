@@ -31,6 +31,8 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
         public frmGrupe()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
+            SfGridPomocnik.Stilizuj(dataGridView1);
             txt_ID.Enabled = false;
             txt_IDGrupe.Enabled = false;
             IdGrupe();
@@ -134,26 +136,20 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();
             da.Fill(ds);
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
-            dataGridView1.Columns[0].Width = 70;
-            dataGridView1.Columns[1].Width = 70;
-            dataGridView1.Columns[2].Width = 190;
+            SfGridPomocnik.Popuni(dataGridView1, ds.Tables[0], 70, 70, 190);
         }
 
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        private void dataGridView1_SelectionChanged(object sender, Syncfusion.WinForms.DataGrid.Events.SelectionChangedEventArgs e)
         {
             try
             {
-                foreach(DataGridViewRow row in dataGridView1.Rows)
+                object[] red = SfGridPomocnik.Red(dataGridView1);
+                if (red != null)
                 {
-                    if (row.Selected)
-                    {
-                        txt_ID.Text = row.Cells[0].Value.ToString();
-                        txt_IDGrupe.Text = row.Cells[1].Value.ToString();
-                        txt_Naziv.Text = row.Cells[2].Value.ToString();
+                        txt_ID.Text = red[0].ToString();
+                        txt_IDGrupe.Text = red[1].ToString();
+                        txt_Naziv.Text = red[2].ToString();
                     }
-                }
             }
             catch { }
         }

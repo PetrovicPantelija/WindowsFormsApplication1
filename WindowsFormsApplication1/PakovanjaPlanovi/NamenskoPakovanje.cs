@@ -22,12 +22,14 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
         public NamenskoPakovanje()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
         int ID;
         public NamenskoPakovanje(int id)
         {
             ID = id;
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
         DateTime datum;
         public class Danas

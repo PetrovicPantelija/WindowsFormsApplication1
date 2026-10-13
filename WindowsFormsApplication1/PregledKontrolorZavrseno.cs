@@ -27,6 +27,7 @@ namespace WindowsFormsApplication1
         public PregledKontrolorZavrseno()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             timer1 = new Timer();
             IdGrupe();
             IdForme();

@@ -29,6 +29,7 @@ namespace WindowsFormsApplication1.Magacin
         public frmMaticniPodaciPrikaz()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             IdGrupe();
             IdForme();
             PravoPristupa();

@@ -25,6 +25,7 @@ namespace WindowsFormsApplication1.Magacin
         public frmProsecnaIzlaznost()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             IdGrupe();
             IdForme();
             PravoPristupa();

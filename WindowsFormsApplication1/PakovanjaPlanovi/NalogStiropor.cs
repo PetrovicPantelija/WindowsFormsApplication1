@@ -11,10 +11,12 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
         public NalogStiropor()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
         public NalogStiropor(int IDPlanaPakovanja,string Skladista)
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             plan = IDPlanaPakovanja;
             skladiste= Skladista;
         }       

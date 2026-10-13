@@ -26,11 +26,13 @@ namespace WindowsFormsApplication1.Neto_potrebe
         public StampaNP()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
 
         public StampaNP(int Plan, string Podplan)
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             tmpPlan = Plan;
             tmpPodPlan = Podplan;
         }

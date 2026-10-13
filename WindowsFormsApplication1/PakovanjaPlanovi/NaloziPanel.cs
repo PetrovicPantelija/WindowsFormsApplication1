@@ -18,11 +18,13 @@ namespace WindowsFormsApplication1.PakovanjaPlanovi
         public NaloziPanel()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
         }
 
         public NaloziPanel(int IDPlanPakovanja,string Skladista)
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             plan = IDPlanPakovanja;
             skladiste = Skladista;
         }

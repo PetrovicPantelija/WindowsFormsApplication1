@@ -33,9 +33,9 @@ namespace WindowsFormsApplication1.Magacin
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dataGridView2 = new Syncfusion.WinForms.DataGrid.SfDataGrid();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridView1 = new Syncfusion.WinForms.DataGrid.SfDataGrid();
             this.label5 = new System.Windows.Forms.Label();
             this.txtTrebovanje = new System.Windows.Forms.TextBox();
             this.button6 = new System.Windows.Forms.Button();
@@ -80,14 +80,13 @@ namespace WindowsFormsApplication1.Magacin
             // 
             // dataGridView2
             // 
-            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AccessibleName = "Table";
+            this.dataGridView2.AllowFiltering = true;
             this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.dataGridView2.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(6, 3);
-            this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(619, 469);
+            this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.TabIndex = 237;
             // 
             // panel2
@@ -102,14 +101,13 @@ namespace WindowsFormsApplication1.Magacin
             // 
             // dataGridView1
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AccessibleName = "Table";
+            this.dataGridView1.AllowFiltering = true;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(709, 469);
+            this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.TabIndex = 237;
             // 
             // label5
@@ -190,9 +188,9 @@ namespace WindowsFormsApplication1.Magacin
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private Syncfusion.WinForms.DataGrid.SfDataGrid dataGridView2;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private Syncfusion.WinForms.DataGrid.SfDataGrid dataGridView1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtTrebovanje;
         private System.Windows.Forms.Button button6;

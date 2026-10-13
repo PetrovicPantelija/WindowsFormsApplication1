@@ -26,6 +26,7 @@ namespace WindowsFormsApplication1
         public Artikal()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             IdGrupe();
             IdForme();
             PravoPristupa();

@@ -28,6 +28,7 @@ namespace WindowsFormsApplication1
         public StampajPalSveZavrseno()
         {
             InitializeComponent();
+            JelaTema.Primeni(this);
             IdGrupe();
             IdForme();
             PravoPristupa();
