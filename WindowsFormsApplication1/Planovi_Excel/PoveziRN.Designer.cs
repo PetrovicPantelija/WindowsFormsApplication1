@@ -41,6 +41,9 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
+            this.chkVRN10 = new System.Windows.Forms.CheckBox();
+            this.chkVRN40 = new System.Windows.Forms.CheckBox();
+            this.chkVRN41 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -77,7 +80,47 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.label2.Size = new System.Drawing.Size(23, 13);
             this.label2.TabIndex = 0;
             this.label2.Text = "RN";
-            // 
+            //
+            // chkVRN10
+            //
+            this.chkVRN10.AutoSize = true;
+            this.chkVRN10.Location = new System.Drawing.Point(495, 7);
+            this.chkVRN10.Margin = new System.Windows.Forms.Padding(2);
+            this.chkVRN10.Name = "chkVRN10";
+            this.chkVRN10.Size = new System.Drawing.Size(60, 17);
+            this.chkVRN10.TabIndex = 9;
+            this.chkVRN10.Text = "VRN 10";
+            this.chkVRN10.UseVisualStyleBackColor = true;
+            this.chkVRN10.CheckedChanged += new System.EventHandler(this.chkVRN_CheckedChanged);
+            //
+            // chkVRN40
+            //
+            this.chkVRN40.AutoSize = true;
+            this.chkVRN40.Checked = true;
+            this.chkVRN40.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkVRN40.Location = new System.Drawing.Point(565, 7);
+            this.chkVRN40.Margin = new System.Windows.Forms.Padding(2);
+            this.chkVRN40.Name = "chkVRN40";
+            this.chkVRN40.Size = new System.Drawing.Size(60, 17);
+            this.chkVRN40.TabIndex = 10;
+            this.chkVRN40.Text = "VRN 40";
+            this.chkVRN40.UseVisualStyleBackColor = true;
+            this.chkVRN40.CheckedChanged += new System.EventHandler(this.chkVRN_CheckedChanged);
+            //
+            // chkVRN41
+            //
+            this.chkVRN41.AutoSize = true;
+            this.chkVRN41.Checked = true;
+            this.chkVRN41.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkVRN41.Location = new System.Drawing.Point(635, 7);
+            this.chkVRN41.Margin = new System.Windows.Forms.Padding(2);
+            this.chkVRN41.Name = "chkVRN41";
+            this.chkVRN41.Size = new System.Drawing.Size(60, 17);
+            this.chkVRN41.TabIndex = 11;
+            this.chkVRN41.Text = "VRN 41";
+            this.chkVRN41.UseVisualStyleBackColor = true;
+            this.chkVRN41.CheckedChanged += new System.EventHandler(this.chkVRN_CheckedChanged);
+            //
             // dataGridView2
             // 
             this.dataGridView2.AllowUserToAddRows = false;
@@ -181,6 +224,9 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(963, 648);
+            this.Controls.Add(this.chkVRN41);
+            this.Controls.Add(this.chkVRN40);
+            this.Controls.Add(this.chkVRN10);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
@@ -219,5 +265,8 @@ namespace WindowsFormsApplication1.Planovi_Excel
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.CheckBox chkVRN10;
+        private System.Windows.Forms.CheckBox chkVRN40;
+        private System.Windows.Forms.CheckBox chkVRN41;
     }
 }

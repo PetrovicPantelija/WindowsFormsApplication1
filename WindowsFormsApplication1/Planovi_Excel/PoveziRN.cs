@@ -40,8 +40,26 @@ namespace WindowsFormsApplication1.Planovi_Excel
             dataGridView1.DataSource = ds.Tables[0];
             dataGridView1.Columns[0].Width = 60;
 
+            FillRN();
+        }
+
+        // Vrste RN prema cekiranim chkVRN10 / chkVRN40 / chkVRN41
+        private string UslovVrsteRN()
+        {
+            List<string> vrste = new List<string>();
+            if (chkVRN10.Checked) vrste.Add("DNpSifVrsteDN=10");
+            if (chkVRN40.Checked) vrste.Add("DNpSifVrsteDN=40");
+            if (chkVRN41.Checked) vrste.Add("DNpSifVrsteDN=41");
+
+            // nista cekirano - prazan grid
+            return vrste.Count == 0 ? "1=0" : string.Join(" or ", vrste);
+        }
+
+        private void FillRN()
+        {
+            SqlConnection conn = new SqlConnection(connect);
             var query2 = "select DnPStZapisa as [Sifra RN], DNPStevilka as [Broj RN],DNpSifVrsteDN as [Vrsta RN],DNpSifStat as [Status],IDPlana from DelNalogProizvodni " +
-                "where (DNpSifVrsteDN=40 or DNpSifVrsteDN=41) AND DNpSifStat IN ('OD','LA','PO','PF','PL') order by DNpStZapisa desc";
+                "where (" + UslovVrsteRN() + ") AND DNpSifStat IN ('OD','LA','PO','PF','PL') order by DNpStZapisa desc";
             var da2 = new SqlDataAdapter(query2, conn);
             var ds2 = new DataSet();
             da2.Fill(ds2);
@@ -51,6 +69,12 @@ namespace WindowsFormsApplication1.Planovi_Excel
             dataGridView2.Columns[1].Width = 60;
             dataGridView2.Columns[2].Width = 60;
             dataGridView2.Columns[3].Width = 60;
+        }
+
+        private void chkVRN_CheckedChanged(object sender, EventArgs e)
+        {
+            // osvezava samo RN, da se ne izgubi izabrani plan
+            FillRN();
         }
 
         private void button1_Click(object sender, EventArgs e)
