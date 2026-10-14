@@ -292,15 +292,8 @@ namespace WindowsFormsApplication1.Magacin
             }
             else if (nazivModula == "UvozWebaplikacija")
             {
-                // ZAH-005: forma za uvoz iz web aplikacije - povezati kada bude napravljena
-                Label lblInfo = new Label
-                {
-                    Text = "Uvoz iz web aplikacije - u izradi",
-                    Location = new Point(20, 80),
-                    AutoSize = true,
-                    ForeColor = System.Drawing.Color.Gray
-                };
-                pnlEkran.Controls.Add(lblInfo);
+                // ZAH-005: Jela product - uvoz iz web aplikacije (pregled, unos, izmena, deaktiviranje, import iz Excela)
+                LoadFormInPanel(new frmJelaProduct(), pnlEkran);
             }
 
             else

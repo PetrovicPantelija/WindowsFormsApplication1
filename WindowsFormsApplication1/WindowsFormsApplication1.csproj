@@ -938,6 +938,17 @@
     <Compile Include="Magacin\frmPaleta.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Magacin\frmJelaProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Magacin\frmJelaProduct.Designer.cs">
+      <DependentUpon>frmJelaProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Magacin\frmJelaProductEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Magacin\JelaProductImport.cs" />
+    <Compile Include="Magacin\JelaProductRepo.cs" />
     <Compile Include="Magacin\frmPaleta.Designer.cs">
       <DependentUpon>frmPaleta.cs</DependentUpon>
     </Compile>
