@@ -70,9 +70,10 @@ namespace WindowsFormsApplication1.Magacin
 
         // ---------------------------------------------------------------- citanje
 
+        /// <summary>Za prikaz u gridu: Active je prva kolona da se vidi bez skrolovanja.</summary>
         public static DataTable Load(string cs, bool includeInactive)
         {
-            string sql = "SELECT " + Cols + ", [Active] FROM dbo.jela_products " +
+            string sql = "SELECT [Active], " + Cols + " FROM dbo.jela_products " +
                          (includeInactive ? "" : "WHERE [Active] = 1 ") +
                          "ORDER BY [ProizvodID], [SifraProizvodaLargo];";
             var table = new DataTable();
