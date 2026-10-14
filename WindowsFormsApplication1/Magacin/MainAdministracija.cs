@@ -101,7 +101,7 @@ namespace WindowsFormsApplication1.Magacin
             };
 
             // Kreiranje univerzalnih menija u petlji
-            string[] stavkeMenija = { "Organizacione jedinice", "Korisnici", "Prava - Grupe", "Prava - forme", "Dodeli grupu", "Dodeli pravo", "Skladiste pravo" };
+            string[] stavkeMenija = { "Organizacione jedinice", "Korisnici", "Prava - Grupe", "Prava - forme", "Dodeli grupu", "Dodeli pravo", "Skladiste pravo", "UvozWebaplikacija" };
             int topOffset = 30;
 
             foreach (string stavka in stavkeMenija)
@@ -290,7 +290,19 @@ namespace WindowsFormsApplication1.Magacin
                 pnlEkran.Controls.Add(lblInfo);
                 LoadFormInPanel(new SkladistePrava(), pnlEkran);
             }
-            
+            else if (nazivModula == "UvozWebaplikacija")
+            {
+                // ZAH-005: forma za uvoz iz web aplikacije - povezati kada bude napravljena
+                Label lblInfo = new Label
+                {
+                    Text = "Uvoz iz web aplikacije - u izradi",
+                    Location = new Point(20, 80),
+                    AutoSize = true,
+                    ForeColor = System.Drawing.Color.Gray
+                };
+                pnlEkran.Controls.Add(lblInfo);
+            }
+
             else
             {
                 // Za ostale module prikazujemo placeholder obaveštenje
