@@ -944,6 +944,12 @@
     <Compile Include="Magacin\frmJelaProduct.Designer.cs">
       <DependentUpon>frmJelaProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="Planovi_Excel\frmProdajaGP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Planovi_Excel\frmProdajaGP.Designer.cs">
+      <DependentUpon>frmProdajaGP.cs</DependentUpon>
+    </Compile>
     <Compile Include="Magacin\frmJelaProductEdit.cs">
       <SubType>Form</SubType>
     </Compile>

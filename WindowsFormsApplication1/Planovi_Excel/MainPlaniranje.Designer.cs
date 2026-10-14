@@ -43,6 +43,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.panel3 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.lblPoveziRN = new System.Windows.Forms.Label();
+            this.lblProdajaGP = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btn_Kalkulator = new FontAwesome.Sharp.IconButton();
             this.label1 = new System.Windows.Forms.Label();
@@ -213,6 +214,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(83)))), ((int)(((byte)(87)))));
+            this.panel3.Controls.Add(this.lblProdajaGP);
             this.panel3.Controls.Add(this.lblPoveziRN);
             this.panel3.Controls.Add(this.label7);
             this.panel3.Controls.Add(this.label3);
@@ -249,6 +251,19 @@ namespace WindowsFormsApplication1.Planovi_Excel
             this.lblPoveziRN.TabIndex = 23;
             this.lblPoveziRN.Text = "• Poveži RN";
             this.lblPoveziRN.Click += new System.EventHandler(this.lblPoveziRN_Click);
+            //
+            // lblProdajaGP
+            //
+            this.lblProdajaGP.AutoSize = true;
+            this.lblProdajaGP.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold);
+            this.lblProdajaGP.ForeColor = System.Drawing.Color.White;
+            this.lblProdajaGP.Location = new System.Drawing.Point(12, 161);
+            this.lblProdajaGP.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblProdajaGP.Name = "lblProdajaGP";
+            this.lblProdajaGP.Size = new System.Drawing.Size(94, 19);
+            this.lblProdajaGP.TabIndex = 24;
+            this.lblProdajaGP.Text = "• Prodaja GP";
+            this.lblProdajaGP.Click += new System.EventHandler(this.lblProdajaGP_Click);
             //
             // label3
             // 
@@ -631,6 +646,7 @@ namespace WindowsFormsApplication1.Planovi_Excel
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblPoveziRN;
+        private System.Windows.Forms.Label lblProdajaGP;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label12;

@@ -175,6 +175,13 @@ namespace WindowsFormsApplication1.Planovi_Excel
             frm.Show();
         }
 
+        private void lblProdajaGP_Click(object sender, EventArgs e)
+        {
+            frmProdajaGP frm = new frmProdajaGP();
+            if (frm.Pravo) frm.Show();
+            else frm.Dispose();
+        }
+
         private void label9_Click(object sender, EventArgs e)
         {
             //grupe
