@@ -12,6 +12,7 @@ namespace WindowsFormsApplication1.Magacin
         private System.Windows.Forms.Button btnDeaktiviranje;
         private System.Windows.Forms.Button btnImportExcel;
         private System.Windows.Forms.CheckBox chkNeaktivni;
+        private System.Windows.Forms.Button btnExportExcel;
 
         protected override void Dispose(bool disposing)
         {
@@ -29,6 +30,7 @@ namespace WindowsFormsApplication1.Magacin
             this.btnDeaktiviranje = new System.Windows.Forms.Button();
             this.btnImportExcel = new System.Windows.Forms.Button();
             this.chkNeaktivni = new System.Windows.Forms.CheckBox();
+            this.btnExportExcel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.sfGrid)).BeginInit();
             this.pnlTop.SuspendLayout();
             this.SuspendLayout();
@@ -43,6 +45,7 @@ namespace WindowsFormsApplication1.Magacin
             this.pnlTop.Controls.Add(this.btnDeaktiviranje);
             this.pnlTop.Controls.Add(this.btnImportExcel);
             this.pnlTop.Controls.Add(this.chkNeaktivni);
+            this.pnlTop.Controls.Add(this.btnExportExcel);
             //
             // btnUnos   (Tag se koristi za gasenje dugmadi po pravima: upis / izmena / brisanje)
             //
@@ -87,6 +90,14 @@ namespace WindowsFormsApplication1.Magacin
             this.chkNeaktivni.Name = "chkNeaktivni";
             this.chkNeaktivni.Text = "Prikaži i neaktivne";
             this.chkNeaktivni.CheckedChanged += new System.EventHandler(this.chkNeaktivni_CheckedChanged);
+            //
+            // btnExportExcel
+            //
+            this.btnExportExcel.Location = new System.Drawing.Point(680, 8);
+            this.btnExportExcel.Size = new System.Drawing.Size(140, 28);
+            this.btnExportExcel.Name = "btnExportExcel";
+            this.btnExportExcel.Text = "Export to Excel";
+            this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
             //
             // sfGrid
             //

@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using Syncfusion.WinForms.DataGrid;
 using Syncfusion.WinForms.DataGrid.Events;
+using Syncfusion.WinForms.DataGridConverter;
+using Syncfusion.XlsIO;
 
 namespace WindowsFormsApplication1.Magacin
 {
@@ -32,9 +35,7 @@ namespace WindowsFormsApplication1.Magacin
             InitializeComponent();
             JelaTema.Primeni(this);
             SfGridPomocnik.Stilizuj(sfGrid);
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
+          
         }
 
         // ------------------------------------------------------------------ prava pristupa (isti model kao ostale forme)
@@ -112,12 +113,16 @@ namespace WindowsFormsApplication1.Magacin
             btnDeaktiviranje.Enabled = Pravo && delete;
             btnImportExcel.Enabled = Pravo && insert && update;   // import i dodaje i menja
             chkNeaktivni.Enabled = Pravo;
+            btnExportExcel.Enabled = Pravo;
         }
 
         // ------------------------------------------------------------------ ucitavanje
 
         private void frmJelaProduct_Load(object sender, EventArgs e)
         {
+            IdGrupe();
+            IdForme();
+            PravoPristupa();
             if (Pravo) Ucitaj(null);
         }
 
@@ -334,6 +339,52 @@ namespace WindowsFormsApplication1.Magacin
             Ucitaj(null);
             MessageBox.Show(this, "Import završen.\nDodato: " + plan.Inserts.Count + "\nIzmenjeno: " + plan.Updates.Count,
                 "Import from Excel", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        // ------------------------------------------------------------------ Export to Excel (postuje filter i sortiranje u gridu)
+
+        private void btnExportExcel_Click(object sender, EventArgs e)
+        {
+            if (sfGrid.View == null || sfGrid.View.Records.Count == 0)
+            {
+                MessageBox.Show(this, "Nema podataka za izvoz.", "Export to Excel", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            string putanja;
+            using (var dlg = new SaveFileDialog())
+            {
+                dlg.Filter = "Excel (*.xlsx)|*.xlsx";
+                dlg.DefaultExt = "xlsx";
+                dlg.FileName = "JelaProduct_" + DateTime.Now.ToString("yyyyMMdd_HHmm") + ".xlsx";
+                if (dlg.ShowDialog(this) != DialogResult.OK) return;
+                putanja = dlg.FileName;
+            }
+
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                var options = new ExcelExportingOptions { ExcelVersion = ExcelVersion.Xlsx };
+                using (ExcelEngine excelEngine = sfGrid.ExportToExcel(sfGrid.View, options))
+                {
+                    IWorkbook workbook = excelEngine.Excel.Workbooks[0];
+                    workbook.Worksheets[0].UsedRange.AutofitColumns();
+                    workbook.SaveAs(putanja);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, "Greška pri izvozu u Excel:\n" + ex.Message, "Export to Excel", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
+
+            if (MessageBox.Show(this, "Fajl je sačuvan:\n" + putanja + "\n\nOtvoriti ga?", "Export to Excel",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                Process.Start(putanja);
         }
 
         // ------------------------------------------------------------------ grid
