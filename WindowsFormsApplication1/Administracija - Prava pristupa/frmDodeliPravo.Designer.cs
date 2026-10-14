@@ -235,7 +235,7 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView2.Location = new System.Drawing.Point(11, 42);
             this.dataGridView2.Size = new System.Drawing.Size(489, 461);
-            this.dataGridView2.SelectionMode = Syncfusion.WinForms.DataGrid.Enums.GridSelectionMode.Extended;
+            this.dataGridView2.SelectionMode = Syncfusion.WinForms.DataGrid.Enums.GridSelectionMode.Multiple;
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.TabIndex = 214;
             // 

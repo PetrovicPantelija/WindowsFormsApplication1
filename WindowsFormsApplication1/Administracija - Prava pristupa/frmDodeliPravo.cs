@@ -35,7 +35,8 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             JelaTema.Primeni(this);
             SfGridPomocnik.Stilizuj(dataGridView1);
             SfGridPomocnik.Stilizuj(dataGridView2);
-            dataGridView2.SelectionMode = Syncfusion.WinForms.DataGrid.Enums.GridSelectionMode.Extended;
+            // klik dodaje/skida formu iz izbora (bez Ctrl/Shift), za "Dodeli forme grupi"
+            dataGridView2.SelectionMode = Syncfusion.WinForms.DataGrid.Enums.GridSelectionMode.Multiple;
             txt_ID.Enabled = false;
             IdGrupe();
             IdForme();
@@ -170,7 +171,8 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
             DataSet ds = new DataSet();
             da.Fill(ds);
             SfGridPomocnik.Popuni(dataGridView2, ds.Tables[0]);
-           
+            dataGridView2.ClearSelection();   // Popuni selektuje prvi red; ovde izbor pravi korisnik
+
         }
 
 
@@ -239,23 +241,62 @@ namespace WindowsFormsApplication1.Administracija___Prava_pristupa
 
         private void btnDodaj_Click(object sender, EventArgs e)
         {
+            if (combo_Grupa.SelectedValue == null)
+            {
+                MessageBox.Show("Izaberite grupu.", "Dodeli forme grupi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            List<DataRowView> forme = dataGridView2.SelectedItems.OfType<DataRowView>().ToList();
+            if (forme.Count == 0)
+            {
+                MessageBox.Show("Selektujte jednu ili više formi u tabeli \"Sve forme\" (klik na red ga dodaje ili skida iz izbora).",
+                    "Dodeli forme grupi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            int idGrupe = Convert.ToInt32(combo_Grupa.SelectedValue);
+            if (MessageBox.Show("Dodeliti " + forme.Count + " formi grupi \"" + combo_Grupa.Text + "\"?\n" +
+                    "Upis: " + (cb_Upis.Checked ? "da" : "ne") + ", Izmena: " + (cb_Izmena.Checked ? "da" : "ne") + ", Brisanje: " + (cb_Brisanje.Checked ? "da" : "ne") +
+                    "\nForme koje grupa već ima se preskaču.",
+                    "Dodeli forme grupi", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+
+            int dodato = 0, preskoceno = 0;
             try
             {
-                Administracija___Prava_pristupa.InsertGrupaForma grupa = new InsertGrupaForma();
-                MessageBox.Show("Funkcija za sve selektovane forme, dodeljuje obelezenoj grupi");
-                foreach (object o in dataGridView2.SelectedItems)
+                HashSet<int> vecIma = FormeGrupe(idGrupe);
+                InsertGrupaForma grupa = new InsertGrupaForma();
+                foreach (DataRowView drv in forme)
                 {
-                    System.Data.DataRowView drv = o as System.Data.DataRowView;
-                    if (drv != null)
-                    {
-                        if (cb_Upis.Checked == true) { upis = true; }
-                        if (cb_Izmena.Checked == true) { izmena = true; }
-                        if (cb_Brisanje.Checked == true) { brisanje = true; }
-                        grupa.InsGrupaForma(Convert.ToInt32(combo_Grupa.SelectedValue), Convert.ToInt32(drv.Row.ItemArray[1].ToString()), upis, izmena, brisanje);
-                    }
+                    int idF = Convert.ToInt32(drv["IdForme"]);
+                    if (!vecIma.Add(idF)) { preskoceno++; continue; }
+                    grupa.InsGrupaForma(idGrupe, idF, cb_Upis.Checked, cb_Izmena.Checked, cb_Brisanje.Checked);
+                    dodato++;
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Greška pri dodeli: " + ex.Message, "Dodeli forme grupi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            FillGV();
+            dataGridView2.ClearSelection();
+            MessageBox.Show("Dodato: " + dodato + "\nPreskočeno (grupa već ima formu): " + preskoceno, "Dodeli forme grupi",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private HashSet<int> FormeGrupe(int idGrupe)
+        {
+            var rezultat = new HashSet<int>();
+            using (var conn = new SqlConnection(connect))
+            using (var cmd = new SqlCommand("Select IdForme From GrupaForma Where IdGrupe = @IdGrupe", conn))
+            {
+                cmd.Parameters.AddWithValue("@IdGrupe", idGrupe);
+                conn.Open();
+                using (var dr = cmd.ExecuteReader())
+                    while (dr.Read()) rezultat.Add(Convert.ToInt32(dr["IdForme"]));
+            }
+            return rezultat;
         }
     }
 }
