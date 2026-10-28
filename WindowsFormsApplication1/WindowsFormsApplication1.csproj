@@ -874,6 +874,10 @@
     <Compile Include="Kalkulacije\InsertKolekcijePripadnost.cs" />
     <Compile Include="Kalkulacije\InsertPrimenaTroskovnogCenovnika.cs" />
     <Compile Include="Kalkulacije\InsertProgram.cs" />
+    <Compile Include="Kalkulacije\IzracunCena\IzracunCenaBaza.cs" />
+    <Compile Include="Kalkulacije\IzracunCena\ObracunCene.cs" />
+    <Compile Include="Kalkulacije\IzracunCena\ObracunCeneTestovi.cs" />
+    <Compile Include="Kalkulacije\IzracunCena\ParametriCenovnika.cs" />
     <Compile Include="Kalkulacije\MainKalkulacije.cs">
       <SubType>Form</SubType>
     </Compile>
