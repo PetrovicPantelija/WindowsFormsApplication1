@@ -285,5 +285,40 @@ namespace WindowsFormsApplication1.Kalkulacije
             frmPoredjenjeKalkulatora program = new frmPoredjenjeKalkulatora();
             program.Show();
         }
+
+        // ZAH-008 Izracun cena
+        private void lblIcUvoz_Click(object sender, EventArgs e)
+        {
+            IzracunCena.frmUvozExcel uvoz = new IzracunCena.frmUvozExcel();
+            if (uvoz.Pravo) { uvoz.Show(); } else { uvoz.Dispose(); }
+        }
+
+        private void lblIcOpsti_Click(object sender, EventArgs e)
+        {
+            IzracunCena.frmOpstiCenovnik opsti = new IzracunCena.frmOpstiCenovnik();
+            if (opsti.Pravo) { opsti.Show(); } else { opsti.Dispose(); }
+        }
+
+        private void lblIcPriprema_Click(object sender, EventArgs e)
+        {
+            IzracunCena.frmPripremaCenovnika priprema = new IzracunCena.frmPripremaCenovnika();
+            if (priprema.Pravo) { priprema.Show(); } else { priprema.Dispose(); }
+        }
+
+        private void lblIcCenovnici_Click(object sender, EventArgs e)
+        {
+            IzracunCena.frmCenovnici cenovnici = new IzracunCena.frmCenovnici();
+            if (cenovnici.Pravo) { cenovnici.Show(); } else { cenovnici.Dispose(); }
+        }
+
+        private void lblMeni_MouseEnter(object sender, EventArgs e)
+        {
+            ((Label)sender).ForeColor = Color.Blue;
+        }
+
+        private void lblMeni_MouseLeave(object sender, EventArgs e)
+        {
+            ((Label)sender).ForeColor = Color.White;
+        }
     }
 }

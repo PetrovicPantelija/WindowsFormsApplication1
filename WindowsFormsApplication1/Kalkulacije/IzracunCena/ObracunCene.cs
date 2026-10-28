@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 
 namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
@@ -168,8 +169,21 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
 
     // Jedan red cenovnika (maticni podatak). Unete vrednosti su polja,
     // izracunate su svojstva, pa se posle svake izmene odmah vide nove vrednosti.
-    public class StavkaObracuna
+    // Grid se osvezava pozivom Obavesti() na redovima koji su promenjeni.
+    public partial class StavkaObracuna : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        static readonly string[] svaSvojstva = typeof(StavkaObracuna).GetProperties().Select(p => p.Name).ToArray();
+
+        public void Obavesti()
+        {
+            var h = PropertyChanged;
+            if (h == null) return;
+            foreach (var n in svaSvojstva)
+                h(this, new PropertyChangedEventArgs(n));
+        }
+
         // kljucevi i opis
         public int StavkaID { get; set; }
         public int LargoProizvodID { get; set; }
@@ -294,6 +308,19 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
         {
             return ObracunCene.JelaMarza(ObracunCene.CenaAkcija(CenaRabatTacna, AkcijePoredjenje[i]), TPuValuti);
         }
+
+        // do tri akcije za poredjenje kao kolone grida (zaglavlje nosi procenat)
+        decimal? PorCena(int i) { return AkcijePoredjenje.Count > i ? CenaAkcijaPoredjenje(i) : (decimal?)null; }
+        decimal? PorJela(int i) { return AkcijePoredjenje.Count > i ? JelaMarzaAkcijaPoredjenje(i) : null; }
+        public decimal? Poredjenje1Cena { get { return PorCena(0); } }
+        public decimal? Poredjenje1Jela { get { return PorJela(0); } }
+        public decimal? Poredjenje2Cena { get { return PorCena(1); } }
+        public decimal? Poredjenje2Jela { get { return PorJela(1); } }
+        public decimal? Poredjenje3Cena { get { return PorCena(2); } }
+        public decimal? Poredjenje3Jela { get { return PorJela(2); } }
+
+        // Code cije varijante imaju razlicite marze (postavlja forma, zuta boja)
+        public bool RazliciteMarze { get; set; }
 
         // iznosi u evrima (dinarski cenovnik)
         public decimal? VPuEUR

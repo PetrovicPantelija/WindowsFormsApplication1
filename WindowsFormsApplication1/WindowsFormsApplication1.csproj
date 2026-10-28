@@ -878,6 +878,48 @@
     <Compile Include="Kalkulacije\IzracunCena\ObracunCene.cs" />
     <Compile Include="Kalkulacije\IzracunCena\ObracunCeneTestovi.cs" />
     <Compile Include="Kalkulacije\IzracunCena\ParametriCenovnika.cs" />
+    <Compile Include="Kalkulacije\IzracunCena\dlgProglasiVazecim.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kalkulacije\IzracunCena\frmCenovnici.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kalkulacije\IzracunCena\frmCenovnici.Designer.cs">
+      <DependentUpon>frmCenovnici.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Kalkulacije\IzracunCena\frmCenovnikPregled.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kalkulacije\IzracunCena\frmOpstiCenovnik.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kalkulacije\IzracunCena\frmOpstiCenovnik.Designer.cs">
+      <DependentUpon>frmOpstiCenovnik.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Kalkulacije\IzracunCena\frmPripremaCenovnika.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kalkulacije\IzracunCena\frmPripremaCenovnika.Designer.cs">
+      <DependentUpon>frmPripremaCenovnika.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Kalkulacije\IzracunCena\frmUvozExcel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kalkulacije\IzracunCena\frmUvozExcel.Designer.cs">
+      <DependentUpon>frmUvozExcel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Kalkulacije\IzracunCena\Izgled.cs" />
+    <Compile Include="Kalkulacije\IzracunCena\IzvozExcel.cs" />
+    <Compile Include="Kalkulacije\IzracunCena\PravaForme.cs" />
+    <Compile Include="Kalkulacije\IzracunCena\SlikeFolder.cs" />
+    <Compile Include="Kalkulacije\IzracunCena\StavkaObracunaPrikaz.cs" />
+    <Compile Include="Kalkulacije\IzracunCena\ucCenovnik.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Kalkulacije\IzracunCena\ucCenovnik.Designer.cs">
+      <DependentUpon>ucCenovnik.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Kalkulacije\IzracunCena\UvozExcel.cs" />
     <Compile Include="Kalkulacije\MainKalkulacije.cs">
       <SubType>Form</SubType>
     </Compile>

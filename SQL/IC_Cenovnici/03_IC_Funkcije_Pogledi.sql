@@ -187,9 +187,9 @@ SELECT h.CenovnikID, h.Naziv, h.Vrsta, h.Valuta, h.Kurs, h.PDV,
        CASE WHEN h.PaSifra IS NULL THEN N'Opšti' ELSE pa.PaNaziv END AS OpstiIliPartner,
        h.VaziOd, h.VaziDo,
        CASE WHEN h.Vrsta <> 'Vazeci' THEN NULL
-            WHEN h.VaziDo < CAST(GETDATE() AS date) THEN 'Istekao'
-            WHEN h.VaziOd > CAST(GETDATE() AS date) THEN 'Buduci'
-            ELSE 'Vazeci' END AS Status,
+            WHEN h.VaziDo < CAST(GETDATE() AS date) THEN N'Istekao'
+            WHEN h.VaziOd > CAST(GETDATE() AS date) THEN N'Budući'
+            ELSE N'Važeći' END AS Status,
        h.IzvorniCenovnikID, iz.Naziv AS IzvorniNaziv,
        CAST(CASE WHEN h.Vrsta = 'Radni' AND iz.Vrsta = 'Opsti'
                   AND (iz.DatumIzmene           > ISNULL(h.DatumPreuzimanjaIzvora, h.DatumKreiranja)

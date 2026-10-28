@@ -172,6 +172,17 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
             return dt.Rows.Count == 0 ? null : dt.Rows[0][0].ToString();
         }
 
+        // novi programi i kolekcije iz jela_products (pre uvoza)
+        public void OsveziProgrameIKolekcije()
+        {
+            Izvrsi("dbo.IC_OsveziProgrameIKolekcije", c => c.Parameters.AddWithValue("@BezRezultata", true));
+        }
+
+        public DataTable MaticniPodaci()
+        {
+            return Upit("SELECT LargoProizvodID, Code, ProgramID, Program, KolekcijaID, Kolekcija, CenaRSD, CenaEUR FROM dbo.vw_IC_MaticniPodatak");
+        }
+
         public DataTable Partneri()
         {
             return Upit("SELECT PaSifra, PaNaziv FROM dbo.Partnerji ORDER BY PaNaziv");

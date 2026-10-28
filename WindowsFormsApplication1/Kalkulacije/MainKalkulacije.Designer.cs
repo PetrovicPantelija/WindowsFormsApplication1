@@ -49,6 +49,13 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.label7 = new System.Windows.Forms.Label();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.label9 = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.btnIzracunCena = new FontAwesome.Sharp.IconButton();
+            this.lblIcUvoz = new System.Windows.Forms.Label();
+            this.lblIcOpsti = new System.Windows.Forms.Label();
+            this.lblIcPriprema = new System.Windows.Forms.Label();
+            this.lblIcCenovnici = new System.Windows.Forms.Label();
+            this.panel6.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IconButton)).BeginInit();
@@ -179,13 +186,13 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(751, 55);
+            this.panel2.Size = new System.Drawing.Size(1000, 55);
             this.panel2.TabIndex = 3;
             // 
             // IconButton
             // 
             this.IconButton.Image = ((System.Drawing.Image)(resources.GetObject("IconButton.Image")));
-            this.IconButton.Location = new System.Drawing.Point(319, 11);
+            this.IconButton.Location = new System.Drawing.Point(443, 11);
             this.IconButton.Name = "IconButton";
             this.IconButton.Size = new System.Drawing.Size(114, 37);
             this.IconButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -351,13 +358,110 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.label9.TabIndex = 20;
             this.label9.Text = "• Poređenje kalkulatora";
             this.label9.Click += new System.EventHandler(this.label9_Click);
-            // 
+            //
+            // panel6
+            //
+            this.panel6.BackColor = System.Drawing.Color.Transparent;
+            this.panel6.Controls.Add(this.lblIcCenovnici);
+            this.panel6.Controls.Add(this.lblIcPriprema);
+            this.panel6.Controls.Add(this.lblIcOpsti);
+            this.panel6.Controls.Add(this.lblIcUvoz);
+            this.panel6.Controls.Add(this.btnIzracunCena);
+            this.panel6.Location = new System.Drawing.Point(744, 55);
+            this.panel6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(250, 280);
+            this.panel6.TabIndex = 6;
+            //
+            // btnIzracunCena
+            //
+            this.btnIzracunCena.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnIzracunCena.FlatAppearance.BorderSize = 0;
+            this.btnIzracunCena.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnIzracunCena.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnIzracunCena.ForeColor = System.Drawing.Color.White;
+            this.btnIzracunCena.IconChar = FontAwesome.Sharp.IconChar.Tags;
+            this.btnIzracunCena.IconColor = System.Drawing.Color.White;
+            this.btnIzracunCena.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnIzracunCena.IconSize = 24;
+            this.btnIzracunCena.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnIzracunCena.Location = new System.Drawing.Point(0, 0);
+            this.btnIzracunCena.Name = "btnIzracunCena";
+            this.btnIzracunCena.Padding = new System.Windows.Forms.Padding(15, 0, 16, 0);
+            this.btnIzracunCena.Size = new System.Drawing.Size(250, 34);
+            this.btnIzracunCena.TabIndex = 17;
+            this.btnIzracunCena.Text = "Izračun cena";
+            this.btnIzracunCena.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnIzracunCena.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnIzracunCena.UseVisualStyleBackColor = true;
+            //
+            // lblIcUvoz
+            //
+            this.lblIcUvoz.AutoSize = true;
+            this.lblIcUvoz.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIcUvoz.ForeColor = System.Drawing.Color.White;
+            this.lblIcUvoz.Location = new System.Drawing.Point(12, 37);
+            this.lblIcUvoz.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblIcUvoz.Name = "lblIcUvoz";
+            this.lblIcUvoz.Size = new System.Drawing.Size(190, 19);
+            this.lblIcUvoz.TabIndex = 18;
+            this.lblIcUvoz.Text = "• Novi cenovnik / uvoz Excel";
+            this.lblIcUvoz.Click += new System.EventHandler(this.lblIcUvoz_Click);
+            this.lblIcUvoz.MouseEnter += new System.EventHandler(this.lblMeni_MouseEnter);
+            this.lblIcUvoz.MouseLeave += new System.EventHandler(this.lblMeni_MouseLeave);
+            //
+            // lblIcOpsti
+            //
+            this.lblIcOpsti.AutoSize = true;
+            this.lblIcOpsti.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIcOpsti.ForeColor = System.Drawing.Color.White;
+            this.lblIcOpsti.Location = new System.Drawing.Point(12, 70);
+            this.lblIcOpsti.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblIcOpsti.Name = "lblIcOpsti";
+            this.lblIcOpsti.Size = new System.Drawing.Size(120, 19);
+            this.lblIcOpsti.TabIndex = 19;
+            this.lblIcOpsti.Text = "• Opšti cenovnik";
+            this.lblIcOpsti.Click += new System.EventHandler(this.lblIcOpsti_Click);
+            this.lblIcOpsti.MouseEnter += new System.EventHandler(this.lblMeni_MouseEnter);
+            this.lblIcOpsti.MouseLeave += new System.EventHandler(this.lblMeni_MouseLeave);
+            //
+            // lblIcPriprema
+            //
+            this.lblIcPriprema.AutoSize = true;
+            this.lblIcPriprema.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIcPriprema.ForeColor = System.Drawing.Color.White;
+            this.lblIcPriprema.Location = new System.Drawing.Point(12, 103);
+            this.lblIcPriprema.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblIcPriprema.Name = "lblIcPriprema";
+            this.lblIcPriprema.Size = new System.Drawing.Size(150, 19);
+            this.lblIcPriprema.TabIndex = 20;
+            this.lblIcPriprema.Text = "• Priprema cenovnika";
+            this.lblIcPriprema.Click += new System.EventHandler(this.lblIcPriprema_Click);
+            this.lblIcPriprema.MouseEnter += new System.EventHandler(this.lblMeni_MouseEnter);
+            this.lblIcPriprema.MouseLeave += new System.EventHandler(this.lblMeni_MouseLeave);
+            //
+            // lblIcCenovnici
+            //
+            this.lblIcCenovnici.AutoSize = true;
+            this.lblIcCenovnici.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIcCenovnici.ForeColor = System.Drawing.Color.White;
+            this.lblIcCenovnici.Location = new System.Drawing.Point(12, 136);
+            this.lblIcCenovnici.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblIcCenovnici.Name = "lblIcCenovnici";
+            this.lblIcCenovnici.Size = new System.Drawing.Size(140, 19);
+            this.lblIcCenovnici.TabIndex = 21;
+            this.lblIcCenovnici.Text = "• Pregled cenovnika";
+            this.lblIcCenovnici.Click += new System.EventHandler(this.lblIcCenovnici_Click);
+            this.lblIcCenovnici.MouseEnter += new System.EventHandler(this.lblMeni_MouseEnter);
+            this.lblIcCenovnici.MouseLeave += new System.EventHandler(this.lblMeni_MouseLeave);
+            //
             // MainKalkulacije
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(54)))), ((int)(((byte)(56)))));
-            this.ClientSize = new System.Drawing.Size(749, 403);
+            this.ClientSize = new System.Drawing.Size(1000, 403);
+            this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
@@ -376,12 +480,20 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.panel4.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel6;
+        private FontAwesome.Sharp.IconButton btnIzracunCena;
+        private System.Windows.Forms.Label lblIcUvoz;
+        private System.Windows.Forms.Label lblIcOpsti;
+        private System.Windows.Forms.Label lblIcPriprema;
+        private System.Windows.Forms.Label lblIcCenovnici;
         private FontAwesome.Sharp.IconButton btnSifarnici;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.PictureBox IconButton;
