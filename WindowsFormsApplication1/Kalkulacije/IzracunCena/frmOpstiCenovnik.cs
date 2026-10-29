@@ -226,7 +226,8 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
                         "Poređenje sa starim troškovima se za njih gubi. Ostali redovi se ne menjaju.\n\nNastaviti?",
                         "Proglasi troškove novim", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) != DialogResult.Yes) return;
                 int promenjeno = baza.ProglasiTroskoveNovim(uc.CenovnikID, oznaceni, korisnik);
-                UcitajCenovnik();
+                uc.OsveziTroskove(oznaceni);   // samo oznaceni redovi; stablo i filter ostaju
+                PrikaziInfo();
                 MessageBox.Show(this, "Troškovi su proglašeni novim u " + promenjeno + " redova.",
                                 "Proglasi troškove novim", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

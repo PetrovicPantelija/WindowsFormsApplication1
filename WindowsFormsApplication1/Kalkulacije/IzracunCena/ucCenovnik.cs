@@ -90,6 +90,28 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
             JaviPromenu();
         }
 
+        // osvezava troskove samo zadatih redova i zaglavlje; stablo, filter i izbor ostaju
+        public void OsveziTroskove(IEnumerable<int> stavkaIDs)
+        {
+            var dt = baza.TroskoviStavki(CenovnikID, stavkaIDs);
+            var poID = Stavke.ToDictionary(s => s.StavkaID);
+            var promenjeni = new List<StavkaObracuna>();
+            foreach (DataRow r in dt.Rows)
+            {
+                StavkaObracuna s;
+                if (!poID.TryGetValue((int)r["StavkaID"], out s)) continue;
+                s.TrosakStari = r.IsNull("TrosakStari") ? (decimal?)null : Convert.ToDecimal(r["TrosakStari"]);
+                s.TrosakNovi = r.IsNull("TrosakNovi") ? (decimal?)null : Convert.ToDecimal(r["TrosakNovi"]);
+                s.MarzaStara = r.IsNull("MarzaStara") ? (decimal?)null : Convert.ToDecimal(r["MarzaStara"]);
+                s.BezTroskaUBazi = Convert.ToBoolean(r["BezTroska"]);
+                promenjeni.Add(s);
+            }
+            foreach (var s in promenjeni) s.Obavesti();
+            Zaglavlje = baza.Zaglavlje(CenovnikID);
+            grid.Invalidate();
+            JaviPromenu();
+        }
+
         void PopuniStablo()
         {
             stabloSeMenja = true;

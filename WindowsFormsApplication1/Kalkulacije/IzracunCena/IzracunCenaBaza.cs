@@ -134,6 +134,16 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
             return lista;
         }
 
+        // troskovi izabranih redova (posle Proglasi troskove novim), za osvezavanje na mestu
+        public DataTable TroskoviStavki(int cenovnikID, IEnumerable<int> stavkaIDs)
+        {
+            string ids = string.Join(",", stavkaIDs.Distinct().Select(i => i.ToString()));   // samo int, bez unosa korisnika
+            if (ids == "") return new DataTable();
+            return Upit("SELECT StavkaID, TrosakStari, TrosakNovi, DatumTroskaStari, DatumTroskaNovi, MarzaStara, BezTroska " +
+                        "FROM dbo.IC_CenovnikStavka WHERE CenovnikID = @ID AND StavkaID IN (" + ids + ")",
+                        new SqlParameter("@ID", cenovnikID));
+        }
+
         public ParametriCenovnika Parametri(int cenovnikID)
         {
             var dt = Upit("SELECT * FROM dbo.IC_CenovnikParametar WHERE CenovnikID = @ID", new SqlParameter("@ID", cenovnikID));
