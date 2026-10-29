@@ -40,6 +40,7 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
             this.lblSazetak = new System.Windows.Forms.Label();
             this.btnZatvori = new System.Windows.Forms.Button();
             this.btnNapravi = new System.Windows.Forms.Button();
+            this.btnUveziPovezane = new System.Windows.Forms.Button();
             this.pnlGore.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPDV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numKurs)).BeginInit();
@@ -228,6 +229,7 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
             this.pnlDole.Controls.Add(this.lblSazetak);
             this.pnlDole.Controls.Add(this.btnZatvori);
             this.pnlDole.Controls.Add(this.btnNapravi);
+            this.pnlDole.Controls.Add(this.btnUveziPovezane);
             this.pnlDole.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlDole.Location = new System.Drawing.Point(0, 501);
             this.pnlDole.Name = "pnlDole";
@@ -238,7 +240,7 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
             //
             this.lblSazetak.Location = new System.Drawing.Point(12, 8);
             this.lblSazetak.Name = "lblSazetak";
-            this.lblSazetak.Size = new System.Drawing.Size(620, 44);
+            this.lblSazetak.Size = new System.Drawing.Size(470, 44);
             this.lblSazetak.Text = "Izaberite valutu i naziv. Excel fajl nije obavezan.";
             //
             // btnZatvori
@@ -261,6 +263,17 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
             this.btnNapravi.Tag = "glavno";
             this.btnNapravi.Text = "Napravi opšti cenovnik";
             this.btnNapravi.Click += new System.EventHandler(this.btnNapravi_Click);
+            //
+            // btnUveziPovezane
+            //
+            this.btnUveziPovezane.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUveziPovezane.Enabled = false;
+            this.btnUveziPovezane.Location = new System.Drawing.Point(500, 14);
+            this.btnUveziPovezane.Name = "btnUveziPovezane";
+            this.btnUveziPovezane.Size = new System.Drawing.Size(180, 32);
+            this.btnUveziPovezane.TabIndex = 2;
+            this.btnUveziPovezane.Text = "Uvezi samo povezane";
+            this.btnUveziPovezane.Click += new System.EventHandler(this.btnUveziPovezane_Click);
             //
             // frmUvozExcel
             //
@@ -313,5 +326,6 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
         private System.Windows.Forms.Label lblSazetak;
         private System.Windows.Forms.Button btnZatvori;
         private System.Windows.Forms.Button btnNapravi;
+        private System.Windows.Forms.Button btnUveziPovezane;
     }
 }

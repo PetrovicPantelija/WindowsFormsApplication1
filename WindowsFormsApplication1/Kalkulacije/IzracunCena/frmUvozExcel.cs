@@ -46,6 +46,7 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
                 if (dlg.ShowDialog(this) != DialogResult.OK) return;
                 txtFajl.Text = dlg.FileName;
                 uvoz = null;
+                btnUveziPovezane.Enabled = false;
                 dgvSheetovi.DataSource = null;
                 dgvProblemi.DataSource = null;
                 lblSazetak.Text = "Pritisnite Pročitaj za pregled pre upisa.";
@@ -76,8 +77,11 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
                 dgvProblemi.DataSource = uvoz.Problemi.Select(p => new { p.List, p.Red, p.Vrsta, p.Opis }).ToList();
                 tabProblemi.Text = "Problemi (" + uvoz.Problemi.Count + ")";
 
-                if (uvoz.Kurs.HasValue && cboValuta.Text == ObracunCene.EUR && uvoz.Kurs.Value >= numKurs.Minimum && uvoz.Kurs.Value <= numKurs.Maximum)
+                if (uvoz.Kurs.HasValue && uvoz.Kurs.Value >= numKurs.Minimum && uvoz.Kurs.Value <= numKurs.Maximum)
                     numKurs.Value = Math.Round(uvoz.Kurs.Value, 2);
+                if (uvoz.PDV.HasValue && cboValuta.Text == ObracunCene.RSD)
+                    numPDV.Value = Math.Round(uvoz.PDV.Value * 100, 2);
+                btnUveziPovezane.Enabled = btnNapravi.Enabled && uvoz.Redovi.Count > 0;
 
                 var cen = uvoz.Parametri.Svi.FirstOrDefault(p => p.Nivo == NivoParametra.Cenovnik);
                 lblSazetak.Text = "Sheetova: " + uvoz.Listovi.Count(l => !l.Preskocen) + " (preskočeno " + uvoz.Listovi.Count(l => l.Preskocen) + ")"
@@ -86,18 +90,26 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
                     + "\nRabat celog cenovnika: " + (cen != null && cen.Rabat.HasValue ? (cen.Rabat.Value * 100).ToString("0.##") + "%" : "-")
                     + ", kurs iz D1: " + (uvoz.Kurs.HasValue ? uvoz.Kurs.Value.ToString("N2") : "-");
             }
-            catch (Exception ex) { Cursor = Cursors.Default; uvoz = null; Izgled.Greska(this, "Čitanje Excela", ex); }
+            catch (Exception ex) { Cursor = Cursors.Default; uvoz = null; btnUveziPovezane.Enabled = false; Izgled.Greska(this, "Čitanje Excela", ex); }
         }
 
-        void btnNapravi_Click(object sender, EventArgs e)
+        void btnNapravi_Click(object sender, EventArgs e) { Napravi(false); }
+
+        // samo Code povezani iz Excela (sa svim varijantama), bez ostalih proizvoda iz baze
+        void btnUveziPovezane_Click(object sender, EventArgs e) { Napravi(true); }
+
+        void Napravi(bool samoPovezani)
         {
             string naziv = txtNaziv.Text.Trim();
             if (naziv == "") { MessageBox.Show(this, "Naziv je obavezan.", Text); return; }
-            if (txtFajl.Text != "" && uvoz == null) { MessageBox.Show(this, "Pritisnite Pročitaj pre upisa.", Text); return; }
+            if ((txtFajl.Text != "" || samoPovezani) && uvoz == null) { MessageBox.Show(this, "Pritisnite Pročitaj pre upisa.", Text); return; }
 
             string opis = uvoz == null
                 ? "Napraviti cenovnik \"" + naziv + "\" od svih proizvoda iz baze, sa cenama iz jela_products i troškovima iz KalkCenik?"
-                : "Napraviti cenovnik \"" + naziv + "\" iz Excela (" + uvoz.Cene.Count + " cena, " + uvoz.Redovi.Count + " redova) i ostalih proizvoda iz baze?";
+                : samoPovezani
+                    ? "Napraviti cenovnik \"" + naziv + "\" samo od povezanih iz Excela (" + uvoz.Cene.Count + " Code, "
+                      + uvoz.Redovi.Count + " redova, sa svim varijantama tih Code)?\nOstali proizvodi iz baze ne ulaze."
+                    : "Napraviti cenovnik \"" + naziv + "\" iz Excela (" + uvoz.Cene.Count + " cena, " + uvoz.Redovi.Count + " redova) i ostalih proizvoda iz baze?";
             if (MessageBox.Show(this, opis, Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
 
             try
@@ -106,7 +118,8 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
                 var r = baza.UpisiUvoz(naziv, cboValuta.Text, numKurs.Value, numPDV.Value / 100, korisnik,
                     uvoz == null ? new Dictionary<string, decimal>() : uvoz.Cene,
                     uvoz == null ? new List<IzracunCenaBaza.UvozRed>() : uvoz.Redovi,
-                    uvoz == null ? new List<ParametarCenovnika>() : uvoz.Parametri.Svi.ToList());
+                    uvoz == null ? new List<ParametarCenovnika>() : uvoz.Parametri.Svi.ToList(),
+                    samoPovezani);
                 Cursor = Cursors.Default;
 
                 if (r.Preskoceni.Rows.Count > 0 || r.BezTroska.Rows.Count > 0)

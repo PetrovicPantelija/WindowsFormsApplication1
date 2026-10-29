@@ -45,6 +45,7 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
         public List<IzracunCenaBaza.UvozRed> Redovi { get; } = new List<IzracunCenaBaza.UvozRed>();
         public ParametriCenovnika Parametri { get; } = new ParametriCenovnika();
         public decimal? Kurs { get; private set; }
+        public decimal? PDV { get; private set; }            // A3 prvog sheeta (0,2)
         public int CodeBezCeneUExcelu { get; private set; }
 
         class Maticni
@@ -89,23 +90,33 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
             return decimal.Parse(m.Groups[1].Value.Replace(',', '.'), CultureInfo.InvariantCulture) / 100;
         }
 
-        static Kolone NadjiKolone(string[] zaglavlja)
+        // procenat iz naslova ("Rabat 34%") ili broj ispod naslova u zaglavlju (0,34 ili 34)
+        static decimal? ProcenatKolone(string z, string rec, decimal? broj)
+        {
+            var p = Procenat(z, rec);
+            if (p.HasValue) return p;
+            if (!broj.HasValue || broj.Value < 0) return null;
+            return broj.Value > 1 ? broj.Value / 100 : broj.Value;
+        }
+
+        static Kolone NadjiKolone(string[] zaglavlja, decimal?[] brojevi)
         {
             var k = new Kolone();
             for (int i = 0; i < zaglavlja.Length; i++)
             {
                 string z = zaglavlja[i];
                 if (z == "") continue;
-                if (z.Contains("UKUPNO TP")) k.UkupnoTP = i;
-                else if (z.Contains("VP CENA") && k.VP < 0) k.VP = i;
-                else if (z.Contains("RABAT") && Procenat(z, "RABAT").HasValue && k.Rabat < 0)
+                decimal? broj = i < brojevi.Length ? brojevi[i] : null;
+                if (z.Contains("UKUPNO TP") && k.UkupnoTP < 0) k.UkupnoTP = i;
+                else if (z.Contains("VP CENA") && !z.Contains("RABAT") && !z.Contains("AKCIJA") && k.VP < 0) k.VP = i;
+                else if (z.Contains("RABAT") && k.Rabat < 0 && ProcenatKolone(z, "RABAT", broj).HasValue)
                 {
                     k.Rabat = i;
-                    k.RabatProcenat = Procenat(z, "RABAT");
+                    k.RabatProcenat = ProcenatKolone(z, "RABAT", broj);
                 }
-                else if (z.Contains("AKCIJA") && Procenat(z, "AKCIJA").HasValue && !z.Contains("JELA"))
+                else if (z.Contains("AKCIJA") && !z.Contains("JELA") && ProcenatKolone(z, "AKCIJA", broj).HasValue)
                 {
-                    var p = Procenat(z, "AKCIJA").Value;
+                    var p = ProcenatKolone(z, "AKCIJA", broj).Value;
                     if (!k.AkcijeProcenti.Contains(p)) { k.Akcije.Add(i); k.AkcijeProcenti.Add(p); }
                 }
                 else if (Regex.IsMatch(z, @"(^|\s)TP\s*-\s*\p{L}+") && k.TPStari < 0) k.TPStari = i;
@@ -145,6 +156,7 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
                     }
 
                     var zaglavlja = new string[0];
+                    var brojeviZaglavlja = new decimal?[0];   // prvi broj u koloni u redovima 1-3 (rabat 0,34; akcija 0)
                     Kolone k = null;
                     var redoviLista = new List<int>();   // LargoProizvodID u ovom sheetu
                     int red = 0;
@@ -154,17 +166,29 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
                         int n = reader.FieldCount;
                         if (red <= 3)
                         {
-                            if (zaglavlja.Length < n) Array.Resize(ref zaglavlja, n);
+                            if (zaglavlja.Length < n) { Array.Resize(ref zaglavlja, n); Array.Resize(ref brojeviZaglavlja, n); }
                             for (int i = 0; i < n; i++)
                             {
                                 if (Sakrivena(reader, i)) { zaglavlja[i] = (zaglavlja[i] ?? ""); continue; }
                                 var v = reader.GetValue(i);
-                                zaglavlja[i] = ((zaglavlja[i] ?? "") + " " + Normalizuj(v == null ? "" : v.ToString())).Trim();
+                                if (v is string || v == null)
+                                    zaglavlja[i] = ((zaglavlja[i] ?? "") + " " + Normalizuj(v as string)).Trim();
+                                else
+                                {
+                                    zaglavlja[i] = zaglavlja[i] ?? "";
+                                    bool kurs = red == 1 && i == 3;
+                                    if (!kurs && !brojeviZaglavlja[i].HasValue) brojeviZaglavlja[i] = Broj(v);
+                                }
                             }
                             if (red == 1 && n > 3) list.Kurs = Broj(reader.GetValue(3));
+                            if (red == 3 && n > 0 && !u.PDV.HasValue)
+                            {
+                                var pdv = Broj(reader.GetValue(0));   // A3 = PDV (0,2)
+                                if (pdv.HasValue && pdv.Value > 0 && pdv.Value < 1) u.PDV = pdv;
+                            }
                             if (red == 3)
                             {
-                                k = NadjiKolone(zaglavlja);
+                                k = NadjiKolone(zaglavlja, brojeviZaglavlja);
                                 if (k.UkupnoTP < 0 || k.VP < 0)
                                 {
                                     list.Preskocen = true;
@@ -256,7 +280,7 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
             if (najcesce != null)
             {
                 cen.Akcija = najcesce.First()[0];
-                cen.AkcijePoredjenje.AddRange(najcesce.First());
+                cen.AkcijePoredjenje.AddRange(najcesce.First().Where(a => a > 0));
             }
 
             u.CodeBezCeneUExcelu = mp.Values.Select(m => m.Code).Where(c => c != "").Distinct().Count(c => !u.Cene.ContainsKey(c));
@@ -276,7 +300,7 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
                 p = Parametri.Nadji(nivo, programID, kolekcijaID, null, true);
             p.Rabat = list.Rabat;
             p.Akcija = list.Akcije.Count > 0 ? list.Akcije[0] : (decimal?)null;
-            p.AkcijePoredjenje.AddRange(list.Akcije);
+            p.AkcijePoredjenje.AddRange(list.Akcije.Where(a => a > 0));   // 0% nije akcija za poredjenje
         }
 
         // prvi red bloka: A = ceo broj, B = tekst (ne "U EVRIMA" / "MP-akcija"), C = trosak > 0.

@@ -409,7 +409,7 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
         // parametri: rabat/akcija po nivou sa akcijama za poredjenje
         public RezultatUvoza UpisiUvoz(string naziv, string valuta, decimal kurs, decimal pdv, string korisnik,
                                        IDictionary<string, decimal> cene, IEnumerable<UvozRed> redovi,
-                                       IEnumerable<ParametarCenovnika> parametri)
+                                       IEnumerable<ParametarCenovnika> parametri, bool samoIzExcela = false)
         {
             var dtCene = new DataTable();
             dtCene.Columns.Add("Code", typeof(string));
@@ -448,6 +448,7 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
                 cmd.Parameters.Add(Tabela("@Akcije", "dbo.IC_AkcijaTip", dtAk));
                 var id = cmd.Parameters.Add("@CenovnikID", SqlDbType.Int);
                 id.Direction = ParameterDirection.Output;
+                cmd.Parameters.AddWithValue("@SamoIzExcela", samoIzExcela);
 
                 var ds = new DataSet();
                 new SqlDataAdapter(cmd).Fill(ds);

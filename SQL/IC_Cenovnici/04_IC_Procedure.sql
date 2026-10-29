@@ -749,6 +749,8 @@ GO
      - TP - maj i marza maj: maticnom podatku iz kolone A; ako Code ima
        samo jedan red u fajlu (danasnji fajlovi), i svim varijantama tog Code;
      - parametri i akcije za poredjenje iz @Parametri / @Akcije.
+   @SamoIzExcela = 1 (dugme "Uvezi samo povezane"): cenovnik dobija samo
+   Code koji su povezani iz Excela (@Stavke), sa svim njihovim varijantama.
    Na kraju pokrece IC_AzurirajTroskove.
    Vraca dva skupa redova:
      1. maticni podaci preskoceni zbog nepotpunih podataka u bazi;
@@ -765,7 +767,8 @@ CREATE PROCEDURE dbo.IC_UpisiUvoz
     @Stavke     dbo.IC_UvozStavkaTip READONLY,
     @Parametri  dbo.IC_ParametarTip READONLY,
     @Akcije     dbo.IC_AkcijaTip READONLY,
-    @CenovnikID int OUTPUT
+    @CenovnikID int OUTPUT,
+    @SamoIzExcela bit = 0
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -793,6 +796,11 @@ BEGIN
         RAISERROR(N'Cenovnik sa nazivom "%s" već postoji.', 16, 1, @Naziv);
         RETURN;
     END
+    IF @SamoIzExcela = 1 AND NOT EXISTS (SELECT 1 FROM @Stavke)
+    BEGIN
+        RAISERROR(N'Nema povezanih redova iz Excela.', 16, 1);
+        RETURN;
+    END
     IF EXISTS (SELECT 1 FROM @Akcije a WHERE NOT EXISTS (SELECT 1 FROM @Parametri p WHERE p.RedBr = a.RedBr))
     BEGIN
         RAISERROR(N'Akcija za poređenje je vezana za nepostojeći parametar (RedBr).', 16, 1);
@@ -808,6 +816,10 @@ BEGIN
            CASE @Valuta WHEN 'RSD' THEN CenaRSD ELSE CenaEUR END AS CenaBaza
     INTO #Mp
     FROM dbo.vw_IC_MaticniPodatak;
+
+    IF @SamoIzExcela = 1
+        DELETE m FROM #Mp m
+        WHERE m.Code IS NULL OR NOT EXISTS (SELECT 1 FROM @Stavke s WHERE s.Code = m.Code);
 
     -- 1. preskoceni: nema Code, sifre, programa ili kolekcije
     SELECT LargoProizvodID, SifraProizvodaLargo, Code, NazivProizvoda,
