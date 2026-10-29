@@ -141,7 +141,8 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
             grid.AllowGrouping = false;
             grid.ShowGroupDropArea = false;
             grid.AutoExpandGroups = true;
-            grid.FrozenColumnCount = 3;
+            grid.FrozenColumnCount = 4;          // ID, Code, Naziv, Sifra Largo
+            grid.HeaderRowHeight = 42;           // nazivi kolona u dva reda, ceo tekst se vidi
             grid.SelectionMode = GridSelectionMode.Extended;
             grid.LiveDataUpdateMode = LiveDataUpdateMode.AllowSummaryUpdate;
             grid.GroupCaptionTextFormat = "{Key}";   // broj redova je u stablu
@@ -247,6 +248,8 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
             }
             grid.Columns["AkcijePoredjenjeTekst"].Visible = najvise > 0;
             grid.AllowEditing = Rezim != RezimCenovnika.Citanje;
+
+            foreach (var kol in grid.Columns) kol.AllowHeaderTextWrapping = true;
 
             // grupe se dodaju posle kolona (Columns.Clear ih brise)
             grid.GroupColumnDescriptions.Clear();

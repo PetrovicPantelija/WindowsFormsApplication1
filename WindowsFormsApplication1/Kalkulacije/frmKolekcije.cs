@@ -162,6 +162,7 @@ namespace WindowsFormsApplication1.Kalkulacije
         {
             Kalkulacije.InsertKolekcije kol = new InsertKolekcije();
             kol.DelKolekcije(Convert.ToInt32(txt_ID.Text));
+            FillGV();
         }
 
         private void dataGridView1_SelectionChanged(object sender, Syncfusion.WinForms.DataGrid.Events.SelectionChangedEventArgs e)
@@ -194,6 +195,8 @@ namespace WindowsFormsApplication1.Kalkulacije
                 this.Close();
                 return;
             }
+            FillCombo();
+            FillGV();
         }
 
         private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)

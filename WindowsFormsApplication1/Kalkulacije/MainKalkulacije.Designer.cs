@@ -66,24 +66,25 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.btnSifarnici);
-            this.panel1.Location = new System.Drawing.Point(0, 55);
+            this.panel1.Location = new System.Drawing.Point(12, 67);
             this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(236, 280);
+            this.panel1.Size = new System.Drawing.Size(230, 186);
             this.panel1.TabIndex = 2;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold);
-            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(40, 40, 40);
             this.label8.Location = new System.Drawing.Point(7, 37);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
@@ -129,8 +130,8 @@ namespace WindowsFormsApplication1.Kalkulacije
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(40, 40, 40);
             this.label2.Location = new System.Drawing.Point(7, 70);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
@@ -163,17 +164,17 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.btnSifarnici.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnSifarnici.FlatAppearance.BorderSize = 0;
             this.btnSifarnici.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSifarnici.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSifarnici.ForeColor = System.Drawing.Color.White;
+            this.btnSifarnici.Font = new System.Drawing.Font("Segoe UI Semibold", 10.5F);
+            this.btnSifarnici.ForeColor = System.Drawing.Color.FromArgb(58, 77, 57);
             this.btnSifarnici.IconChar = FontAwesome.Sharp.IconChar.Archive;
-            this.btnSifarnici.IconColor = System.Drawing.Color.White;
+            this.btnSifarnici.IconColor = System.Drawing.Color.FromArgb(58, 77, 57);
             this.btnSifarnici.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnSifarnici.IconSize = 24;
             this.btnSifarnici.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSifarnici.Location = new System.Drawing.Point(0, 0);
             this.btnSifarnici.Name = "btnSifarnici";
             this.btnSifarnici.Padding = new System.Windows.Forms.Padding(15, 0, 16, 0);
-            this.btnSifarnici.Size = new System.Drawing.Size(236, 34);
+            this.btnSifarnici.Size = new System.Drawing.Size(228, 34);
             this.btnSifarnici.TabIndex = 16;
             this.btnSifarnici.Text = "Šifarnici";
             this.btnSifarnici.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -184,7 +185,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(83)))), ((int)(((byte)(87)))));
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(58, 77, 57);
             this.panel2.Controls.Add(this.IconButton);
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
@@ -366,16 +367,17 @@ namespace WindowsFormsApplication1.Kalkulacije
             //
             // panel6
             //
-            this.panel6.BackColor = System.Drawing.Color.Transparent;
+            this.panel6.BackColor = System.Drawing.Color.White;
+            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel6.Controls.Add(this.lblIcCenovnici);
             this.panel6.Controls.Add(this.lblIcPriprema);
             this.panel6.Controls.Add(this.lblIcOpsti);
             this.panel6.Controls.Add(this.lblIcUvoz);
             this.panel6.Controls.Add(this.btnIzracunCena);
-            this.panel6.Location = new System.Drawing.Point(240, 55);
+            this.panel6.Location = new System.Drawing.Point(254, 67);
             this.panel6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(250, 280);
+            this.panel6.Size = new System.Drawing.Size(234, 186);
             this.panel6.TabIndex = 6;
             //
             // btnIzracunCena
@@ -383,17 +385,17 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.btnIzracunCena.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnIzracunCena.FlatAppearance.BorderSize = 0;
             this.btnIzracunCena.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIzracunCena.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIzracunCena.ForeColor = System.Drawing.Color.White;
+            this.btnIzracunCena.Font = new System.Drawing.Font("Segoe UI Semibold", 10.5F);
+            this.btnIzracunCena.ForeColor = System.Drawing.Color.FromArgb(58, 77, 57);
             this.btnIzracunCena.IconChar = FontAwesome.Sharp.IconChar.Tags;
-            this.btnIzracunCena.IconColor = System.Drawing.Color.White;
+            this.btnIzracunCena.IconColor = System.Drawing.Color.FromArgb(58, 77, 57);
             this.btnIzracunCena.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnIzracunCena.IconSize = 24;
             this.btnIzracunCena.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnIzracunCena.Location = new System.Drawing.Point(0, 0);
             this.btnIzracunCena.Name = "btnIzracunCena";
             this.btnIzracunCena.Padding = new System.Windows.Forms.Padding(15, 0, 16, 0);
-            this.btnIzracunCena.Size = new System.Drawing.Size(250, 34);
+            this.btnIzracunCena.Size = new System.Drawing.Size(232, 34);
             this.btnIzracunCena.TabIndex = 17;
             this.btnIzracunCena.Text = "Izračun cena";
             this.btnIzracunCena.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -403,8 +405,8 @@ namespace WindowsFormsApplication1.Kalkulacije
             // lblIcUvoz
             //
             this.lblIcUvoz.AutoSize = true;
-            this.lblIcUvoz.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIcUvoz.ForeColor = System.Drawing.Color.White;
+            this.lblIcUvoz.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblIcUvoz.ForeColor = System.Drawing.Color.FromArgb(40, 40, 40);
             this.lblIcUvoz.Location = new System.Drawing.Point(12, 37);
             this.lblIcUvoz.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblIcUvoz.Name = "lblIcUvoz";
@@ -418,8 +420,8 @@ namespace WindowsFormsApplication1.Kalkulacije
             // lblIcOpsti
             //
             this.lblIcOpsti.AutoSize = true;
-            this.lblIcOpsti.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIcOpsti.ForeColor = System.Drawing.Color.White;
+            this.lblIcOpsti.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblIcOpsti.ForeColor = System.Drawing.Color.FromArgb(40, 40, 40);
             this.lblIcOpsti.Location = new System.Drawing.Point(12, 70);
             this.lblIcOpsti.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblIcOpsti.Name = "lblIcOpsti";
@@ -433,8 +435,8 @@ namespace WindowsFormsApplication1.Kalkulacije
             // lblIcPriprema
             //
             this.lblIcPriprema.AutoSize = true;
-            this.lblIcPriprema.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIcPriprema.ForeColor = System.Drawing.Color.White;
+            this.lblIcPriprema.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblIcPriprema.ForeColor = System.Drawing.Color.FromArgb(40, 40, 40);
             this.lblIcPriprema.Location = new System.Drawing.Point(12, 103);
             this.lblIcPriprema.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblIcPriprema.Name = "lblIcPriprema";
@@ -448,8 +450,8 @@ namespace WindowsFormsApplication1.Kalkulacije
             // lblIcCenovnici
             //
             this.lblIcCenovnici.AutoSize = true;
-            this.lblIcCenovnici.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIcCenovnici.ForeColor = System.Drawing.Color.White;
+            this.lblIcCenovnici.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblIcCenovnici.ForeColor = System.Drawing.Color.FromArgb(40, 40, 40);
             this.lblIcCenovnici.Location = new System.Drawing.Point(12, 136);
             this.lblIcCenovnici.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblIcCenovnici.Name = "lblIcCenovnici";
@@ -464,8 +466,8 @@ namespace WindowsFormsApplication1.Kalkulacije
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(54)))), ((int)(((byte)(56)))));
-            this.ClientSize = new System.Drawing.Size(500, 300);
+            this.BackColor = System.Drawing.Color.FromArgb(248, 247, 244);
+            this.ClientSize = new System.Drawing.Size(500, 266);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);

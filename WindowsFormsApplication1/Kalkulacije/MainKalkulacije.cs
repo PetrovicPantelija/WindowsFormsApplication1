@@ -24,6 +24,10 @@ namespace WindowsFormsApplication1.Kalkulacije
         bool delete;
         string Kor = frmLogovanje.user.ToString().TrimEnd();
         string niz = "";
+        // Jela izgled (kao Opsti cenovnik): tamni tekst, braon pri prelasku misem, zeleni naslovi
+        static readonly Color MeniTekst = Color.FromArgb(40, 40, 40);
+        static readonly Color MeniHover = Color.FromArgb(190, 150, 110);
+        static readonly Color MeniNaslov = Color.FromArgb(58, 77, 57);
         public MainKalkulacije()
         {
             InitializeComponent();
@@ -31,6 +35,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             IdGrupe();
             IdForme();
             PravoPristupa();
+            foreach (var l in new[] { label2, label8, lblIcUvoz, lblIcOpsti, lblIcPriprema, lblIcCenovnici }) l.Cursor = Cursors.Hand;
         }
         public string IdGrupe()
         {
@@ -148,12 +153,12 @@ namespace WindowsFormsApplication1.Kalkulacije
 
         private void label2_MouseEnter(object sender, EventArgs e)
         {
-            label2.ForeColor = Color.Blue;
+            label2.ForeColor = MeniHover;
         }
 
         private void label2_MouseLeave(object sender, EventArgs e)
         {
-            label2.ForeColor = Color.White;
+            label2.ForeColor = MeniTekst;
         }
 
         private void label3_MouseEnter(object sender, EventArgs e)
@@ -205,8 +210,8 @@ namespace WindowsFormsApplication1.Kalkulacije
         }
         private void btnSifarnici_MouseEnter(object sender, EventArgs e)
         {
-            btnSifarnici.ForeColor = Color.FromArgb(53, 54, 56);
-            btnSifarnici.IconColor= Color.FromArgb(53, 54, 56);
+            btnSifarnici.ForeColor = MeniHover;
+            btnSifarnici.IconColor = MeniHover;
         }
 
         private void btn_Kalkulator_MouseEnter(object sender, EventArgs e)
@@ -217,8 +222,8 @@ namespace WindowsFormsApplication1.Kalkulacije
 
         private void btnSifarnici_MouseLeave(object sender, EventArgs e)
         {
-            btnSifarnici.ForeColor = Color.White;
-            btnSifarnici.IconColor = Color.White;
+            btnSifarnici.ForeColor = MeniNaslov;
+            btnSifarnici.IconColor = MeniNaslov;
         }
 
         private void btn_Kalkulator_MouseLeave(object sender, EventArgs e)
@@ -272,12 +277,12 @@ namespace WindowsFormsApplication1.Kalkulacije
 
         private void label8_MouseEnter(object sender, EventArgs e)
         {
-            label8.ForeColor = Color.Blue;
+            label8.ForeColor = MeniHover;
         }
 
         private void label8_MouseLeave(object sender, EventArgs e)
         {
-            label8.ForeColor = Color.White;
+            label8.ForeColor = MeniTekst;
         }
 
         private void label9_Click(object sender, EventArgs e)
@@ -313,12 +318,12 @@ namespace WindowsFormsApplication1.Kalkulacije
 
         private void lblMeni_MouseEnter(object sender, EventArgs e)
         {
-            ((Label)sender).ForeColor = Color.Blue;
+            ((Label)sender).ForeColor = MeniHover;
         }
 
         private void lblMeni_MouseLeave(object sender, EventArgs e)
         {
-            ((Label)sender).ForeColor = Color.White;
+            ((Label)sender).ForeColor = MeniTekst;
         }
     }
 }
