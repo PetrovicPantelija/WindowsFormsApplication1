@@ -220,10 +220,13 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
                         }
                         list.Povezano++;
                         redoviLista.Add(id);
-                        if (!string.Equals(m.Code, code, StringComparison.OrdinalIgnoreCase))
-                            u.Problemi.Add(new Problem { List = list.Naziv, Red = red, Vrsta = "Drugi Code", Opis = "ID " + id + ": u Excelu " + code + ", u bazi " + m.Code });
+                        // drugi Code u Excelu nego u bazi: VP tog reda pripada Excel Code-u, pa se ne upisuje
+                        // na Code iz baze (inace bi pregazio njegovu pravu cenu); trosak reda se uzima
+                        bool drugiCode = !string.Equals(m.Code, code, StringComparison.OrdinalIgnoreCase);
+                        if (drugiCode)
+                            u.Problemi.Add(new Problem { List = list.Naziv, Red = red, Vrsta = "Drugi Code", Opis = "ID " + id + ": u Excelu " + code + ", u bazi " + m.Code + " (VP iz ovog reda se ne uzima)" });
 
-                        var vp = Broj(reader.GetValue(k.VP));
+                        var vp = drugiCode ? null : Broj(reader.GetValue(k.VP));
                         if (vp.HasValue && vp.Value > 0)
                         {
                             decimal postojeca;

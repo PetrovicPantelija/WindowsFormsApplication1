@@ -17,6 +17,7 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
         readonly IzracunCenaBaza baza = new IzracunCenaBaza();
         readonly string korisnik;
         UvozExcel uvoz;
+        bool imaUpis;
 
         public frmUvozExcel()
         {
@@ -26,8 +27,15 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
             Pravo = prava.Pravo;
             if (!Pravo) return;
             korisnik = PravaForme.Korisnik;
-            btnNapravi.Enabled = prava.Upis;
+            imaUpis = prava.Upis;
+            btnNapravi.Enabled = imaUpis;
             cboValuta.SelectedIndex = 0;
+            if (!imaUpis)
+            {
+                lblSazetak.ForeColor = System.Drawing.Color.FromArgb(200, 40, 40);
+                lblSazetak.Text = "Nemate pravo upisa za ovu formu (frmUvozExcel), pa su dugmad za upis zaključana.\n"
+                                + "Administrator ga dodeljuje u Administracija → Dodeli pravo (kolona Upis).";
+            }
         }
 
         void cboValuta_SelectedIndexChanged(object sender, EventArgs e)
@@ -81,14 +89,15 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
                     numKurs.Value = Math.Round(uvoz.Kurs.Value, 2);
                 if (uvoz.PDV.HasValue && cboValuta.Text == ObracunCene.RSD)
                     numPDV.Value = Math.Round(uvoz.PDV.Value * 100, 2);
-                btnUveziPovezane.Enabled = btnNapravi.Enabled && uvoz.Redovi.Count > 0;
+                btnUveziPovezane.Enabled = imaUpis && uvoz.Redovi.Count > 0;
 
                 var cen = uvoz.Parametri.Svi.FirstOrDefault(p => p.Nivo == NivoParametra.Cenovnik);
                 lblSazetak.Text = "Sheetova: " + uvoz.Listovi.Count(l => !l.Preskocen) + " (preskočeno " + uvoz.Listovi.Count(l => l.Preskocen) + ")"
                     + ", redova: " + uvoz.Redovi.Count + ", cena po Code: " + uvoz.Cene.Count
                     + ", Code bez cene u Excelu (cena iz baze): " + uvoz.CodeBezCeneUExcelu
                     + "\nRabat celog cenovnika: " + (cen != null && cen.Rabat.HasValue ? (cen.Rabat.Value * 100).ToString("0.##") + "%" : "-")
-                    + ", kurs iz D1: " + (uvoz.Kurs.HasValue ? uvoz.Kurs.Value.ToString("N2") : "-");
+                    + ", kurs iz D1: " + (uvoz.Kurs.HasValue ? uvoz.Kurs.Value.ToString("N2") : "-")
+                    + (imaUpis ? "" : "   ·   NEMATE PRAVO UPISA (Dodeli pravo → Upis)");
             }
             catch (Exception ex) { Cursor = Cursors.Default; uvoz = null; btnUveziPovezane.Enabled = false; Izgled.Greska(this, "Čitanje Excela", ex); }
         }
