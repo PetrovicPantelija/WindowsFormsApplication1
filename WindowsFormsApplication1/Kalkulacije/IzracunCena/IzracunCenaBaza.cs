@@ -198,22 +198,28 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
             return Izvrsi("dbo.IC_AzurirajTroskove", c => c.Parameters.AddWithValue("@CenovnikID", cenovnikID)).Tables[0];
         }
 
-        public int BrojZaProglasenjeTroskova(int cenovnikID, string korisnik)
+        // samo oznaceni redovi (StavkaID)
+        public int BrojZaProglasenjeTroskova(int cenovnikID, IEnumerable<int> stavke, string korisnik)
         {
-            return ProglasiTroskove(cenovnikID, korisnik, true);
+            return ProglasiTroskove(cenovnikID, stavke, korisnik, true);
         }
 
-        public int ProglasiTroskoveNovim(int cenovnikID, string korisnik)
+        public int ProglasiTroskoveNovim(int cenovnikID, IEnumerable<int> stavke, string korisnik)
         {
-            return ProglasiTroskove(cenovnikID, korisnik, false);
+            return ProglasiTroskove(cenovnikID, stavke, korisnik, false);
         }
 
-        int ProglasiTroskove(int cenovnikID, string korisnik, bool samoBroj)
+        int ProglasiTroskove(int cenovnikID, IEnumerable<int> stavke, string korisnik, bool samoBroj)
         {
+            var dt = new DataTable();
+            dt.Columns.Add("ID", typeof(int));
+            foreach (var id in stavke.Distinct()) dt.Rows.Add(id);
+
             var ds = Izvrsi("dbo.IC_ProglasiTroskoveNovim", c =>
             {
                 c.Parameters.AddWithValue("@CenovnikID", cenovnikID);
                 c.Parameters.AddWithValue("@Korisnik", korisnik);
+                c.Parameters.Add(Tabela("@Stavke", "dbo.IC_IdTip", dt));
                 c.Parameters.AddWithValue("@SamoBroj", samoBroj);
             });
             return Convert.ToInt32(ds.Tables[0].Rows[0][0]);

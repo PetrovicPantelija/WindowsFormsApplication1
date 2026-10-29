@@ -49,6 +49,7 @@ IF OBJECT_ID('dbo.IC_Cenovnik', 'U')           IS NOT NULL DROP TABLE dbo.IC_Cen
 GO
 
 IF TYPE_ID('dbo.IC_SlikaTip')       IS NOT NULL DROP TYPE dbo.IC_SlikaTip;
+IF TYPE_ID('dbo.IC_IdTip')          IS NOT NULL DROP TYPE dbo.IC_IdTip;
 IF TYPE_ID('dbo.IC_UvozStavkaTip')  IS NOT NULL DROP TYPE dbo.IC_UvozStavkaTip;
 IF TYPE_ID('dbo.IC_UvozCenaTip')    IS NOT NULL DROP TYPE dbo.IC_UvozCenaTip;
 IF TYPE_ID('dbo.IC_AkcijaTip')      IS NOT NULL DROP TYPE dbo.IC_AkcijaTip;

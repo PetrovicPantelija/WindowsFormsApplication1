@@ -202,21 +202,33 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
 
         void btnProglasiTroskove_Click(object sender, EventArgs e)
         {
+            // samo oznaceni redovi
+            var oznaceni = uc.Oznaceni.Select(s => s.StavkaID).ToList();
+            if (oznaceni.Count == 0)
+            {
+                MessageBox.Show(this, "Označite redove za koje se troškovi proglašavaju novim (Ctrl / Shift + klik).",
+                                "Proglasi troškove novim", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
             if (!PitajZaIzmene("proglašenja troškova")) return;
             try
             {
-                int broj = baza.BrojZaProglasenjeTroskova(uc.CenovnikID, korisnik);
+                int broj = baza.BrojZaProglasenjeTroskova(uc.CenovnikID, oznaceni, korisnik);
                 if (broj == 0)
                 {
-                    MessageBox.Show(this, "Nema redova u kojima se TP-Novi razlikuje od TP-Stari.", Text);
+                    MessageBox.Show(this, "Među " + oznaceni.Count + " označenih redova nema nijednog u kome se TP-Novi razlikuje od TP-Stari.",
+                                    "Proglasi troškove novim", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
                 if (MessageBox.Show(this,
-                        "TP-Novi postaje TP-Stari, a trenutna marža postaje marža stara u " + broj + " redova.\n" +
-                        "Poređenje sa starim troškovima se time gubi. Nastaviti?",
-                        "Proglasi troškove novim", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes) return;
-                baza.ProglasiTroskoveNovim(uc.CenovnikID, korisnik);
+                        "Označeno redova: " + oznaceni.Count + ", od toga se menja: " + broj + ".\n\n" +
+                        "U tim redovima TP-Novi postaje TP-Stari, a trenutna marža postaje marža stara.\n" +
+                        "Poređenje sa starim troškovima se za njih gubi. Ostali redovi se ne menjaju.\n\nNastaviti?",
+                        "Proglasi troškove novim", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) != DialogResult.Yes) return;
+                int promenjeno = baza.ProglasiTroskoveNovim(uc.CenovnikID, oznaceni, korisnik);
                 UcitajCenovnik();
+                MessageBox.Show(this, "Troškovi su proglašeni novim u " + promenjeno + " redova.",
+                                "Proglasi troškove novim", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex) { Izgled.Greska(this, "Proglasi troškove novim", ex); }
         }

@@ -141,23 +141,32 @@ END
 GO
 
 /* IC_ProglasiTroskoveNovim
-   TP-Novi -> TP-Stari, trenutna marza -> Marza stara.
+   TP-Novi -> TP-Stari, trenutna marza -> Marza stara, SAMO za oznacene
+   redove iz grida (@Stavke = StavkaID). Bez oznacenih redova se ne radi nista.
    @SamoBroj = 1 samo vraca broj redova koji ce se promeniti (za potvrdu). */
 IF OBJECT_ID('dbo.IC_ProglasiTroskoveNovim', 'P') IS NOT NULL DROP PROCEDURE dbo.IC_ProglasiTroskoveNovim;
 GO
 CREATE PROCEDURE dbo.IC_ProglasiTroskoveNovim
     @CenovnikID int,
     @Korisnik   nvarchar(50),
+    @Stavke     dbo.IC_IdTip READONLY,
     @SamoBroj   bit = 0
 AS
 BEGIN
     SET NOCOUNT ON;
     SET XACT_ABORT ON;
 
+    IF NOT EXISTS (SELECT 1 FROM @Stavke)
+    BEGIN
+        RAISERROR(N'Označite redove za koje se troškovi proglašavaju novim.', 16, 1);
+        RETURN;
+    END
+
     IF @SamoBroj = 1
     BEGIN
         SELECT COUNT(*) AS BrojRedova
         FROM dbo.IC_CenovnikStavka s
+        JOIN @Stavke x ON x.ID = s.StavkaID
         WHERE s.CenovnikID = @CenovnikID
           AND s.TrosakNovi > 0
           AND (s.TrosakStari IS NULL OR s.TrosakStari <> s.TrosakNovi);
@@ -179,6 +188,7 @@ BEGIN
         DatumTroskaStari = s.DatumTroskaNovi,
         MarzaStara       = ROUND(o.Marza, 4)
     FROM dbo.IC_CenovnikStavka s
+    JOIN @Stavke x ON x.ID = s.StavkaID
     JOIN dbo.vw_IC_CenovnikObracun o ON o.StavkaID = s.StavkaID
     WHERE s.CenovnikID = @CenovnikID
       AND s.TrosakNovi > 0;

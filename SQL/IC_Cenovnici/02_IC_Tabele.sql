@@ -272,6 +272,13 @@ CREATE TYPE dbo.IC_UvozStavkaTip AS TABLE (
 );
 GO
 
+-- spisak ID-jeva, npr. oznaceni redovi u gridu (IC_ProglasiTroskoveNovim)
+IF TYPE_ID('dbo.IC_IdTip') IS NULL
+CREATE TYPE dbo.IC_IdTip AS TABLE (
+    ID int NOT NULL PRIMARY KEY
+);
+GO
+
 -- slike nadjene u folderu (IC_PoveziSlikeAutomatski)
 IF TYPE_ID('dbo.IC_SlikaTip') IS NULL
 CREATE TYPE dbo.IC_SlikaTip AS TABLE (
