@@ -124,9 +124,9 @@ namespace WindowsFormsApplication1.Kalkulacije
 
         private void label2_Click(object sender, EventArgs e)
         {
+            // frmKolekcije nema proveru prava (izbacena 24.09., kao u MainPlaniranje), pa se otvara direktno
             Kalkulacije.frmKolekcije kol = new frmKolekcije();
-            PravoP = kol.Pravo;
-            if (PravoP == true) { kol.Show(); } else { return; }
+            kol.Show();
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -265,9 +265,9 @@ namespace WindowsFormsApplication1.Kalkulacije
 
         private void label8_Click(object sender, EventArgs e)
         {
+            // frmProgram nema proveru prava (izbacena 24.09., kao u MainPlaniranje), pa se otvara direktno
             frmProgram program = new frmProgram();
-            PravoP = program.Pravo;
-            if (PravoP == true) { program.Show(); } else { return; }
+            program.Show();
         }
 
         private void label8_MouseEnter(object sender, EventArgs e)

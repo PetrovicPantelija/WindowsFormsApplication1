@@ -84,7 +84,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold);
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(7, 167);
+            this.label8.Location = new System.Drawing.Point(7, 37);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(76, 19);
@@ -100,6 +100,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
             this.label6.Location = new System.Drawing.Point(7, 134);
+            this.label6.Visible = false;
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(141, 19);
@@ -115,6 +116,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(7, 103);
+            this.label3.Visible = false;
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(147, 19);
@@ -146,6 +148,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(7, 37);
+            this.label1.Visible = false;
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(160, 19);
@@ -186,13 +189,13 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1000, 55);
+            this.panel2.Size = new System.Drawing.Size(500, 55);
             this.panel2.TabIndex = 3;
             // 
             // IconButton
             // 
             this.IconButton.Image = ((System.Drawing.Image)(resources.GetObject("IconButton.Image")));
-            this.IconButton.Location = new System.Drawing.Point(443, 11);
+            this.IconButton.Location = new System.Drawing.Point(193, 11);
             this.IconButton.Name = "IconButton";
             this.IconButton.Size = new System.Drawing.Size(114, 37);
             this.IconButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -207,6 +210,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.panel3.Controls.Add(this.label4);
             this.panel3.Controls.Add(this.btn_Kalkulator);
             this.panel3.Location = new System.Drawing.Point(240, 55);
+            this.panel3.Visible = false;
             this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(250, 280);
@@ -271,6 +275,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.panel4.Controls.Add(this.panel5);
             this.panel4.Controls.Add(this.iconButton1);
             this.panel4.Location = new System.Drawing.Point(502, 60);
+            this.panel4.Visible = false;
             this.panel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(230, 275);
@@ -367,7 +372,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.panel6.Controls.Add(this.lblIcOpsti);
             this.panel6.Controls.Add(this.lblIcUvoz);
             this.panel6.Controls.Add(this.btnIzracunCena);
-            this.panel6.Location = new System.Drawing.Point(744, 55);
+            this.panel6.Location = new System.Drawing.Point(240, 55);
             this.panel6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(250, 280);
@@ -460,7 +465,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(54)))), ((int)(((byte)(56)))));
-            this.ClientSize = new System.Drawing.Size(1000, 403);
+            this.ClientSize = new System.Drawing.Size(500, 300);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
