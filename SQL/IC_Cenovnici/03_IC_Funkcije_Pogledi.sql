@@ -22,8 +22,12 @@ RETURNS decimal(18,2)
 WITH SCHEMABINDING
 AS
 BEGIN
-    DECLARE @t varchar(30) = REPLACE(REPLACE(LTRIM(RTRIM(@Tekst)), ' ', ''), NCHAR(160), '');
-    IF @t IS NULL OR @t = '' RETURN NULL;
+    DECLARE @n nvarchar(30) = REPLACE(REPLACE(LTRIM(RTRIM(@Tekst)), N' ', N''), NCHAR(160), N'');
+    IF @n IS NULL OR @n = N'' RETURN NULL;
+    -- provera PRE prelaska u varchar (inace bi se ², ½, − preslikali u 2, 1, -):
+    -- dozvoljene su samo ASCII cifre, tacka, zarez i minus
+    IF @n COLLATE Latin1_General_BIN2 LIKE N'%[^0123456789.,-]%' RETURN NULL;
+    DECLARE @t varchar(30) = @n;
 
     DECLARE @odKrajaTacka int = CHARINDEX('.', REVERSE(@t)),
             @odKrajaZarez int = CHARINDEX(',', REVERSE(@t));
