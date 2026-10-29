@@ -746,8 +746,8 @@ GO
      - VP po Code iz Excela; Code bez cene u Excelu dobija cenu iz
        jela_products (price_rs_WP / price_WP) i VPIzBaze = 1; ako ni tamo
        nema cene, VP = 0 (forma ga istice);
-     - TP - maj i marza maj: po LargoProizvodID; varijante kojih nema u
-       Excelu dobijaju vrednosti reda sa istim Code;
+     - TP - maj i marza maj: maticnom podatku iz kolone A; ako Code ima
+       samo jedan red u fajlu (danasnji fajlovi), i svim varijantama tog Code;
      - parametri i akcije za poredjenje iz @Parametri / @Akcije.
    Na kraju pokrece IC_AzurirajTroskove.
    Vraca dva skupa redova:
@@ -845,10 +845,10 @@ BEGIN
            ISNULL(t.MarzaStara,  tc.MarzaStara)
     FROM #Mp m
     LEFT JOIN @Stavke t ON t.LargoProizvodID = m.LargoProizvodID
-    OUTER APPLY (SELECT TOP (1) x.TrosakStari, x.MarzaStara
+    OUTER APPLY (SELECT TOP (1) x.TrosakStari, x.MarzaStara    -- samo ako Code ima jedan red u fajlu
                  FROM @Stavke x
                  WHERE x.Code = m.Code
-                 ORDER BY x.LargoProizvodID) tc;
+                   AND (SELECT COUNT(*) FROM @Stavke y WHERE y.Code = m.Code) = 1) tc;
 
     -- parametri i akcije za poredjenje
     INSERT INTO dbo.IC_CenovnikParametar (CenovnikID, Nivo, ProgramID, KolekcijaID, Code, Rabat, Akcija)

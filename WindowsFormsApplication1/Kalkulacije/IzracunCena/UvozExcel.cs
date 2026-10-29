@@ -12,8 +12,10 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
     // ZAH-008: citanje KALK RSD / KALK EUR (.xls i .xlsx) za pocetne vrednosti opsteg cenovnika.
     // Svaki sheet ima isto zaglavlje u redovima 1-3; kolone se nalaze po tekstu zaglavlja:
     //   UKUPNO TP, VP cena, Rabat xx%, Akcija xx% (vise), TP - <mesec>, marza <mesec>.
-    // Red proizvoda: broj u koloni A (LargoProizvodID) i Code u koloni B. Kurs = vrednost celije D1.
-    // Sakrivene kolone se ne citaju.
+    // Red proizvoda je prvi red bloka: u koloni A ceo broj (LargoProizvodID), u koloni B tekst (Code)
+    // koji nije "U EVRIMA" ni "MP-akcija", a u koloni C trosak veci od nule. Drugi red bloka takodje ima
+    // broj u koloni A (redni broj), ali je B broj (VP u dinarskom) ili "U EVRIMA" (devizni), pa se preskace.
+    // Kurs = vrednost celije D1 (117,93), ne prikazan tekst. Sakrivene kolone se ne citaju.
     public class UvozExcel
     {
         public class Sheet
@@ -175,11 +177,16 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
                             continue;
                         }
 
-                        var idv = Broj(n > 0 ? reader.GetValue(0) : null);
-                        var code = n > 1 && reader.GetValue(1) != null ? reader.GetValue(1).ToString().Trim() : "";
-                        if (!idv.HasValue || idv.Value != Math.Floor(idv.Value) || code == "") continue;
+                        int id;
+                        string code;
+                        bool bezTroska;
+                        if (!RedProizvoda(reader, out id, out code, out bezTroska))
+                        {
+                            if (bezTroska)
+                                u.Problemi.Add(new Problem { List = list.Naziv, Red = red, Vrsta = "Bez troška u koloni C", Opis = "LargoProizvodID " + id + " (" + code + ") nije uvezen" });
+                            continue;
+                        }
 
-                        int id = (int)idv.Value;
                         list.Nadjeno++;
                         Maticni m;
                         if (!mp.TryGetValue(id, out m))
@@ -270,6 +277,30 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
             p.Rabat = list.Rabat;
             p.Akcija = list.Akcije.Count > 0 ? list.Akcije[0] : (decimal?)null;
             p.AkcijePoredjenje.AddRange(list.Akcije);
+        }
+
+        // prvi red bloka: A = ceo broj, B = tekst (ne "U EVRIMA" / "MP-akcija"), C = trosak > 0.
+        // bezTroska = true kada A i B jesu red proizvoda, ali u C nema troska (prijavljuje se).
+        static bool RedProizvoda(IExcelDataReader reader, out int id, out string code, out bool bezTroska)
+        {
+            id = 0; code = ""; bezTroska = false;
+            if (reader.FieldCount < 3) return false;
+
+            var a = Broj(reader.GetValue(0));
+            if (!a.HasValue || a.Value != Math.Floor(a.Value) || a.Value <= 0 || a.Value > int.MaxValue) return false;
+
+            var b = reader.GetValue(1) as string;          // tekst; broj u B je drugi red bloka
+            if (b == null) return false;
+            code = b.Trim();
+            string nb = Normalizuj(code);
+            if (code == "" || nb.Contains("U EVRIMA") || nb.Replace(" ", "").StartsWith("MP-AKCIJA")) return false;
+            decimal kaoBroj;   // broj upisan kao tekst je takodje drugi red bloka (VP)
+            if (decimal.TryParse(code.Replace(" ", ""), NumberStyles.Number, CultureInfo.GetCultureInfo("sr-Latn-RS"), out kaoBroj)) return false;
+
+            id = (int)a.Value;
+            var c = Broj(reader.GetValue(2));
+            if (!c.HasValue || c.Value <= 0) { bezTroska = true; return false; }
+            return true;
         }
 
         static bool Sakrivena(IExcelDataReader reader, int kolona)
