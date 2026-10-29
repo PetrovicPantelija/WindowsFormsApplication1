@@ -142,7 +142,16 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
             grid.ShowGroupDropArea = false;
             grid.AutoExpandGroups = true;
             grid.FrozenColumnCount = 4;          // ID, Code, Naziv, Sifra Largo
-            grid.HeaderRowHeight = 42;           // nazivi kolona u dva reda, ceo tekst se vidi
+            grid.HeaderRowHeight = 58;           // nazivi kolona se prelamaju u do tri reda
+            grid.AllowResizingColumns = true;    // sirenje / skupljanje povlacenjem ivice u zaglavlju
+            grid.ColumnHeaderContextMenu = cmsKolone;   // desni klik na zaglavlje: koje kolone se vide
+            grid.ContextMenuStrip = null;               // meni za redove samo na redovima, ne na zaglavlju
+            grid.RecordContextMenu = cmsGrid;
+            cmsKolone.Opening += CmsKolone_Opening;
+            // klik na kolonu ne zatvara meni, pa se moze iskljuciti vise kolona zaredom
+            cmsKolone.ItemClicked += (s, e) => drziMeniOtvoren = (e.ClickedItem.Tag as string) == "kolona";
+            cmsKolone.Closing += (s, e) => { if (e.CloseReason == ToolStripDropDownCloseReason.ItemClicked) e.Cancel = drziMeniOtvoren; drziMeniOtvoren = false; };
+            HandleDestroyed += (s, e) => SacuvajRaspored();
             grid.SelectionMode = GridSelectionMode.Extended;
             grid.LiveDataUpdateMode = LiveDataUpdateMode.AllowSummaryUpdate;
             grid.GroupCaptionTextFormat = "{Key}";   // broj redova je u stablu
@@ -189,6 +198,7 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
 
         void NapraviKolone()
         {
+            if (grid.Columns.Count > 0) SacuvajRaspored();   // pre promene cenovnika zapamti trenutni raspored
             bool admin = Rezim == RezimCenovnika.Administrator;
             bool korisnik = Rezim == RezimCenovnika.Korisnik;
             bool rsd = Valuta == ObracunCene.RSD;
@@ -250,11 +260,101 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
             grid.AllowEditing = Rezim != RezimCenovnika.Citanje;
 
             foreach (var kol in grid.Columns) kol.AllowHeaderTextWrapping = true;
+            podrazumevanoVidljive = new HashSet<string>(grid.Columns.Where(c => c.Visible).Select(c => c.MappingName));
+            podrazumevaneSirine = grid.Columns.ToDictionary(c => c.MappingName, c => c.Width);
+            PrimeniRaspored();
 
             // grupe se dodaju posle kolona (Columns.Clear ih brise)
             grid.GroupColumnDescriptions.Clear();
             grid.GroupColumnDescriptions.Add(new GroupColumnDescription { ColumnName = "Program" });
             grid.GroupColumnDescriptions.Add(new GroupColumnDescription { ColumnName = "Kolekcija" });
+        }
+
+        /* ---------- kolone: koje se vide i sirine (pamti se po korisniku i rezimu) ---------- */
+
+        readonly ContextMenuStrip cmsKolone = new ContextMenuStrip();
+        bool drziMeniOtvoren;
+        HashSet<string> podrazumevanoVidljive = new HashSet<string>();
+        Dictionary<string, double> podrazumevaneSirine = new Dictionary<string, double>();
+        static readonly string[] skriveneUvek = { "Program", "Kolekcija" };   // koriste se za grupisanje
+
+        string FajlRasporeda
+        {
+            get
+            {
+                return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                                    "JelaIzracunCena", "kolone_" + Rezim + ".txt");
+            }
+        }
+
+        void CmsKolone_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            cmsKolone.Items.Clear();
+            var sve = new ToolStripMenuItem("Prikaži sve kolone");
+            sve.Click += (s, a) => { foreach (var c in grid.Columns) if (!skriveneUvek.Contains(c.MappingName)) c.Visible = true; SacuvajRaspored(); };
+            var vrati = new ToolStripMenuItem("Vrati podrazumevano (kolone i širine)");
+            vrati.Click += (s, a) =>
+            {
+                foreach (var c in grid.Columns)
+                {
+                    c.Visible = podrazumevanoVidljive.Contains(c.MappingName);
+                    double w;
+                    if (podrazumevaneSirine.TryGetValue(c.MappingName, out w)) c.Width = w;
+                }
+                SacuvajRaspored();
+            };
+            cmsKolone.Items.Add(sve);
+            cmsKolone.Items.Add(vrati);
+            cmsKolone.Items.Add(new ToolStripSeparator());
+            foreach (var c in grid.Columns.Where(c => !skriveneUvek.Contains(c.MappingName)))
+            {
+                var kol = c;
+                var it = new ToolStripMenuItem(kol.HeaderText.Replace("\n", " ")) { Checked = kol.Visible, CheckOnClick = true, Tag = "kolona" };
+                it.Click += (s, a) =>
+                {
+                    kol.Visible = it.Checked;
+                    SacuvajRaspored();
+                };
+                cmsKolone.Items.Add(it);
+            }
+            e.Cancel = false;
+        }
+
+        // fajl: "S|kolona" = korisnik je sakrio podrazumevano vidljivu kolonu; "W|kolona|sirina"
+        void PrimeniRaspored()
+        {
+            try
+            {
+                if (!File.Exists(FajlRasporeda)) return;
+                foreach (var red in File.ReadAllLines(FajlRasporeda))
+                {
+                    var d = red.Split('|');
+                    var c = d.Length > 1 ? grid.Columns[d[1]] : null;
+                    if (c == null) continue;
+                    if (d[0] == "S") c.Visible = false;
+                    double w;
+                    if (d[0] == "W" && d.Length > 2 && double.TryParse(d[2], NumberStyles.Float, CultureInfo.InvariantCulture, out w) && w >= 20)
+                        c.Width = w;
+                }
+            }
+            catch { }   // raspored nije bitan za rad; los fajl se ignorise
+        }
+
+        void SacuvajRaspored()
+        {
+            try
+            {
+                if (grid.Columns.Count == 0) return;
+                var linije = new List<string>();
+                foreach (var c in grid.Columns)
+                {
+                    if (podrazumevanoVidljive.Contains(c.MappingName) && !c.Visible) linije.Add("S|" + c.MappingName);
+                    if (c.Width > 0) linije.Add("W|" + c.MappingName + "|" + c.Width.ToString(CultureInfo.InvariantCulture));
+                }
+                Directory.CreateDirectory(Path.GetDirectoryName(FajlRasporeda));
+                File.WriteAllLines(FajlRasporeda, linije);
+            }
+            catch { }
         }
 
         public void PrikaziEUR(bool prikazi)
