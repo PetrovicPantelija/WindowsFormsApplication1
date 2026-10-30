@@ -89,8 +89,8 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
         {
             return Upit(@"SELECT s.ProgramID, g.Naziv AS Program, s.KolekcijaID, k.Naziv AS Kolekcija, COUNT(*) AS BrojRedova
                           FROM dbo.IC_CenovnikStavka s
-                          JOIN dbo.Program g   ON g.ID = s.ProgramID
-                          JOIN dbo.Kolekcije k ON k.ID = s.KolekcijaID
+                          JOIN dbo.IC_Program g   ON g.ID = s.ProgramID
+                          JOIN dbo.IC_Kolekcija k ON k.ID = s.KolekcijaID
                           WHERE s.CenovnikID = @ID
                           GROUP BY s.ProgramID, g.Naziv, s.KolekcijaID, k.Naziv
                           ORDER BY g.Naziv, k.Naziv",
@@ -191,6 +191,81 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
         public DataTable MaticniPodaci()
         {
             return Upit("SELECT LargoProizvodID, Code, ProgramID, Program, KolekcijaID, Kolekcija, CenaRSD, CenaEUR FROM dbo.vw_IC_MaticniPodatak");
+        }
+
+        /* =====================================================================
+           SIFARNICI IZRACUNA CENA (IC_Program, IC_Kolekcija, IC_KolekcijaPripadnost)
+           Stare tabele Program / Kolekcije / KolekcijePripadnost se ne koriste.
+           ===================================================================== */
+
+        public DataTable IcProgrami()
+        {
+            return Upit(@"SELECT g.ID, g.Naziv,
+                                 (SELECT COUNT(*) FROM dbo.IC_Kolekcija k WHERE k.ProgramID = g.ID) AS Kolekcija,
+                                 (SELECT COUNT(*) FROM dbo.vw_IC_MaticniPodatak m WHERE m.ProgramID = g.ID) AS Proizvoda
+                          FROM dbo.IC_Program g ORDER BY g.Naziv");
+        }
+
+        public DataTable IcKolekcije()
+        {
+            return Upit(@"SELECT k.ID, k.Naziv, k.ProgramID, g.Naziv AS Program,
+                                 (SELECT COUNT(*) FROM dbo.vw_IC_MaticniPodatak m WHERE m.KolekcijaID = k.ID) AS Proizvoda
+                          FROM dbo.IC_Kolekcija k JOIN dbo.IC_Program g ON g.ID = k.ProgramID
+                          ORDER BY g.Naziv, k.Naziv");
+        }
+
+        // id = null: novi red; vraca ID
+        public int SacuvajIcProgram(int? id, string naziv)
+        {
+            var dt = id.HasValue
+                ? Upit("UPDATE dbo.IC_Program SET Naziv = @Naziv WHERE ID = @ID; SELECT @ID;",
+                       new SqlParameter("@ID", id.Value), new SqlParameter("@Naziv", naziv))
+                : Upit("INSERT INTO dbo.IC_Program (Naziv) VALUES (@Naziv); SELECT CAST(SCOPE_IDENTITY() AS int);",
+                       new SqlParameter("@Naziv", naziv));
+            return Convert.ToInt32(dt.Rows[0][0]);
+        }
+
+        public int SacuvajIcKolekciju(int? id, string naziv, int programID)
+        {
+            var dt = id.HasValue
+                ? Upit("UPDATE dbo.IC_Kolekcija SET Naziv = @Naziv, ProgramID = @ProgramID WHERE ID = @ID; SELECT @ID;",
+                       new SqlParameter("@ID", id.Value), new SqlParameter("@Naziv", naziv), new SqlParameter("@ProgramID", programID))
+                : Upit("INSERT INTO dbo.IC_Kolekcija (Naziv, ProgramID) VALUES (@Naziv, @ProgramID); SELECT CAST(SCOPE_IDENTITY() AS int);",
+                       new SqlParameter("@Naziv", naziv), new SqlParameter("@ProgramID", programID));
+            return Convert.ToInt32(dt.Rows[0][0]);
+        }
+
+        // brisanje koje koristi cenovnik ili pripadnost odbija baza (FK)
+        public void ObrisiIcProgram(int id)
+        {
+            Upit("DELETE FROM dbo.IC_Program WHERE ID = @ID", new SqlParameter("@ID", id));
+        }
+
+        public void ObrisiIcKolekciju(int id)
+        {
+            Upit("DELETE FROM dbo.IC_Kolekcija WHERE ID = @ID", new SqlParameter("@ID", id));
+        }
+
+        public DataTable MaticniZaPripadnost()
+        {
+            return Upit(@"SELECT LargoProizvodID, Code, NazivProizvoda, SifraProizvodaLargo,
+                                 ProgramIzProizvoda, KolekcijaIzProizvoda,
+                                 ProgramID, Program, KolekcijaID, Kolekcija, RucnaPripadnost
+                          FROM dbo.vw_IC_MaticniPodatak ORDER BY Program, Kolekcija, LargoProizvodID");
+        }
+
+        // kolekcijaID = null uklanja rucnu dodelu; vraca (Dodeljeno, PromenjenoURedovimaCenovnika)
+        public DataRow SacuvajPripadnost(IEnumerable<int> largoProizvodIDs, int? kolekcijaID, string korisnik)
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("ID", typeof(int));
+            foreach (var id in largoProizvodIDs.Distinct()) dt.Rows.Add(id);
+            return Izvrsi("dbo.IC_SacuvajPripadnost", c =>
+            {
+                c.Parameters.Add(Tabela("@Stavke", "dbo.IC_IdTip", dt));
+                c.Parameters.Add("@KolekcijaID", SqlDbType.Int).Value = Db(kolekcijaID);
+                c.Parameters.AddWithValue("@Korisnik", korisnik);
+            }).Tables[0].Rows[0];
         }
 
         public DataTable Partneri()
@@ -395,8 +470,8 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
                                  v.Akcija, v.CenaAkcija, v.JelaMarzaAkcija
                           FROM dbo.IC_CenovnikVazecaCena v
                           JOIN dbo.IC_CenovnikStavka s ON s.CenovnikID = v.CenovnikID AND s.LargoProizvodID = v.LargoProizvodID
-                          JOIN dbo.Program g   ON g.ID = s.ProgramID
-                          JOIN dbo.Kolekcije k ON k.ID = s.KolekcijaID
+                          JOIN dbo.IC_Program g   ON g.ID = s.ProgramID
+                          JOIN dbo.IC_Kolekcija k ON k.ID = s.KolekcijaID
                           WHERE v.CenovnikID = @ID
                           ORDER BY g.Naziv, k.Naziv, v.LargoProizvodID",
                         new SqlParameter("@ID", cenovnikID));

@@ -4,6 +4,7 @@
    Grupe im se dodeljuju u aplikaciji: Administracija -> Dodeli pravo.
      administrator:   frmUvozExcel, frmOpstiCenovnik
      drugi korisnik:  frmPripremaCenovnika, frmCenovnici
+     sifarnici:       frmICProgrami, frmICKolekcije, frmICPripadnost (administrator)
    Skripta se sme pokretati vise puta.
    ===================================================================== */
 SET NOCOUNT ON;
@@ -19,3 +20,14 @@ IF NOT EXISTS (SELECT 1 FROM dbo.Forme WHERE RTRIM(Code) = 'frmCenovnici')
 
 SELECT IdForme, Naziv, Code FROM dbo.Forme
 WHERE RTRIM(Code) IN ('frmUvozExcel', 'frmOpstiCenovnik', 'frmPripremaCenovnika', 'frmCenovnici');
+
+-- sifarnici izracuna cena (30.10.): Programi, Kolekcije, Pripadnost kolekcijama
+IF NOT EXISTS (SELECT 1 FROM dbo.Forme WHERE RTRIM(Code) = 'frmICProgrami')
+    EXEC dbo.InsertForme @Naziv = N'Izračun cena - Programi', @Code = 'frmICProgrami';
+IF NOT EXISTS (SELECT 1 FROM dbo.Forme WHERE RTRIM(Code) = 'frmICKolekcije')
+    EXEC dbo.InsertForme @Naziv = N'Izračun cena - Kolekcije', @Code = 'frmICKolekcije';
+IF NOT EXISTS (SELECT 1 FROM dbo.Forme WHERE RTRIM(Code) = 'frmICPripadnost')
+    EXEC dbo.InsertForme @Naziv = N'Izračun cena - Pripadnost kolekcijama', @Code = 'frmICPripadnost';
+
+SELECT IdForme, Naziv, Code FROM dbo.Forme
+WHERE RTRIM(Code) IN ('frmICProgrami', 'frmICKolekcije', 'frmICPripadnost');

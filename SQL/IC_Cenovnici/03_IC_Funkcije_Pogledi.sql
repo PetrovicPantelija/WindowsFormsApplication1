@@ -52,14 +52,21 @@ GO
 
 /* ---------- vw_IC_MaticniPodatak ----------
    Maticni podatak (LargoProizvodID) sa Code, programom, kolekcijom i cenom
-   iz jela_products. ProgramID/KolekcijaID su NULL dok se ne pokrene
-   IC_OsveziProgrameIKolekcije.                                             */
+   iz jela_products. Program i kolekcija su iz sifarnika izracuna cena
+   (IC_Program, IC_Kolekcija): rucna dodela iz IC_KolekcijaPripadnost ima
+   prednost, inace po nazivu iz jela_products (NazivRobneGrupe, NazivGrupe).
+   ProgramID/KolekcijaID su NULL dok se ne pokrene IC_OsveziProgrameIKolekcije.
+   ProgramIzProizvoda/KolekcijaIzProizvoda = nazivi iz jela_products.        */
 IF OBJECT_ID('dbo.vw_IC_MaticniPodatak', 'V') IS NOT NULL DROP VIEW dbo.vw_IC_MaticniPodatak;
 GO
 CREATE VIEW dbo.vw_IC_MaticniPodatak AS
 SELECT m.LargoProizvodID, m.SifraProizvodaLargo, m.Code,
-       m.Program, g.ID AS ProgramID,
-       m.Kolekcija, k.ID AS KolekcijaID,
+       CASE WHEN r.LargoProizvodID IS NOT NULL THEN gr.Naziv ELSE m.Program END   AS Program,
+       CASE WHEN r.LargoProizvodID IS NOT NULL THEN gr.ID    ELSE g.ID END        AS ProgramID,
+       CASE WHEN r.LargoProizvodID IS NOT NULL THEN kr.Naziv ELSE m.Kolekcija END AS Kolekcija,
+       CASE WHEN r.LargoProizvodID IS NOT NULL THEN kr.ID    ELSE k.ID END        AS KolekcijaID,
+       CAST(CASE WHEN r.LargoProizvodID IS NOT NULL THEN 1 ELSE 0 END AS bit)     AS RucnaPripadnost,
+       m.Program AS ProgramIzProizvoda, m.Kolekcija AS KolekcijaIzProizvoda,
        m.NazivProizvoda, m.Dimenzija, m.CenaRSD, m.CenaEUR, m.BrojSifara
 FROM (
     SELECT l.LargoProizvodID,
@@ -76,8 +83,11 @@ FROM (
     JOIN dbo.jela_products p ON p.BarCode = RTRIM(l.WebsGTIN)
     GROUP BY l.LargoProizvodID
 ) m
-LEFT JOIN dbo.Program   g ON g.Naziv = m.Program
-LEFT JOIN dbo.Kolekcije k ON k.Naziv = m.Kolekcija AND k.ProgramID = g.ID;
+LEFT JOIN dbo.IC_Program   g  ON g.Naziv = m.Program
+LEFT JOIN dbo.IC_Kolekcija k  ON k.Naziv = m.Kolekcija AND k.ProgramID = g.ID
+LEFT JOIN dbo.IC_KolekcijaPripadnost r ON r.LargoProizvodID = m.LargoProizvodID
+LEFT JOIN dbo.IC_Kolekcija kr ON kr.ID = r.KolekcijaID
+LEFT JOIN dbo.IC_Program   gr ON gr.ID = kr.ProgramID;
 GO
 
 /* ---------- vw_IC_CenovnikObracun ----------
@@ -127,8 +137,8 @@ SELECT s.StavkaID, s.CenovnikID, h.Valuta, h.Kurs, h.PDV,
 FROM dbo.IC_CenovnikStavka s
 JOIN dbo.IC_Cenovnik h     ON h.CenovnikID = s.CenovnikID
 JOIN dbo.IC_CenovnikCena c ON c.CenovnikID = s.CenovnikID AND c.Code = s.Code
-LEFT JOIN dbo.Program   g  ON g.ID = s.ProgramID
-LEFT JOIN dbo.Kolekcije k  ON k.ID = s.KolekcijaID
+LEFT JOIN dbo.IC_Program   g ON g.ID = s.ProgramID
+LEFT JOIN dbo.IC_Kolekcija k ON k.ID = s.KolekcijaID
 CROSS APPLY (SELECT ISNULL(s.TrosakNovi, s.TrosakStari) AS TP,
                     CASE h.Valuta WHEN 'RSD' THEN ISNULL(s.TrosakNovi, s.TrosakStari)
                                   ELSE ISNULL(s.TrosakNovi, s.TrosakStari) / h.Kurs END AS TPuValuti) x

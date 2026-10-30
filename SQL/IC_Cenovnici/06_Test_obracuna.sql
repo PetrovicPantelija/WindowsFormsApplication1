@@ -11,28 +11,10 @@ BEGIN TRAN;
 
 DECLARE @ProgramID int, @KolekcijaID int, @Dev int, @Din int, @ParDev int;
 
--- postojeci Program/Kolekcije mozda nemaju IDENTITY na ID
-IF COLUMNPROPERTY(OBJECT_ID('dbo.Program'), 'ID', 'IsIdentity') = 1
-BEGIN
-    INSERT INTO dbo.Program (Naziv) VALUES (N'ZZ_TEST_IC');
-    SET @ProgramID = SCOPE_IDENTITY();
-END
-ELSE
-BEGIN
-    SELECT @ProgramID = ISNULL(MAX(ID), 0) + 1 FROM dbo.Program;
-    INSERT INTO dbo.Program (ID, Naziv) VALUES (@ProgramID, N'ZZ_TEST_IC');
-END
-
-IF COLUMNPROPERTY(OBJECT_ID('dbo.Kolekcije'), 'ID', 'IsIdentity') = 1
-BEGIN
-    INSERT INTO dbo.Kolekcije (Naziv, ProgramID) VALUES (N'ZZ_TEST_IC', @ProgramID);
-    SET @KolekcijaID = SCOPE_IDENTITY();
-END
-ELSE
-BEGIN
-    SELECT @KolekcijaID = ISNULL(MAX(ID), 0) + 1 FROM dbo.Kolekcije;
-    INSERT INTO dbo.Kolekcije (ID, Naziv, ProgramID) VALUES (@KolekcijaID, N'ZZ_TEST_IC', @ProgramID);
-END
+INSERT INTO dbo.IC_Program (Naziv) VALUES (N'ZZ_TEST_IC');
+SET @ProgramID = SCOPE_IDENTITY();
+INSERT INTO dbo.IC_Kolekcija (Naziv, ProgramID) VALUES (N'ZZ_TEST_IC', @ProgramID);
+SET @KolekcijaID = SCOPE_IDENTITY();
 
 /* ---------- Devizni: TP 6.449 (stari 6.487), VP 129, kurs 117,93, rabat 25%, akcija 5%, poredjenje 5% i 13% ---------- */
 INSERT INTO dbo.IC_Cenovnik (Naziv, Vrsta, Valuta, Kurs, Kreirao) VALUES (N'ZZ_TEST_IC Devizni', 'Opsti', 'EUR', 117.93, N'test');

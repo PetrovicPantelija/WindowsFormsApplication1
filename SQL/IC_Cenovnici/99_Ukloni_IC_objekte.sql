@@ -1,7 +1,8 @@
 ﻿/* =====================================================================
    ZAH-008 Izracun cena - 99: uklanjanje svih IC_ objekata
    SAMO ZA TEST BAZU. Brise sve cenovnike, cene i veze slika!
-   Program i Kolekcije se NE diraju (koristi ih ostatak aplikacije).
+   Brise i sifarnike izracuna cena (IC_Program, IC_Kolekcija, IC_KolekcijaPripadnost).
+   Stare tabele Program, Kolekcije i KolekcijePripadnost se NE diraju.
    Da se ne bi pokrenulo slucajno, promeniti @Potvrda u 'DA'.
    ===================================================================== */
 SET NOCOUNT ON;
@@ -14,6 +15,7 @@ END
 GO
 
 IF OBJECT_ID('dbo.IC_UpisiPresek', 'P')              IS NOT NULL DROP PROCEDURE dbo.IC_UpisiPresek;
+IF OBJECT_ID('dbo.IC_SacuvajPripadnost', 'P')        IS NOT NULL DROP PROCEDURE dbo.IC_SacuvajPripadnost;
 IF OBJECT_ID('dbo.IC_IzvestajSlika', 'P')            IS NOT NULL DROP PROCEDURE dbo.IC_IzvestajSlika;
 IF OBJECT_ID('dbo.IC_DodeliSlikuRucno', 'P')         IS NOT NULL DROP PROCEDURE dbo.IC_DodeliSlikuRucno;
 IF OBJECT_ID('dbo.IC_PoveziSlikeAutomatski', 'P')    IS NOT NULL DROP PROCEDURE dbo.IC_PoveziSlikeAutomatski;
@@ -46,6 +48,10 @@ IF OBJECT_ID('dbo.IC_CenovnikCena', 'U')       IS NOT NULL DROP TABLE dbo.IC_Cen
 IF OBJECT_ID('dbo.IC_CenovnikAkcija', 'U')     IS NOT NULL DROP TABLE dbo.IC_CenovnikAkcija;
 IF OBJECT_ID('dbo.IC_CenovnikParametar', 'U')  IS NOT NULL DROP TABLE dbo.IC_CenovnikParametar;
 IF OBJECT_ID('dbo.IC_Cenovnik', 'U')           IS NOT NULL DROP TABLE dbo.IC_Cenovnik;
+IF OBJECT_ID('dbo.IC_KolekcijaPripadnost', 'U') IS NOT NULL DROP TABLE dbo.IC_KolekcijaPripadnost;
+IF OBJECT_ID('dbo.IC_Kolekcija', 'U')          IS NOT NULL DROP TABLE dbo.IC_Kolekcija;
+IF OBJECT_ID('dbo.IC_Program', 'U')            IS NOT NULL DROP TABLE dbo.IC_Program;
+IF OBJECT_ID('dbo.IC_Migracija', 'U')          IS NOT NULL DROP TABLE dbo.IC_Migracija;
 GO
 
 IF TYPE_ID('dbo.IC_SlikaTip')       IS NOT NULL DROP TYPE dbo.IC_SlikaTip;

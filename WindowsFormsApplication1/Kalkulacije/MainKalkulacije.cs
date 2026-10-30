@@ -35,7 +35,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             IdGrupe();
             IdForme();
             PravoPristupa();
-            foreach (var l in new[] { label2, label8, lblIcUvoz, lblIcOpsti, lblIcPriprema, lblIcCenovnici }) l.Cursor = Cursors.Hand;
+            foreach (var l in new[] { label2, label3, label8, lblIcUvoz, lblIcOpsti, lblIcPriprema, lblIcCenovnici }) l.Cursor = Cursors.Hand;
         }
         public string IdGrupe()
         {
@@ -129,16 +129,16 @@ namespace WindowsFormsApplication1.Kalkulacije
 
         private void label2_Click(object sender, EventArgs e)
         {
-            // frmKolekcije nema proveru prava (izbacena 24.09., kao u MainPlaniranje), pa se otvara direktno
-            Kalkulacije.frmKolekcije kol = new frmKolekcije();
-            kol.Show();
+            // ZAH-008: kolekcije izracuna cena (IC_Kolekcija), ne stara tabela Kolekcije
+            var kol = new IzracunCena.frmICSifarnik(IzracunCena.VrstaSifarnika.Kolekcija);
+            if (kol.Pravo) { kol.Show(); } else { kol.Dispose(); }
         }
 
         private void label3_Click(object sender, EventArgs e)
         {
-            Kalkulacije.frmKolekcijePripadnost kolP = new frmKolekcijePripadnost();
-            PravoP = kolP.Pravo;
-            if (PravoP == true) { kolP.Show(); } else { return; }
+            // ZAH-008: pripadnost kolekcijama izracuna cena (IC_KolekcijaPripadnost), ne stara KolekcijePripadnost
+            IzracunCena.frmICPripadnost prip = new IzracunCena.frmICPripadnost();
+            if (prip.Pravo) { prip.Show(); } else { prip.Dispose(); }
         }
 
         private void label1_MouseEnter(object sender, EventArgs e)
@@ -163,12 +163,12 @@ namespace WindowsFormsApplication1.Kalkulacije
 
         private void label3_MouseEnter(object sender, EventArgs e)
         {
-            label3.ForeColor = Color.Blue;
+            label3.ForeColor = MeniHover;
         }
 
         private void label3_MouseLeave(object sender, EventArgs e)
         {
-            label3.ForeColor = Color.White;
+            label3.ForeColor = MeniTekst;
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -270,9 +270,9 @@ namespace WindowsFormsApplication1.Kalkulacije
 
         private void label8_Click(object sender, EventArgs e)
         {
-            // frmProgram nema proveru prava (izbacena 24.09., kao u MainPlaniranje), pa se otvara direktno
-            frmProgram program = new frmProgram();
-            program.Show();
+            // ZAH-008: programi izracuna cena (IC_Program), ne stara tabela Program
+            var program = new IzracunCena.frmICSifarnik(IzracunCena.VrstaSifarnika.Program);
+            if (program.Pravo) { program.Show(); } else { program.Dispose(); }
         }
 
         private void label8_MouseEnter(object sender, EventArgs e)

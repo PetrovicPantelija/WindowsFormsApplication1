@@ -1,7 +1,7 @@
 ﻿/* =====================================================================
    ZAH-008 Izracun cena - 02: nove IC_ tabele i tipovi (TVP)
    Baza: Jela_Test. Kompatibilno sa SQL Server 2008 R2.
-   Pokrenuti posle 01_Program_Kolekcije.sql.
+   Pokrenuti posle 01_IC_Sifarnici.sql.
    Skripta se sme pokretati vise puta (pravi samo ono sto ne postoji).
 
    Dodato u odnosu na specifikaciju (oznaceno sa "-- dodato"):
@@ -173,17 +173,17 @@ CREATE TABLE dbo.IC_CenovnikPresek (
 GO
 
 /* =====================================================================
-   FK prema postojecim tabelama Program i Kolekcije
-   Dodaju se samo ako Program/Kolekcije imaju kljuc na ID (skripta 01).
-   Ako ga nemaju, tabele su ipak napravljene; posle ispravke u 01
-   ponovo pokrenuti ovu skriptu i FK ce biti dodati.
+   FK prema sifarnicima izracuna cena IC_Program i IC_Kolekcija (skripta 01).
+   Ako FK vec postoji, ali pokazuje na staru tabelu Program/Kolekcije
+   (baza pravljena pre 30.10.), ne dira se: pokrenuti
+   08_Prelazak_na_IC_sifarnike.sql, koja prevezuje podatke i FK.
    ===================================================================== */
 DECLARE @Fk TABLE (Rb int, Ime sysname, Tabela sysname, Kolona sysname, Cilj sysname);
 INSERT INTO @Fk VALUES
-    (1, 'FK_IC_Param_Program',    'IC_CenovnikParametar', 'ProgramID',   'Program'),
-    (2, 'FK_IC_Param_Kolekcija',  'IC_CenovnikParametar', 'KolekcijaID', 'Kolekcije'),
-    (3, 'FK_IC_Stavka_Program',   'IC_CenovnikStavka',    'ProgramID',   'Program'),
-    (4, 'FK_IC_Stavka_Kolekcija', 'IC_CenovnikStavka',    'KolekcijaID', 'Kolekcije');
+    (1, 'FK_IC_Param_Program',    'IC_CenovnikParametar', 'ProgramID',   'IC_Program'),
+    (2, 'FK_IC_Param_Kolekcija',  'IC_CenovnikParametar', 'KolekcijaID', 'IC_Kolekcija'),
+    (3, 'FK_IC_Stavka_Program',   'IC_CenovnikStavka',    'ProgramID',   'IC_Program'),
+    (4, 'FK_IC_Stavka_Kolekcija', 'IC_CenovnikStavka',    'KolekcijaID', 'IC_Kolekcija');
 
 DECLARE @Rb int = 1, @Ime sysname, @Tabela sysname, @Kolona sysname, @Cilj sysname, @Sql nvarchar(max);
 
@@ -193,12 +193,7 @@ BEGIN
 
     IF OBJECT_ID('dbo.' + @Ime, 'F') IS NULL
     BEGIN
-        IF EXISTS (SELECT 1 FROM sys.indexes i
-                   JOIN sys.index_columns x ON x.object_id = i.object_id AND x.index_id = i.index_id AND x.key_ordinal > 0
-                   JOIN sys.columns c ON c.object_id = x.object_id AND c.column_id = x.column_id
-                   WHERE i.object_id = OBJECT_ID('dbo.' + @Cilj) AND i.is_unique = 1 AND c.name = 'ID'
-                     AND (SELECT COUNT(*) FROM sys.index_columns y
-                          WHERE y.object_id = i.object_id AND y.index_id = i.index_id AND y.key_ordinal > 0) = 1)
+        IF OBJECT_ID('dbo.' + @Cilj, 'U') IS NOT NULL
         BEGIN
             SET @Sql = N'ALTER TABLE dbo.' + QUOTENAME(@Tabela) + N' ADD CONSTRAINT ' + QUOTENAME(@Ime)
                      + N' FOREIGN KEY (' + QUOTENAME(@Kolona) + N') REFERENCES dbo.' + QUOTENAME(@Cilj) + N'(ID)';
@@ -206,8 +201,11 @@ BEGIN
             PRINT 'Dodat ' + @Ime + '.';
         END
         ELSE
-            PRINT 'PAZNJA: ' + @Ime + ' nije dodat - dbo.' + @Cilj + ' nema kljuc na ID (vidi skriptu 01).';
+            PRINT 'PAZNJA: ' + @Ime + ' nije dodat - nema tabele dbo.' + @Cilj + ' (pokrenuti 01_IC_Sifarnici.sql).';
     END
+    ELSE IF NOT EXISTS (SELECT 1 FROM sys.foreign_keys
+                        WHERE name = @Ime AND referenced_object_id = OBJECT_ID('dbo.' + @Cilj))
+        PRINT 'PAZNJA: ' + @Ime + ' pokazuje na staru tabelu - pokrenuti 08_Prelazak_na_IC_sifarnike.sql.';
 
     SET @Rb = @Rb + 1;
 END

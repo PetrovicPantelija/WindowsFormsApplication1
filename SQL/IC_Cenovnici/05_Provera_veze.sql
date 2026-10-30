@@ -34,8 +34,8 @@ WHERE (LTRIM(RTRIM(ISNULL(p.price_rs_WP, ''))) <> '' AND dbo.IC_UDecimal(p.price
 
 PRINT '5. Programi i kolekcije iz jela_products (ocekuje se 7 programa, 53 kolekcije)';
 SELECT g.ID AS ProgramID, g.Naziv AS Program, COUNT(DISTINCT k.ID) AS Kolekcija
-FROM dbo.Program g
-LEFT JOIN dbo.Kolekcije k ON k.ProgramID = g.ID
+FROM dbo.IC_Program g
+LEFT JOIN dbo.IC_Kolekcija k ON k.ProgramID = g.ID
 WHERE EXISTS (SELECT 1 FROM dbo.jela_products p WHERE LTRIM(RTRIM(p.NazivRobneGrupe)) = g.Naziv)
 GROUP BY g.ID, g.Naziv
 ORDER BY g.Naziv;

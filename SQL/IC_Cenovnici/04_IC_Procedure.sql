@@ -17,8 +17,9 @@ GO
    ===================================================================== */
 
 /* IC_OsveziProgrameIKolekcije
-   Upisuje nove nazive iz jela_products u Program i Kolekcije.
-   Postojece redove ne brise i ne prenumerise.                             */
+   Upisuje nove nazive iz jela_products u sifarnike izracuna cena
+   IC_Program i IC_Kolekcija. Postojece redove ne brise i ne prenumerise.
+   Stare tabele Program i Kolekcije (planiranje, pakovanje) se ne diraju.   */
 IF OBJECT_ID('dbo.IC_OsveziProgrameIKolekcije', 'P') IS NOT NULL DROP PROCEDURE dbo.IC_OsveziProgrameIKolekcije;
 GO
 CREATE PROCEDURE dbo.IC_OsveziProgrameIKolekcije
@@ -32,46 +33,87 @@ BEGIN
 
     BEGIN TRAN;
 
-    -- novi programi
-    SELECT DISTINCT LTRIM(RTRIM(p.NazivRobneGrupe)) AS Naziv
-    INTO #NoviP
+    INSERT INTO dbo.IC_Program (Naziv)
+    SELECT DISTINCT LTRIM(RTRIM(p.NazivRobneGrupe))
     FROM dbo.jela_products p
     WHERE LTRIM(RTRIM(ISNULL(p.NazivRobneGrupe, ''))) <> ''
-      AND NOT EXISTS (SELECT 1 FROM dbo.Program g WITH (UPDLOCK, HOLDLOCK)
+      AND NOT EXISTS (SELECT 1 FROM dbo.IC_Program g WITH (UPDLOCK, HOLDLOCK)
                       WHERE g.Naziv = LTRIM(RTRIM(p.NazivRobneGrupe)));
-
-    -- ID je IDENTITY u novoj tabeli; postojeca tabela mozda nema IDENTITY, pa ID = MAX + 1
-    IF COLUMNPROPERTY(OBJECT_ID('dbo.Program'), 'ID', 'IsIdentity') = 1
-        INSERT INTO dbo.Program (Naziv) SELECT Naziv FROM #NoviP;
-    ELSE
-        INSERT INTO dbo.Program (ID, Naziv)
-        SELECT (SELECT ISNULL(MAX(ID), 0) FROM dbo.Program WITH (UPDLOCK, HOLDLOCK))
-                 + ROW_NUMBER() OVER (ORDER BY Naziv), Naziv
-        FROM #NoviP;
     SET @NoviProgrami = @@ROWCOUNT;
 
-    -- nove kolekcije
-    SELECT DISTINCT LTRIM(RTRIM(p.NazivGrupe)) AS Naziv, g.ID AS ProgramID
-    INTO #NoveK
+    INSERT INTO dbo.IC_Kolekcija (Naziv, ProgramID)
+    SELECT DISTINCT LTRIM(RTRIM(p.NazivGrupe)), g.ID
     FROM dbo.jela_products p
-    JOIN dbo.Program g ON g.Naziv = LTRIM(RTRIM(p.NazivRobneGrupe))
+    JOIN dbo.IC_Program g ON g.Naziv = LTRIM(RTRIM(p.NazivRobneGrupe))
     WHERE LTRIM(RTRIM(ISNULL(p.NazivGrupe, ''))) <> ''
-      AND NOT EXISTS (SELECT 1 FROM dbo.Kolekcije k WITH (UPDLOCK, HOLDLOCK)
+      AND NOT EXISTS (SELECT 1 FROM dbo.IC_Kolekcija k WITH (UPDLOCK, HOLDLOCK)
                       WHERE k.Naziv = LTRIM(RTRIM(p.NazivGrupe)) AND k.ProgramID = g.ID);
-
-    IF COLUMNPROPERTY(OBJECT_ID('dbo.Kolekcije'), 'ID', 'IsIdentity') = 1
-        INSERT INTO dbo.Kolekcije (Naziv, ProgramID) SELECT Naziv, ProgramID FROM #NoveK;
-    ELSE
-        INSERT INTO dbo.Kolekcije (ID, Naziv, ProgramID)
-        SELECT (SELECT ISNULL(MAX(ID), 0) FROM dbo.Kolekcije WITH (UPDLOCK, HOLDLOCK))
-                 + ROW_NUMBER() OVER (ORDER BY ProgramID, Naziv), Naziv, ProgramID
-        FROM #NoveK;
     SET @NoveKolekcije = @@ROWCOUNT;
 
     COMMIT;
 
     IF @BezRezultata = 0
         SELECT @NoviProgrami AS NoviProgrami, @NoveKolekcije AS NoveKolekcije;
+END
+GO
+
+/* IC_SacuvajPripadnost
+   Rucna dodela maticnih podataka (@Stavke = LargoProizvodID) kolekciji.
+   @KolekcijaID = NULL uklanja rucnu dodelu (vazi opet naziv iz jela_products).
+   Odmah prepisuje program i kolekciju tih redova u opstim i radnim
+   cenovnicima; vazeci cenovnici ostaju zamrznuti.                          */
+IF OBJECT_ID('dbo.IC_SacuvajPripadnost', 'P') IS NOT NULL DROP PROCEDURE dbo.IC_SacuvajPripadnost;
+GO
+CREATE PROCEDURE dbo.IC_SacuvajPripadnost
+    @Stavke      dbo.IC_IdTip READONLY,
+    @KolekcijaID int = NULL,
+    @Korisnik    nvarchar(50)
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SET XACT_ABORT ON;
+
+    IF NOT EXISTS (SELECT 1 FROM @Stavke)
+    BEGIN
+        RAISERROR(N'Označite matične podatke.', 16, 1);
+        RETURN;
+    END
+    IF @KolekcijaID IS NOT NULL AND NOT EXISTS (SELECT 1 FROM dbo.IC_Kolekcija WHERE ID = @KolekcijaID)
+    BEGIN
+        RAISERROR(N'Kolekcija ne postoji.', 16, 1);
+        RETURN;
+    END
+
+    DECLARE @Broj int, @Cenovnik int;
+
+    BEGIN TRAN;
+
+    IF @KolekcijaID IS NULL
+        DELETE r FROM dbo.IC_KolekcijaPripadnost r JOIN @Stavke x ON x.ID = r.LargoProizvodID;
+    ELSE
+    BEGIN
+        UPDATE r SET KolekcijaID = @KolekcijaID, Korisnik = @Korisnik, Datum = SYSDATETIME()
+        FROM dbo.IC_KolekcijaPripadnost r JOIN @Stavke x ON x.ID = r.LargoProizvodID;
+        INSERT INTO dbo.IC_KolekcijaPripadnost (LargoProizvodID, KolekcijaID, Korisnik)
+        SELECT x.ID, @KolekcijaID, @Korisnik
+        FROM @Stavke x
+        WHERE NOT EXISTS (SELECT 1 FROM dbo.IC_KolekcijaPripadnost r WHERE r.LargoProizvodID = x.ID);
+    END
+    SET @Broj = (SELECT COUNT(*) FROM @Stavke);
+
+    -- opsti i radni cenovnici dobijaju novu pripadnost
+    UPDATE s SET ProgramID = m.ProgramID, KolekcijaID = m.KolekcijaID
+    FROM dbo.IC_CenovnikStavka s
+    JOIN @Stavke x ON x.ID = s.LargoProizvodID
+    JOIN dbo.IC_Cenovnik h ON h.CenovnikID = s.CenovnikID AND h.Vrsta IN ('Opsti', 'Radni')
+    JOIN dbo.vw_IC_MaticniPodatak m ON m.LargoProizvodID = s.LargoProizvodID
+    WHERE m.ProgramID IS NOT NULL AND m.KolekcijaID IS NOT NULL
+      AND (s.ProgramID <> m.ProgramID OR s.KolekcijaID <> m.KolekcijaID);
+    SET @Cenovnik = @@ROWCOUNT;
+
+    COMMIT;
+
+    SELECT @Broj AS Dodeljeno, @Cenovnik AS PromenjenoURedovimaCenovnika;
 END
 GO
 
