@@ -184,7 +184,8 @@ GO
 
 /* IC_ProglasiTroskoveNovim
    TP-Novi -> TP-Stari, marza nova -> Marza stara i VP nova -> VP aktuelna
-   (po Code, od 31.10.), SAMO za oznacene redove iz grida (@Stavke = StavkaID).
+   za CEO Code oznacenih redova iz grida (@Stavke = StavkaID): VP je po Code,
+   pa se proglasavaju i neoznacene varijante istog Code (od 31.10.).
    Bez oznacenih redova se ne radi nista.
    @SamoBroj = 1 samo vraca broj redova koji ce se promeniti (za potvrdu). */
 IF OBJECT_ID('dbo.IC_ProglasiTroskoveNovim', 'P') IS NOT NULL DROP PROCEDURE dbo.IC_ProglasiTroskoveNovim;
@@ -205,11 +206,21 @@ BEGIN
         RETURN;
     END
 
+    -- oznaceni redovi + sve varijante istog Code
+    DECLARE @Svi TABLE (ID int NOT NULL PRIMARY KEY);
+    INSERT INTO @Svi (ID)
+    SELECT s.StavkaID
+    FROM dbo.IC_CenovnikStavka s
+    WHERE s.CenovnikID = @CenovnikID
+      AND s.Code IN (SELECT o.Code FROM dbo.IC_CenovnikStavka o
+                     JOIN @Stavke x ON x.ID = o.StavkaID
+                     WHERE o.CenovnikID = @CenovnikID);
+
     IF @SamoBroj = 1
     BEGIN
         SELECT COUNT(*) AS BrojRedova
         FROM dbo.IC_CenovnikStavka s
-        JOIN @Stavke x ON x.ID = s.StavkaID
+        JOIN @Svi x ON x.ID = s.StavkaID
         JOIN dbo.IC_CenovnikCena c ON c.CenovnikID = s.CenovnikID AND c.Code = s.Code
         WHERE s.CenovnikID = @CenovnikID
           AND s.TrosakNovi > 0
@@ -233,13 +244,13 @@ BEGIN
         DatumTroskaStari = s.DatumTroskaNovi,
         MarzaStara       = ROUND(o.Marza, 4)
     FROM dbo.IC_CenovnikStavka s
-    JOIN @Stavke x ON x.ID = s.StavkaID
+    JOIN @Svi x ON x.ID = s.StavkaID
     JOIN dbo.vw_IC_CenovnikObracun o ON o.StavkaID = s.StavkaID
     WHERE s.CenovnikID = @CenovnikID
       AND s.TrosakNovi > 0;
     SET @Broj = @@ROWCOUNT;
 
-    -- VP nova -> VP aktuelna za Code oznacenih redova (VP je po Code, vazi za sve varijante)
+    -- VP nova -> VP aktuelna za Code proglasenih redova
     UPDATE c SET
         VPAktuelna  = c.VP,
         PovecanjeVP = 0,
@@ -248,7 +259,7 @@ BEGIN
     FROM dbo.IC_CenovnikCena c
     WHERE c.CenovnikID = @CenovnikID
       AND c.Code IN (SELECT s.Code FROM dbo.IC_CenovnikStavka s
-                     JOIN @Stavke x ON x.ID = s.StavkaID
+                     JOIN @Svi x ON x.ID = s.StavkaID
                      WHERE s.CenovnikID = @CenovnikID AND s.TrosakNovi > 0)
       AND (c.VPAktuelna IS NULL OR c.VPAktuelna <> c.VP OR c.PovecanjeVP <> 0);
 

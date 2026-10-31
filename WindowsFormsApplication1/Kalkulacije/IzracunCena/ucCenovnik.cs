@@ -394,6 +394,7 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
                 c.NumberFormatInfo = Brojevi(prikazEUR ? 2 : n.Value.Value);
             }
             OsveziGrid();
+            grid.Invalidate();
         }
 
         void Grid_QueryCellStyle(object sender, QueryCellStyleEventArgs e)
@@ -560,55 +561,23 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
             get { return grid.SelectedItems.OfType<StavkaObracuna>().ToList(); }
         }
 
-        // Primeni na prikazane: ceo cenovnik / program / kolekcija dobija parametar tog nivoa,
-        // inace (filter po koloni) svaki Code posebno. Vrednosti su u procentima, null = ne menja.
-        public void PrimeniNaPrikazane(decimal? rabatPct, decimal? akcijaPct, decimal? povecanjePct)
+        // Primeni za selektovane: rabat / akcija / % povecanja VP samo za oznacene redove.
+        // Rabat i akcija se vode po Code, pa vaze za sve varijante Code oznacenog reda.
+        // Vrednosti su u procentima, null = ne menja. Vraca broj Code na koje je primenjeno.
+        public int PrimeniNaOznacene(decimal? rabatPct, decimal? akcijaPct, decimal? povecanjePct)
         {
-            var prikazani = Prikazani;
-            if (prikazani.Count == 0) return;
+            var kodovi = Oznaceni.Select(s => s.Code).Distinct().ToList();
+            if (kodovi.Count == 0) return 0;
             decimal? rabat = rabatPct / 100, akcija = akcijaPct / 100;
 
-            if (rabatPct.HasValue || akcijaPct.HasValue)
+            foreach (var code in kodovi)
             {
-                bool filterKolona = prikazani.Count != Stavke.Count(s => izabraneKolekcije.Contains(s.KolekcijaID));
-                var nivoi = new List<ParametarCenovnika>();
-
-                if (filterKolona)
+                var istiCode = Stavke.Where(s => s.Code == code).ToList();
+                if (rabatPct.HasValue || akcijaPct.HasValue)
+                    PostaviParametar(NivoParametra.Code, null, null, code, rabat, rabatPct.HasValue, akcija, akcijaPct.HasValue);
+                if (povecanjePct.HasValue)
                 {
-                    foreach (var code in prikazani.Select(s => s.Code).Distinct())
-                        nivoi.Add(new ParametarCenovnika { Nivo = NivoParametra.Code, Code = code });
-                }
-                else if (izabraneKolekcije.Count == Stavke.Select(s => s.KolekcijaID).Distinct().Count())
-                {
-                    nivoi.Add(new ParametarCenovnika { Nivo = NivoParametra.Cenovnik });
-                }
-                else
-                {
-                    foreach (TreeNode np in trvProgrami.Nodes)
-                    {
-                        var kol = np.Nodes.Cast<TreeNode>().ToList();
-                        if (kol.All(k => k.Checked))
-                            nivoi.Add(new ParametarCenovnika { Nivo = NivoParametra.Program, ProgramID = (int)np.Tag });
-                        else
-                            foreach (var k in kol.Where(k => k.Checked))
-                                nivoi.Add(new ParametarCenovnika { Nivo = NivoParametra.Kolekcija, KolekcijaID = (int)k.Tag });
-                    }
-                }
-
-                foreach (var n in nivoi)
-                {
-                    PostaviParametar(n.Nivo, n.ProgramID, n.KolekcijaID, n.Code,
-                                     rabat, rabatPct.HasValue, akcija, akcijaPct.HasValue);
-                    PregaziNizeNivoe(n, rabatPct.HasValue, akcijaPct.HasValue);
-                }
-            }
-
-            if (povecanjePct.HasValue)
-            {
-                foreach (var g in prikazani.GroupBy(s => s.Code))
-                {
-                    var istiCode = Stavke.Where(s => s.Code == g.Key).ToList();
-                    ObracunCene.PostaviPovecanje(istiCode, g.First(), povecanjePct.Value / 100);
+                    ObracunCene.PostaviPovecanje(istiCode, istiCode[0], povecanjePct.Value / 100);
                     OznaciIzmenjene(istiCode);
                 }
             }
@@ -617,18 +586,7 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
             OznaciRazliciteMarze(Stavke);
             OsveziGrid();
             JaviPromenu();
-        }
-
-        // posle "Primeni na prikazane" nizi nivoi unutar izabranog vise ne vaze;
-        // brisu se ovde (i salju kao izmenjeni), pa baza ne mora sama da ih brise
-        void PregaziNizeNivoe(ParametarCenovnika visi, bool rabat, bool akcija)
-        {
-            var redovi = Stavke.Where(visi.Vazi).ToList();
-            foreach (var p in Parametri.Svi.Where(p => p.Nivo > visi.Nivo && redovi.Any(p.Vazi)))
-            {
-                if (rabat && p.Rabat.HasValue) { p.Rabat = null; p.PromenjenRabat = true; }
-                if (akcija && p.Akcija.HasValue) { p.Akcija = null; p.PromenjenaAkcija = true; }
-            }
+            return kodovi.Count;
         }
 
         // Primeni predlog na oznacene redove (administrator)

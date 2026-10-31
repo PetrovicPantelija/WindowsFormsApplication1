@@ -202,8 +202,10 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
 
         void btnProglasiTroskove_Click(object sender, EventArgs e)
         {
-            // samo oznaceni redovi
-            var oznaceni = uc.Oznaceni.Select(s => s.StavkaID).ToList();
+            // oznaceni redovi i sve varijante njihovog Code (VP je po Code)
+            var kodovi = new System.Collections.Generic.HashSet<string>(uc.Oznaceni.Select(s => s.Code));
+            int brojOznacenih = uc.Oznaceni.Count;
+            var oznaceni = uc.Stavke.Where(s => kodovi.Contains(s.Code)).Select(s => s.StavkaID).ToList();
             if (oznaceni.Count == 0)
             {
                 MessageBox.Show(this, "Označite redove za koje se troškovi proglašavaju novim (Ctrl / Shift + klik).",
@@ -216,19 +218,20 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
                 int broj = baza.BrojZaProglasenjeTroskova(uc.CenovnikID, oznaceni, korisnik);
                 if (broj == 0)
                 {
-                    MessageBox.Show(this, "Među " + oznaceni.Count + " označenih redova nema nijednog u kome se TP-Novi razlikuje od TP-Stari\n" +
+                    MessageBox.Show(this, "Među " + oznaceni.Count + " redova (označeni i varijante istog Code) nema nijednog u kome se TP-Novi razlikuje od TP-Stari\n" +
                                     "ili VP nova od VP aktuelne.",
                                     "Proglasi troškove novim", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
                 if (MessageBox.Show(this,
-                        "Označeno redova: " + oznaceni.Count + ", od toga se menja: " + broj + ".\n\n" +
-                        "U tim redovima TP-Novi postaje TP-Stari, VP nova postaje VP aktuelna (za ceo Code),\n" +
+                        "Označeno redova: " + brojOznacenih + " (" + kodovi.Count + " Code); sa svim varijantama tih Code: " +
+                        oznaceni.Count + ", od toga se menja: " + broj + ".\n\n" +
+                        "Proglašava se ceo Code: TP-Novi postaje TP-Stari, VP nova postaje VP aktuelna,\n" +
                         "a marža nova postaje marža stara. Od tada se VP sa PDV, rabat i akcije računaju od nove VP.\n" +
                         "Poređenje sa starim troškovima i cenama se za njih gubi. Ostali redovi se ne menjaju.\n\nNastaviti?",
                         "Proglasi troškove novim", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) != DialogResult.Yes) return;
                 int promenjeno = baza.ProglasiTroskoveNovim(uc.CenovnikID, oznaceni, korisnik);
-                uc.OsveziTroskove(oznaceni);   // samo oznaceni redovi; stablo i filter ostaju
+                uc.OsveziTroskove(oznaceni);   // oznaceni i varijante istog Code; stablo i filter ostaju
                 PrikaziInfo();
                 MessageBox.Show(this, "Troškovi su proglašeni novim u " + promenjeno + " redova.",
                                 "Proglasi troškove novim", MessageBoxButtons.OK, MessageBoxIcon.Information);

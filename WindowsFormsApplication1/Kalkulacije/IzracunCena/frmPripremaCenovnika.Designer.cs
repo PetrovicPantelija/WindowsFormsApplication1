@@ -227,7 +227,7 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
             this.btnPrimeni.Name = "btnPrimeni";
             this.btnPrimeni.Size = new System.Drawing.Size(150, 30);
             this.btnPrimeni.TabIndex = 5;
-            this.btnPrimeni.Text = "Primeni na prikazane";
+            this.btnPrimeni.Text = "Primeni za selektovane";
             this.btnPrimeni.Click += new System.EventHandler(this.btnPrimeni_Click);
             //
             // btnIzvoz

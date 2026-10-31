@@ -198,12 +198,12 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
             if (!decimal.TryParse(s, NumberStyles.Number, CultureInfo.CurrentCulture, out d)
                 && !decimal.TryParse(s, NumberStyles.Number, CultureInfo.InvariantCulture, out d))
             {
-                MessageBox.Show(naziv + ": unesite broj.", "Primeni na prikazane");
+                MessageBox.Show(naziv + ": unesite broj.", "Primeni za selektovane");
                 return false;
             }
             if (d < min || d > max)
             {
-                MessageBox.Show(naziv + " mora biti između " + min + " i " + max + ".", "Primeni na prikazane");
+                MessageBox.Show(naziv + " mora biti između " + min + " i " + max + ".", "Primeni za selektovane");
                 return false;
             }
             vrednost = d;
@@ -218,13 +218,20 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
             if (!Procitaj(txtPovecanje, "% povećanja VP", -99, 1000, out povecanje)) return;
             if (!rabat.HasValue && !akcija.HasValue && !povecanje.HasValue)
             {
-                MessageBox.Show(this, "Upišite rabat, akciju ili % povećanja VP.", "Primeni na prikazane");
+                MessageBox.Show(this, "Upišite rabat, akciju ili % povećanja VP.", "Primeni za selektovane");
                 return;
             }
-            int broj = uc.Prikazani.Count;
-            if (MessageBox.Show(this, "Primeniti na " + broj + " prikazanih redova?", "Primeni na prikazane",
+            var oznaceni = uc.Oznaceni;
+            if (oznaceni.Count == 0)
+            {
+                MessageBox.Show(this, "Označite redove u gridu (Ctrl / Shift + klik, Ctrl+A za sve).", "Primeni za selektovane");
+                return;
+            }
+            int kodova = oznaceni.Select(s => s.Code).Distinct().Count();
+            if (MessageBox.Show(this, "Primeniti na " + oznaceni.Count + " označenih redova (" + kodova + " Code)?\n" +
+                    "Rabat, akcija i VP važe za ceo Code, pa i za njegove neoznačene varijante.", "Primeni za selektovane",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
-            uc.PrimeniNaPrikazane(rabat, akcija, povecanje);
+            uc.PrimeniNaOznacene(rabat, akcija, povecanje);
             txtRabat.Clear(); txtAkcija.Clear(); txtPovecanje.Clear();
         }
 
