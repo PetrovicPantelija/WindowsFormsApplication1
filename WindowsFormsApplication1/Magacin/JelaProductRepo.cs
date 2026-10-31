@@ -247,8 +247,10 @@ namespace WindowsFormsApplication1.Magacin
         private static bool TryDecimal(string s, out decimal d)
         {
             s = s.Replace(" ", "");
-            if (s.Contains(",") && !s.Contains(".")) s = s.Replace(',', '.');   // 48,6 -> 48.6
-            else if (s.Contains(",")) s = s.Replace(",", "");                    // 1,234.50 -> 1234.50
+            int zarez = s.LastIndexOf(','), tacka = s.LastIndexOf('.');
+            if (zarez >= 0 && tacka < 0) s = s.Replace(',', '.');                    // 48,6 -> 48.6
+            else if (zarez > tacka) s = s.Replace(".", "").Replace(',', '.');        // 1.234,50 -> 1234.50 (CSV iz srpskog Excela)
+            else if (zarez >= 0) s = s.Replace(",", "");                             // 1,234.50 -> 1234.50
             return decimal.TryParse(s, NumberStyles.Number, CultureInfo.InvariantCulture, out d);
         }
 

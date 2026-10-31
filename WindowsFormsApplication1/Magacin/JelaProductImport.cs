@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text;
 using Syncfusion.XlsIO;
 
 namespace WindowsFormsApplication1.Magacin
@@ -43,10 +44,24 @@ namespace WindowsFormsApplication1.Magacin
 
         public static ImportPlan Build(string cs, string path)
         {
-            var plan = new ImportPlan();
-
             string[] header;
             List<string[]> rows = ReadSheet(path, out header);
+            return Build(cs, header, rows);
+        }
+
+        /// <summary>Isto kao Excel, ali iz CSV fajla (prvi red su nazivi kolona; razdvajac i kodna strana se prepoznaju).</summary>
+        public static ImportPlan BuildFromCsv(string cs, string path)
+        {
+            string[] header;
+            List<string[]> rows = ReadCsv(path, out header);
+            if (header == null)
+                return new ImportPlan { Fatal = "CSV fajl je prazan." };
+            return Build(cs, header, rows);
+        }
+
+        private static ImportPlan Build(string cs, string[] header, List<string[]> rows)
+        {
+            var plan = new ImportPlan();
 
             var col = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
             for (int i = 0; i < header.Length; i++)
@@ -198,6 +213,94 @@ namespace WindowsFormsApplication1.Magacin
                     }
                     wb.Close();
                 }
+            }
+            return rows;
+        }
+
+        // ------------------------------------------------------------ citanje CSV-a
+
+        /// <summary>
+        /// CSV: razdvajac je ; , ili tab (onaj kog u prvom redu ima najvise), polja pod navodnicima mogu sadrzati
+        /// razdvajac, "" i prelom reda. Kodna strana: UTF-8 (sa ili bez BOM-a), a ako fajl nije ispravan UTF-8 - Windows-1250.
+        /// </summary>
+        private static List<string[]> ReadCsv(string path, out string[] header)
+        {
+            byte[] bytes;
+            using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            using (var ms = new MemoryStream())
+            {
+                fs.CopyTo(ms);
+                bytes = ms.ToArray();
+            }
+
+            string text;
+            try
+            {
+                text = new UTF8Encoding(false, true).GetString(bytes);
+            }
+            catch (DecoderFallbackException)
+            {
+                text = Encoding.GetEncoding(1250).GetString(bytes);
+            }
+            if (text.Length > 0 && text[0] == '﻿') text = text.Substring(1);
+
+            List<string[]> all = ParseCsv(text, DetectDelimiter(text));
+            header = all.Count > 0 ? all[0].Select(h => h.Trim()).ToArray() : null;
+            if (all.Count > 0) all.RemoveAt(0);
+            return all;
+        }
+
+        private static char DetectDelimiter(string text)
+        {
+            int[] count = new int[3];
+            char[] cand = { ';', ',', '\t' };
+            bool quoted = false;
+            foreach (char ch in text)
+            {
+                if (ch == '"') quoted = !quoted;
+                else if (!quoted && (ch == '\n' || ch == '\r')) break;
+                else if (!quoted) for (int i = 0; i < cand.Length; i++) if (ch == cand[i]) count[i]++;
+            }
+            int best = 0;
+            for (int i = 1; i < cand.Length; i++) if (count[i] > count[best]) best = i;
+            return cand[best];
+        }
+
+        private static List<string[]> ParseCsv(string text, char delim)
+        {
+            var rows = new List<string[]>();
+            var line = new List<string>();
+            var sb = new StringBuilder();
+            bool quoted = false;
+
+            for (int i = 0; i < text.Length; i++)
+            {
+                char ch = text[i];
+                if (quoted)
+                {
+                    if (ch == '"')
+                    {
+                        if (i + 1 < text.Length && text[i + 1] == '"') { sb.Append('"'); i++; }
+                        else quoted = false;
+                    }
+                    else sb.Append(ch);
+                }
+                else if (ch == '"') quoted = true;
+                else if (ch == delim) { line.Add(sb.ToString()); sb.Clear(); }
+                else if (ch == '\r' || ch == '\n')
+                {
+                    if (ch == '\r' && i + 1 < text.Length && text[i + 1] == '\n') i++;
+                    line.Add(sb.ToString());
+                    sb.Clear();
+                    rows.Add(line.ToArray());
+                    line.Clear();
+                }
+                else sb.Append(ch);
+            }
+            if (sb.Length > 0 || line.Count > 0)
+            {
+                line.Add(sb.ToString());
+                rows.Add(line.ToArray());
             }
             return rows;
         }

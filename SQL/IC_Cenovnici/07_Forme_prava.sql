@@ -5,6 +5,7 @@
      administrator:   frmUvozExcel, frmOpstiCenovnik
      drugi korisnik:  frmPripremaCenovnika, frmCenovnici
      sifarnici:       frmICProgrami, frmICKolekcije, frmICPripadnost (administrator)
+     proizvodi:       frmICProizvodi (jela_products)
    Skripta se sme pokretati vise puta.
    ===================================================================== */
 SET NOCOUNT ON;
@@ -31,3 +32,9 @@ IF NOT EXISTS (SELECT 1 FROM dbo.Forme WHERE RTRIM(Code) = 'frmICPripadnost')
 
 SELECT IdForme, Naziv, Code FROM dbo.Forme
 WHERE RTRIM(Code) IN ('frmICProgrami', 'frmICKolekcije', 'frmICPripadnost');
+
+-- proizvodi (31.10.): jela_products - unos, izmena, slika, uvoz iz CSV
+IF NOT EXISTS (SELECT 1 FROM dbo.Forme WHERE RTRIM(Code) = 'frmICProizvodi')
+    EXEC dbo.InsertForme @Naziv = N'Izračun cena - Proizvodi (jela_products)', @Code = 'frmICProizvodi';
+
+SELECT IdForme, Naziv, Code FROM dbo.Forme WHERE RTRIM(Code) = 'frmICProizvodi';

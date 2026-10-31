@@ -893,6 +893,9 @@
     <Compile Include="Kalkulacije\IzracunCena\frmICPripadnost.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Kalkulacije\IzracunCena\frmICProizvodi.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Kalkulacije\IzracunCena\frmICSifarnik.cs">
       <SubType>Form</SubType>
     </Compile>
