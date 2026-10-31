@@ -71,6 +71,9 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
                 Zaglavlje = baza.Zaglavlje(cenovnikID);
                 Valuta = Zaglavlje["Valuta"].ToString();
                 Stavke = baza.Stavke(cenovnikID);
+                bool opsti = Zaglavlje["Vrsta"].ToString() == "Opsti";
+                foreach (var s in Stavke) s.OsnovaAktuelna = opsti;   // do proglasenja troska vazi VP aktuelna
+                prikazEUR = false;
                 Parametri = baza.Parametri(cenovnikID);
                 Parametri.Primeni(Stavke);
                 OznaciRazliciteMarze(Stavke);
@@ -105,6 +108,16 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
                 s.MarzaStara = r.IsNull("MarzaStara") ? (decimal?)null : Convert.ToDecimal(r["MarzaStara"]);
                 s.BezTroskaUBazi = Convert.ToBoolean(r["BezTroska"]);
                 promenjeni.Add(s);
+
+                // proglasenje prepisuje VP nova -> VP aktuelna po Code: vazi za sve varijante, i neoznacene
+                decimal? vpAkt = r.IsNull("VPAktuelna") ? (decimal?)null : Convert.ToDecimal(r["VPAktuelna"]);
+                foreach (var v in Stavke.Where(x => x.Code == s.Code))
+                {
+                    v.VPAktuelna = vpAkt;
+                    v.VP = Convert.ToDecimal(r["VP"]);
+                    v.PovecanjeVP = Convert.ToDecimal(r["PovecanjeVP"]);
+                    if (!promenjeni.Contains(v)) promenjeni.Add(v);
+                }
             }
             foreach (var s in promenjeni) s.Obavesti();
             Zaglavlje = baza.Zaglavlje(CenovnikID);
@@ -196,6 +209,16 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
             };
         }
 
+        // kolone sa iznosima: osnovni naslov i broj decimala (u evrima uvek 2)
+        readonly Dictionary<string, KeyValuePair<string, int>> nazivIznosa = new Dictionary<string, KeyValuePair<string, int>>();
+        bool prikazEUR;
+
+        GridNumericColumn Iznos(string mapa, string naslov, int decimala, int sirina, bool unos = false)
+        {
+            nazivIznosa[mapa] = new KeyValuePair<string, int>(naslov, decimala);
+            return Broj(mapa, naslov, decimala, sirina, unos);
+        }
+
         void NapraviKolone()
         {
             if (grid.Columns.Count > 0) SacuvajRaspored();   // pre promene cenovnika zapamti trenutni raspored
@@ -214,46 +237,46 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
             grid.Columns.Add(new GridTextColumn { MappingName = "Program", HeaderText = "Program", Visible = false });
             grid.Columns.Add(new GridTextColumn { MappingName = "Kolekcija", HeaderText = "Kolekcija", Visible = false });
 
-            grid.Columns.Add(Broj("TrosakStari", "TP-Stari", 2, 90));
-            grid.Columns.Add(Broj("TrosakNovi", "TP-Novi", 2, 90));
+            // redosled: TP-Stari, TP-Novi, Promena TP %, VP aktuelna, VP nova, Vrednost promene VP,
+            // % povecanja VP, Marza stara, Marza nova, Promena marze (p.p.), pa VP sa PDV, rabat, akcije
+            nazivIznosa.Clear();
+            grid.Columns.Add(Iznos("TrosakStariPrikaz", "TP-Stari", 2, 90));
+            grid.Columns.Add(Iznos("TrosakNoviPrikaz", "TP-Novi", 2, 90));
             grid.Columns.Add(Broj("PromenaTroskaPct", "Promena TP %", 2, 85));
-            grid.Columns.Add(Broj("VPAktuelna", "VP aktuelna", 0, 85));
+            grid.Columns.Add(Iznos("VPAktuelnaPrikaz", "VP aktuelna", 0, 85));
+            grid.Columns.Add(Iznos("VPUnos", "VP nova (" + v + ")", 0, 85, admin || korisnik));
+            grid.Columns.Add(Iznos("RazlikaVPPrikaz", "Vrednost promene VP", 0, 85));
             grid.Columns.Add(Broj("PovecanjeVPPct", "% povećanja VP", 2, 90, admin));
-            grid.Columns.Add(Broj("VPUnos", "VP (" + v + ")", 0, 85, admin || korisnik));
-            grid.Columns.Add(Broj("MarzaPct", "Marža %", 2, 80, admin));
             grid.Columns.Add(Broj("MarzaStaraPct", "Marža stara %", 2, 85));
-            if (rsd) grid.Columns.Add(Broj("VPsaPDV", "VP sa PDV", 0, 85));
+            grid.Columns.Add(Broj("MarzaPct", "Marža nova %", 2, 80, admin));
+            grid.Columns.Add(Broj("PromenaMarzePct", "Promena marže (p.p.)", 2, 90));
+            if (rsd) grid.Columns.Add(Iznos("VPsaPDVPrikaz", "VP sa PDV", 0, 85));
             grid.Columns.Add(Broj("RabatPct", "Rabat %", 2, 70, korisnik));
-            grid.Columns.Add(Broj("CenaPosleRabataUnos", "Posle rabata", 0, 90, korisnik));
+            grid.Columns.Add(Iznos("CenaPosleRabataUnos", "Posle rabata", 0, 90, korisnik));
             grid.Columns.Add(Broj("JelaMarzaPct", "Jela marža %", 2, 85));
             if (rsd) grid.Columns.Add(Broj("SalonMarzaPct", "Salon marža %", 2, 90));
             grid.Columns.Add(Broj("AkcijaPct", "Akcija %", 2, 70, korisnik));
-            grid.Columns.Add(Broj("CenaAkcija", "Cena u akciji", 0, 90));
+            grid.Columns.Add(Iznos("CenaAkcijaPrikaz", "Cena u akciji", 0, 90));
             grid.Columns.Add(Broj("JelaMarzaAkcijaPct", "Jela marža akcija %", 2, 110));
             grid.Columns.Add(new GridTextColumn { MappingName = "AkcijePoredjenjeTekst", HeaderText = "Akcije za poređenje", Width = 120, AllowEditing = false });
-            grid.Columns.Add(Broj("Poredjenje1Cena", "Por. 1 cena", 0, 80));
+            grid.Columns.Add(Iznos("Poredjenje1CenaPrikaz", "Por. 1 cena", 0, 80));
             grid.Columns.Add(Broj("Poredjenje1JelaPct", "Por. 1 Jela %", 2, 85));
-            grid.Columns.Add(Broj("Poredjenje2Cena", "Por. 2 cena", 0, 80));
+            grid.Columns.Add(Iznos("Poredjenje2CenaPrikaz", "Por. 2 cena", 0, 80));
             grid.Columns.Add(Broj("Poredjenje2JelaPct", "Por. 2 Jela %", 2, 85));
-            grid.Columns.Add(Broj("Poredjenje3Cena", "Por. 3 cena", 0, 80));
+            grid.Columns.Add(Iznos("Poredjenje3CenaPrikaz", "Por. 3 cena", 0, 80));
             grid.Columns.Add(Broj("Poredjenje3JelaPct", "Por. 3 Jela %", 2, 85));
             if (admin)
             {
-                grid.Columns.Add(Broj("PredlogVPPratiTrosak", "Predlog: prati trošak", 0, 115));
-                grid.Columns.Add(Broj("PredlogVPStaraMarza", "Predlog: stara marža", 0, 115));
+                grid.Columns.Add(Iznos("PredlogVPPratiTrosakPrikaz", "Predlog: prati trošak", 0, 115));
+                grid.Columns.Add(Iznos("PredlogVPStaraMarzaPrikaz", "Predlog: stara marža", 0, 115));
             }
-            if (rsd)
-            {
-                grid.Columns.Add(Broj("VPuEUR", "VP €", 0, 70));
-                grid.Columns.Add(Broj("CenaPosleRabatauEUR", "Posle rabata €", 0, 90));
-                PrikaziEUR(false);
-            }
+            PrikaziEUR(false);
 
             // kolone za poredjenje se vide samo ako postoje akcije za poredjenje
             int najvise = Stavke.Count == 0 ? 0 : Stavke.Max(s => s.AkcijePoredjenje.Count);
             for (int i = 1; i <= 3; i++)
             {
-                grid.Columns["Poredjenje" + i + "Cena"].Visible = i <= najvise;
+                grid.Columns["Poredjenje" + i + "CenaPrikaz"].Visible = i <= najvise;
                 grid.Columns["Poredjenje" + i + "JelaPct"].Visible = i <= najvise;
             }
             grid.Columns["AkcijePoredjenjeTekst"].Visible = najvise > 0;
@@ -357,10 +380,20 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
             catch { }
         }
 
+        // Devizni: iznosi dinarskog cenovnika se prikazuju u evrima po kursu sa forme (kurs se menja odmah);
+        // VP nova i cena posle rabata mogu se uneti i u evrima, a cuvaju se u dinarima.
         public void PrikaziEUR(bool prikazi)
         {
-            if (grid.Columns["VPuEUR"] != null) grid.Columns["VPuEUR"].Visible = prikazi;
-            if (grid.Columns["CenaPosleRabatauEUR"] != null) grid.Columns["CenaPosleRabatauEUR"].Visible = prikazi;
+            prikazEUR = prikazi && Valuta == ObracunCene.RSD;
+            foreach (var s in Stavke) s.PrikazEUR = prikazEUR;
+            foreach (var n in nazivIznosa)
+            {
+                var c = grid.Columns[n.Key] as GridNumericColumn;
+                if (c == null) continue;
+                c.HeaderText = prikazEUR ? n.Value.Key.Replace(" (din)", "") + " (€)" : n.Value.Key;
+                c.NumberFormatInfo = Brojevi(prikazEUR ? 2 : n.Value.Value);
+            }
+            OsveziGrid();
         }
 
         void Grid_QueryCellStyle(object sender, QueryCellStyleEventArgs e)
@@ -387,6 +420,13 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
                 if (r.PromenaTroska.Value > 0) e.Style.TextColor = Rast;
                 else if (r.PromenaTroska.Value < 0) e.Style.TextColor = Pad;
             }
+
+            // VP i marza: rast zeleno, pad crveno
+            decimal? promena = m == "RazlikaVPPrikaz" ? r.RazlikaVP
+                             : m == "PromenaMarzePct" ? r.PromenaMarze
+                             : m == "PovecanjeVPPct" ? r.PovecanjeVPStvarno : (decimal?)null;
+            if (promena.HasValue && promena.Value > 0) e.Style.TextColor = Pad;
+            else if (promena.HasValue && promena.Value < 0) e.Style.TextColor = Rast;
         }
 
         /* =====================================================================
@@ -466,8 +506,8 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
                     PostaviParametar(NivoParametra.Code, null, null, red.Code, null, false, v.HasValue ? v / 100 : null, true);
                     break;
                 case StavkaObracuna.PoljeCenaRabat:
-                    if (!v.HasValue || red.VP == 0) return;
-                    PostaviParametar(NivoParametra.Code, null, null, red.Code, ObracunCene.RabatIzCene(red.VP, v.Value), true, null, false);
+                    if (!v.HasValue || red.VPOsnova == 0) return;
+                    PostaviParametar(NivoParametra.Code, null, null, red.Code, ObracunCene.RabatIzCene(red.VPOsnova, v.Value), true, null, false);
                     break;
             }
             Parametri.Primeni(istiCode);

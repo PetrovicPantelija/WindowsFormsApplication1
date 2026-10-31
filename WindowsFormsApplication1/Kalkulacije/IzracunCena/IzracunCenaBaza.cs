@@ -139,8 +139,11 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
         {
             string ids = string.Join(",", stavkaIDs.Distinct().Select(i => i.ToString()));   // samo int, bez unosa korisnika
             if (ids == "") return new DataTable();
-            return Upit("SELECT StavkaID, TrosakStari, TrosakNovi, DatumTroskaStari, DatumTroskaNovi, MarzaStara, BezTroska " +
-                        "FROM dbo.IC_CenovnikStavka WHERE CenovnikID = @ID AND StavkaID IN (" + ids + ")",
+            return Upit("SELECT s.StavkaID, s.TrosakStari, s.TrosakNovi, s.DatumTroskaStari, s.DatumTroskaNovi, s.MarzaStara, s.BezTroska, " +
+                        "c.VPAktuelna, c.VP, c.PovecanjeVP " +
+                        "FROM dbo.IC_CenovnikStavka s " +
+                        "JOIN dbo.IC_CenovnikCena c ON c.CenovnikID = s.CenovnikID AND c.Code = s.Code " +
+                        "WHERE s.CenovnikID = @ID AND s.StavkaID IN (" + ids + ")",
                         new SqlParameter("@ID", cenovnikID));
         }
 

@@ -220,7 +220,7 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
             this.chkEUR.Name = "chkEUR";
             this.chkEUR.Size = new System.Drawing.Size(86, 19);
             this.chkEUR.TabIndex = 7;
-            this.chkEUR.Text = "Prikaži u €";
+            this.chkEUR.Text = "Devizni (€)";
             this.chkEUR.CheckedChanged += new System.EventHandler(this.chkEUR_CheckedChanged);
             //
             // btnPoveziSlike

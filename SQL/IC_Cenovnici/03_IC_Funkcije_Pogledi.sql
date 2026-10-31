@@ -97,7 +97,10 @@ GO
    Zaokruzivanje (kao u Excelu):
      VP, VP sa PDV, cena posle rabata, cena u akciji -> ceo dinar / evro;
      Jela marze se racunaju od NEzaokruzenih cena.
-   TP reda = TP-Novi; ako ga nema, TP-Stari.                                */
+   TP reda = TP-Novi; ako ga nema, TP-Stari.
+   Marza = marza nova (VP prema TP reda). VP sa PDV, rabat, akcije, Jela i
+   Salon marza: u opstem cenovniku od VP aktuelne (VPOsnova) dok se trosak
+   ne proglasi novim (31.10.), u radnom i vazecem od VP.                    */
 IF OBJECT_ID('dbo.vw_IC_CenovnikObracun', 'V') IS NOT NULL DROP VIEW dbo.vw_IC_CenovnikObracun;
 GO
 CREATE VIEW dbo.vw_IC_CenovnikObracun AS
@@ -115,23 +118,25 @@ SELECT s.StavkaID, s.CenovnikID, h.Valuta, h.Kurs, h.PDV,
        x.TPuValuti,
        c.VP / NULLIF(x.TPuValuti, 0) - 1                                    AS Marza,
        s.MarzaStara,
-       CASE WHEN h.Valuta = 'RSD' THEN ROUND(c.VP * (1 + h.PDV), 0) END     AS VPsaPDV,
+       b.MarzaStaraObracun,                                                 -- sacuvana, inace VP aktuelna / TP-Stari - 1
+       b.VPOsnova,
+       CASE WHEN h.Valuta = 'RSD' THEN ROUND(b.VPOsnova * (1 + h.PDV), 0) END AS VPsaPDV,
        r.Rabat,
        ROUND(n.CenaRabat, 0)                                                AS CenaPosleRabata,
        n.CenaRabat / NULLIF(x.TPuValuti, 0) - 1                             AS JelaMarza,
        CASE WHEN h.Valuta = 'RSD'
-            THEN (c.VP - n.CenaRabat) / NULLIF(n.CenaRabat, 0) END          AS SalonMarza,
+            THEN (b.VPOsnova - n.CenaRabat) / NULLIF(n.CenaRabat, 0) END    AS SalonMarza,
        a.Akcija,
        ROUND(n.CenaAkcija, 0)                                               AS CenaAkcija,
        n.CenaAkcija / NULLIF(x.TPuValuti, 0) - 1                            AS JelaMarzaAkcija,
        ap.ParametarID                                                       AS ParametarAkcijaID,
        -- predlozi za administratora
        ROUND(ISNULL(c.VPAktuelna, c.VP) * s.TrosakNovi / NULLIF(s.TrosakStari, 0), 0) AS PredlogVPPratiTrosak,
-       ROUND(s.TrosakNovi * (1 + s.MarzaStara)
+       ROUND(s.TrosakNovi * (1 + b.MarzaStaraObracun)
              / CASE WHEN h.Valuta = 'RSD' THEN 1 ELSE h.Kurs END, 0)        AS PredlogVPStaraMarza,
        -- iznosi u evrima (dinarski cenovnik)
-       CASE WHEN h.Valuta = 'RSD' THEN ROUND(c.VP / h.Kurs, 0) END                  AS VPuEUR,
-       CASE WHEN h.Valuta = 'RSD' THEN ROUND(c.VP * (1 + h.PDV) / h.Kurs, 0) END    AS VPsaPDVuEUR,
+       CASE WHEN h.Valuta = 'RSD' THEN ROUND(b.VPOsnova / h.Kurs, 0) END             AS VPuEUR,
+       CASE WHEN h.Valuta = 'RSD' THEN ROUND(b.VPOsnova * (1 + h.PDV) / h.Kurs, 0) END AS VPsaPDVuEUR,
        CASE WHEN h.Valuta = 'RSD' THEN ROUND(n.CenaRabat / h.Kurs, 0) END           AS CenaPosleRabatauEUR,
        CASE WHEN h.Valuta = 'RSD' THEN ROUND(n.CenaAkcija / h.Kurs, 0) END          AS CenaAkcijauEUR
 FROM dbo.IC_CenovnikStavka s
@@ -142,6 +147,12 @@ LEFT JOIN dbo.IC_Kolekcija k ON k.ID = s.KolekcijaID
 CROSS APPLY (SELECT ISNULL(s.TrosakNovi, s.TrosakStari) AS TP,
                     CASE h.Valuta WHEN 'RSD' THEN ISNULL(s.TrosakNovi, s.TrosakStari)
                                   ELSE ISNULL(s.TrosakNovi, s.TrosakStari) / h.Kurs END AS TPuValuti) x
+-- osnova za VP sa PDV, rabat i akcije: u opstem cenovniku VP aktuelna dok se trosak ne proglasi novim
+-- (tada VP postaje VP aktuelna), u radnom i vazecem VP
+CROSS APPLY (SELECT CASE WHEN h.Vrsta = 'Opsti' THEN ISNULL(c.VPAktuelna, c.VP) ELSE c.VP END AS VPOsnova,
+                    ISNULL(s.MarzaStara,
+                           c.VPAktuelna / NULLIF(CASE h.Valuta WHEN 'RSD' THEN s.TrosakStari
+                                                 ELSE s.TrosakStari / h.Kurs END, 0) - 1) AS MarzaStaraObracun) b
 OUTER APPLY (SELECT TOP (1) p.Rabat               -- najnizi nivo koji ima rabat
              FROM dbo.IC_CenovnikParametar p
              WHERE p.CenovnikID = s.CenovnikID AND p.Rabat IS NOT NULL
@@ -171,8 +182,8 @@ OUTER APPLY (SELECT TOP (1) p.ParametarID         -- najnizi nivo koji ima akcij
                     OR (p.Nivo = 'Code'      AND p.Code        = s.Code))
              ORDER BY CASE p.Nivo WHEN 'Code' THEN 1 WHEN 'Kolekcija' THEN 2
                                   WHEN 'Program' THEN 3 ELSE 4 END) ap
-CROSS APPLY (SELECT c.VP * (1 - r.Rabat)                           AS CenaRabat,
-                    c.VP * (1 - r.Rabat) * (1 - ISNULL(a.Akcija, 0)) AS CenaAkcija) n;
+CROSS APPLY (SELECT b.VPOsnova * (1 - r.Rabat)                           AS CenaRabat,
+                    b.VPOsnova * (1 - r.Rabat) * (1 - ISNULL(a.Akcija, 0)) AS CenaAkcija) n;
 GO
 
 /* ---------- vw_IC_CenovnikAkcijePoredjenje ----------
@@ -183,8 +194,8 @@ GO
 CREATE VIEW dbo.vw_IC_CenovnikAkcijePoredjenje AS
 SELECT o.StavkaID, o.CenovnikID, o.LargoProizvodID, o.Code,
        ak.Redosled, ak.Procenat,
-       ROUND(o.VP * (1 - o.Rabat) * (1 - ak.Procenat), 0)                       AS Cena,
-       o.VP * (1 - o.Rabat) * (1 - ak.Procenat) / NULLIF(o.TPuValuti, 0) - 1    AS JelaMarza
+       ROUND(o.VPOsnova * (1 - o.Rabat) * (1 - ak.Procenat), 0)                 AS Cena,
+       o.VPOsnova * (1 - o.Rabat) * (1 - ak.Procenat) / NULLIF(o.TPuValuti, 0) - 1 AS JelaMarza
 FROM dbo.vw_IC_CenovnikObracun o
 JOIN dbo.IC_CenovnikAkcija ak ON ak.ParametarID = o.ParametarAkcijaID;
 GO

@@ -183,8 +183,9 @@ END
 GO
 
 /* IC_ProglasiTroskoveNovim
-   TP-Novi -> TP-Stari, trenutna marza -> Marza stara, SAMO za oznacene
-   redove iz grida (@Stavke = StavkaID). Bez oznacenih redova se ne radi nista.
+   TP-Novi -> TP-Stari, marza nova -> Marza stara i VP nova -> VP aktuelna
+   (po Code, od 31.10.), SAMO za oznacene redove iz grida (@Stavke = StavkaID).
+   Bez oznacenih redova se ne radi nista.
    @SamoBroj = 1 samo vraca broj redova koji ce se promeniti (za potvrdu). */
 IF OBJECT_ID('dbo.IC_ProglasiTroskoveNovim', 'P') IS NOT NULL DROP PROCEDURE dbo.IC_ProglasiTroskoveNovim;
 GO
@@ -209,9 +210,11 @@ BEGIN
         SELECT COUNT(*) AS BrojRedova
         FROM dbo.IC_CenovnikStavka s
         JOIN @Stavke x ON x.ID = s.StavkaID
+        JOIN dbo.IC_CenovnikCena c ON c.CenovnikID = s.CenovnikID AND c.Code = s.Code
         WHERE s.CenovnikID = @CenovnikID
           AND s.TrosakNovi > 0
-          AND (s.TrosakStari IS NULL OR s.TrosakStari <> s.TrosakNovi);
+          AND (s.TrosakStari IS NULL OR s.TrosakStari <> s.TrosakNovi
+               OR c.VPAktuelna IS NULL OR c.VPAktuelna <> c.VP);
         RETURN;
     END
 
@@ -235,6 +238,19 @@ BEGIN
     WHERE s.CenovnikID = @CenovnikID
       AND s.TrosakNovi > 0;
     SET @Broj = @@ROWCOUNT;
+
+    -- VP nova -> VP aktuelna za Code oznacenih redova (VP je po Code, vazi za sve varijante)
+    UPDATE c SET
+        VPAktuelna  = c.VP,
+        PovecanjeVP = 0,
+        Izmenio     = @Korisnik,
+        DatumIzmene = SYSDATETIME()
+    FROM dbo.IC_CenovnikCena c
+    WHERE c.CenovnikID = @CenovnikID
+      AND c.Code IN (SELECT s.Code FROM dbo.IC_CenovnikStavka s
+                     JOIN @Stavke x ON x.ID = s.StavkaID
+                     WHERE s.CenovnikID = @CenovnikID AND s.TrosakNovi > 0)
+      AND (c.VPAktuelna IS NULL OR c.VPAktuelna <> c.VP OR c.PovecanjeVP <> 0);
 
     UPDATE dbo.IC_Cenovnik
     SET DatumProglasenjaTroska = SYSDATETIME(), Izmenio = @Korisnik, DatumIzmene = SYSDATETIME()

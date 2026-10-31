@@ -245,7 +245,7 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
             this.chkEUR.Margin = new System.Windows.Forms.Padding(8, 9, 3, 3);
             this.chkEUR.Name = "chkEUR";
             this.chkEUR.TabIndex = 7;
-            this.chkEUR.Text = "Prikaži u €";
+            this.chkEUR.Text = "Devizni (€)";
             this.chkEUR.CheckedChanged += new System.EventHandler(this.chkEUR_CheckedChanged);
             //
             // btnProglasi

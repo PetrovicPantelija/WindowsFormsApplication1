@@ -216,14 +216,16 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
                 int broj = baza.BrojZaProglasenjeTroskova(uc.CenovnikID, oznaceni, korisnik);
                 if (broj == 0)
                 {
-                    MessageBox.Show(this, "Među " + oznaceni.Count + " označenih redova nema nijednog u kome se TP-Novi razlikuje od TP-Stari.",
+                    MessageBox.Show(this, "Među " + oznaceni.Count + " označenih redova nema nijednog u kome se TP-Novi razlikuje od TP-Stari\n" +
+                                    "ili VP nova od VP aktuelne.",
                                     "Proglasi troškove novim", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
                 if (MessageBox.Show(this,
                         "Označeno redova: " + oznaceni.Count + ", od toga se menja: " + broj + ".\n\n" +
-                        "U tim redovima TP-Novi postaje TP-Stari, a trenutna marža postaje marža stara.\n" +
-                        "Poređenje sa starim troškovima se za njih gubi. Ostali redovi se ne menjaju.\n\nNastaviti?",
+                        "U tim redovima TP-Novi postaje TP-Stari, VP nova postaje VP aktuelna (za ceo Code),\n" +
+                        "a marža nova postaje marža stara. Od tada se VP sa PDV, rabat i akcije računaju od nove VP.\n" +
+                        "Poređenje sa starim troškovima i cenama se za njih gubi. Ostali redovi se ne menjaju.\n\nNastaviti?",
                         "Proglasi troškove novim", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) != DialogResult.Yes) return;
                 int promenjeno = baza.ProglasiTroskoveNovim(uc.CenovnikID, oznaceni, korisnik);
                 uc.OsveziTroskove(oznaceni);   // samo oznaceni redovi; stablo i filter ostaju

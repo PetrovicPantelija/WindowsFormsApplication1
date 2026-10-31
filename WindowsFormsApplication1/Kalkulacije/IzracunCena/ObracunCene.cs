@@ -212,6 +212,16 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
         public decimal VP { get; set; }
         public bool VPIzBaze { get; set; }
 
+        // Opsti cenovnik: VP je VP nova (predlog) dok se trosak ne proglasi novim; do tada se
+        // VP sa PDV, rabat, akcije i Jela/Salon marza racunaju od VP aktuelne (isto kao vw_IC_CenovnikObracun).
+        // Radni i vazeci cenovnik: sve od VP.
+        public bool OsnovaAktuelna { get; set; }
+
+        public decimal VPOsnova
+        {
+            get { return OsnovaAktuelna && VPAktuelna.HasValue ? VPAktuelna.Value : VP; }
+        }
+
         // rabat i vazeca akcija (vec razreseni po nivou), akcije za poredjenje
         public decimal Rabat { get; set; }
         public decimal? Akcija { get; set; }
@@ -243,19 +253,50 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
             get { return ObracunCene.PromenaTroska(TrosakNovi, TrosakStari); }
         }
 
+        // marza nova: VP (nova) prema TP reda
         public decimal? Marza
         {
             get { return ObracunCene.Marza(VP, TPuValuti); }
         }
 
+        // marza stara: sacuvana (proglasenje troska ili "marza maj" iz Excela),
+        // a ako je nema - VP aktuelna prema TP-Stari (VP aktuelna je vazila za TP-Stari)
+        public decimal? MarzaStaraObracun
+        {
+            get
+            {
+                if (MarzaStara.HasValue) return MarzaStara;
+                if (!VPAktuelna.HasValue) return null;
+                return ObracunCene.Marza(VPAktuelna.Value, ObracunCene.TPuValuti(TrosakStari, Valuta, Kurs));
+            }
+        }
+
+        // promena marze u procentnim poenima: marza nova - marza stara
+        public decimal? PromenaMarze
+        {
+            get { return Marza.HasValue && MarzaStaraObracun.HasValue ? Marza - MarzaStaraObracun : null; }
+        }
+
+        // vrednost promene VP: VP nova - VP aktuelna
+        public decimal? RazlikaVP
+        {
+            get { return VPAktuelna.HasValue ? VP - VPAktuelna.Value : (decimal?)null; }
+        }
+
+        // stvarni % povecanja VP (posle predloga ili unosa VP), a bez VP aktuelne - uneti %
+        public decimal PovecanjeVPStvarno
+        {
+            get { return VPAktuelna.HasValue && VPAktuelna.Value > 0 ? VP / VPAktuelna.Value - 1 : PovecanjeVP; }
+        }
+
         public decimal? VPsaPDV
         {
-            get { return ObracunCene.VPsaPDV(VP, PDV, Valuta); }
+            get { return ObracunCene.VPsaPDV(VPOsnova, PDV, Valuta); }
         }
 
         decimal CenaRabatTacna
         {
-            get { return ObracunCene.CenaPosleRabata(VP, Rabat); }
+            get { return ObracunCene.CenaPosleRabata(VPOsnova, Rabat); }
         }
 
         decimal CenaAkcijaTacna
@@ -275,7 +316,7 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
 
         public decimal? SalonMarza
         {
-            get { return ObracunCene.SalonMarza(VP, CenaRabatTacna, Valuta); }
+            get { return ObracunCene.SalonMarza(VPOsnova, CenaRabatTacna, Valuta); }
         }
 
         public decimal? CenaAkcija
@@ -295,7 +336,7 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
 
         public decimal? PredlogVPStaraMarza
         {
-            get { return ObracunCene.PredlogVPStaraMarza(TrosakNovi, MarzaStara, Valuta, Kurs); }
+            get { return ObracunCene.PredlogVPStaraMarza(TrosakNovi, MarzaStaraObracun, Valuta, Kurs); }
         }
 
         // akcija za poredjenje sa indeksom i: cena i Jela marza
@@ -325,7 +366,7 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
         // iznosi u evrima (dinarski cenovnik)
         public decimal? VPuEUR
         {
-            get { return Valuta == ObracunCene.RSD ? ObracunCene.UEvrima(VP, Kurs) : (decimal?)null; }
+            get { return Valuta == ObracunCene.RSD ? ObracunCene.UEvrima(VPOsnova, Kurs) : (decimal?)null; }
         }
 
         public decimal? CenaPosleRabatauEUR
@@ -336,7 +377,7 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
         // zeljena cena posle rabata -> rabat za ovaj red
         public void PostaviCenuPosleRabata(decimal cena)
         {
-            Rabat = ObracunCene.RabatIzCene(VP, cena);
+            Rabat = ObracunCene.RabatIzCene(VPOsnova, cena);
         }
     }
 }

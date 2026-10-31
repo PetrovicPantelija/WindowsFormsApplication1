@@ -35,17 +35,42 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
             return razlomak.HasValue ? razlomak.Value * 100 : (decimal?)null;
         }
 
-        /* ---------- kolone koje se menjaju ---------- */
+        /* ---------- prikaz iznosa u evrima ("Devizni") ----------
+           Dinarski cenovnik: iznosi se prikazuju podeljeni kursom sa forme; unos u evrima se
+           pre primene vraca u dinare (iznos * kurs). Obracun i cuvanje su uvek u valuti cenovnika. */
 
-        public decimal VPUnos
+        public bool PrikazEUR { get; set; }
+
+        bool UEUR { get { return PrikazEUR && Kurs > 0; } }
+
+        decimal? Iznos(decimal? iznos)
         {
-            get { return VP; }
-            set { Zapamti(PoljeVP, value); }
+            return iznos.HasValue && UEUR ? iznos.Value / Kurs : iznos;
         }
 
+        decimal Iznos(decimal iznos)
+        {
+            return UEUR ? iznos / Kurs : iznos;
+        }
+
+        decimal UValutu(decimal unos)
+        {
+            return UEUR ? unos * Kurs : unos;
+        }
+
+        /* ---------- kolone koje se menjaju ---------- */
+
+        // VP nova
+        public decimal VPUnos
+        {
+            get { return Iznos(VP); }
+            set { Zapamti(PoljeVP, UValutu(value)); }
+        }
+
+        // stvarni % (VP nova / VP aktuelna - 1); unos postavlja VP = VP aktuelna * (1 + %)
         public decimal PovecanjeVPPct
         {
-            get { return PovecanjeVP * 100; }
+            get { return PovecanjeVPStvarno * 100; }
             set { Zapamti(PoljePovecanje, value); }
         }
 
@@ -69,14 +94,29 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
 
         public decimal CenaPosleRabataUnos
         {
-            get { return CenaPosleRabata; }
-            set { Zapamti(PoljeCenaRabat, value); }
+            get { return Iznos(CenaPosleRabata); }
+            set { Zapamti(PoljeCenaRabat, UValutu(value)); }
         }
 
-        /* ---------- samo prikaz ---------- */
+        /* ---------- samo prikaz: iznosi (u evrima kad je ukljucen Devizni) ---------- */
+
+        public decimal? TrosakStariPrikaz { get { return Iznos(TrosakStari); } }
+        public decimal? TrosakNoviPrikaz { get { return Iznos(TrosakNovi); } }
+        public decimal? VPAktuelnaPrikaz { get { return Iznos(VPAktuelna); } }
+        public decimal? RazlikaVPPrikaz { get { return Iznos(RazlikaVP); } }
+        public decimal? VPsaPDVPrikaz { get { return Iznos(VPsaPDV); } }
+        public decimal? CenaAkcijaPrikaz { get { return Iznos(CenaAkcija); } }
+        public decimal? Poredjenje1CenaPrikaz { get { return Iznos(Poredjenje1Cena); } }
+        public decimal? Poredjenje2CenaPrikaz { get { return Iznos(Poredjenje2Cena); } }
+        public decimal? Poredjenje3CenaPrikaz { get { return Iznos(Poredjenje3Cena); } }
+        public decimal? PredlogVPPratiTrosakPrikaz { get { return Iznos(PredlogVPPratiTrosak); } }
+        public decimal? PredlogVPStaraMarzaPrikaz { get { return Iznos(PredlogVPStaraMarza); } }
+
+        /* ---------- samo prikaz: procenti ---------- */
 
         public decimal? PromenaTroskaPct { get { return Pct(PromenaTroska); } }
-        public decimal? MarzaStaraPct { get { return Pct(MarzaStara); } }
+        public decimal? MarzaStaraPct { get { return Pct(MarzaStaraObracun); } }
+        public decimal? PromenaMarzePct { get { return Pct(PromenaMarze); } }   // procentni poeni
         public decimal? JelaMarzaPct { get { return Pct(JelaMarza); } }
         public decimal? SalonMarzaPct { get { return Pct(SalonMarza); } }
         public decimal? JelaMarzaAkcijaPct { get { return Pct(JelaMarzaAkcija); } }
