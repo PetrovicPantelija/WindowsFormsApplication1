@@ -479,11 +479,12 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
             string folder = Path.Combine(koren, FolderKopija);
             Directory.CreateDirectory(folder);
 
-            string ime = izabraniCode.Replace('/', '_');
-            foreach (char c in Path.GetInvalidFileNameChars()) ime = ime.Replace(c, '_');
+            // ime kao za automatsko povezivanje: NazivProizvoda + "  " + Code
+            var r = grid.SelectedItem as DataRowView;
+            string ime = SlikeFolder.ImeSlike(r == null ? null : r["NazivProizvoda"] as string, izabraniCode);
             string ext = Path.GetExtension(izvor).ToLowerInvariant();
 
-            // P62A_GL.jpg, pa P62A_GL (2).jpg ... (SlikeFolder cita "(n)" kao dodatnu sliku istog Code)
+            // "PLAKAR  P62A_GL.jpg", pa "PLAKAR  P62A_GL (2).jpg" ... (SlikeFolder cita "(n)" kao dodatnu sliku istog Code)
             string cilj = Path.Combine(folder, ime + ext);
             for (int n = 2; File.Exists(cilj); n++)
                 cilj = Path.Combine(folder, ime + " (" + n + ")" + ext);
