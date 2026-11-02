@@ -426,6 +426,16 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
             try
             {
                 string putanja = baza.GlavnaSlika(izabraniCode);
+                if (string.IsNullOrEmpty(putanja) && Directory.Exists(ucCenovnik.KorenSlika))
+                {
+                    // nije povezana: potrazi Code u imenima fajlova i povezi (kao Povezi slike, samo za ovaj Code)
+                    var nadjene = SlikeFolder.ZaCode(ucCenovnik.KorenSlika, izabraniCode, baza.KodoviZaSlike);
+                    if (nadjene.Count > 0)
+                    {
+                        baza.PoveziSlikeAutomatski(nadjene, false);
+                        putanja = baza.GlavnaSlika(izabraniCode);
+                    }
+                }
                 if (string.IsNullOrEmpty(putanja)) { lblSlika.Text = izabraniCode + " - nema slike"; return; }
                 string pun = Path.Combine(ucCenovnik.KorenSlika, putanja);
                 if (!File.Exists(pun)) { lblSlika.Text = izabraniCode + " - fajl ne postoji"; return; }
@@ -455,7 +465,7 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
             using (var dlg = new OpenFileDialog())
             {
                 dlg.Title = "Slika za " + izabraniCode;
-                dlg.Filter = "Slike (*.jpg;*.png)|*.jpg;*.jpeg;*.png";
+                dlg.Filter = SlikeFolder.FilterDijaloga;
                 dlg.InitialDirectory = koren;
                 if (dlg.ShowDialog(this) != DialogResult.OK) return;
                 fajl = Path.GetFullPath(dlg.FileName);
@@ -489,6 +499,7 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
             for (int n = 2; File.Exists(cilj); n++)
                 cilj = Path.Combine(folder, ime + " (" + n + ")" + ext);
             File.Copy(izvor, cilj);
+            SlikeFolder.ZaboraviIndeks();   // nova slika u folderu
             return cilj;
         }
 

@@ -731,18 +731,47 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
             string putanja;
             if (!slike.TryGetValue(r.Code, out putanja))
             {
-                putanja = baza.GlavnaSlika(r.Code);
+                putanja = baza.GlavnaSlika(r.Code) ?? PoveziIzFoldera(r.Code);
                 slike[r.Code] = putanja;
             }
             lblSlika.Text = r.Code;
-            if (string.IsNullOrEmpty(putanja)) { lblSlika.Text = r.Code + " - nema slike"; return; }
+            if (string.IsNullOrEmpty(putanja))
+            {
+                lblSlika.Text = r.Code + " - nema slike" + (Directory.Exists(KorenSlika) ? "" : " (folder nedostupan: " + KorenSlika + ")");
+                return;
+            }
 
             string pun = Path.Combine(KorenSlika, putanja);
-            if (!File.Exists(pun)) { lblSlika.Text = r.Code + " - fajl ne postoji"; return; }
+            if (!File.Exists(pun)) { lblSlika.Text = r.Code + " - fajl ne postoji: " + putanja; return; }
             // kopija u memoriji, da fajl ostane slobodan
             using (var fs = new FileStream(pun, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             using (var img = Image.FromStream(fs))
                 picSlika.Image = new Bitmap(img);
+        }
+
+        // Code bez povezane slike: potrazi je u folderu (Code u imenu fajla) i odmah poveze;
+        // tako slika radi i bez prethodnog "Povezi slike". Vraca putanju glavne slike ili null.
+        string PoveziIzFoldera(string code)
+        {
+            try
+            {
+                if (!Directory.Exists(KorenSlika)) return null;
+                Cursor = Cursors.WaitCursor;
+                var nadjene = SlikeFolder.ZaCode(KorenSlika, code, baza.KodoviZaSlike);
+                if (nadjene.Count == 0) return null;
+                baza.PoveziSlikeAutomatski(nadjene, false);
+                return baza.GlavnaSlika(code);
+            }
+            catch (Exception) { return null; }   // slika nije bitna za rad grida
+            finally { Cursor = Cursors.Default; }
+        }
+
+        // posle "Povezi slike": slike se ponovo citaju iz baze i foldera
+        public void ZaboraviSlike()
+        {
+            slike.Clear();
+            SlikeFolder.ZaboraviIndeks();
+            PrikaziSliku();
         }
 
         void tsmDodeliSliku_Click(object sender, EventArgs e)
@@ -752,7 +781,7 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
             using (var dlg = new OpenFileDialog())
             {
                 dlg.Title = "Slika za " + r.Code;
-                dlg.Filter = "Slike (*.jpg;*.png)|*.jpg;*.jpeg;*.png";
+                dlg.Filter = SlikeFolder.FilterDijaloga;
                 if (Directory.Exists(KorenSlika)) dlg.InitialDirectory = KorenSlika;
                 if (dlg.ShowDialog() != DialogResult.OK) return;
 

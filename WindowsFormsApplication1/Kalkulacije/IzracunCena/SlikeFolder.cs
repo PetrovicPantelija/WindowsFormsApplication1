@@ -15,7 +15,36 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
     // Uzimaju se samo .jpg/.jpeg/.png iz svih podfoldera; putanja se cuva relativno prema korenu.
     public static class SlikeFolder
     {
-        static readonly string[] Ekstenzije = { ".jpg", ".jpeg", ".png" };
+        static readonly string[] Ekstenzije = { ".jpg", ".jpeg", ".jfif", ".png", ".bmp", ".gif" };
+        public const string FilterDijaloga = "Slike (*.jpg;*.jpeg;*.jfif;*.png;*.bmp;*.gif)|*.jpg;*.jpeg;*.jfif;*.png;*.bmp;*.gif";
+
+        // pregled foldera se pamti za ceo rad programa (mrezno deljenje je sporo);
+        // ZaboraviIndeks posle "Povezi slike" ili kad se dodaju nove slike
+        static readonly object zakljucaj = new object();
+        static string indeksKoren;
+        static Dictionary<string, List<IzracunCenaBaza.SlikaFajl>> indeks;
+
+        // slike iz foldera za jedan Code (prvi poziv pregleda ceo folder)
+        public static List<IzracunCenaBaza.SlikaFajl> ZaCode(string koren, string code, Func<IEnumerable<string>> kodovi)
+        {
+            lock (zakljucaj)
+            {
+                if (indeks == null || indeksKoren != koren)
+                {
+                    indeks = Skeniraj(koren, kodovi())
+                        .GroupBy(s => s.Code, StringComparer.OrdinalIgnoreCase)
+                        .ToDictionary(g => g.Key, g => g.ToList(), StringComparer.OrdinalIgnoreCase);
+                    indeksKoren = koren;
+                }
+                List<IzracunCenaBaza.SlikaFajl> l;
+                return indeks.TryGetValue((code ?? "").Trim(), out l) ? l : new List<IzracunCenaBaza.SlikaFajl>();
+            }
+        }
+
+        public static void ZaboraviIndeks()
+        {
+            lock (zakljucaj) indeks = null;
+        }
         static readonly char[] Nedozvoljeni = Path.GetInvalidFileNameChars();
 
         // ime fajla slike (bez ekstenzije) za proizvod: NazivProizvoda + "  " + Code (Code je u imenu, pa se slika povezuje)

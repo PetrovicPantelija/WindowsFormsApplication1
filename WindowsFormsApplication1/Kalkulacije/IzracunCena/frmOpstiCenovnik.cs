@@ -284,6 +284,7 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
                 var slike = SlikeFolder.Skeniraj(koren, baza.KodoviZaSlike());
                 var ds = baza.PoveziSlikeAutomatski(slike, true);
                 Cursor = Cursors.Default;
+                uc.ZaboraviSlike();   // grid je pamtio "nema slike" za vec pregledane Code
                 var br = ds.Tables[1].Rows[0];
                 MessageBox.Show(this, "Nađeno slika: " + slike.Count + "\nNovo povezanih: " + br["Dodato"] +
                                 "\nUklonjenih (fajl ne postoji): " + br["Obrisano"] +
