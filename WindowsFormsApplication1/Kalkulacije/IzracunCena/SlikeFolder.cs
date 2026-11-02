@@ -31,7 +31,7 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
             if (!Directory.Exists(koren)) return lista;
             string k = Path.GetFullPath(koren).TrimEnd('\\') + "\\";
 
-            foreach (var f in Directory.EnumerateFiles(k, "*.*", SearchOption.AllDirectories))
+            foreach (var f in Fajlovi(k))
             {
                 if (!Ekstenzije.Contains(Path.GetExtension(f).ToLowerInvariant())) continue;
                 bool dodatna;
@@ -42,6 +42,28 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
                 lista.Add(new IzracunCenaBaza.SlikaFajl { Code = code, Putanja = rel, Dodatna = dodatna });
             }
             return lista;
+        }
+
+        // svi fajlovi iz foldera i podfoldera; folder bez prava citanja (cesto na mreznom deljenju)
+        // se preskace umesto da prekine ceo pregled
+        static IEnumerable<string> Fajlovi(string koren)
+        {
+            var folderi = new Stack<string>();
+            folderi.Push(koren);
+            while (folderi.Count > 0)
+            {
+                string folder = folderi.Pop();
+                string[] fajlovi, podfolderi;
+                try
+                {
+                    fajlovi = Directory.GetFiles(folder);
+                    podfolderi = Directory.GetDirectories(folder);
+                }
+                catch (UnauthorizedAccessException) { continue; }
+                catch (IOException) { continue; }
+                foreach (var f in fajlovi) yield return f;
+                foreach (var p in podfolderi) folderi.Push(p);
+            }
         }
     }
 }
