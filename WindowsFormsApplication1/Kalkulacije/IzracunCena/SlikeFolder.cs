@@ -12,11 +12,12 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
     // Code mora biti cela rec (pre i posle njega nije slovo ni cifra), pa P2 ne pogadja P22A_GL;
     // ako ime sadrzi vise Code, vazi najduzi (V7-30-1K/6, a ne V7-30). Velika/mala slova i broj razmaka nisu bitni.
     // Fajl sa dodatkom "(2)" je dodatna slika istog Code.
-    // Uzimaju se samo .jpg/.jpeg/.png iz svih podfoldera; putanja se cuva relativno prema korenu.
+    // Uzimaju se samo .jpg/.jpeg iz svih podfoldera; putanja se cuva relativno prema korenu.
     public static class SlikeFolder
     {
-        static readonly string[] Ekstenzije = { ".jpg", ".jpeg", ".jfif", ".png", ".bmp", ".gif" };
-        public const string FilterDijaloga = "Slike (*.jpg;*.jpeg;*.jfif;*.png;*.bmp;*.gif)|*.jpg;*.jpeg;*.jfif;*.png;*.bmp;*.gif";
+        // samo JPG slike (.jpg i .jpeg)
+        static readonly string[] Ekstenzije = { ".jpg", ".jpeg" };
+        public const string FilterDijaloga = "JPG slike (*.jpg;*.jpeg)|*.jpg;*.jpeg";
 
         // pregled foldera se pamti za ceo rad programa (mrezno deljenje je sporo);
         // ZaboraviIndeks posle "Povezi slike" ili kad se dodaju nove slike
