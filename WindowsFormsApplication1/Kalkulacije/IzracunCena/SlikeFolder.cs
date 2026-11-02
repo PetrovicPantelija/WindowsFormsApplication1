@@ -6,11 +6,11 @@ using System.Text.RegularExpressions;
 
 namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
 {
-    // ZAH-008: automatsko povezivanje slika sa Code.
-    // Ime fajla je NazivProizvoda + "  " + Code iz jela_products (npr. "VISECI ELEMENT  V7-30-1K_6.jpg");
-    // znaci koji ne mogu u ime fajla (/ \ : * ? " < > |) su zamenjeni sa _.
-    // Poredi se ceo naziv bez obzira na velika/mala slova i broj razmaka. Ako se ime ne poklopi
-    // ni sa jednim proizvodom, vazi staro pravilo: Code je poslednja rec imena, a _ se cita kao /.
+    // ZAH-008: automatsko povezivanje slika sa Code (kao LIKE '%' + Code + '%').
+    // Slika pripada proizvodu ciji se Code iz jela_products nalazi u imenu fajla; naziv proizvoda se ne koristi.
+    // Znaci koji ne mogu u ime fajla (/ \ : * ? " < > |) su u imenu zamenjeni sa _ (P62A/GL -> P62A_GL).
+    // Code mora biti cela rec (pre i posle njega nije slovo ni cifra), pa P2 ne pogadja P22A_GL;
+    // ako ime sadrzi vise Code, vazi najduzi (V7-30-1K/6, a ne V7-30). Velika/mala slova i broj razmaka nisu bitni.
     // Fajl sa dodatkom "(2)" je dodatna slika istog Code.
     // Uzimaju se samo .jpg/.jpeg/.png iz svih podfoldera; putanja se cuva relativno prema korenu.
     public static class SlikeFolder
@@ -18,7 +18,7 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
         static readonly string[] Ekstenzije = { ".jpg", ".jpeg", ".png" };
         static readonly char[] Nedozvoljeni = Path.GetInvalidFileNameChars();
 
-        // ime fajla slike (bez ekstenzije) za proizvod: NazivProizvoda + "  " + Code
+        // ime fajla slike (bez ekstenzije) za proizvod: NazivProizvoda + "  " + Code (Code je u imenu, pa se slika povezuje)
         public static string ImeSlike(string nazivProizvoda, string code)
         {
             string ime = ((nazivProizvoda ?? "").Trim() + "  " + (code ?? "").Trim()).Trim();
@@ -43,40 +43,62 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
             return ime;
         }
 
-        // staro pravilo: poslednja rec imena, _ -> /
-        public static string CodeIzImena(string imeFajla, out bool dodatna)
+        // najduzi Code iz recnika (kljuc -> Code) koji se u imenu nalazi kao cela rec; null ako ga nema
+        static string NadjiCode(string ime, Dictionary<string, string> kodovi, int najduzi)
         {
-            string ime = OsnovnoIme(imeFajla, out dodatna);
-            if (ime == "") return null;
-            string rec = ime.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Last();
-            return rec.Replace('_', '/');
+            string s = Kljuc(ime);
+            string nadjen = null;
+            int duzina = 0;
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (i > 0 && char.IsLetterOrDigit(s[i - 1])) continue;          // pocetak reci
+                int max = Math.Min(s.Length, i + najduzi);
+                for (int j = i + 1; j <= max; j++)
+                {
+                    if (j < s.Length && char.IsLetterOrDigit(s[j])) continue;   // kraj reci
+                    if (j - i < duzina) continue;
+                    string code;
+                    if (kodovi.TryGetValue(s.Substring(i, j - i), out code))
+                    {
+                        nadjen = code;
+                        duzina = j - i;
+                    }
+                }
+            }
+            return nadjen;
         }
 
-        // proizvodi: parovi (NazivProizvoda, Code) iz jela_products
-        public static List<IzracunCenaBaza.SlikaFajl> Skeniraj(string koren, IEnumerable<KeyValuePair<string, string>> proizvodi)
+        // kodovi: Code iz jela_products
+        public static List<IzracunCenaBaza.SlikaFajl> Skeniraj(string koren, IEnumerable<string> kodovi)
         {
             var lista = new List<IzracunCenaBaza.SlikaFajl>();
             if (!Directory.Exists(koren)) return lista;
             string k = Path.GetFullPath(koren).TrimEnd('\\') + "\\";
 
-            var poImenu = new Dictionary<string, string>();
-            foreach (var p in proizvodi)
+            var poKljucu = new Dictionary<string, string>();
+            foreach (var c in kodovi)
             {
-                string kljuc = Kljuc(ImeSlike(p.Key, p.Value));
-                if (!poImenu.ContainsKey(kljuc)) poImenu[kljuc] = p.Value.Trim();
+                string code = (c ?? "").Trim();
+                if (code.Length == 0 || code.Length > 30) continue;
+                string kljuc = Kljuc(code);
+                if (!poKljucu.ContainsKey(kljuc)) poKljucu[kljuc] = code;
             }
+            int najduzi = poKljucu.Count == 0 ? 0 : poKljucu.Keys.Max(x => x.Length);
 
             foreach (var f in Fajlovi(k))
             {
                 if (!Ekstenzije.Contains(Path.GetExtension(f).ToLowerInvariant())) continue;
                 bool dodatna;
-                string code;
-                if (!poImenu.TryGetValue(Kljuc(OsnovnoIme(f, out dodatna)), out code))
-                    code = CodeIzImena(f, out dodatna);
-                if (string.IsNullOrEmpty(code) || code.Length > 30) continue;
+                string code = NadjiCode(OsnovnoIme(f, out dodatna), poKljucu, najduzi);
                 string rel = f.Substring(k.Length);
                 if (rel.Length > 400) continue;
-                lista.Add(new IzracunCenaBaza.SlikaFajl { Code = code, Putanja = rel, Dodatna = dodatna });
+                // bez Code u imenu: ime fajla ide u izvestaj "Slika bez Code u bazi"
+                lista.Add(new IzracunCenaBaza.SlikaFajl
+                {
+                    Code = code ?? Path.GetFileNameWithoutExtension(f).Substring(0, Math.Min(30, Path.GetFileNameWithoutExtension(f).Length)),
+                    Putanja = rel,
+                    Dodatna = dodatna
+                });
             }
             return lista;
         }

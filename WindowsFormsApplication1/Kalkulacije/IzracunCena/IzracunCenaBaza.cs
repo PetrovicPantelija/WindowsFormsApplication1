@@ -567,14 +567,11 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
             public bool Dodatna;     // "(2)" u imenu
         }
 
-        // (NazivProizvoda, Code) iz jela_products: ime slike je NazivProizvoda + "  " + Code
-        public List<KeyValuePair<string, string>> ProizvodiZaSlike()
+        // Code iz jela_products: slika se vezuje za Code koji se nalazi u imenu fajla
+        public List<string> KodoviZaSlike()
         {
-            var dt = Upit("SELECT DISTINCT NazivProizvoda, Code FROM dbo.jela_products " +
-                          "WHERE Code IS NOT NULL AND NazivProizvoda IS NOT NULL");
-            return dt.AsEnumerable()
-                     .Select(r => new KeyValuePair<string, string>(r["NazivProizvoda"].ToString(), r["Code"].ToString()))
-                     .ToList();
+            var dt = Upit("SELECT DISTINCT Code FROM dbo.jela_products WHERE Code IS NOT NULL");
+            return dt.AsEnumerable().Select(r => r["Code"].ToString()).ToList();
         }
 
         // vraca: slike ciji Code nije u bazi (Tables[0]) i broj dodatih/obrisanih (Tables[1])

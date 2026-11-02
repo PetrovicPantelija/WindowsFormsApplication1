@@ -281,7 +281,7 @@ namespace WindowsFormsApplication1.Kalkulacije.IzracunCena
             try
             {
                 Cursor = Cursors.WaitCursor;
-                var slike = SlikeFolder.Skeniraj(koren, baza.ProizvodiZaSlike());
+                var slike = SlikeFolder.Skeniraj(koren, baza.KodoviZaSlike());
                 var ds = baza.PoveziSlikeAutomatski(slike, true);
                 Cursor = Cursors.Default;
                 var br = ds.Tables[1].Rows[0];
