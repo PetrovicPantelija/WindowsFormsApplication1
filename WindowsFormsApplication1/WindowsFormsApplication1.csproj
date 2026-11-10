@@ -929,6 +929,66 @@
       <DependentUpon>ucCenovnik.cs</DependentUpon>
     </Compile>
     <Compile Include="Kalkulacije\IzracunCena\UvozExcel.cs" />
+    <Compile Include="Servis\dlgSrvDeo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Servis\dlgSrvNalog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Servis\dlgSrvStavke.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Servis\frmSrvDokumenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Servis\frmSrvGrupeDelova.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Servis\frmSrvKorekcije.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Servis\frmSrvKvarovi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Servis\frmSrvNabavka.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Servis\frmSrvNalozi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Servis\frmSrvObavestenja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Servis\frmSrvPlanovi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Servis\frmSrvPopis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Servis\frmSrvSpoljniServis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Servis\frmSrvSredstva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Servis\frmSrvStanje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Servis\frmSrvVrste.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Servis\frmSrvZalihe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Servis\MainServis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Servis\Poruke.cs" />
+    <Compile Include="Servis\ServisBaza.cs" />
+    <Compile Include="Servis\SrvForma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Servis\SrvUi.cs" />
     <Compile Include="Kalkulacije\MainKalkulacije.cs">
       <SubType>Form</SubType>
     </Compile>
