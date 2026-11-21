@@ -35,7 +35,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             IdGrupe();
             IdForme();
             PravoPristupa();
-            foreach (var l in new[] { label2, label3, label8, lblIcUvoz, lblIcOpsti, lblIcPriprema, lblIcCenovnici, lblIcProizvodi }) l.Cursor = Cursors.Hand;
+            foreach (var l in new[] { label2, label3, label8, lblIcUvoz, lblIcOpsti, lblIcPriprema, lblIcCenovnici, lblIcProizvodi, lblIcTroskovni }) l.Cursor = Cursors.Hand;
         }
         public string IdGrupe()
         {
@@ -321,6 +321,13 @@ namespace WindowsFormsApplication1.Kalkulacije
             // jela_products: unos, izmena, slika, uvoz iz CSV
             IzracunCena.frmICProizvodi proizvodi = new IzracunCena.frmICProizvodi();
             if (proizvodi.Pravo) { proizvodi.Show(); } else { proizvodi.Dispose(); }
+        }
+
+        private void lblIcTroskovni_Click(object sender, EventArgs e)
+        {
+            // ZAH-011: troskovni obracun (isto kao dugme u Kalkulaciji stavki, novi izgled)
+            var f = new IzracunCena.frmTroskovniObracun();
+            if (f.Pravo) { f.Show(); } else { f.Dispose(); }
         }
 
         private void lblMeni_MouseEnter(object sender, EventArgs e)
