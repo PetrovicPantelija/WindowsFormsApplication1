@@ -56,6 +56,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.lblIcPriprema = new System.Windows.Forms.Label();
             this.lblIcCenovnici = new System.Windows.Forms.Label();
             this.lblIcProizvodi = new System.Windows.Forms.Label();
+            this.lblIcTroskovni = new System.Windows.Forms.Label();
             this.panel6.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -78,7 +79,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.panel1.Location = new System.Drawing.Point(12, 67);
             this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(230, 219);
+            this.panel1.Size = new System.Drawing.Size(230, 252);
             this.panel1.TabIndex = 2;
             // 
             // label8
@@ -369,6 +370,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             //
             this.panel6.BackColor = System.Drawing.Color.White;
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel6.Controls.Add(this.lblIcTroskovni);
             this.panel6.Controls.Add(this.lblIcProizvodi);
             this.panel6.Controls.Add(this.lblIcCenovnici);
             this.panel6.Controls.Add(this.lblIcPriprema);
@@ -378,7 +380,7 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.panel6.Location = new System.Drawing.Point(254, 67);
             this.panel6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(234, 219);
+            this.panel6.Size = new System.Drawing.Size(234, 252);
             this.panel6.TabIndex = 6;
             //
             // btnIzracunCena
@@ -478,12 +480,27 @@ namespace WindowsFormsApplication1.Kalkulacije
             this.lblIcProizvodi.MouseEnter += new System.EventHandler(this.lblMeni_MouseEnter);
             this.lblIcProizvodi.MouseLeave += new System.EventHandler(this.lblMeni_MouseLeave);
             //
+            // lblIcTroskovni
+            //
+            this.lblIcTroskovni.AutoSize = true;
+            this.lblIcTroskovni.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblIcTroskovni.ForeColor = System.Drawing.Color.FromArgb(40, 40, 40);
+            this.lblIcTroskovni.Location = new System.Drawing.Point(12, 202);
+            this.lblIcTroskovni.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblIcTroskovni.Name = "lblIcTroskovni";
+            this.lblIcTroskovni.Size = new System.Drawing.Size(140, 19);
+            this.lblIcTroskovni.TabIndex = 23;
+            this.lblIcTroskovni.Text = "• Troškovni obračun";
+            this.lblIcTroskovni.Click += new System.EventHandler(this.lblIcTroskovni_Click);
+            this.lblIcTroskovni.MouseEnter += new System.EventHandler(this.lblMeni_MouseEnter);
+            this.lblIcTroskovni.MouseLeave += new System.EventHandler(this.lblMeni_MouseLeave);
+            //
             // MainKalkulacije
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(248, 247, 244);
-            this.ClientSize = new System.Drawing.Size(500, 299);
+            this.ClientSize = new System.Drawing.Size(500, 332);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
@@ -518,6 +535,7 @@ namespace WindowsFormsApplication1.Kalkulacije
         private System.Windows.Forms.Label lblIcPriprema;
         private System.Windows.Forms.Label lblIcCenovnici;
         private System.Windows.Forms.Label lblIcProizvodi;
+        private System.Windows.Forms.Label lblIcTroskovni;
         private FontAwesome.Sharp.IconButton btnSifarnici;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.PictureBox IconButton;
