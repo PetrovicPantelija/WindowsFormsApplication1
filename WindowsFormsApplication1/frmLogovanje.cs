@@ -239,20 +239,31 @@ namespace WindowsFormsApplication1
 
         private void button5_Click(object sender, EventArgs e)
         {
+            // ZAH-012: pristup po grupama (forma frmMainKalkulacije u Dodeli pravo), ne po imenu korisnika
             user = cboKorisnik.Text.ToString().TrimEnd();
-
-             if(cboKorisnik.Text=="pantelija" && txtPassword.Text == "0307")
-              {
-                Kalkulacije.MainKalkulacije kalk = new Kalkulacije.MainKalkulacije();
-                kalk.Show(); this.WindowState = FormWindowState.Minimized;
-
-                //  PravoP = kalk.Pravo;
-                // if (PravoP == true) { kalk.Show(); } else { return; }
+            if (!IspravnaLozinka(user, txtPassword.Text))
+            {
+                MessageBox.Show("Nije ispravno uneta lozinka");
+                return;
             }
-            else
-             {
-                MessageBox.Show("Nemate prava za pristup ovoj formi");
-             }
+            Kalkulacije.MainKalkulacije kalk = new Kalkulacije.MainKalkulacije();
+            PravoP = kalk.Pravo;
+            if (PravoP == true) { kalk.Show(); this.WindowState = FormWindowState.Minimized; }
+            else { kalk.Dispose(); }
+        }
+
+        // lozinka izabranog korisnika (ne bilo kog korisnika sa tom lozinkom), kroz parametre
+        private static bool IspravnaLozinka(string korisnik, string lozinka)
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            using (var conn = new SqlConnection(s_connection))
+            using (var cmd = new SqlCommand("SELECT COUNT(*) FROM Korisnici WHERE RTRIM(Korisnik) = @Korisnik AND Password = @Password", conn))
+            {
+                cmd.Parameters.AddWithValue("@Korisnik", korisnik);
+                cmd.Parameters.AddWithValue("@Password", lozinka);
+                conn.Open();
+                return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
+            }
         }
 
         private void button7_Click(object sender, EventArgs e)

@@ -7,6 +7,7 @@
      sifarnici:       frmICProgrami, frmICKolekcije, frmICPripadnost (administrator)
      proizvodi:       frmICProizvodi (jela_products)
      troskovi:        frmTroskovniObracun (ZAH-011)
+     modul:           frmMainKalkulacije (ZAH-012, ulaz u Kalkulacije sa prijave)
    Skripta se sme pokretati vise puta.
    ===================================================================== */
 SET NOCOUNT ON;
@@ -46,3 +47,10 @@ IF NOT EXISTS (SELECT 1 FROM dbo.Forme WHERE RTRIM(Code) = 'frmTroskovniObracun'
     EXEC dbo.InsertForme @Naziv = N'Troškovni obračun', @Code = 'frmTroskovniObracun';
 
 SELECT IdForme, Naziv, Code FROM dbo.Forme WHERE RTRIM(Code) = 'frmTroskovniObracun';
+
+-- ZAH-012 (21.11.): ulaz u modul Kalkulacije sa prijavnog ekrana ide po grupama, ne po imenu korisnika.
+-- Posle skripte: Dodeli pravo -> frmMainKalkulacije grupama koje rade u kalkulacijama (i administratoru).
+IF NOT EXISTS (SELECT 1 FROM dbo.Forme WHERE RTRIM(Code) = 'frmMainKalkulacije')
+    EXEC dbo.InsertForme @Naziv = N'Kalkulacije - glavni meni', @Code = 'frmMainKalkulacije';
+
+SELECT IdForme, Naziv, Code FROM dbo.Forme WHERE RTRIM(Code) = 'frmMainKalkulacije';
