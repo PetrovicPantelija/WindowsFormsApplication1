@@ -59,6 +59,7 @@
             this.button7 = new FontAwesome.Sharp.IconButton();
             this.button8 = new FontAwesome.Sharp.IconButton();
             this.button9 = new FontAwesome.Sharp.IconButton();
+            this.btnServis = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.IconButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
@@ -328,6 +329,7 @@
             this.pnlContent.Controls.Add(this.button7);
             this.pnlContent.Controls.Add(this.button8);
             this.pnlContent.Controls.Add(this.button9);
+            this.pnlContent.Controls.Add(this.btnServis);
             this.pnlContent.Location = new System.Drawing.Point(260, 56);
             this.pnlContent.Name = "pnlContent";
             this.pnlContent.Size = new System.Drawing.Size(740, 584);
@@ -587,7 +589,34 @@
             this.button9.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
             this.button9.UseVisualStyleBackColor = false;
             this.button9.Click += new System.EventHandler(this.button9_Click);
-            // 
+            //
+            // btnServis (ZAH-010)
+            //
+            this.btnServis.BackColor = System.Drawing.Color.White;
+            this.btnServis.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnServis.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(227, 225, 218);
+            this.btnServis.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(228, 235, 223);
+            this.btnServis.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(241, 245, 238);
+            this.btnServis.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnServis.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnServis.ForeColor = System.Drawing.Color.FromArgb(37, 39, 42);
+            this.btnServis.IconChar = FontAwesome.Sharp.IconChar.Tools;
+            this.btnServis.IconColor = System.Drawing.Color.FromArgb(58, 77, 57);
+            this.btnServis.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnServis.IconSize = 32;
+            this.btnServis.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnServis.Location = new System.Drawing.Point(492, 496);
+            this.btnServis.Margin = new System.Windows.Forms.Padding(2);
+            this.btnServis.Name = "btnServis";
+            this.btnServis.Padding = new System.Windows.Forms.Padding(16, 0, 16, 0);
+            this.btnServis.Size = new System.Drawing.Size(214, 72);
+            this.btnServis.TabIndex = 156;
+            this.btnServis.Text = "Servis";
+            this.btnServis.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnServis.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnServis.UseVisualStyleBackColor = false;
+            this.btnServis.Click += new System.EventHandler(this.btnServis_Click);
+            //
             // frmLogovanje
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -653,5 +682,6 @@
         private FontAwesome.Sharp.IconButton button7;
         private FontAwesome.Sharp.IconButton button8;
         private FontAwesome.Sharp.IconButton button9;
+        private FontAwesome.Sharp.IconButton btnServis;
     }
 }

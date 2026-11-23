@@ -410,5 +410,40 @@ namespace WindowsFormsApplication1
         {
 
         }
+
+        // ZAH-010: modul Servis; lozinka se proverava parametrizovanim upitom, pravo na meni preko Forme.Code = frmMainServis
+        private void btnServis_Click(object sender, EventArgs e)
+        {
+            user = cboKorisnik.Text.ToString().TrimEnd();
+            try
+            {
+                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                bool ispravno;
+                using (var conn = new SqlConnection(s_connection))
+                using (var cmd = new SqlCommand("SELECT COUNT(*) FROM Korisnici WHERE RTRIM(Korisnik) = @Korisnik AND Password = @Lozinka", conn))
+                {
+                    cmd.Parameters.AddWithValue("@Korisnik", user);
+                    cmd.Parameters.AddWithValue("@Lozinka", txtPassword.Text);
+                    conn.Open();
+                    ispravno = Convert.ToInt32(cmd.ExecuteScalar()) > 0;
+                }
+                if (!ispravno)
+                {
+                    MessageBox.Show("Nije ispravno uneta lozinka");
+                    return;
+                }
+                Servis.MainServis ms = new Servis.MainServis();
+                if (ms.Pravo)
+                {
+                    ms.Show();
+                    this.WindowState = FormWindowState.Minimized;
+                }
+                else ms.Dispose();
+            }
+            catch (Exception ex)
+            {
+                Servis.Poruke.Greska(this, ex);
+            }
+        }
     }
 }
