@@ -363,3 +363,6 @@ MigrationBackup/
 FodyWeavers.xsd
 /WindowsFormsApplication1/PakovanjaPlanovi/PaneliSVI - Backup.rdlc
 /.gitignore
+/SQL/Pomocne/Kolekcije_vracanje_1_dijagnostika.sql
+/SQL/Pomocne/Kolekcije_vracanje_2_backup_i_poredjenje.sql
+/SQL/Pomocne/Kolekcije_vracanje_3_kopija_u_TESTING_DATABASE.sql
