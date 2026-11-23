@@ -911,12 +911,6 @@
     <Compile Include="Kalkulacije\IzracunCena\frmPripremaCenovnika.Designer.cs">
       <DependentUpon>frmPripremaCenovnika.cs</DependentUpon>
     </Compile>
-    <Compile Include="Kalkulacije\IzracunCena\frmTroskovniObracun.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Kalkulacije\IzracunCena\frmTroskovniObracun.Designer.cs">
-      <DependentUpon>frmTroskovniObracun.cs</DependentUpon>
-    </Compile>
     <Compile Include="Kalkulacije\IzracunCena\frmUvozExcel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -928,7 +922,6 @@
     <Compile Include="Kalkulacije\IzracunCena\PravaForme.cs" />
     <Compile Include="Kalkulacije\IzracunCena\SlikeFolder.cs" />
     <Compile Include="Kalkulacije\IzracunCena\StavkaObracunaPrikaz.cs" />
-    <Compile Include="Kalkulacije\IzracunCena\TroskovniObracun.cs" />
     <Compile Include="Kalkulacije\IzracunCena\ucCenovnik.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -235,9 +235,9 @@ namespace WindowsFormsApplication1.Kalkulacije
 
         private void lblIcTroskovni_Click(object sender, EventArgs e)
         {
-            // ZAH-011: troskovni obracun (isto kao dugme u Kalkulaciji stavki, novi izgled)
-            var f = new IzracunCena.frmTroskovniObracun();
-            if (f.Pravo) { f.Show(); } else { f.Dispose(); }
+            // ZAH-011: ista forma kao dugme "Troskovni obracun" u Kalkulaciji stavki
+            frmTroskoviIzracun ti = new frmTroskoviIzracun();
+            ti.Show();
         }
 
         private void lblMeni_MouseEnter(object sender, EventArgs e)

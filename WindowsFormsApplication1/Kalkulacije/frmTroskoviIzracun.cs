@@ -26,13 +26,31 @@ namespace WindowsFormsApplication1.Kalkulacije
         public frmTroskoviIzracun()
         {
             InitializeComponent();
-            JelaTema.Primeni(this);
+            // ZAH-011: izgled kao forme izracuna cena; obrada (Obradi, Obradi csv) ostaje ista
+            IzracunCena.Izgled.Primeni(this);
             SfGridPomocnik.Stilizuj(dataGridView1);
+            dataGridView1.AutoSizeColumnsMode = Syncfusion.WinForms.DataGrid.Enums.AutoSizeColumnsMode.AllCells;
+            dataGridView1.SelectionMode = Syncfusion.WinForms.DataGrid.Enums.GridSelectionMode.Extended;
+            dataGridView1.Style.HeaderStyle.BackColor = IzracunCena.Izgled.Zelena;
+            dataGridView1.Style.HeaderStyle.TextColor = Color.White;
+            dataGridView1.Style.HeaderStyle.FilterIconColor = Color.White;
+            dataGridView1.Style.HeaderStyle.SortIconColor = Color.White;
+            dataGridView1.Style.HeaderStyle.HoverFilterIconColor = IzracunCena.Izgled.Akcenat;
+            dataGridView1.Style.HeaderStyle.HoverSortIconColor = IzracunCena.Izgled.Akcenat;
+            dataGridView1.Style.SelectionStyle.BackColor = Color.FromArgb(232, 228, 218);
+            dataGridView1.Style.SelectionStyle.TextColor = Color.FromArgb(40, 40, 40);
         }
 
         private void frmTroskoviIzracun_Load(object sender, EventArgs e)
         {
 
+        }
+
+        // ZAH-011: svi redovi u gridu (uz aktivan filter samo prikazani); fokus na grid da odmah radi Ctrl+C
+        private void btnSelektujSve_Click(object sender, EventArgs e)
+        {
+            dataGridView1.SelectAll();
+            dataGridView1.Focus();
         }
 
         private void btnImeFajla_Click(object sender, EventArgs e)

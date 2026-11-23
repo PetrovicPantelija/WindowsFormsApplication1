@@ -223,8 +223,7 @@ namespace WindowsFormsApplication1.Magacin
         /// CSV: razdvajac je ; , ili tab (onaj kog u prvom redu ima najvise), polja pod navodnicima mogu sadrzati
         /// razdvajac, "" i prelom reda. Kodna strana: UTF-8 (sa ili bez BOM-a), a ako fajl nije ispravan UTF-8 - Windows-1250.
         /// </summary>
-        // koristi ga i ZAH-011 (frmTroskovniObracun)
-        internal static List<string[]> ReadCsv(string path, out string[] header)
+        private static List<string[]> ReadCsv(string path, out string[] header)
         {
             byte[] bytes;
             using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
